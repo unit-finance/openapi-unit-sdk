@@ -1,0 +1,173 @@
+{
+	"definitions":{
+		"relationships":{
+			"type":"object",
+			"properties":{
+				"org":{
+					"$ref":"types.json#/definitions/orgRelationship"
+				},
+				"application":{
+					"type":"object",
+					"properties":{
+						"type":{
+							"type":"string",
+							"enum":[
+								"businessApplication",
+								"individualApplication"
+							]
+						},
+						"id":{
+							"$ref":"types.json#/definitions/identifier"
+						}
+					}
+				}
+			},
+			"additionalProperties":false
+		},
+		"updateIndividualCustomer":{
+			"title":"UpdateIndividualCustomer",
+			"type":"object",
+			"allOf":[
+				{
+					"$ref":"./updateCustomer.json"
+				},
+				{
+					"type":"object",
+					"properties":{
+						"attributes":{
+							"type":"object",
+							"properties":{
+								"email":{
+									"$ref":"types.json#/definitions/email",
+									"nullable": "true"
+								},
+								"phone":{
+									"$ref":"types.json#/definitions/phone",
+									"nullable": "true"
+								},
+								"address":{
+									"$ref":"types.json#/definitions/address",
+									"nullable": "true"
+								},
+								"dba":{
+									"type":"string",
+									"nullable": "true"
+								},
+								"tags":{
+									"$ref":"tags.json#/definitions/tags"
+								},
+								"authorizedUsers":{
+									"type":"array",
+									"items":{
+										"$ref":"types.json#/definitions/authorizedUser"
+									},
+									"nullable": "true"
+								},
+								"jwtSubject":{
+									"$ref":"types.json#/definitions/jwtSubject",
+									"nullable": "true"
+								}
+							},
+							"additionalProperties":false
+						}
+					},
+					"additionalProperties":false
+				}
+			]
+		},
+		"updateBusinessCustomer":{
+			"title":"UpdateBusinessCustomer",
+			"type":"object",
+			"allOf":[
+				{
+					"$ref":"./updateCustomer.json"
+				},
+				{
+					"type":"object",
+					"properties":{
+						"attributes":{
+							"type":"object",
+							"properties":{
+								"dba":{
+								"type": "string",
+									"nullable": "true"
+								},
+								"ein":{
+									"type":"string",
+									"pattern":"^\\d{9}$"
+								},
+								"phone":{
+									"$ref":"types.json#/definitions/phone",
+									"nullable": "true"
+								},
+								"address":{
+									"$ref":"types.json#/definitions/address",
+									"nullable": "true"
+								},
+								"contact":{
+									"$ref":"types.json#/definitions/responseContact",
+									"nullable": "true"
+								},
+								"tags":{
+									"$ref":"tags.json#/definitions/tags",
+									"nullable": "true"
+								},
+								"authorizedUsers":{
+									"type":"array",
+									"items":{
+										"$ref":"types.json#/definitions/authorizedUser"
+									},
+									"nullable": "true"
+								}},
+							"additionalProperties":false
+						}
+					}
+				}
+			],
+			"additionalProperties":false
+		},
+		"updateTrustCustomer":{
+			"title":"UpdateTrustCustomer",
+			"type":"object",
+			"allOf":[
+				{
+					"$ref":"./updateCustomer.json"
+				},
+				{
+					"type":"object",
+					"properties":{
+						"attributes":{
+							"type":"object",
+							"properties":{
+								"contact":{
+									"$ref":"types.json#/definitions/trustContact",
+									"nullable": "true"
+								},
+								"tags":{
+									"$ref":"tags.json#/definitions/tags",
+									"nullable": "true"
+								},
+								"authorizedUsers":{
+									"type":"array",
+									"items":{
+										"$ref":"types.json#/definitions/authorizedUser"
+									},
+									"nullable": "true"
+								}
+							},
+							"additionalProperties":false
+						}
+					},
+					"additionalProperties":false
+				}
+			]
+		}
+	},
+	"title":"Update Customer Document",
+	"type":"object",
+	"properties":{
+		"type":{
+			"type":"string"
+		}
+	}
+}

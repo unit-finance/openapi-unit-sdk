@@ -1,0 +1,581 @@
+{
+  "definitions": {
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "depositAccount",
+                    "creditAccount",
+                    "account"
+                  ]
+                },
+                "id": {
+                  "$ref": "types.json#/definitions/identifier"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "additionalProperties": false
+        },
+        "customer": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "customer"
+                },
+                "id": {
+                  "$ref": "types.json#/definitions/identifier"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "additionalProperties": false
+        },
+        "defaultFundingAccount": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "depositAccount",
+                    "creditAccount",
+                    "account"
+                  ]
+                },
+                "id": {
+                  "$ref": "types.json#/definitions/identifier"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "account"
+      ],
+      "additionalProperties": false
+    },
+    "BIN": {
+      "type": "object",
+      "properties": {
+        "bin": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "institutionId": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "bin",
+        "institutionId"
+      ]
+    },
+    "createIndividualDebitCard": {
+      "title": "Create Individual Debit Card",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "createCard.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "individualDebitCard"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "shippingAddress": {
+                  "$ref": "types.json#/definitions/address"
+                },
+                "design": {
+                  "type": "string"
+                },
+                "tags": {
+                  "$ref": "tags.json#/definitions/tags"
+                },
+                "limits": {
+                  "$ref": "types.json#/definitions/cardLevelLimits"
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "bin": {
+                  "$ref": "#/definitions/BIN"
+                },
+                "cardQualifier": {
+                  "type": "string",
+                  "pattern": "^(\\d{3})|([ ]{3})$"
+                },
+                "cardDesignId": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "additionalEmbossedText": {
+                  "type": "string",
+                  "maxLength": 26
+                },
+                "activeForOnlineUse": {
+                  "type": "boolean"
+                },
+                "printOnlyBusinessName": {
+                  "type": "boolean"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "relationships": {
+              "$ref": "#/definitions/relationships"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes",
+            "relationships"
+          ]
+        }
+      ]
+    },
+    "createBusinessDebitCard": {
+      "title": "Create Business Debit Card",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "createCard.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "individualDebitCard"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "shippingAddress": {
+                  "$ref": "types.json#/definitions/address"
+                },
+                "design": {
+                  "type": "string"
+                },
+                "tags": {
+                  "$ref": "tags.json#/definitions/tags"
+                },
+                "limits": {
+                  "$ref": "types.json#/definitions/cardLevelLimits"
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "bin": {
+                  "$ref": "#/definitions/BIN"
+                },
+                "cardQualifier": {
+                  "type": "string",
+                  "pattern": "^(\\d{3})|([ ]{3})$"
+                },
+                "cardDesignId": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "additionalEmbossedText": {
+                  "type": "string",
+                  "maxLength": 26
+                },
+                "activeForOnlineUse": {
+                  "type": "boolean"
+                },
+                "printOnlyBusinessName": {
+                  "type": "boolean"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "relationships": {
+              "$ref": "#/definitions/relationships"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes",
+            "relationships"
+          ]
+        }
+      ]
+    },
+    "createBusinessCreditCard": {
+      "title": "Create Business Credit Card",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "createCard.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "individualDebitCard"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "shippingAddress": {
+                  "$ref": "types.json#/definitions/address"
+                },
+                "design": {
+                  "type": "string"
+                },
+                "tags": {
+                  "$ref": "tags.json#/definitions/tags"
+                },
+                "limits": {
+                  "$ref": "types.json#/definitions/cardLevelLimits"
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "bin": {
+                  "$ref": "#/definitions/BIN"
+                },
+                "cardQualifier": {
+                  "type": "string",
+                  "pattern": "^(\\d{3})|([ ]{3})$"
+                },
+                "cardDesignId": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "additionalEmbossedText": {
+                  "type": "string",
+                  "maxLength": 26
+                },
+                "activeForOnlineUse": {
+                  "type": "boolean"
+                },
+                "printOnlyBusinessName": {
+                  "type": "boolean"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "relationships": {
+              "$ref": "#/definitions/relationships"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes",
+            "relationships"
+          ]
+        }
+      ]
+    },
+    "createIndividualVirtualDebitCard": {
+      "title": "Create Individual Virtual Debit Card",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "createCard.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "individualDebitCard"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "shippingAddress": {
+                  "$ref": "types.json#/definitions/address"
+                },
+                "design": {
+                  "type": "string"
+                },
+                "tags": {
+                  "$ref": "tags.json#/definitions/tags"
+                },
+                "limits": {
+                  "$ref": "types.json#/definitions/cardLevelLimits"
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "bin": {
+                  "$ref": "#/definitions/BIN"
+                },
+                "cardQualifier": {
+                  "type": "string",
+                  "pattern": "^(\\d{3})|([ ]{3})$"
+                },
+                "cardDesignId": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "additionalEmbossedText": {
+                  "type": "string",
+                  "maxLength": 26
+                },
+                "activeForOnlineUse": {
+                  "type": "boolean"
+                },
+                "printOnlyBusinessName": {
+                  "type": "boolean"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "relationships": {
+              "$ref": "#/definitions/relationships"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes",
+            "relationships"
+          ]
+        }
+      ]
+    },
+    "createBusinessVirtualDebitCard": {
+      "title": "Create Business Virtual Debit Card",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "createCard.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "individualDebitCard"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "shippingAddress": {
+                  "$ref": "types.json#/definitions/address"
+                },
+                "design": {
+                  "type": "string"
+                },
+                "tags": {
+                  "$ref": "tags.json#/definitions/tags"
+                },
+                "limits": {
+                  "$ref": "types.json#/definitions/cardLevelLimits"
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "bin": {
+                  "$ref": "#/definitions/BIN"
+                },
+                "cardQualifier": {
+                  "type": "string",
+                  "pattern": "^(\\d{3})|([ ]{3})$"
+                },
+                "cardDesignId": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "additionalEmbossedText": {
+                  "type": "string",
+                  "maxLength": 26
+                },
+                "activeForOnlineUse": {
+                  "type": "boolean"
+                },
+                "printOnlyBusinessName": {
+                  "type": "boolean"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "relationships": {
+              "$ref": "#/definitions/relationships"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes",
+            "relationships"
+          ]
+        }
+      ]
+    },
+    "createBusinessVirtualCreditCard": {
+      "title": "Create Business Virtual Credit Card",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "createCard.json"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "individualDebitCard"
+              ]
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "shippingAddress": {
+                  "$ref": "types.json#/definitions/address"
+                },
+                "design": {
+                  "type": "string"
+                },
+                "tags": {
+                  "$ref": "tags.json#/definitions/tags"
+                },
+                "limits": {
+                  "$ref": "types.json#/definitions/cardLevelLimits"
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "bin": {
+                  "$ref": "#/definitions/BIN"
+                },
+                "cardQualifier": {
+                  "type": "string",
+                  "pattern": "^(\\d{3})|([ ]{3})$"
+                },
+                "cardDesignId": {
+                  "type": "string",
+                  "maxLength": 16
+                },
+                "additionalEmbossedText": {
+                  "type": "string",
+                  "maxLength": 26
+                },
+                "activeForOnlineUse": {
+                  "type": "boolean"
+                },
+                "printOnlyBusinessName": {
+                  "type": "boolean"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "relationships": {
+              "$ref": "#/definitions/relationships"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes",
+            "relationships"
+          ]
+        }
+      ]
+    }
+  },
+  "title": "Create Card",
+  "type": "object"
+}

@@ -1,0 +1,89 @@
+{
+  "definitions": {
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "account",
+                    "depositAccount",
+                    "batchAccount"
+                  ]
+                },
+                "id": {
+                  "$ref": "types.json#/definitions/identifier"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "account"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "title": "Check Deposit",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "checkDeposit"
+      ]
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "tags": {
+          "$ref": "tags.json#/definitions/tags"
+        }
+      },
+      "required": [
+        "amount",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "relationships": {
+      "$ref": "#/definitions/relationships"
+    }
+  },
+  "required": [
+    "type",
+    "attributes",
+    "relationships"
+  ],
+  "additionalProperties": false
+}

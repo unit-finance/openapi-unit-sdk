@@ -674,7 +674,7 @@
 			}
 		},
 		"/accounts/{accountId}/unfreeze":{
-			"get":{
+			"post":{
 				"tags":[
 					"Unfreeze Account"
 				],
@@ -792,10 +792,10 @@
 					"content":{
 						"application/vnd.api+json":{
 							"schema":{
-								"data":{
 									"type":"object",
 									"properties":{
-										"$ref":"./schemas/types.json#/definitions/closeAccountRequest"
+										"data":{
+											"$ref":"./schemas/types.json#/definitions/closeAccountRequest"
 									}
 								}
 							}

@@ -5,17 +5,12 @@ import os
 import uuid
 import unittest
 
-from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request
-from swagger_client import configuration, api_client, Address, CreateIndividualApplicationAttributes, FullName, Phone, \
-    CreateApplicationApi, CreateIndividualApplication, CreateBusinessApplicationAttributes, Officer, Contact, \
-    BeneficialOwner, CreateBusinessApplication, GetListApplicationsApi
+from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request, \
+    create_business_application_request
+from swagger_client import GetListApplicationsApi, CreateApplicationApi
 from swagger_client.api.get_application_api import GetApplicationApi  # noqa: E501
 
 ApplicationTypes = ["individualApplication", "businessApplication", "trustApplication"]
-
-
-def create_address(street, city, state, postal_code, country):
-    return Address(street=street, city=city, state=state, postal_code=postal_code, country=country)
 
 
 class TestApplicationApi(unittest.TestCase):
@@ -48,30 +43,7 @@ class TestApplicationApi(unittest.TestCase):
         assert res.id == app.id
 
     def create_business_application(self):
-        address = Address(street="1600 Pennsylvania Avenue Northwest", city="Washington", state="CA",
-                          postal_code="20500", country="US")
-        officer = Officer(full_name=FullName("Jone", "Doe"), date_of_birth=date.today() - timedelta(days=20 * 365),
-                           address=create_address("950 Allerton Street", "Redwood City", "CA", "94063", "US"),
-                           phone=Phone("1", "2025550108"), email="jone.doe@unit-finance.com", ssn="123456789")
-        contact = Contact(full_name=FullName("Jone", "Doe"), email="jone.doe@unit-finance.com",
-                          phone=Phone("1", "2025550108"))
-        beneficial_owners = [
-            BeneficialOwner(full_name=FullName("James", "Smith"), date_of_birth=date.today() - timedelta(days=20 * 365),
-                            address=create_address("650 Allerton Street", "Redwood City", "CA", "94063", "US"),
-                            phone=Phone("1", "2025550127"), email="james@unit-finance.com", ssn="574567625"),
-            BeneficialOwner(full_name=FullName("Richard", "Hendricks"), date_of_birth=date.today() - timedelta(days=20 * 365),
-                            address=create_address("470 Allerton Street", "Redwood City", "CA", "94063", "US"),
-                            phone=Phone("1", "2025550158"), email="richard@unit-finance.com", ssn="574572795")
-        ]
-
-        attr = CreateBusinessApplicationAttributes(name="Acme Inc.", phone=Phone("1", "9294723497"), address=address,
-                                                   state_of_incorporation="CA", entity_type="Corporation",
-                                                   ein="123456789", officer=officer, contact=contact,
-                                                   beneficial_owners=beneficial_owners,
-                                                   idempotency_key=str(uuid.uuid1()))
-
-        app = CreateApplicationApi(self.api_client).create_application(
-            {"data": CreateBusinessApplication(attributes=attr)})
+        app = CreateApplicationApi(self.api_client).create_application(create_business_application_request())
 
         return app.data
 

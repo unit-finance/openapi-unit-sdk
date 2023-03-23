@@ -14,7 +14,7 @@
           "$ref": "types.json#/definitions/email"
         },
         "phone": {
-          "$ref": "types.json#/definitions/internationalPhone"
+          "$ref": "types.json#/definitions/phone"
         },
         "ssn": {
           "type": "string",
@@ -79,7 +79,7 @@
           "$ref": "types.json#/definitions/email"
         },
         "phone": {
-          "$ref": "types.json#/definitions/internationalPhone"
+          "$ref": "types.json#/definitions/phone"
         },
         "ssn": {
           "type": "string",
@@ -142,12 +142,7 @@
         "idTheftScore": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false,
-      "required": [
-        "status",
-        "fullName"
-      ]
+      }
     },
     "beneficialOwner": {
       "title": "Beneficial Owner",
@@ -163,7 +158,7 @@
           "$ref": "types.json#/definitions/email"
         },
         "phone": {
-          "$ref": "types.json#/definitions/internationalPhone"
+          "$ref": "types.json#/definitions/phone"
         },
         "ssn": {
           "type": "string",
@@ -212,12 +207,7 @@
         "idTheftScore": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false,
-      "required": [
-        "status",
-        "fullName"
-      ]
+      }
     },
     "relationships": {
       "type": "object",
@@ -394,13 +384,13 @@
                   "format": "date"
                 },
                 "stateOfIncorporation": {
-                  "$ref": "types.json#/definitions/state"
+                  "type": "string"
                 },
                 "purpose": {
                   "type": "string"
                 },
                 "phone": {
-                  "$ref": "types.json#/definitions/internationalPhone"
+                  "$ref": "types.json#/definitions/phone"
                 },
                 "address": {
                   "type": "object"
@@ -538,7 +528,7 @@
                   "$ref": "types.json#/definitions/email"
                 },
                 "phone": {
-                  "$ref": "types.json#/definitions/internationalPhone"
+                  "$ref": "types.json#/definitions/phone"
                 },
                 "ssn": {
                   "type": "string",
@@ -706,7 +696,7 @@
                   "format": "date"
                 },
                 "stateOfIncorporation": {
-                  "$ref": "types.json#/definitions/state"
+                  "type":"string"
                 },
                 "revocability": {
                   "$ref": "types.json#/definitions/revocability"

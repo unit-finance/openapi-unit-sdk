@@ -1,50 +1,53 @@
 {
-	"openapi": "3.0.2",
-	"info": {
-		"title": "Unit Python SDK",
-		"description": "An API for testing openapi-python-client for unit-sdk",
-		"version": "0.1.0"
+	"openapi":"3.0.2",
+	"info":{
+		"title":"Unit Python SDK",
+		"description":"An API for testing openapi-python-client for unit-sdk",
+		"version":"0.1.0"
 	},
-	"servers": [{
-		"url": "https://api.s.unit.sh"
-	}],
-	"paths": {
-		"/applications/{applicationId}": {
-			"get": {
-				"tags": [
+	"servers":[
+		{
+			"url":"https://api.s.unit.sh"
+		}
+	],
+	"paths":{
+		"/applications/{applicationId}":{
+			"get":{
+				"tags":[
 					"Get Application"
 				],
-				"operationId": "findApplicationById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"findApplicationById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "applicationId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the application to get"
+						"name":"applicationId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the application to get"
 					},
 					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
 						}
 					}
 				],
-				"summary": "Get Application by Id",
-				"description": "Get an Application from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/application.json"
+				"summary":"Get Application by Id",
+				"description":"Get an Application from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/application.json"
 										}
 									}
 								}
@@ -53,44 +56,46 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Application"
 				],
-				"operationId": "updateApplication",
-				"summary": "Update Application",
-				"description": "Update an Application via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "applicationId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the application to update"
-				}],
-				"requestBody": {
-					"description": "Update Application Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+				"operationId":"updateApplication",
+				"summary":"Update Application",
+				"description":"Update an Application via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"applicationId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the application to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Application Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/application.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/application.json"
 										}
 									}
 								}
@@ -100,45 +105,47 @@
 				}
 			}
 		},
-		"/applications/{applicationId}/cancel": {
-			"post": {
-				"tags": [
+		"/applications/{applicationId}/cancel":{
+			"post":{
+				"tags":[
 					"Cancel Application"
 				],
-				"operationId": " cancelApplicationById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "applicationId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the application to get"
-				}],
-				"summary": "Cancel Application by Id",
-				"description": "Cancel a Application via API ",
-				"requestBody": {
-					"description": "Cancel Application Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"type": "object",
-										"properties": {
-											"type": {
-												"type": "string",
-												"enum": [
+				"operationId":" cancelApplicationById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"applicationId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the application to get"
+					}
+				],
+				"summary":"Cancel Application by Id",
+				"description":"Cancel a Application via API ",
+				"requestBody":{
+					"description":"Cancel Application Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"type":"object",
+										"properties":{
+											"type":{
+												"type":"string",
+												"enum":[
 													"cancelApplication"
 												]
 											},
-											"attributes": {
-												"type": "object",
-												"properties": {
-													"reason": {
-														"type": "string"
+											"attributes":{
+												"type":"object",
+												"properties":{
+													"reason":{
+														"type":"string"
 													}
 												}
 											}
@@ -149,295 +156,23 @@
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/application.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/applications": {
-			"post": {
-				"tags": [
-					"Create Application"
-				],
-				"operationId": " createApplication",
-				"summary": "Create Application",
-				"description": "Create an Application via API ",
-				"requestBody": {
-					"description": "Create Application Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createApplication.json"
-									}
-								}
-							}
-						}
-					}
-				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/application.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"tags": [
-					"Get List Applications"
-				],
-				"operationId": "find list application",
-				"summary": "Get List Application",
-				"description": "Get List Applications from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
-						}
-					},
-					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
-								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
-											"Pending",
-											"Approved"
-										]
-									}
-								},
-								"email": {
-									"type": "string"
-								},
-								"tags": {
-									"type": "object"
-								}
-							}
-						}
-					},
-					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
-								"createdAt",
-								"-createdAt"
-							],
-							"default": "-createdAt"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/application.json"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/application-forms":{
-			"post": {
-				"tags": [
-					"Create ApplicationForm"
-				],
-				"operationId": " createApplicationForm",
-				"summary": "Create Application Form",
-				"description": "Create an Application Form via API ",
-				"requestBody": {
-					"description": "Create Application Form Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createApplicationForm.json"
-									}
-								}
-							}
-						}
-					}
-				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/applicationForm.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"tags": [
-					"Get List Application Forms"
-				],
-				"operationId": "find list application forms",
-				"summary": "Get List Application Forms",
-				"description": "Get List Application Forms from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
-						}
-					},
-					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
-								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
-											"Pending",
-											"Approved"
-										]
-									}
-								},
-								"email": {
-									"type": "string"
-								},
-								"tags": {
-									"type": "object"
-								}
-							}
-						}
-					},
-					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
-								"createdAt",
-								"-createdAt"
-							],
-							"default": "-createdAt"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/applicationForm.json"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/application-forms/{applicationFormId}":{
-			"get": {
-				"tags": [
-					"Get Application Form"
-				],
-				"operationId": "findApplicationFormById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
-						},
-						"name": "applicationFormId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the application form to get"
-					},
-					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"summary": "Get ApplicationForm by Id",
-				"description": "Get an Application Form from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/applicationForm.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/application.json"
 										},
 										"included":{
-											"$ref": "./schemas/application.json"
+											"type":"array",
+											"items":{
+												"$ref":"./schemas/document.json"
+											}
 										}
 									}
 								}
@@ -447,63 +182,46 @@
 				}
 			}
 		},
-		"/accounts/": {
-			"get": {
-				"tags": [
-					"Get List Accounts"
+		"/applications":{
+			"post":{
+				"tags":[
+					"Create Application"
 				],
-				"operationId": "find list accounts",
-				"summary": "Get List Accounts",
-				"description": "Get List Accounts from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
-						}
-					},
-					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
-								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
-											"Pending",
-											"Approved"
-										]
+				"operationId":" createApplication",
+				"summary":"Create Application",
+				"description":"Create an Application via API ",
+				"requestBody":{
+					"description":"Create Application Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"schemas/createApplication.json"
 									}
-								},
-								"email": {
-									"type": "string"
-								},
-								"tags": {
-									"type": "object"
 								}
 							}
 						}
 					}
-				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"title": "UnitResponse",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"data": {
-										"type": "object",
-										"properties": {
-											"type": "array",
-											"items": {
-												"$ref": "./schemas/account.json"
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"schemas/application.json"
+										},
+										"included":{
+											"type":"array",
+											"items":{
+												"$ref":"schemas/document.json"
 											}
 										}
 									}
@@ -513,86 +231,80 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
-					"Create an Account"
+			"get":{
+				"tags":[
+					"Get List Applications"
 				],
-				"operationId": "createAccount",
-				"summary": "Create an Account",
-				"description": "Create an Account via API ",
-				"requestBody": {
-					"description": "Create Account Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/createAccount.json"
-									}
-								}
-							}
+				"operationId":"find list application",
+				"summary":"Get List Application",
+				"description":"Get List Applications from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
-					}
-				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}": {
-			"get": {
-				"tags": [
-					"Get Account"
-				],
-				"operationId": "findAccountById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
-						},
-						"name": "accountId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the account to get"
 					},
 					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
+								},
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
+											"Pending",
+											"Approved"
+										]
+									}
+								},
+								"email":{
+									"type":"string"
+								},
+								"tags":{
+									"type":"object"
+								}
+							}
+						}
+					},
+					{
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
+								"createdAt",
+								"-createdAt"
+							],
+							"default":"-createdAt"
 						}
 					}
 				],
-				"summary": "Get Account by Id",
-				"description": "Get an Account from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponseListApplications",
+									"properties":{
+										"data":{
+											"type":"array",
+											"items":{
+												"$ref":"./schemas/application.json"
+											}
 										}
+									},
+									"meta":{
+										"$ref":"types.json#/definitions/paginationMeta"
 									}
 								}
 							}
@@ -601,390 +313,41 @@
 				}
 			}
 		},
-		"/accounts/{accountId}/limits": {
-			"get": {
-				"tags": [
-					"Get Account Limits"
+		"/application-forms":{
+			"post":{
+				"tags":[
+					"Create ApplicationForm"
 				],
-				"operationId": "getAccountLimits",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account to get"
-				}],
-				"summary": "Get Account Limits by Id",
-				"description": "Get Account Limits from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/types.json#/definitions/limits"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}/unfreeze": {
-			"get": {
-				"tags": [
-					"Unfreeze Account"
-				],
-				"operationId": "unfreezeAccountById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account to get"
-				}],
-				"summary": "Unfreeze Account by Id",
-				"description": "Unfreeze an Account via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}/freeze": {
-			"post": {
-				"tags": [
-					"Freeze an Account"
-				],
-				"operationId": "freezeAccountById",
-				"summary": "Freeze an Account by Id",
-				"description": "Freeze an Account via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account to freeze"
-				}],
-				"requestBody": {
-					"description": "Freeze Account Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/types.json#/definitions/freezeAccountRequest"
+				"operationId":" createApplicationForm",
+				"summary":"Create Application Form",
+				"description":"Create an Application Form via API ",
+				"requestBody":{
+					"description":"Create Application Form Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createApplicationForm.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}/close": {
-			"post": {
-				"tags": [
-					"Close an Account"
-				],
-				"operationId": "closeAccountById",
-				"summary": "Close an Account by Id",
-				"description": "Close an Account via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account to close"
-				}],
-				"requestBody": {
-					"description": "Close Account Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/types.json#/definitions/closeAccountRequest"
-									}
-								}
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}/reopen": {
-			"post": {
-				"tags": [
-					"Reopen an Account"
-				],
-				"operationId": "reopenAccountById",
-				"summary": "Reopen an Account by Id",
-				"description": "Reopen an Account via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account to close"
-				}],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json#/definitions/DepositAccount"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}/enter-daca": {
-			"post": {
-				"tags": [
-					"Enter Control Agreement for Account"
-				],
-				"operationId": "enterDacaAccountById",
-				"summary": "Enter Account Control Agreement by Id",
-				"description": "Enter Control Agreement for Account via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account"
-				}],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json#/definitions/DepositAccount"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}/activate-daca": {
-			"post": {
-				"tags": [
-					"Activate Control Agreement for Account"
-				],
-				"operationId": "activateDacaAccountById",
-				"summary": "Activate Account Control Agreement by Id",
-				"description": "Activate Control Agreement for Account via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account"
-				}],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json#/definitions/DepositAccount"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/accounts/{accountId}/deactivate-daca": {
-			"post": {
-				"tags": [
-					"Deactivate Control Agreement for Account"
-				],
-				"operationId": "deactivateDacaAccountById",
-				"summary": "Deactivate Account Control Agreement by Id",
-				"description": "Deactivate Control Agreement for Account via API",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account"
-				}],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/account.json#/definitions/DepositAccount"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/account-end-of-day": {
-			"get": {
-				"tags": [
-					"Get list account end-of-day balances history"
-				],
-				"operationId": "getAccountEndOfDayList",
-				"summary": "Get AccountEndOfDay List",
-				"description": "Get AccountEndOfDay List from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/accountEndOfDay.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/customers/{customerId}": {
-			"get": {
-				"tags": [
-					"Get Customer"
-				],
-				"operationId": "findCustomerById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "customerId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the customer to get"
-				}],
-				"summary": "Get Customer by Id",
-				"description": "Get a Customer from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/customer.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/applicationForm.json"
 										}
 									}
 								}
@@ -993,44 +356,408 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
-					"Update Customer"
+			"get":{
+				"tags":[
+					"Get List Application Forms"
 				],
-				"operationId": "updateCustomer",
-				"summary": "Update Customer",
-				"description": "Update an Customer via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
+				"operationId":"find list application forms",
+				"summary":"Get List Application Forms",
+				"description":"Get List Application Forms from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
+						}
 					},
-					"name": "customerId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the customer to update"
-				}],
-				"requestBody": {
-					"description": "Update Customer Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/updateCustomer.json"
+					{
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
+								},
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
+											"Pending",
+											"Approved"
+										]
+									}
+								},
+								"email":{
+									"type":"string"
+								},
+								"tags":{
+									"type":"object"
+								}
+							}
+						}
+					},
+					{
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
+								"createdAt",
+								"-createdAt"
+							],
+							"default":"-createdAt"
+						}
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/applicationForm.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/application-forms/{applicationFormId}":{
+			"get":{
+				"tags":[
+					"Get Application Form"
+				],
+				"operationId":"findApplicationFormById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"applicationFormId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the application form to get"
+					},
+					{
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
+						}
+					}
+				],
+				"summary":"Get ApplicationForm by Id",
+				"description":"Get an Application Form from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/applicationForm.json"
+										},
+										"included":{
+											"$ref":"./schemas/application.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/":{
+			"get":{
+				"tags":[
+					"Get List Accounts"
+				],
+				"operationId":"find list accounts",
+				"summary":"Get List Accounts",
+				"description":"Get List Accounts from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
+						}
+					},
+					{
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
+								},
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
+											"Pending",
+											"Approved"
+										]
+									}
+								},
+								"email":{
+									"type":"string"
+								},
+								"tags":{
+									"type":"object"
+								}
+							}
+						}
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+										"title":"UnitResponseAccountsList",
+										"type":"object",
+										"properties":{
+											"data":{
+												"type":"array",
+												"items":{
+													"$ref":"./schemas/account.json"
+												}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post":{
+				"tags":[
+					"Create an Account"
+				],
+				"operationId":"createAccount",
+				"summary":"Create an Account",
+				"description":"Create an Account via API ",
+				"requestBody":{
+					"description":"Create Account Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+									"type":"object",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/createAccount.json"
+										}
+									}
+								}
+							}
+						}
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}":{
+			"get":{
+				"tags":[
+					"Get Account"
+				],
+				"operationId":"findAccountById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get"
+					},
+					{
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
+						}
+					}
+				],
+				"summary":"Get Account by Id",
+				"description":"Get an Account from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}/limits":{
+			"get":{
+				"tags":[
+					"Get Account Limits"
+				],
+				"operationId":"getAccountLimits",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get"
+					}
+				],
+				"summary":"Get Account Limits by Id",
+				"description":"Get Account Limits from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/types.json#/definitions/limits"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}/unfreeze":{
+			"get":{
+				"tags":[
+					"Unfreeze Account"
+				],
+				"operationId":"unfreezeAccountById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get"
+					}
+				],
+				"summary":"Unfreeze Account by Id",
+				"description":"Unfreeze an Account via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}/freeze":{
+			"post":{
+				"tags":[
+					"Freeze an Account"
+				],
+				"operationId":"freezeAccountById",
+				"summary":"Freeze an Account by Id",
+				"description":"Freeze an Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to freeze"
+					}
+				],
+				"requestBody":{
+					"description":"Freeze Account Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./schemas/types.json#/definitions/freezeAccountRequest"
+									}
+								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/customer.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json"
 										}
 									}
 								}
@@ -1040,25 +767,351 @@
 				}
 			}
 		},
-		"/customers": {
-			"get": {
-				"tags": [
+		"/accounts/{accountId}/close":{
+			"post":{
+				"tags":[
+					"Close an Account"
+				],
+				"operationId":"closeAccountById",
+				"summary":"Close an Account by Id",
+				"description":"Close an Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to close"
+					}
+				],
+				"requestBody":{
+					"description":"Close Account Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./schemas/types.json#/definitions/closeAccountRequest"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}/reopen":{
+			"post":{
+				"tags":[
+					"Reopen an Account"
+				],
+				"operationId":"reopenAccountById",
+				"summary":"Reopen an Account by Id",
+				"description":"Reopen an Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to close"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}/enter-daca":{
+			"post":{
+				"tags":[
+					"Enter Control Agreement for Account"
+				],
+				"operationId":"enterDacaAccountById",
+				"summary":"Enter Account Control Agreement by Id",
+				"description":"Enter Control Agreement for Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}/activate-daca":{
+			"post":{
+				"tags":[
+					"Activate Control Agreement for Account"
+				],
+				"operationId":"activateDacaAccountById",
+				"summary":"Activate Account Control Agreement by Id",
+				"description":"Activate Control Agreement for Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/accounts/{accountId}/deactivate-daca":{
+			"post":{
+				"tags":[
+					"Deactivate Control Agreement for Account"
+				],
+				"operationId":"deactivateDacaAccountById",
+				"summary":"Deactivate Account Control Agreement by Id",
+				"description":"Deactivate Control Agreement for Account via API",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/account-end-of-day":{
+			"get":{
+				"tags":[
+					"Get list account end-of-day balances history"
+				],
+				"operationId":"getAccountEndOfDayList",
+				"summary":"Get AccountEndOfDay List",
+				"description":"Get AccountEndOfDay List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/accountEndOfDay.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/customers/{customerId}":{
+			"get":{
+				"tags":[
+					"Get Customer"
+				],
+				"operationId":"findCustomerById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"customerId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the customer to get"
+					}
+				],
+				"summary":"Get Customer by Id",
+				"description":"Get a Customer from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/customer.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"patch":{
+				"tags":[
+					"Update Customer"
+				],
+				"operationId":"updateCustomer",
+				"summary":"Update Customer",
+				"description":"Update an Customer via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"customerId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the customer to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Customer Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/updateCustomer.json"
+							}
+						}
+					}
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/customer.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/customers":{
+			"get":{
+				"tags":[
 					"Get List Customers"
 				],
-				"operationId": "getCustomersList",
-				"summary": "Get Customers List",
-				"description": "Get Customers List from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/customer.json"
+				"operationId":"getCustomersList",
+				"summary":"Get Customers List",
+				"description":"Get Customers List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/customer.json"
 										}
 									}
 								}
@@ -1068,41 +1121,43 @@
 				}
 			}
 		},
-		"/customers/{customerId}/archive": {
-			"post": {
-				"tags": [
+		"/customers/{customerId}/archive":{
+			"post":{
+				"tags":[
 					"Archive Customer"
 				],
-				"operationId": "archiveCustomerById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "customerId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the customer to archive"
-				}],
-				"requestBody": {
-					"description": "Update Payment Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"type": {
-										"type": "string",
-										"enum": [
+				"operationId":"archiveCustomerById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"customerId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the customer to archive"
+					}
+				],
+				"requestBody":{
+					"description":"Update Payment Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"type":{
+										"type":"string",
+										"enum":[
 											"archiveCustomer"
 										]
 									},
-									"attributes": {
-										"type": "object",
-										"properties": {
-											"reason": {
-												"type": "string",
-												"enum": [
+									"attributes":{
+										"type":"object",
+										"properties":{
+											"reason":{
+												"type":"string",
+												"enum":[
 													"Inactive",
 													"FraudACHActivity",
 													"FraudCardActivity",
@@ -1120,19 +1175,19 @@
 						}
 					}
 				},
-				"summary": "Archive Customer by Id",
-				"description": "Archive a Customer via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/customer.json"
+				"summary":"Archive Customer by Id",
+				"description":"Archive a Customer via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/customer.json"
 										}
 									}
 								}
@@ -1142,63 +1197,64 @@
 				}
 			}
 		},
-		"/payments/": {
-			"get": {
-				"tags": [
+		"/payments/":{
+			"get":{
+				"tags":[
 					"Get List Payments"
 				],
-				"operationId": "getListPayments",
-				"summary": "Get List Payments",
-				"description": "Get List Payments from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"getListPayments",
+				"summary":"Get List Payments",
+				"description":"Get List Payments from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"title": "UnitResponse",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"data": {
-										"type": "object",
-										"properties": {
-											"type": "array",
-											"items": {
-												"$ref": "./schemas/payment.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"title":"UnitResponse",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"data":{
+										"type":"object",
+										"properties":{
+											"type":"array",
+											"items":{
+												"$ref":"./schemas/payment.json"
 											}
 										}
 									}
@@ -1208,40 +1264,40 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
+			"post":{
+				"tags":[
 					"Create a Payment"
 				],
-				"operationId": "createPayment",
-				"summary": "Create a Payment",
-				"description": "Create a Payment via API ",
-				"requestBody": {
-					"description": "Create Payment Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/createPayment.json"
+				"operationId":"createPayment",
+				"summary":"Create a Payment",
+				"description":"Create a Payment via API ",
+				"requestBody":{
+					"description":"Create Payment Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./schemas/createPayment.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/payment.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/payment.json"
 										}
 									}
 								}
@@ -1251,42 +1307,43 @@
 				}
 			}
 		},
-		"/payments/{paymentId}": {
-			"get": {
-				"tags": [
+		"/payments/{paymentId}":{
+			"get":{
+				"tags":[
 					"Get Payment"
 				],
-				"operationId": "findPaymentById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"findPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "paymentId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the payment to get"
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
 					},
 					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
 						}
 					}
 				],
-				"summary": "Get Payment by Id",
-				"description": "Get a Payment from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/payment.json"
+				"summary":"Get Payment by Id",
+				"description":"Get a Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/payment.json"
 										}
 									}
 								}
@@ -1295,44 +1352,46 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Payment"
 				],
-				"operationId": "updatePayment",
-				"summary": "Update Payment",
-				"description": "Update an Payment via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "paymentId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the payment to update"
-				}],
-				"requestBody": {
-					"description": "Update Payment Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+				"operationId":"updatePayment",
+				"summary":"Update Payment",
+				"description":"Update an Payment via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Payment Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/payment.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/payment.json"
 										}
 									}
 								}
@@ -1342,34 +1401,36 @@
 				}
 			}
 		},
-		"/payments/{paymentId}/cancel": {
-			"post": {
-				"tags": [
+		"/payments/{paymentId}/cancel":{
+			"post":{
+				"tags":[
 					"Cancel Payment"
 				],
-				"operationId": "cancelPaymentById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "paymentId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the payment to cancel"
-				}],
-				"summary": "Cancel a Payment by Id",
-				"description": "Cancel a Payment via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/payment.json"
+				"operationId":"cancelPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to cancel"
+					}
+				],
+				"summary":"Cancel a Payment by Id",
+				"description":"Cancel a Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/payment.json"
 										}
 									}
 								}
@@ -1379,42 +1440,43 @@
 				}
 			}
 		},
-		"/received-payments": {
-			"get": {
-				"tags": [
+		"/received-payments":{
+			"get":{
+				"tags":[
 					"Get Received Payments List"
 				],
-				"operationId": "getReceivedPayments",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"getReceivedPayments",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "paymentId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the payment to get"
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
 					},
 					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
 						}
 					}
 				],
-				"summary": "Get Received Payments List",
-				"description": "Get Received Payments from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/payment.json"
+				"summary":"Get Received Payments List",
+				"description":"Get Received Payments from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/payment.json"
 										}
 									}
 								}
@@ -1424,42 +1486,43 @@
 				}
 			}
 		},
-		"/received-payments/{paymentId}": {
-			"get": {
-				"tags": [
+		"/received-payments/{paymentId}":{
+			"get":{
+				"tags":[
 					"Get Received Payment"
 				],
-				"operationId": "findReceivedPaymentById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"findReceivedPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "paymentId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the payment to get"
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
 					},
 					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
 						}
 					}
 				],
-				"summary": "Get Received Payment by Id",
-				"description": "Get a Received Payment from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/receivedPayment.json"
+				"summary":"Get Received Payment by Id",
+				"description":"Get a Received Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/receivedPayment.json"
 										}
 									}
 								}
@@ -1468,53 +1531,57 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Received Payment"
 				],
-				"operationId": "updateReceivedPayment",
-				"summary": "Update Received Payment",
-				"description": "Update a Received Payment via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "paymentId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the payment to update"
-				}],
-				"requestBody": {
-					"description": "Update Received Payment Request",
-					"required": "true",
-					"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"updateReceivedPayment",
+				"summary":"Update Received Payment",
+				"description":"Update a Received Payment via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "receivedPaymentId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the received payment to update"
-					}],
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Received Payment Request",
+					"required":"true",
+					"parameters":[
+						{
+							"schema":{
+								"type":"string"
+							},
+							"name":"receivedPaymentId",
+							"in":"path",
+							"required":true,
+							"description":"ID of the received payment to update"
+						}
+					],
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/receivedPayment.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/receivedPayment.json"
 										}
 									}
 								}
@@ -1524,34 +1591,36 @@
 				}
 			}
 		},
-		"/received-payments/{paymentId}/advance": {
-			"post": {
-				"tags": [
+		"/received-payments/{paymentId}/advance":{
+			"post":{
+				"tags":[
 					"Advance Received Payment"
 				],
-				"operationId": "advanceReceivedPaymentById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "paymentId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the payment to advance"
-				}],
-				"summary": "Advance Received Payment by Id",
-				"description": "Advance a Received Payment via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/receivedPayment.json"
+				"operationId":"advanceReceivedPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to advance"
+					}
+				],
+				"summary":"Advance Received Payment by Id",
+				"description":"Advance a Received Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/receivedPayment.json"
 										}
 									}
 								}
@@ -1561,25 +1630,25 @@
 				}
 			}
 		},
-		"/counterparties/": {
-			"get": {
-				"tags": [
+		"/counterparties/":{
+			"get":{
+				"tags":[
 					"Get List Counterparties"
 				],
-				"operationId": "getCounterpartiesList",
-				"summary": "Get Counterparties List",
-				"description": "Get Counterparties List from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/counterparty.json"
+				"operationId":"getCounterpartiesList",
+				"summary":"Get Counterparties List",
+				"description":"Get Counterparties List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/counterparty.json"
 										}
 									}
 								}
@@ -1588,40 +1657,40 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
+			"post":{
+				"tags":[
 					"Create Counterparty"
 				],
-				"operationId": " createCounterparty",
-				"summary": "Create Counterparty",
-				"description": "Create a counterparty via API ",
-				"requestBody": {
-					"description": "Create Counterparty Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createCounterparty.json"
+				"operationId":" createCounterparty",
+				"summary":"Create Counterparty",
+				"description":"Create a counterparty via API ",
+				"requestBody":{
+					"description":"Create Counterparty Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createCounterparty.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/counterparty.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/counterparty.json"
 										}
 									}
 								}
@@ -1631,42 +1700,43 @@
 				}
 			}
 		},
-		"/counterparties/{counterpartyId}": {
-			"get": {
-				"tags": [
+		"/counterparties/{counterpartyId}":{
+			"get":{
+				"tags":[
 					"Get Counterparty"
 				],
-				"operationId": "findCounterpartyById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"findCounterpartyById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "counterpartyId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the counterparty to get"
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to get"
 					},
 					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
 						}
 					}
 				],
-				"summary": "Get Counterparty by Id",
-				"description": "Get a Counterparty from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/counterparty.json"
+				"summary":"Get Counterparty by Id",
+				"description":"Get a Counterparty from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/counterparty.json"
 										}
 									}
 								}
@@ -1675,44 +1745,46 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Counterparty"
 				],
-				"operationId": "updateCounterparty",
-				"summary": "Update Counterparty",
-				"description": "Update a Counterparty via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "counterpartyId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the counterparty to update"
-				}],
-				"requestBody": {
-					"description": "Update Counterparty Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+				"operationId":"updateCounterparty",
+				"summary":"Update Counterparty",
+				"description":"Update a Counterparty via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Counterparty Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/counterparty.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/counterparty.json"
 										}
 									}
 								}
@@ -1721,57 +1793,61 @@
 					}
 				}
 			},
-			"delete": {
-				"tags": [
+			"delete":{
+				"tags":[
 					"Delete Counterparty"
 				],
-				"operationId": "deleteCounterparty",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "counterpartyId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the counterparty to delete"
-				}],
-				"summary": "Delete Counterparty by Id",
-				"description": "Delete Counterparty via API ",
-				"responses": {
-					"204": {
-						"description": "Successful Response"
+				"operationId":"deleteCounterparty",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to delete"
+					}
+				],
+				"summary":"Delete Counterparty by Id",
+				"description":"Delete Counterparty via API ",
+				"responses":{
+					"204":{
+						"description":"Successful Response"
 					}
 				}
 			}
 		},
-		"/counterparties/{counterpartyId}/balance": {
-			"get": {
-				"tags": [
+		"/counterparties/{counterpartyId}/balance":{
+			"get":{
+				"tags":[
 					"Get Counterparty Balance"
 				],
-				"operationId": "getCounterpartyBalance",
-				"summary": "Get Counterparty Balance",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "counterpartyId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the counterparty to get"
-				}],
-				"description": "Get Recurring Payment from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/counterpartyBalance.json"
+				"operationId":"getCounterpartyBalance",
+				"summary":"Get Counterparty Balance",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to get"
+					}
+				],
+				"description":"Get Recurring Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/counterpartyBalance.json"
 										}
 									}
 								}
@@ -1781,25 +1857,25 @@
 				}
 			}
 		},
-		"/recurring-payments": {
-			"get": {
-				"tags": [
+		"/recurring-payments":{
+			"get":{
+				"tags":[
 					"Get List Recurring Payments"
 				],
-				"operationId": "getRecurringPaymentsList",
-				"summary": "Get Recurring Payments List",
-				"description": "Get Recurring Payments List from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/recurringPayment.json"
+				"operationId":"getRecurringPaymentsList",
+				"summary":"Get Recurring Payments List",
+				"description":"Get Recurring Payments List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/recurringPayment.json"
 										}
 									}
 								}
@@ -1808,40 +1884,40 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
+			"post":{
+				"tags":[
 					"Create Recurring Payment"
 				],
-				"operationId": " createRecurringPayment",
-				"summary": "Create Recurring Payment",
-				"description": "Create a Recurring Payment via API ",
-				"requestBody": {
-					"description": "Create Recurring Payment Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createRecurringPayment.json"
+				"operationId":" createRecurringPayment",
+				"summary":"Create Recurring Payment",
+				"description":"Create a Recurring Payment via API ",
+				"requestBody":{
+					"description":"Create Recurring Payment Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createRecurringPayment.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/recurringPayment.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/recurringPayment.json"
 										}
 									}
 								}
@@ -1851,34 +1927,36 @@
 				}
 			}
 		},
-		"/recurring-payments/{paymentId}": {
-			"get": {
-				"tags": [
+		"/recurring-payments/{paymentId}":{
+			"get":{
+				"tags":[
 					"Get Recurring Payment"
 				],
-				"operationId": "getRecurringPayment",
-				"summary": "Get Recurring Payment",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "paymentId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the payment to get"
-				}],
-				"description": "Get Recurring Payment from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/recurringPayment.json"
+				"operationId":"getRecurringPayment",
+				"summary":"Get Recurring Payment",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
+					}
+				],
+				"description":"Get Recurring Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/recurringPayment.json"
 										}
 									}
 								}
@@ -1888,34 +1966,36 @@
 				}
 			}
 		},
-		"/recurring-payments/{paymentId}/disable": {
-			"post": {
-				"tags": [
+		"/recurring-payments/{paymentId}/disable":{
+			"post":{
+				"tags":[
 					"Disable Recurring Payment"
 				],
-				"operationId": "disableRecurringPayment",
-				"summary": "Disable Recurring Payment",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "paymentId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the payment to disable"
-				}],
-				"description": "Disable Recurring Payment via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/recurringPayment.json"
+				"operationId":"disableRecurringPayment",
+				"summary":"Disable Recurring Payment",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to disable"
+					}
+				],
+				"description":"Disable Recurring Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/recurringPayment.json"
 										}
 									}
 								}
@@ -1925,34 +2005,36 @@
 				}
 			}
 		},
-		"/recurring-payments/{paymentId}/enable": {
-			"post": {
-				"tags": [
+		"/recurring-payments/{paymentId}/enable":{
+			"post":{
+				"tags":[
 					"Enable Recurring Payment"
 				],
-				"operationId": "enableRecurringPayment",
-				"summary": "Enable Recurring Payment",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "paymentId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the payment to enable"
-				}],
-				"description": "Enable Recurring Payment via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/recurringPayment.json"
+				"operationId":"enableRecurringPayment",
+				"summary":"Enable Recurring Payment",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to enable"
+					}
+				],
+				"description":"Enable Recurring Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/recurringPayment.json"
 										}
 									}
 								}
@@ -1962,63 +2044,64 @@
 				}
 			}
 		},
-		"/cards/": {
-			"get": {
-				"tags": [
+		"/cards/":{
+			"get":{
+				"tags":[
 					"Get List of Cards"
 				],
-				"operationId": "getListCards",
-				"summary": "Get List of Cards",
-				"description": "Get List of Cards from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"getListCards",
+				"summary":"Get List of Cards",
+				"description":"Get List of Cards from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"title": "UnitResponse",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"data": {
-										"type": "object",
-										"properties": {
-											"type": "array",
-											"items": {
-												"$ref": "./schemas/card.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"title":"UnitResponse",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"data":{
+										"type":"object",
+										"properties":{
+											"type":"array",
+											"items":{
+												"$ref":"./schemas/card.json"
 											}
 										}
 									}
@@ -2028,40 +2111,40 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
+			"post":{
+				"tags":[
 					"Create a Card"
 				],
-				"operationId": "createCard",
-				"summary": "Create a Card",
-				"description": "Create a Card via API ",
-				"requestBody": {
-					"description": "Create Card Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/createCard.json"
+				"operationId":"createCard",
+				"summary":"Create a Card",
+				"description":"Create a Card via API ",
+				"requestBody":{
+					"description":"Create Card Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./schemas/createCard.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2071,42 +2154,43 @@
 				}
 			}
 		},
-		"/cards/{cardId}": {
-			"get": {
-				"tags": [
+		"/cards/{cardId}":{
+			"get":{
+				"tags":[
 					"Get Card"
 				],
-				"operationId": "findCardById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"findCardById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "cardId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the card to get"
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card to get"
 					},
 					{
-						"name": "included",
-						"in": "query",
-						"schema": {
-							"type": "string"
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
 						}
 					}
 				],
-				"summary": "Get Card by Id",
-				"description": "Get a Card from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"summary":"Get Card by Id",
+				"description":"Get a Card from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2115,44 +2199,46 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Card"
 				],
-				"operationId": "updateCard",
-				"summary": "Update Card",
-				"description": "Update a Card via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "cardId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the card to update"
-				}],
-				"requestBody": {
-					"description": "Update Card Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+				"operationId":"updateCard",
+				"summary":"Update Card",
+				"description":"Update a Card via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Card Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2162,41 +2248,41 @@
 				}
 			}
 		},
-		"/cards/{cardId}/secure-data/pin/status": {
-			"post": {
-				"tags": [
+		"/cards/{cardId}/secure-data/pin/status":{
+			"post":{
+				"tags":[
 					"Create a Card"
 				],
-				"operationId": "createCard",
-				"summary": "Create a Card",
-				"description": "Create a Card via API ",
-				"requestBody": {
-					"description": "Create Card Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/createCard.json"
+				"operationId":"createCard",
+				"summary":"Create a Card",
+				"description":"Create a Card via API ",
+				"requestBody":{
+					"description":"Create Card Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./schemas/createCard.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2206,25 +2292,25 @@
 				}
 			}
 		},
-		"/cards/{cardId}/report-stolen": {
-			"post": {
-				"tags": [
+		"/cards/{cardId}/report-stolen":{
+			"post":{
+				"tags":[
 					"Report Card as Stolen"
 				],
-				"operationId": "reportStolenCard",
-				"summary": "Report card as stolen",
-				"description": "Report card as stolen via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"operationId":"reportStolenCard",
+				"summary":"Report card as stolen",
+				"description":"Report card as stolen via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2234,25 +2320,25 @@
 				}
 			}
 		},
-		"/cards/{cardId}/report-lost": {
-			"post": {
-				"tags": [
+		"/cards/{cardId}/report-lost":{
+			"post":{
+				"tags":[
 					"Report Card as Lost"
 				],
-				"operationId": "reportLostCard",
-				"summary": "Report lost as stolen",
-				"description": "Report lost as stolen via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"operationId":"reportLostCard",
+				"summary":"Report lost as stolen",
+				"description":"Report lost as stolen via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2262,25 +2348,25 @@
 				}
 			}
 		},
-		"/cards/{cardId}/close": {
-			"post": {
-				"tags": [
+		"/cards/{cardId}/close":{
+			"post":{
+				"tags":[
 					"Close a Card"
 				],
-				"operationId": "closeCard",
-				"summary": "Close a Card",
-				"description": "Close a Card via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"operationId":"closeCard",
+				"summary":"Close a Card",
+				"description":"Close a Card via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2290,25 +2376,25 @@
 				}
 			}
 		},
-		"/cards/{cardId}/freeze": {
-			"post": {
-				"tags": [
+		"/cards/{cardId}/freeze":{
+			"post":{
+				"tags":[
 					"Freeze a Card"
 				],
-				"operationId": "freezeCard",
-				"summary": "Freeze a Card",
-				"description": "Freeze a Card via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"operationId":"freezeCard",
+				"summary":"Freeze a Card",
+				"description":"Freeze a Card via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2318,25 +2404,25 @@
 				}
 			}
 		},
-		"/cards/{cardId}/unfreeze": {
-			"post": {
-				"tags": [
+		"/cards/{cardId}/unfreeze":{
+			"post":{
+				"tags":[
 					"Unfreeze a Card"
 				],
-				"operationId": "unfreezeCard",
-				"summary": "Unfreeze a Card",
-				"description": "Unfreeze a Card via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/card.json"
+				"operationId":"unfreezeCard",
+				"summary":"Unfreeze a Card",
+				"description":"Unfreeze a Card via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/card.json"
 										}
 									}
 								}
@@ -2346,35 +2432,36 @@
 				}
 			}
 		},
-		"/cards/{cardId}/limits": {
-			"get": {
-				"tags": [
+		"/cards/{cardId}/limits":{
+			"get":{
+				"tags":[
 					"Get Card Limits"
 				],
-				"operationId": "getCardLimitsById",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"getCardLimitsById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "cardId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the card to get"
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card to get"
 					}
 				],
-				"summary": "Get Card by Id",
-				"description": "Get a Card from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/limits.json"
+				"summary":"Get Card by Id",
+				"description":"Get a Card from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/limits.json"
 										}
 									}
 								}
@@ -2384,71 +2471,72 @@
 				}
 			}
 		},
-		"/authorizations/": {
-			"get": {
-				"tags": [
+		"/authorizations/":{
+			"get":{
+				"tags":[
 					"Get List Authorizations"
 				],
-				"operationId": "find list authorizations",
-				"summary": "Get List authorizations",
-				"description": "Get List Authorizations from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list authorizations",
+				"summary":"Get List authorizations",
+				"description":"Get List Authorizations from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/authorization.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/authorization.json"
 									}
 								}
 							}
@@ -2457,42 +2545,43 @@
 				}
 			}
 		},
-		"/authorizations/{authorizationId}": {
-			"get": {
-				"tags": [
+		"/authorizations/{authorizationId}":{
+			"get":{
+				"tags":[
 					"Get Authorization"
 				],
-				"operationId": "findAuthorizationId",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"findAuthorizationId",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "authorizationId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the authorization to get"
+						"name":"authorizationId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the authorization to get"
 					},
 					{
-						"name": "includeNoneAuthorized",
-						"in": "query",
-						"schema": {
-							"type": "boolean"
+						"name":"includeNoneAuthorized",
+						"in":"query",
+						"schema":{
+							"type":"boolean"
 						}
 					}
 				],
-				"summary": "Get Authorization by Id",
-				"description": "Get a Authorization from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/authorization.json"
+				"summary":"Get Authorization by Id",
+				"description":"Get a Authorization from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/authorization.json"
 										}
 									}
 								}
@@ -2502,71 +2591,72 @@
 				}
 			}
 		},
-		"/authorization-requests/": {
-			"get": {
-				"tags": [
+		"/authorization-requests/":{
+			"get":{
+				"tags":[
 					"Get List Authorization Requests"
 				],
-				"operationId": "find list authorization requests",
-				"summary": "Get List Authorization Requests",
-				"description": "Get List Authorization Requests from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list authorization requests",
+				"summary":"Get List Authorization Requests",
+				"description":"Get List Authorization Requests from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/authorizationRequest.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/authorizationRequest.json"
 									}
 								}
 							}
@@ -2575,34 +2665,36 @@
 				}
 			}
 		},
-		"/authorization-requests/{authorizationId}": {
-			"get": {
-				"tags": [
+		"/authorization-requests/{authorizationId}":{
+			"get":{
+				"tags":[
 					"Get Authorization Request"
 				],
-				"operationId": "findAuthorizationRequestById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "authorizationId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the authorization request to get"
-				}],
-				"summary": "Get Authorization Request by Id",
-				"description": "Get a Authorization Request from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/authorizationRequest.json"
+				"operationId":"findAuthorizationRequestById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"authorizationId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the authorization request to get"
+					}
+				],
+				"summary":"Get Authorization Request by Id",
+				"description":"Get a Authorization Request from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/authorizationRequest.json"
 										}
 									}
 								}
@@ -2612,34 +2704,36 @@
 				}
 			}
 		},
-		"/authorization-requests/{authorizationId}/approve": {
-			"post": {
-				"tags": [
+		"/authorization-requests/{authorizationId}/approve":{
+			"post":{
+				"tags":[
 					"Approve Authorization Request"
 				],
-				"operationId": "approveAuthorizationRequestById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "authorizationId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the authorization request to approve"
-				}],
-				"summary": "Approve Authorization Request by Id",
-				"description": "Approve a Authorization Request via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/authorizationRequest.json"
+				"operationId":"approveAuthorizationRequestById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"authorizationId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the authorization request to approve"
+					}
+				],
+				"summary":"Approve Authorization Request by Id",
+				"description":"Approve a Authorization Request via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/authorizationRequest.json"
 										}
 									}
 								}
@@ -2649,34 +2743,36 @@
 				}
 			}
 		},
-		"/authorization-requests/{authorizationId}/decline": {
-			"post": {
-				"tags": [
+		"/authorization-requests/{authorizationId}/decline":{
+			"post":{
+				"tags":[
 					"Get Authorization Request"
 				],
-				"operationId": "findAuthorizationRequestById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "authorizationId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the authorization request to get"
-				}],
-				"summary": "Get Authorization Request by Id",
-				"description": "Get a Authorization Request from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/authorizationRequest.json"
+				"operationId":"findAuthorizationRequestById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"authorizationId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the authorization request to get"
+					}
+				],
+				"summary":"Get Authorization Request by Id",
+				"description":"Get a Authorization Request from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/authorizationRequest.json"
 										}
 									}
 								}
@@ -2686,71 +2782,72 @@
 				}
 			}
 		},
-		"/statements/": {
-			"get": {
-				"tags": [
+		"/statements/":{
+			"get":{
+				"tags":[
 					"Get List Statements"
 				],
-				"operationId": "find list statements",
-				"summary": "Get List Statements",
-				"description": "Get List Statements from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list statements",
+				"summary":"Get List Statements",
+				"description":"Get List Statements from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"type": "object"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"type":"object"
 									}
 								}
 							}
@@ -2759,34 +2856,36 @@
 				}
 			}
 		},
-		"/statements/{statementId}/html": {
-			"get": {
-				"tags": [
+		"/statements/{statementId}/html":{
+			"get":{
+				"tags":[
 					"Get Statement"
 				],
-				"operationId": "findHtmlStatementById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "statementId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the statement to get"
-				}],
-				"summary": "Get HTML Statement by Id",
-				"description": "Get a HTML Statement from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"type": "string"
+				"operationId":"findHtmlStatementById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"statementId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the statement to get"
+					}
+				],
+				"summary":"Get HTML Statement by Id",
+				"description":"Get a HTML Statement from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"type":"string"
 										}
 									}
 								}
@@ -2796,34 +2895,36 @@
 				}
 			}
 		},
-		"/statements/{statementId}/pdf": {
-			"get": {
-				"tags": [
+		"/statements/{statementId}/pdf":{
+			"get":{
+				"tags":[
 					"Get Statement"
 				],
-				"operationId": "findPdfStatementById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "statementId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the statement to get"
-				}],
-				"summary": "Get PDF Statement by Id",
-				"description": "Get a PDF Statement from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"type": "string"
+				"operationId":"findPdfStatementById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"statementId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the statement to get"
+					}
+				],
+				"summary":"Get PDF Statement by Id",
+				"description":"Get a PDF Statement from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"type":"string"
 										}
 									}
 								}
@@ -2833,34 +2934,36 @@
 				}
 			}
 		},
-		"/statements/{accountId}/bank/pdf": {
-			"get": {
-				"tags": [
+		"/statements/{accountId}/bank/pdf":{
+			"get":{
+				"tags":[
 					"Get Bank verification PDF"
 				],
-				"operationId": "getBankVerificationPdf",
-				"summary": "Get Bank verification PDF",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "accountId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the account to get"
-				}],
-				"description": "Get Get Bank verification PDF from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"type": "string"
+				"operationId":"getBankVerificationPdf",
+				"summary":"Get Bank verification PDF",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get"
+					}
+				],
+				"description":"Get Get Bank verification PDF from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"type":"string"
 										}
 									}
 								}
@@ -2870,41 +2973,41 @@
 				}
 			}
 		},
-		"/rewards": {
-			"post": {
-				"tags": [
+		"/rewards":{
+			"post":{
+				"tags":[
 					"Create Reward"
 				],
-				"operationId": " createReward",
-				"summary": "Create Reward",
-				"description": "Create a Reward via API ",
-				"requestBody": {
-					"description": "Create Reward Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createReward.json"
+				"operationId":" createReward",
+				"summary":"Create Reward",
+				"description":"Create a Reward via API ",
+				"requestBody":{
+					"description":"Create Reward Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createReward.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/reward.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/reward.json"
 										}
 									}
 								}
@@ -2913,24 +3016,24 @@
 					}
 				}
 			},
-			"get": {
-				"tags": [
+			"get":{
+				"tags":[
 					"Get List Rewards"
 				],
-				"operationId": "getRewardsList",
-				"summary": "Get Rewards List",
-				"description": "Get Rewards List from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/reward.json"
+				"operationId":"getRewardsList",
+				"summary":"Get Rewards List",
+				"description":"Get Rewards List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/reward.json"
 										}
 									}
 								}
@@ -2940,34 +3043,36 @@
 				}
 			}
 		},
-		"/rewards/{rewardId}": {
-			"get": {
-				"tags": [
+		"/rewards/{rewardId}":{
+			"get":{
+				"tags":[
 					"Get Reward"
 				],
-				"operationId": "findRewardById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "rewardId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the reward to get"
-				}],
-				"summary": "Get Reward by Id",
-				"description": "Get a Reward from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/reward.json"
+				"operationId":"findRewardById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"rewardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the reward to get"
+					}
+				],
+				"summary":"Get Reward by Id",
+				"description":"Get a Reward from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/reward.json"
 										}
 									}
 								}
@@ -2977,25 +3082,25 @@
 				}
 			}
 		},
-		"/events": {
-			"get": {
-				"tags": [
+		"/events":{
+			"get":{
+				"tags":[
 					"Get List Events"
 				],
-				"operationId": "getEventsList",
-				"summary": "Get Events List",
-				"description": "Get Events List from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/event.json"
+				"operationId":"getEventsList",
+				"summary":"Get Events List",
+				"description":"Get Events List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/event.json"
 										}
 									}
 								}
@@ -3005,34 +3110,36 @@
 				}
 			}
 		},
-		"/events/{eventId}": {
-			"get": {
-				"tags": [
+		"/events/{eventId}":{
+			"get":{
+				"tags":[
 					"Get Event"
 				],
-				"operationId": "findEventById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "eventId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the event to get"
-				}],
-				"summary": "Get Event by Id",
-				"description": "Get an Event from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/event.json"
+				"operationId":"findEventById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"eventId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the event to get"
+					}
+				],
+				"summary":"Get Event by Id",
+				"description":"Get an Event from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/event.json"
 										}
 									}
 								}
@@ -3041,33 +3148,35 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
+			"post":{
+				"tags":[
 					"Fire Event"
 				],
-				"operationId": "fireEventById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "eventId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the event to fire"
-				}],
-				"summary": "Fire Event by Id",
-				"description": "Fire an Event via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/event.json"
+				"operationId":"fireEventById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"eventId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the event to fire"
+					}
+				],
+				"summary":"Fire Event by Id",
+				"description":"Fire an Event via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/event.json"
 										}
 									}
 								}
@@ -3077,34 +3186,36 @@
 				}
 			}
 		},
-		"/institutions/{routingNumber}/": {
-			"get": {
-				"tags": [
+		"/institutions/{routingNumber}/":{
+			"get":{
+				"tags":[
 					"Get Institution"
 				],
-				"operationId": "findInstitutionByRoutingNumber",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "routingNumber",
-					"in": "path",
-					"required": true,
-					"description": "routingNumber of the institution to get"
-				}],
-				"summary": "Get Institution by Routing Number",
-				"description": "Get an Institution from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/institution.json"
+				"operationId":"findInstitutionByRoutingNumber",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"routingNumber",
+						"in":"path",
+						"required":true,
+						"description":"routingNumber of the institution to get"
+					}
+				],
+				"summary":"Get Institution by Routing Number",
+				"description":"Get an Institution from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/institution.json"
 										}
 									}
 								}
@@ -3114,41 +3225,41 @@
 				}
 			}
 		},
-		"/fees/": {
-			"post": {
-				"tags": [
+		"/fees/":{
+			"post":{
+				"tags":[
 					"Create Fee"
 				],
-				"operationId": " createFee",
-				"summary": "Create Fee",
-				"description": "Create a Fee via API ",
-				"requestBody": {
-					"description": "Create Fee Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createFee.json"
+				"operationId":" createFee",
+				"summary":"Create Fee",
+				"description":"Create a Fee via API ",
+				"requestBody":{
+					"description":"Create Fee Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createFee.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/fee.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/fee.json"
 										}
 									}
 								}
@@ -3158,71 +3269,72 @@
 				}
 			}
 		},
-		"/check-deposits/": {
-			"get": {
-				"tags": [
+		"/check-deposits/":{
+			"get":{
+				"tags":[
 					"Get List Check Deposits"
 				],
-				"operationId": "find list check deposits",
-				"summary": "Get List Check Deposits",
-				"description": "Get List Check Deposits from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list check deposits",
+				"summary":"Get List Check Deposits",
+				"description":"Get List Check Deposits from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/checkDeposit.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/checkDeposit.json"
 									}
 								}
 							}
@@ -3230,40 +3342,40 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
+			"post":{
+				"tags":[
 					"Create Check Deposit"
 				],
-				"operationId": " createCheckDeposit",
-				"summary": "Create Check Deposit",
-				"description": "Create a Check Deposit via API ",
-				"requestBody": {
-					"description": "Create Check Deposit Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createCheckDeposit.json"
+				"operationId":" createCheckDeposit",
+				"summary":"Create Check Deposit",
+				"description":"Create a Check Deposit via API ",
+				"requestBody":{
+					"description":"Create Check Deposit Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createCheckDeposit.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/checkDeposit.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/checkDeposit.json"
 										}
 									}
 								}
@@ -3273,34 +3385,36 @@
 				}
 			}
 		},
-		"/check-deposits/{checkDepositId}": {
-			"get": {
-				"tags": [
+		"/check-deposits/{checkDepositId}":{
+			"get":{
+				"tags":[
 					"Get Check Deposit"
 				],
-				"operationId": "findCheckDepositById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "checkDepositId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the check deposit to get"
-				}],
-				"summary": "Get Check Deposit by Id",
-				"description": "Get a Check Deposit from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/checkDeposit.json"
+				"operationId":"findCheckDepositById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"checkDepositId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the check deposit to get"
+					}
+				],
+				"summary":"Get Check Deposit by Id",
+				"description":"Get a Check Deposit from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/checkDeposit.json"
 										}
 									}
 								}
@@ -3309,44 +3423,46 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Check Deposit"
 				],
-				"operationId": "updateCheckDeposit",
-				"summary": "Update Check Deposit",
-				"description": "Update a Check Deposit via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "checkDepositId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the check deposit to update"
-				}],
-				"requestBody": {
-					"description": "Update Check Deposit Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+				"operationId":"updateCheckDeposit",
+				"summary":"Update Check Deposit",
+				"description":"Update a Check Deposit via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"checkDepositId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the check deposit to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Check Deposit Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/checkDeposit.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/checkDeposit.json"
 										}
 									}
 								}
@@ -3356,34 +3472,36 @@
 				}
 			}
 		},
-		"/check-deposits/{checkDepositId}/confirm": {
-			"post": {
-				"tags": [
+		"/check-deposits/{checkDepositId}/confirm":{
+			"post":{
+				"tags":[
 					"Confirm Check Deposit"
 				],
-				"operationId": "confirmCheckDeposit",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "checkDepositId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the check deposit to confirm"
-				}],
-				"summary": "Confirm by Id",
-				"description": "Confirm a Check Deposit from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/checkDeposit.json"
+				"operationId":"confirmCheckDeposit",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"checkDepositId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the check deposit to confirm"
+					}
+				],
+				"summary":"Confirm by Id",
+				"description":"Confirm a Check Deposit from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/checkDeposit.json"
 										}
 									}
 								}
@@ -3393,34 +3511,36 @@
 				}
 			}
 		},
-		"/check-deposits/{checkDepositId}/front": {
-			"get": {
-				"tags": [
+		"/check-deposits/{checkDepositId}/front":{
+			"get":{
+				"tags":[
 					"Get Check Deposit Front Image"
 				],
-				"operationId": "getFrontCheckDepositImageById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "checkDepositId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the check deposit to get"
-				}],
-				"summary": "Get Front Check Deposit Image by Id",
-				"description": "Get Front Check Deposit Image from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"type": "string"
+				"operationId":"getFrontCheckDepositImageById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"checkDepositId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the check deposit to get"
+					}
+				],
+				"summary":"Get Front Check Deposit Image by Id",
+				"description":"Get Front Check Deposit Image from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"type":"string"
 										}
 									}
 								}
@@ -3430,34 +3550,36 @@
 				}
 			}
 		},
-		"/check-deposits/{checkDepositId}/back": {
-			"get": {
-				"tags": [
+		"/check-deposits/{checkDepositId}/back":{
+			"get":{
+				"tags":[
 					"Get Check Deposit Back Image"
 				],
-				"operationId": "getBackCheckDepositImageById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "checkDepositId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the check deposit to get"
-				}],
-				"summary": "Get Back Check Deposit Image by Id",
-				"description": "Get Back Check Deposit Image from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"type": "string"
+				"operationId":"getBackCheckDepositImageById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"checkDepositId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the check deposit to get"
+					}
+				],
+				"summary":"Get Back Check Deposit Image by Id",
+				"description":"Get Back Check Deposit Image from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"type":"string"
 										}
 									}
 								}
@@ -3467,41 +3589,41 @@
 				}
 			}
 		},
-		"/users/{userId}/api-tokens": {
-			"post": {
-				"tags": [
+		"/users/{userId}/api-tokens":{
+			"post":{
+				"tags":[
 					"Create Org Api Token"
 				],
-				"operationId": " createOrgApiToken",
-				"summary": "Create Org API Token",
-				"description": "Create an Org API Token via API ",
-				"requestBody": {
-					"description": "Create Org API Token Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/createApiToken.json"
+				"operationId":" createOrgApiToken",
+				"summary":"Create Org API Token",
+				"description":"Create an Org API Token via API ",
+				"requestBody":{
+					"description":"Create Org API Token Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createApiToken.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/apiToken.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/apiToken.json"
 										}
 									}
 								}
@@ -3511,71 +3633,72 @@
 				}
 			}
 		},
-		"/users/": {
-			"get": {
-				"tags": [
+		"/users/":{
+			"get":{
+				"tags":[
 					"Get List Org API Tokens"
 				],
-				"operationId": "find list org api tokens",
-				"summary": "Get List Org API Tokens",
-				"description": "Get List Org API Tokens from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list org api tokens",
+				"summary":"Get List Org API Tokens",
+				"description":"Get List Org API Tokens from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/apiToken.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/apiToken.json"
 									}
 								}
 							}
@@ -3584,45 +3707,45 @@
 				}
 			}
 		},
-		"/users/{userId}/api-tokens/{tokenId}": {
-			"delete": {
-				"tags": [
-
+		"/users/{userId}/api-tokens/{tokenId}":{
+			"delete":{
+				"tags":[
 					"Revoke Org API Token"
 				],
-				"operationId": "revokeOrgApiToken",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"revokeOrgApiToken",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "userId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the user to revoke token"
+						"name":"userId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the user to revoke token"
 					},
 					{
-						"schema": {
-							"type": "string"
+						"schema":{
+							"type":"string"
 						},
-						"name": "tokenId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the token to revoke"
+						"name":"tokenId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the token to revoke"
 					}
 				],
-				"summary": "Get Reward by Id",
-				"description": "Get a Reward from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/apiToken.json"
+				"summary":"Get Reward by Id",
+				"description":"Get a Reward from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/apiToken.json"
 										}
 									}
 								}
@@ -3632,50 +3755,52 @@
 				}
 			}
 		},
-		"/customers/{customerId}/token": {
-			"post": {
-				"tags": [
+		"/customers/{customerId}/token":{
+			"post":{
+				"tags":[
 					"Create Customer Token"
 				],
-				"operationId": "createCustomerToken",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "customerId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the customer to create token for"
-				}],
-				"summary": "Create Customer Token",
-				"description": "Create a Customer Token via API ",
-				"requestBody": {
-					"description": "Create Customer Token Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/craeteCustomerToken.json"
+				"operationId":"createCustomerToken",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"customerId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the customer to create token for"
+					}
+				],
+				"summary":"Create Customer Token",
+				"description":"Create a Customer Token via API ",
+				"requestBody":{
+					"description":"Create Customer Token Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./schemas/craeteCustomerToken.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/‏‏customerTokenVerification.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/‏‏customerTokenVerification.json"
 										}
 									}
 								}
@@ -3685,50 +3810,52 @@
 				}
 			}
 		},
-		"/customers/{customerId}/token/verification": {
-			"post": {
-				"tags": [
+		"/customers/{customerId}/token/verification":{
+			"post":{
+				"tags":[
 					"Create Customer Token Verification"
 				],
-				"operationId": "createCustomerTokenVerification",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "customerId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the customer to create token for"
-				}],
-				"summary": "Create Customer Token Verification",
-				"description": "Create a Customer Token Verification via API ",
-				"requestBody": {
-					"description": "Create Customer Token Verification Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"data": {
-									"type": "object",
-									"properties": {
-										"$ref": "./schemas/createCustomerTokenVerification.json"
+				"operationId":"createCustomerTokenVerification",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"customerId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the customer to create token for"
+					}
+				],
+				"summary":"Create Customer Token Verification",
+				"description":"Create a Customer Token Verification via API ",
+				"requestBody":{
+					"description":"Create Customer Token Verification Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./schemas/createCustomerTokenVerification.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/createCustomerTokenVerification.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/createCustomerTokenVerification.json"
 										}
 									}
 								}
@@ -3738,71 +3865,72 @@
 				}
 			}
 		},
-		"/webhooks/": {
-			"get": {
-				"tags": [
+		"/webhooks/":{
+			"get":{
+				"tags":[
 					"Get List Webhooks"
 				],
-				"operationId": "find list of Webhooks",
-				"summary": "Get List Webhooks",
-				"description": "Get List Webhooks from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list of Webhooks",
+				"summary":"Get List Webhooks",
+				"description":"Get List Webhooks from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/webhook.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/webhook.json"
 									}
 								}
 							}
@@ -3810,40 +3938,40 @@
 					}
 				}
 			},
-			"post": {
-				"tags": [
+			"post":{
+				"tags":[
 					"Create Webhook"
 				],
-				"operationId": " createWebhook",
-				"summary": "Create Webhook",
-				"description": "Create a Webhook via API ",
-				"requestBody": {
-					"description": "Create Webhook Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"$ref": "./schemas/webhook.json"
+				"operationId":" createWebhook",
+				"summary":"Create Webhook",
+				"description":"Create a Webhook via API ",
+				"requestBody":{
+					"description":"Create Webhook Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/webhook.json"
 									}
 								}
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"type": "object"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"type":"object"
 										}
 									}
 								}
@@ -3853,34 +3981,36 @@
 				}
 			}
 		},
-		"/webhooks/{webhookId}": {
-			"get": {
-				"tags": [
+		"/webhooks/{webhookId}":{
+			"get":{
+				"tags":[
 					"Get Webhook"
 				],
-				"operationId": "findWebhookById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "webhookId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the webhook to get"
-				}],
-				"summary": "Get Webhook Id",
-				"description": "Get a Webhook from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/webhook.json"
+				"operationId":"findWebhookById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the webhook to get"
+					}
+				],
+				"summary":"Get Webhook Id",
+				"description":"Get a Webhook from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/webhook.json"
 										}
 									}
 								}
@@ -3889,44 +4019,46 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Webhook"
 				],
-				"operationId": "updateWebhook",
-				"summary": "Update Webhook",
-				"description": "Update a Webhook via API ",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "webhookId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the Webhook to update"
-				}],
-				"requestBody": {
-					"description": "Update Webhook Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+				"operationId":"updateWebhook",
+				"summary":"Update Webhook",
+				"description":"Update a Webhook via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the Webhook to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Webhook Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"201": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/webhook.json"
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/webhook.json"
 										}
 									}
 								}
@@ -3936,34 +4068,36 @@
 				}
 			}
 		},
-		"/webhooks/{webhookId}/enable": {
-			"post": {
-				"tags": [
+		"/webhooks/{webhookId}/enable":{
+			"post":{
+				"tags":[
 					"Enable Webhook"
 				],
-				"operationId": "enableWebhook",
-				"summary": "Enable Webhook",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "webhookId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the webhook to enable"
-				}],
-				"description": "Enable a Webhook via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/webhook.json"
+				"operationId":"enableWebhook",
+				"summary":"Enable Webhook",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the webhook to enable"
+					}
+				],
+				"description":"Enable a Webhook via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/webhook.json"
 										}
 									}
 								}
@@ -3973,34 +4107,36 @@
 				}
 			}
 		},
-		"/webhooks/{webhookId}/disable": {
-			"post": {
-				"tags": [
+		"/webhooks/{webhookId}/disable":{
+			"post":{
+				"tags":[
 					"Disable Webhook"
 				],
-				"operationId": "disableWebhook",
-				"summary": "Disable a Webhook",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "webhookId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the webhook to disable"
-				}],
-				"description": "Disable a Webhook via API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/webhook.json"
+				"operationId":"disableWebhook",
+				"summary":"Disable a Webhook",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the webhook to disable"
+					}
+				],
+				"description":"Disable a Webhook via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/webhook.json"
 										}
 									}
 								}
@@ -4010,71 +4146,72 @@
 				}
 			}
 		},
-		"/atm-locations/": {
-			"get": {
-				"tags": [
+		"/atm-locations/":{
+			"get":{
+				"tags":[
 					"Get ATM Locations List"
 				],
-				"operationId": "find list of ATM Locations",
-				"summary": "Get List ATM Locations",
-				"description": "Get List ATM Locations from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list of ATM Locations",
+				"summary":"Get List ATM Locations",
+				"description":"Get List ATM Locations from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"type": "object"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"type":"object"
 									}
 								}
 							}
@@ -4083,44 +4220,45 @@
 				}
 			}
 		},
-		"/accounts/{accountId}/transactions/{transactionId}/": {
-			"get": {
-				"tags": [
+		"/accounts/{accountId}/transactions/{transactionId}/":{
+			"get":{
+				"tags":[
 					"Get Transaction"
 				],
-				"operationId": "findTransactionId",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"findTransactionId",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "accountId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the account to get transaction from"
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get transaction from"
 					},
 					{
-						"schema": {
-							"type": "string"
+						"schema":{
+							"type":"string"
 						},
-						"name": "transactionId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the transaction"
+						"name":"transactionId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the transaction"
 					}
 				],
-				"summary": "Get Transaction by Id",
-				"description": "Get a Transaction from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/transaction.json"
+				"summary":"Get Transaction by Id",
+				"description":"Get a Transaction from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/transaction.json"
 										}
 									}
 								}
@@ -4129,54 +4267,55 @@
 					}
 				}
 			},
-			"patch": {
-				"tags": [
+			"patch":{
+				"tags":[
 					"Update Transaction"
 				],
-				"operationId": "updateTransaction",
-				"summary": "Update Transaction",
-				"description": "Update a Transaction via API ",
-				"parameters": [{
-						"schema": {
-							"type": "string"
+				"operationId":"updateTransaction",
+				"summary":"Update Transaction",
+				"description":"Update a Transaction via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
 						},
-						"name": "accountId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the account to update transaction from"
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to update transaction from"
 					},
 					{
-						"schema": {
-							"type": "string"
+						"schema":{
+							"type":"string"
 						},
-						"name": "transactionId",
-						"in": "path",
-						"required": true,
-						"description": "ID of the transaction to update"
+						"name":"transactionId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the transaction to update"
 					}
 				],
-				"requestBody": {
-					"description": "Update Transaction Request",
-					"required": "true",
-					"content": {
-						"application/vnd.api+json": {
-							"schema": {
-								"$ref": "./schemas/types.json#/definitions/updateUnitRequest"
+				"requestBody":{
+					"description":"Update Transaction Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"./schemas/types.json#/definitions/updateUnitRequest"
 							}
 						}
 					}
 				},
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/transaction.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/transaction.json"
 										}
 									}
 								}
@@ -4186,71 +4325,72 @@
 				}
 			}
 		},
-		"/transactions": {
-			"get": {
-				"tags": [
+		"/transactions":{
+			"get":{
+				"tags":[
 					"Get List Transactions"
 				],
-				"operationId": "find list transactions",
-				"summary": "Get List Transactions",
-				"description": "Get List Transactions from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list transactions",
+				"summary":"Get List Transactions",
+				"description":"Get List Transactions from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/transaction.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/transaction.json"
 									}
 								}
 							}
@@ -4259,71 +4399,72 @@
 				}
 			}
 		},
-		"/disputes/": {
-			"get": {
-				"tags": [
+		"/disputes/":{
+			"get":{
+				"tags":[
 					"Get List Disputes"
 				],
-				"operationId": "find list disputes",
-				"summary": "Get List Disputes",
-				"description": "Get List Disputes from API ",
-				"parameters": [{
-						"name": "page",
-						"in": "query",
-						"schema": {
-							"$ref": "./schemas/types.json#/definitions/listPageParametersObject"
+				"operationId":"find list disputes",
+				"summary":"Get List Disputes",
+				"description":"Get List Disputes from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./schemas/types.json#/definitions/listPageParametersObject"
 						}
 					},
 					{
-						"name": "filter",
-						"in": "query",
-						"schema": {
-							"type": "object",
-							"properties": {
-								"query": {
-									"type": "string"
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
 								},
-								"status": {
-									"type": "array",
-									"items": {
-										"type": "string",
-										"enum": [
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
 											"Pending",
 											"Approved"
 										]
 									}
 								},
-								"email": {
-									"type": "string"
+								"email":{
+									"type":"string"
 								},
-								"tags": {
-									"type": "object"
+								"tags":{
+									"type":"object"
 								}
 							}
 						}
 					},
 					{
-						"name": "sort",
-						"in": "query",
-						"schema": {
-							"type": "string",
-							"enum": [
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
 								"createdAt",
 								"-createdAt"
 							],
-							"default": "-createdAt"
+							"default":"-createdAt"
 						}
 					}
 				],
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "./schemas/dispute.json"
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"./schemas/dispute.json"
 									}
 								}
 							}
@@ -4332,34 +4473,36 @@
 				}
 			}
 		},
-		"/disputes/{disputeId}/": {
-			"get": {
-				"tags": [
+		"/disputes/{disputeId}/":{
+			"get":{
+				"tags":[
 					"Get Dispute"
 				],
-				"operationId": "findDisputeById",
-				"parameters": [{
-					"schema": {
-						"type": "string"
-					},
-					"name": "disputeId",
-					"in": "path",
-					"required": true,
-					"description": "ID of the dispute to get"
-				}],
-				"summary": "Get Dispute by Id",
-				"description": "Get a Dispute from API ",
-				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/vnd.api+json; charset=utf-8": {
-								"schema": {
-									"type": "object",
-									"title": "UnitResponse",
-									"properties": {
-										"data": {
-											"$ref": "./schemas/dispute.json"
+				"operationId":"findDisputeById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"disputeId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the dispute to get"
+					}
+				],
+				"summary":"Get Dispute by Id",
+				"description":"Get a Dispute from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./schemas/dispute.json"
 										}
 									}
 								}
@@ -4370,16 +4513,20 @@
 			}
 		}
 	},
-	"components": {
-		"securitySchemes": {
-			"bearerAuth": {
-				"type": "http",
-				"scheme": "bearer",
-				"bearerFormat": "JWT"
+	"components":{
+		"securitySchemes":{
+			"bearerAuth":{
+				"type":"apiKey",
+				"in":"header",
+				"name":"Authorization"
 			}
 		}
 	},
-	"security": [{
-		"bearerAuth": []
-	}]
+	"security":[
+		{
+			"bearerAuth":[
+				
+			]
+		}
+	]
 }

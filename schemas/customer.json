@@ -201,7 +201,7 @@
 									"$ref":"types.json#/definitions/address"
 								},
 								"contact":{
-									"$ref":"types.json#/definitions/responseContact"
+									"$ref":"types.json#/definitions/contact"
 								},
 								"tags":{
 									"$ref":"tags.json#/definitions/tags"

@@ -1,11 +1,7 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "document.json",
-  
-    "definitions": {
-      "document": {
-        "type": "object",
-        "properties": {
+    "title": "Application Document Document",
+    "type": "object",
+    "properties": {
           "type": {
             "type": "string",
             "const": "document"
@@ -93,16 +89,4 @@
           "id",
           "attributes"
         ]
-      }
-    },
-    "title": "Application Document Document",
-    "type": "object",
-    "properties": {
-      "data": {
-        "$ref": "#/definitions/document"
-      }
-    },
-    "required": [
-      "data"
-    ]
   }

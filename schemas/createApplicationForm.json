@@ -55,7 +55,7 @@
           ]
         },
         "contact": {
-          "$ref": "types.json#/definitions/prefillContact"
+          "$ref": "types.json#/definitions/contact"
         },
         "officer": {
           "$ref": "createApplication.json#/definitions/officer"

@@ -1,6 +1,6 @@
 {
   "definitions": {
-    "depositLimits": {
+    "DepositLimits": {
       "title": "Deposit Account Limits",
       "type": "object",
 	  "allOf":[{"$ref": "limits.json"},{
@@ -104,7 +104,7 @@
       "additionalProperties": false,
       "required": ["attributes" ]}]
     },
-    "creditLimits": {
+    "CreditLimits": {
       "title": "Credit Account Limits",
       "type": "object",
 	  "allOf":[{"$ref": "limits.json"},{
@@ -159,8 +159,8 @@
   "discriminator":{
 	  "propertyName": "type",
 	  "mapping": {
-		  "limits": "#/definitions/depositLimits",
-		  "creditLimits": "#/definitions/creditLimits" 
+		  "limits": "#/definitions/DepositLimits",
+		  "creditLimits": "#/definitions/CreditLimits" 
 	  }
   }
 }

@@ -163,23 +163,7 @@ if __name__ == '__main__':
 #     account_id = create_deposit_account().data.id
 #     response = client.accounts.limits(account_id)
 #     assert response.data.type == "limits"
-#
-# def test_freeze_account():
-#     account_id = create_deposit_account().data.id
-#     request = FreezeAccountRequest(account_id, "Fraud")
-#     response = client.accounts.freeze_account(request)
-#     assert response.data.type == "depositAccount"
-#
-#
-# def test_freeze_and_unfreeze_account():
-#     account_id = create_deposit_account().data.id
-#     request = FreezeAccountRequest(account_id, "Fraud")
-#     response = client.accounts.freeze_account(request)
-#     assert response.data.type == "depositAccount"
-#     response = client.accounts.unfreeze_account(account_id)
-#     assert response.data.type == "depositAccount"
-#
-#
+
 # def test_update_account():
 #     account_id = create_deposit_account().data.id
 #     request = PatchDepositAccountRequest(account_id, tags={

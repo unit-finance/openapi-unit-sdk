@@ -529,14 +529,14 @@
 						"content":{
 							"application/vnd.api+json; charset=utf-8":{
 								"schema":{
-										"title":"UnitResponseAccountsList",
-										"type":"object",
-										"properties":{
-											"data":{
-												"type":"array",
-												"items":{
-													"$ref":"./schemas/account.json"
-												}
+									"title":"UnitResponseAccountsList",
+									"type":"object",
+									"properties":{
+										"data":{
+											"type":"array",
+											"items":{
+												"$ref":"./schemas/account.json"
+											}
 										}
 									}
 								}
@@ -558,15 +558,15 @@
 					"content":{
 						"application/vnd.api+json":{
 							"schema":{
-									"type":"object",
-									"properties":{
-										"data":{
-											"$ref":"./schemas/createAccount.json"
-										}
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/createAccount.json"
 									}
 								}
 							}
 						}
+					}
 				},
 				"responses":{
 					"201":{
@@ -792,10 +792,10 @@
 					"content":{
 						"application/vnd.api+json":{
 							"schema":{
-									"type":"object",
-									"properties":{
-										"data":{
-											"$ref":"./schemas/types.json#/definitions/closeAccountRequest"
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./schemas/types.json#/definitions/closeAccountRequest"
 									}
 								}
 							}
@@ -1249,9 +1249,9 @@
 						"content":{
 							"application/vnd.api+json; charset=utf-8":{
 								"schema":{
-									"data":{
-										"type":"object",
-										"properties":{
+									"type":"object",
+									"properties":{
+										"data":{
 											"type":"array",
 											"items":{
 												"$ref":"./schemas/payment.json"
@@ -4525,7 +4525,7 @@
 	"security":[
 		{
 			"bearerAuth":[
-				
+
 			]
 		}
 	]

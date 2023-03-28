@@ -5,7 +5,8 @@ from e2e_tests.helpers.helpers import create_api_client, create_individual_appli
     create_business_application_request
 from swagger_client import CreateApplicationApi, CreateAnAccountApi, \
     CreateDepositAccountAttributes, CreateDepositAccountRelationships, CreateDepositAccount, GetListAccountsApi, \
-    GetAccountApi, CloseAnAccountApi, ReopenAnAccountApi, FreezeAnAccountApi, UnfreezeAccountApi
+    GetAccountApi, CloseAnAccountApi, ReopenAnAccountApi, FreezeAnAccountApi, UnfreezeAccountApi, \
+    CreateCreditAccountAttributes, CreateCreditAccount
 
 
 class TestAccountApi(unittest.TestCase):
@@ -36,6 +37,21 @@ class TestAccountApi(unittest.TestCase):
 
         response = CreateAnAccountApi(self.api_client).create_account({"data": req})
         return response.data
+
+    def create_credit_account_for_business(self):
+        customer_id = self.create_business_customer()
+        attributes = CreateCreditAccountAttributes("credit_terms_test", 20000, {"purpose": "some_purpose"})
+        relationships = CreateDepositAccountRelationships(customer={"data": {"type": "customer",
+                                                                             "id": customer_id}})
+
+        req = CreateCreditAccount("creditAccount", attributes, relationships)
+        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+
+        return response.data
+
+    def test_create_credit_account_for_business(self):
+        response = self.create_credit_account_for_business()
+        assert response.type == "creditAccount"
 
     def create_deposit_account_for_business(self):
         customer_id = self.create_business_customer()
@@ -136,18 +152,6 @@ class TestAccountApi(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
-# def create_credit_account_for_business():
-#     customer_id = create_business_customer()
-#     request = CreateCreditAccountRequest("credit_terms_test", 20000, create_relationship("customer", customer_id),
-#                                          {"purpose": "some_purpose"})
-#     return client.accounts.create(request)
-#
-#
-# def test_create_credit_account_for_business():
-#     response = create_credit_account_for_business()
-#     assert response.data.type == "creditAccount"
-#
-#
 # def test_create_joint_deposit_account():
 #     customer_id1 = create_individual_customer()
 #     customer_id2 = create_individual_customer()

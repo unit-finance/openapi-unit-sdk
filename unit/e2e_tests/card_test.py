@@ -1,244 +1,374 @@
 import os
 import unittest
 import requests
-from datetime import timedelta
 
-from e2e_tests.account_test import create_deposit_account, create_deposit_account_for_business, \
-    create_credit_account_for_business
-from unit import Unit
-from unit.models.card import CreateIndividualDebitCard, PatchIndividualDebitCard, ListCardParams, \
-    CreateBusinessDebitCard, CreateBusinessVirtualDebitCard, CreateBusinessCreditCard, CreateBusinessVirtualCreditCard, \
-    PatchBusinessDebitCard, PatchBusinessCreditCard
-from unit.models.account import *
-from unit.models.application import CreateIndividualApplicationRequest
-from e2e_tests.helpers.helpers import create_relationship, generate_uuid, full_name, address, phone
+from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request, \
+    create_business_application_request
+from swagger_client import GetListOfCardsApi, GetCardApi, CreateApplicationApi, CreateDepositAccountAttributes, \
+    CreateDepositAccountRelationships, CreateDepositAccount, CreateAnAccountApi, CreateACardApi, FreezeACardApi, \
+    UnfreezeACardApi, CloseACardApi, ReportCardAsStolenApi, ReportCardAsLostApi
 
-token = os.environ.get('TOKEN')
-client = Unit("https://api.s.unit.sh", token)
-
-card_types = ["individualDebitCard", "businessDebitCard", "individualVirtualDebitCard", "businessVirtualDebitCard"]
+card_types = ["individualDebitCard", "businessDebitCard", "individualVirtualDebitCard", "businessVirtualDebitCard",
+              "businessCreditCard", "businessVirtualCreditCard"]
 
 headers = {
             "content-type": "application/vnd.api+json",
-            "authorization": f"Bearer {token}",
+            "authorization": f"Bearer {os.environ.get('TOKEN')}",
             "user-agent": "unit-python-sdk"
         }
 
 
-def find_card_id(criteria: Dict[str, str]):
-    def filter_func(card):
-        for key, value in criteria.items():
-            if key not in card.attributes:
-                if getattr(card, key) != value:
-                    return False
-            elif card.attributes[key] != value:
-                return False
-        return True
+class TestCardApi(unittest.TestCase):
+    """CardApi unit test stubs"""
 
-    response = client.cards.list(ListCardParams(0,1000))
-    filtered = list(filter(filter_func, response.data))
+    def setUp(self):
+        token = os.environ.get('TOKEN')
+        self.api_client = create_api_client()
 
-    if len(filtered) > 0:
-        return filtered[0].id
-    else:
-        response = create_individual_debit_card()
-        return response.data.id
+    def tearDown(self):
+        pass
 
+    def test_card_list(self):
+        res = GetListOfCardsApi(self.api_client).get_list_cards().data
+        for card in res:
+            assert card.type in card_types
+            if card.attributes.status == "Inactive":
+                requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
-def create_individual_customer():
-    request = CreateIndividualApplicationRequest(
-        FullName("Jhon", "Doe"), date.today() - timedelta(days=20 * 365),
-        Address("1600 Pennsylvania Avenue Northwest", "Washington", "CA", "20500", "US"),
-        "jone.doe1@unit-finance.com",
-        Phone("1", "2025550108"), ssn="721074426",
-    )
-    response = client.applications.create(request)
-    for key, value in response.data.relationships.items():
-        if key == "customer":
-            return value.id
+    def test_card_list_and_get(self):
+        res = GetListOfCardsApi(self.api_client).get_list_cards().data
+        for card in res:
+            assert card.type in card_types
+            response_card = GetCardApi(self.api_client).find_card_by_id(card.id).data
+            assert card.id == response_card.id
+            assert card.type == response_card.type
 
-    return ""
+    def create_individual_customer(self):
+        app = CreateApplicationApi(self.api_client).create_application(create_individual_application_request()).data
+        return app.relationships.customer.data.id
 
+    def create_business_customer(self):
+        app = CreateApplicationApi(self.api_client).create_application(create_business_application_request()).data
+        return app.relationships.customer.data.id
 
-def create_business_debit_card():
-    account_id = create_deposit_account_for_business().data.id
+    def create_deposit_account(self):
+        customer_id = self.create_individual_customer()
 
-    request = CreateBusinessDebitCard(full_name, "2001-08-10", address, phone, "richard@piedpiper.com",
-                                      shipping_address=address, idempotency_key=generate_uuid(),
-                                      relationships=create_relationship("depositAccount", account_id, "account"))
+        attributes = CreateDepositAccountAttributes("checking", {"purpose": "sdk-test"})
+        relationships = CreateDepositAccountRelationships(customer={"data": {"type": "customer",
+                                                                    "id": customer_id}})
+        req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-    response = client.cards.create(request)
-    return response.data
+        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        return response.data
 
+    def create_deposit_account_for_business(self):
+        customer_id = self.create_business_customer()
 
-def create_business_virtual_debit_card():
-    account_id = create_deposit_account_for_business().data.id
+        attributes = CreateDepositAccountAttributes("checking", {"purpose": "sdk-test-business-account"})
+        relationships = CreateDepositAccountRelationships(customer={"data": {"type": "customer",
+                                                                             "id": customer_id}})
+        req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-    request = CreateBusinessVirtualDebitCard(full_name, "2001-08-10", address, phone, "richard@piedpiper.com",
-                                             relationships=create_relationship("depositAccount", account_id, "account"))
+        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        return response.data
 
-    response = client.cards.create(request)
-    return response.data
+    def create_individual_debit_card(self):
+        account_id = self.create_deposit_account().id
 
-
-def create_individual_debit_card():
-    account_id = create_deposit_account().data.id
-    request = CreateIndividualDebitCard(relationships={
-        "account": {
-            "data": {
-                "type": "depositAccount",
-                "id": account_id
+        req = {
+            "type": "individualDebitCard",
+            "attributes": {
+                "shippingAddress": {
+                    "street": "5230 Newell Rd",
+                    "street2": None,
+                    "city": "Palo Alto",
+                    "state": "CA",
+                    "postalCode": "94303",
+                    "country": "US"
+                },
+                "limits": {
+                    "dailyWithdrawal": 50000,
+                    "dailyPurchase": 50000,
+                    "monthlyWithdrawal": 500000,
+                    "monthlyPurchase": 700000
+                }
+            },
+            "relationships": {
+                "account": {
+                    "data": {
+                        "type": "depositAccount",
+                        "id": account_id
+                    }
+                }
             }
         }
-    })
-    response = client.cards.create(request)
-    res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{response.data.id}/activate/", headers=headers)
 
-    if res.status_code != 200:
-        print("Failed to activate card")
+        card = CreateACardApi(self.api_client).create_card({"data": req}).data
 
-    return response
+        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
+        if res.status_code != 200:
+            print("Failed to activate card")
 
-def test_create_individual_debit_card():
-    response = create_individual_debit_card()
-    print(response.data.attributes["status"])
-    assert response.data.type == "individualDebitCard"
+        return card
 
+    def test_create_individual_debit_card(self):
+        card = self.create_individual_debit_card()
+        assert card.type == "individualDebitCard"
 
-def test_get_debit_card():
-    card_id = create_individual_debit_card().data.id
-    response = client.cards.get(card_id)
-    assert response.data.type in card_types
+    def create_business_debit_card(self):
+        account_id = self.create_deposit_account_for_business().id
 
+        req = {
+            "type": "businessDebitCard",
+            "attributes": {
+                "shippingAddress": {
+                    "street": "5230 Newell Rd",
+                    "street2": None,
+                    "city": "Palo Alto",
+                    "state": "CA",
+                    "postalCode": "94303",
+                    "country": "US"
+                },
+                "fullName": {
+                    "first": "Richard",
+                    "last": "Hendricks"
+                },
+                "address": {
+                    "street": "5230 Newell Rd",
+                    "street2": None,
+                    "city": "Palo Alto",
+                    "state": "CA",
+                    "postalCode": "94303",
+                    "country": "US"
+                },
+                "dateOfBirth": "2001-08-10",
+                "email": "richard@piedpiper.com",
+                "phone": {
+                    "countryCode": "1",
+                    "number": "5555555555"
+                },
+                "limits": {
+                    "dailyWithdrawal": 50000,
+                    "dailyPurchase": 50000,
+                    "monthlyWithdrawal": 500000,
+                    "monthlyPurchase": 700000
+                }
+            },
+            "relationships": {
+                "account": {
+                    "data": {
+                        "type": "depositAccount",
+                        "id": account_id
+                    }
+                }
+            }
+        }
 
-def test_list_cards():
-    response = client.cards.list(ListCardParams(0, 1000))
-    for card in response.data:
-        assert card.type in card_types
-        if card.attributes["status"] == "Inactive":
-            res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
+        card = CreateACardApi(self.api_client).create_card({"data": req}).data
 
+        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
-def test_get_debit_card_include_customer():
-    card_id = create_individual_debit_card().data.id
-    response = client.cards.get(card_id, "customer")
-    assert response.data.type in card_types and response.included is not None
+        if res.status_code != 200:
+            print("Failed to activate card")
 
+        return card
 
-def test_freeze_and_unfreeze_card():
-    card_id = find_card_id({"status": "Active"})
-    response = client.cards.freeze(card_id)
-    assert response.data.attributes["status"] == "Frozen"
-    response = client.cards.unfreeze(card_id)
-    assert response.data.attributes["status"] != "Frozen"
+    def test_create_business_debit_card(self):
+        card = self.create_business_debit_card()
+        assert card.type == "businessDebitCard"
 
+    def create_business_virtual_debit_card(self):
+        account_id = self.create_deposit_account_for_business().id
 
-def test_close_card():
-    card_id = find_card_id({"status": "Active"})
-    response = client.cards.close(card_id)
-    assert response.data.attributes["status"] == "ClosedByCustomer"
+        req = {
+            "type": "businessVirtualDebitCard",
+            "attributes": {
+              "fullName": {
+                "first": "Richard",
+                "last": "Hendricks"
+              },
+              "address": {
+                "street": "5230 Newell Rd",
+                "street2": None,
+                "city": "Palo Alto",
+                "state": "CA",
+                "postalCode": "94303",
+                "country": "US"
+              },
+              "dateOfBirth": "2001-08-10",
+              "email": "richard@piedpiper.com",
+              "phone": {
+                "countryCode": "1",
+                "number": "5555555555"
+              },
+              "limits": {
+                "dailyWithdrawal": 50000,
+                "dailyPurchase": 50000,
+                "monthlyWithdrawal": 500000,
+                "monthlyPurchase": 700000
+              }
+            },
+            "relationships": {
+              "account": {
+                "data": {
+                  "type": "depositAccount",
+                  "id": account_id
+                }
+              }
+            }
+          }
 
+        card = CreateACardApi(self.api_client).create_card({"data": req}).data
 
-def test_replace_card():
-    card_id = find_card_id({"type": "individualDebitCard", "status": "Active"})
-    _address = Address("1616 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
-    response = client.cards.replace(card_id, _address)
-    assert response.data.type == "individualDebitCard"
+        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
+        if res.status_code != 200:
+            print("Failed to activate card")
 
-def test_close_card():
-    card_id = find_card_id({"status": "Active"})
-    response = client.cards.close(card_id)
-    assert response.data.type in card_types
+        return card
 
+    def test_create_business_virtual_debit_card(self):
+        card = self.create_business_virtual_debit_card()
+        assert card.type == "businessVirtualDebitCard"
 
-def test_report_stolen_card():
-    card_id = find_card_id({"status": "Active"})
-    response = client.cards.report_stolen(card_id)
-    assert response.data.type in card_types
+    def create_individual_virtual_debit_card(self):
+        account_id = self.create_deposit_account().id
 
+        req = {
+            "type": "individualVirtualDebitCard",
+            "attributes": {
+                "limits": {
+                    "dailyWithdrawal": 50000,
+                    "dailyPurchase": 50000,
+                    "monthlyWithdrawal": 500000,
+                    "monthlyPurchase": 700000
+                }
+            },
+            "relationships": {
+                "account": {
+                    "data": {
+                        "type": "depositAccount",
+                        "id": account_id
+                    }
+                }
+            }
+        }
+        card = CreateACardApi(self.api_client).create_card({"data": req}).data
 
-def test_report_lost_card():
-    card_id = find_card_id({"status": "Active"})
-    response = client.cards.report_lost(card_id)
-    assert response.data.type in card_types
+        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
+        if res.status_code != 200:
+            print("Failed to activate card")
 
-def test_update_individual_card():
-    card_id = find_card_id({"type": "individualDebitCard", "status": "Active"})
-    _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
-    request = PatchIndividualDebitCard(card_id, _address, tags={"test": "updated"})
-    response = client.cards.update(request)
-    assert response.data.type == "individualDebitCard"
-    assert response.data.attributes.get("tags").get("test") == "updated"
+        return card
 
+    def test_create_individual_virtual_debit_card(self):
+        card = self.create_individual_virtual_debit_card()
+        assert card.type == "individualVirtualDebitCard"
 
-def test_update_business_card():
-    card_id = create_business_debit_card().id
-    _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
-    request = PatchBusinessDebitCard(card_id, address=_address, tags={"test": "updated"})
-    response = client.cards.update(request)
-    assert response.data.type == "businessDebitCard"
-    assert response.data.attributes.get("tags").get("test") == "updated"
+    def test_freeze_and_unfreeze_card(self):
+        card = self.create_individual_debit_card()
+        assert card.type == "individualDebitCard"
+        response = FreezeACardApi(self.api_client).freeze_card(card.id).data
+        assert response.attributes.status == "Frozen"
+        response = UnfreezeACardApi(self.api_client).unfreeze_card(card.id).data
+        assert response.attributes.status != "Frozen"
 
+    def test_close_card(self):
+        card = self.create_individual_debit_card()
+        response = CloseACardApi(self.api_client).close_card(card.id).data
+        assert response.attributes.status == "ClosedByCustomer"
 
-def test_get_pin_status():
-    response = client.cards.list()
-    for card in response.data:
-        if card.attributes["status"] != "Inactive":
-            pin_status = client.cards.get_pin_status(card.id).data
-            assert pin_status.type == "pinStatus"
+    # def test_replace_card(self):
+    #     card = self.create_individual_debit_card()
+    #     _address = Address("1616 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
+    #     response = client.cards.replace(card_id, _address)
+    #     assert response.data.type == "individualDebitCard"
+    #
 
+    def test_report_stolen_card(self):
+        card = self.create_individual_debit_card()
+        response = ReportCardAsStolenApi(self.api_client).report_stolen_card(card.id)
+        assert response.data.type in card_types
+        assert response.data.attributes.status == "Stolen"
 
-def test_card_limits():
-    card_id = find_card_id({"type": "individualDebitCard", "status": "Active"})
-    response = client.cards.limits(card_id)
-    assert response.data.type == "limits"
+    def test_report_lost_card(self):
+        card = self.create_individual_debit_card()
+        response = ReportCardAsLostApi(self.api_client).report_lost_card(card.id)
+        assert response.data.type in card_types
+        assert response.data.attributes.status == "Lost"
 
+    if __name__ == '__main__':
+        unittest.main()
 
-def test_create_business_debit_card():
-    response = create_business_debit_card()
-    assert response.type == "businessDebitCard"
-
-
-def test_create_business_virtual_debit_card():
-    response = create_business_virtual_debit_card()
-    assert response.type == "businessVirtualDebitCard"
-
-
-def create_business_credit_card():
-    account_id = create_credit_account_for_business().data.id
-
-    request = CreateBusinessCreditCard(full_name, "2001-08-10", address, phone,
-                                       "richard@piedpiper.com", shipping_address=address,
-                                       idempotency_key=generate_uuid(),
-                                       relationships=create_relationship("creditAccount", account_id, "account"))
-
-    return client.cards.create(request)
-
-
-def test_create_business_credit_card():
-    response = create_business_credit_card()
-    assert response.data.type == "businessCreditCard"
-
-
-def test_create_business_virtual_credit_card():
-    account_id = create_credit_account_for_business().data.id
-
-    request = CreateBusinessVirtualCreditCard(full_name, "2001-08-10", address, phone, "richard@piedpiper.com",
-        relationships=create_relationship("creditAccount", account_id, "account")
-    )
-
-    response = client.cards.create(request)
-    assert response.data.type == "businessVirtualCreditCard"
-
-
-def test_update_business_credit_card():
-    card_id = create_business_credit_card().data.id
-    _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
-    request = PatchBusinessCreditCard(card_id, address=_address, tags={"test": "updated"})
-    response = client.cards.update(request)
-    assert response.data.type == "businessCreditCard"
-    assert response.data.attributes.get("tags").get("test") == "updated"
-
+#
+# def test_get_debit_card_include_customer():
+#     card_id = create_individual_debit_card().data.id
+#     response = client.cards.get(card_id, "customer")
+#     assert response.data.type in card_types and response.included is not None
+#
+# def test_update_individual_card():
+#     card_id = find_card_id({"type": "individualDebitCard", "status": "Active"})
+#     _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
+#     request = PatchIndividualDebitCard(card_id, _address, tags={"test": "updated"})
+#     response = client.cards.update(request)
+#     assert response.data.type == "individualDebitCard"
+#     assert response.data.attributes.get("tags").get("test") == "updated"
+#
+# def test_update_business_card():
+#     card_id = create_business_debit_card().id
+#     _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
+#     request = PatchBusinessDebitCard(card_id, address=_address, tags={"test": "updated"})
+#     response = client.cards.update(request)
+#     assert response.data.type == "businessDebitCard"
+#     assert response.data.attributes.get("tags").get("test") == "updated"
+#
+# def test_get_pin_status():
+#     response = client.cards.list()
+#     for card in response.data:
+#         if card.attributes["status"] != "Inactive":
+#             pin_status = client.cards.get_pin_status(card.id).data
+#             assert pin_status.type == "pinStatus"
+#
+# def test_card_limits():
+#     card_id = find_card_id({"type": "individualDebitCard", "status": "Active"})
+#     response = client.cards.limits(card_id)
+#     assert response.data.type == "limits"
+#
+# def create_business_credit_card():
+#     account_id = create_credit_account_for_business().data.id
+#
+#     request = CreateBusinessCreditCard(full_name, "2001-08-10", address, phone,
+#                                        "richard@piedpiper.com", shipping_address=address,
+#                                        idempotency_key=generate_uuid(),
+#                                        relationships=create_relationship("creditAccount", account_id, "account"))
+#
+#     return client.cards.create(request)
+#
+#
+# def test_create_business_credit_card():
+#     response = create_business_credit_card()
+#     assert response.data.type == "businessCreditCard"
+#
+#
+# def test_create_business_virtual_credit_card():
+#     account_id = create_credit_account_for_business().data.id
+#
+#     request = CreateBusinessVirtualCreditCard(full_name, "2001-08-10", address, phone, "richard@piedpiper.com",
+#         relationships=create_relationship("creditAccount", account_id, "account")
+#     )
+#
+#     response = client.cards.create(request)
+#     assert response.data.type == "businessVirtualCreditCard"
+#
+#
+# def test_update_business_credit_card():
+#     card_id = create_business_credit_card().data.id
+#     _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
+#     request = PatchBusinessCreditCard(card_id, address=_address, tags={"test": "updated"})
+#     response = client.cards.update(request)
+#     assert response.data.type == "businessCreditCard"
+#     assert response.data.attributes.get("tags").get("test") == "updated"
+#

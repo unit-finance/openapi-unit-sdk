@@ -2092,13 +2092,13 @@
 				"responses":{
 					"200":{
 						"description":"Successful Response",
-						"title":"UnitResponse",
 						"content":{
 							"application/vnd.api+json; charset=utf-8":{
 								"schema":{
-									"data":{
-										"type":"object",
-										"properties":{
+									"title":"UnitResponseCardsList",
+									"type":"object",
+									"properties":{
+										"data":{
 											"type":"array",
 											"items":{
 												"$ref":"./schemas/card.json"
@@ -2299,6 +2299,17 @@
 				],
 				"operationId":"reportStolenCard",
 				"summary":"Report card as stolen",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card"
+					}
+				],
 				"description":"Report card as stolen via API ",
 				"responses":{
 					"200":{
@@ -2327,6 +2338,17 @@
 				],
 				"operationId":"reportLostCard",
 				"summary":"Report lost as stolen",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card"
+					}
+				],
 				"description":"Report lost as stolen via API ",
 				"responses":{
 					"200":{
@@ -2356,6 +2378,17 @@
 				"operationId":"closeCard",
 				"summary":"Close a Card",
 				"description":"Close a Card via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card to close"
+					}
+				],
 				"responses":{
 					"200":{
 						"description":"Successful Response",
@@ -2382,6 +2415,17 @@
 					"Freeze a Card"
 				],
 				"operationId":"freezeCard",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card to freeze"
+					}
+				],
 				"summary":"Freeze a Card",
 				"description":"Freeze a Card via API ",
 				"responses":{
@@ -2410,6 +2454,17 @@
 					"Unfreeze a Card"
 				],
 				"operationId":"unfreezeCard",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"cardId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the card to unfreeze"
+					}
+				],
 				"summary":"Unfreeze a Card",
 				"description":"Unfreeze a Card via API ",
 				"responses":{
@@ -4515,10 +4570,10 @@
 	},
 	"components":{
 		"securitySchemes":{
-			"bearerAuth":{
-				"type":"apiKey",
-				"in":"header",
-				"name":"Authorization"
+			"bearerAuth": {
+				"type": "apiKey",
+				"in": "header",
+				"name": "Authorization"
 			}
 		}
 	},

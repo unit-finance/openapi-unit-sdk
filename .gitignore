@@ -21,6 +21,7 @@ parts/
 sdist/
 unit/swagger_client
 unit/docs
+unit/test
 unit/.swagger-codegen
 var/
 *.egg-info/

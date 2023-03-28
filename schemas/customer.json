@@ -377,7 +377,7 @@
 			]
 		}
 	},
-	"title":"Customer Document",
+	"title":"Customer",
 	"type":"object",
 	"properties":{
 		"id":{

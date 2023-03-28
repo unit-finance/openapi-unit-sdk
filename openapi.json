@@ -1111,8 +1111,14 @@
 									"title":"UnitResponse",
 									"properties":{
 										"data":{
-											"$ref":"./schemas/customer.json"
+											"type":"array",
+											"items":{
+												"$ref":"./schemas/customer.json"
+											}
 										}
+									},
+									"meta":{
+										"$ref":"types.json#/definitions/paginationMeta"
 									}
 								}
 							}

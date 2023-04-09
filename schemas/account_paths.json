@@ -1,0 +1,522 @@
+{
+	"accounts": {
+		"get": {
+				"tags":[
+					"Get List Accounts"
+				],
+				"operationId":"find list accounts",
+				"summary":"Get List Accounts",
+				"description":"Get List Accounts from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"./types.json#/definitions/listPageParametersObject"
+						}
+					},
+					{
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
+								},
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
+											"Pending",
+											"Approved"
+										]
+									}
+								},
+								"email":{
+									"type":"string"
+								},
+								"tags":{
+									"type":"object"
+								}
+							}
+						}
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"title":"UnitResponseAccountsList",
+									"type":"object",
+									"properties":{
+										"data":{
+											"type":"array",
+											"items":{
+												"$ref":"./account.json"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+		"post": {
+				"tags":[
+					"Create an Account"
+				],
+				"operationId":"createAccount",
+				"summary":"Create an Account",
+				"description":"Create an Account via API ",
+				"requestBody":{
+					"description":"Create Account Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./createAccount.json"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+	},
+	"get_account": {
+		"get": {
+				"tags":[
+					"Get Account"
+				],
+				"operationId":"findAccountById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get"
+					},
+					{
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
+						}
+					}
+				],
+				"summary":"Get Account by Id",
+				"description":"Get an Account from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+	},
+	"get_account_limits": {
+		"get": {
+				"tags":[
+					"Get Account Limits"
+				],
+				"operationId":"getAccountLimits",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get"
+					}
+				],
+				"summary":"Get Account Limits by Id",
+				"description":"Get Account Limits from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./types.json#/definitions/limits"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+	},
+	"unfreeze_account": {
+		"post": {
+				"tags":[
+					"Unfreeze Account"
+				],
+				"operationId":"unfreezeAccountById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get"
+					}
+				],
+				"summary":"Unfreeze Account by Id",
+				"description":"Unfreeze an Account via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+	},
+	"freeze_account": {
+		"post":{
+				"tags":[
+					"Freeze an Account"
+				],
+				"operationId":"freezeAccountById",
+				"summary":"Freeze an Account by Id",
+				"description":"Freeze an Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to freeze"
+					}
+				],
+				"requestBody":{
+					"description":"Freeze Account Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"data":{
+									"type":"object",
+									"properties":{
+										"$ref":"./types.json#/definitions/freezeAccountRequest"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"close_account": {
+		"post":{
+				"tags":[
+					"Close an Account"
+				],
+				"operationId":"closeAccountById",
+				"summary":"Close an Account by Id",
+				"description":"Close an Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to close"
+					}
+				],
+				"requestBody":{
+					"description":"Close Account Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"./types.json#/definitions/closeAccountRequest"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"reopen_account": {
+		"post":{
+				"tags":[
+					"Reopen an Account"
+				],
+				"operationId":"reopenAccountById",
+				"summary":"Reopen an Account by Id",
+				"description":"Reopen an Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to close"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"enter_daca": {
+		"post":{
+				"tags":[
+					"Enter Control Agreement for Account"
+				],
+				"operationId":"enterDacaAccountById",
+				"summary":"Enter Account Control Agreement by Id",
+				"description":"Enter Control Agreement for Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"activate_daca": {
+		"post":{
+				"tags":[
+					"Activate Control Agreement for Account"
+				],
+				"operationId":"activateDacaAccountById",
+				"summary":"Activate Account Control Agreement by Id",
+				"description":"Activate Control Agreement for Account via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"deactivate_daca": {
+		"post":{
+				"tags":[
+					"Deactivate Control Agreement for Account"
+				],
+				"operationId":"deactivateDacaAccountById",
+				"summary":"Deactivate Account Control Agreement by Id",
+				"description":"Deactivate Control Agreement for Account via API",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account"
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./account.json#/definitions/DepositAccount"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"get_account_end_of_day": {"get":{
+				"tags":[
+					"Get list account end-of-day balances history"
+				],
+				"operationId":"getAccountEndOfDayList",
+				"summary":"Get AccountEndOfDay List",
+				"description":"Get AccountEndOfDay List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"./accountEndOfDay.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}}
+}

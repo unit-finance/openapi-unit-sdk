@@ -1,0 +1,278 @@
+{
+	"list_tokens":{
+		"get":{
+			"tags":[
+				"Get List Org API Tokens"
+			],
+			"operationId":"find list org api tokens",
+			"summary":"Get List Org API Tokens",
+			"description":"Get List Org API Tokens from API ",
+			"parameters":[
+				{
+					"name":"page",
+					"in":"query",
+					"schema":{
+						"$ref":"types.json#/definitions/listPageParametersObject"
+					}
+				},
+				{
+					"name":"filter",
+					"in":"query",
+					"schema":{
+						"type":"object",
+						"properties":{
+							"query":{
+								"type":"string"
+							},
+							"status":{
+								"type":"array",
+								"items":{
+									"type":"string",
+									"enum":[
+										"Pending",
+										"Approved"
+									]
+								}
+							},
+							"email":{
+								"type":"string"
+							},
+							"tags":{
+								"type":"object"
+							}
+						}
+					}
+				},
+				{
+					"name":"sort",
+					"in":"query",
+					"schema":{
+						"type":"string",
+						"enum":[
+							"createdAt",
+							"-createdAt"
+						],
+						"default":"-createdAt"
+					}
+				}
+			],
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"array",
+								"items":{
+									"$ref":"apiToken.json"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"create_token":{
+		"post":{
+			"tags":[
+				"Create Org Api Token"
+			],
+			"operationId":" createOrgApiToken",
+			"summary":"Create Org API Token",
+			"description":"Create an Org API Token via API ",
+			"requestBody":{
+				"description":"Create Org API Token Request",
+				"required":"true",
+				"content":{
+					"application/vnd.api+json":{
+						"schema":{
+							"type":"object",
+							"properties":{
+								"data":{
+									"$ref":"createApiToken.json"
+								}
+							}
+						}
+					}
+				}
+			},
+			"responses":{
+				"201":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"title":"UnitResponse",
+								"properties":{
+									"data":{
+										"$ref":"apiToken.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"delete_token":{
+		"delete":{
+			"tags":[
+				"Revoke Org API Token"
+			],
+			"operationId":"revokeOrgApiToken",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"userId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the user to revoke token"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"tokenId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the token to revoke"
+				}
+			],
+			"summary":"Get Reward by Id",
+			"description":"Get a Reward from API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitResponse",
+								"properties":{
+									"data":{
+										"$ref":"apiToken.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"create_customer_token":{
+		"post":{
+			"tags":[
+				"Create Customer Token"
+			],
+			"operationId":"createCustomerToken",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"customerId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the customer to create token for"
+				}
+			],
+			"summary":"Create Customer Token",
+			"description":"Create a Customer Token via API ",
+			"requestBody":{
+				"description":"Create Customer Token Request",
+				"required":"true",
+				"content":{
+					"application/vnd.api+json":{
+						"schema":{
+							"data":{
+								"type":"object",
+								"properties":{
+									"$ref":"craeteCustomerToken.json"
+								}
+							}
+						}
+					}
+				}
+			},
+			"responses":{
+				"201":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitResponse",
+								"properties":{
+									"data":{
+										"$ref":"‏‏customerTokenVerification.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"create_customer_token_verification":{
+		"post":{
+			"tags":[
+				"Create Customer Token Verification"
+			],
+			"operationId":"createCustomerTokenVerification",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"customerId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the customer to create token for"
+				}
+			],
+			"summary":"Create Customer Token Verification",
+			"description":"Create a Customer Token Verification via API ",
+			"requestBody":{
+				"description":"Create Customer Token Verification Request",
+				"required":"true",
+				"content":{
+					"application/vnd.api+json":{
+						"schema":{
+							"data":{
+								"type":"object",
+								"properties":{
+									"$ref":"createCustomerTokenVerification.json"
+								}
+							}
+						}
+					}
+				}
+			},
+			"responses":{
+				"201":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitResponse",
+								"properties":{
+									"data":{
+										"$ref":"createCustomerTokenVerification.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

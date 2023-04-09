@@ -1,0 +1,468 @@
+{
+	"application": {
+	"get": {
+					"tags":[
+						"Get Application"
+					],
+					"operationId":"findApplicationById",
+					"parameters":[
+						{
+							"schema":{
+								"type":"string"
+							},
+							"name":"applicationId",
+							"in":"path",
+							"required":true,
+							"description":"ID of the application to get"
+						},
+						{
+							"name":"included",
+							"in":"query",
+							"schema":{
+								"type":"string"
+							}
+						}
+					],
+					"summary":"Get Application by Id",
+					"description":"Get an Application from API ",
+					"responses":{
+						"200":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json; charset=utf-8":{
+									"schema":{
+										"type":"object",
+										"title":"UnitResponse",
+										"properties":{
+											"data":{
+												"$ref":"application.json"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+	"patch":{
+					"tags":[
+						"Update Application"
+					],
+					"operationId":"updateApplication",
+					"summary":"Update Application",
+					"description":"Update an Application via API ",
+					"parameters":[
+						{
+							"schema":{
+								"type":"string"
+							},
+							"name":"applicationId",
+							"in":"path",
+							"required":true,
+							"description":"ID of the application to update"
+						}
+					],
+					"requestBody":{
+						"description":"Update Application Request",
+						"required":"true",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"$ref":"types.json#/definitions/updateUnitRequest"
+								}
+							}
+						}
+					},
+					"responses":{
+						"200":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json":{
+									"schema":{
+										"type":"object",
+										"title":"UnitResponse",
+										"properties":{
+											"data":{
+												"$ref":"application.json"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}},
+	  "cancel_application":{
+		  "post": {
+			"tags":[
+						"Cancel Application"
+					],
+					"operationId":" cancelApplicationById",
+					"parameters":[
+						{
+							"schema":{
+								"type":"string"
+							},
+							"name":"applicationId",
+							"in":"path",
+							"required":true,
+							"description":"ID of the application to get"
+						}
+					],
+					"summary":"Cancel Application by Id",
+					"description":"Cancel a Application via API ",
+					"requestBody":{
+						"description":"Cancel Application Request",
+						"required":"true",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"properties":{
+										"data":{
+											"type":"object",
+											"properties":{
+												"type":{
+													"type":"string",
+													"enum":[
+														"cancelApplication"
+													]
+												},
+												"attributes":{
+													"type":"object",
+													"properties":{
+														"reason":{
+															"type":"string"
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"responses":{
+						"201":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json":{
+									"schema":{
+										"type":"object",
+										"title":"UnitResponse",
+										"properties":{
+											"data":{
+												"$ref":"application.json"
+											},
+											"included":{
+												"type":"array",
+												"items":{
+													"$ref":"document.json"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+	  },
+	  "applications": {
+		  "get": {
+					"tags":[
+						"Get List Applications"
+					],
+					"operationId":"find list application",
+					"summary":"Get List Application",
+					"description":"Get List Applications from API ",
+					"parameters":[
+						{
+							"name":"page",
+							"in":"query",
+							"schema":{
+								"$ref":"types.json#/definitions/listPageParametersObject"
+							}
+						},
+						{
+							"name":"filter",
+							"in":"query",
+							"schema":{
+								"type":"object",
+								"properties":{
+									"query":{
+										"type":"string"
+									},
+									"status":{
+										"type":"array",
+										"items":{
+											"type":"string",
+											"enum":[
+												"Pending",
+												"Approved"
+											]
+										}
+									},
+									"email":{
+										"type":"string"
+									},
+									"tags":{
+										"type":"object"
+									}
+								}
+							}
+						},
+						{
+							"name":"sort",
+							"in":"query",
+							"schema":{
+								"type":"string",
+								"enum":[
+									"createdAt",
+									"-createdAt"
+								],
+								"default":"-createdAt"
+							}
+						}
+					],
+					"responses":{
+						"200":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json":{
+									"schema":{
+										"type":"object",
+										"title":"UnitResponseListApplications",
+										"properties":{
+											"data":{
+												"type":"array",
+												"items":{
+													"$ref":"application.json"
+												}
+											}
+										},
+										"meta":{
+											"$ref":"types.json#/definitions/paginationMeta"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+		  "post":{
+					"tags":[
+						"Create Application"
+					],
+					"operationId":" createApplication",
+					"summary":"Create Application",
+					"description":"Create an Application via API ",
+					"requestBody":{
+						"description":"Create Application Request",
+						"required":"true",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"properties":{
+										"data":{
+											"$ref":"createApplication.json"
+										}
+									}
+								}
+							}
+						}
+					},
+					"responses":{
+						"201":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json":{
+									"schema":{
+										"type":"object",
+										"title":"UnitResponse",
+										"properties":{
+											"data":{
+												"$ref":"application.json"
+											},
+											"included":{
+												"type":"array",
+												"items":{
+													"$ref":"document.json"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+	  },
+	  "application_forms":{
+		  "get": {
+					"tags":[
+						"Get List Application Forms"
+					],
+					"operationId":"find list application forms",
+					"summary":"Get List Application Forms",
+					"description":"Get List Application Forms from API ",
+					"parameters":[
+						{
+							"name":"page",
+							"in":"query",
+							"schema":{
+								"$ref":"types.json#/definitions/listPageParametersObject"
+							}
+						},
+						{
+							"name":"filter",
+							"in":"query",
+							"schema":{
+								"type":"object",
+								"properties":{
+									"query":{
+										"type":"string"
+									},
+									"status":{
+										"type":"array",
+										"items":{
+											"type":"string",
+											"enum":[
+												"Pending",
+												"Approved"
+											]
+										}
+									},
+									"email":{
+										"type":"string"
+									},
+									"tags":{
+										"type":"object"
+									}
+								}
+							}
+						},
+						{
+							"name":"sort",
+							"in":"query",
+							"schema":{
+								"type":"string",
+								"enum":[
+									"createdAt",
+									"-createdAt"
+								],
+								"default":"-createdAt"
+							}
+						}
+					],
+					"responses":{
+						"200":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json; charset=utf-8":{
+									"schema":{
+										"type":"array",
+										"items":{
+											"$ref":"applicationForm.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+		  "post": {
+					"tags":[
+						"Create ApplicationForm"
+					],
+					"operationId":" createApplicationForm",
+					"summary":"Create Application Form",
+					"description":"Create an Application Form via API ",
+					"requestBody":{
+						"description":"Create Application Form Request",
+						"required":"true",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"properties":{
+										"data":{
+											"$ref":"createApplicationForm.json"
+										}
+									}
+								}
+							}
+						}
+					},
+					"responses":{
+						"201":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json":{
+									"schema":{
+										"type":"object",
+										"title":"UnitResponse",
+										"properties":{
+											"data":{
+												"$ref":"applicationForm.json"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+	  },
+	  "get_application_form":{
+		  "get": {
+					"tags":[
+						"Get Application Form"
+					],
+					"operationId":"findApplicationFormById",
+					"parameters":[
+						{
+							"schema":{
+								"type":"string"
+							},
+							"name":"applicationFormId",
+							"in":"path",
+							"required":true,
+							"description":"ID of the application form to get"
+						},
+						{
+							"name":"included",
+							"in":"query",
+							"schema":{
+								"type":"string"
+							}
+						}
+					],
+					"summary":"Get ApplicationForm by Id",
+					"description":"Get an Application Form from API ",
+					"responses":{
+						"200":{
+							"description":"Successful Response",
+							"content":{
+								"application/vnd.api+json; charset=utf-8":{
+									"schema":{
+										"type":"object",
+										"title":"UnitResponse",
+										"properties":{
+											"data":{
+												"$ref":"applicationForm.json"
+											},
+											"included":{
+												"$ref":"application.json"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+	  }
+}

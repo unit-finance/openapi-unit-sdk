@@ -1,0 +1,181 @@
+{
+  "list_transactions": {
+    "get":{
+				"tags":[
+					"Get List Transactions"
+				],
+				"operationId":"find list transactions",
+				"summary":"Get List Transactions",
+				"description":"Get List Transactions from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"types.json#/definitions/listPageParametersObject"
+						}
+					},
+					{
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
+								},
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
+											"Pending",
+											"Approved"
+										]
+									}
+								},
+								"email":{
+									"type":"string"
+								},
+								"tags":{
+									"type":"object"
+								}
+							}
+						}
+					},
+					{
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
+								"createdAt",
+								"-createdAt"
+							],
+							"default":"-createdAt"
+						}
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"transaction.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+  },
+	"transaction": {
+			"get":{
+				"tags":[
+					"Get Transaction"
+				],
+				"operationId":"findTransactionId",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to get transaction from"
+					},
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"transactionId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the transaction"
+					}
+				],
+				"summary":"Get Transaction by Id",
+				"description":"Get a Transaction from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"transaction.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"patch":{
+				"tags":[
+					"Update Transaction"
+				],
+				"operationId":"updateTransaction",
+				"summary":"Update Transaction",
+				"description":"Update a Transaction via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"accountId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the account to update transaction from"
+					},
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"transactionId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the transaction to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Transaction Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"types.json#/definitions/updateUnitRequest"
+							}
+						}
+					}
+				},
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"transaction.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+	}
+}

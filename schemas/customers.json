@@ -6,7 +6,7 @@
   "properties": {
     "data": {
       "type": "array",
-      "items": { "$ref": "./schemas/customer.json#/definitions/customer" }
+      "items": { "$ref": "customer.json#/definitions/customer" }
     },
     "included": {
       "type": "array",

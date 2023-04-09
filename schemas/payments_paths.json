@@ -1,0 +1,608 @@
+{
+	"get_and_create_payments": {
+		"get": {
+			"tags": [
+				"Get List Payments"
+			],
+			"operationId": "getListPayments",
+			"summary": "Get List Payments",
+			"description": "Get List Payments from API ",
+			"parameters": [
+				{
+					"name": "page",
+					"in": "query",
+					"schema": {
+						"$ref": "types.json#/definitions/listPageParametersObject"
+					}
+				},
+				{
+					"name": "filter",
+					"in": "query",
+					"schema": {
+						"type": "object",
+						"properties": {
+							"query": {
+								"type": "string"
+							},
+							"status": {
+								"type": "array",
+								"items": {
+									"type": "string",
+									"enum": [
+										"Pending",
+										"Approved"
+									]
+								}
+							},
+							"email": {
+								"type": "string"
+							},
+							"tags": {
+								"type": "object"
+							}
+						}
+					}
+				}
+			],
+			"responses": {
+				"200": {
+					"description": "Successful Response",
+					"title": "UnitResponse",
+					"content": {
+						"application/vnd.api+json; charset=utf-8": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"data": {
+										"type": "array",
+										"items": {
+											"$ref": "payment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"post": {
+			"tags": [
+				"Create a Payment"
+			],
+			"operationId": "createPayment",
+			"summary": "Create a Payment",
+			"description": "Create a Payment via API ",
+			"requestBody": {
+				"description": "Create Payment Request",
+				"required": "true",
+				"content": {
+					"application/vnd.api+json": {
+						"schema": {
+							"data": {
+								"type": "object",
+								"properties": {
+									"$ref": "createPayment.json"
+								}
+							}
+						}
+					}
+				}
+			},
+			"responses": {
+				"201": {
+					"description": "Successful Response",
+					"content": {
+						"application/vnd.api+json; charset=utf-8": {
+							"schema": {
+								"type": "object",
+								"title": "UnitResponse",
+								"properties": {
+									"data": {
+										"$ref": "payment.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"get_and_patch_payment":{"get": {
+				"tags":[
+					"Get Payment"
+				],
+				"operationId":"findPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
+					},
+					{
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
+						}
+					}
+				],
+				"summary":"Get Payment by Id",
+				"description":"Get a Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"payment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+		"patch": {
+				"tags":[
+					"Update Payment"
+				],
+				"operationId":"updatePayment",
+				"summary":"Update Payment",
+				"description":"Update an Payment via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Payment Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"types.json#/definitions/updateUnitRequest"
+							}
+						}
+					}
+				},
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"payment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"cancel_payment": {"post":  {
+				"tags":[
+					"Cancel Payment"
+				],
+				"operationId":"cancelPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to cancel"
+					}
+				],
+				"summary":"Cancel a Payment by Id",
+				"description":"Cancel a Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"payment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"list_received_payments": {"get": {
+				"tags":[
+					"Get Received Payments List"
+				],
+				"operationId":"getReceivedPayments",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
+					},
+					{
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
+						}
+					}
+				],
+				"summary":"Get Received Payments List",
+				"description":"Get Received Payments from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"payment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"received_payments": {"get":{
+				"tags":[
+					"Get Received Payment"
+				],
+				"operationId":"findReceivedPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
+					},
+					{
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
+						}
+					}
+				],
+				"summary":"Get Received Payment by Id",
+				"description":"Get a Received Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"receivedPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"patch":{
+				"tags":[
+					"Update Received Payment"
+				],
+				"operationId":"updateReceivedPayment",
+				"summary":"Update Received Payment",
+				"description":"Update a Received Payment via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Received Payment Request",
+					"required":"true",
+					"parameters":[
+						{
+							"schema":{
+								"type":"string"
+							},
+							"name":"receivedPaymentId",
+							"in":"path",
+							"required":true,
+							"description":"ID of the received payment to update"
+						}
+					],
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"types.json#/definitions/updateUnitRequest"
+							}
+						}
+					}
+				},
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"receivedPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"advance_received_payment": {"post":{
+				"tags":[
+					"Advance Received Payment"
+				],
+				"operationId":"advanceReceivedPaymentById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to advance"
+					}
+				],
+				"summary":"Advance Received Payment by Id",
+				"description":"Advance a Received Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"receivedPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"recurring_payments": {
+		"get":{
+				"tags":[
+					"Get List Recurring Payments"
+				],
+				"operationId":"getRecurringPaymentsList",
+				"summary":"Get Recurring Payments List",
+				"description":"Get Recurring Payments List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"recurringPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post":{
+				"tags":[
+					"Create Recurring Payment"
+				],
+				"operationId":" createRecurringPayment",
+				"summary":"Create Recurring Payment",
+				"description":"Create a Recurring Payment via API ",
+				"requestBody":{
+					"description":"Create Recurring Payment Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"createRecurringPayment.json"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"recurringPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+	},
+	"get_recurring_payment": {
+			"get":{
+				"tags":[
+					"Get Recurring Payment"
+				],
+				"operationId":"getRecurringPayment",
+				"summary":"Get Recurring Payment",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to get"
+					}
+				],
+				"description":"Get Recurring Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"recurringPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+	},
+	"disable_recurring_payment": {"post":{
+				"tags":[
+					"Disable Recurring Payment"
+				],
+				"operationId":"disableRecurringPayment",
+				"summary":"Disable Recurring Payment",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to disable"
+					}
+				],
+				"description":"Disable Recurring Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"recurringPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+	"enable_recurring_payment": {"post":{
+				"tags":[
+					"Enable Recurring Payment"
+				],
+				"operationId":"enableRecurringPayment",
+				"summary":"Enable Recurring Payment",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"paymentId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the payment to enable"
+					}
+				],
+				"description":"Enable Recurring Payment via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"recurringPayment.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}}
+}

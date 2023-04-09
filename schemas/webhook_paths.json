@@ -1,0 +1,276 @@
+{
+  "webhooks": {
+			"get":{
+				"tags":[
+					"Get List Webhooks"
+				],
+				"operationId":"find list of Webhooks",
+				"summary":"Get List Webhooks",
+				"description":"Get List Webhooks from API ",
+				"parameters":[
+					{
+						"name":"page",
+						"in":"query",
+						"schema":{
+							"$ref":"types.json#/definitions/listPageParametersObject"
+						}
+					},
+					{
+						"name":"filter",
+						"in":"query",
+						"schema":{
+							"type":"object",
+							"properties":{
+								"query":{
+									"type":"string"
+								},
+								"status":{
+									"type":"array",
+									"items":{
+										"type":"string",
+										"enum":[
+											"Pending",
+											"Approved"
+										]
+									}
+								},
+								"email":{
+									"type":"string"
+								},
+								"tags":{
+									"type":"object"
+								}
+							}
+						}
+					},
+					{
+						"name":"sort",
+						"in":"query",
+						"schema":{
+							"type":"string",
+							"enum":[
+								"createdAt",
+								"-createdAt"
+							],
+							"default":"-createdAt"
+						}
+					}
+				],
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"array",
+									"items":{
+										"$ref":"webhook.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post":{
+				"tags":[
+					"Create Webhook"
+				],
+				"operationId":" createWebhook",
+				"summary":"Create Webhook",
+				"description":"Create a Webhook via API ",
+				"requestBody":{
+					"description":"Create Webhook Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"webhook.json"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"type":"object"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+  "webhook": {"get":{
+				"tags":[
+					"Get Webhook"
+				],
+				"operationId":"findWebhookById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the webhook to get"
+					}
+				],
+				"summary":"Get Webhook Id",
+				"description":"Get a Webhook from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"webhook.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"patch":{
+				"tags":[
+					"Update Webhook"
+				],
+				"operationId":"updateWebhook",
+				"summary":"Update Webhook",
+				"description":"Update a Webhook via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the Webhook to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Webhook Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"types.json#/definitions/updateUnitRequest"
+							}
+						}
+					}
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"webhook.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+  "enable_webhook": {"post":{
+				"tags":[
+					"Enable Webhook"
+				],
+				"operationId":"enableWebhook",
+				"summary":"Enable Webhook",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the webhook to enable"
+					}
+				],
+				"description":"Enable a Webhook via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"webhook.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}},
+  "disable_webhook": {"post":{
+				"tags":[
+					"Disable Webhook"
+				],
+				"operationId":"disableWebhook",
+				"summary":"Disable a Webhook",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"webhookId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the webhook to disable"
+					}
+				],
+				"description":"Disable a Webhook via API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"webhook.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}}
+}

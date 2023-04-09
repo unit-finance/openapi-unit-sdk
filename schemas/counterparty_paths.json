@@ -1,0 +1,229 @@
+{
+  "counterparties": {
+    "get":{
+				"tags":[
+					"Get List Counterparties"
+				],
+				"operationId":"getCounterpartiesList",
+				"summary":"Get Counterparties List",
+				"description":"Get Counterparties List from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"counterparty.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post":{
+				"tags":[
+					"Create Counterparty"
+				],
+				"operationId":" createCounterparty",
+				"summary":"Create Counterparty",
+				"description":"Create a counterparty via API ",
+				"requestBody":{
+					"description":"Create Counterparty Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"properties":{
+									"data":{
+										"$ref":"createCounterparty.json"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses":{
+					"201":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"counterparty.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+  },
+  "counterparty": {
+    "get":{
+				"tags":[
+					"Get Counterparty"
+				],
+				"operationId":"findCounterpartyById",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to get"
+					},
+					{
+						"name":"included",
+						"in":"query",
+						"schema":{
+							"type":"string"
+						}
+					}
+				],
+				"summary":"Get Counterparty by Id",
+				"description":"Get a Counterparty from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"counterparty.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"patch":{
+				"tags":[
+					"Update Counterparty"
+				],
+				"operationId":"updateCounterparty",
+				"summary":"Update Counterparty",
+				"description":"Update a Counterparty via API ",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to update"
+					}
+				],
+				"requestBody":{
+					"description":"Update Counterparty Request",
+					"required":"true",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"$ref":"types.json#/definitions/updateUnitRequest"
+							}
+						}
+					}
+				},
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"counterparty.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete":{
+				"tags":[
+					"Delete Counterparty"
+				],
+				"operationId":"deleteCounterparty",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to delete"
+					}
+				],
+				"summary":"Delete Counterparty by Id",
+				"description":"Delete Counterparty via API ",
+				"responses":{
+					"204":{
+						"description":"Successful Response"
+					}
+				}
+			}
+  },
+  "counterparty_balance": {
+    "get":{
+				"tags":[
+					"Get Counterparty Balance"
+				],
+				"operationId":"getCounterpartyBalance",
+				"summary":"Get Counterparty Balance",
+				"parameters":[
+					{
+						"schema":{
+							"type":"string"
+						},
+						"name":"counterpartyId",
+						"in":"path",
+						"required":true,
+						"description":"ID of the counterparty to get"
+					}
+				],
+				"description":"Get Recurring Payment from API ",
+				"responses":{
+					"200":{
+						"description":"Successful Response",
+						"content":{
+							"application/vnd.api+json; charset=utf-8":{
+								"schema":{
+									"type":"object",
+									"title":"UnitResponse",
+									"properties":{
+										"data":{
+											"$ref":"counterpartyBalance.json"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+  }
+}

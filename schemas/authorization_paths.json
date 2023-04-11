@@ -1,313 +1,313 @@
 {
-  "authorizations": {
-    "get":{
-				"tags":[
-					"Get List Authorizations"
-				],
-				"operationId":"find list authorizations",
-				"summary":"Get List authorizations",
-				"description":"Get List Authorizations from API ",
-				"parameters":[
-					{
-						"name":"page",
-						"in":"query",
-						"schema":{
-							"$ref":"types.json#/definitions/listPageParametersObject"
-						}
-					},
-					{
-						"name":"filter",
-						"in":"query",
-						"schema":{
-							"type":"object",
-							"properties":{
-								"query":{
-									"type":"string"
-								},
-								"status":{
-									"type":"array",
-									"items":{
-										"type":"string",
-										"enum":[
-											"Pending",
-											"Approved"
-										]
-									}
-								},
-								"email":{
-									"type":"string"
-								},
-								"tags":{
-									"type":"object"
-								}
-							}
-						}
-					},
-					{
-						"name":"sort",
-						"in":"query",
-						"schema":{
-							"type":"string",
-							"enum":[
-								"createdAt",
-								"-createdAt"
-							],
-							"default":"-createdAt"
-						}
-					}
-				],
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"array",
-									"items":{
-										"$ref":"authorization.json"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  },
-  "get_authorization": {
-	"get":{
-				"tags":[
-					"Get Authorization"
-				],
-				"operationId":"findAuthorizationId",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"authorizationId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the authorization to get"
-					},
-					{
-						"name":"includeNoneAuthorized",
-						"in":"query",
-						"schema":{
-							"type":"boolean"
-						}
-					}
-				],
-				"summary":"Get Authorization by Id",
-				"description":"Get a Authorization from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"authorization.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  },
-	"get_authorizations_requests": {
-		"get":{
-				"tags":[
-					"Get List Authorization Requests"
-				],
-				"operationId":"find list authorization requests",
-				"summary":"Get List Authorization Requests",
-				"description":"Get List Authorization Requests from API ",
-				"parameters":[
-					{
-						"name":"page",
-						"in":"query",
-						"schema":{
-							"$ref":"types.json#/definitions/listPageParametersObject"
-						}
-					},
-					{
-						"name":"filter",
-						"in":"query",
-						"schema":{
-							"type":"object",
-							"properties":{
-								"query":{
-									"type":"string"
-								},
-								"status":{
-									"type":"array",
-									"items":{
-										"type":"string",
-										"enum":[
-											"Pending",
-											"Approved"
-										]
-									}
-								},
-								"email":{
-									"type":"string"
-								},
-								"tags":{
-									"type":"object"
-								}
-							}
-						}
-					},
-					{
-						"name":"sort",
-						"in":"query",
-						"schema":{
-							"type":"string",
-							"enum":[
-								"createdAt",
-								"-createdAt"
-							],
-							"default":"-createdAt"
-						}
-					}
-				],
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"array",
-									"items":{
-										"$ref":"authorizationRequest.json"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-	},
-	"get_authorization_requests": {
-		"get":{
-				"tags":[
-					"Get Authorization Request"
-				],
-				"operationId":"findAuthorizationRequestById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"authorizationId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the authorization request to get"
-					}
-				],
-				"summary":"Get Authorization Request by Id",
-				"description":"Get a Authorization Request from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"authorizationRequest.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-	},
-	"approve_authorization_requests": {
-		"post":{
-				"tags":[
-					"Approve Authorization Request"
-				],
-				"operationId":"approveAuthorizationRequestById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"authorizationId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the authorization request to approve"
-					}
-				],
-				"summary":"Approve Authorization Request by Id",
-				"description":"Approve a Authorization Request via API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"authorizationRequest.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-	},
-	"decline_authorization_requests": {
-		"post":{
-				"tags":[
-					"Get Authorization Request"
-				],
-				"operationId":"findAuthorizationRequestById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"authorizationId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the authorization request to get"
-					}
-				],
-				"summary":"Get Authorization Request by Id",
-				"description":"Get a Authorization Request from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"authorizationRequest.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-	}
+    "authorizations": {
+        "get": {
+            "tags": [
+                "Get List Authorizations"
+            ],
+            "operationId": "find list authorizations",
+            "summary": "Get List authorizations",
+            "description": "Get List Authorizations from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Pending",
+                                        "Approved"
+                                    ]
+                                }
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ],
+                        "default": "-createdAt"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "authorization.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_authorization": {
+        "get": {
+            "tags": [
+                "Get Authorization"
+            ],
+            "operationId": "findAuthorizationId",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "authorizationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the authorization to get"
+                },
+                {
+                    "name": "includeNoneAuthorized",
+                    "in": "query",
+                    "schema": {
+                        "type": "boolean"
+                    }
+                }
+            ],
+            "summary": "Get Authorization by Id",
+            "description": "Get a Authorization from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "authorization.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_authorizations_requests": {
+        "get": {
+            "tags": [
+                "Get List Authorization Requests"
+            ],
+            "operationId": "find list authorization requests",
+            "summary": "Get List Authorization Requests",
+            "description": "Get List Authorization Requests from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Pending",
+                                        "Approved"
+                                    ]
+                                }
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ],
+                        "default": "-createdAt"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "authorizationRequest.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_authorization_requests": {
+        "get": {
+            "tags": [
+                "Get Authorization Request"
+            ],
+            "operationId": "findAuthorizationRequestById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "authorizationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the authorization request to get"
+                }
+            ],
+            "summary": "Get Authorization Request by Id",
+            "description": "Get a Authorization Request from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "authorizationRequest.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "approve_authorization_requests": {
+        "post": {
+            "tags": [
+                "Approve Authorization Request"
+            ],
+            "operationId": "approveAuthorizationRequestById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "authorizationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the authorization request to approve"
+                }
+            ],
+            "summary": "Approve Authorization Request by Id",
+            "description": "Approve a Authorization Request via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "authorizationRequest.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "decline_authorization_requests": {
+        "post": {
+            "tags": [
+                "Get Authorization Request"
+            ],
+            "operationId": "findAuthorizationRequestById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "authorizationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the authorization request to get"
+                }
+            ],
+            "summary": "Get Authorization Request by Id",
+            "description": "Get a Authorization Request from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "authorizationRequest.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,58 +1,58 @@
 {
-	"title":"Webhook",
-	"type":"object",
-	"properties":{
-		"type":{
-			"type":"string",
-			"const":"webhook"
-		},
-		"id":{
-			"$ref":"types.json#/definitions/identifier"
-		},
-		"attributes":{
-			"type":"object",
-			"properties":{
-				"createdAt":{
-					"type":"string",
-					"format":"date-time"
-				},
-				"lebel":{
-					"type":"string"
-				},
-				"url":{
-					"type":"string"
-				},
-				"status":{
-					"type":"string",
-					"enum":[
-						"Enabled",
-						"Disabled"
-					]
-				},
-				"contentType":{
-					"type":"string",
-					"enum":[
-						"Json",
-						"JsonAPI"
-					]
-				},
-				"deliveryMode":{
-					"type":"string",
-					"enum":[
-						"AtMostOnce",
-						"AtLeastOnce"
-					]
-				},
-				"token":{
-					"type":"string"
-				}
-			}
-		}
-	},
-	"required":[
-		"type",
-		"id",
-		"attributes"
-	],
-	"additionalProperties":false
+    "title": "Webhook",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "const": "webhook"
+        },
+        "id": {
+            "$ref": "types.json#/definitions/identifier"
+        },
+        "attributes": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "lebel": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                },
+                "contentType": {
+                    "type": "string",
+                    "enum": [
+                        "Json",
+                        "JsonAPI"
+                    ]
+                },
+                "deliveryMode": {
+                    "type": "string",
+                    "enum": [
+                        "AtMostOnce",
+                        "AtLeastOnce"
+                    ]
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "type",
+        "id",
+        "attributes"
+    ],
+    "additionalProperties": false
 }

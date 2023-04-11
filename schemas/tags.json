@@ -1,42 +1,42 @@
 {
-  "definitions": {
-    "tags": {
-      "type": "object",
-      "maxProperties": 15,
-      "additionalProperties": false,
-      "patternProperties": {
-        "^[a-zA-Z0-9_]{1,128}$": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 255
+    "definitions": {
+        "tags": {
+            "type": "object",
+            "maxProperties": 15,
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-zA-Z0-9_]{1,128}$": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255
+                }
+            }
+        },
+        "tagsPatch": {
+            "type": "object",
+            "maxProperties": 15,
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-zA-Z0-9_]{1,128}$": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "maxLength": 255
+                }
+            }
         }
-      }
     },
-    "tagsPatch": {
-      "type": "object",
-      "maxProperties": 15,
-      "additionalProperties": false,
-      "patternProperties": {
+    "title": "Tags",
+    "type": "object",
+    "maxProperties": 15,
+    "additionalProperties": false,
+    "patternProperties": {
         "^[a-zA-Z0-9_]{1,128}$": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "minLength": 1,
-          "maxLength": 255
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
         }
-      }
     }
-  },
-  "title": "Tags",
-  "type": "object",
-  "maxProperties": 15,
-  "additionalProperties": false,
-  "patternProperties": {
-    "^[a-zA-Z0-9_]{1,128}$": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 255
-    }
-  }
 }

@@ -1,111 +1,111 @@
 {
-  "rewards": {
-    "post":{
-				"tags":[
-					"Create Reward"
-				],
-				"operationId":" createReward",
-				"summary":"Create Reward",
-				"description":"Create a Reward via API ",
-				"requestBody":{
-					"description":"Create Reward Request",
-					"required":"true",
-					"content":{
-						"application/vnd.api+json":{
-							"schema":{
-								"type":"object",
-								"properties":{
-									"data":{
-										"$ref":"createReward.json"
-									}
-								}
-							}
-						}
-					}
-				},
-				"responses":{
-					"201":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"reward.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"get":{
-				"tags":[
-					"Get List Rewards"
-				],
-				"operationId":"getRewardsList",
-				"summary":"Get Rewards List",
-				"description":"Get Rewards List from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"reward.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  },
-	"get_reward": {
-		"get":{
-				"tags":[
-					"Get Reward"
-				],
-				"operationId":"findRewardById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"rewardId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the reward to get"
-					}
-				],
-				"summary":"Get Reward by Id",
-				"description":"Get a Reward from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"reward.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-	}
+    "rewards": {
+        "post": {
+            "tags": [
+                "Create Reward"
+            ],
+            "operationId": " createReward",
+            "summary": "Create Reward",
+            "description": "Create a Reward via API ",
+            "requestBody": {
+                "description": "Create Reward Request",
+                "required": "true",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "createReward.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "reward.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "tags": [
+                "Get List Rewards"
+            ],
+            "operationId": "getRewardsList",
+            "summary": "Get Rewards List",
+            "description": "Get Rewards List from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "reward.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_reward": {
+        "get": {
+            "tags": [
+                "Get Reward"
+            ],
+            "operationId": "findRewardById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "rewardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the reward to get"
+                }
+            ],
+            "summary": "Get Reward by Id",
+            "description": "Get a Reward from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "reward.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

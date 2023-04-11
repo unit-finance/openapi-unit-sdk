@@ -1,115 +1,115 @@
 {
-"list_disputes": {
-  "get":{
-				"tags":[
-					"Get List Disputes"
-				],
-				"operationId":"find list disputes",
-				"summary":"Get List Disputes",
-				"description":"Get List Disputes from API ",
-				"parameters":[
-					{
-						"name":"page",
-						"in":"query",
-						"schema":{
-							"$ref":"types.json#/definitions/listPageParametersObject"
-						}
-					},
-					{
-						"name":"filter",
-						"in":"query",
-						"schema":{
-							"type":"object",
-							"properties":{
-								"query":{
-									"type":"string"
-								},
-								"status":{
-									"type":"array",
-									"items":{
-										"type":"string",
-										"enum":[
-											"Pending",
-											"Approved"
-										]
-									}
-								},
-								"email":{
-									"type":"string"
-								},
-								"tags":{
-									"type":"object"
-								}
-							}
-						}
-					},
-					{
-						"name":"sort",
-						"in":"query",
-						"schema":{
-							"type":"string",
-							"enum":[
-								"createdAt",
-								"-createdAt"
-							],
-							"default":"-createdAt"
-						}
-					}
-				],
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"array",
-									"items":{
-										"$ref":"dispute.json"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-},
-  "get_dispute": {
-    "get":{
-				"tags":[
-					"Get Dispute"
-				],
-				"operationId":"findDisputeById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"disputeId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the dispute to get"
-					}
-				],
-				"summary":"Get Dispute by Id",
-				"description":"Get a Dispute from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"dispute.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  }
+    "list_disputes": {
+        "get": {
+            "tags": [
+                "Get List Disputes"
+            ],
+            "operationId": "find list disputes",
+            "summary": "Get List Disputes",
+            "description": "Get List Disputes from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Pending",
+                                        "Approved"
+                                    ]
+                                }
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ],
+                        "default": "-createdAt"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "dispute.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_dispute": {
+        "get": {
+            "tags": [
+                "Get Dispute"
+            ],
+            "operationId": "findDisputeById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "disputeId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the dispute to get"
+                }
+            ],
+            "summary": "Get Dispute by Id",
+            "description": "Get a Dispute from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "dispute.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

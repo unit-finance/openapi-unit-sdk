@@ -1,4 +1,5 @@
 import os
+import json
 
 path_of_the_directory = './schemas/'
 
@@ -6,14 +7,23 @@ for filename in os.listdir(path_of_the_directory):
     f_path = os.path.join(path_of_the_directory, filename)
     if os.path.isfile(f_path):
         f = open(f_path, 'r', encoding="utf8")
-        lineList = f.readlines()
+        json_object = json.load(f)
         f.close
+
+        json_object_as_string = str(json_object)
+        json_object_as_string = json_object_as_string.replace('./schemas/', '')
+
+        if json_object_as_string == str(json_object):
+            continue
+
+        data = eval(json_object_as_string)
 
         # Re-open file here
         f2 = open(f_path, 'w', encoding="utf8")
-        for line in lineList:
-            line = line.replace('./schemas/', '')
-            f2.write(line)
+        json.dump(data, f2, indent=4)
+        # for line in lineList:
+        #     line = line.replace('./schemas/', '')
+        #     f2.write(line)
         f2.close()
 
 os.system("java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l python -o unit")

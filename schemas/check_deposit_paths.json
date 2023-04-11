@@ -1,322 +1,322 @@
 {
-  "check_deposits": {
-    "get":{
-				"tags":[
-					"Get List Check Deposits"
-				],
-				"operationId":"find list check deposits",
-				"summary":"Get List Check Deposits",
-				"description":"Get List Check Deposits from API ",
-				"parameters":[
-					{
-						"name":"page",
-						"in":"query",
-						"schema":{
-							"$ref":"types.json#/definitions/listPageParametersObject"
-						}
-					},
-					{
-						"name":"filter",
-						"in":"query",
-						"schema":{
-							"type":"object",
-							"properties":{
-								"query":{
-									"type":"string"
-								},
-								"status":{
-									"type":"array",
-									"items":{
-										"type":"string",
-										"enum":[
-											"Pending",
-											"Approved"
-										]
-									}
-								},
-								"email":{
-									"type":"string"
-								},
-								"tags":{
-									"type":"object"
-								}
-							}
-						}
-					},
-					{
-						"name":"sort",
-						"in":"query",
-						"schema":{
-							"type":"string",
-							"enum":[
-								"createdAt",
-								"-createdAt"
-							],
-							"default":"-createdAt"
-						}
-					}
-				],
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"array",
-									"items":{
-										"$ref":"checkDeposit.json"
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-    "post":{
-				"tags":[
-					"Create Check Deposit"
-				],
-				"operationId":" createCheckDeposit",
-				"summary":"Create Check Deposit",
-				"description":"Create a Check Deposit via API ",
-				"requestBody":{
-					"description":"Create Check Deposit Request",
-					"required":"true",
-					"content":{
-						"application/vnd.api+json":{
-							"schema":{
-								"type":"object",
-								"properties":{
-									"data":{
-										"$ref":"createCheckDeposit.json"
-									}
-								}
-							}
-						}
-					}
-				},
-				"responses":{
-					"201":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"checkDeposit.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  },
-  "check_deposit": {
-    "get":{
-				"tags":[
-					"Get Check Deposit"
-				],
-				"operationId":"findCheckDepositById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"checkDepositId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the check deposit to get"
-					}
-				],
-				"summary":"Get Check Deposit by Id",
-				"description":"Get a Check Deposit from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"checkDeposit.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-    "patch":{
-				"tags":[
-					"Update Check Deposit"
-				],
-				"operationId":"updateCheckDeposit",
-				"summary":"Update Check Deposit",
-				"description":"Update a Check Deposit via API ",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"checkDepositId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the check deposit to update"
-					}
-				],
-				"requestBody":{
-					"description":"Update Check Deposit Request",
-					"required":"true",
-					"content":{
-						"application/vnd.api+json":{
-							"schema":{
-								"$ref":"types.json#/definitions/updateUnitRequest"
-							}
-						}
-					}
-				},
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"checkDeposit.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  },
-  "confirm_check_deposit": {
-    "post":{
-				"tags":[
-					"Confirm Check Deposit"
-				],
-				"operationId":"confirmCheckDeposit",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"checkDepositId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the check deposit to confirm"
-					}
-				],
-				"summary":"Confirm by Id",
-				"description":"Confirm a Check Deposit from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"$ref":"checkDeposit.json"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  },
-  "get_front_check_deposit": {
-    "get":{
-				"tags":[
-					"Get Check Deposit Front Image"
-				],
-				"operationId":"getFrontCheckDepositImageById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"checkDepositId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the check deposit to get"
-					}
-				],
-				"summary":"Get Front Check Deposit Image by Id",
-				"description":"Get Front Check Deposit Image from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"type":"string"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  },
-  "get_back_check_deposit": {
-"get":{
-				"tags":[
-					"Get Check Deposit Back Image"
-				],
-				"operationId":"getBackCheckDepositImageById",
-				"parameters":[
-					{
-						"schema":{
-							"type":"string"
-						},
-						"name":"checkDepositId",
-						"in":"path",
-						"required":true,
-						"description":"ID of the check deposit to get"
-					}
-				],
-				"summary":"Get Back Check Deposit Image by Id",
-				"description":"Get Back Check Deposit Image from API ",
-				"responses":{
-					"200":{
-						"description":"Successful Response",
-						"content":{
-							"application/vnd.api+json; charset=utf-8":{
-								"schema":{
-									"type":"object",
-									"title":"UnitResponse",
-									"properties":{
-										"data":{
-											"type":"string"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-  }
+    "check_deposits": {
+        "get": {
+            "tags": [
+                "Get List Check Deposits"
+            ],
+            "operationId": "find list check deposits",
+            "summary": "Get List Check Deposits",
+            "description": "Get List Check Deposits from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Pending",
+                                        "Approved"
+                                    ]
+                                }
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ],
+                        "default": "-createdAt"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "checkDeposit.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": [
+                "Create Check Deposit"
+            ],
+            "operationId": " createCheckDeposit",
+            "summary": "Create Check Deposit",
+            "description": "Create a Check Deposit via API ",
+            "requestBody": {
+                "description": "Create Check Deposit Request",
+                "required": "true",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "createCheckDeposit.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "checkDeposit.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "check_deposit": {
+        "get": {
+            "tags": [
+                "Get Check Deposit"
+            ],
+            "operationId": "findCheckDepositById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkDepositId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check deposit to get"
+                }
+            ],
+            "summary": "Get Check Deposit by Id",
+            "description": "Get a Check Deposit from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "checkDeposit.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "tags": [
+                "Update Check Deposit"
+            ],
+            "operationId": "updateCheckDeposit",
+            "summary": "Update Check Deposit",
+            "description": "Update a Check Deposit via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkDepositId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check deposit to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Check Deposit Request",
+                "required": "true",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "types.json#/definitions/updateUnitRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "checkDeposit.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "confirm_check_deposit": {
+        "post": {
+            "tags": [
+                "Confirm Check Deposit"
+            ],
+            "operationId": "confirmCheckDeposit",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkDepositId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check deposit to confirm"
+                }
+            ],
+            "summary": "Confirm by Id",
+            "description": "Confirm a Check Deposit from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "checkDeposit.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_front_check_deposit": {
+        "get": {
+            "tags": [
+                "Get Check Deposit Front Image"
+            ],
+            "operationId": "getFrontCheckDepositImageById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkDepositId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check deposit to get"
+                }
+            ],
+            "summary": "Get Front Check Deposit Image by Id",
+            "description": "Get Front Check Deposit Image from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_back_check_deposit": {
+        "get": {
+            "tags": [
+                "Get Check Deposit Back Image"
+            ],
+            "operationId": "getBackCheckDepositImageById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkDepositId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check deposit to get"
+                }
+            ],
+            "summary": "Get Back Check Deposit Image by Id",
+            "description": "Get Back Check Deposit Image from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

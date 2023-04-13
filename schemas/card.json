@@ -95,6 +95,23 @@
             ],
             "additionalProperties": false
         },
+        "pinStatus": {
+            "title": "PinStatusDTO",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
         "IndividualDebitCard": {
             "title": "Individual Debit Card",
             "type": "object",

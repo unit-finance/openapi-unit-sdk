@@ -321,31 +321,26 @@
         }
     },
     "card_pin_status": {
-        "post": {
+        "get": {
             "tags": [
-                "Create a Card"
+                "Get Card PIN Status"
             ],
-            "operationId": "createCard",
-            "summary": "Create a Card",
-            "description": "Create a Card via API ",
-            "requestBody": {
-                "description": "Create Card Request",
-                "required": "true",
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "$ref": "createCard.json"
-                                }
-                            }
-                        }
-                    }
+            "operationId": "getPinStatus",
+            "summary": "Get Card PIN Status",
+            "description": "Get Card PIN Status via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to get PIN status"
                 }
-            },
+            ],
             "responses": {
-                "201": {
+                "200": {
                     "description": "Successful Response",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
@@ -354,7 +349,7 @@
                                 "title": "UnitResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "card.json"
+                                        "$ref": "card.json#/definitions/pinStatus"
                                     }
                                 }
                             }
@@ -459,8 +454,8 @@
                     "description": "ID of the card to get"
                 }
             ],
-            "summary": "Get Card by Id",
-            "description": "Get a Card from API ",
+            "summary": "Get Card Limit by Id",
+            "description": "Get a Card Limits from API ",
             "responses": {
                 "200": {
                     "description": "Successful Response",

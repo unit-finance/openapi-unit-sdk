@@ -21,7 +21,7 @@
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "customerId": {
                                 "type": "string"
                             },
                             "status": {
@@ -29,12 +29,19 @@
                                 "items": {
                                     "type": "string",
                                     "enum": [
-                                        "Pending",
-                                        "Approved"
+                                        "Open",
+                                        "Frozen",
+                                        "Closed"
                                     ]
                                 }
                             },
-                            "email": {
+                            "fromBalance": {
+                                "type": "number"
+                            },
+                            "toBalance": {
+                                "type": "number"
+                            },
+                            "include": {
                                 "type": "string"
                             },
                             "tags": {
@@ -109,7 +116,7 @@
             }
         }
     },
-    "get_account": {
+    "account": {
         "get": {
             "tags": [
                 "Get Account"
@@ -126,7 +133,7 @@
                     "description": "ID of the account to get"
                 },
                 {
-                    "name": "included",
+                    "name": "include",
                     "in": "query",
                     "schema": {
                         "type": "string"
@@ -146,6 +153,78 @@
                                 "properties": {
                                     "data": {
                                         "$ref": "./account.json"
+                                    },
+                                    "included": {
+                                        "type": "array",
+                                        "items": {
+                                             "$ref": "./customer.json"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "tags": [
+                "Update Account"
+            ],
+            "operationId": "updateAccount",
+            "summary": "Update Account",
+            "description": "Update an Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Account Request",
+                "required": "true",
+                "title": "PatchAccountRequest",
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "tags": "object",
+                                                "depositProduct": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "account.json"
                                     }
                                 }
                             }

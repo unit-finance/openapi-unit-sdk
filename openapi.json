@@ -30,7 +30,7 @@
 			"$ref":"./schemas/account_paths.json#/accounts"
 		},
 		"/accounts/{accountId}":{
-			"$ref":"./schemas/account_paths.json#/get_account"
+			"$ref":"./schemas/account_paths.json#/account"
 		},
 		"/accounts/{accountId}/limits":{
 			"$ref":"./schemas/account_paths.json#/get_account_limits"

@@ -203,8 +203,12 @@
                                         "attributes": {
                                             "type": "object",
                                             "properties": {
-                                                "tags": "object",
-                                                "depositProduct": "string"
+                                                "tags": {
+                                                    "type": "object"
+                                                },
+                                                "depositProduct": {
+                                                    "type": "string"
+                                                }
                                             }
                                         }
                                     }

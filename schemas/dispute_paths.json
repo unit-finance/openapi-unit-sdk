@@ -63,6 +63,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "array",
+                                "title": "UnitDisputesListResponse",
                                 "items": {
                                     "$ref": "dispute.json"
                                 }
@@ -99,7 +100,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitDisputeResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "dispute.json"

@@ -106,7 +106,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitAuthorizationResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "authorization.json"
@@ -219,7 +219,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitAuthorizationRequestsResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "authorizationRequest.json"
@@ -258,7 +258,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "authorizationRequest.json"
@@ -297,7 +297,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "authorizationRequest.json"

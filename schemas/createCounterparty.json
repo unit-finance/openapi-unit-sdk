@@ -40,7 +40,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./createCounterparty.json"
+                    "$ref": "createCounterparty.json"
                 },
                 {
                     "type": "object",
@@ -120,7 +120,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./createCounterparty.json"
+                    "$ref": "createCounterparty.json"
                 },
                 {
                     "type": "object",

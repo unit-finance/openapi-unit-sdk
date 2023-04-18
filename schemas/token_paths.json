@@ -104,7 +104,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitApiTokenResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "apiToken.json"
@@ -152,7 +152,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitApiTokenResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "apiToken.json"
@@ -207,10 +207,10 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCustomerTokenVerificationResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "\u200f\u200fcustomerTokenVerification.json"
+                                        "$ref": "customerTokenVerification.json"
                                     }
                                 }
                             }
@@ -262,10 +262,10 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCustomerTokenVerificationResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "createCustomerTokenVerification.json"
+                                        "$ref": "customerTokenVerification.json"
                                     }
                                 }
                             }

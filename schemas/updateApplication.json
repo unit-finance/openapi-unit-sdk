@@ -189,7 +189,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./createApplication.json"
+                    "$ref": "createApplication.json"
                 },
                 {
                     "type": "object",
@@ -314,7 +314,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./createApplication.json"
+                    "$ref": "createApplication.json"
                 },
                 {
                     "type": "object",

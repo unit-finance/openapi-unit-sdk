@@ -25,7 +25,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitInstitutionResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "institution.json"

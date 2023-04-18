@@ -102,7 +102,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "checkDeposit.json"
@@ -141,7 +141,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "checkDeposit.json"
@@ -189,7 +189,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "checkDeposit.json"
@@ -228,7 +228,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "checkDeposit.json"
@@ -267,7 +267,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
                                         "type": "string"
@@ -306,7 +306,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
                                         "type": "string"

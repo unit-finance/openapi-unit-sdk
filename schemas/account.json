@@ -168,7 +168,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./account.json"
+                    "$ref": "account.json"
                 },
                 {
                     "type": "object",

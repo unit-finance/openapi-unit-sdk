@@ -1,4 +1,13 @@
 {
+    "UnitEventResponse": {
+        "type": "object",
+        "title": "UnitEventResponse",
+        "properties": {
+            "data": {
+                "$ref": "event.json"
+            }
+        }
+    },
     "list_events": {
         "get": {
             "tags": [
@@ -14,10 +23,13 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitEventListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "event.json"
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "event.json"
+                                        }
                                     }
                                 }
                             }
@@ -53,7 +65,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitEventResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "event.json"
@@ -89,13 +101,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "event.json"
-                                    }
-                                }
+                                "$ref": "event_paths.json#/UnitEventResponse"
                             }
                         }
                     }

@@ -30,7 +30,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitFeeResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "fee.json"

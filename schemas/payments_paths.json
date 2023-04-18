@@ -47,7 +47,7 @@
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "title": "UnitResponse",
+                    "title": "UnitPaymentResponse",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
@@ -96,7 +96,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "payment.json"
@@ -142,7 +142,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "payment.json"
@@ -190,7 +190,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "payment.json"
@@ -229,7 +229,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "payment.json"
@@ -275,7 +275,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "payment.json"
@@ -321,7 +321,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "receivedPayment.json"
@@ -380,7 +380,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "receivedPayment.json"
@@ -419,7 +419,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "receivedPayment.json"
@@ -447,7 +447,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "recurringPayment.json"
@@ -489,7 +489,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "recurringPayment.json"
@@ -528,7 +528,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "recurringPayment.json"
@@ -567,7 +567,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "recurringPayment.json"
@@ -606,7 +606,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "recurringPayment.json"

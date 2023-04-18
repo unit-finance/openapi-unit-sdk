@@ -35,7 +35,7 @@
                     "type": "object",
                     "properties": {
                         "customer": {
-                            "$ref": "./customer.json#/definitions/customerLinkage"
+                            "$ref": "customer.json#/definitions/customerLinkage"
                         }
                     }
                 }
@@ -72,10 +72,10 @@
                     "type": "object",
                     "properties": {
                         "customer": {
-                            "$ref": "./customer.json#/definitions/customerLinkage"
+                            "$ref": "customer.json#/definitions/customerLinkage"
                         },
                         "customers": {
-                            "$ref": "./types.json#/definitions/customersRelationship"
+                            "$ref": "types.json#/definitions/customersRelationship"
                         }
                     }
                 }

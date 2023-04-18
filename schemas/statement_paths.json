@@ -63,6 +63,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "array",
+                                "title": "UnitStatementsResponse",
                                 "items": {
                                     "type": "object"
                                 }
@@ -99,7 +100,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitStatementResponse",
                                 "properties": {
                                     "data": {
                                         "type": "string"
@@ -138,7 +139,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitStatementResponse",
                                 "properties": {
                                     "data": {
                                         "type": "string"
@@ -177,7 +178,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitStatementResponse",
                                 "properties": {
                                     "data": {
                                         "type": "string"

@@ -63,6 +63,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "array",
+                                "title": "UnitWebhooksListResponse",
                                 "items": {
                                     "$ref": "webhook.json"
                                 }
@@ -102,7 +103,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitWebhookResponse",
                                 "properties": {
                                     "data": {
                                         "type": "object"
@@ -141,7 +142,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitWebhookResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "webhook.json"
@@ -189,7 +190,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitWebhookResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "webhook.json"
@@ -228,7 +229,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitWebhookResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "webhook.json"
@@ -267,7 +268,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitWebhookResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "webhook.json"

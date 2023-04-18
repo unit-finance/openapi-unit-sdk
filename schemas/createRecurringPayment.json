@@ -5,7 +5,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./createRecurringPayment.json"
+                    "$ref": "createRecurringPayment.json"
                 },
                 {
                     "type": "object",
@@ -76,7 +76,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./createRecurringPayment.json"
+                    "$ref": "createRecurringPayment.json"
                 },
                 {
                     "type": "object",
@@ -155,7 +155,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./createRecurringPayment.json"
+                    "$ref": "createRecurringPayment.json"
                 },
                 {
                     "type": "object",

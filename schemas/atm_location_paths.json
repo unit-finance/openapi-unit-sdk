@@ -63,6 +63,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "array",
+                                "title": "UnitAtmLocationsListResponse",
                                 "items": {
                                     "type": "object"
                                 }

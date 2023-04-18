@@ -120,7 +120,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./payment.json"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -219,7 +219,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./payment.json"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -297,7 +297,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./payment.json"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -388,7 +388,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./payment.json"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -463,7 +463,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./payment.json"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",

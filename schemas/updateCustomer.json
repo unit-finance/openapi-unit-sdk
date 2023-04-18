@@ -29,7 +29,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./updateCustomer.json"
+                    "$ref": "updateCustomer.json"
                 },
                 {
                     "type": "object",
@@ -80,7 +80,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./updateCustomer.json"
+                    "$ref": "updateCustomer.json"
                 },
                 {
                     "type": "object",
@@ -132,7 +132,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./updateCustomer.json"
+                    "$ref": "updateCustomer.json"
                 },
                 {
                     "type": "object",

@@ -1,6 +1,7 @@
 import os
 import json
 
+
 path_of_the_directory = './schemas/'
 
 for filename in os.listdir(path_of_the_directory):
@@ -12,6 +13,8 @@ for filename in os.listdir(path_of_the_directory):
 
         json_object_as_string = str(json_object)
         json_object_as_string = json_object_as_string.replace('./schemas/', '')
+        json_object_as_string = json_object_as_string.replace('./', '')
+        json_object_as_string = json_object_as_string.replace('"$ref": "../', '"$ref": "')
 
         if json_object_as_string == str(json_object):
             continue

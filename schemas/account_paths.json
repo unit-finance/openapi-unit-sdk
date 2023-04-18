@@ -1,4 +1,28 @@
 {
+    "UnitAccountResponse": {
+        "type": "object",
+        "title": "UnitAccountResponse",
+        "properties": {
+            "data": {
+                "$ref": "account.json"
+            }
+        }
+    },
+    "UnitAccountResponseWithIncluded": {
+        "type": "object",
+        "title": "UnitAccountResponseWithIncluded",
+        "properties": {
+            "data": {
+                "$ref": "account.json"
+            },
+            "included": {
+                "type": "array",
+                "items": {
+                    "$ref": "customer.json"
+                }
+            }
+        }
+    },
     "accounts": {
         "get": {
             "tags": [
@@ -12,7 +36,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "./types.json#/definitions/listPageParametersObject"
+                        "$ref": "types.json#/definitions/listPageParametersObject"
                     }
                 },
                 {
@@ -61,13 +85,13 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitResponseAccountsList",
+                                "title": "UnitAccountsListResponse",
                                 "type": "object",
                                 "properties": {
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "./account.json"
+                                            "$ref": "account.json"
                                         }
                                     }
                                 }
@@ -93,7 +117,7 @@
                             "type": "object",
                             "properties": {
                                 "data": {
-                                    "$ref": "./createAccount.json"
+                                    "$ref": "createAccount.json"
                                 }
                             }
                         }
@@ -106,13 +130,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -152,16 +170,56 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
+                                "$ref": "account_paths.json#/UnitAccountResponseWithIncluded"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "patch": {
+        "tags": [
+            "Update Account"
+        ],
+        "operationId": "updateAccount",
+        "summary": "Update Account",
+        "description": "Update an Account via API ",
+        "parameters": [
+            {
+                "schema": {
+                    "type": "string"
+                },
+                "name": "accountId",
+                "in": "path",
+                "required": true,
+                "description": "ID of the account to update"
+            }
+        ],
+        "requestBody": {
+            "description": "Update Account Request",
+            "required": "true",
+            "content": {
+                "application/vnd.api+json": {
+                    "schema": {
+                        "title": "PatchAccountRequest",
+                        "type": "object",
+                        "properties": {
+                            "data": {
                                 "type": "object",
-                                "title": "UnitGetAccountResponse",
                                 "properties": {
-                                    "data": {
-                                        "$ref": "./account.json"
+                                    "type": {
+                                        "type": "string"
                                     },
-                                    "included": {
-                                        "type": "array",
-                                        "items": {
-                                             "$ref": "./customer.json"
+                                    "attributes": {
+                                        "type": "object",
+                                        "properties": {
+                                            "tags": {
+                                                "type": "object"
+                                            },
+                                            "depositProduct": {
+                                                "type": "string"
+                                            }
                                         }
                                     }
                                 }
@@ -171,71 +229,13 @@
                 }
             }
         },
-        "patch": {
-            "tags": [
-                "Update Account"
-            ],
-            "operationId": "updateAccount",
-            "summary": "Update Account",
-            "description": "Update an Account via API ",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "accountId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the account to update"
-                }
-            ],
-            "requestBody": {
-                "description": "Update Account Request",
-                "required": "true",
+        "responses": {
+            "200": {
+                "description": "Successful Response",
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "title": "PatchAccountRequest",
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string"
-                                        },
-                                        "attributes": {
-                                            "type": "object",
-                                            "properties": {
-                                                "tags": {
-                                                    "type": "object"
-                                                },
-                                                "depositProduct": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "account.json"
-                                    }
-                                }
-                            }
+                            "$ref": "account_paths.json#/UnitAccountResponse"
                         }
                     }
                 }
@@ -268,10 +268,10 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitGetAccountLimitsResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "./types.json#/definitions/limits"
+                                        "$ref": "types.json#/definitions/limits"
                                     }
                                 }
                             }
@@ -306,13 +306,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -348,7 +342,7 @@
                             "data": {
                                 "type": "object",
                                 "properties": {
-                                    "$ref": "./types.json#/definitions/freezeAccountRequest"
+                                    "$ref": "types.json#/definitions/freezeAccountRequest"
                                 }
                             }
                         }
@@ -361,13 +355,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -403,7 +391,7 @@
                             "type": "object",
                             "properties": {
                                 "data": {
-                                    "$ref": "./types.json#/definitions/closeAccountRequest"
+                                    "$ref": "types.json#/definitions/closeAccountRequest"
                                 }
                             }
                         }
@@ -416,13 +404,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -455,13 +437,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json#/definitions/DepositAccount"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -494,13 +470,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json#/definitions/DepositAccount"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -533,13 +503,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json#/definitions/DepositAccount"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -572,13 +536,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./account.json#/definitions/DepositAccount"
-                                    }
-                                }
+                                "$ref": "account_paths.json#/UnitAccountResponse"
                             }
                         }
                     }
@@ -601,10 +559,10 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitGetAccountEndOfDayListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "./accountEndOfDay.json"
+                                        "$ref": "accountEndOfDay.json"
                                     }
                                 }
                             }

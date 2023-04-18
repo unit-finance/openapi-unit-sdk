@@ -30,7 +30,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitRewardResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "reward.json"
@@ -56,10 +56,13 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitRewardsListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "reward.json"
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "reward.json"
+                                        }
                                     }
                                 }
                             }
@@ -95,7 +98,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitRewardResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "reward.json"

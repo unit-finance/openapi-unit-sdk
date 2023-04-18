@@ -329,7 +329,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./application.json"
+                    "$ref": "application.json"
                 },
                 {
                     "type": "object",
@@ -490,7 +490,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./application.json"
+                    "$ref": "application.json"
                 },
                 {
                     "type": "object",
@@ -657,7 +657,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "./application.json"
+                    "$ref": "application.json"
                 },
                 {
                     "type": "object",

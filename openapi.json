@@ -12,7 +12,7 @@
 	],
 	"paths":{
 		"/applications/{applicationId}":{
-			"$ref":"schemas/application_paths.json#/application"
+			"$ref":"./schemas/application_paths.json#/application"
 		},
 		"/applications/{applicationId}/cancel":{
 			"$ref":"./schemas/application_paths.json#/cancel_application"
@@ -78,34 +78,34 @@
 			"$ref":"./schemas/payments_paths.json#/cancel_payment"
 		},
 		"/received-payments":{
-			"#ref":"./schemas/payments_paths.json#/list_received_payments"
+			"#ref":"payments_paths.json#/list_received_payments"
 		},
 		"/received-payments/{paymentId}":{
-			"#ref":"./schemas/payments_paths.json#/received_payments"
+			"#ref":"payments_paths.json#/received_payments"
 		},
 		"/received-payments/{paymentId}/advance":{
-			"#ref":"./schemas/payments_paths.json#/advance_received_payment"
+			"#ref":"payments_paths.json#/advance_received_payment"
 		},
 		"/counterparties/":{
-			"#ref":"./schemas/counterparty_paths.json#/counterparties"
+			"#ref":"counterparty_paths.json#/counterparties"
 		},
 		"/counterparties/{counterpartyId}":{
-			"#ref":"./schemas/counterparty_paths.json#/counterparty"
+			"#ref":"counterparty_paths.json#/counterparty"
 		},
 		"/counterparties/{counterpartyId}/balance":{
-			"#ref":"./schemas/counterparty_paths.json#/counterparty_balance"
+			"#ref":"counterparty_paths.json#/counterparty_balance"
 		},
 		"/recurring-payments":{
-			"#ref":"./schemas/payments_paths.json#/recurring_payments"
+			"#ref":"payments_paths.json#/recurring_payments"
 		},
 		"/recurring-payments/{paymentId}":{
-			"#ref":"./schemas/payments_paths.json#/get_recurring_payment"
+			"#ref":"payments_paths.json#/get_recurring_payment"
 		},
 		"/recurring-payments/{paymentId}/disable":{
-			"#ref":"./schemas/payments_paths.json#/disable_recurring_payment"
+			"#ref":"payments_paths.json#/disable_recurring_payment"
 		},
 		"/recurring-payments/{paymentId}/enable":{
-			"#ref":"./schemas/payments_paths.json#/enable_recurring_payment"
+			"#ref":"payments_paths.json#/enable_recurring_payment"
 		},
 		"/cards/":{
 			"$ref":"./schemas/card_paths.json#/cards"

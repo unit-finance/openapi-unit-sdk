@@ -1,4 +1,13 @@
 {
+    "UnitApplicationResponse": {
+        "type": "object",
+        "title": "UnitApplicationResponse",
+        "properties": {
+            "data": {
+                "$ref": "application.json"
+            }
+        }
+    },
     "application": {
         "get": {
             "tags": [
@@ -31,13 +40,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "application.json"
-                                    }
-                                }
+                                "$ref": "application_paths.json#/UnitApplicationResponse"
                             }
                         }
                     }
@@ -77,15 +80,9 @@
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json": {
+                        "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "application.json"
-                                    }
-                                }
+                                "$ref": "application_paths.json#/UnitApplicationResponse"
                             }
                         }
                     }
@@ -151,7 +148,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCancelApplicationResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "application.json"
@@ -234,7 +231,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponseListApplications",
+                                "title": "UnitListApplicationsResponse",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -282,7 +279,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitCreateApplicationResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "application.json"
@@ -365,6 +362,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "array",
+                                "title": "UnitApplicationFormsListResponse",
                                 "items": {
                                     "$ref": "applicationForm.json"
                                 }
@@ -404,7 +402,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitApplicationFormResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "applicationForm.json"
@@ -450,7 +448,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitApplicationFormResponseWithIncluded",
                                 "properties": {
                                     "data": {
                                         "$ref": "applicationForm.json"

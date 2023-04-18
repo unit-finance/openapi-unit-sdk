@@ -63,6 +63,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "array",
+                                "title": "UnitTransactionsListResponse",
                                 "items": {
                                     "$ref": "transaction.json"
                                 }
@@ -108,7 +109,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitTransactionResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "transaction.json"
@@ -165,7 +166,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitResponse",
+                                "title": "UnitTransactionResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "transaction.json"

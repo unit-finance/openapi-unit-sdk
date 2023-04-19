@@ -1,10 +1,76 @@
 {
+    "definitions": {
+      "IncludedBeneficialOwner": {
+        "type": "object",
+        "title": "IncludedBeneficialOwner",
+                "properties": {
+                    "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
+                "type": {
+                    "type": "string"
+                },
+                    "attributes": {
+                        "$ref": "application.json#/definitions/beneficialOwner"
+                    }
+                }
+    },
+    "IncludedDocument": {
+        "type": "object",
+        "title": "IncludedDocument",
+                "properties": {
+                    "id": {
+                        "$ref": "types.json#/definitions/identifier"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "document.json#/properties/attributes"
+                    }
+                }
+    },
+        "UnitApplicationResponseWithIncludedIncluded": {
+            "type": "object",
+            "title": "UnitApplicationResponseWithIncludedIncluded",
+            "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                    "document": "#/definitions/IncludedDocument",
+                    "beneficialOwner": "#/definitions/IncludedBeneficialOwner"
+                }
+            }
+        }
+    },
     "UnitApplicationResponse": {
         "type": "object",
         "title": "UnitApplicationResponse",
         "properties": {
             "data": {
                 "$ref": "application.json"
+            }
+        }
+    },
+    "UnitApplicationResponseWithIncluded": {
+        "type": "object",
+        "title": "UnitApplicationResponseWithIncluded",
+        "properties": {
+            "data": {
+                "$ref": "application.json"
+            },
+            "included": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/UnitApplicationResponseWithIncludedIncluded"
+                }
             }
         }
     },
@@ -40,7 +106,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "application_paths.json#/UnitApplicationResponse"
+                                "$ref": "application_paths.json#/UnitApplicationResponseWithIncluded"
                             }
                         }
                     }

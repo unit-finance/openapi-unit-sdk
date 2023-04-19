@@ -914,6 +914,41 @@
                     }
                 }
             }
+        },
+    "unitError": {
+        "title": "UnitError",
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "detail": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "object",
+                    "properties": {
+                        "pointer": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "meta": {
+                "type": "string"
+                }
+            }
         }
     }
 }

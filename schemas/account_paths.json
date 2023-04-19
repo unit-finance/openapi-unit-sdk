@@ -98,6 +98,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         },
@@ -134,6 +137,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -239,6 +245,9 @@
                         }
                     }
                 }
+            },
+            "default": {
+                "$ref": "types.json#/definitions/unitError"
             }
         }
     },
@@ -310,6 +319,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -359,6 +371,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -408,6 +423,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -441,6 +459,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -474,6 +495,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -507,6 +531,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -540,6 +567,9 @@
                             }
                         }
                     }
+                },
+                "404": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }
@@ -568,6 +598,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
                 }
             }
         }

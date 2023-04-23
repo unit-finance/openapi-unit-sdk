@@ -28,7 +28,7 @@
             "tags": [
                 "Get List Accounts"
             ],
-            "operationId": "find list accounts",
+            "operationId": "execute",
             "summary": "Get List Accounts",
             "description": "Get List Accounts from API ",
             "parameters": [
@@ -108,7 +108,7 @@
             "tags": [
                 "Create an Account"
             ],
-            "operationId": "createAccount",
+            "operationId": "execute",
             "summary": "Create an Account",
             "description": "Create an Account via API ",
             "requestBody": {
@@ -149,7 +149,7 @@
             "tags": [
                 "Get Account"
             ],
-            "operationId": "findAccountById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -188,7 +188,7 @@
         "tags": [
             "Update Account"
         ],
-        "operationId": "updateAccount",
+        "operationId": "execute",
         "summary": "Update Account",
         "description": "Update an Account via API ",
         "parameters": [
@@ -256,7 +256,7 @@
             "tags": [
                 "Get Account Limits"
             ],
-            "operationId": "getAccountLimits",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -295,7 +295,7 @@
             "tags": [
                 "Unfreeze Account"
             ],
-            "operationId": "unfreezeAccountById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -331,7 +331,7 @@
             "tags": [
                 "Freeze an Account"
             ],
-            "operationId": "freezeAccountById",
+            "operationId": "execute",
             "summary": "Freeze an Account by Id",
             "description": "Freeze an Account via API ",
             "parameters": [
@@ -383,7 +383,7 @@
             "tags": [
                 "Close an Account"
             ],
-            "operationId": "closeAccountById",
+            "operationId": "execute",
             "summary": "Close an Account by Id",
             "description": "Close an Account via API ",
             "parameters": [
@@ -435,7 +435,7 @@
             "tags": [
                 "Reopen an Account"
             ],
-            "operationId": "reopenAccountById",
+            "operationId": "execute",
             "summary": "Reopen an Account by Id",
             "description": "Reopen an Account via API ",
             "parameters": [
@@ -471,7 +471,7 @@
             "tags": [
                 "Enter Control Agreement for Account"
             ],
-            "operationId": "enterDacaAccountById",
+            "operationId": "execute",
             "summary": "Enter Account Control Agreement by Id",
             "description": "Enter Control Agreement for Account via API ",
             "parameters": [
@@ -507,7 +507,7 @@
             "tags": [
                 "Activate Control Agreement for Account"
             ],
-            "operationId": "activateDacaAccountById",
+            "operationId": "execute",
             "summary": "Activate Account Control Agreement by Id",
             "description": "Activate Control Agreement for Account via API ",
             "parameters": [
@@ -543,7 +543,7 @@
             "tags": [
                 "Deactivate Control Agreement for Account"
             ],
-            "operationId": "deactivateDacaAccountById",
+            "operationId": "execute",
             "summary": "Deactivate Account Control Agreement by Id",
             "description": "Deactivate Control Agreement for Account via API",
             "parameters": [
@@ -579,7 +579,7 @@
             "tags": [
                 "Get list account end-of-day balances history"
             ],
-            "operationId": "getAccountEndOfDayList",
+            "operationId": "execute",
             "summary": "Get AccountEndOfDay List",
             "description": "Get AccountEndOfDay List from API ",
             "responses": {

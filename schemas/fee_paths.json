@@ -4,7 +4,7 @@
             "tags": [
                 "Create Fee"
             ],
-            "operationId": " createFee",
+            "operationId": "execute",
             "summary": "Create Fee",
             "description": "Create a Fee via API ",
             "requestBody": {

@@ -4,7 +4,7 @@
             "tags": [
                 "Get Institution"
             ],
-            "operationId": "findInstitutionByRoutingNumber",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

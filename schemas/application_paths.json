@@ -13,7 +13,7 @@
             "tags": [
                 "Get Application"
             ],
-            "operationId": "findApplicationById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -51,7 +51,7 @@
             "tags": [
                 "Update Application"
             ],
-            "operationId": "updateApplication",
+            "operationId": "execute",
             "summary": "Update Application",
             "description": "Update an Application via API ",
             "parameters": [
@@ -95,7 +95,7 @@
             "tags": [
                 "Cancel Application"
             ],
-            "operationId": " cancelApplicationById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -172,7 +172,7 @@
             "tags": [
                 "Get List Applications"
             ],
-            "operationId": "find list application",
+            "operationId": "execute",
             "summary": "Get List Application",
             "description": "Get List Applications from API ",
             "parameters": [
@@ -253,7 +253,7 @@
             "tags": [
                 "Create Application"
             ],
-            "operationId": " createApplication",
+            "operationId": "execute",
             "summary": "Create Application",
             "description": "Create an Application via API ",
             "requestBody": {
@@ -303,7 +303,7 @@
             "tags": [
                 "Get List Application Forms"
             ],
-            "operationId": "find list application forms",
+            "operationId": "execute",
             "summary": "Get List Application Forms",
             "description": "Get List Application Forms from API ",
             "parameters": [
@@ -376,7 +376,7 @@
             "tags": [
                 "Create ApplicationForm"
             ],
-            "operationId": " createApplicationForm",
+            "operationId": "execute",
             "summary": "Create Application Form",
             "description": "Create an Application Form via API ",
             "requestBody": {
@@ -420,7 +420,7 @@
             "tags": [
                 "Get Application Form"
             ],
-            "operationId": "findApplicationFormById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

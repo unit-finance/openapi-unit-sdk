@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Org API Tokens"
             ],
-            "operationId": "find list org api tokens",
+            "operationId": "execute",
             "summary": "Get List Org API Tokens",
             "description": "Get List Org API Tokens from API ",
             "parameters": [
@@ -78,7 +78,7 @@
             "tags": [
                 "Create Org Api Token"
             ],
-            "operationId": " createOrgApiToken",
+            "operationId": "execute",
             "summary": "Create Org API Token",
             "description": "Create an Org API Token via API ",
             "requestBody": {
@@ -122,7 +122,7 @@
             "tags": [
                 "Revoke Org API Token"
             ],
-            "operationId": "revokeOrgApiToken",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -170,7 +170,7 @@
             "tags": [
                 "Create Customer Token"
             ],
-            "operationId": "createCustomerToken",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -225,7 +225,7 @@
             "tags": [
                 "Create Customer Token Verification"
             ],
-            "operationId": "createCustomerTokenVerification",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

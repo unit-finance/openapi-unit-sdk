@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Transactions"
             ],
-            "operationId": "find list transactions",
+            "operationId": "execute",
             "summary": "Get List Transactions",
             "description": "Get List Transactions from API ",
             "parameters": [
@@ -79,7 +79,7 @@
             "tags": [
                 "Get Transaction"
             ],
-            "operationId": "findTransactionId",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -125,7 +125,7 @@
             "tags": [
                 "Update Transaction"
             ],
-            "operationId": "updateTransaction",
+            "operationId": "execute",
             "summary": "Update Transaction",
             "description": "Update a Transaction via API ",
             "parameters": [

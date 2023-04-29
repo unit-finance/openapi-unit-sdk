@@ -1,6 +1,9 @@
 {
     "definitions": {
-        "relationships": {}
+        "relationships": {
+            "type": "object",
+            "title": "authorizationRelationships"
+        }
     },
     "title": "Authorization Document",
     "type": "object",

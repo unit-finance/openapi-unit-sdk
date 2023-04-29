@@ -199,26 +199,10 @@
         },
         "relationships": {
             "type": "object",
+            "title": "createApplicationFormRelationships",
             "properties": {
                 "application": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                },
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "application"
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 }
             },
             "required": [],

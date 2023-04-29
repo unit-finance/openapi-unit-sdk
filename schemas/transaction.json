@@ -2,9 +2,11 @@
     "definitions": {
         "relationships": {
             "type": "object",
+            "title": "transactionRelationships",
             "properties": {
                 "account": {
                     "type": "object",
+                    "title": "accountRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -35,6 +37,7 @@
                 },
                 "receivingAccount": {
                     "type": "object",
+                    "title": "receivingAccountRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -64,6 +67,7 @@
                 },
                 "customer": {
                     "type": "object",
+                    "title": "customerRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -97,6 +101,7 @@
                 },
                 "counterpartyAccount": {
                     "type": "object",
+                    "title": "counterpartyAccountRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -123,6 +128,7 @@
                 },
                 "counterpartyCustomer": {
                     "type": "object",
+                    "title": "counterpartyCustomerRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -149,6 +155,7 @@
                 },
                 "relatedTransaction": {
                     "type": "object",
+                    "title": "relatedTransactionRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -178,6 +185,7 @@
                 },
                 "authorization": {
                     "type": "object",
+                    "title": "authorizationRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -204,6 +212,7 @@
                 },
                 "returned": {
                     "type": "object",
+                    "title": "returnedRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -230,6 +239,7 @@
                 },
                 "payment": {
                     "type": "object",
+                    "title": "paymentRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -256,6 +266,7 @@
                 },
                 "checkPayment": {
                     "type": "object",
+                    "title": "checkPaymentRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -282,6 +293,7 @@
                 },
                 "repayment": {
                     "type": "object",
+                    "title": "repaymentRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -308,6 +320,7 @@
                 },
                 "recurringPayment": {
                     "type": "object",
+                    "title": "recurringPaymentRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -333,33 +346,11 @@
                     "additionalProperties": false
                 },
                 "org": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "const": "org"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/orgRelationship"
                 },
                 "card": {
                     "type": "object",
+                    "title": "cardRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -386,6 +377,7 @@
                 },
                 "incomingAch": {
                     "type": "object",
+                    "title": "incomingAchRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -412,6 +404,7 @@
                 },
                 "checkDeposit": {
                     "type": "object",
+                    "title": "checkDepositRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -438,6 +431,7 @@
                 },
                 "authorizationRequest": {
                     "type": "object",
+                    "title": "authorizationRequestRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -467,6 +461,7 @@
                 },
                 "receivedPayment": {
                     "type": "object",
+                    "title": "receivedPaymentRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -493,6 +488,7 @@
                 },
                 "chargeback": {
                     "type": "object",
+                    "title": "chargebackRelationship",
                     "properties": {
                         "data": {
                             "type": "object",
@@ -519,6 +515,7 @@
                 },
                 "reward": {
                     "type": "object",
+                    "title": "rewardRelationship",
                     "properties": {
                         "data": {
                             "type": "object",

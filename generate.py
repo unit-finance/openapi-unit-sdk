@@ -29,6 +29,13 @@ for filename in os.listdir(path_of_the_directory):
         #     f2.write(line)
         f2.close()
 
+path_of_the_directory = "./unit/swagger_client"
+for root, dirs, files in os.walk(path_of_the_directory, topdown=False):
+    for name in files:
+        os.remove(os.path.join(root, name))
+    for name in dirs:
+        os.rmdir(os.path.join(root, name))
+
 os.system("java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l python -o unit")
 
 path_of_the_directory = './unit/swagger_client/models/'

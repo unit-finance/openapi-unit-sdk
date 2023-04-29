@@ -211,33 +211,17 @@
         },
         "relationships": {
             "type": "object",
+            "title": "applicationRelationships",
             "properties": {
                 "org": {
                     "$ref": "types.json#/definitions/orgRelationship"
                 },
                 "customer": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "individualCustomer",
-                                        "businessCustomer",
-                                        "trustCustomer"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            }
-                        }
-                    }
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "documents": {
                     "type": "object",
+                    "title": "documentsRelationship",
                     "properties": {
                         "data": {
                             "type": "array",
@@ -262,22 +246,7 @@
                     ]
                 },
                 "applicationForm": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "const": "applicationForm"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            }
-                        },
-                        "additionalProperties": false
-                    }
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "trustees": {
                     "type": "object",

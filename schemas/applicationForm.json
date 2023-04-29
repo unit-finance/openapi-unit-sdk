@@ -2,6 +2,7 @@
     "definitions": {
         "relationships": {
             "type": "object",
+            "title": "applicationFormRelationships",
             "properties": {
                 "application": {
                     "type": "object",

@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "applicationFormRelationships": {
             "type": "object",
             "title": "applicationFormRelationships",
             "properties": {
@@ -78,7 +78,7 @@
             ]
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/applicationFormRelationships"
         },
         "officerIsBeneficialOwner": {
             "type": "boolean",

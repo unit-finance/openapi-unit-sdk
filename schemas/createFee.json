@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "createFeeRelationships": {
             "type": "object",
             "properties": {
                 "account": {
@@ -49,7 +49,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/createFeeRelationships"
         }
     },
     "required": [

@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "authorizationRelationships": {
             "type": "object",
             "title": "authorizationRelationships"
         }
@@ -73,7 +73,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/authorizationRelationships"
         }
     },
     "additionalProperties": false,

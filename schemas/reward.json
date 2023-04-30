@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "rewardRelationships": {
             "type": "object",
             "properties": {
                 "receivingAccount": {
@@ -127,7 +127,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/rewardRelationships"
         }
     },
     "required": [

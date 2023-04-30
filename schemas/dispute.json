@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "disputeRelationships": {
             "type": "object",
             "title": "disputeRelationships",
             "properties": {
@@ -93,7 +93,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/disputeRelationships"
         }
     },
     "additionalProperties": false,

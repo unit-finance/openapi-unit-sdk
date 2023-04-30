@@ -209,7 +209,7 @@
                 }
             }
         },
-        "relationships": {
+        "applicationRelationships": {
             "type": "object",
             "title": "applicationRelationships",
             "properties": {
@@ -442,7 +442,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/applicationRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -609,7 +609,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/applicationRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -745,7 +745,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/applicationRelationships"
                         }
                     },
                     "additionalProperties": false,

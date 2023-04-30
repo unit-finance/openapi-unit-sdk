@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "createCheckDepositRelationships": {
             "type": "object",
             "properties": {
                 "account": {
@@ -50,7 +50,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/createCheckDepositRelationships"
         }
     },
     "required": [

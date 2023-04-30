@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "createRewardRelationships": {
             "type": "object",
             "properties": {
                 "fundingAccount": {
@@ -76,7 +76,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/createRewardRelationships"
         }
     },
     "required": [

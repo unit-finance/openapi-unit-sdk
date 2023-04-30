@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "feeRelationships": {
             "type": "object",
             "title": "feeRelationships",
             "properties": {
@@ -44,6 +44,9 @@
                 "description"
             ],
             "additionalProperties": false
+        },
+        "relationships": {
+            "$ref": "#/definitions/feeRelationships"
         }
     }
 }

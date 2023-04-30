@@ -4,7 +4,7 @@
             "tags": [
                 "Get List of Cards"
             ],
-            "operationId": "getListCards",
+            "operationId": "execute",
             "summary": "Get List of Cards",
             "description": "Get List of Cards from API ",
             "parameters": [
@@ -95,7 +95,7 @@
             "tags": [
                 "Create a Card"
             ],
-            "operationId": "createCard",
+            "operationId": "execute",
             "summary": "Create a Card",
             "description": "Create a Card via API ",
             "requestBody": {
@@ -139,7 +139,7 @@
             "tags": [
                 "Get Card"
             ],
-            "operationId": "findCardById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -183,7 +183,7 @@
             "tags": [
                 "Update Card"
             ],
-            "operationId": "updateCard",
+            "operationId": "execute",
             "summary": "Update Card",
             "description": "Update a Card via API ",
             "parameters": [
@@ -233,7 +233,7 @@
             "tags": [
                 "Report Card as Lost"
             ],
-            "operationId": "reportLostCard",
+            "operationId": "execute",
             "summary": "Report lost as stolen",
             "parameters": [
                 {
@@ -272,7 +272,7 @@
             "tags": [
                 "Report Card as Stolen"
             ],
-            "operationId": "reportStolenCard",
+            "operationId": "execute",
             "summary": "Report card as stolen",
             "parameters": [
                 {
@@ -311,7 +311,7 @@
             "tags": [
                 "Close a Card"
             ],
-            "operationId": "closeCard",
+            "operationId": "execute",
             "summary": "Close a Card",
             "description": "Close a Card via API ",
             "parameters": [
@@ -350,7 +350,7 @@
             "tags": [
                 "Get Card PIN Status"
             ],
-            "operationId": "getPinStatus",
+            "operationId": "execute",
             "summary": "Get Card PIN Status",
             "description": "Get Card PIN Status via API ",
             "parameters": [
@@ -389,7 +389,7 @@
             "tags": [
                 "Freeze a Card"
             ],
-            "operationId": "freezeCard",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -428,7 +428,7 @@
             "tags": [
                 "Unfreeze a Card"
             ],
-            "operationId": "unfreezeCard",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -467,7 +467,7 @@
             "tags": [
                 "Get Card Limits"
             ],
-            "operationId": "getCardLimitsById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

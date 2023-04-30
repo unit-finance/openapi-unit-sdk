@@ -13,7 +13,7 @@
             "tags": [
                 "Get List Events"
             ],
-            "operationId": "getEventsList",
+            "operationId": "execute",
             "summary": "Get Events List",
             "description": "Get Events List from API ",
             "responses": {
@@ -44,7 +44,7 @@
             "tags": [
                 "Get Event"
             ],
-            "operationId": "findEventById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -81,7 +81,7 @@
             "tags": [
                 "Fire Event"
             ],
-            "operationId": "fireEventById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

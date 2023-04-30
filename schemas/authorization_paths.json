@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Authorizations"
             ],
-            "operationId": "find list authorizations",
+            "operationId": "execute",
             "summary": "Get List authorizations",
             "description": "Get List Authorizations from API ",
             "parameters": [
@@ -78,7 +78,7 @@
             "tags": [
                 "Get Authorization"
             ],
-            "operationId": "findAuthorizationId",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -124,7 +124,7 @@
             "tags": [
                 "Get List Authorization Requests"
             ],
-            "operationId": "find list authorization requests",
+            "operationId": "execute",
             "summary": "Get List Authorization Requests",
             "description": "Get List Authorization Requests from API ",
             "parameters": [
@@ -198,7 +198,7 @@
             "tags": [
                 "Get Authorization Request"
             ],
-            "operationId": "findAuthorizationRequestById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -237,7 +237,7 @@
             "tags": [
                 "Approve Authorization Request"
             ],
-            "operationId": "approveAuthorizationRequestById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -276,7 +276,7 @@
             "tags": [
                 "Get Authorization Request"
             ],
-            "operationId": "findAuthorizationRequestById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

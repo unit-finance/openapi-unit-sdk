@@ -13,7 +13,7 @@
             "tags": [
                 "Get Customer"
             ],
-            "operationId": "findCustomerById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -44,7 +44,7 @@
             "tags": [
                 "Update Customer"
             ],
-            "operationId": "updateCustomer",
+            "operationId": "execute",
             "summary": "Update Customer",
             "description": "Update an Customer via API ",
             "parameters": [
@@ -88,7 +88,7 @@
             "tags": [
                 "Get List Customers"
             ],
-            "operationId": "getCustomersList",
+            "operationId": "execute",
             "summary": "Get Customers List",
             "description": "Get Customers List from API ",
             "responses": {
@@ -122,7 +122,7 @@
             "tags": [
                 "Archive Customer"
             ],
-            "operationId": "archiveCustomerById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

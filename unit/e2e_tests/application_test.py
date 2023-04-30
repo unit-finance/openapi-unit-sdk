@@ -5,7 +5,7 @@ import os
 import uuid
 import unittest
 
-from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request, \
+from helpers.helpers import create_api_client, create_individual_application_request, \
     create_business_application_request
 from swagger_client import GetListApplicationsApi, CreateApplicationApi
 from swagger_client.api.get_application_api import GetApplicationApi  # noqa: E501
@@ -24,7 +24,7 @@ class TestApplicationApi(unittest.TestCase):
         pass
 
     def create_individual_application(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_individual_application_request())
+        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request())
 
         return app.data
 
@@ -37,13 +37,13 @@ class TestApplicationApi(unittest.TestCase):
         get_application_api = GetApplicationApi(self.api_client)
 
         app = self.create_individual_application()
-        res = get_application_api.find_application_by_id(app.id).data
+        res = get_application_api.execute(app.id).data
 
         assert res.type == app.type
         assert res.id == app.id
 
     def create_business_application(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_business_application_request())
+        app = CreateApplicationApi(self.api_client).execute(create_business_application_request())
 
         return app.data
 
@@ -52,17 +52,17 @@ class TestApplicationApi(unittest.TestCase):
         assert response.type == "businessApplication"
 
     def test_list_applications(self):
-        res = GetListApplicationsApi(self.api_client).find_list_application()
+        res = GetListApplicationsApi(self.api_client).execute()
         for app in res.data:
             assert app.type in ApplicationTypes
 
     def test_list_and_get_applications(self):
-        res = GetListApplicationsApi(self.api_client).find_list_application()
+        res = GetListApplicationsApi(self.api_client).execute()
         get_application_api = GetApplicationApi(self.api_client)
 
         for app in res.data:
             assert app.type in ApplicationTypes
-            get_response = get_application_api.find_application_by_id(app.id).data
+            get_response = get_application_api.execute(app.id).data
             assert get_response.type in ApplicationTypes
             assert get_response.id == app.id
 

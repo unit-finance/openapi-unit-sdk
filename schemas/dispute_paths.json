@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Disputes"
             ],
-            "operationId": "find list disputes",
+            "operationId": "execute",
             "summary": "Get List Disputes",
             "description": "Get List Disputes from API ",
             "parameters": [
@@ -79,7 +79,7 @@
             "tags": [
                 "Get Dispute"
             ],
-            "operationId": "findDisputeById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

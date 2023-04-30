@@ -4,7 +4,7 @@
             "tags": [
                 "Create Reward"
             ],
-            "operationId": " createReward",
+            "operationId": "execute",
             "summary": "Create Reward",
             "description": "Create a Reward via API ",
             "requestBody": {
@@ -46,7 +46,7 @@
             "tags": [
                 "Get List Rewards"
             ],
-            "operationId": "getRewardsList",
+            "operationId": "execute",
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
             "responses": {
@@ -77,7 +77,7 @@
             "tags": [
                 "Get Reward"
             ],
-            "operationId": "findRewardById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {

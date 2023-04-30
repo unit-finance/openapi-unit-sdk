@@ -67,6 +67,34 @@ def create_business_application_request():
 
     return {"data": CreateBusinessApplication(attributes=attr)}
 
+
+def create_relationship(_type, _id):
+    return {"data": {"type": _type, "id": _id}}
+
+
+def create_relationship_with_relation(_type, _id, relation=None):
+    if relation:
+        return {relation: {"data": {"type": _type, "id": _id}}}
+    else:
+        return {_type: {"data": {"type": _type, "id": _id}}}
+
+
+def create_counterparty_dto(routing_number, account_number, account_type, name):
+    return {
+        "routingNumber": routing_number,
+        "accountNumber": account_number,
+        "accountType": account_type,
+        "name": name
+    }
+
+
+def create_wire_counterparty_dto(name, routing_number, account_number, address):
+    return {
+        "name": name,
+        "routingNumber": routing_number,
+        "accountNumber": account_number,
+        "address": address
+    }
 #
 # def create_individual_customer(client):
 #     request = CreateIndividualApplicationRequest(

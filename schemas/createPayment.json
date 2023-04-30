@@ -90,32 +90,24 @@
             ],
             "additionalProperties": false
         },
-        "createAchPayment": {
+        "CreateAchPayment": {
             "title": "Create ACH Payment",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createPayment.json"
-                },
-                {
                     "type": "object",
                     "properties": {
+                        "type": {
+                                "type": "string"
+                            },
                         "attributes": {
                             "type": "object",
                             "properties": {
                                 "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
+                                    "type": "integer"
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 50
+                                    "type": "string"
                                 },
                                 "addenda": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 80
+                                    "type": "string"
                                 },
                                 "direction": {
                                     "type": "string",
@@ -128,9 +120,7 @@
                                     "$ref": "payment.json#/definitions/counterparty"
                                 },
                                 "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
+                                    "type": "string"
                                 },
                                 "sameDay": {
                                     "type": "boolean"
@@ -173,35 +163,25 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
-        "createAchPaymentCounterparty": {
+        "CreateAchPaymentCounterparty": {
             "title": "Create ACH Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createPayment.json"
-                },
-                {
-                    "type": "object",
                     "properties": {
+                        "type": {
+            "type": "string"
+        },
                         "attributes": {
                             "type": "object",
                             "properties": {
                                 "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
+                                    "type": "integer"
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 50
+                                    "type": "string"
                                 },
                                 "addenda": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 80
+                                    "type": "string"
                                 },
                                 "direction": {
                                     "type": "string",
@@ -214,9 +194,7 @@
                                     "type": "boolean"
                                 },
                                 "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
+                                    "type": "string"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
@@ -263,35 +241,25 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
-        "createAchPaymentPlaid": {
+        "CreateAchPaymentPlaid": {
             "title": "Create ACH Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createPayment.json"
-                },
-                {
-                    "type": "object",
                     "properties": {
+                        "type": {
+            "type": "string"
+        },
                         "attributes": {
                             "type": "object",
                             "properties": {
                                 "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
+                                    "type": "integer"
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 50
+                                    "type": "string"
                                 },
                                 "addenda": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 80
+                                    "type": "string"
                                 },
                                 "direction": {
                                     "type": "string",
@@ -301,23 +269,17 @@
                                     ]
                                 },
                                 "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
+                                    "type": "string"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
                                 },
                                 "plaidProcessorToken": {
                                     "type": "string",
-                                    "pattern": "^processor-.*$",
-                                    "minLength": 40,
-                                    "maxLength": 60
+                                    "pattern": "^processor-.*$"
                                 },
                                 "counterpartyName": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 50
+                                    "type": "string"
                                 },
                                 "sameDay": {
                                     "type": "boolean"
@@ -361,50 +323,31 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
-        "createBookPayment": {
+        "CreateBookPayment": {
             "title": "Create Book Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createPayment.json"
-                },
-                {
-                    "type": "object",
                     "properties": {
+                        "type": {
+            "type": "string"
+        },
                         "attributes": {
                             "type": "object",
                             "properties": {
                                 "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
-                                },
-                                "direction": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Debit",
-                                        "Credit"
-                                    ]
+                                    "type": "integer"
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 80
+                                    "type": "string"
                                 },
                                 "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
+                                    "type": "string"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
                                 },
                                 "transactionSummaryOverride": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 100
+                                    "type": "string"
                                 }
                             },
                             "required": [
@@ -435,25 +378,19 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
-        "createWirePayment": {
+        "CreateWirePayment": {
             "title": "Create Wire Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createPayment.json"
-                },
-                {
-                    "type": "object",
                     "properties": {
+                        "type": {
+            "type": "string"
+        },
                         "attributes": {
                             "type": "object",
                             "properties": {
                                 "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
+                                    "type": "integer"
                                 },
                                 "direction": {
                                     "type": "string",
@@ -462,17 +399,13 @@
                                     ]
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 50
+                                    "type": "string"
                                 },
                                 "counterparty": {
                                     "$ref": "payment.json#/definitions/wireCounterparty"
                                 },
                                 "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
+                                    "type": "string"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
@@ -503,19 +436,14 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
-        "createBillPayment": {
+        "CreateBillPayment": {
             "title": "Create Bill Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createPayment.json"
-                },
-                {
-                    "type": "object",
                     "properties": {
+                        "type": {
+            "type": "string"
+        },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -526,18 +454,13 @@
                                     "type": "string"
                                 },
                                 "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
+                                    "type": "integer"
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 50
+                                    "type": "string"
                                 },
                                 "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
+                                    "type": "string"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
@@ -576,54 +499,36 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
-        "createPushToCardPayment": {
+        "CreatePushToCardPayment": {
             "title": "Create Push To Card Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createPayment.json"
-                },
-                {
-                    "type": "object",
                     "properties": {
+                        "type": {
+            "type": "string"
+        },
                         "attributes": {
                             "type": "object",
                             "properties": {
                                 "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
+                                    "type": "integer"
                                 },
                                 "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
+                                    "type": "string"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
                                 },
                                 "description": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 50
+                                    "type": "string"
                                 },
                                 "configuration": {
                                     "type": "object",
-                                    "oneOf": [
-                                        {
-                                            "type": "object",
-                                            "properties": {
-                                                "astra": {
-                                                    "$ref": "payment.json#/definitions/astra"
-                                                }
-                                            },
-                                            "required": [
-                                                "astra"
-                                            ]
+                                    "properties": {
+                                        "astra": {
+                                            "$ref": "payment.json#/definitions/astra"
                                         }
-                                    ]
+                                    }
                                 }
                             },
                             "required": [
@@ -651,19 +556,32 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "additionalProperties": false
     },
     "title": "Create Payment",
     "type": "object",
-    "properties": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
-            }
+    "oneOf": [
+        {
+            "$ref": "#/definitions/CreateAchPayment"
+        },
+        {
+            "$ref": "#/definitions/CreateAchPaymentCounterparty"
+        },
+        {
+            "$ref": "#/definitions/CreateAchPaymentPlaid"
+        },
+        {
+            "$ref": "#/definitions/CreateBookPayment"
+        },
+        {
+            "$ref": "#/definitions/CreateWirePayment"
+        },
+        {
+            "$ref": "#/definitions/CreateBillPayment"
+        },
+        {
+            "$ref": "#/definitions/CreatePushToCardPayment"
         }
-    }
+    ]
 }

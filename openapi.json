@@ -78,34 +78,34 @@
 			"$ref":"./schemas/payments_paths.json#/cancel_payment"
 		},
 		"/received-payments":{
-			"#ref":"payments_paths.json#/list_received_payments"
+			"$ref":"./schemas/payments_paths.json#/list_received_payments"
 		},
 		"/received-payments/{paymentId}":{
-			"#ref":"payments_paths.json#/received_payments"
+			"$ref":"./schemas/payments_paths.json#/received_payments"
 		},
 		"/received-payments/{paymentId}/advance":{
-			"#ref":"payments_paths.json#/advance_received_payment"
+			"$ref":"./schemas/payments_paths.json#/advance_received_payment"
 		},
 		"/counterparties/":{
-			"#ref":"counterparty_paths.json#/counterparties"
+			"$ref":"./schemas/counterparty_paths.json#/counterparties"
 		},
 		"/counterparties/{counterpartyId}":{
-			"#ref":"counterparty_paths.json#/counterparty"
+			"$ref":"./schemas/counterparty_paths.json#/counterparty"
 		},
 		"/counterparties/{counterpartyId}/balance":{
-			"#ref":"counterparty_paths.json#/counterparty_balance"
+			"$ref":"./schemas/counterparty_paths.json#/counterparty_balance"
 		},
 		"/recurring-payments":{
-			"#ref":"payments_paths.json#/recurring_payments"
+			"$ref":"./schemas/payments_paths.json#/recurring_payments"
 		},
 		"/recurring-payments/{paymentId}":{
-			"#ref":"payments_paths.json#/get_recurring_payment"
+			"$ref":"./schemas/payments_paths.json#/get_recurring_payment"
 		},
 		"/recurring-payments/{paymentId}/disable":{
-			"#ref":"payments_paths.json#/disable_recurring_payment"
+			"$ref":"./schemas/payments_paths.json#/disable_recurring_payment"
 		},
 		"/recurring-payments/{paymentId}/enable":{
-			"#ref":"payments_paths.json#/enable_recurring_payment"
+			"$ref":"./schemas/payments_paths.json#/enable_recurring_payment"
 		},
 		"/cards/":{
 			"$ref":"./schemas/card_paths.json#/cards"

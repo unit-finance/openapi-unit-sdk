@@ -1,13 +1,12 @@
 from __future__ import absolute_import
-from datetime import timedelta, date
 
 import os
-import uuid
 import unittest
+import uuid
+from datetime import date, timedelta
 
-from helpers.helpers import create_api_client, create_individual_application_request, \
-    create_business_application_request
-from swagger_client import GetListApplicationsApi, CreateApplicationApi
+from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request, create_business_application_request
+from swagger_client import GetListApplicationsApi, CreateApplicationApi, UploadADocumentForAnApplicationApi
 from swagger_client.api.get_application_api import GetApplicationApi  # noqa: E501
 
 ApplicationTypes = ["individualApplication", "businessApplication", "trustApplication"]
@@ -23,10 +22,15 @@ class TestApplicationApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def create_individual_application(self):
-        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request())
+    def create_individual_application(self, ssn="721074426"):
+        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request(ssn))
 
         return app.data
+
+    def create_individual_application_with_included(self, ssn="721074426"):
+        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request(ssn))
+
+        return app
 
     def test_create_individual_application(self):
         res = self.create_individual_application()
@@ -65,6 +69,39 @@ class TestApplicationApi(unittest.TestCase):
             get_response = get_application_api.execute(app.id).data
             assert get_response.type in ApplicationTypes
             assert get_response.id == app.id
+
+    def test_upload_png_document(self):
+        app = self.create_individual_application("000000003")
+
+        application_id = app.id
+        document_id = app.relationships.documents.data[0].id
+
+        image_file = open("dog.png")
+
+        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file.read(), application_id, document_id)
+        assert res.data == "document"
+
+    def test_upload_jpg_document(self):
+        app = self.create_individual_application("000000003")
+
+        application_id = app.id
+        document_id = app.relationships.documents.data[0].id
+
+        image_file = open("Unit_Logo.jpg", "r").read()
+
+        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file, application_id, document_id)
+        assert res.data == "document"
+
+    def test_upload_pdf_document(self):
+        app = self.create_individual_application("000000003")
+
+        application_id = app.id
+        document_id = app.relationships.documents.data[0].id
+
+        image_file = open("sample.pdf", "r").read()
+
+        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file, application_id, document_id)
+        assert res.data == "document"
 
     if __name__ == '__main__':
         unittest.main()

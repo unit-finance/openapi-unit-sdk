@@ -1,8 +1,8 @@
 import unittest
 
-from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request, create_relationship, \
+from e2e_tests.helpers import create_api_client, create_individual_application_request, create_relationship, \
     create_counterparty_dto, create_wire_counterparty_dto
-from swagger_client import GetListPaymentsApi, GetPaymentApi, CreateBookPayment, CreateBookPaymentAttributes, \
+from swagger_client import CreateBookPayment, CreateBookPaymentAttributes, \
     CreateBookPaymentRelationships, CreateDepositAccountAttributes, CreateDepositAccountRelationships, \
     CreateDepositAccount, CreateAnAccountApi, CreateAPaymentApi, CreateApplicationApi, CreateAchPayment, \
     CreateAchPaymentAttributes, CreateAchPaymentRelationships, Address, CreateWirePayment, CreateWirePaymentAttributes, \

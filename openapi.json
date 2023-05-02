@@ -14,6 +14,9 @@
 		"/applications/{applicationId}":{
 			"$ref":"./schemas/application_paths.json#/application"
 		},
+		"/applications/{applicationId}/documents/{documentId}":{
+			"$ref":"./schemas/application_paths.json#/upload_file"
+		},
 		"/applications/{applicationId}/cancel":{
 			"$ref":"./schemas/application_paths.json#/cancel_application"
 		},

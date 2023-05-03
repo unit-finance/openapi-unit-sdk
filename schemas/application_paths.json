@@ -525,7 +525,7 @@
 					"image/png":{
 						"schema":{
 							"type":"string",
-							"format":"base64"
+							"format":"binary"
 						}
 					},
 					"image/jpeg":{

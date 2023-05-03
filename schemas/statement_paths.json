@@ -62,10 +62,15 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "array",
+                                "type": "object",
                                 "title": "UnitStatementsResponse",
-                                "items": {
-                                    "type": "object"
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "statement.json"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -77,7 +82,7 @@
     "get_statement_html": {
         "get": {
             "tags": [
-                "Get Statement"
+                "Get Statement HTML"
             ],
             "operationId": "execute",
             "parameters": [
@@ -96,16 +101,11 @@
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                    "content":{
+                        "application/html": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitStatementResponse",
-                                "properties": {
-                                    "data": {
-                                        "type": "string"
-                                    }
-                                }
+                                "type": "string",
+                                "format": "binary"
                             }
                         }
                     }
@@ -116,7 +116,7 @@
     "get_statement_pdf": {
         "get": {
             "tags": [
-                "Get Statement"
+                "Get Statement PDF"
             ],
             "operationId": "execute",
             "parameters": [
@@ -135,16 +135,11 @@
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                    "content":{
+                        "application/pdf": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitStatementResponse",
-                                "properties": {
-                                    "data": {
-                                        "type": "string"
-                                    }
-                                }
+                                "type": "string",
+                                "format": "binary"
                             }
                         }
                     }

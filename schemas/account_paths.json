@@ -99,7 +99,7 @@
                         }
                     }
                 },
-                "default": {
+                "401": {
                     "$ref": "types.json#/definitions/unitError"
                 }
             }

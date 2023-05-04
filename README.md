@@ -1,6 +1,6 @@
-# openapi-unit-sdk
-OpenAPI - Unit SDK
+# unit - OpenAPI
 
+Unit uses the `OpenAPI 3.0.2`  specification to structure our documentation and provide users with the ability to generate client libraries in various programming languages.<br>This approach ensures a consistent and uniform typing experience across all external interfaces. Below, we have included some examples and challenges that we have encountered during the iterative process of working with this specification.
 
 
 run with:

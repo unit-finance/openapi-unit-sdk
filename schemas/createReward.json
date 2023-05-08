@@ -4,10 +4,10 @@
             "type": "object",
             "properties": {
                 "fundingAccount": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "receivingAccount": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "rewardedTransaction": {
                     "type": "object",

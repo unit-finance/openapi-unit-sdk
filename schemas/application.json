@@ -217,7 +217,7 @@
                     "$ref": "types.json#/definitions/orgRelationship"
                 },
                 "customer": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "documents": {
                     "type": "object",
@@ -246,7 +246,7 @@
                     ]
                 },
                 "applicationForm": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "trustees": {
                     "type": "object",

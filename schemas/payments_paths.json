@@ -324,7 +324,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "receivedPayment.json"
+                                        "$ref": "received_payment.json"
                                     }
                                 }
                             }
@@ -383,7 +383,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "receivedPayment.json"
+                                        "$ref": "received_payment.json"
                                     }
                                 }
                             }
@@ -422,7 +422,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "receivedPayment.json"
+                                        "$ref": "received_payment.json"
                                     }
                                 }
                             }
@@ -450,7 +450,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurringPayment.json"
+                                        "$ref": "recurring_payment.json"
                                     }
                                 }
                             }
@@ -492,7 +492,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurringPayment.json"
+                                        "$ref": "recurring_payment.json"
                                     }
                                 }
                             }
@@ -531,7 +531,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurringPayment.json"
+                                        "$ref": "recurring_payment.json"
                                     }
                                 }
                             }
@@ -570,7 +570,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurringPayment.json"
+                                        "$ref": "recurring_payment.json"
                                     }
                                 }
                             }
@@ -609,7 +609,7 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurringPayment.json"
+                                        "$ref": "recurring_payment.json"
                                     }
                                 }
                             }

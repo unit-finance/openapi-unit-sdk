@@ -64,7 +64,7 @@
                             "schema": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "checkDeposit.json"
+                                    "$ref": "check_deposit.json"
                                 }
                             }
                         }
@@ -105,7 +105,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "checkDeposit.json"
+                                        "$ref": "check_deposit.json"
                                     }
                                 }
                             }
@@ -144,7 +144,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "checkDeposit.json"
+                                        "$ref": "check_deposit.json"
                                     }
                                 }
                             }
@@ -192,7 +192,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "checkDeposit.json"
+                                        "$ref": "check_deposit.json"
                                     }
                                 }
                             }
@@ -231,7 +231,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "checkDeposit.json"
+                                        "$ref": "check_deposit.json"
                                     }
                                 }
                             }

@@ -184,7 +184,7 @@
                             "schema": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "authorizationRequest.json"
+                                    "$ref": "authorization_request.json"
                                 }
                             }
                         }
@@ -222,7 +222,7 @@
                                 "title": "UnitAuthorizationRequestsResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorizationRequest.json"
+                                        "$ref": "authorization_request.json"
                                     }
                                 }
                             }
@@ -261,7 +261,7 @@
                                 "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorizationRequest.json"
+                                        "$ref": "authorization_request.json"
                                     }
                                 }
                             }
@@ -300,7 +300,7 @@
                                 "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorizationRequest.json"
+                                        "$ref": "authorization_request.json"
                                     }
                                 }
                             }

@@ -390,7 +390,7 @@
 								"type":"array",
 								"title":"UnitApplicationFormsListResponse",
 								"items":{
-									"$ref":"applicationForm.json"
+									"$ref":"application_form.json"
 								}
 							}
 						}
@@ -431,7 +431,7 @@
 								"title":"UnitApplicationFormResponse",
 								"properties":{
 									"data":{
-										"$ref":"applicationForm.json"
+										"$ref":"application_form.json"
 									}
 								}
 							}
@@ -477,7 +477,7 @@
 								"title":"UnitApplicationFormResponseWithIncluded",
 								"properties":{
 									"data":{
-										"$ref":"applicationForm.json"
+										"$ref":"application_form.json"
 									},
 									"included":{
 										"$ref":"application.json"

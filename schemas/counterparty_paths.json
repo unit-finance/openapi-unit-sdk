@@ -216,7 +216,7 @@
                                 "title": "UnitCounterpartyResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "counterpartyBalance.json"
+                                        "$ref": "counterparty_balance.json"
                                     }
                                 }
                             }

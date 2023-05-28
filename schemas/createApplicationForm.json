@@ -121,10 +121,10 @@
                     "$ref": "types.json#/definitions/url"
                 },
                 "additionalDisclosures": {
-                    "$ref": "orgSettings.json#/definitions/applicationFormAdditionalDisclosures"
+                    "$ref": "org_settings.json#/definitions/applicationFormAdditionalDisclosures"
                 },
                 "validatePhoneNumber": {
-                    "$ref": "orgSettings.json#/definitions/applicationFormValidatePhoneNumber"
+                    "$ref": "org_settings.json#/definitions/applicationFormValidatePhoneNumber"
                 }
             },
             "additionalProperties": false

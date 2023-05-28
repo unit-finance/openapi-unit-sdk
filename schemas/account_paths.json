@@ -598,7 +598,7 @@
                                 "title": "UnitGetAccountEndOfDayListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "accountEndOfDay.json"
+                                        "$ref": "account_end_of_day.json"
                                     }
                                 }
                             }

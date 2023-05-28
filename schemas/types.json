@@ -543,6 +543,31 @@
                 }
             }
         },
+        "accountRelationship": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "id"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "data"
+            ],
+            "additionalProperties": false
+        },
         "paginationMeta": {
             "type": "object",
             "properties": {
@@ -808,6 +833,7 @@
                 "attributes": {
                     "card": {
                         "type": "object",
+                        "title": "CardLimits",
                         "properties": {
                             "limits": {
                                 "type": "object",

@@ -19,8 +19,8 @@
             },
             "additionalProperties": false
         },
-        "powerOfAttorneyAgent": {
-            "title": "PowerOfAttorneyAgent",
+        "createPowerOfAttorneyAgent": {
+            "title": "CreatePowerOfAttorneyAgent",
             "type": "object",
             "properties": {
                 "fullName": {
@@ -69,7 +69,7 @@
             ]
         },
         "officer": {
-            "title": "Officer",
+            "title": "CreateOfficer",
             "type": "object",
             "properties": {
                 "fullName": {
@@ -134,7 +134,7 @@
             ]
         },
         "beneficialOwner": {
-            "title": "Beneficial Owner",
+            "title": "CreateBeneficialOwner",
             "type": "object",
             "properties": {
                 "fullName": {
@@ -280,7 +280,7 @@
                             "$ref": "types.json#/definitions/jwtSubject"
                         },
                         "powerOfAttorneyAgent": {
-                            "$ref": "#/definitions/powerOfAttorneyAgent"
+                            "$ref": "#/definitions/createPowerOfAttorneyAgent"
                         },
                         "industry": {
                             "$ref": "types.json#/definitions/industry"

@@ -4,62 +4,10 @@
             "type": "object",
             "properties": {
                 "fundingAccount": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "account",
-                                        "depositAccount"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "receivingAccount": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "account",
-                                        "depositAccount"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "rewardedTransaction": {
                     "type": "object",

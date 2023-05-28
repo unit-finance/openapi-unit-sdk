@@ -136,6 +136,7 @@
                         },
                         "relationships": {
                             "type": "object",
+                            "title": "depositAccountRelationships",
                             "properties": {
                                 "customer": {
                                     "$ref": "customer.json#/definitions/customerLinkage"
@@ -262,6 +263,7 @@
                         },
                         "relationships": {
                             "type": "object",
+                            "title": "creditAccountRelationships",
                             "properties": {
                                 "customer": {
                                     "$ref": "customer.json#/definitions/customerLinkage"

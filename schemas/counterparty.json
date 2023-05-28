@@ -2,6 +2,7 @@
     "definitions": {
         "relationships": {
             "type": "object",
+            "title": "counterpartyRelationships",
             "properties": {
                 "customer": {
                     "type": "object",

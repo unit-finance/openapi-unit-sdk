@@ -79,9 +79,9 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "data": {
                                 "type": "object",
                                 "properties": {
+                                 "data": {
                                     "$ref": "createPayment.json"
                                 }
                             }

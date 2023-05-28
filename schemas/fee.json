@@ -2,35 +2,10 @@
     "definitions": {
         "relationships": {
             "type": "object",
+            "title": "feeRelationships",
             "properties": {
                 "account": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "account",
-                                        "depositAccount"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 }
             },
             "required": [

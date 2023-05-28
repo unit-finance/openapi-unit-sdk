@@ -2,6 +2,7 @@
     "definitions": {
         "relationships": {
             "type": "object",
+            "title": "authorizationRequestRelationships",
             "properties": {
                 "customer": {
                     "type": "object",

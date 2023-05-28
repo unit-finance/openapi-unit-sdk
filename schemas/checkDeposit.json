@@ -18,6 +18,7 @@
         },
         "relationships": {
             "type": "object",
+            "title": "checkDepositRelationships",
             "properties": {
                 "org": {
                     "$ref": "types.json#/definitions/orgRelationship"

@@ -14,6 +14,7 @@
         },
         "relationships": {
             "type": "object",
+            "title": "eventRelationships",
             "properties": {}
         }
     },

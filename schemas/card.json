@@ -29,6 +29,7 @@
         },
         "relationships": {
             "type": "object",
+            "title": "cardRelationships",
             "properties": {
                 "account": {
                     "type": "object",

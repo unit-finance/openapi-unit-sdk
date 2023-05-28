@@ -2,92 +2,16 @@
     "definitions": {
         "relationships": {
             "type": "object",
+            "title": "createCardRelationships",
             "properties": {
                 "account": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "depositAccount",
-                                        "creditAccount",
-                                        "account"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "customer": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "const": "customer"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "defaultFundingAccount": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "depositAccount",
-                                        "creditAccount",
-                                        "account"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 }
             },
             "required": [

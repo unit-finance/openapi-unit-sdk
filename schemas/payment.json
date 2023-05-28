@@ -4,91 +4,17 @@
             "type": "object",
             "properties": {
                 "account": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "depositAccount",
-                                        "account"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "counterparty": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "const": "counterparty"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "counterpartyAccount": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "depositAccount",
-                                        "account"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/accountRelationship"
                 },
                 "transaction": {
                     "type": "object",
+                    "title": "transactionRelationship",
                     "properties": {
                         "data": {
                             "type": "object",

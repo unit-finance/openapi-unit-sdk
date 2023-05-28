@@ -1,19 +1,19 @@
 {
     "definitions": {
-        "relationships": {
+        "rewardRelationships": {
             "type": "object",
             "properties": {
                 "receivingAccount": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "fundingAccount": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "customer": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "rewardedTransaction": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "transaction": {
                     "type": "object",
@@ -127,7 +127,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/rewardRelationships"
         }
     },
     "required": [

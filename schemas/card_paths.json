@@ -1,504 +1,504 @@
 {
-    "cards": {
-        "get": {
-            "tags": [
-                "Get List of Cards"
-            ],
-            "operationId": "execute",
-            "summary": "Get List of Cards",
-            "description": "Get List of Cards from API ",
-            "parameters": [
-                {
-                    "name": "page",
-                    "in": "query",
-                    "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
-                    }
-                },
-                {
-                    "name": "filter",
-                    "in": "query",
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
-                            },
-                            "accountId": {
-                                "type": "string"
-                            },
-                            "customerId": {
-                                "type": "string"
-                            },
-                            "tags": {
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                {
-                    "name": "include",
-                    "in": "query",
-                    "schema": {
-                        "type": "string"
-                    }
-                },
-                {
-                    "name": "sort",
-                    "in": "query",
-                    "schema": {
-                        "type": "string",
-                        "enum": [
-                            "createdAt",
-                            "-createdAt"
-                        ],
-                        "default": "-createdAt"
-                    }
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "title": "UnitCardResponseCardsList",
-                                "type": "object",
-                                "properties": {
-                                    "data": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "card.json"
-                                        }
-                                    },
-                                    "included": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "post": {
-            "tags": [
-                "Create a Card"
-            ],
-            "operationId": "execute",
-            "summary": "Create a Card",
-            "description": "Create a Card via API ",
-            "requestBody": {
-                "description": "Create Card Request",
-                "required": "true",
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "$ref": "createCard.json"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "201": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "card": {
-        "get": {
-            "tags": [
-                "Get Card"
-            ],
-            "operationId": "execute",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card to get"
-                },
-                {
-                    "name": "included",
-                    "in": "query",
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ],
-            "summary": "Get Card by Id",
-            "description": "Get a Card from API ",
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "patch": {
-            "tags": [
-                "Update Card"
-            ],
-            "operationId": "execute",
-            "summary": "Update Card",
-            "description": "Update a Card via API ",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card to update"
-                }
-            ],
-            "requestBody": {
-                "description": "Update Card Request",
-                "required": "true",
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "$ref": "types.json#/definitions/updateUnitRequest"
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "report_lost_card": {
-        "post": {
-            "tags": [
-                "Report Card as Lost"
-            ],
-            "operationId": "execute",
-            "summary": "Report lost as stolen",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card"
-                }
-            ],
-            "description": "Report lost as stolen via API ",
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "report_stolen_card": {
-        "post": {
-            "tags": [
-                "Report Card as Stolen"
-            ],
-            "operationId": "execute",
-            "summary": "Report card as stolen",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card"
-                }
-            ],
-            "description": "Report card as stolen via API ",
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "close_card": {
-        "post": {
-            "tags": [
-                "Close a Card"
-            ],
-            "operationId": "execute",
-            "summary": "Close a Card",
-            "description": "Close a Card via API ",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card to close"
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "card_pin_status": {
-        "get": {
-            "tags": [
-                "Get Card PIN Status"
-            ],
-            "operationId": "execute",
-            "summary": "Get Card PIN Status",
-            "description": "Get Card PIN Status via API ",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card to get PIN status"
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json#/definitions/pinStatus"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "freeze_card": {
-        "post": {
-            "tags": [
-                "Freeze a Card"
-            ],
-            "operationId": "execute",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card to freeze"
-                }
-            ],
-            "summary": "Freeze a Card",
-            "description": "Freeze a Card via API ",
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "unfreeze_card": {
-        "post": {
-            "tags": [
-                "Unfreeze a Card"
-            ],
-            "operationId": "execute",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card to unfreeze"
-                }
-            ],
-            "summary": "Unfreeze a Card",
-            "description": "Unfreeze a Card via API ",
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "card.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "card_limits": {
-        "get": {
-            "tags": [
-                "Get Card Limits"
-            ],
-            "operationId": "execute",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "cardId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the card to get"
-                }
-            ],
-            "summary": "Get Card Limit by Id",
-            "description": "Get a Card Limits from API ",
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitCardResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "limits.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+	"cards":{
+		"get":{
+			"tags":[
+				"Get List of Cards"
+			],
+			"operationId":"execute",
+			"summary":"Get List of Cards",
+			"description":"Get List of Cards from API ",
+			"parameters":[
+				{
+					"name":"page",
+					"in":"query",
+					"schema":{
+						"$ref":"types.json#/definitions/listPageParametersObject"
+					}
+				},
+				{
+					"name":"filter",
+					"in":"query",
+					"schema":{
+						"type":"object",
+						"properties":{
+							"status":{
+								"type":"array",
+								"items":{
+									"type":"string",
+									"enum":[
+										"Pending",
+										"Approved"
+									]
+								}
+							},
+							"accountId":{
+								"type":"string"
+							},
+							"customerId":{
+								"type":"string"
+							},
+							"tags":{
+								"type":"object"
+							}
+						}
+					}
+				},
+				{
+					"name":"include",
+					"in":"query",
+					"schema":{
+						"type":"string"
+					}
+				},
+				{
+					"name":"sort",
+					"in":"query",
+					"schema":{
+						"type":"string",
+						"enum":[
+							"createdAt",
+							"-createdAt"
+						],
+						"default":"-createdAt"
+					}
+				}
+			],
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"title":"UnitCardResponseCardsList",
+								"type":"object",
+								"properties":{
+									"data":{
+										"type":"array",
+										"items":{
+											"$ref":"card.json"
+										}
+									},
+									"included":{
+										"type":"array",
+										"items":{
+											"type":"object"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"post":{
+			"tags":[
+				"Create a Card"
+			],
+			"operationId":"execute",
+			"summary":"Create a Card",
+			"description":"Create a Card via API ",
+			"requestBody":{
+				"description":"Create Card Request",
+				"required":"true",
+				"content":{
+					"application/vnd.api+json":{
+						"schema":{
+							"type":"object",
+							"properties":{
+								"data":{
+									"$ref":"createCard.json"
+								}
+							}
+						}
+					}
+				}
+			},
+			"responses":{
+				"201":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"card":{
+		"get":{
+			"tags":[
+				"Get Card"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card to get"
+				},
+				{
+					"name":"included",
+					"in":"query",
+					"schema":{
+						"type":"string"
+					}
+				}
+			],
+			"summary":"Get Card by Id",
+			"description":"Get a Card from API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"patch":{
+			"tags":[
+				"Update Card"
+			],
+			"operationId":"execute",
+			"summary":"Update Card",
+			"description":"Update a Card via API ",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card to update"
+				}
+			],
+			"requestBody":{
+				"description":"Update Card Request",
+				"required":"true",
+				"content":{
+					"application/vnd.api+json":{
+						"schema":{
+							"$ref":"types.json#/definitions/updateUnitRequest"
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"report_lost_card":{
+		"post":{
+			"tags":[
+				"Report Card as Lost"
+			],
+			"operationId":"execute",
+			"summary":"Report lost as stolen",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card"
+				}
+			],
+			"description":"Report lost as stolen via API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"report_stolen_card":{
+		"post":{
+			"tags":[
+				"Report Card as Stolen"
+			],
+			"operationId":"execute",
+			"summary":"Report card as stolen",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card"
+				}
+			],
+			"description":"Report card as stolen via API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"close_card":{
+		"post":{
+			"tags":[
+				"Close a Card"
+			],
+			"operationId":"execute",
+			"summary":"Close a Card",
+			"description":"Close a Card via API ",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card to close"
+				}
+			],
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"card_pin_status":{
+		"get":{
+			"tags":[
+				"Get Card PIN Status"
+			],
+			"operationId":"execute",
+			"summary":"Get Card PIN Status",
+			"description":"Get Card PIN Status via API ",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card to get PIN status"
+				}
+			],
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json#/definitions/pinStatus"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"freeze_card":{
+		"post":{
+			"tags":[
+				"Freeze a Card"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card to freeze"
+				}
+			],
+			"summary":"Freeze a Card",
+			"description":"Freeze a Card via API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"unfreeze_card":{
+		"post":{
+			"tags":[
+				"Unfreeze a Card"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card to unfreeze"
+				}
+			],
+			"summary":"Unfreeze a Card",
+			"description":"Unfreeze a Card via API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"card.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"card_limits":{
+		"get":{
+			"tags":[
+				"Get Card Limits"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"cardId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the card to get"
+				}
+			],
+			"summary":"Get Card Limit by Id",
+			"description":"Get a Card Limits from API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type":"object",
+								"title":"UnitCardResponse",
+								"properties":{
+									"data":{
+										"$ref":"limits.json"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

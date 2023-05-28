@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "counterpartyBalanceRelationships": {
             "type": "object",
             "title": "counterpartyBalanceRelationships",
             "properties": {
@@ -90,7 +90,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/counterpartyBalanceRelationships"
         }
     },
     "additionalProperties": false,

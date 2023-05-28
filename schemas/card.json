@@ -27,7 +27,7 @@
                 "SuspectedFraud"
             ]
         },
-        "relationships": {
+        "cardRelationships": {
             "type": "object",
             "title": "cardRelationships",
             "properties": {
@@ -171,7 +171,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/cardRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -270,7 +270,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/cardRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -333,7 +333,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/cardRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -426,7 +426,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/cardRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -525,7 +525,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/cardRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -618,7 +618,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/cardRelationships"
                         }
                     },
                     "additionalProperties": false,

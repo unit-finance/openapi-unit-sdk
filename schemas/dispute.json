@@ -1,17 +1,17 @@
 {
     "definitions": {
-        "relationships": {
+        "disputeRelationships": {
             "type": "object",
             "title": "disputeRelationships",
             "properties": {
                 "customer": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "account": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "transaction": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 }
             },
             "required": [
@@ -93,7 +93,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/disputeRelationships"
         }
     },
     "additionalProperties": false,

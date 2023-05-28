@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "transactionRelationships": {
             "type": "object",
             "title": "transactionRelationships",
             "properties": {
@@ -181,7 +181,7 @@
                     "additionalProperties": false
                 },
                 "disputedTransaction": {
-                    "$ref": "#/definitions/relationships/properties/relatedTransaction"
+                    "$ref": "#/definitions/transactionRelationships/properties/relatedTransaction"
                 },
                 "authorization": {
                     "type": "object",
@@ -457,7 +457,7 @@
                     "additionalProperties": false
                 },
                 "paymentAdvanceTransaction": {
-                    "$ref": "#/definitions/relationships/properties/relatedTransaction"
+                    "$ref": "#/definitions/transactionRelationships/properties/relatedTransaction"
                 },
                 "receivedPayment": {
                     "type": "object",
@@ -611,7 +611,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -695,7 +695,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -772,7 +772,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -838,7 +838,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -922,7 +922,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -984,7 +984,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1100,7 +1100,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1199,7 +1199,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1257,7 +1257,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1332,7 +1332,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1437,7 +1437,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1528,7 +1528,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1589,7 +1589,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1647,7 +1647,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1705,7 +1705,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1763,7 +1763,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1825,7 +1825,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1883,7 +1883,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -1941,7 +1941,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2016,7 +2016,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2074,7 +2074,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2140,7 +2140,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2198,7 +2198,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2259,7 +2259,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2320,7 +2320,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2378,7 +2378,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2436,7 +2436,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2494,7 +2494,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2552,7 +2552,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2610,7 +2610,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2671,7 +2671,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2729,7 +2729,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2791,7 +2791,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2853,7 +2853,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2911,7 +2911,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -2968,7 +2968,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -3032,7 +3032,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/transactionRelationships"
                         }
                     },
                     "additionalProperties": false,

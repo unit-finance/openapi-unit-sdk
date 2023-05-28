@@ -209,7 +209,7 @@
                 }
             }
         },
-        "relationships": {
+        "applicationRelationships": {
             "type": "object",
             "title": "applicationRelationships",
             "properties": {
@@ -217,7 +217,7 @@
                     "$ref": "types.json#/definitions/orgRelationship"
                 },
                 "customer": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "documents": {
                     "type": "object",
@@ -246,7 +246,7 @@
                     ]
                 },
                 "applicationForm": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "trustees": {
                     "type": "object",
@@ -442,7 +442,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/applicationRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -609,7 +609,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/applicationRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -745,7 +745,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/applicationRelationships"
                         }
                     },
                     "additionalProperties": false,

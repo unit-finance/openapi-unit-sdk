@@ -543,7 +543,7 @@
                 }
             }
         },
-        "accountRelationship": {
+        "Relationship": {
             "type": "object",
             "properties": {
                 "data": {

@@ -16,7 +16,7 @@
                 "Returned"
             ]
         },
-        "relationships": {
+        "checkDepositRelationships": {
             "type": "object",
             "title": "checkDepositRelationships",
             "properties": {
@@ -253,7 +253,7 @@
             "additionalProperties": false
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/definitions/checkDepositRelationships"
         }
     },
     "additionalProperties": false,

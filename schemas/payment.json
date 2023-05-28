@@ -1,16 +1,16 @@
 {
     "definitions": {
-        "relationships": {
+        "paymentRelationships": {
             "type": "object",
             "properties": {
                 "account": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "counterparty": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "counterpartyAccount": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "transaction": {
                     "type": "object",
@@ -127,7 +127,7 @@
                             "additionalProperties": true
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/paymentRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -205,7 +205,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/paymentRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -296,7 +296,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/paymentRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -371,7 +371,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/paymentRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -444,7 +444,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/paymentRelationships"
                         }
                     },
                     "additionalProperties": false,

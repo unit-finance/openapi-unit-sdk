@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "customerRelationships": {
             "type": "object",
             "title": "customerRelationships",
             "properties": {
@@ -8,7 +8,7 @@
                     "$ref": "types.json#/definitions/orgRelationship"
                 },
                 "application": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 }
             },
             "additionalProperties": false
@@ -128,7 +128,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/customerRelationships"
                         }
                     },
                     "additionalProperties": false
@@ -240,7 +240,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/customerRelationships"
                         }
                     }
                 }
@@ -329,7 +329,7 @@
                             ]
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/customerRelationships"
                         }
                     },
                     "additionalProperties": false

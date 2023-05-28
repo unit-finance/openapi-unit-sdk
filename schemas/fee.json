@@ -1,11 +1,11 @@
 {
     "definitions": {
-        "relationships": {
+        "feeRelationships": {
             "type": "object",
             "title": "feeRelationships",
             "properties": {
                 "account": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 }
             },
             "required": [
@@ -44,6 +44,9 @@
                 "description"
             ],
             "additionalProperties": false
+        },
+        "relationships": {
+            "$ref": "#/definitions/feeRelationships"
         }
     }
 }

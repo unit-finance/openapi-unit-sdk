@@ -1,6 +1,6 @@
 {
     "definitions": {
-        "relationships": {
+        "authorizationRequestRelationships": {
             "type": "object",
             "title": "authorizationRequestRelationships",
             "properties": {
@@ -193,7 +193,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/authorizationRequestRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -268,7 +268,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/authorizationRequestRelationships"
                         }
                     },
                     "additionalProperties": false,
@@ -351,7 +351,7 @@
                             "additionalProperties": false
                         },
                         "relationships": {
-                            "$ref": "#/definitions/relationships"
+                            "$ref": "#/definitions/authorizationRequestRelationships"
                         }
                     },
                     "additionalProperties": false,

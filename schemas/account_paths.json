@@ -93,6 +93,12 @@
                                         "items": {
                                             "$ref": "account.json"
                                         }
+                                    },
+                                    "included": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "customer.json"
+                                        }
                                     }
                                 }
                             }

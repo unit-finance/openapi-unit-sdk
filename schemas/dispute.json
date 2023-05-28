@@ -5,13 +5,13 @@
             "title": "disputeRelationships",
             "properties": {
                 "customer": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "account": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 },
                 "transaction": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 }
             },
             "required": [

@@ -202,7 +202,7 @@
             "title": "createApplicationFormRelationships",
             "properties": {
                 "application": {
-                    "$ref": "types.json#/definitions/accountRelationship"
+                    "$ref": "types.json#/definitions/Relationship"
                 }
             },
             "required": [],

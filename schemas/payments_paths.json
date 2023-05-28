@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Payments"
             ],
-            "operationId": "getListPayments",
+            "operationId": "execute",
             "summary": "Get List Payments",
             "description": "Get List Payments from API ",
             "parameters": [
@@ -70,7 +70,7 @@
             "tags": [
                 "Create a Payment"
             ],
-            "operationId": "createPayment",
+            "operationId": "execute",
             "summary": "Create a Payment",
             "description": "Create a Payment via API ",
             "requestBody": {
@@ -114,7 +114,7 @@
             "tags": [
                 "Get Payment"
             ],
-            "operationId": "findPaymentById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -158,7 +158,7 @@
             "tags": [
                 "Update Payment"
             ],
-            "operationId": "updatePayment",
+            "operationId": "execute",
             "summary": "Update Payment",
             "description": "Update an Payment via API ",
             "parameters": [
@@ -208,7 +208,7 @@
             "tags": [
                 "Cancel Payment"
             ],
-            "operationId": "cancelPaymentById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -247,7 +247,7 @@
             "tags": [
                 "Get Received Payments List"
             ],
-            "operationId": "getReceivedPayments",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -293,7 +293,7 @@
             "tags": [
                 "Get Received Payment"
             ],
-            "operationId": "findReceivedPaymentById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -337,7 +337,7 @@
             "tags": [
                 "Update Received Payment"
             ],
-            "operationId": "updateReceivedPayment",
+            "operationId": "execute",
             "summary": "Update Received Payment",
             "description": "Update a Received Payment via API ",
             "parameters": [
@@ -398,7 +398,7 @@
             "tags": [
                 "Advance Received Payment"
             ],
-            "operationId": "advanceReceivedPaymentById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -437,7 +437,7 @@
             "tags": [
                 "Get List Recurring Payments"
             ],
-            "operationId": "getRecurringPaymentsList",
+            "operationId": "execute",
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
             "responses": {
@@ -463,7 +463,7 @@
             "tags": [
                 "Create Recurring Payment"
             ],
-            "operationId": " createRecurringPayment",
+            "operationId": "execute",
             "summary": "Create Recurring Payment",
             "description": "Create a Recurring Payment via API ",
             "requestBody": {
@@ -507,7 +507,7 @@
             "tags": [
                 "Get Recurring Payment"
             ],
-            "operationId": "getRecurringPayment",
+            "operationId": "execute",
             "summary": "Get Recurring Payment",
             "parameters": [
                 {
@@ -546,7 +546,7 @@
             "tags": [
                 "Disable Recurring Payment"
             ],
-            "operationId": "disableRecurringPayment",
+            "operationId": "execute",
             "summary": "Disable Recurring Payment",
             "parameters": [
                 {
@@ -585,7 +585,7 @@
             "tags": [
                 "Enable Recurring Payment"
             ],
-            "operationId": "enableRecurringPayment",
+            "operationId": "execute",
             "summary": "Enable Recurring Payment",
             "parameters": [
                 {

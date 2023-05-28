@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Counterparties"
             ],
-            "operationId": "getCounterpartiesList",
+            "operationId": "execute",
             "summary": "Get Counterparties List",
             "description": "Get Counterparties List from API ",
             "responses": {
@@ -30,7 +30,7 @@
             "tags": [
                 "Create Counterparty"
             ],
-            "operationId": " createCounterparty",
+            "operationId": "execute",
             "summary": "Create Counterparty",
             "description": "Create a counterparty via API ",
             "requestBody": {
@@ -74,7 +74,7 @@
             "tags": [
                 "Get Counterparty"
             ],
-            "operationId": "findCounterpartyById",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -118,7 +118,7 @@
             "tags": [
                 "Update Counterparty"
             ],
-            "operationId": "updateCounterparty",
+            "operationId": "execute",
             "summary": "Update Counterparty",
             "description": "Update a Counterparty via API ",
             "parameters": [
@@ -166,7 +166,7 @@
             "tags": [
                 "Delete Counterparty"
             ],
-            "operationId": "deleteCounterparty",
+            "operationId": "execute",
             "parameters": [
                 {
                     "schema": {
@@ -192,7 +192,7 @@
             "tags": [
                 "Get Counterparty Balance"
             ],
-            "operationId": "getCounterpartyBalance",
+            "operationId": "execute",
             "summary": "Get Counterparty Balance",
             "parameters": [
                 {

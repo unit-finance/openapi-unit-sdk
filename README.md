@@ -125,7 +125,7 @@ you can find more examples in the unit/e2e_tests directory
 
 ## FAQ
 ### Authorization 
-By default, we are using the next definition that is located at components/securitySchemes/bearerAuth section in openapi.json file.
+By default, we are using the next definition that is located at components/securitySchemes/bearerAuth section in the openapi.json file.
 
     "bearerAuth": {
         "type": "http",

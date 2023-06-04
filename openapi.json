@@ -1,8 +1,8 @@
 {
 	"openapi":"3.0.2",
 	"info":{
-		"title":"Unit Python SDK",
-		"description":"An API for testing openapi-python-client for unit-sdk",
+		"title":"Unit OpenAPI specifications",
+		"description":"An OpenAPI specifications for unit-sdk clients",
 		"version":"0.1.0"
 	},
 	"servers":[

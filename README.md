@@ -4,7 +4,7 @@ Unit uses the `OpenAPI 3.0.2`  specification to structure our documentation and 
 
 This approach ensures a consistent and uniform typing experience across all external interfaces. Below, we have included some examples for working with this specification.
 
-## Generating Unit client libraries
+## Generating Unit Client Libraries
 Below you can find examples for generating client libraries using Swagger Generator
 (for official documentation see [Swagger Codegen docs](https://github.com/swagger-api/swagger-codegen#generating-a-client-from-local-files)).
 You may also use any other known generator, such as [OpenAPI generator](https://openapi-generator.tech/).
@@ -28,7 +28,7 @@ npm install @openapitools/openapi-generator-cli
 openapi-generator-cli generate -g typescript-axios -i openapi.json -o unit -p npmName=TypescriptUnitClient
 ```
 
-## Examples
+## Generated Clients Usage Examples
 
 #### Python
 ``` 

@@ -124,7 +124,7 @@ you can find more examples in the unit/e2e_tests directory
     })
 
 ## FAQ
-### Authorization 
+### Authorization Tokens
 The default authorization configuration is located in components/securitySchemes/bearerAuth section in the openapi.json file and looks as follows:
 
     "bearerAuth": {

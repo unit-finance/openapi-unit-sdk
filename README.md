@@ -133,7 +133,7 @@ The default authorization configuration is located in components/securitySchemes
         "bearerFormat": "JWT"
     }
 
-when generating a python-sdk, you should change the definition to
+When generating a python-sdk, you should change the configurations to:
 
     "bearerAuth": {
         "type": "apiKey",

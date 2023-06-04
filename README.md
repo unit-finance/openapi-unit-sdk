@@ -123,7 +123,7 @@ you can find more examples in the unit/e2e_tests directory
         console.log(res)
     })
 
-## FAQ
+## Known Generators Issues
 ### Authorization Tokens
 The default authorization configuration is located in components/securitySchemes/bearerAuth section in the openapi.json file and looks as follows:
 

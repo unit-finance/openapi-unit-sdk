@@ -238,7 +238,7 @@
                     "type": "string"
                 },
                 "counterparty": {
-                    "$ref": "checkDeposit.json#/definitions/counterparty"
+                    "$ref": "check_deposit.json#/definitions/counterparty"
                 },
                 "tags": {
                     "$ref": "tags.json#/definitions/tags"

@@ -64,7 +64,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "updateCustomer.json"
+                            "$ref": "update_customer.json"
                         }
                     }
                 }

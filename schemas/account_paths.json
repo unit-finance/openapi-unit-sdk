@@ -105,7 +105,7 @@
                         }
                     }
                 },
-                "default": {
+                "401": {
                     "$ref": "types.json#/definitions/unitError"
                 }
             }
@@ -598,7 +598,7 @@
                                 "title": "UnitGetAccountEndOfDayListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "accountEndOfDay.json"
+                                        "$ref": "account_end_of_day.json"
                                     }
                                 }
                             }

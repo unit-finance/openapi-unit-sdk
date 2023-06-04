@@ -121,7 +121,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "authorizationRequest.json"
+                    "$ref": "authorization_request.json"
                 },
                 {
                     "type": "object",
@@ -208,7 +208,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "authorizationRequest.json"
+                    "$ref": "authorization_request.json"
                 },
                 {
                     "type": "object",
@@ -283,7 +283,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "authorizationRequest.json"
+                    "$ref": "authorization_request.json"
                 },
                 {
                     "type": "object",

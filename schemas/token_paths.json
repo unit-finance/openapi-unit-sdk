@@ -64,7 +64,7 @@
                             "schema": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "apiToken.json"
+                                    "$ref": "api_token.json"
                                 }
                             }
                         }
@@ -107,7 +107,7 @@
                                 "title": "UnitApiTokenResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "apiToken.json"
+                                        "$ref": "api_token.json"
                                     }
                                 }
                             }
@@ -155,7 +155,7 @@
                                 "title": "UnitApiTokenResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "apiToken.json"
+                                        "$ref": "api_token.json"
                                     }
                                 }
                             }
@@ -210,7 +210,7 @@
                                 "title": "UnitCustomerTokenVerificationResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "customerTokenVerification.json"
+                                        "$ref": "customer_token_verification.json"
                                     }
                                 }
                             }
@@ -265,7 +265,7 @@
                                 "title": "UnitCustomerTokenVerificationResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "customerTokenVerification.json"
+                                        "$ref": "customer_token_verification.json"
                                     }
                                 }
                             }

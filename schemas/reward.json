@@ -24,7 +24,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "transaction"
+                                    "default": "transaction"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -51,7 +51,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "card"
+                                    "default": "card"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -83,7 +83,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "reward"
+            "default": "reward"
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"

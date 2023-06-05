@@ -50,7 +50,7 @@
                                 },
                                 "currency": {
                                     "type": "string",
-                                    "const": "USD"
+                                    "default": "USD"
                                 },
                                 "balance": {
                                     "type": "integer"
@@ -189,7 +189,7 @@
                                 },
                                 "currency": {
                                     "type": "string",
-                                    "const": "USD"
+                                    "default": "USD"
                                 },
                                 "balance": {
                                     "type": "integer"
@@ -288,7 +288,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "orgGeneralLedgerAccount"
+                    "default": "orgGeneralLedgerAccount"
                 },
                 "id": {
                     "$ref": "types.json#/definitions/identifier"
@@ -312,7 +312,7 @@
                         },
                         "currency": {
                             "type": "string",
-                            "const": "USD"
+                            "default": "USD"
                         },
                         "balance": {
                             "type": "integer"
@@ -359,7 +359,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "glAccount"
+                    "default": "glAccount"
                 },
                 "id": {
                     "$ref": "types.json#/definitions/identifier"
@@ -380,7 +380,7 @@
                         },
                         "currency": {
                             "type": "string",
-                            "const": "USD"
+                            "default": "USD"
                         },
                         "balance": {
                             "type": "integer"
@@ -443,7 +443,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "batchAccount"
+                    "default": "batchAccount"
                 },
                 "id": {
                     "$ref": "types.json#/definitions/identifier"
@@ -463,7 +463,7 @@
                         },
                         "currency": {
                             "type": "string",
-                            "const": "USD"
+                            "default": "USD"
                         },
                         "routingNumber": {
                             "type": "string",

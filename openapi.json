@@ -29,7 +29,7 @@
 		"/application-forms/{applicationFormId}":{
 			"$ref":"./schemas/application_paths.json#/get_application_form"
 		},
-		"/accounts/":{
+		"/accounts":{
 			"$ref":"./schemas/account_paths.json#/accounts"
 		},
 		"/accounts/{accountId}":{
@@ -71,7 +71,7 @@
 		"/customers/{customerId}/archive":{
 			"$ref":"./schemas/customer_paths.json#/archive_customer"
 		},
-		"/payments/":{
+		"/payments":{
 			"$ref":"./schemas/payments_paths.json#/get_and_create_payments"
 		},
 		"/payments/{paymentId}":{
@@ -89,7 +89,7 @@
 		"/received-payments/{paymentId}/advance":{
 			"$ref":"./schemas/payments_paths.json#/advance_received_payment"
 		},
-		"/counterparties/":{
+		"/counterparties":{
 			"$ref":"./schemas/counterparty_paths.json#/counterparties"
 		},
 		"/counterparties/{counterpartyId}":{
@@ -110,7 +110,7 @@
 		"/recurring-payments/{paymentId}/enable":{
 			"$ref":"./schemas/payments_paths.json#/enable_recurring_payment"
 		},
-		"/cards/":{
+		"/cards":{
 			"$ref":"./schemas/card_paths.json#/cards"
 		},
 		"/cards/{cardId}":{
@@ -137,13 +137,13 @@
 		"/cards/{cardId}/limits":{
 			"$ref":"./schemas/card_paths.json#/card_limits"
 		},
-		"/authorizations/":{
+		"/authorizations":{
 			"$ref":"./schemas/authorization_paths.json#/authorizations"
 		},
 		"/authorizations/{authorizationId}":{
 			"$ref":"./schemas/authorization_paths.json#/get_authorization"
 		},
-		"/authorization-requests/":{
+		"/authorization-requests":{
 			"$ref":"./schemas/authorization_paths.json#/get_authorizations_requests"
 		},
 		"/authorization-requests/{authorizationId}":{
@@ -155,7 +155,7 @@
 		"/authorization-requests/{authorizationId}/decline":{
 			"$ref":"./schemas/authorization_paths.json#/decline_authorization_requests"
 		},
-		"/statements/":{
+		"/statements":{
 			"$ref":"./schemas/statement_paths.json#/get_statements"
 		},
 		"/statements/{statementId}/html":{
@@ -179,13 +179,13 @@
 		"/events/{eventId}":{
 			"$ref":"./schemas/event_paths.json#/event"
 		},
-		"/institutions/{routingNumber}/":{
+		"/institutions/{routingNumber}":{
 			"$ref":"./schemas/institution_paths.json#/get_institution"
 		},
-		"/fees/":{
+		"/fees":{
 			"$ref":"./schemas/fee_paths.json#/create_fee"
 		},
-		"/check-deposits/":{
+		"/check-deposits":{
 			"$ref":"./schemas/check_deposit_paths.json#/check_deposits"
 		},
 		"/check-deposits/{checkDepositId}":{
@@ -203,7 +203,7 @@
 		"/users/{userId}/api-tokens":{
 			"$ref":"./schemas/token_paths.json#/create_token"
 		},
-		"/users/":{
+		"/users":{
 			"$ref":"./schemas/token_paths.json#/list_tokens"
 		},
 		"/users/{userId}/api-tokens/{tokenId}":{
@@ -215,7 +215,7 @@
 		"/customers/{customerId}/token/verification":{
 			"$ref":"./schemas/token_paths.json#/create_customer_token_verification"
 		},
-		"/webhooks/":{
+		"/webhooks":{
 			"$ref":"./schemas/webhook_paths.json#/webhooks"
 		},
 		"/webhooks/{webhookId}":{
@@ -227,19 +227,19 @@
 		"/webhooks/{webhookId}/disable":{
 			"$ref":"./schemas/webhook_paths.json#/disable_webhook"
 		},
-		"/atm-locations/":{
+		"/atm-locations":{
 			"$ref":"./schemas/atm_location_paths.json#/list_atm_locations"
 		},
-		"/accounts/{accountId}/transactions/{transactionId}/":{
+		"/accounts/{accountId}/transactions/{transactionId}":{
 			"$ref":"./schemas/transaction_paths.json#/transaction"
 		},
 		"/transactions":{
 			"$ref":"./schemas/transaction_paths.json#/list_transactions"
 		},
-		"/disputes/":{
+		"/disputes":{
 			"$ref":"./schemas/dispute_paths.json#/list_disputes"
 		},
-		"/disputes/{disputeId}/":{
+		"/disputes/{disputeId}":{
 			"$ref":"./schemas/dispute_paths.json#/get_dispute"
 		}
 	},

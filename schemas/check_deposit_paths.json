@@ -81,7 +81,7 @@
             "description": "Create a Check Deposit via API ",
             "requestBody": {
                 "description": "Create Check Deposit Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -173,7 +173,7 @@
             ],
             "requestBody": {
                 "description": "Update Check Deposit Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

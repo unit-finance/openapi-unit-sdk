@@ -11,7 +11,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "customer"
+                                    "default": "customer"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -37,7 +37,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "account"
+                                    "default": "account"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"

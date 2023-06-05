@@ -82,7 +82,7 @@
             "description": "Create a Webhook via API ",
             "requestBody": {
                 "description": "Create Webhook Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -174,7 +174,7 @@
             ],
             "requestBody": {
                 "description": "Update Webhook Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

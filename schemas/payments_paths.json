@@ -75,7 +75,7 @@
             "description": "Create a Payment via API ",
             "requestBody": {
                 "description": "Create Payment Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -174,7 +174,7 @@
             ],
             "requestBody": {
                 "description": "Update Payment Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -249,15 +249,6 @@
             ],
             "operationId": "execute",
             "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "paymentId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the payment to get"
-                },
                 {
                     "name": "included",
                     "in": "query",
@@ -353,7 +344,7 @@
             ],
             "requestBody": {
                 "description": "Update Received Payment Request",
-                "required": "true",
+                "required": true,
                 "parameters": [
                     {
                         "schema": {
@@ -468,7 +459,7 @@
             "description": "Create a Recurring Payment via API ",
             "requestBody": {
                 "description": "Create Recurring Payment Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

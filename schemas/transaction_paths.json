@@ -150,7 +150,7 @@
             ],
             "requestBody": {
                 "description": "Update Transaction Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

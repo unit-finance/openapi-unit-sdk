@@ -100,7 +100,7 @@
                                     "$ref": "types.json#/definitions/jwtSubject"
                                 },
                                 "status": {
-                                    "type:": "string",
+                                    "type": "string",
                                     "enum": [
                                         "Active",
                                         "Archived"
@@ -156,10 +156,7 @@
                                     "type": "string"
                                 },
                                 "dba": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ]
+                                    "type": "string"
                                 },
                                 "ein": {
                                     "type": "string",
@@ -210,7 +207,7 @@
                                     }
                                 },
                                 "status": {
-                                    "type:": "string",
+                                    "type": "string",
                                     "enum": [
                                         "Active",
                                         "Archived"
@@ -300,7 +297,7 @@
                                     }
                                 },
                                 "status": {
-                                    "type:": "string",
+                                    "type": "string",
                                     "enum": [
                                         "Active",
                                         "Archived"

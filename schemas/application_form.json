@@ -34,7 +34,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "applicationForm"
+            "default": "applicationForm"
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"

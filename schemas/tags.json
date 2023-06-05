@@ -3,40 +3,16 @@
         "tags": {
             "type": "object",
             "maxProperties": 15,
-            "additionalProperties": false,
-            "patternProperties": {
-                "^[a-zA-Z0-9_]{1,128}$": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255
-                }
-            }
+            "additionalProperties": false
         },
         "tagsPatch": {
             "type": "object",
             "maxProperties": 15,
-            "additionalProperties": false,
-            "patternProperties": {
-                "^[a-zA-Z0-9_]{1,128}$": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
-                    "minLength": 1,
-                    "maxLength": 255
-                }
-            }
+            "additionalProperties": false
         }
     },
     "title": "Tags",
     "type": "object",
     "maxProperties": 15,
-    "additionalProperties": false,
-    "patternProperties": {
-        "^[a-zA-Z0-9_]{1,128}$": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 255
-        }
-    }
+    "additionalProperties": false
 }

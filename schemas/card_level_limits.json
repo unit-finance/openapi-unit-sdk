@@ -8,7 +8,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "limits"
+                    "default": "limits"
                 },
                 "attributes": {
                     "type": "object",

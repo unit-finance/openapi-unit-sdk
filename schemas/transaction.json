@@ -108,7 +108,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "account"
+                                    "default": "account"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -135,7 +135,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "customer"
+                                    "default": "customer"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -162,7 +162,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "transaction"
+                                    "default": "transaction"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -192,7 +192,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "authorization"
+                                    "default": "authorization"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -219,7 +219,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "transaction"
+                                    "default": "transaction"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -246,7 +246,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "payment"
+                                    "default": "payment"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -273,7 +273,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "payment"
+                                    "default": "payment"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -300,7 +300,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "repayment"
+                                    "default": "repayment"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -327,7 +327,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "recurringPayment"
+                                    "default": "recurringPayment"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -357,7 +357,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "card"
+                                    "default": "card"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -384,7 +384,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "incomingAch"
+                                    "default": "incomingAch"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -411,7 +411,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "checkDeposit"
+                                    "default": "checkDeposit"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -438,7 +438,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "authorizationRequest"
+                                    "default": "authorizationRequest"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -468,7 +468,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "receivedPayment"
+                                    "default": "receivedPayment"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -495,7 +495,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "chargeback"
+                                    "default": "chargeback"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -522,7 +522,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "reward"
+                                    "default": "reward"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"

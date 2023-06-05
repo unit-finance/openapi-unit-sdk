@@ -27,7 +27,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "dispute"
+            "default": "dispute"
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"

@@ -205,25 +205,19 @@
                             "$ref": "types.json#/definitions/phone"
                         },
                         "ssn": {
-                            "type": [
-                                "string",
-                                "null"
-                            ],
+                            "type": "string",
                             "pattern": "^\\d{9}$"
                         },
                         "passport": {
-                            "type": [
-                                "string",
-                                "null"
-                            ]
+                            "type": "string"
                         },
                         "nationality": {
                             "$ref": "types.json#/definitions/country",
-                            "nullable": "true"
+                            "nullable": true
                         },
                         "matriculaConsular": {
                             "type": "string",
-                            "nullable": "true"
+                            "nullable": true
                         },
                         "address": {
                             "$ref": "types.json#/definitions/address"
@@ -233,16 +227,10 @@
                             "format": "date"
                         },
                         "dba": {
-                            "type": [
-                                "string",
-                                "null"
-                            ]
+                            "type": "string"
                         },
                         "ein": {
-                            "type": [
-                                "string",
-                                "null"
-                            ],
+                            "type": "string",
                             "pattern": "^\\d{9}$"
                         },
                         "ip": {

@@ -19,7 +19,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "fee"
+            "default": "fee"
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"

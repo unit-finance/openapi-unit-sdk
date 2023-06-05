@@ -91,7 +91,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "transaction"
+                                    "default": "transaction"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"

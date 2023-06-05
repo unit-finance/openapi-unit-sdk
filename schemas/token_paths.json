@@ -81,9 +81,20 @@
             "operationId": "execute",
             "summary": "Create Org API Token",
             "description": "Create an Org API Token via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the user to create token for"
+                }
+            ],
             "requestBody": {
                 "description": "Create Org API Token Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -186,14 +197,17 @@
             "description": "Create a Customer Token via API ",
             "requestBody": {
                 "description": "Create Customer Token Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "$ref": "craeteCustomerToken.json"
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "$ref": "createCustomerToken.json"
+                                    }
                                 }
                             }
                         }
@@ -241,14 +255,17 @@
             "description": "Create a Customer Token Verification via API ",
             "requestBody": {
                 "description": "Create Customer Token Verification Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "$ref": "createCustomerTokenVerification.json"
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "$ref": "createCustomerTokenVerification.json"
+                                    }
                                 }
                             }
                         }

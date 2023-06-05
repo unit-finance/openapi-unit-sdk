@@ -345,17 +345,6 @@
             "requestBody": {
                 "description": "Update Received Payment Request",
                 "required": true,
-                "parameters": [
-                    {
-                        "schema": {
-                            "type": "string"
-                        },
-                        "name": "receivedPaymentId",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of the received payment to update"
-                    }
-                ],
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

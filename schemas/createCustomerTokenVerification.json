@@ -4,9 +4,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "enum": [
-                "customerTokenVerification"
-            ]
+            "default": "customerTokenVerification"
         },
         "attributes": {
             "type": "object",

@@ -1,5 +1,4 @@
 {
-    "title": "Create Customer Token",
     "type": "object",
     "properties": {
         "type": {
@@ -46,13 +45,7 @@
                         }
                     }
                 }
-            },
-            "additionalProperties": false
+            }
         }
-    },
-    "additionalProperties": false,
-    "required": [
-        "type",
-        "attributes"
-    ]
+    }
 }

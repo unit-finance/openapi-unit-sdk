@@ -1,5 +1,5 @@
 
-# Unit - OpenAPI
+# Unit - OpenAPI (beta)
 
 Unit uses the `OpenAPI 3.0.2`  specification to structure our documentation and provide users with the ability to generate client libraries in various programming languages.
 

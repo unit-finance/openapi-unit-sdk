@@ -16,11 +16,14 @@ java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l java -o uni
 ```
 
 ### unit-python
-we recommend using our script that you can find in this repository
+We recommend using our script which can be found in this repository:
+
 ```commandline
 python "./generate.py"
 ```
-or generate with swagger-codegen-cli: 
+
+Or generate with swagger-codegen-cli: 
+
 ```
 java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l python -o unit
 ```

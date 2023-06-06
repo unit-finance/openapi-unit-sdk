@@ -60,7 +60,7 @@
             ],
             "requestBody": {
                 "description": "Update Customer Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -105,10 +105,10 @@
                                         "items": {
                                             "$ref": "customer.json"
                                         }
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
                                     }
-                                },
-                                "meta": {
-                                    "$ref": "types.json#/definitions/paginationMeta"
                                 }
                             }
                         }
@@ -136,7 +136,7 @@
             ],
             "requestBody": {
                 "description": "Update Payment Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

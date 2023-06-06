@@ -12,7 +12,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "counterparty"
+                                    "default": "counterparty"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -38,7 +38,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "customer"
+                                    "default": "customer"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -69,7 +69,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "counterpartyBalance"
+            "default": "counterpartyBalance"
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"

@@ -11,7 +11,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "org"
+                                    "default": "org"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -111,10 +111,7 @@
             "type": "object",
             "properties": {
                 "applicationFormDomain": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "applicationFormCertificateStatus": {
                     "oneOf": [
@@ -138,7 +135,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "const": "orgSettings"
+                    "default": "orgSettings"
                 },
                 "id": {
                     "$ref": "types.json#/definitions/identifier"
@@ -147,10 +144,7 @@
                     "type": "object",
                     "properties": {
                         "samlSettings": {
-                            "type": [
-                                "object",
-                                "null"
-                            ],
+                            "type": "object",
                             "properties": {
                                 "orgWorkspace": {
                                     "type": "string"
@@ -177,10 +171,7 @@
                             "additionalProperties": false
                         },
                         "jwtSettings": {
-                            "type": [
-                                "object",
-                                "null"
-                            ],
+                            "type": "object",
                             "properties": {
                                 "provider": {
                                     "enum": [
@@ -210,10 +201,7 @@
                         },
                         "dashboardSettings": {
                             "title": "Dashboard Settings",
-                            "type": [
-                                "object",
-                                "null"
-                            ],
+                            "type": "object",
                             "properties": {
                                 "whitelistSourceIps": {
                                     "type": "string"

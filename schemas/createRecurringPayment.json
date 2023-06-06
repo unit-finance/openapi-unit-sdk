@@ -246,7 +246,7 @@
                 },
                 "interval": {
                     "type": "string",
-                    "const": "Monthly"
+                    "default": "Monthly"
                 },
                 "totalNumberOfPayments": {
                     "type": "integer",

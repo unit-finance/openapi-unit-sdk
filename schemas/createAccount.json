@@ -18,11 +18,11 @@
                         },
                         "tags": {
                             "type": "object",
-                            "nullable": "true"
+                            "nullable": true
                         },
                         "idempotencyKey": {
                             "type": "string",
-                            "nullable": "true"
+                            "nullable": true
                         }
                     },
                     "additionalProperties": false,
@@ -56,11 +56,11 @@
                         },
                         "tags": {
                             "type": "object",
-                            "nullable": "true"
+                            "nullable": true
                         },
                         "idempotencyKey": {
                             "type": "string",
-                            "nullable": "true"
+                            "nullable": true
                         }
                     },
                     "additionalProperties": false,

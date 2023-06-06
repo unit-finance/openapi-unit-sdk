@@ -39,19 +39,19 @@
                             "properties": {
                                 "email": {
                                     "$ref": "types.json#/definitions/email",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "phone": {
                                     "$ref": "types.json#/definitions/phone",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "address": {
                                     "$ref": "types.json#/definitions/address",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "dba": {
                                     "type": "string",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
@@ -61,11 +61,11 @@
                                     "items": {
                                         "$ref": "types.json#/definitions/authorizedUser"
                                     },
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "jwtSubject": {
                                     "$ref": "types.json#/definitions/jwtSubject",
-                                    "nullable": "true"
+                                    "nullable": true
                                 }
                             },
                             "additionalProperties": false
@@ -90,7 +90,7 @@
                             "properties": {
                                 "dba": {
                                     "type": "string",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "ein": {
                                     "type": "string",
@@ -98,26 +98,26 @@
                                 },
                                 "phone": {
                                     "$ref": "types.json#/definitions/phone",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "address": {
                                     "$ref": "types.json#/definitions/address",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "contact": {
                                     "$ref": "types.json#/definitions/responseContact",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "authorizedUsers": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "types.json#/definitions/authorizedUser"
                                     },
-                                    "nullable": "true"
+                                    "nullable": true
                                 }
                             },
                             "additionalProperties": false
@@ -142,18 +142,18 @@
                             "properties": {
                                 "contact": {
                                     "$ref": "types.json#/definitions/trustContact",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags",
-                                    "nullable": "true"
+                                    "nullable": true
                                 },
                                 "authorizedUsers": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "types.json#/definitions/authorizedUser"
                                     },
-                                    "nullable": "true"
+                                    "nullable": true
                                 }
                             },
                             "additionalProperties": false

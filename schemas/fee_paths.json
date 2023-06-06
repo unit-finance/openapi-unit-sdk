@@ -9,7 +9,7 @@
             "description": "Create a Fee via API ",
             "requestBody": {
                 "description": "Create Fee Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

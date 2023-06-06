@@ -100,7 +100,7 @@
 			"description":"Create a Card via API ",
 			"requestBody":{
 				"description":"Create Card Request",
-				"required":"true",
+				"required":true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
@@ -199,7 +199,7 @@
 			],
 			"requestBody":{
 				"description":"Update Card Request",
-				"required":"true",
+				"required":true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{

@@ -119,7 +119,7 @@
             "description": "Create an Account via API ",
             "requestBody": {
                 "description": "Create Account Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -210,7 +210,7 @@
         ],
         "requestBody": {
             "description": "Update Account Request",
-            "required": "true",
+            "required": true,
             "content": {
                 "application/vnd.api+json": {
                     "schema": {
@@ -353,14 +353,17 @@
             ],
             "requestBody": {
                 "description": "Freeze Account Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "$ref": "types.json#/definitions/freezeAccountRequest"
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "$ref": "types.json#/definitions/freezeAccountRequest"
+                                    }
                                 }
                             }
                         }
@@ -405,7 +408,7 @@
             ],
             "requestBody": {
                 "description": "Close Account Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

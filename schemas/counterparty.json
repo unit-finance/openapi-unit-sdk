@@ -12,7 +12,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "customer"
+                                    "default": "customer"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"

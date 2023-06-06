@@ -230,7 +230,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "const": "document"
+                                        "default": "document"
                                     },
                                     "id": {
                                         "$ref": "types.json#/definitions/identifier"
@@ -258,7 +258,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "const": "trustee"
+                                        "default": "trustee"
                                     },
                                     "id": {
                                         "$ref": "types.json#/definitions/identifier"
@@ -279,7 +279,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "const": "beneficiary"
+                                        "default": "beneficiary"
                                     },
                                     "id": {
                                         "$ref": "types.json#/definitions/identifier"

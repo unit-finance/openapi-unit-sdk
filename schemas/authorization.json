@@ -10,7 +10,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "authorization"
+            "default": "authorization"
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"

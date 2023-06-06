@@ -35,7 +35,7 @@
             "description": "Create a counterparty via API ",
             "requestBody": {
                 "description": "Create Counterparty Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
@@ -134,7 +134,7 @@
             ],
             "requestBody": {
                 "description": "Update Counterparty Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

@@ -19,10 +19,7 @@
                     "pattern": "^.*$"
                 },
                 "street2": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
+                    "type": "string",
                     "pattern": "^.*$"
                 },
                 "city": {
@@ -40,7 +37,7 @@
                 },
                 "country": {
                     "type": "string",
-                    "const": "US"
+                    "default": "US"
                 }
             },
             "additionalProperties": false,
@@ -53,10 +50,7 @@
             ]
         },
         "jwtSubject": {
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": "string"
         },
         "contact": {
             "title": "Contact",
@@ -367,7 +361,7 @@
                         },
                         "type": {
                             "type": "string",
-                            "const": "org"
+                            "default": "org"
                         }
                     },
                     "additionalProperties": false,
@@ -393,7 +387,7 @@
                         },
                         "type": {
                             "type": "string",
-                            "const": "bank"
+                            "default": "bank"
                         }
                     },
                     "additionalProperties": false,
@@ -536,7 +530,7 @@
                             },
                             "type": {
                                 "type": "string",
-                                "const": "customer"
+                                "default": "customer"
                             }
                         }
                     }
@@ -800,7 +794,9 @@
                         "attributes": {
                             "type": "object",
                             "properties": {
-                                "tags": "object"
+                                "tags": {
+                                    "type": "object"
+                                }
                             }
                         }
                     }
@@ -831,41 +827,44 @@
                     "type": "string"
                 },
                 "attributes": {
-                    "card": {
-                        "type": "object",
-                        "title": "CardLimits",
-                        "properties": {
-                            "limits": {
-                                "type": "object",
-                                "properties": {
-                                    "dailyWithdrawal": {
-                                        "type": "number"
-                                    },
-                                    "dailyDeposit": {
-                                        "type": "number"
-                                    },
-                                    "dailyPurchase": {
-                                        "type": "number"
-                                    },
-                                    "dailyCardTransaction": {
-                                        "type": "number"
+                    "type": "object",
+                    "properties": {
+                        "card": {
+                            "type": "object",
+                            "title": "CardLimits",
+                            "properties": {
+                                "limits": {
+                                    "type": "object",
+                                    "properties": {
+                                        "dailyWithdrawal": {
+                                            "type": "number"
+                                        },
+                                        "dailyDeposit": {
+                                            "type": "number"
+                                        },
+                                        "dailyPurchase": {
+                                            "type": "number"
+                                        },
+                                        "dailyCardTransaction": {
+                                            "type": "number"
+                                        }
                                     }
-                                }
-                            },
-                            "totalsDaily": {
-                                "type": "object",
-                                "properties": {
-                                    "withdrawal": {
-                                        "type": "number"
-                                    },
-                                    "deposit": {
-                                        "type": "number"
-                                    },
-                                    "purchase": {
-                                        "type": "number"
-                                    },
-                                    "cardTransaction": {
-                                        "type": "number"
+                                },
+                                "totalsDaily": {
+                                    "type": "object",
+                                    "properties": {
+                                        "withdrawal": {
+                                            "type": "number"
+                                        },
+                                        "deposit": {
+                                            "type": "number"
+                                        },
+                                        "purchase": {
+                                            "type": "number"
+                                        },
+                                        "cardTransaction": {
+                                            "type": "number"
+                                        }
                                     }
                                 }
                             }
@@ -896,7 +895,7 @@
                         },
                         "reasonText": {
                             "type": "string",
-                            "nullable": "true"
+                            "nullable": true
                         }
                     }
                 }
@@ -935,7 +934,7 @@
                                 "IdentityTheft",
                                 "LinkedToFraudulentCustomer"
                             ],
-                            "nullable": "true"
+                            "nullable": true
                         }
                     }
                 }

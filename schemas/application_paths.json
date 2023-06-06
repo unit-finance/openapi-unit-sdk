@@ -83,7 +83,7 @@
 			],
 			"requestBody":{
 				"description":"Update Application Request",
-				"required":"true",
+				"required": true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
@@ -127,7 +127,7 @@
 			"description":"Cancel a Application via API ",
 			"requestBody":{
 				"description":"Cancel Application Request",
-				"required":"true",
+				"required": true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
@@ -284,7 +284,7 @@
 			"description":"Create an Application via API ",
 			"requestBody":{
 				"description":"Create Application Request",
-				"required":"true",
+				"required": true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
@@ -407,7 +407,7 @@
 			"description":"Create an Application Form via API ",
 			"requestBody":{
 				"description":"Create Application Form Request",
-				"required":"true",
+				"required": true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
@@ -520,7 +520,7 @@
 			"description":"Upload a file via API ",
 			"requestBody":{
 				"description":"Upload File",
-				"required":"true",
+				"required": true,
 				"content":{
 					"image/png":{
 						"schema":{
@@ -548,8 +548,11 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"data":{
+								"type": "object",
+								"properties":{
+									"data":{
 									"$ref":"document.json"
+									}
 								}
 							}
 						}

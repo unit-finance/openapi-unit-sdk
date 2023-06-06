@@ -21,7 +21,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "const": "transaction"
+                                    "default": "transaction"
                                 },
                                 "id": {
                                     "$ref": "types.json#/definitions/identifier"
@@ -101,10 +101,7 @@
                                     "format": "date"
                                 },
                                 "reason": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ]
+                                    "type": "string"
                                 },
                                 "expectedCompletionDate": {
                                     "type": "string",
@@ -189,10 +186,7 @@
                                     "format": "date"
                                 },
                                 "reason": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ]
+                                    "type": "string"
                                 }
                             },
                             "required": [
@@ -269,10 +263,7 @@
                                     "format": "date"
                                 },
                                 "reason": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ]
+                                    "type": "string"
                                 },
                                 "imadOmad": {
                                     "type": "object",
@@ -355,10 +346,7 @@
                                     ]
                                 },
                                 "reason": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ]
+                                    "type": "string"
                                 }
                             },
                             "required": [

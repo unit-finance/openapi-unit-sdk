@@ -16,15 +16,11 @@
                     "$ref": "types.json#/definitions/fullName"
                 },
                 "ssn": {
-                    "type": [
-                        "string"
-                    ],
+                    "type": "string",
                     "pattern": "^\\d{9}$"
                 },
                 "passport": {
-                    "type": [
-                        "string"
-                    ]
+                    "type": "string"
                 },
                 "nationality": {
                     "$ref": "types.json#/definitions/country"
@@ -153,7 +149,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "applicationForm"
+            "default": "applicationForm"
         },
         "attributes": {
             "type": "object",

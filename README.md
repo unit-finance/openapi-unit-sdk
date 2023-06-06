@@ -1,3 +1,4 @@
+
 # unit - OpenAPI
 
 Unit uses the `OpenAPI 3.0.2`  specification to structure our documentation and provide users with the ability to generate client libraries in various programming languages.
@@ -15,6 +16,14 @@ java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l java -o uni
 ```
 
 ### unit-python
+We recommend using our script which can be found in this repository:
+
+```commandline
+python "./generate.py"
+```
+
+Or generate with swagger-codegen-cli: 
+
 ```
 java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l python -o unit
 ```

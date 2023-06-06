@@ -4,7 +4,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "const": "institution"
+            "default": "institution"
         },
         "attributes": {
             "type": "object",

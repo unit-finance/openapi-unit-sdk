@@ -1,10 +1,9 @@
 {
-    "title": "Create Customer Token",
     "type": "object",
     "properties": {
         "type": {
             "type": "string",
-            "const": "customerToken"
+            "default": "customerToken"
         },
         "attributes": {
             "type": "object",
@@ -46,13 +45,7 @@
                         }
                     }
                 }
-            },
-            "additionalProperties": false
+            }
         }
-    },
-    "additionalProperties": false,
-    "required": [
-        "type",
-        "attributes"
-    ]
+    }
 }

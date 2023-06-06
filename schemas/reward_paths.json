@@ -9,7 +9,7 @@
             "description": "Create a Reward via API ",
             "requestBody": {
                 "description": "Create Reward Request",
-                "required": "true",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {

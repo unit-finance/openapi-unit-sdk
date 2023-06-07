@@ -1,9 +1,11 @@
 
-# Unit - OpenAPI (beta)
+# Unit - OpenAPI
 
-Unit uses the `OpenAPI 3.0.2`  specification to structure our documentation and provide users with the ability to generate client libraries in various programming languages.
+In an effort to standardize and allow for easier access to the Unit API, we offer a `OpenAPI 3.0.2` specification of our API. You may use this along with the approprite generator to auto-generate client libraries in your the coding language of your choice. Note that there is no gurantee that the generated SDK will be fully compatible with our API and may need some alterations or modifications to become operational.
 
-This approach ensures a consistent and uniform typing experience across all external interfaces. Below, we have included some examples for working with this specification.
+Below, we have included some examples of applications of this specification in some of the more common languages, along with some tweaks we found useful. 
+
+We encourage our SDK community to share feedback of experience with our specification to help identify and address any potential issues. Any feedback will play a crucial role in improving and refining our OpenAPI schema.
 
 ## Generating Unit Client Libraries
 Below you can find examples for generating client libraries using Swagger Generator

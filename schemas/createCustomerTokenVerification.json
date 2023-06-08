@@ -1,5 +1,4 @@
 {
-    "title": "Create Customer Token Verification",
     "type": "object",
     "properties": {
         "type": {

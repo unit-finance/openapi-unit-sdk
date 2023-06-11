@@ -360,10 +360,7 @@
                             "type": "object",
                             "properties": {
                                 "data": {
-                                    "type": "object",
-                                    "properties": {
-                                        "$ref": "types.json#/definitions/freezeAccountRequest"
-                                    }
+                                    "$ref": "types.json#/definitions/freezeAccountRequest"
                                 }
                             }
                         }

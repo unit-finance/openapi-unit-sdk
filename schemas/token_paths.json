@@ -204,10 +204,7 @@
                             "type": "object",
                             "properties": {
                                 "data": {
-                                    "type": "object",
-                                    "properties": {
-                                        "$ref": "createCustomerToken.json"
-                                    }
+                                    "$ref": "createCustomerToken.json"
                                 }
                             }
                         }
@@ -262,10 +259,7 @@
                             "type": "object",
                             "properties": {
                                 "data": {
-                                    "type": "object",
-                                    "properties": {
-                                        "$ref": "createCustomerTokenVerification.json"
-                                    }
+                                    "$ref": "createCustomerTokenVerification.json"
                                 }
                             }
                         }

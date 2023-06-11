@@ -371,6 +371,31 @@
 				"data"
 			]
 		},
+		"Relationship":{
+			"type":"object",
+			"properties":{
+				"data":{
+					"type":"object",
+					"properties":{
+						"id":{
+							"$ref":"types.json#/definitions/identifier"
+						},
+						"type":{
+							"type":"string"
+						}
+					},
+					"additionalProperties":false,
+					"required":[
+						"id",
+						"type"
+					]
+				}
+			},
+			"additionalProperties":false,
+			"required":[
+				"data"
+			]
+		},
 		"bankRelationship":{
 			"type":"object",
 			"properties":{

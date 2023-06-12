@@ -39,6 +39,11 @@ npm install @openapitools/openapi-generator-cli
 openapi-generator-cli generate -g typescript-axios -i openapi.json -o unit -p npmName=TypescriptUnitClient
 ```
 
+### unit-ruby
+```commandline
+openapi-generator-cli generate -g ruby -i openapi.json -o unit
+```
+
 ## Generated Clients Usage Examples
 
 #### Python

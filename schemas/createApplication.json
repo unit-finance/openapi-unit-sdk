@@ -245,10 +245,6 @@
                                 }
                             ]
                         },
-                        "soleProprietorship": {
-                            "type": "boolean",
-                            "default": false
-                        },
                         "tags": {
                             "$ref": "tags.json#/definitions/tags"
                         },
@@ -275,6 +271,144 @@
                         },
                         "evaluationParams": {
                             "$ref": "#/definitions/evaluationParams"
+                        },
+                        "occupation": {
+                          "$ref": "types.json#/definitions/occupation"
+                        },
+                        "annualIncome": {
+                          "$ref": "types.json#/definitions/annualIncome"
+                        },
+                        "sourceOfIncome": {
+                          "$ref": "types.json#/definitions/sourceOfIncome"
+                        },
+                        "annualRevenue": {
+                          "$ref": "types.json#/definitions/annualRevenue"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "fullName",
+                        "email",
+                        "phone",
+                        "address",
+                        "dateOfBirth"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes"
+            ]
+        },
+        "CreateSoleProprietorApplication": {
+            "title": "Create Sole Proprietor Application",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "individualApplication"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "fullName": {
+                            "$ref": "types.json#/definitions/fullName"
+                        },
+                        "email": {
+                            "$ref": "types.json#/definitions/email"
+                        },
+                        "phone": {
+                            "$ref": "types.json#/definitions/phone"
+                        },
+                        "ssn": {
+                            "type": "string",
+                            "pattern": "^\\d{9}$"
+                        },
+                        "passport": {
+                            "type": "string"
+                        },
+                        "nationality": {
+                            "$ref": "types.json#/definitions/country",
+                            "nullable": true
+                        },
+                        "address": {
+                            "$ref": "types.json#/definitions/address"
+                        },
+                        "dateOfBirth": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "dba": {
+                            "type": "string"
+                        },
+                        "ein": {
+                            "type": "string",
+                            "pattern": "^\\d{9}$"
+                        },
+                        "ip": {
+                            "oneOf": [
+                                {
+                                    "type": "string",
+                                    "format": "ipv4"
+                                },
+                                {
+                                    "type": "string",
+                                    "format": "ipv6"
+                                }
+                            ]
+                        },
+                        "soleProprietorship": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "powerOfAttorneyAgent": {
+                            "$ref": "#/definitions/createPowerOfAttorneyAgent"
+                        },
+                        "industry": {
+                            "$ref": "types.json#/definitions/industry"
+                        },
+                        "evaluationParams": {
+                            "$ref": "#/definitions/evaluationParams"
+                        },
+                        "occupation": {
+                          "$ref": "types.json#/definitions/occupation"
+                        },
+                        "annualIncome": {
+                          "$ref": "types.json#/definitions/annualIncome"
+                        },
+                        "sourceOfIncome": {
+                          "$ref": "types.json#/definitions/sourceOfIncome"
+                        },
+                        "annualRevenue": {
+                          "$ref": "types.json#/definitions/annualRevenue"
+                        },
+                        "numberOfEmployees": {
+                          "$ref": "types.json#/definitions/numberOfEmployees"
+                        },
+                        "businessVertical": {
+                            "$ref": "types.json#/definitions/businessVertical"
+                        },
+                        "website": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "idempotencyKey": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        "deviceFingerprints": {
+                            "type": "array",
+                            "maxItems": 1,
+                            "items": {
+                                "$ref": "types.json#/definitions/deviceFingerprint"
+                            }
+                        },
+                        "jwtSubject": {
+                            "$ref": "types.json#/definitions/jwtSubject"
                         }
                     },
                     "additionalProperties": false,
@@ -411,6 +545,104 @@
                 "type",
                 "attributes"
             ]
+        },
+        "CreateTrustApplication": {
+            "title": "Create Trust Application",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "trustApplication"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        "stateOfIncorporation": {
+                            "type": "string",
+                            "minLength": 2,
+                            "maxLength": 2
+                        },
+                        "revocability": {
+                            "type": "string",
+                            "enum": ["Revocable", "Irrevocable"]
+                        },
+                        "sourceOfFunds": {
+                            "type": "string",
+                            "enum": ["Inheritance", "Salary", "Savings", "InvestmentReturns", "Gifts"]
+                        },
+                        "taxId": {
+                            "type": "string"
+                        },
+                        "grantor": {
+                            "$ref": "types.json#/definitions/grantor"
+                        },
+                        "trustees": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "types.json#/definitions/trustee"
+                            }
+                        },
+                        "beneficiaries": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "types.json#/definitions/beneficiary"
+                            }
+                        },
+                        "contact": {
+                            "$ref": "types.json#/definitions/trustContact"
+                        },
+                        "ip": {
+                            "oneOf": [
+                                {
+                                    "type": "string",
+                                    "format": "ipv4"
+                                },
+                                {
+                                    "type": "string",
+                                    "format": "ipv6"
+                                }
+                            ]
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "idempotencyKey": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        "deviceFingerprints": {
+                            "type": "array",
+                            "maxItems": 1,
+                            "items": {
+                                "$ref": "types.json#/definitions/deviceFingerprint"
+                            }
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "name",
+                        "stateOfIncorporation",
+                        "revocability",
+                        "sourceOfFunds",
+                        "taxId",
+                        "grantor",
+                        "trustees",
+                        "beneficiaries",
+                        "contact"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes"
+            ]
         }
     },
     "title": "Create Application",
@@ -420,7 +652,13 @@
             "$ref": "#/definitions/CreateIndividualApplication"
         },
         {
+            "$ref": "#/definitions/CreateSoleProprietorApplication"
+        },
+        {
             "$ref": "#/definitions/CreateBusinessApplication"
+        },
+        {
+            "$ref": "#/definitions/CreateTrustApplication"
         }
     ]
 }

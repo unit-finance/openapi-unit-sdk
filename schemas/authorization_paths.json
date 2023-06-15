@@ -299,7 +299,7 @@
     "decline_authorization_requests": {
         "post": {
             "tags": [
-                "Get Authorization Request"
+                "Decline Authorization Request"
             ],
             "operationId": "execute",
             "parameters": [
@@ -310,11 +310,27 @@
                     "name": "authorizationId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the authorization request to get"
+                    "description": "ID of the authorization request to decline"
                 }
             ],
-            "summary": "Get Authorization Request by Id",
-            "description": "Get a Authorization Request from API ",
+            "summary": "Decline Authorization Request",
+            "description": "Decline Authorization Request via API ",
+            "requestBody":{
+				"description":"Decline Authorization Request Request",
+				"required": true,
+				"content":{
+					"application/vnd.api+json":{
+						"schema":{
+							"type":"object",
+							"properties":{
+								"data":{
+									"$ref":"authorization_request.json#/definitions/declineAuthorizationRequest"
+								}
+							}
+						}
+					}
+				}
+			},
             "responses": {
                 "200": {
                     "description": "Successful Response",

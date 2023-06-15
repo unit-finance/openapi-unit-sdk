@@ -29,6 +29,39 @@
                 "attributes"
             ]
         },
+        "declineAuthorizationRequest": {
+            "title": "Decline Authorization Request",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "declineAuthorizationRequest"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "reason": {
+                            "type": "string",
+                            "enum": [
+                                "AccountClosed",
+                                "CardExceedsAmountLimit",
+                                "DoNotHonor",
+                                "InsufficientFunds",
+                                "InvalidMerchant",
+                                "ReferToCardIssuer",
+                                "RestrictedCard",
+                                "TransactionNotPermittedToCardholder"
+                            ]
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes"
+            ]
+        },
         "authorizationRequestRelationships": {
             "type": "object",
             "title": "authorizationRequestRelationships",

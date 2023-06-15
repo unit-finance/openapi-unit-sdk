@@ -5,7 +5,9 @@ import unittest
 
 from e2e_tests.helpers.helpers import create_api_client
 from swagger_client import GetAuthorizationRequestApi, GetListAuthorizationRequestsApi, ApproveAuthorizationRequestApi, \
-    AuthorizationIdApproveBody, ApproveAuthorizationRequest
+    AuthorizationIdApproveBody, ApproveAuthorizationRequest, DeclineAuthorizationRequestApi, \
+    DeclineAuthorizationRequestAttributes
+from swagger_client.models.decline_authorization_request import DeclineAuthorizationRequest
 
 
 class TestAuthorizationRequestsApi(unittest.TestCase):
@@ -35,6 +37,13 @@ class TestAuthorizationRequestsApi(unittest.TestCase):
     # def test_approve_authorization_requests(self):
     #     req = ApproveAuthorizationRequest(attributes={"amount": 50})
     #     res = ApproveAuthorizationRequestApi(self.api_client).execute({"data": req}, authorization_id).data
+    #     assert "AuthorizationRequest" in res.type
+    #     assert res.id == authorization_id
+    #
+    # def test_decline_authorization_requests(self):
+    #     attr = DeclineAuthorizationRequestAttributes(reason="RestrictedCard")
+    #     req = DeclineAuthorizationRequest(attributes=attr)
+    #     res = DeclineAuthorizationRequestApi(self.api_client).execute({"data": req}, authorization_id).data
     #     assert "AuthorizationRequest" in res.type
     #     assert res.id == authorization_id
 

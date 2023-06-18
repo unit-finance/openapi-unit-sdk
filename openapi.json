@@ -241,6 +241,12 @@
 		},
 		"/disputes/{disputeId}":{
 			"$ref":"./schemas/dispute_paths.json#/get_dispute"
+		},
+		"/repayments":{
+			"$ref":"./schemas/repayment_paths.json#/repayments"
+		},
+		"/repayments/{repaymentId}":{
+			"$ref":"./schemas/repayment_paths.json#/repayment"
 		}
 	},
 	"components":{
@@ -254,7 +260,8 @@
 	},
 	"security":[
 		{
-			"bearerAuth": [
+			"bearerAuth":[
+
 			]
 		}
 	]

@@ -90,7 +90,7 @@
                       "properties": {
                         "type": {
                           "type": "string",
-                          "const": "creditAccount"
+                          "default": "creditAccount"
                         },
                         "id": {
                           "$ref": "types.json#/definitions/identifier"
@@ -116,7 +116,7 @@
                       "properties": {
                         "type": {
                           "type": "string",
-                          "const": "counterparty"
+                          "default": "counterparty"
                         },
                         "id": {
                           "$ref": "types.json#/definitions/identifier"
@@ -172,7 +172,7 @@
                       "properties": {
                         "type": {
                           "type": "string",
-                          "const": "payment"
+                          "default": "payment"
                         },
                         "id": {
                           "$ref": "types.json#/definitions/identifier"
@@ -282,7 +282,7 @@
                       "properties": {
                         "type": {
                           "type": "string",
-                          "const": "creditAccount"
+                          "default": "creditAccount"
                         },
                         "id": {
                           "$ref": "types.json#/definitions/identifier"
@@ -308,7 +308,7 @@
                       "properties": {
                         "type": {
                           "type": "string",
-                          "const": "account"
+                          "default": "account"
                         },
                         "id": {
                           "$ref": "types.json#/definitions/identifier"
@@ -364,7 +364,7 @@
                       "properties": {
                         "type": {
                           "type": "string",
-                          "const": "payment"
+                          "default": "payment"
                         },
                         "id": {
                           "$ref": "types.json#/definitions/identifier"

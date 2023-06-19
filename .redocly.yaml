@@ -1,0 +1,15 @@
+extends:
+  - recommended
+
+rules:
+  operation-operationId-unique:
+    enabled: false
+    severity: off
+
+  operation-4xx-response:
+    enabled: false
+    severity: off
+
+  spec:
+    severity: error
+    rule-option-one: '#/definitions'

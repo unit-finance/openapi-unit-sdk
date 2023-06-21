@@ -54,6 +54,10 @@
       "type": "string",
       "pattern": "^\\d{4}$"
     },
+		"state": {
+      "type": "string",
+      "pattern": "^((A[LKSZR])|(C[AOT])|(D[EC])|(F[ML])|(G[AU])|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EHDAINSOT])|(N[EVHJMYCD])|(MP)|(O[HKR])|(P[WAR])|(RI)|(S[CD])|(T[NX])|(UT)|(V[TIA])|(W[AVIY]))$"
+    },
 		"jwtSubject":{
 			"type":"string",
 			"nullable":true

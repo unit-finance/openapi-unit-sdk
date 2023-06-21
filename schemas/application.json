@@ -302,7 +302,8 @@
                 },
                 {
                     "type": "object",
-        "attributes": {
+                    "properties": {
+                      "attributes": {
             "type": "object",
             "properties": {
                 "createdAt": {
@@ -332,10 +333,8 @@
                     "type": "string"
                 },
                 "dba": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string",
+                    "nullable": true
                 },
                 "ein": {
                     "type": "string",
@@ -361,7 +360,7 @@
                     "$ref": "types.json#/definitions/address"
                 },
                 "contact": {
-                    "$ref": "types.json#/definitions/responseContact"
+                    "$ref": "types.json#/definitions/contact"
                 },
                 "officer": {
                     "$ref": "#/definitions/officer"
@@ -462,6 +461,10 @@
                 "beneficialOwners"
             ]
         },
+                        "relationships": {
+                            "$ref": "#/definitions/applicationRelationships"
+                        }
+                    },
                     "additionalProperties": false,
                     "required": [
                         "id",
@@ -682,7 +685,7 @@
                                     "format": "date"
                                 },
                                 "stateOfIncorporation": {
-                                    "type": "string"
+                                    "$ref": "types.json#/definitions/state"
                                 },
                                 "revocability": {
                                     "$ref": "types.json#/definitions/revocability"

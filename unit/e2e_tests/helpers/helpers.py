@@ -34,9 +34,9 @@ def create_individual_application_request(ssn):
     attr = CreateIndividualApplicationAttributes(FullName("Peter", "Parker"), "jone.doe1@unit-finance.com",
                                                  Phone("1", "2025550108"), ssn,
                                                  address=address, date_of_birth="2001-08-10", dba="Piedpiper Inc",
-                                                 ein="123456789", sole_proprietorship=False,
-                                                 idempotency_key=str(uuid.uuid1()),
-                                                 jwt_subject="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9fQ")
+                                                 ein="123456789", idempotency_key=str(uuid.uuid1()),
+                                                 jwt_subject="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9fQ",
+                                                 occupation="ArchitectOrEngineer")
 
     return {"data": CreateIndividualApplication(attributes=attr)}
 
@@ -63,7 +63,7 @@ def create_business_application_request():
                                                state_of_incorporation="CA", entity_type="Corporation",
                                                ein="123456789", officer=officer, contact=contact,
                                                beneficial_owners=beneficial_owners,
-                                               idempotency_key=str(uuid.uuid1()))
+                                               idempotency_key=str(uuid.uuid1()), year_of_incorporation="2002")
 
     return {"data": CreateBusinessApplication(attributes=attr)}
 

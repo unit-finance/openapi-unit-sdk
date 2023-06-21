@@ -36,7 +36,7 @@ class TestCardApi(unittest.TestCase):
                 requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
     def test_card_list_and_get(self):
-        res = GetListOfCardsApi(self.api_client).get_list_cards().data
+        res = GetListOfCardsApi(self.api_client).execute().data
         for card in res:
             assert card.type in card_types
             response_card = GetCardApi(self.api_client).find_card_by_id(card.id).data

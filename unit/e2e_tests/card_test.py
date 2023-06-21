@@ -6,7 +6,9 @@ from e2e_tests.helpers.helpers import create_api_client, create_individual_appli
     create_business_application_request
 from swagger_client import GetListOfCardsApi, GetCardApi, CreateApplicationApi, CreateDepositAccountAttributes, \
     CreateDepositAccountRelationships, CreateDepositAccount, CreateAnAccountApi, CreateACardApi, FreezeACardApi, \
-    UnfreezeACardApi, CloseACardApi, ReportCardAsStolenApi, ReportCardAsLostApi
+    UnfreezeACardApi, CloseACardApi, ReportCardAsStolenApi, ReportCardAsLostApi, CreateIndividualDebitCard, \
+    CreateIndividualDebitCardAttributes, Address, CardLevelLimits, CreateCardRelationships, Relationship, \
+    RelationshipData
 
 card_types = ["individualDebitCard", "businessDebitCard", "individualVirtualDebitCard", "businessVirtualDebitCard",
               "businessCreditCard", "businessVirtualCreditCard"]
@@ -22,33 +24,32 @@ class TestCardApi(unittest.TestCase):
     """CardApi unit test stubs"""
 
     def setUp(self):
-        token = os.environ.get('TOKEN')
         self.api_client = create_api_client()
 
     def tearDown(self):
         pass
 
     def test_card_list(self):
-        res = GetListOfCardsApi(self.api_client).get_list_cards().data
+        res = GetListOfCardsApi(self.api_client).execute().data
         for card in res:
             assert card.type in card_types
             if card.attributes.status == "Inactive":
                 requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
     def test_card_list_and_get(self):
-        res = GetListOfCardsApi(self.api_client).get_list_cards().data
+        res = GetListOfCardsApi(self.api_client).execute().data
         for card in res:
             assert card.type in card_types
-            response_card = GetCardApi(self.api_client).find_card_by_id(card.id).data
+            response_card = GetCardApi(self.api_client).execute(card.id).data
             assert card.id == response_card.id
             assert card.type == response_card.type
 
     def create_individual_customer(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_individual_application_request()).data
+        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request()).data
         return app.relationships.customer.data.id
 
     def create_business_customer(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_business_application_request()).data
+        app = CreateApplicationApi(self.api_client).execute(create_business_application_request()).data
         return app.relationships.customer.data.id
 
     def create_deposit_account(self):
@@ -59,7 +60,7 @@ class TestCardApi(unittest.TestCase):
                                                                     "id": customer_id}})
         req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        response = CreateAnAccountApi(self.api_client).execute({"data": req})
         return response.data
 
     def create_deposit_account_for_business(self):
@@ -70,41 +71,18 @@ class TestCardApi(unittest.TestCase):
                                                                              "id": customer_id}})
         req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        response = CreateAnAccountApi(self.api_client).execute({"data": req})
         return response.data
 
     def create_individual_debit_card(self):
         account_id = self.create_deposit_account().id
+        attributes = CreateIndividualDebitCardAttributes(Address("5230 Newell Rd", None, "Palo Alto", "CA", "94303"),
+                                                         limits=CardLevelLimits(50000, 50000, 50000, 70000))
+        req = CreateIndividualDebitCard("individualDebitCard", attributes,
+                                        CreateCardRelationships(Relationship(RelationshipData(account_id,
+                                                                                              "depositAccount"))))
 
-        req = {
-            "type": "individualDebitCard",
-            "attributes": {
-                "shippingAddress": {
-                    "street": "5230 Newell Rd",
-                    "street2": None,
-                    "city": "Palo Alto",
-                    "state": "CA",
-                    "postalCode": "94303",
-                    "country": "US"
-                },
-                "limits": {
-                    "dailyWithdrawal": 50000,
-                    "dailyPurchase": 50000,
-                    "monthlyWithdrawal": 500000,
-                    "monthlyPurchase": 700000
-                }
-            },
-            "relationships": {
-                "account": {
-                    "data": {
-                        "type": "depositAccount",
-                        "id": account_id
-                    }
-                }
-            }
-        }
-
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
@@ -166,7 +144,7 @@ class TestCardApi(unittest.TestCase):
             }
         }
 
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
@@ -220,7 +198,7 @@ class TestCardApi(unittest.TestCase):
             }
           }
 
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
@@ -255,7 +233,7 @@ class TestCardApi(unittest.TestCase):
                 }
             }
         }
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 

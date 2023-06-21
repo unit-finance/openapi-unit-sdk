@@ -27,15 +27,14 @@ def create_address(street, city, state, postal_code, country):
     return Address(street=street, city=city, state=state, postal_code=postal_code, country=country)
 
 
-def create_individual_application_request(ssn):
+def create_individual_application_request(ssn="721074426"):
     address = Address(street="1600 Pennsylvania Avenue Northwest", city="Washington", state="CA",
                       postal_code="20500",
                       country="US")
     attr = CreateIndividualApplicationAttributes(FullName("Peter", "Parker"), "jone.doe1@unit-finance.com",
                                                  Phone("1", "2025550108"), ssn,
                                                  address=address, date_of_birth="2001-08-10", dba="Piedpiper Inc",
-                                                 ein="123456789", sole_proprietorship=False,
-                                                 idempotency_key=str(uuid.uuid1()),
+                                                 ein="123456789", idempotency_key=str(uuid.uuid1()),
                                                  jwt_subject="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9fQ")
 
     return {"data": CreateIndividualApplication(attributes=attr)}

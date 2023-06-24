@@ -1,0 +1,16 @@
+name: lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: redocly openapi lint
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: lint
+        uses: ./ # run as private action
+        with:
+          args: 'openapi.json'

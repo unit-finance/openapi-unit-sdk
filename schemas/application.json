@@ -303,144 +303,164 @@
                 {
                     "type": "object",
                     "properties": {
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "createdAt": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                },
-                                "updatedAt": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                },
-                                "status": {
-                                    "$ref": "types.json#/definitions/applicationStatus"
-                                },
-                                "message": {
-                                    "type": "string"
-                                },
-                                "evaluationOutcome": {
-                                    "type": "string"
-                                },
-                                "evaluationId": {
-                                    "type": "string"
-                                },
-                                "evaluationEntityId": {
-                                    "type": "string"
-                                },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "dba": {
-                                    "type": "string",
-                                    "nullable": true
-                                },
-                                "ein": {
-                                    "type": "string",
-                                    "pattern": "^\\d{9}$"
-                                },
-                                "entityType": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Corporation",
-                                        "LLC",
-                                        "Partnership"
-                                    ]
-                                },
-                                "dateOfIncorporation": {
-                                    "type": "string",
-                                    "format": "date"
-                                },
-                                "stateOfIncorporation": {
-                                    "type": "string"
-                                },
-                                "purpose": {
-                                    "type": "string"
-                                },
-                                "phone": {
-                                    "$ref": "types.json#/definitions/phone"
-                                },
-                                "address": {
-                                    "type": "object"
-                                },
-                                "contact": {
-                                    "$ref": "types.json#/definitions/contact"
-                                },
-                                "officer": {
-                                    "$ref": "#/definitions/officer"
-                                },
-                                "ip": {
-                                    "type": "string"
-                                },
-                                "website": {
-                                    "type": "string"
-                                },
-                                "beneficialOwners": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/beneficialOwner"
-                                    }
-                                },
-                                "decisionMethod": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Manually",
-                                        "Automatically"
-                                    ]
-                                },
-                                "decisionUserId": {
-                                    "type": "string"
-                                },
-                                "decisionReason": {
-                                    "type": "string"
-                                },
-                                "decisionDateTime": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "riskRate": {
-                                    "type": "string",
-                                    "enum": [
-                                        "low",
-                                        "medium",
-                                        "high"
-                                    ]
-                                },
-                                "evaluationFlags": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "ipLocationDetails": {
-                                    "type": "object"
-                                },
-                                "phoneLocationDetails": {
-                                    "type": "object"
-                                },
-                                "archived": {
-                                    "type": "boolean"
-                                },
-                                "industry": {
-                                    "$ref": "types.json#/definitions/industry"
-                                }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                                "createdAt",
-                                "status",
-                                "name",
-                                "entityType",
-                                "stateOfIncorporation",
-                                "contact",
-                                "officer",
-                                "beneficialOwners"
-                            ]
-                        },
+                      "attributes": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "status": {
+                    "$ref": "types.json#/definitions/applicationStatus"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "evaluationOutcome": {
+                    "type": "string"
+                },
+                "evaluationId": {
+                    "type": "string"
+                },
+                "evaluationEntityId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "dba": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "ein": {
+                    "type": "string",
+                    "pattern": "^\\d{9}$"
+                },
+                "entityType": {
+                    "$ref": "types.json#/definitions/entityType"
+                },
+                "dateOfIncorporation": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "stateOfIncorporation": {
+                    "$ref": "types.json#/definitions/state"
+                },
+                "purpose": {
+                    "type": "string"
+                },
+                "phone": {
+                    "$ref": "types.json#/definitions/phone"
+                },
+                "address": {
+                    "$ref": "types.json#/definitions/address"
+                },
+                "contact": {
+                    "$ref": "types.json#/definitions/contact"
+                },
+                "officer": {
+                    "$ref": "#/definitions/officer"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                },
+                "beneficialOwners": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/beneficialOwner"
+                    }
+                },
+                "decisionMethod": {
+                    "type": "string",
+                    "enum": [
+                        "Manually",
+                        "Automatically"
+                    ]
+                },
+                "decisionUserId": {
+                    "type": "string"
+                },
+                "decisionReason": {
+                    "type": "string"
+                },
+                "decisionDateTime": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "tags": {
+                    "$ref": "tags.json#/definitions/tags"
+                },
+                "riskRate": {
+                    "type": "string",
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
+                },
+                "evaluationFlags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ipLocationDetails": {
+                    "type": "object"
+                },
+                "phoneLocationDetails": {
+                    "type": "object"
+                },
+                "archived": {
+                    "type": "boolean"
+                },
+                "industry": {
+                    "$ref": "types.json#/definitions/industry"
+                },
+                "annualRevenue": {
+                    "$ref": "types.json#/definitions/businessAnnualRevenue"
+                },
+                "numberOfEmployees": {
+                    "$ref": "types.json#/definitions/businessNumberOfEmployees"
+                },
+                "cashFlow": {
+                    "$ref": "types.json#/definitions/cashFlow"
+                },
+                "yearOfIncorporation": {
+                    "$ref": "types.json#/definitions/year"
+                },
+                "countriesOfOperation": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "types.json#/definitions/country"
+                    },
+                    "minItems": 1
+                },
+                "stockSymbol": {
+                    "type": "string"
+                },
+                "businessVertical": {
+                    "$ref": "types.json#/definitions/businessVertical"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "createdAt",
+                "status",
+                "name",
+                "entityType",
+                "stateOfIncorporation",
+                "contact",
+                "officer",
+                "beneficialOwners"
+            ]
+        },
                         "relationships": {
                             "$ref": "#/definitions/applicationRelationships"
                         }
@@ -665,7 +685,7 @@
                                     "format": "date"
                                 },
                                 "stateOfIncorporation": {
-                                    "type": "string"
+                                    "$ref": "types.json#/definitions/state"
                                 },
                                 "revocability": {
                                     "$ref": "types.json#/definitions/revocability"

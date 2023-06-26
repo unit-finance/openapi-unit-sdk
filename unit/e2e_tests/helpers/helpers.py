@@ -27,16 +27,16 @@ def create_address(street, city, state, postal_code, country):
     return Address(street=street, city=city, state=state, postal_code=postal_code, country=country)
 
 
-def create_individual_application_request(ssn):
+def create_individual_application_request(ssn="721074426"):
     address = Address(street="1600 Pennsylvania Avenue Northwest", city="Washington", state="CA",
                       postal_code="20500",
                       country="US")
     attr = CreateIndividualApplicationAttributes(FullName("Peter", "Parker"), "jone.doe1@unit-finance.com",
                                                  Phone("1", "2025550108"), ssn,
-                                                 address=address, date_of_birth="2001-08-10", dba="Piedpiper Inc",
-                                                 ein="123456789", sole_proprietorship=False,
+                                                 address=address, date_of_birth="2001-08-10",
                                                  idempotency_key=str(uuid.uuid1()),
-                                                 jwt_subject="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9fQ")
+                                                 jwt_subject="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9fQ",
+                                                 occupation="ArchitectOrEngineer")
 
     return {"data": CreateIndividualApplication(attributes=attr)}
 
@@ -63,7 +63,8 @@ def create_business_application_request():
                                                state_of_incorporation="CA", entity_type="Corporation",
                                                ein="123456789", officer=officer, contact=contact,
                                                beneficial_owners=beneficial_owners,
-                                               idempotency_key=str(uuid.uuid1()))
+                                               idempotency_key=str(uuid.uuid1()), year_of_incorporation="2002",
+                                               business_vertical="TechnologyMediaOrTelecom")
 
     return {"data": CreateBusinessApplication(attributes=attr)}
 

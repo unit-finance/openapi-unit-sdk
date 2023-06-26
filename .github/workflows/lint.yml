@@ -14,5 +14,8 @@ jobs:
         with:
           node-version: 16.x
 
-      - run: npm i @redocly/cli@latest
-      - run: redocly lint openapi.json
+      - name: Install Redocly CLI
+        run: npm i @redocly/cli@latest
+
+      - name: Run Redocly Lint
+        run: npx redocly lint openapi.json

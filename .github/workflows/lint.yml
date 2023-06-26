@@ -10,7 +10,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: lint
-        uses: ./ # run as private action
-        with:
-          args: 'openapi.json'
+      - uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+      - run: npm i @redocly/cli@latest
+      - run: redocly lint openapi.json

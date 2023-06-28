@@ -111,7 +111,7 @@
                                 "title": "UnitWebhookResponse",
                                 "properties": {
                                     "data": {
-                                        "type": "object"
+                                        "$ref": "webhook.json"
                                     }
                                 }
                             }

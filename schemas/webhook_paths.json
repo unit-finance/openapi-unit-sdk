@@ -60,19 +60,24 @@
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                        "application/vnd.api+json": {
                             "schema": {
-                                "type": "array",
+                                "type": "object",
                                 "title": "UnitWebhooksListResponse",
-                                "items": {
-                                    "$ref": "webhook.json"
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "webhook.json"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        },
+            },
         "post": {
             "tags": [
                 "Create Webhook"

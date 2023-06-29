@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rspec"
-require_relative  "../../unit/lib/openapi_client"
+require_relative "../../unit/lib/openapi_client"
 
 
 module SpecHelper
@@ -78,7 +78,6 @@ module SpecHelper
     file.close
     contents
   end
-
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

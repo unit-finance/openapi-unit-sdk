@@ -19,10 +19,10 @@ RSpec.describe 'Account' do
             idempotency_key: "1234567890" }
 
         ), relationships: OpenapiClient::CreateDepositAccountRelationships.new(
-        customer:
-          { "data":
-              { "type": "customer",
-                "id": "751009" } }).to_hash
+          customer:
+            { "data":
+                { "type": "customer",
+                  "id": "751009" } }).to_hash
       ).to_hash }
 
       response = api_instance.execute(request)

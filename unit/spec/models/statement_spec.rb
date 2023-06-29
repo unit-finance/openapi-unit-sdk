@@ -32,7 +32,7 @@ RSpec.describe 'Statement' do
     end
 
     it 'should get an instance of pdf statement' do
-      opts = {query_params: { customer_id: "22603" }}
+      opts = { query_params: { customer_id: "22603" } }
       _request, status_code, _headers = pdf_statement.execute_with_http_info("15554784", opts)
       expect(status_code).to eq(200)
       expect(_request).to include("PDF")
@@ -45,4 +45,3 @@ RSpec.describe 'Statement' do
     end
   end
 end
-

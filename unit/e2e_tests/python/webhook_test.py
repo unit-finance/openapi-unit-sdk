@@ -1,8 +1,7 @@
 import unittest
 
-from e2e_tests.helpers.helpers import create_api_client
+from e2e_tests.python.helpers.helpers import create_api_client
 from swagger_client import GetListWebhooksApi, CreateWebhookApi
-from swagger_client.models.create_webhook import CreateWebhook
 from swagger_client.models.webhooks_data import WebhooksData
 from swagger_client.models.webhooks_data_attributes import WebhooksDataAttributes
 

@@ -1,13 +1,9 @@
 from __future__ import absolute_import
 
-import os
 import unittest
 
-from e2e_tests.helpers.helpers import create_api_client
-from swagger_client import GetAuthorizationRequestApi, GetListAuthorizationRequestsApi, ApproveAuthorizationRequestApi, \
-    AuthorizationIdApproveBody, ApproveAuthorizationRequest, DeclineAuthorizationRequestApi, \
-    DeclineAuthorizationRequestAttributes
-from swagger_client.models.decline_authorization_request import DeclineAuthorizationRequest
+from e2e_tests.python.helpers.helpers import create_api_client
+from swagger_client import GetAuthorizationRequestApi, GetListAuthorizationRequestsApi
 
 
 class TestAuthorizationRequestsApi(unittest.TestCase):

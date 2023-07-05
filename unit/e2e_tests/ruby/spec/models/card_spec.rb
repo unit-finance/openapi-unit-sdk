@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'openapi_client'
-require_relative "../../../../spec/spec_helper.rb"
+require_relative "../spec_helper.rb"
 
 RSpec.describe 'Card' do
   before do

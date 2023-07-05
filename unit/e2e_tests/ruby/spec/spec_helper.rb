@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "rspec"
-require_relative "../../unit/lib/openapi_client"
 
+require_relative "../../../../unit/lib/openapi_client"
 
 module SpecHelper
   attr_reader :configuration

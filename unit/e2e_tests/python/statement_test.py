@@ -1,6 +1,6 @@
 import unittest
 
-from e2e_tests.helpers.helpers import create_api_client
+from e2e_tests.python.helpers.helpers import create_api_client
 from swagger_client import GetListStatementsApi, GetStatementPDFApi, GetStatementHTMLApi
 
 

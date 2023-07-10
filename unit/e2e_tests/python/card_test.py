@@ -2,7 +2,7 @@ import os
 import unittest
 import requests
 
-from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request, \
+from e2e_tests.python.helpers.helpers import create_api_client, create_individual_application_request, \
     create_business_application_request
 from swagger_client import GetListOfCardsApi, GetCardApi, CreateApplicationApi, CreateDepositAccountAttributes, \
     CreateDepositAccountRelationships, CreateDepositAccount, CreateAnAccountApi, CreateACardApi, FreezeACardApi, \

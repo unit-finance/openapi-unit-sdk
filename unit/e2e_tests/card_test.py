@@ -6,7 +6,11 @@ from e2e_tests.helpers.helpers import create_api_client, create_individual_appli
     create_business_application_request
 from swagger_client import GetListOfCardsApi, GetCardApi, CreateApplicationApi, CreateDepositAccountAttributes, \
     CreateDepositAccountRelationships, CreateDepositAccount, CreateAnAccountApi, CreateACardApi, FreezeACardApi, \
-    UnfreezeACardApi, CloseACardApi, ReportCardAsStolenApi, ReportCardAsLostApi
+    UnfreezeACardApi, CloseACardApi, ReportCardAsStolenApi, ReportCardAsLostApi, CreateIndividualDebitCard, \
+    CreateIndividualDebitCardAttributes, Address, CardLevelLimits, CreateCardRelationships, Relationship, \
+    RelationshipData, CreateBusinessDebitCard, CreateBusinessDebitCardAttributes, FullName, Phone, \
+    CreateBusinessVirtualDebitCardAttributes, CreateBusinessVirtualDebitCard, CreateIndividualVirtualDebitCard, \
+    CreateIndividualVirtualDebitCardAttributes
 
 card_types = ["individualDebitCard", "businessDebitCard", "individualVirtualDebitCard", "businessVirtualDebitCard",
               "businessCreditCard", "businessVirtualCreditCard"]
@@ -17,38 +21,43 @@ headers = {
             "user-agent": "unit-python-sdk"
         }
 
+address = Address("5230 Newell Rd", city="Palo Alto", state="CA", postal_code="94303")
+limits = CardLevelLimits(50000, 50000, 50000, 70000)
+
 
 class TestCardApi(unittest.TestCase):
     """CardApi unit test stubs"""
 
     def setUp(self):
-        token = os.environ.get('TOKEN')
         self.api_client = create_api_client()
 
     def tearDown(self):
         pass
 
+    def create_card_relationships(self, account_id: str, _type="depositAccount"):
+        return CreateCardRelationships(Relationship(RelationshipData(account_id, _type)))
+
     def test_card_list(self):
-        res = GetListOfCardsApi(self.api_client).get_list_cards().data
+        res = GetListOfCardsApi(self.api_client).execute().data
         for card in res:
             assert card.type in card_types
             if card.attributes.status == "Inactive":
                 requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
     def test_card_list_and_get(self):
-        res = GetListOfCardsApi(self.api_client).get_list_cards().data
+        res = GetListOfCardsApi(self.api_client).execute().data
         for card in res:
             assert card.type in card_types
-            response_card = GetCardApi(self.api_client).find_card_by_id(card.id).data
+            response_card = GetCardApi(self.api_client).execute(card.id).data
             assert card.id == response_card.id
             assert card.type == response_card.type
 
     def create_individual_customer(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_individual_application_request()).data
+        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request()).data
         return app.relationships.customer.data.id
 
     def create_business_customer(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_business_application_request()).data
+        app = CreateApplicationApi(self.api_client).execute(create_business_application_request()).data
         return app.relationships.customer.data.id
 
     def create_deposit_account(self):
@@ -57,9 +66,9 @@ class TestCardApi(unittest.TestCase):
         attributes = CreateDepositAccountAttributes("checking", {"purpose": "sdk-test"})
         relationships = CreateDepositAccountRelationships(customer={"data": {"type": "customer",
                                                                     "id": customer_id}})
-        req = CreateDepositAccount("depositAccount", attributes, relationships)
+        req = CreateDepositAccount(attributes=attributes, relationships=relationships)
 
-        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        response = CreateAnAccountApi(self.api_client).execute({"data": req})
         return response.data
 
     def create_deposit_account_for_business(self):
@@ -68,43 +77,17 @@ class TestCardApi(unittest.TestCase):
         attributes = CreateDepositAccountAttributes("checking", {"purpose": "sdk-test-business-account"})
         relationships = CreateDepositAccountRelationships(customer={"data": {"type": "customer",
                                                                              "id": customer_id}})
-        req = CreateDepositAccount("depositAccount", attributes, relationships)
+        req = CreateDepositAccount(attributes=attributes, relationships=relationships)
 
-        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        response = CreateAnAccountApi(self.api_client).execute({"data": req})
         return response.data
 
     def create_individual_debit_card(self):
         account_id = self.create_deposit_account().id
+        attributes = CreateIndividualDebitCardAttributes(address, limits=limits)
+        req = CreateIndividualDebitCard(attributes=attributes, relationships=self.create_card_relationships(account_id))
 
-        req = {
-            "type": "individualDebitCard",
-            "attributes": {
-                "shippingAddress": {
-                    "street": "5230 Newell Rd",
-                    "street2": None,
-                    "city": "Palo Alto",
-                    "state": "CA",
-                    "postalCode": "94303",
-                    "country": "US"
-                },
-                "limits": {
-                    "dailyWithdrawal": 50000,
-                    "dailyPurchase": 50000,
-                    "monthlyWithdrawal": 500000,
-                    "monthlyPurchase": 700000
-                }
-            },
-            "relationships": {
-                "account": {
-                    "data": {
-                        "type": "depositAccount",
-                        "id": account_id
-                    }
-                }
-            }
-        }
-
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
@@ -120,53 +103,12 @@ class TestCardApi(unittest.TestCase):
     def create_business_debit_card(self):
         account_id = self.create_deposit_account_for_business().id
 
-        req = {
-            "type": "businessDebitCard",
-            "attributes": {
-                "shippingAddress": {
-                    "street": "5230 Newell Rd",
-                    "street2": None,
-                    "city": "Palo Alto",
-                    "state": "CA",
-                    "postalCode": "94303",
-                    "country": "US"
-                },
-                "fullName": {
-                    "first": "Richard",
-                    "last": "Hendricks"
-                },
-                "address": {
-                    "street": "5230 Newell Rd",
-                    "street2": None,
-                    "city": "Palo Alto",
-                    "state": "CA",
-                    "postalCode": "94303",
-                    "country": "US"
-                },
-                "dateOfBirth": "2001-08-10",
-                "email": "richard@piedpiper.com",
-                "phone": {
-                    "countryCode": "1",
-                    "number": "5555555555"
-                },
-                "limits": {
-                    "dailyWithdrawal": 50000,
-                    "dailyPurchase": 50000,
-                    "monthlyWithdrawal": 500000,
-                    "monthlyPurchase": 700000
-                }
-            },
-            "relationships": {
-                "account": {
-                    "data": {
-                        "type": "depositAccount",
-                        "id": account_id
-                    }
-                }
-            }
-        }
+        attributes = CreateBusinessDebitCardAttributes(address, address, FullName("Richard", "Hendricks"),
+                                                       Phone("1", "5555555555"), "richard@piedpiper.com", "2001-08-10",
+                                                       limits=limits)
+        req = CreateBusinessDebitCard(attributes=attributes, relationships=self.create_card_relationships(account_id))
 
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
@@ -182,45 +124,12 @@ class TestCardApi(unittest.TestCase):
     def create_business_virtual_debit_card(self):
         account_id = self.create_deposit_account_for_business().id
 
-        req = {
-            "type": "businessVirtualDebitCard",
-            "attributes": {
-              "fullName": {
-                "first": "Richard",
-                "last": "Hendricks"
-              },
-              "address": {
-                "street": "5230 Newell Rd",
-                "street2": None,
-                "city": "Palo Alto",
-                "state": "CA",
-                "postalCode": "94303",
-                "country": "US"
-              },
-              "dateOfBirth": "2001-08-10",
-              "email": "richard@piedpiper.com",
-              "phone": {
-                "countryCode": "1",
-                "number": "5555555555"
-              },
-              "limits": {
-                "dailyWithdrawal": 50000,
-                "dailyPurchase": 50000,
-                "monthlyWithdrawal": 500000,
-                "monthlyPurchase": 700000
-              }
-            },
-            "relationships": {
-              "account": {
-                "data": {
-                  "type": "depositAccount",
-                  "id": account_id
-                }
-              }
-            }
-          }
+        attributes = CreateBusinessVirtualDebitCardAttributes(address, FullName("Richard", "Hendricks"),
+                                                              Phone("1", "5555555555"), "richard@piedpiper.com",
+                                                              "2001-08-10", limits=limits)
+        req = CreateBusinessVirtualDebitCard(attributes=attributes, relationships=self.create_card_relationships(account_id))
 
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
@@ -236,26 +145,11 @@ class TestCardApi(unittest.TestCase):
     def create_individual_virtual_debit_card(self):
         account_id = self.create_deposit_account().id
 
-        req = {
-            "type": "individualVirtualDebitCard",
-            "attributes": {
-                "limits": {
-                    "dailyWithdrawal": 50000,
-                    "dailyPurchase": 50000,
-                    "monthlyWithdrawal": 500000,
-                    "monthlyPurchase": 700000
-                }
-            },
-            "relationships": {
-                "account": {
-                    "data": {
-                        "type": "depositAccount",
-                        "id": account_id
-                    }
-                }
-            }
-        }
-        card = CreateACardApi(self.api_client).create_card({"data": req}).data
+        attributes = CreateIndividualVirtualDebitCardAttributes(limits=limits)
+        req = CreateIndividualVirtualDebitCard(attributes=attributes,
+                                               relationships=self.create_card_relationships(account_id))
+
+        card = CreateACardApi(self.api_client).execute({"data": req}).data
 
         res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
@@ -271,14 +165,14 @@ class TestCardApi(unittest.TestCase):
     def test_freeze_and_unfreeze_card(self):
         card = self.create_individual_debit_card()
         assert card.type == "individualDebitCard"
-        response = FreezeACardApi(self.api_client).freeze_card(card.id).data
+        response = FreezeACardApi(self.api_client).execute(card.id).data
         assert response.attributes.status == "Frozen"
-        response = UnfreezeACardApi(self.api_client).unfreeze_card(card.id).data
+        response = UnfreezeACardApi(self.api_client).execute(card.id).data
         assert response.attributes.status != "Frozen"
 
     def test_close_card(self):
         card = self.create_individual_debit_card()
-        response = CloseACardApi(self.api_client).close_card(card.id).data
+        response = CloseACardApi(self.api_client).execute(card.id).data
         assert response.attributes.status == "ClosedByCustomer"
 
     # def test_replace_card(self):
@@ -290,13 +184,13 @@ class TestCardApi(unittest.TestCase):
 
     def test_report_stolen_card(self):
         card = self.create_individual_debit_card()
-        response = ReportCardAsStolenApi(self.api_client).report_stolen_card(card.id)
+        response = ReportCardAsStolenApi(self.api_client).execute(card.id)
         assert response.data.type in card_types
         assert response.data.attributes.status == "Stolen"
 
     def test_report_lost_card(self):
         card = self.create_individual_debit_card()
-        response = ReportCardAsLostApi(self.api_client).report_lost_card(card.id)
+        response = ReportCardAsLostApi(self.api_client).execute(card.id)
         assert response.data.type in card_types
         assert response.data.attributes.status == "Lost"
 

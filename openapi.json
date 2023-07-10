@@ -247,6 +247,15 @@
 		},
 		"/repayments/{repaymentId}":{
 			"$ref":"./schemas/repayment_paths.json#/repayment"
+		},
+		"/check-payments/":{
+			"$ref":"./schemas/check_payment_paths.json#/check_payments"
+		},
+		"/check-payments/{checkPaymentId}":{
+			"$ref":"./schemas/check_payment_paths.json#/check_payment"
+		},
+		"/check-payments/{checkPaymentId}/approve":{
+			"$ref":"./schemas/check_payment_paths.json#/check_payment_approve"
 		}
 	},
 	"components":{

@@ -1,0 +1,159 @@
+{
+  "check_payments": {
+    "get": {
+      "tags": [
+        "Get List Check Payments"
+      ],
+      "operationId": "execute",
+      "summary": "Get List Check Payments",
+      "description": "Get List Check Payments from API ",
+      "parameters": [
+        {
+          "name": "page",
+          "in": "query",
+          "schema": {
+            "$ref": "types.json#/definitions/listPageParametersObject"
+          }
+        },
+        {
+          "name": "filter",
+          "in": "query",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string"
+              },
+              "status": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Pending",
+                    "Approved"
+                  ]
+                }
+              },
+              "email": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "createdAt",
+              "-createdAt"
+            ],
+            "default": "-createdAt"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json; charset=utf-8": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "check_payment.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "check_payment": {
+    "get": {
+      "tags": [
+        "Get Check Payment"
+      ],
+      "operationId": "execute",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "checkPaymentId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the check payment to get"
+        }
+      ],
+      "summary": "Get Check Payment by Id",
+      "description": "Get a Check Payment from API ",
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json; charset=utf-8": {
+              "schema": {
+                "type": "object",
+                "title": "UnitCheckPaymentResponse",
+                "properties": {
+                  "data": {
+                    "$ref": "check_payment.json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "check_payment_approve": {
+    "post": {
+      "tags": [
+        "Approve Check Payment"
+      ],
+      "operationId": "execute",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "checkPaymentId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the check payment to approve"
+        }
+      ],
+      "summary": "Approve Check Payment by Id",
+      "description": "Approve a Check Payment via API ",
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json; charset=utf-8": {
+              "schema": {
+                "type": "object",
+                "title": "UnitCheckPaymentResponse",
+                "properties": {
+                  "data": {
+                    "$ref": "check_payment.json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

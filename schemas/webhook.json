@@ -23,7 +23,11 @@
                     "type": "string"
                 },
                 "status": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
                 },
                 "contentType": {
                     "type": "string",

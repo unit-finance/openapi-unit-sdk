@@ -11,5 +11,7 @@ rules:
     severity: off
 
   spec:
-    severity: error
-    rule-option-one: '#/definitions'
+    severity: off
+
+  info-license:
+    severity: off

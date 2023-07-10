@@ -11,7 +11,7 @@ rules:
     severity: off
 
   spec:
-    severity: off
+    severity: warn
 
   info-license:
     severity: off

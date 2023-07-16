@@ -60,19 +60,24 @@
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                        "application/vnd.api+json": {
                             "schema": {
-                                "type": "array",
+                                "type": "object",
                                 "title": "UnitWebhooksListResponse",
-                                "items": {
-                                    "$ref": "webhook.json"
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "webhook.json"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        },
+            },
         "post": {
             "tags": [
                 "Create Webhook"
@@ -87,9 +92,58 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
+                            "title": "createWebhook",
                             "properties": {
                                 "data": {
-                                    "$ref": "webhook.json"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "webhook"
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                            "label": {
+                                                "type": "string"
+                                            },
+                                            "url": {
+                                                "type": "string"
+                                            },
+                                            "token": {
+                                                "type": "string"
+                                            },
+                                            "contentType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "Json",
+                                                    "JsonAPI"
+                                                ]
+                                            },
+                                            "deliveryMode": {
+                                                "type": "string"
+                                            },
+                                            "includeResources": {
+                                                "type": "boolean"
+                                            },
+                                            "subscriptionType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "All",
+                                                    "OnlyAuthorizationRequest"
+                                                ]
+                                            }
+                                        },
+                                            "additionalProperties": false,
+                                            "required": [
+                                                "label",
+                                                "url",
+                                                "token",
+                                                "contentType",
+                                                "deliveryMode"
+                                            ]
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -106,7 +160,7 @@
                                 "title": "UnitWebhookResponse",
                                 "properties": {
                                     "data": {
-                                        "type": "object"
+                                        "$ref": "webhook.json"
                                     }
                                 }
                             }

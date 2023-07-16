@@ -2,13 +2,11 @@ from __future__ import absolute_import
 
 import os
 import unittest
-import uuid
-from datetime import date, timedelta
 
-from e2e_tests.helpers.helpers import create_api_client, create_individual_application_request, create_business_application_request
+from e2e_tests.python.helpers.helpers import create_api_client, create_individual_application_request, create_business_application_request
 from swagger_client import GetListApplicationsApi, CreateApplicationApi, UploadADocumentForAnApplicationApi, \
     CreateSoleProprietorApplication, CreateSoleProprietorApplicationAttributes, Address, FullName, Phone, \
-    CreateTrustApplication, CreateTrustApplicationAttributes, Grantor, Trustee, Beneficiary, Contact, TrustContact
+    CreateTrustApplication, CreateTrustApplicationAttributes, Grantor, Trustee, Beneficiary, TrustContact
 from swagger_client.api.get_application_api import GetApplicationApi  # noqa: E501
 
 ApplicationTypes = ["individualApplication", "businessApplication", "trustApplication"]

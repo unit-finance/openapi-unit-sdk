@@ -213,8 +213,12 @@
 								"items":{
 									"type":"string",
 									"enum":[
+										"AwaitingDocuments",
+										"PendingReview",
 										"Pending",
-										"Approved"
+										"Approved",
+										"Denied",
+										"Canceled"
 									]
 								}
 							},

@@ -26,8 +26,13 @@
 								"items":{
 									"type":"string",
 									"enum":[
-										"Pending",
-										"Approved"
+										"Inactive",
+										"Active",
+										"Stolen",
+										"Lost",
+										"Frozen",
+										"ClosedByCustomer",
+										"SuspectedFraud"
 									]
 								}
 							},

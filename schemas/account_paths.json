@@ -6,7 +6,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "account.json"
+                        "$ref": "#/components/schemas/Account"
                     },
                     {
                         "type": "object",
@@ -170,7 +170,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "account.json"
+                        "$ref": "#/components/schemas/Account"
                     },
                     {
                         "type": "object",
@@ -651,7 +651,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "account.json"
+                                            "$ref": "#/components/schemas/Account"
                                         }
                                     },
                                     "included": {

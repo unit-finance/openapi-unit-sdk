@@ -60,12 +60,17 @@
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                        "application/vnd.api+json": {
                             "schema": {
-                                "type": "array",
+                                "type": "object",
                                 "title": "UnitTransactionsListResponse",
-                                "items": {
-                                    "$ref": "transaction.json"
+                                "properties": {
+                                    "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "transaction.json"
+                                            }
+                                    }
                                 }
                             }
                         }

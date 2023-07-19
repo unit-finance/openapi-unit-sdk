@@ -52,6 +52,14 @@ class TestCardApi(unittest.TestCase):
             assert card.id == response_card.id
             assert card.type == response_card.type
 
+    def test_card_list_with_filters(self):
+        res = GetListOfCardsApi(self.api_client).execute({"filter": {"status": ["Active"]}}).data
+        for card in res:
+            assert card.type in card_types
+            response_card = GetCardApi(self.api_client).execute(card.id).data
+            assert card.id == response_card.id
+            assert card.type == response_card.type
+
     def create_individual_customer(self):
         app = CreateApplicationApi(self.api_client).execute(create_individual_application_request()).data
         return app.relationships.customer.data.id

@@ -140,7 +140,7 @@
                                 "title": "depositAccountRelationships",
                                 "properties": {
                                     "customer": {
-                                        "$ref": "customer.json#/definitions/customerLinkage"
+                                        "$ref": "customer_paths.json#/components/schemas/customerLinkage"
                                     }
                                 },
                                 "oneOf": [
@@ -267,7 +267,7 @@
                                 "title": "creditAccountRelationships",
                                 "properties": {
                                     "customer": {
-                                        "$ref": "customer.json#/definitions/customerLinkage"
+                                        "$ref": "customer_paths.json#/components/schemas/customerLinkage"
                                     }
                                 },
                                 "required": [
@@ -576,7 +576,7 @@
                     "included": {
                         "type": "array",
                         "items": {
-                            "$ref": "customer.json"
+                            "$ref": "customer_paths.json#/components/schemas/Customer"
                         }
                     }
                 }
@@ -657,7 +657,7 @@
                                     "included": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "customer.json"
+                                            "$ref": "customer_paths.json#/components/schemas/Customer"
                                         }
                                     }
                                 }

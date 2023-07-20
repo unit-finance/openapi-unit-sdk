@@ -587,7 +587,7 @@
                                     "type": "string"
                                 },
                                 "counterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/counterparty"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
@@ -967,7 +967,7 @@
                                     "type": "string"
                                 },
                                 "counterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/counterparty"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
@@ -1482,7 +1482,7 @@
                                     "type": "string"
                                 },
                                 "counterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/counterparty"
                                 },
                                 "description": {
                                     "type": "string"
@@ -1999,7 +1999,7 @@
                                     "$ref": "types.json#/definitions/address"
                                 },
                                 "counterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/counterparty"
                                 },
                                 "tags": {
                                     "$ref": "tags.json#/definitions/tags"
@@ -2646,7 +2646,7 @@
                                     ]
                                 },
                                 "counterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/counterparty"
                                 },
                                 "amount": {
                                     "type": "integer"
@@ -2827,7 +2827,7 @@
                                     ]
                                 },
                                 "receiverCounterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/counterparty"
                                 },
                                 "amount": {
                                     "type": "integer"

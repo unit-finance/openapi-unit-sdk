@@ -117,7 +117,7 @@
                                     ]
                                 },
                                 "counterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/counterparty"
                                 },
                                 "idempotencyKey": {
                                     "type": "string"
@@ -402,7 +402,7 @@
                                     "type": "string"
                                 },
                                 "counterparty": {
-                                    "$ref": "payment.json#/definitions/wireCounterparty"
+                                    "$ref": "payments_paths.json#/components/schemas/wireCounterparty"
                                 },
                                 "idempotencyKey": {
                                     "type": "string"
@@ -526,7 +526,7 @@
                                     "type": "object",
                                     "properties": {
                                         "astra": {
-                                            "$ref": "payment.json#/definitions/astra"
+                                            "$ref": "payments_paths.json#/components/schemas/astra"
                                         }
                                     }
                                 }

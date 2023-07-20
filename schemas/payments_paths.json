@@ -1,4 +1,604 @@
 {
+    "components": {
+        "schemas": {
+            "paymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "types.json#/definitions/Relationship"
+                    },
+                    "counterparty": {
+                        "$ref": "types.json#/definitions/Relationship"
+                    },
+                    "counterpartyAccount": {
+                        "$ref": "types.json#/definitions/Relationship"
+                    },
+                    "transaction": {
+                        "type": "object",
+                        "title": "transactionRelationship",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "AchPayment": {
+                "title": "ACH Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Credit",
+                                            "Debit"
+                                        ]
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 50
+                                    },
+                                    "addenda": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "counterparty": {
+                                        "$ref": "#/components/schemas/counterparty"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/definitions/tags"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Rejected",
+                                            "Clearing",
+                                            "Sent",
+                                            "Canceled",
+                                            "Returned"
+                                        ]
+                                    },
+                                    "settlementDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    },
+                                    "expectedCompletionDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "secCode": {
+                                        "type": "string"
+                                    },
+                                    "traceNumber": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "status",
+                                    "description",
+                                    "amount",
+                                    "direction"
+                                ],
+                                "additionalProperties": true
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/paymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "type",
+                            "id",
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "BookPayment": {
+                "title": "Book Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Credit",
+                                            "Debit"
+                                        ]
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Rejected",
+                                            "Clearing",
+                                            "Sent",
+                                            "Canceled",
+                                            "Returned"
+                                        ]
+                                    },
+                                    "settlementDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "description",
+                                    "status"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/paymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "type",
+                            "id",
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "WirePayment": {
+                "title": "Wire Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Credit"
+                                        ]
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 50
+                                    },
+                                    "counterparty": {
+                                        "$ref": "#/components/schemas/wireCounterparty"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Rejected",
+                                            "Clearing",
+                                            "Sent",
+                                            "Canceled",
+                                            "Returned"
+                                        ]
+                                    },
+                                    "settlementDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    },
+                                    "imadOmad": {
+                                        "type": "object",
+                                        "properties": {
+                                            "imad": {
+                                                "type": "string"
+                                            },
+                                            "omad": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "description",
+                                    "status"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/paymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "type",
+                            "id",
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "BillPayment": {
+                "title": "Bill Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Credit",
+                                            "Debit"
+                                        ]
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 50
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Initialized",
+                                            "Pending",
+                                            "Rejected",
+                                            "Clearing",
+                                            "Sent",
+                                            "Canceled",
+                                            "Returned"
+                                        ]
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "description",
+                                    "status"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/paymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "type",
+                            "id",
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "Payment": {
+                "title": "Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "types.json#/definitions/identifier"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "achPayment": "#/components/schemas/AchPayment",
+                        "bookPayment": "#/components/schemas/BookPayment",
+                        "wirePayment": "#/components/schemas/WirePayment",
+                        "billPayment": "#/components/schemas/BillPayment"
+                    }
+                }
+            },
+            "pushToCardPayment": {
+                "title": "Push To Card Payment Response",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Debit",
+                                            "Credit"
+                                        ]
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Rejected",
+                                            "Sent"
+                                        ]
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/definitions/tags"
+                                    },
+                                    "astraRoutineId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "description",
+                                    "status"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/paymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "type",
+                            "id",
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "counterparty": {
+                "title": "Counterparty",
+                "type": "object",
+                "properties": {
+                    "routingNumber": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "accountNumber": {
+                        "type": "string",
+                        "pattern": "^\\d{1,17}$"
+                    },
+                    "accountType": {
+                        "type": "string",
+                        "enum": [
+                            "Checking",
+                            "Savings",
+                            "Loan"
+                        ]
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "routingNumber",
+                    "accountNumber",
+                    "accountType",
+                    "name"
+                ]
+            },
+            "wireCounterparty": {
+                "title": "WireCounterparty",
+                "type": "object",
+                "properties": {
+                    "routingNumber": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "accountNumber": {
+                        "type": "string",
+                        "maxLength": 17
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                    },
+                    "address": {
+                        "$ref": "types.json#/definitions/address"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "routingNumber",
+                    "accountNumber",
+                    "address",
+                    "name"
+                ]
+            },
+            "astra": {
+                "title": "AstraPushToCardConfiguration",
+                "type": "object",
+                "properties": {
+                    "authToken": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "debitFeePercent": {
+                        "type": "number"
+                    },
+                    "institutionId": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "destinationCardId": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "routingNumber": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "accountNumber": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "accountName": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "referenceId": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "debitFeePercent",
+                    "institutionId",
+                    "destinationCardId",
+                    "routingNumber",
+                    "accountNumber",
+                    "referenceId"
+                ]
+            },
+            "UnitPaymentResponse": {
+                "type": "object",
+                "title": "UnitPaymentResponse",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Payment"
+                    }
+                }
+            },
+            "UnitPaymentsListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "payment.json"
+                        }
+                    }
+                }
+            }
+        }
+    },
     "get_and_create_payments": {
         "get": {
             "tags": [
@@ -47,19 +647,10 @@
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "title": "UnitPaymentResponse",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "data": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "payment.json"
-                                        }
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitPaymentsListResponse"
                             }
                         }
                     }
@@ -95,13 +686,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
                             }
                         }
                     }
@@ -141,13 +726,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
                             }
                         }
                     }
@@ -189,13 +768,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
                             }
                         }
                     }
@@ -228,13 +801,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
                             }
                         }
                     }
@@ -265,13 +832,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
                             }
                         }
                     }
@@ -311,13 +872,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "received_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
                             }
                         }
                     }

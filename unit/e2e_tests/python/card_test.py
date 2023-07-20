@@ -45,16 +45,25 @@ class TestCardApi(unittest.TestCase):
                 requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
     def test_card_list_and_get(self):
-        res = GetListOfCardsApi(self.api_client).execute().data
-        for card in res:
+        res = GetListOfCardsApi(self.api_client).execute()
+
+        assert res.included is None
+
+        for card in res.data:
             assert card.type in card_types
             response_card = GetCardApi(self.api_client).execute(card.id).data
             assert card.id == response_card.id
             assert card.type == response_card.type
 
     def test_card_list_with_filters(self):
-        res = GetListOfCardsApi(self.api_client).execute({"filter": {"status": ["Active"]}}).data
-        for card in res:
+        res = GetListOfCardsApi(self.api_client).execute(include="customer")
+
+        assert res.included is not None
+        #
+        # customer_id = res.included[0].get("id")
+        # res = GetListOfCardsApi(self.api_client).execute(filter=["customerId": customer_id])
+
+        for card in res.data:
             assert card.type in card_types
             response_card = GetCardApi(self.api_client).execute(card.id).data
             assert card.id == response_card.id

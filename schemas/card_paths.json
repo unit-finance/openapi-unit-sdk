@@ -85,8 +85,15 @@
 									},
 									"included":{
 										"type":"array",
-										"items":{
-											"type":"object"
+										"items": {
+											"oneOf": [
+												{
+													"$ref": "account.json"
+												},
+												{
+													"$ref": "customer.json"
+												}
+											]
 										}
 									}
 								}

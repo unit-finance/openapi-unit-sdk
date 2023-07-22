@@ -577,6 +577,232 @@
                     "referenceId"
                 ]
             },
+            "receivedPaymentRelationships": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "default": "account"
+                                },
+                                "id": {
+                                    "$ref": "types.json#/definitions/identifier"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "id"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ],
+                    "additionalProperties": false
+                },
+                "customer": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "businessCustomer",
+                                        "individualCustomer",
+                                        "customer"
+                                    ]
+                                },
+                                "id": {
+                                    "$ref": "types.json#/definitions/identifier"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "id"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ],
+                    "additionalProperties": false
+                },
+                "receivePaymentTransaction": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "default": "transaction"
+                                },
+                                "id": {
+                                    "$ref": "types.json#/definitions/identifier"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "id"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ],
+                    "additionalProperties": false
+                },
+                "paymentAdvanceTransaction": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "default": "transaction"
+                                },
+                                "id": {
+                                    "$ref": "types.json#/definitions/identifier"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "id"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ],
+                    "additionalProperties": false
+                },
+                "repayPaymentAdvanceTransaction": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "default": "transaction"
+                                },
+                                "id": {
+                                    "$ref": "types.json#/definitions/identifier"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "id"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "account",
+                "customer"
+            ],
+            "additionalProperties": false
+        },
+            "ReceivedPayment": {
+                "title": "Received Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "types.json#/definitions/identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "Pending",
+                                    "Advanced",
+                                    "Completed",
+                                    "Returned"
+                                ]
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "completionDate": {
+                                "type": "string"
+                            },
+                            "wasAdvanced": {
+                                "type": "boolean"
+                            },
+                            "companyName": {
+                                "type": "string"
+                            },
+                            "counterpartyRoutingNumber": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "addenda": {
+                                "type": "string"
+                            },
+                            "traceNumber": {
+                                "type": "string"
+                            },
+                            "secCode": {
+                                "type": "string",
+                                "minLength": 3,
+                                "maxLength": 3
+                            },
+                            "returnReason": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/definitions/tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "amount",
+                            "description",
+                            "status",
+                            "completionDate",
+                            "companyName",
+                            "counterpartyRoutingNumber",
+                            "traceNumber",
+                            "secCode"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/receivedPaymentRelationships"
+                    }
+                },
+                "additionalProperties": false
+            },
             "UnitPaymentResponse": {
                 "type": "object",
                 "title": "UnitPaymentResponse",
@@ -593,6 +819,28 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Payment"
+                        }
+                    }
+                }
+            },
+            "UnitReceivedPaymentResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ReceivedPayment"
+                        }
+                    }
+                }
+            },
+            "UnitReceivedPaymentListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ReceivedPayment"
                         }
                     }
                 }
@@ -832,7 +1080,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/UnitPaymentResponse"
+                                "$ref": "#/components/schemas/UnitReceivedPaymentResponse"
                             }
                         }
                     }
@@ -872,7 +1120,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/UnitPaymentResponse"
+                                "$ref": "#/components/schemas/UnitReceivedPaymentListResponse"
                             }
                         }
                     }
@@ -912,15 +1160,9 @@
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json": {
+                        "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "received_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitReceivedPaymentResponse"
                             }
                         }
                     }
@@ -953,13 +1195,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "received_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitReceivedPaymentResponse"
                             }
                         }
                     }

@@ -243,10 +243,10 @@
 			"$ref":"./schemas/dispute_paths.json#/get_dispute"
 		},
 		"/repayments":{
-			"$ref":"./schemas/repayment_paths.json#/repayments"
+			"$ref":"./schemas/repayment.json#/repayments"
 		},
 		"/repayments/{repaymentId}":{
-			"$ref":"./schemas/repayment_paths.json#/repayment"
+			"$ref":"./schemas/repayment.json#/repayment"
 		}
 	},
 	"components":{

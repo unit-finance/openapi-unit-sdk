@@ -592,7 +592,7 @@
                     "data": {
                         "type": "array",
                         "items": {
-                            "$ref": "payment.json"
+                            "$ref": "#/components/schemas/Payment"
                         }
                     }
                 }

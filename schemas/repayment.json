@@ -1,409 +1,587 @@
 {
-  "definitions": {
-    "AchRepayment": {
-      "title": "ACH Repayment",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "repayment.json"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
+  "components": {
+    "schemas": {
+      "AchRepayment": {
+        "title": "ACH Repayment",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Repayment"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "tags": {
+                    "$ref": "tags.json#/definitions/tags"
+                  },
+                  "sameDay": {
+                    "type": "boolean"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Pending",
+                      "PendingReview",
+                      "Sent",
+                      "Returned",
+                      "Rejected",
+                      "Clearing"
+                    ]
+                  }
                 },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "amount": {
-                  "type": "integer",
-                  "minimum": 1
-                },
-                "tags": {
-                  "$ref": "tags.json#/definitions/tags"
-                },
-                "sameDay": {
-                  "type": "boolean"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "Pending",
-                    "PendingReview",
-                    "Sent",
-                    "Returned",
-                    "Rejected",
-                    "Clearing"
-                  ]
-                }
+                "required": [
+                  "createdAt",
+                  "status",
+                  "amount"
+                ],
+                "additionalProperties": false
               },
-              "required": [
-                "createdAt",
-                "status",
-                "amount"
-              ],
-              "additionalProperties": false
-            },
-            "relationships": {
-              "type": "object",
-              "properties": {
-                "account": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "depositAccount",
-                            "account"
-                          ]
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "account": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "depositAccount",
+                              "account"
+                            ]
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "creditAccount": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "creditAccount"
+                  "creditAccount": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "default": "creditAccount"
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "counterparty": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "counterparty"
+                  "counterparty": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "default": "counterparty"
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "customer": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "businessCustomer",
-                            "individualCustomer",
-                            "customer"
-                          ]
+                  "customer": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "businessCustomer",
+                              "individualCustomer",
+                              "customer"
+                            ]
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "payment": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "payment"
+                  "payment": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "default": "payment"
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
+                  }
                 }
               }
             }
           }
-        }
-      ]
-    },
-    "BookRepayment": {
-      "title": "Book Repayment",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "repayment.json"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
+        ]
+      },
+      "BookRepayment": {
+        "title": "Book Repayment",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Repayment"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "tags": {
+                    "$ref": "tags.json#/definitions/tags"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Pending",
+                      "PendingReview",
+                      "Sent",
+                      "Returned",
+                      "Rejected"
+                    ]
+                  }
                 },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "amount": {
-                  "type": "integer",
-                  "minimum": 1
-                },
-                "tags": {
-                  "$ref": "tags.json#/definitions/tags"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "Pending",
-                    "PendingReview",
-                    "Sent",
-                    "Returned",
-                    "Rejected"
-                  ]
-                }
+                "required": [
+                  "createdAt",
+                  "status",
+                  "amount"
+                ],
+                "additionalProperties": false
               },
-              "required": [
-                "createdAt",
-                "status",
-                "amount"
-              ],
-              "additionalProperties": false
-            },
-            "relationships": {
-              "type": "object",
-              "properties": {
-                "account": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "depositAccount",
-                            "account"
-                          ]
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "account": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "depositAccount",
+                              "account"
+                            ]
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "creditAccount": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "creditAccount"
+                  "creditAccount": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "default": "creditAccount"
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "counterpartyAccount": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "account"
+                  "counterpartyAccount": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "default": "account"
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "customer": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "businessCustomer",
-                            "individualCustomer",
-                            "customer"
-                          ]
+                  "customer": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "businessCustomer",
+                              "individualCustomer",
+                              "customer"
+                            ]
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
                   },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "payment": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "payment"
+                  "payment": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "default": "payment"
+                          },
+                          "id": {
+                            "$ref": "types.json#/definitions/identifier"
+                          }
                         },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "additionalProperties": false
+                  }
                 }
               }
             }
           }
+        ]
+      },
+      "Repayment": {
+        "title": "Repayment Resource",
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "types.json#/definitions/identifier"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "achRepayment": "#/components/schemas/AchRepayment",
+            "bookRepayment": "#/components/schemas/BookRepayment"
+          }
         }
-      ]
+      },
+      "UnitRepaymentResponse": {
+        "type": "object",
+        "title": "UnitRepaymentResponse",
+        "properties": {
+            "data": {
+                "$ref": "#/components/schemas/Repayment"
+            }
+        }
+    }
     }
   },
-  "title": "Repayment Resource",
-  "type": "object",
-  "properties": {
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
+  "repayments": {
+        "get": {
+            "tags": [
+                "Get List Repayments"
+            ],
+            "operationId": "execute",
+            "summary": "Get List Repayments",
+            "description": "Get List Repayments from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Open",
+                                        "Frozen",
+                                        "Closed"
+                                    ]
+                                }
+                            },
+                            "fromBalance": {
+                                "type": "number"
+                            },
+                            "toBalance": {
+                                "type": "number"
+                            },
+                            "tags": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "title": "UnitRepaymentsListResponse",
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Repayment"
+                                        }
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "types.json#/definitions/unitError"
+                }
+            }
         },
-        "type": {
-            "type": "string"
+        "post": {
+            "tags": [
+                "Create a Repayment"
+            ],
+            "operationId": "execute",
+            "summary": "Create a Repayment",
+            "description": "Create a Repayment via API ",
+            "requestBody": {
+                "description": "Create a Repayment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "createRepayment.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitRepaymentResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
+                }
+            }
         }
     },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "achRepayment": "#/definitions/AchRepayment",
-            "bookRepayment": "#/definitions/BookRepayment"
+    "repayment": {
+        "get": {
+            "tags": [
+                "Get Repayment"
+            ],
+            "operationId": "execute",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "repaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the repayment to get"
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "summary": "Get Repayment by Id",
+            "description": "Get an Repayment from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitRepaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
+
 }

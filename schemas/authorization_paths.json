@@ -1,4 +1,99 @@
 {
+    "components": {
+        "schemas": {
+            "authorizationRelationships": {
+                "type": "object",
+                "title": "authorizationRelationships"
+            },
+            "Authorization": {
+                "title": "Authorization Document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "authorization"
+                    },
+                    "id": {
+                        "$ref": "types.json#/definitions/identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "cardLast4Digits": {
+                                "type": "string"
+                            },
+                            "merchant": {
+                                "$ref": "types.json#/definitions/merchant"
+                            },
+                            "recurring": {
+                                "type": "boolean"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "declineReason": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/definitions/tags"
+                            },
+                            "paymentMethod": {
+                                "type": "string"
+                            },
+                            "digitalWallet": {
+                                "type": "string"
+                            },
+                            "summary": {
+                                "type": "string"
+                            },
+                            "cardVerificationData": {
+                                "$ref": "types.json#/definitions/cardVerificationData"
+                            },
+                            "cardNetwork": {
+                                "type": "string"
+                            },
+                            "cashWithdrawalAmount": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "amount",
+                            "cardLast4Digits",
+                            "merchant",
+                            "recurring",
+                            "status"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/authorizationRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "type",
+                    "id",
+                    "relationships"
+                ]
+            },
+            "UnitAuthorizationResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Authorization"
+                    }
+                }
+            }
+        }
+    },
     "authorizations": {
         "get": {
             "tags": [
@@ -67,7 +162,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "authorization.json"
+                                            "$ref": "#/components/schemas/Authorization"
                                         }
                                     }
                                 }
@@ -110,13 +205,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitAuthorizationResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "authorization.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitAuthorizationResponse"
                             }
                         }
                     }

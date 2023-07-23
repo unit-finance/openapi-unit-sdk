@@ -84,6 +84,449 @@
                     "relationships"
                 ]
             },
+            "approveAuthorizationRequest": {
+                "title": "Approve Authorization Request",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "approveAuthorizationRequest"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "fundingAccount": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/definitions/tags"
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "type",
+                    "attributes"
+                ]
+            },
+            "declineAuthorizationRequest": {
+                "title": "Decline Authorization Request",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "declineAuthorizationRequest"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "reason": {
+                                "type": "string",
+                                "enum": [
+                                    "AccountClosed",
+                                    "CardExceedsAmountLimit",
+                                    "DoNotHonor",
+                                    "InsufficientFunds",
+                                    "InvalidMerchant",
+                                    "ReferToCardIssuer",
+                                    "RestrictedCard",
+                                    "TransactionNotPermittedToCardholder"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "type",
+                    "attributes"
+                ]
+            },
+            "authorizationRequestRelationships": {
+                "type": "object",
+                "title": "authorizationRequestRelationships",
+                "properties": {
+                    "customer": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "customer"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "account": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "account"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "fundingAccount": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "account"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "card": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "card"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "customer",
+                    "account",
+                    "card"
+                ],
+                "additionalProperties": false
+            },
+            "PurchaseAuthorizationRequest": {
+                "title": "PurchaseAuthorizationRequest Resource",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/AuthorizationRequest"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "partialApprovalAllowed": {
+                                        "type": "boolean"
+                                    },
+                                    "approvedAmount": {
+                                        "type": "integer"
+                                    },
+                                    "declineReason": {
+                                        "type": "string"
+                                    },
+                                    "merchant": {
+                                        "$ref": "types.json#/definitions/merchant"
+                                    },
+                                    "recurring": {
+                                        "type": "boolean"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/definitions/tags"
+                                    },
+                                    "healthcareAmounts": {
+                                        "$ref": "types.json#/definitions/healthcareAmounts"
+                                    },
+                                    "paymentMethod": {
+                                        "type": "string"
+                                    },
+                                    "digitalWallet": {
+                                        "type": "string"
+                                    },
+                                    "cardVerificationData": {
+                                        "$ref": "types.json#/definitions/cardVerificationData"
+                                    },
+                                    "ecommerce": {
+                                        "type": "boolean"
+                                    },
+                                    "cardPresent": {
+                                        "type": "boolean"
+                                    },
+                                    "cardNetwork": {
+                                        "type": "string"
+                                    },
+                                    "cashWithdrawalAmount": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "status",
+                                    "partialApprovalAllowed",
+                                    "merchant",
+                                    "recurring"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/authorizationRequestRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "CardTransactionAuthorizationRequest": {
+                "title": "CardTransactionAuthorizationRequest Resource",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/AuthorizationRequest"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "partialApprovalAllowed": {
+                                        "type": "boolean"
+                                    },
+                                    "approvedAmount": {
+                                        "type": "integer"
+                                    },
+                                    "declineReason": {
+                                        "type": "string"
+                                    },
+                                    "merchant": {
+                                        "$ref": "types.json#/definitions/merchant"
+                                    },
+                                    "recurring": {
+                                        "type": "boolean"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/definitions/tags"
+                                    },
+                                    "paymentMethod": {
+                                        "type": "string"
+                                    },
+                                    "digitalWallet": {
+                                        "type": "string"
+                                    },
+                                    "cardVerificationData": {
+                                        "$ref": "types.json#/definitions/cardVerificationData"
+                                    },
+                                    "cardNetwork": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "status",
+                                    "partialApprovalAllowed",
+                                    "merchant",
+                                    "recurring"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/authorizationRequestRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "AtmAuthorizationRequest": {
+            "title": "AtmAuthorizationRequest Resource",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/components/schemas/AuthorizationRequest"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "attributes": {
+                            "type": "object",
+                            "properties": {
+                                "createdAt": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                },
+                                "amount": {
+                                    "type": "integer"
+                                },
+                                "status": {
+                                    "type": "string"
+                                },
+                                "partialApprovalAllowed": {
+                                    "type": "boolean"
+                                },
+                                "approvedAmount": {
+                                    "type": "integer"
+                                },
+                                "declineReason": {
+                                    "type": "string"
+                                },
+                                "direction": {
+                                    "type": "string"
+                                },
+                                "atmName": {
+                                    "type": "string"
+                                },
+                                "atmLocation": {
+                                    "type": "string"
+                                },
+                                "surcharge": {
+                                    "type": "integer"
+                                },
+                                "internationalServiceFee": {
+                                    "oneOf": [
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "null"
+                                        }
+                                    ]
+                                },
+                                "tags": {
+                                    "$ref": "tags.json#/definitions/tags"
+                                },
+                                "cardNetwork": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "createdAt",
+                                "amount",
+                                "status",
+                                "partialApprovalAllowed",
+                                "direction",
+                                "atmName",
+                                "surcharge"
+                            ],
+                            "additionalProperties": false
+                        },
+                        "relationships": {
+                            "$ref": "#/components/schemas/authorizationRequestRelationships"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "relationships"
+                    ]
+                }
+            ]
+        },
+            "AuthorizationRequest": {
+            "title": "AuthorizationRequest Document",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                }
+            },
+            "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                    "purchaseAuthorizationRequest": "#/components/schemas/PurchaseAuthorizationRequest",
+                    "cardTransactionAuthorizationRequest": "#/components/schemas/CardTransactionAuthorizationRequest",
+                    "atmAuthorizationRequest": "#/components/schemas/AtmAuthorizationRequest"
+                }
+            }
+        },
             "UnitAuthorizationResponse": {
                 "type": "object",
                 "properties": {
@@ -91,7 +534,16 @@
                         "$ref": "#/components/schemas/Authorization"
                     }
                 }
-            }
+            },
+            "UnitAuthorizationRequestResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/AuthorizationRequest"
+                    }
+                }
+            },
+
         }
     },
     "authorizations": {
@@ -280,7 +732,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "authorization_request.json"
+                                            "$ref": "#/components/schemas/AuthorizationRequest"
                                         }
                                     }
                                 }
@@ -316,13 +768,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitAuthorizationRequestsResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "authorization_request.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitAuthorizationRequestResponse"
                             }
                         }
                     }
@@ -358,7 +804,7 @@
 							"type":"object",
 							"properties":{
 								"data":{
-									"$ref":"authorization_request.json#/definitions/approveAuthorizationRequest"
+									"$ref":"#/components/schemas/approveAuthorizationRequest"
 								}
 							}
 						}
@@ -371,13 +817,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitAuthorizationRequestResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "authorization_request.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitAuthorizationRequestResponse"
                             }
                         }
                     }
@@ -413,7 +853,7 @@
 							"type":"object",
 							"properties":{
 								"data":{
-									"$ref":"authorization_request.json#/definitions/declineAuthorizationRequest"
+									"$ref": "#/components/schemas/declineAuthorizationRequest"
 								}
 							}
 						}
@@ -426,13 +866,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitAuthorizationRequestResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "authorization_request.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitAuthorizationRequestResponse"
                             }
                         }
                     }

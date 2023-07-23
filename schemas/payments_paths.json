@@ -578,149 +578,149 @@
                 ]
             },
             "receivedPaymentRelationships": {
-            "type": "object",
-            "properties": {
-                "account": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "account"
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "account"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
                                 },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
                     },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "customer": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "businessCustomer",
+                                            "individualCustomer",
+                                            "customer"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "receivePaymentTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "paymentAdvanceTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "repayPaymentAdvanceTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    }
                 },
-                "customer": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "businessCustomer",
-                                        "individualCustomer",
-                                        "customer"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                },
-                "receivePaymentTransaction": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "transaction"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                },
-                "paymentAdvanceTransaction": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "transaction"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                },
-                "repayPaymentAdvanceTransaction": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "transaction"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                }
+                "required": [
+                    "account",
+                    "customer"
+                ],
+                "additionalProperties": false
             },
-            "required": [
-                "account",
-                "customer"
-            ],
-            "additionalProperties": false
-        },
             "ReceivedPayment": {
                 "title": "Received Payment Resource",
                 "type": "object",
@@ -803,6 +803,390 @@
                 },
                 "additionalProperties": false
             },
+            "recurringPaymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "depositAccount",
+                                            "account"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "counterpartyAccount": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "depositAccount",
+                                            "account"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "customer": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "businessCustomer",
+                                            "individualCustomer",
+                                            "customer"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "RecurringCreditAchPayment": {
+                "title": "Recurring Credit ACH Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringPayment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 10
+                                    },
+                                    "addenda": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/definitions/tags"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Active",
+                                            "Completed",
+                                            "Disabled"
+                                        ]
+                                    },
+                                    "schedule": {
+                                        "$ref": "#/components/schemas/schedule"
+                                    },
+                                    "numberOfPayments": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "status",
+                                    "description",
+                                    "amount",
+                                    "schedule",
+                                    "numberOfPayments"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/recurringPaymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "RecurringDebitAchPayment": {
+                "title": "Recurring Debit ACH Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringPayment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 10
+                                    },
+                                    "addenda": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/definitions/tags"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Active",
+                                            "Completed",
+                                            "Disabled"
+                                        ]
+                                    },
+                                    "schedule": {
+                                        "$ref": "#/components/schemas/schedule"
+                                    },
+                                    "numberOfPayments": {
+                                        "type": "integer"
+                                    },
+                                    "verifyCounterpartyBalance": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "sameDay": {
+                                        "type": "boolean",
+                                        "default": false
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "status",
+                                    "description",
+                                    "amount",
+                                    "schedule",
+                                    "numberOfPayments"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/recurringPaymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "RecurringCreditBookPayment": {
+                "title": "Recurring Credit Book Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringPayment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Active",
+                                            "Completed",
+                                            "Disabled"
+                                        ]
+                                    },
+                                    "schedule": {
+                                        "$ref": "#/components/schemas/schedule"
+                                    },
+                                    "numberOfPayments": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/definitions/tags"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "updatedAt",
+                                    "amount",
+                                    "description",
+                                    "status",
+                                    "schedule",
+                                    "numberOfPayments"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/recurringPaymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "attributes",
+                            "relationships"
+                        ]
+                    }
+                ]
+            },
+            "schedule": {
+                "title": "Schedule",
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "interval": {
+                        "type": "string",
+                        "enum": [
+                            "Monthly"
+                        ]
+                    },
+                    "dayOfMonth": {
+                        "type": "integer",
+                        "minimum": -5,
+                        "maximum": 28
+                    },
+                    "nextScheduledAction": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "totalNumberOfPayments": {
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "interval",
+                    "nextScheduledAction"
+                ]
+            },
+            "RecurringPayment": {
+                "title": "Recurring Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "types.json#/definitions/identifier"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "recurringCreditAchPayment": "#/components/schemas/RecurringCreditAchPayment",
+                        "recurringDebitAchPayment": "#/components/schemas/RecurringDebitAchPayment",
+                        "recurringCreditBookPayment": "#/components/schemas/RecurringCreditBookPayment"
+                    }
+                },
+                "additionalProperties": false
+            },
             "UnitPaymentResponse": {
                 "type": "object",
                 "title": "UnitPaymentResponse",
@@ -841,6 +1225,25 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ReceivedPayment"
+                        }
+                    }
+                }
+            },
+            "UnitRecurringPaymentResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/RecurringPayment"
+                    }
+                }
+            },
+            "UnitRecurringPaymentListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RecurringPayment"
                         }
                     }
                 }
@@ -1217,13 +1620,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitRecurringPaymentListResponse"
                             }
                         }
                     }
@@ -1259,13 +1656,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
                             }
                         }
                     }
@@ -1298,13 +1689,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
                             }
                         }
                     }
@@ -1337,13 +1722,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
                             }
                         }
                     }
@@ -1376,13 +1755,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
                             }
                         }
                     }

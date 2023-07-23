@@ -542,8 +542,7 @@
                         "$ref": "#/components/schemas/AuthorizationRequest"
                     }
                 }
-            },
-
+            }
         }
     },
     "authorizations": {

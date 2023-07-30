@@ -10,7 +10,7 @@ from swagger_client import GetListOfCardsApi, GetCardApi, CreateApplicationApi, 
     CreateIndividualDebitCardAttributes, Address, CardLevelLimits, CreateCardRelationships, Relationship, \
     RelationshipData, CreateBusinessDebitCard, CreateBusinessDebitCardAttributes, FullName, Phone, \
     CreateBusinessVirtualDebitCardAttributes, CreateBusinessVirtualDebitCard, CreateIndividualVirtualDebitCard, \
-    CreateIndividualVirtualDebitCardAttributes
+    CreateIndividualVirtualDebitCardAttributes, Filter4
 
 card_types = ["individualDebitCard", "businessDebitCard", "individualVirtualDebitCard", "businessVirtualDebitCard",
               "businessCreditCard", "businessVirtualCreditCard"]
@@ -56,18 +56,18 @@ class TestCardApi(unittest.TestCase):
             assert card.type == response_card.type
 
     def test_card_list_with_filters(self):
-        res = GetListOfCardsApi(self.api_client).execute(include="customer")
+        res = GetListOfCardsApi(self.api_client).execute(filter_status=["Active"], include="customer")
 
         assert res.included is not None
-        #
-        # customer_id = res.included[0].get("id")
-        # res = GetListOfCardsApi(self.api_client).execute(filter=["customerId": customer_id])
 
         for card in res.data:
             assert card.type in card_types
+            assert card.attributes.status == "Active"
             response_card = GetCardApi(self.api_client).execute(card.id).data
             assert card.id == response_card.id
             assert card.type == response_card.type
+            assert card.attributes.status == response_card.attributes.status
+            assert card.attributes.created_at == response_card.attributes.created_at
 
     def create_individual_customer(self):
         app = CreateApplicationApi(self.api_client).execute(create_individual_application_request()).data

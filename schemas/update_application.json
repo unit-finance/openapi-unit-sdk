@@ -435,8 +435,12 @@
             "businessApplication": "#/definitions/CreateBusinessApplication"
         }
     },
-    "additionalProperties": false,
-    "required": [
-        "data"
+    "oneOf": [
+        {
+            "$ref": "#/definitions/CreateIndividualApplication"
+        },
+        {
+            "$ref": "#/definitions/CreateBusinessApplication"
+        }
     ]
 }

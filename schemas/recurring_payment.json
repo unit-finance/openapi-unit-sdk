@@ -382,5 +382,15 @@
             "recurringCreditBookPayment": "#/definitions/RecurringCreditBookPayment"
         }
     },
-    "additionalProperties": false
+    "oneOf": [
+        {
+            "$ref": "#/definitions/RecurringCreditAchPayment"
+        },
+        {
+            "$ref": "#/definitions/RecurringDebitAchPayment"
+        },
+        {
+            "$ref": "#/definitions/RecurringCreditBookPayment"
+        }
+    ]
 }

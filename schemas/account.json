@@ -554,5 +554,13 @@
             "depositAccount": "#/definitions/DepositAccount",
             "creditAccount": "#/definitions/CreditAccount"
         }
-    }
+    },
+    "oneOf": [
+        {
+            "$ref": "#/definitions/DepositAccount"
+        },
+        {
+            "$ref": "#/definitions/CreditAccount"
+        }
+    ]
 }

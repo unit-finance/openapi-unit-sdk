@@ -49,6 +49,77 @@
             "operationId": "execute",
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "transactionId": {
+                                "type": "string"
+                            },
+                            "rewardedTransactionId": {
+                                "type": "string"
+                            },
+                            "receivingAccountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "cardId": {
+                                "type": "string"
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ],
+                        "default": "-createdAt"
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "customer",
+                            "account",
+                            "transaction"
+                        ]
+                    }
+                }
+            ],
             "responses": {
                 "200": {
                     "description": "Successful Response",

@@ -23,24 +23,51 @@
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "accountId": {
                                 "type": "string"
                             },
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
+                            "customerId": {
+                                "type": "string"
                             },
-                            "email": {
+                            "query": {
                                 "type": "string"
                             },
                             "tags": {
                                 "type": "object"
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "cardId": {
+                                "type": "string"
+                            },
+                            "excludeFees": {
+                                "type": "boolean"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "Authorized", "Completed", "Canceled", "Declined"
+                                ]
+                            },
+                            "type": {
+                                "type": "array"
+                            },
+                            "direction": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["Debit", "Credit"]
+                                }
+                            },
+                            "fromAmount": {
+                                "type": "int"
+                            },
+                            "toAmount": {
+                                "type": "int"
                             }
                         }
                     }
@@ -55,6 +82,17 @@
                             "-createdAt"
                         ],
                         "default": "-createdAt"
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "customer",
+                            "account"
+                        ]
                     }
                 }
             ],

@@ -61,6 +61,16 @@
                                     ]
                                 }
                             },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "deposit",
+                                        "credit"
+                                    ]
+                                }
+                            },
                             "fromBalance": {
                                 "type": "number"
                             },

@@ -150,24 +150,38 @@
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "accountId": {
                                 "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "cardId": {
+                                "type": "string"
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "includeNonAuthorized": {
+                                "type": "boolean"
                             },
                             "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
+                                "type": "string",
+                                "enum": [
+                                    "Authorized", "Completed", "Canceled", "Declined"
+                                ]
                             },
-                            "email": {
-                                "type": "string"
+                            "merchantCategoryCode": {
+                                "type": "array"
                             },
-                            "tags": {
-                                "type": "object"
+                            "fromAmount": {
+                                "type": "int"
+                            },
+                            "toAmount": {
+                                "type": "int"
                             }
                         }
                     }

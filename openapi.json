@@ -252,10 +252,10 @@
 	"components":{
 		"securitySchemes": {
 			"bearerAuth": {
-    "type": "apiKey",
-    "in": "header",
-    "name": "Authorization"
-}
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
 		}
 	},
 	"security":[

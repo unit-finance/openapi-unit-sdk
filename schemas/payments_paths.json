@@ -23,7 +23,13 @@
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "counterpartyAccountId": {
                                 "type": "string"
                             },
                             "status": {
@@ -36,13 +42,79 @@
                                     ]
                                 }
                             },
-                            "email": {
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AchPayment",
+                                        "BookPayment",
+                                        "WirePayment"
+                                    ]
+                                }
+                            },
+                            "direction": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Debit",
+                                        "Credit"
+                                    ]
+                                }
+                            },
+                            "since": {
                                 "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "fromAmount": {
+                                "type": "integer"
+                            },
+                            "toAmount": {
+                                "type": "integer"
+                            },
+                            "recurringPaymentId": {
+                                "type": "integer"
+                            },
+                            "feature": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "SameDay",
+                                        "RecurringPayment"
+                                    ]
+                                }
                             },
                             "tags": {
                                 "type": "object"
                             }
                         }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ],
+                        "default": "-createdAt"
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "customer",
+                            "account"
+                        ]
                     }
                 }
             ],

@@ -64,10 +64,10 @@
                                 }
                             },
                             "fromAmount": {
-                                "type": "int"
+                                "type": "integer"
                             },
                             "toAmount": {
-                                "type": "int"
+                                "type": "integer"
                             }
                         }
                     }

@@ -51,10 +51,10 @@
                                 "type": "array"
                             },
                             "fromAmount": {
-                                "type": "int"
+                                "type": "integer"
                             },
                             "toAmount": {
-                                "type": "int"
+                                "type": "integer"
                             }
                         }
                     }
@@ -174,10 +174,10 @@
                                 "type": "array"
                             },
                             "fromAmount": {
-                                "type": "int"
+                                "type": "integer"
                             },
                             "toAmount": {
-                                "type": "int"
+                                "type": "integer"
                             }
                         }
                     }

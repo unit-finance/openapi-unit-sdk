@@ -10,7 +10,7 @@ from swagger_client import GetListOfCardsApi, GetCardApi, CreateApplicationApi, 
     CreateIndividualDebitCardAttributes, Address, CardLevelLimits, CreateCardRelationships, Relationship, \
     RelationshipData, CreateBusinessDebitCard, CreateBusinessDebitCardAttributes, FullName, Phone, \
     CreateBusinessVirtualDebitCardAttributes, CreateBusinessVirtualDebitCard, CreateIndividualVirtualDebitCard, \
-    CreateIndividualVirtualDebitCardAttributes, Filter4
+    CreateIndividualVirtualDebitCardAttributes
 
 card_types = ["individualDebitCard", "businessDebitCard", "individualVirtualDebitCard", "businessVirtualDebitCard",
               "businessCreditCard", "businessVirtualCreditCard"]

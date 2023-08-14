@@ -1,4 +1,50 @@
 {
+	"IncludedDocument": {
+		"type": "object",
+		"allOf": [
+			{"$ref": "#/IncludedType"},
+			{
+				"type": "object",
+				"properties": {
+					"attributes": {
+						"$ref": "document.json#/properties/attributes"
+					}
+				}
+			}
+		]
+	},
+	"IncludedBeneficialOwner": {
+		"type": "object",
+		"allOf": [
+			{"$ref": "#/IncludedType"},
+			{
+				"type": "object",
+				"properties": {
+					"attributes": {
+						"$ref": "application.json#/definitions/beneficialOwner/properties"
+					}
+				}
+			}
+		]
+	},
+	"IncludedType": {
+		"type": "object",
+		"properties": {
+			"id": {
+				"type": "string"
+			},
+			"type": {
+				"type": "string"
+			}
+		},
+		"discriminator": {
+			"propertyName": "type",
+			"mapping": {
+				"document": "#/IncludedDocument",
+				"beneficialOwner": "#/IncludedBeneficialOwner"
+			}
+		}
+	},
 	"UnitApplicationResponse":{
 		"type":"object",
 		"title":"UnitApplicationResponse",
@@ -11,12 +57,15 @@
 	"UnitApplicationResponseWithIncluded":{
 		"type":"object",
 		"title":"UnitApplicationResponse",
-		"properties":{
-			"data":{
-				"$ref":"application.json"
+		"properties": {
+			"data": {
+				"$ref": "application.json"
 			},
-			"included":{
-				"$ref":"document.json"
+			"included": {
+				"type": "array",
+				"items": {
+					"$ref": "#/IncludedType"
+				}
 			}
 		}
 	},
@@ -532,18 +581,6 @@
 							"type":"string",
 							"format":"binary"
 						}
-					},
-					"image/jpeg":{
-						"schema":{
-							"type":"string",
-							"format":"base64"
-						}
-					},
-					"application/pdf":{
-						"schema":{
-							"type":"string",
-							"format":"base64"
-						}
 					}
 				}
 			},
@@ -556,7 +593,7 @@
 								"type": "object",
 								"properties":{
 									"data":{
-									"$ref":"document.json"
+										"$ref":"document.json"
 									}
 								}
 							}

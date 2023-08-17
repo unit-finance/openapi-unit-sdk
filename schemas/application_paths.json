@@ -2,7 +2,7 @@
 	"IncludedDocument": {
 		"type": "object",
 		"allOf": [
-			{"$ref": "#/IncludedType"},
+			{"$ref": "#/IncludedApplicationType"},
 			{
 				"type": "object",
 				"properties": {
@@ -16,7 +16,7 @@
 	"IncludedBeneficialOwner": {
 		"type": "object",
 		"allOf": [
-			{"$ref": "#/IncludedType"},
+			{"$ref": "#/IncludedApplicationType"},
 			{
 				"type": "object",
 				"properties": {
@@ -27,7 +27,7 @@
 			}
 		]
 	},
-	"IncludedType": {
+	"IncludedApplicationType": {
 		"type": "object",
 		"properties": {
 			"id": {

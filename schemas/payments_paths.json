@@ -42,21 +42,39 @@
                             }
                         }
                     }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "customer",
+                            "account",
+                            "transaction"
+                        ]
+                    }
                 }
             ],
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "title": "UnitPaymentResponse",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
+                                "title": "UnitPaymentListResponse",
                                 "type": "object",
                                 "properties": {
                                     "data": {
                                         "type": "array",
                                         "items": {
                                             "$ref": "payment.json"
+                                        }
+                                    },
+                                    "included": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object"
                                         }
                                     }
                                 }

@@ -178,7 +178,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "types.json#/definitions/updateUnitRequest"
+                            "$ref": "update_payment.json"
                         }
                     }
                 }
@@ -348,7 +348,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "types.json#/definitions/updateUnitRequest"
+                            "$ref": "update_received_payment.json"
                         }
                     }
                 }

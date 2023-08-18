@@ -446,7 +446,7 @@
 			}
 		}
 	},
-	"get_application_form":{
+	"application_form":{
 		"get":{
 			"tags":[
 				"Get Application Form"

@@ -76,9 +76,9 @@ class TestApplicationApi(unittest.TestCase):
         application_id = app.id
         document_id = app.relationships.documents.data[0].id
 
-        image_file = open("dog.png")
-
-        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file.read(), application_id, document_id)
+        image_file = open("dog.png", "rb")
+        self.api_client.set_default_header("Content-Type", "image/png")
+        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file.read().__str__(), application_id, document_id)
         assert res.data == "document"
 
     def test_upload_jpg_document(self):

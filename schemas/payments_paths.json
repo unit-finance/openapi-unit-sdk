@@ -74,7 +74,7 @@
                                     "included": {
                                         "type": "array",
                                         "items": {
-                                            "type": "object"
+                                            "$ref": "openapi_types.json#/IncludedResource"
                                         }
                                     }
                                 }
@@ -334,6 +334,9 @@
                                 "properties": {
                                     "data": {
                                         "$ref": "received_payment.json"
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }

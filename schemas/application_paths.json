@@ -1,50 +1,4 @@
 {
-	"IncludedDocument": {
-		"type": "object",
-		"allOf": [
-			{"$ref": "#/IncludedApplicationType"},
-			{
-				"type": "object",
-				"properties": {
-					"attributes": {
-						"$ref": "document.json#/properties/attributes"
-					}
-				}
-			}
-		]
-	},
-	"IncludedBeneficialOwner": {
-		"type": "object",
-		"allOf": [
-			{"$ref": "#/IncludedApplicationType"},
-			{
-				"type": "object",
-				"properties": {
-					"attributes": {
-						"$ref": "application.json#/definitions/beneficialOwner/properties"
-					}
-				}
-			}
-		]
-	},
-	"IncludedApplicationType": {
-		"type": "object",
-		"properties": {
-			"id": {
-				"type": "string"
-			},
-			"type": {
-				"type": "string"
-			}
-		},
-		"discriminator": {
-			"propertyName": "type",
-			"mapping": {
-				"document": "#/IncludedDocument",
-				"beneficialOwner": "#/IncludedBeneficialOwner"
-			}
-		}
-	},
 	"UnitApplicationResponse":{
 		"type":"object",
 		"title":"UnitApplicationResponse",
@@ -64,7 +18,7 @@
 			"included": {
 				"type": "array",
 				"items": {
-					"$ref": "#/IncludedApplicationType"
+					"$ref": "openapi_types.json#/IncludedResource"
 				}
 			}
 		}

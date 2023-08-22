@@ -81,7 +81,7 @@
 									"included":{
 										"type":"array",
 										"items":{
-											"type":"object"
+											"$ref": "openapi_types.json#/IncludedResource"
 										}
 									}
 								}
@@ -171,6 +171,12 @@
 								"properties":{
 									"data":{
 										"$ref":"card.json"
+									},
+									"included": {
+										"type": "array",
+										"items": {
+											"$ref": "openapi_types.json#/IncludedResource"
+										}
 									}
 								}
 							}

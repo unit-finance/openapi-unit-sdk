@@ -87,7 +87,7 @@
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
-							"$ref":"types.json#/definitions/updateUnitRequest"
+							"$ref": "update_application.json"
 						}
 					}
 				}

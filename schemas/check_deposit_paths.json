@@ -18,23 +18,15 @@
                 {
                     "name": "filter",
                     "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "accountId": {
                                 "type": "string"
                             },
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
-                            },
-                            "email": {
+                            "customerId": {
                                 "type": "string"
                             },
                             "tags": {
@@ -53,6 +45,18 @@
                             "-createdAt"
                         ],
                         "default": "-createdAt"
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "customer",
+                            "account",
+                            "transaction"
+                        ]
                     }
                 }
             ],

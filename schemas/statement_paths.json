@@ -18,27 +18,19 @@
                 {
                     "name": "filter",
                     "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "accountId": {
                                 "type": "string"
                             },
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
-                            },
-                            "email": {
+                            "customerId": {
                                 "type": "string"
                             },
-                            "tags": {
-                                "type": "object"
+                            "period": {
+                                "type": "string"
                             }
                         }
                     }
@@ -49,10 +41,10 @@
                     "schema": {
                         "type": "string",
                         "enum": [
-                            "createdAt",
-                            "-createdAt"
+                            "period",
+                            "-period"
                         ],
-                        "default": "-createdAt"
+                        "default": "-period"
                     }
                 }
             ],

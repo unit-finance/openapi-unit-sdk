@@ -42,6 +42,8 @@
                 {
                     "name": "filter",
                     "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -56,6 +58,16 @@
                                         "Open",
                                         "Frozen",
                                         "Closed"
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "deposit",
+                                        "credit"
                                     ]
                                 }
                             },

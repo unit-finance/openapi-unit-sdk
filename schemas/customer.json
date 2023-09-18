@@ -163,12 +163,7 @@
                                     "pattern": "^\\d{9}$"
                                 },
                                 "entityType": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Corporation",
-                                        "LLC",
-                                        "Partnership"
-                                    ]
+                                    "$ref": "types.json#/definitions/entityType"
                                 },
                                 "dateOfIncorporation": {
                                     "type": "string",

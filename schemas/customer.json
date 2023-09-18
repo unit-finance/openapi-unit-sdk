@@ -380,5 +380,16 @@
             "businessCustomer": "#/definitions/BusinessCustomer",
             "trustCustomer": "#/definitions/TrustCustomer"
         }
-    }
+    },
+    "oneOf": [
+        {
+            "$ref": "#/definitions/IndividualCustomer"
+        },
+        {
+            "$ref": "#/definitions/BusinessCustomer"
+        },
+        {
+            "$ref": "#/definitions/TrustCustomer"
+        }
+    ]
 }

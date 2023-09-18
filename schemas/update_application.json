@@ -325,12 +325,7 @@
                                     "pattern": "^\\d{9}$"
                                 },
                                 "entityType": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Corporation",
-                                        "LLC",
-                                        "Partnership"
-                                    ]
+                                    "$ref": "types.json#/definitions/entityType"
                                 },
                                 "dateOfIncorporation": {
                                     "type": "string",
@@ -435,8 +430,12 @@
             "businessApplication": "#/definitions/CreateBusinessApplication"
         }
     },
-    "additionalProperties": false,
-    "required": [
-        "data"
+    "oneOf": [
+        {
+            "$ref": "#/definitions/CreateIndividualApplication"
+        },
+        {
+            "$ref": "#/definitions/CreateBusinessApplication"
+        }
     ]
 }

@@ -163,12 +163,7 @@
                                     "pattern": "^\\d{9}$"
                                 },
                                 "entityType": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Corporation",
-                                        "LLC",
-                                        "Partnership"
-                                    ]
+                                    "$ref": "types.json#/definitions/entityType"
                                 },
                                 "dateOfIncorporation": {
                                     "type": "string",
@@ -380,5 +375,16 @@
             "businessCustomer": "#/definitions/BusinessCustomer",
             "trustCustomer": "#/definitions/TrustCustomer"
         }
-    }
+    },
+    "oneOf": [
+        {
+            "$ref": "#/definitions/IndividualCustomer"
+        },
+        {
+            "$ref": "#/definitions/BusinessCustomer"
+        },
+        {
+            "$ref": "#/definitions/TrustCustomer"
+        }
+    ]
 }

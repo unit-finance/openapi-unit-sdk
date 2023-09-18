@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+import json
 import os
 import unittest
 
@@ -82,15 +83,19 @@ class TestApplicationApi(unittest.TestCase):
         assert res.data == "document"
 
     def test_upload_jpg_document(self):
+        import base64
+
         app = self.create_individual_application("000000003")
 
         application_id = app.id
         document_id = app.relationships.documents.data[0].id
 
-        image_file = open("Unit_Logo.jpg", "r").read()
+        image_file = open("Unit_Logo.jpg", "rb").read()
 
-        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file, application_id, document_id)
-        assert res.data == "document"
+        self.api_client.set_default_header("Content-Type", "image/jpeg")
+        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file.decode('latin-1'), application_id,
+                                                                          document_id)
+        assert res.data.type == "document"
 
     def test_upload_pdf_document(self):
         app = self.create_individual_application("000000003")

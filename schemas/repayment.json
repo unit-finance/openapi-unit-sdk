@@ -392,18 +392,26 @@
   "title": "Repayment Resource",
   "type": "object",
   "properties": {
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        },
-        "type": {
-            "type": "string"
-        }
+    "id": {
+      "$ref": "types.json#/definitions/identifier"
     },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "achRepayment": "#/definitions/AchRepayment",
-            "bookRepayment": "#/definitions/BookRepayment"
-        }
+    "type": {
+      "type": "string"
     }
+  },
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "achRepayment": "#/definitions/AchRepayment",
+      "bookRepayment": "#/definitions/BookRepayment"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/definitions/AchRepayment"
+    },
+    {
+      "$ref": "#/definitions/BookRepayment"
+    }
+  ]
 }

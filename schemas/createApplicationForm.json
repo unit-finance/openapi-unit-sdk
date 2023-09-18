@@ -43,12 +43,7 @@
                     "maxLength": 2
                 },
                 "entityType": {
-                    "type": "string",
-                    "enum": [
-                        "Corporation",
-                        "LLC",
-                        "Partnership"
-                    ]
+                    "$ref": "types.json#/definitions/entityType"
                 },
                 "contact": {
                     "$ref": "types.json#/definitions/contact"

@@ -1,16 +1,8 @@
 # frozen_string_literal: true
 
-require 'require_all'
-
-# load all ruby files in the directory "lib" and its subdirectories
-# Inside spec_helper.rb in e2e_tests folder
-# Inside spec_helper.rb in e2e_tests folder
-require_relative '../../../lib/openapi_client'
-# Inside spec_helper.rb in e2e_tests folder
-
-
-
 require "rspec"
+
+require "../unit/lib/openapi_client"
 
 module SpecHelper
   attr_reader :configuration

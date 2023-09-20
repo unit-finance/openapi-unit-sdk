@@ -27,7 +27,7 @@
             "$ref": "./schemas/application_paths.json#/application_forms"
         },
         "/application-forms/{applicationFormId}": {
-            "$ref": "./schemas/application_paths.json#/get_application_form"
+            "$ref": "./schemas/application_paths.json#/application_form"
         },
         "/accounts": {
             "$ref": "./schemas/account_paths.json#/accounts"

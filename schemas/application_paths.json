@@ -90,7 +90,7 @@
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
-							"$ref":"types.json#/definitions/updateUnitRequest"
+							"$ref": "update_application.json"
 						}
 					}
 				}
@@ -457,7 +457,7 @@
 			}
 		}
 	},
-	"get_application_form":{
+	"application_form":{
 		"get":{
 			"tags":[
 				"Get Application Form"

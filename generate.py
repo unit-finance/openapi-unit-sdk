@@ -1,6 +1,31 @@
 import os
 import json
 
+python_bearer_auth = {
+    "type": "apiKey",
+    "in": "header",
+    "name": "Authorization"
+}
+
+default_bearer_auth = {
+    "type": "http",
+    "scheme": "bearer",
+    "bearerFormat": "JWT"
+}
+
+
+def change_bearer(bearer=python_bearer_auth):
+    with open('openapi.json', encoding='utf8') as file:
+        j = json.load(file)
+
+        j["components"]["securitySchemes"]["bearerAuth"] = bearer
+
+    with open('openapi.json', 'w', encoding='utf8') as file:
+        json.dump(j, file, indent=4, ensure_ascii=False)
+
+
+# if flag is not python
+change_bearer()
 
 path_of_the_directory = './schemas/'
 
@@ -65,6 +90,9 @@ for line in lineList:
     line = line.replace('_create_application', 'create_application')
     f2.write(line)
 f2.close()
+
+
+change_bearer(default_bearer_auth)
 
 
 

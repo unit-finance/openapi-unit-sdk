@@ -950,6 +950,7 @@
 			}
 		},
 		"unitError":{
+			"description": "UnitError",
 			"type":"array",
 			"items":{
 				"type":"object",

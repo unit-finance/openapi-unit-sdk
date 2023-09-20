@@ -87,15 +87,8 @@
 									},
 									"included":{
 										"type":"array",
-										"items": {
-											"oneOf": [
-												{
-													"$ref": "account.json"
-												},
-												{
-													"$ref": "customer.json"
-												}
-											]
+										"items":{
+											"$ref": "openapi_types.json#/IncludedResource"
 										}
 									}
 								}
@@ -185,6 +178,12 @@
 								"properties":{
 									"data":{
 										"$ref":"card.json"
+									},
+									"included": {
+										"type": "array",
+										"items": {
+											"$ref": "openapi_types.json#/IncludedResource"
+										}
 									}
 								}
 							}

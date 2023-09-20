@@ -110,6 +110,9 @@
                                             "items": {
                                                 "$ref": "transaction.json"
                                             }
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }
@@ -158,6 +161,9 @@
                                 "properties": {
                                     "data": {
                                         "$ref": "transaction.json"
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }

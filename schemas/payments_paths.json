@@ -95,6 +95,18 @@
                     }
                 },
                 {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "customer",
+                            "account",
+                            "transaction"
+                        ]
+                    }
+                },
+                {
                     "name": "sort",
                     "in": "query",
                     "schema": {
@@ -105,32 +117,27 @@
                         ],
                         "default": "-createdAt"
                     }
-                },
-                {
-                    "name": "include",
-                    "in": "query",
-                    "schema": {
-                        "type": "string",
-                        "enum": [
-                            "customer",
-                            "account"
-                        ]
-                    }
                 }
             ],
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "title": "UnitPaymentResponse",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
+                                "title": "UnitPaymentListResponse",
                                 "type": "object",
                                 "properties": {
                                     "data": {
                                         "type": "array",
                                         "items": {
                                             "$ref": "payment.json"
+                                        }
+                                    },
+                                    "included": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "openapi_types.json#/IncludedResource"
                                         }
                                     }
                                 }
@@ -390,6 +397,9 @@
                                 "properties": {
                                     "data": {
                                         "$ref": "received_payment.json"
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }

@@ -11,12 +11,15 @@
 	"UnitApplicationResponseWithIncluded":{
 		"type":"object",
 		"title":"UnitApplicationResponse",
-		"properties":{
-			"data":{
-				"$ref":"application.json"
+		"properties": {
+			"data": {
+				"$ref": "application.json"
 			},
-			"included":{
-				"$ref":"document.json"
+			"included": {
+				"type": "array",
+				"items": {
+					"$ref": "openapi_types.json#/IncludedResource"
+				}
 			}
 		}
 	},
@@ -202,6 +205,8 @@
 				{
 					"name":"filter",
 					"in":"query",
+                    "style": "deepObject",
+					"allowReserved": true,
 					"schema":{
 						"type":"object",
 						"properties":{
@@ -213,8 +218,12 @@
 								"items":{
 									"type":"string",
 									"enum":[
+										"AwaitingDocuments",
+										"PendingReview",
 										"Pending",
-										"Approved"
+										"Approved",
+										"Denied",
+										"Canceled"
 									]
 								}
 							},
@@ -343,6 +352,8 @@
 				{
 					"name": "filter",
 					"in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
 					"schema": {
 						"type": "object",
 						"properties": {
@@ -532,18 +543,6 @@
 							"type":"string",
 							"format":"binary"
 						}
-					},
-					"image/jpeg":{
-						"schema":{
-							"type":"string",
-							"format":"base64"
-						}
-					},
-					"application/pdf":{
-						"schema":{
-							"type":"string",
-							"format":"base64"
-						}
 					}
 				}
 			},
@@ -556,7 +555,7 @@
 								"type": "object",
 								"properties":{
 									"data":{
-									"$ref":"document.json"
+										"$ref":"document.json"
 									}
 								}
 							}

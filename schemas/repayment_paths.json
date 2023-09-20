@@ -27,9 +27,17 @@
                 {
                     "name": "filter",
                     "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "creditAccountId": {
+                                "type": "string"
+                            },
                             "customerId": {
                                 "type": "string"
                             },
@@ -38,29 +46,25 @@
                                 "items": {
                                     "type": "string",
                                     "enum": [
-                                        "Open",
-                                        "Frozen",
-                                        "Closed"
+                                        "Pending",
+                                        "PendingReview",
+                                        "Returned",
+                                        "Sent",
+                                        "Rejected"
                                     ]
                                 }
                             },
-                            "fromBalance": {
-                                "type": "number"
-                            },
-                            "toBalance": {
-                                "type": "number"
-                            },
-                            "tags": {
-                                "type": "object"
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AchRepayment",
+                                        "BookRepayment"
+                                    ]
+                                }
                             }
                         }
-                    }
-                },
-                {
-                    "name": "include",
-                    "in": "query",
-                    "schema": {
-                        "type": "string"
                     }
                 }
             ],

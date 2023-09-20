@@ -202,6 +202,8 @@
 				{
 					"name":"filter",
 					"in":"query",
+                    "style": "deepObject",
+					"allowReserved": true,
 					"schema":{
 						"type":"object",
 						"properties":{
@@ -213,8 +215,12 @@
 								"items":{
 									"type":"string",
 									"enum":[
+										"AwaitingDocuments",
+										"PendingReview",
 										"Pending",
-										"Approved"
+										"Approved",
+										"Denied",
+										"Canceled"
 									]
 								}
 							},
@@ -343,6 +349,8 @@
 				{
 					"name": "filter",
 					"in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
 					"schema": {
 						"type": "object",
 						"properties": {

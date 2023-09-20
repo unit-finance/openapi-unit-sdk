@@ -17,6 +17,8 @@
 				},
 				{
 					"name":"filter",
+					"style": "deepObject",
+					"allowReserved": true,
 					"in":"query",
 					"schema":{
 						"type":"object",
@@ -26,8 +28,13 @@
 								"items":{
 									"type":"string",
 									"enum":[
-										"Pending",
-										"Approved"
+										"Inactive",
+										"Active",
+										"Stolen",
+										"Lost",
+										"Frozen",
+										"ClosedByCustomer",
+										"SuspectedFraud"
 									]
 								}
 							},
@@ -80,8 +87,15 @@
 									},
 									"included":{
 										"type":"array",
-										"items":{
-											"type":"object"
+										"items": {
+											"oneOf": [
+												{
+													"$ref": "account.json"
+												},
+												{
+													"$ref": "customer.json"
+												}
+											]
 										}
 									}
 								}

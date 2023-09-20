@@ -17,6 +17,8 @@
 				},
 				{
 					"name":"filter",
+					"style": "deepObject",
+					"allowReserved": true,
 					"in":"query",
 					"schema":{
 						"type":"object",
@@ -26,8 +28,13 @@
 								"items":{
 									"type":"string",
 									"enum":[
-										"Pending",
-										"Approved"
+										"Inactive",
+										"Active",
+										"Stolen",
+										"Lost",
+										"Frozen",
+										"ClosedByCustomer",
+										"SuspectedFraud"
 									]
 								}
 							},
@@ -81,7 +88,7 @@
 									"included":{
 										"type":"array",
 										"items":{
-											"type":"object"
+											"$ref": "openapi_types.json#/IncludedResource"
 										}
 									}
 								}
@@ -171,6 +178,12 @@
 								"properties":{
 									"data":{
 										"$ref":"card.json"
+									},
+									"included": {
+										"type": "array",
+										"items": {
+											"$ref": "openapi_types.json#/IncludedResource"
+										}
 									}
 								}
 							}
@@ -203,7 +216,7 @@
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
-							"$ref":"types.json#/definitions/updateUnitRequest"
+							"$ref":"update_card.json"
 						}
 					}
 				}

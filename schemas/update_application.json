@@ -1,441 +1,151 @@
 {
-    "definitions": {
-        "evaluationParams": {
-            "title": "EvaluationParams",
-            "type": "object",
-            "properties": {
-                "useSelfieVerification": {
-                    "type": "string",
-                    "enum": [
-                        "Never",
-                        "ReplaceIdentification",
-                        "Always"
-                    ]
-                },
-                "requireIdVerification": {
-                    "type": "boolean",
-                    "default": false
-                }
-            },
-            "additionalProperties": false
-        },
-        "powerOfAttorneyAgent": {
-            "title": "PowerOfAttorneyAgent",
-            "type": "object",
-            "properties": {
-                "fullName": {
-                    "$ref": "types.json#/definitions/fullName"
-                },
-                "email": {
-                    "$ref": "types.json#/definitions/email"
-                },
-                "phone": {
-                    "$ref": "types.json#/definitions/phone"
-                },
-                "ssn": {
-                    "type": "string",
-                    "pattern": "^\\d{9}$"
-                },
-                "passport": {
-                    "type": "string"
-                },
-                "nationality": {
-                    "$ref": "types.json#/definitions/country"
-                },
-                "matriculaConsular": {
-                    "type": "string"
-                },
-                "address": {
-                    "$ref": "types.json#/definitions/address"
-                },
-                "dateOfBirth": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "jwtSubject": {
-                    "$ref": "types.json#/definitions/jwtSubject"
-                },
-                "evaluationParams": {
-                    "$ref": "#/definitions/evaluationParams"
-                }
-            },
-            "additionalProperties": false,
-            "required": [
-                "fullName",
-                "email",
-                "phone",
-                "address",
-                "dateOfBirth"
-            ]
-        },
-        "officer": {
-            "title": "Officer",
-            "type": "object",
-            "properties": {
-                "fullName": {
-                    "$ref": "types.json#/definitions/fullName"
-                },
-                "email": {
-                    "$ref": "types.json#/definitions/email"
-                },
-                "phone": {
-                    "$ref": "types.json#/definitions/phone"
-                },
-                "ssn": {
-                    "type": "string",
-                    "pattern": "^\\d{9}$"
-                },
-                "passport": {
-                    "type": "string"
-                },
-                "nationality": {
-                    "$ref": "types.json#/definitions/country"
-                },
-                "matriculaConsular": {
-                    "type": "string"
-                },
-                "address": {
-                    "$ref": "types.json#/definitions/address"
-                },
-                "dateOfBirth": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "title": {
-                    "type": "string",
-                    "enum": [
-                        "President",
-                        "CEO",
-                        "COO",
-                        "CFO",
-                        "BenefitsAdministrationOfficer",
-                        "CIO",
-                        "VP",
-                        "AVP",
-                        "Treasurer",
-                        "Secretary",
-                        "Controller",
-                        "Manager",
-                        "Partner",
-                        "Member"
-                    ]
-                },
-                "evaluationParams": {
-                    "$ref": "#/definitions/evaluationParams"
-                }
-            },
-            "additionalProperties": false,
-            "required": [
-                "fullName",
-                "email",
-                "phone",
-                "address",
-                "dateOfBirth"
-            ]
-        },
-        "beneficialOwner": {
-            "title": "Beneficial Owner",
-            "type": "object",
-            "properties": {
-                "fullName": {
-                    "$ref": "types.json#/definitions/fullName"
-                },
-                "email": {
-                    "$ref": "types.json#/definitions/email"
-                },
-                "phone": {
-                    "$ref": "types.json#/definitions/phone"
-                },
-                "ssn": {
-                    "type": "string",
-                    "pattern": "^\\d{9}$"
-                },
-                "passport": {
-                    "type": "string"
-                },
-                "nationality": {
-                    "$ref": "types.json#/definitions/country"
-                },
-                "matriculaConsular": {
-                    "type": "string"
-                },
-                "address": {
-                    "$ref": "types.json#/definitions/address"
-                },
-                "dateOfBirth": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "percentage": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 100
-                },
-                "evaluationParams": {
-                    "$ref": "#/definitions/evaluationParams"
-                }
-            },
-            "additionalProperties": false,
-            "required": [
-                "fullName",
-                "email",
-                "phone",
-                "address",
-                "dateOfBirth"
-            ]
-        },
-        "CreateIndividualApplication": {
-            "title": "Create Individual Application",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createApplication.json"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "fullName": {
-                                    "$ref": "types.json#/definitions/fullName"
-                                },
-                                "email": {
-                                    "$ref": "types.json#/definitions/email"
-                                },
-                                "phone": {
-                                    "$ref": "types.json#/definitions/phone"
-                                },
-                                "ssn": {
-                                    "type": "string",
-                                    "pattern": "^\\d{9}$"
-                                },
-                                "passport": {
-                                    "type": "string"
-                                },
-                                "nationality": {
-                                    "$ref": "types.json#/definitions/country",
-                                    "nullable": true
-                                },
-                                "matriculaConsular": {
-                                    "type": "string",
-                                    "nullable": true
-                                },
-                                "address": {
-                                    "$ref": "types.json#/definitions/address"
-                                },
-                                "dateOfBirth": {
-                                    "type": "string",
-                                    "format": "date"
-                                },
-                                "dba": {
-                                    "type": "string"
-                                },
-                                "ein": {
-                                    "type": "string",
-                                    "pattern": "^\\d{9}$"
-                                },
-                                "ip": {
-                                    "oneOf": [
-                                        {
-                                            "type": "string",
-                                            "format": "ipv4"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "format": "ipv6"
-                                        }
-                                    ]
-                                },
-                                "soleProprietorship": {
-                                    "type": "boolean",
-                                    "default": false
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
-                                },
-                                "deviceFingerprints": {
-                                    "type": "array",
-                                    "maxItems": 1,
-                                    "items": {
-                                        "$ref": "types.json#/definitions/deviceFingerprint"
-                                    }
-                                },
-                                "jwtSubject": {
-                                    "$ref": "types.json#/definitions/jwtSubject"
-                                },
-                                "powerOfAttorneyAgent": {
-                                    "$ref": "#/definitions/powerOfAttorneyAgent"
-                                },
-                                "industry": {
-                                    "$ref": "types.json#/definitions/industry"
-                                },
-                                "evaluationParams": {
-                                    "$ref": "#/definitions/evaluationParams"
-                                }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                                "fullName",
-                                "email",
-                                "phone",
-                                "address",
-                                "dateOfBirth"
-                            ]
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "type",
-                        "attributes"
-                    ]
-                }
-            ]
-        },
-        "CreateBusinessApplication": {
-            "title": "Create Business Application",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createApplication.json"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
-                                },
-                                "dba": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
-                                },
-                                "ein": {
-                                    "type": "string",
-                                    "pattern": "^\\d{9}$"
-                                },
-                                "entityType": {
-                                    "$ref": "types.json#/definitions/entityType"
-                                },
-                                "dateOfIncorporation": {
-                                    "type": "string",
-                                    "format": "date"
-                                },
-                                "stateOfIncorporation": {
-                                    "type": "string",
-                                    "minLength": 2,
-                                    "maxLength": 2
-                                },
-                                "purpose": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 1024
-                                },
-                                "phone": {
-                                    "$ref": "types.json#/definitions/phone"
-                                },
-                                "address": {
-                                    "$ref": "types.json#/definitions/usAddress"
-                                },
-                                "contact": {
-                                    "$ref": "types.json#/definitions/createContact"
-                                },
-                                "officer": {
-                                    "$ref": "#/definitions/officer"
-                                },
-                                "ip": {
-                                    "oneOf": [
-                                        {
-                                            "type": "string",
-                                            "format": "ipv4"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "format": "ipv6"
-                                        }
-                                    ]
-                                },
-                                "website": {
-                                    "type": "string"
-                                },
-                                "beneficialOwners": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/beneficialOwner"
-                                    }
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
-                                },
-                                "deviceFingerprints": {
-                                    "type": "array",
-                                    "maxItems": 1,
-                                    "items": {
-                                        "$ref": "types.json#/definitions/deviceFingerprint"
-                                    }
-                                },
-                                "industry": {
-                                    "$ref": "types.json#/definitions/industry"
-                                }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                                "name",
-                                "ein",
-                                "entityType",
-                                "stateOfIncorporation",
-                                "phone",
-                                "address",
-                                "contact",
-                                "officer",
-                                "beneficialOwners"
-                            ]
-                        }
-                    }
-                }
-            ],
-            "additionalProperties": false,
-            "required": [
-                "type",
-                "attributes"
-            ]
-        }
+  "definitions": {
+    "contact": {
+      "title": "Contact",
+      "type": "object",
+      "properties": {
+        "fullName": { "$ref": "types.json#/definitions/fullName" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "$ref": "types.json#/definitions/phone" }
+      },
+      "additionalProperties": false
     },
-    "title": "Create Application",
-    "type": "object",
-    "properties": {
-        "type": {
-            "type": "string"
-        }
+    "grantor": {
+      "title": "Grantor",
+      "type": "object",
+      "properties": {
+        "fullName": { "$ref": "types.json#/definitions/fullName" },
+        "ssn": { "$ref": "types.json#/definitions/ssn" },
+        "passport": { "type": "string" },
+        "nationality": { "$ref": "types.json#/definitions/country" },
+        "matriculaConsular" : {"type":  "string"},
+        "address": { "$ref": "types.json#/definitions/address" },
+        "dateOfBirth": { "type": "string", "format": "date" },
+        "phone": { "$ref": "types.json#/definitions/phone" },
+        "email": { "type": "string", "format": "email" }
+      },
+      "additionalProperties": false
     },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "individualApplication": "#/definitions/CreateIndividualApplication",
-            "businessApplication": "#/definitions/CreateBusinessApplication"
-        }
+    "officer": {
+      "title": "Officer",
+      "type": "object",
+      "properties": {
+        "fullName": { "$ref": "types.json#/definitions/fullName" },
+        "ssn": { "$ref": "types.json#/definitions/ssn" },
+        "passport": { "type": "string" },
+        "nationality": { "$ref": "types.json#/definitions/country" },
+        "matriculaConsular" : {"type":  "string"},
+        "address": { "$ref": "types.json#/definitions/address" },
+        "dateOfBirth": { "type": "string", "format": "date" },
+        "phone": { "$ref": "types.json#/definitions/phone" },
+        "email": { "type": "string", "format": "email" },
+        "occupation": { "$ref": "types.json#/definitions/occupation" },
+        "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+        "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" }
+      },
+      "additionalProperties": false
     },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/CreateIndividualApplication"
-        },
-        {
-            "$ref": "#/definitions/CreateBusinessApplication"
+    "beneficialOwner": {
+      "title": "Beneficial Owner",
+      "type": "object",
+      "properties": {
+        "ssn": { "$ref": "types.json#/definitions/ssn" },
+        "passport": { "type": "string" },
+        "nationality": { "$ref": "types.json#/definitions/country" },
+        "matriculaConsular" : {"type":  "string"},
+        "address": { "$ref": "types.json#/definitions/address" },
+        "dateOfBirth": { "type": "string", "format": "date" },
+        "occupation": { "$ref": "types.json#/definitions/occupation" },
+        "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+        "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" }
+      },
+      "additionalProperties": false
+    },
+    "patchIndividualApplication": {
+      "title": "Patch Individual Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "individualApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "tags": { "$ref": "tags.json#/definitions/tagsPatch" },
+            "occupation": { "$ref": "types.json#/definitions/occupation" },
+            "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+            "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" },
+            "annualRevenue": { "$ref": "types.json#/definitions/soleProprietorshipAnnualRevenue" },
+            "numberOfEmployees": { "$ref": "types.json#/definitions/soleProprietorshipNumberOfEmployees" },
+            "businessVertical": { "$ref": "types.json#/definitions/businessVertical"},
+            "website": { "type": "string" }
+          },
+          "additionalProperties": false
         }
-    ]
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "patchBusinessApplication": {
+      "title": "Patch Business Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "businessApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "officer": { "$ref": "#/definitions/officer" },
+            "beneficialOwners": { "type": "array", "items": { "$ref": "#/definitions/beneficialOwner" } },
+            "tags": { "$ref": "tags.json#/definitions/tagsPatch" },
+            "annualRevenue": { "$ref": "types.json#/definitions/businessAnnualRevenue" },
+            "numberOfEmployees": { "$ref": "types.json#/definitions/businessNumberOfEmployees" },
+            "cashFlow": { "$ref": "types.json#/definitions/cashFlow" },
+            "yearOfIncorporation": { "$ref": "types.json#/definitions/year" },
+            "countriesOfOperation": {"type": "array", "items": {"$ref": "types.json#/definitions/country"}, "minItems": 1},
+            "stockSymbol": {"type": "string"},
+            "businessVertical": { "$ref": "types.json#/definitions/businessVertical"},
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "patchTrustApplication": {
+      "title": "Patch Trust Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "trustApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "tags": { "$ref": "tags.json#/definitions/tagsPatch" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    }
+  },
+  "title": "Patch Application",
+  "type": "object",
+  "properties": {
+    "data": {
+      "oneOf": [
+        { "$ref": "#/definitions/patchBusinessApplication" },
+        { "$ref": "#/definitions/patchIndividualApplication" },
+        { "$ref": "#/definitions/patchTrustApplication" }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "data" ]
 }

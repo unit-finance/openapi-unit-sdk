@@ -18,41 +18,15 @@
                 {
                     "name": "filter",
                     "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
                             "query": {
                                 "type": "string"
-                            },
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "tags": {
-                                "type": "object"
                             }
                         }
-                    }
-                },
-                {
-                    "name": "sort",
-                    "in": "query",
-                    "schema": {
-                        "type": "string",
-                        "enum": [
-                            "createdAt",
-                            "-createdAt"
-                        ],
-                        "default": "-createdAt"
                     }
                 }
             ],

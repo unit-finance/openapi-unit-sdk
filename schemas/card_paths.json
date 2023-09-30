@@ -85,11 +85,8 @@
 											"$ref":"card.json"
 										}
 									},
-									"included":{
-										"type":"array",
-										"items":{
-											"$ref": "openapi_types.json#/IncludedResource"
-										}
+									"included": {
+										"$ref": "openapi_types.json#/IncludedResource"
 									}
 								}
 							}
@@ -180,10 +177,7 @@
 										"$ref":"card.json"
 									},
 									"included": {
-										"type": "array",
-										"items": {
-											"$ref": "openapi_types.json#/IncludedResource"
-										}
+										"$ref": "openapi_types.json#/IncludedResource"
 									}
 								}
 							}

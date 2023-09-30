@@ -8,18 +8,15 @@
 			}
 		}
 	},
-	"UnitApplicationResponseWithIncluded":{
-		"type":"object",
-		"title":"UnitApplicationResponse",
+	"UnitApplicationResponseWithIncluded": {
+		"type": "object",
+		"title": "UnitApplicationResponse",
 		"properties": {
 			"data": {
 				"$ref": "application.json"
 			},
 			"included": {
-				"type": "array",
-				"items": {
-					"$ref": "openapi_types.json#/IncludedResource"
-				}
+				"$ref": "openapi_types.json#/IncludedResource"
 			}
 		}
 	},

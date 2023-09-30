@@ -135,10 +135,7 @@
                                         }
                                     },
                                     "included": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "openapi_types.json#/IncludedResource"
-                                        }
+                                        "$ref": "openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }

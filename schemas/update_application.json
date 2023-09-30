@@ -104,7 +104,7 @@
             "yearOfIncorporation": { "$ref": "types.json#/definitions/year" },
             "countriesOfOperation": {"type": "array", "items": {"$ref": "types.json#/definitions/country"}, "minItems": 1},
             "stockSymbol": {"type": "string"},
-            "businessVertical": { "$ref": "types.json#/definitions/businessVertical"},
+            "businessVertical": { "$ref": "types.json#/definitions/businessVertical"}
           },
           "additionalProperties": false
         }

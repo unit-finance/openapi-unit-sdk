@@ -54,7 +54,10 @@
                                 ]
                             },
                             "type": {
-                                "type": "array"
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
                             "direction": {
                                 "type": "array",

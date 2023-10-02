@@ -48,7 +48,10 @@
                                 ]
                             },
                             "merchantCategoryCode": {
-                                "type": "array"
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
                             "fromAmount": {
                                 "type": "integer"
@@ -171,7 +174,10 @@
                                 "type": "string"
                             },
                             "merchantCategoryCode": {
-                                "type": "array"
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
                             "fromAmount": {
                                 "type": "integer"

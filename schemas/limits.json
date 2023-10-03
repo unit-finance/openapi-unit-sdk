@@ -300,13 +300,5 @@
             "limits": "#/definitions/DepositLimits",
             "creditLimits": "#/definitions/CreditLimits"
         }
-    },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/DepositLimits"
-        },
-        {
-            "$ref": "#/definitions/CreditLimits"
-        }
-    ]
+    }
 }

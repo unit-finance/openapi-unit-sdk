@@ -650,25 +650,5 @@
             "businessCreditCard": "#/definitions/BusinessCreditCard",
             "businessVirtualCreditCard": "#/definitions/BusinessVirtualCreditCard"
         }
-    },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/BusinessDebitCard"
-        },
-        {
-            "$ref": "#/definitions/IndividualDebitCard"
-        },
-        {
-            "$ref": "#/definitions/BusinessVirtualDebitCard"
-        },
-        {
-            "$ref": "#/definitions/IndividualVirtualDebitCard"
-        },
-        {
-            "$ref": "#/definitions/BusinessCreditCard"
-        },
-        {
-            "$ref": "#/definitions/BusinessVirtualCreditCard"
-        }
-    ]
+    }
 }

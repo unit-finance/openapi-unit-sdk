@@ -795,16 +795,5 @@
             "businessApplication": "#/definitions/BusinessApplication",
             "trustApplication": "#/definitions/TrustApplication"
         }
-    },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/IndividualApplication"
-        },
-        {
-            "$ref": "#/definitions/BusinessApplication"
-        },
-        {
-            "$ref": "#/definitions/TrustApplication"
-        }
-    ]
+    }
 }

@@ -405,13 +405,5 @@
       "achRepayment": "#/definitions/AchRepayment",
       "bookRepayment": "#/definitions/BookRepayment"
     }
-  },
-  "oneOf": [
-    {
-      "$ref": "#/definitions/AchRepayment"
-    },
-    {
-      "$ref": "#/definitions/BookRepayment"
-    }
-  ]
+  }
 }

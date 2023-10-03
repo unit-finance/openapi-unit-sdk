@@ -381,16 +381,5 @@
             "recurringDebitAchPayment": "#/definitions/RecurringDebitAchPayment",
             "recurringCreditBookPayment": "#/definitions/RecurringCreditBookPayment"
         }
-    },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/RecurringCreditAchPayment"
-        },
-        {
-            "$ref": "#/definitions/RecurringDebitAchPayment"
-        },
-        {
-            "$ref": "#/definitions/RecurringCreditBookPayment"
-        }
-    ]
+    }
 }

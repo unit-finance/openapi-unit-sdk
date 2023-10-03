@@ -575,19 +575,5 @@
             "wirePayment": "#/definitions/WirePayment",
             "billPayment": "#/definitions/BillPayment"
         }
-    },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/AchPayment"
-        },
-        {
-            "$ref": "#/definitions/BookPayment"
-        },
-        {
-            "$ref": "#/definitions/WirePayment"
-        },
-        {
-            "$ref": "#/definitions/BillPayment"
-        }
-    ]
+    }
 }

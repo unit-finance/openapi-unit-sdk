@@ -441,16 +441,5 @@
             "cardTransactionAuthorizationRequest": "#/definitions/CardTransactionAuthorizationRequest",
             "atmAuthorizationRequest": "#/definitions/AtmAuthorizationRequest"
         }
-    },
-    "oneOf": [
-        {
-            "$ref": "#/definitions/PurchaseAuthorizationRequest"
-        },
-        {
-            "$ref": "#/definitions/CardTransactionAuthorizationRequest"
-        },
-        {
-            "$ref": "#/definitions/AtmAuthorizationRequest"
-        }
-    ]
+    }
 }

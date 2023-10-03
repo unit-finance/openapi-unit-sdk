@@ -200,72 +200,50 @@
                     }
                 }
             }
-        }
-    },
-    "patch": {
-        "tags": [
-            "Update Account"
-        ],
-        "operationId": "execute",
-        "summary": "Update Account",
-        "description": "Update an Account via API ",
-        "parameters": [
-            {
-                "schema": {
-                    "type": "string"
-                },
-                "name": "accountId",
-                "in": "path",
-                "required": true,
-                "description": "ID of the account to update"
-            }
-        ],
-        "requestBody": {
-            "description": "Update Account Request",
-            "required": true,
-            "content": {
-                "application/vnd.api+json": {
-                    "schema": {
-                        "title": "PatchAccountRequest",
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string"
-                                    },
-                                    "attributes": {
-                                        "type": "object",
-                                        "properties": {
-                                            "tags": {
-                                                "type": "object"
-                                            },
-                                            "depositProduct": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         },
-        "responses": {
-            "200": {
-                "description": "Successful Response",
+        "patch": {
+            "tags": [
+                "Update Account"
+            ],
+            "operationId": "execute",
+            "summary": "Update Account",
+            "description": "Update an Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Account Request",
+                "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "account_paths.json#/UnitAccountResponse"
+                            "$ref": "patch_account.json"
                         }
                     }
                 }
             },
-            "default": {
-                "$ref": "types.json#/definitions/unitError"
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "account_paths.json#/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
+                }
             }
         }
     },

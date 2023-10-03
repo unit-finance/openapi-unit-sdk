@@ -54,7 +54,10 @@
                                 ]
                             },
                             "type": {
-                                "type": "array"
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
                             "direction": {
                                 "type": "array",
@@ -205,7 +208,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "types.json#/definitions/updateUnitRequest"
+                            "$ref": "update_transaction.json"
                         }
                     }
                 }

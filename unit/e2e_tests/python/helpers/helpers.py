@@ -4,7 +4,7 @@ import os
 from datetime import date, timedelta
 from swagger_client import configuration, api_client, Address, CreateIndividualApplicationAttributes, FullName, Phone \
     , CreateIndividualApplication, CreateBusinessApplication, CreateBusinessApplicationAttributes, BeneficialOwner, \
-    Contact, Officer
+    Contact, Officer, CreateBeneficialOwner
 
 ac = None
 
@@ -50,10 +50,10 @@ def create_business_application_request():
     contact = Contact(full_name=FullName("Jone", "Doe"), email="jone.doe@unit-finance.com",
                       phone=Phone("1", "2025550108"))
     beneficial_owners = [
-        BeneficialOwner(full_name=FullName("James", "Smith"), date_of_birth=date.today() - timedelta(days=20 * 365),
+        CreateBeneficialOwner(full_name=FullName("James", "Smith"), date_of_birth=date.today() - timedelta(days=20 * 365),
                         address=create_address("650 Allerton Street", "Redwood City", "CA", "94063", "US"),
                         phone=Phone("1", "2025550127"), email="james@unit-finance.com", ssn="574567625"),
-        BeneficialOwner(full_name=FullName("Richard", "Hendricks"),
+        CreateBeneficialOwner(full_name=FullName("Richard", "Hendricks"),
                         date_of_birth=date.today() - timedelta(days=20 * 365),
                         address=create_address("470 Allerton Street", "Redwood City", "CA", "94063", "US"),
                         phone=Phone("1", "2025550158"), email="richard@unit-finance.com", ssn="574572795")

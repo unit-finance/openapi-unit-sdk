@@ -54,7 +54,7 @@
                 "beneficialOwners": {
                     "type": "array",
                     "items": {
-                        "$ref": "createApplication.json#/definitions/beneficialOwner"
+                        "$ref": "createApplication.json#/definitions/createBeneficialOwner"
                     }
                 },
                 "website": {

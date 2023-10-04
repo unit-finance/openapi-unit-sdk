@@ -8,6 +8,15 @@
 			}
 		}
 	},
+	"UnitDocumentResponse":{
+		"type": "object",
+		"title":"UnitDocumentResponse",
+		"properties":{
+			"data":{
+				"$ref":"document.json"
+			}
+		}
+	},
 	"UnitApplicationResponseWithIncluded":{
 		"type":"object",
 		"title":"UnitApplicationResponse",
@@ -551,12 +560,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type": "object",
-								"properties":{
-									"data":{
-										"$ref":"document.json"
-									}
-								}
+								"$ref": "#/UnitDocumentResponse"
 							}
 						}
 					}
@@ -609,12 +613,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type": "object",
-								"properties":{
-									"data":{
-										"$ref":"document.json"
-									}
-								}
+								"$ref": "#/UnitDocumentResponse"
 							}
 						}
 					}
@@ -667,12 +666,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type": "object",
-								"properties":{
-									"data":{
-										"$ref":"document.json"
-									}
-								}
+								"$ref": "#/UnitDocumentResponse"
 							}
 						}
 					}

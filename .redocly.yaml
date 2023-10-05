@@ -3,20 +3,16 @@ extends:
 
 rules:
   operation-operationId-unique:
-    enabled: false
-    severity: off
+    severity: warn
 
   path-not-include-query:
-    enabled: false
-    severity: off
+    severity: warn
 
   no-path-trailing-slash:
-    enabled: false
-    severity: off
+    severity: warn
 
   operation-4xx-response:
-    enabled: false
-    severity: off
+    severity: warn
 
   spec:
     severity: warn

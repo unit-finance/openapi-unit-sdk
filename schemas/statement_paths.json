@@ -89,10 +89,9 @@
                 "200": {
                     "description": "Successful Response",
                     "content":{
-                        "application/html": {
+                        "text/html": {
                             "schema": {
-                                "type": "string",
-                                "format": "binary"
+                                "type": "string"
                             }
                         }
                     }
@@ -157,15 +156,10 @@
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                        "application/pdf": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitStatementResponse",
-                                "properties": {
-                                    "data": {
-                                        "type": "string"
-                                    }
-                                }
+                                "type": "string",
+                                "format": "binary"
                             }
                         }
                     }

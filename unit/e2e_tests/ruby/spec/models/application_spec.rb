@@ -26,20 +26,20 @@ RSpec.describe 'Application' do
     end
 
     it 'should upload a document for the application' do
-      api_instance = OpenapiClient::UploadADocumentForAnApplicationApi.new(client)
+      api_instance = OpenapiClient::UploadAPDFDocumentForAnApplicationApi.new(client)
       request = api_instance.execute('836683', '125214', get_document_contents)
 
       expect(request.data.type).to eq('document')
     end
 
     it 'should upload a document for the application' do
-      api_instance = OpenapiClient::UploadADocumentForAnApplicationApi.new(client)
+      api_instance = OpenapiClient::UploadAPNGDocumentForAnApplicationApi.new(client)
       request = api_instance.execute('836683', '125215', get_image_contents('./spec/picture.png'))
       expect(request.data.type).to eq('document')
     end
 
     it 'should upload a document for the application' do
-      api_instance = OpenapiClient::UploadADocumentForAnApplicationApi.new(client)
+      api_instance = OpenapiClient::UploadAJPEGDocumentForAnApplicationApi.new(client)
       request = api_instance.execute('836683', '125216', get_image_contents('./spec/check1.jpg'))
       expect(request.data.type).to eq('document')
     end

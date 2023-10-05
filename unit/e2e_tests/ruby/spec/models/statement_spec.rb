@@ -12,9 +12,9 @@ RSpec.describe 'Statement' do
 
   describe 'test an instance of Statement' do
     let(:html_statement) { OpenapiClient::GetStatementHTMLApi.new(OpenapiClient::ApiClient.new(configuration)) }
-    let(:pdf_statement) { OpenapiClient::GetStatementPDFApi.new(SpecHelper::TestApiClient.new(configuration)) }
+    let(:pdf_statement) { OpenapiClient::GetStatementPDFApi.new(OpenapiClient::ApiClient.new(configuration)) }
     let(:verification_statement) do
-      OpenapiClient::GetBankVerificationPDFApi.new(SpecHelper::TestApiClient.new(configuration))
+      OpenapiClient::GetBankVerificationPDFApi.new(OpenapiClient::ApiClient.new(configuration))
     end
 
     it 'should get an instance of html statement' do
@@ -24,22 +24,54 @@ RSpec.describe 'Statement' do
           language: 'en'
         }
       }
-      _request, status_code, _headers = html_statement.execute_with_http_info('9755166', opts)
+      response_data, status_code, headers = html_statement.execute_with_http_info('9755166', opts)
 
       expect(status_code).to eq(200)
+
+      expect(headers['Content-Type']).to include('text/html')
+
+      # Read the content from the IO stream, if it's an IO object
+      content = if response_data.is_a?(Tempfile) || response_data.is_a?(File)
+        File.read(response_data.path)
+      else
+        response_data
+      end
+
+      # Check for common HTML tags in the content
+      expect(content).to match(/<html[^>]*>/)
+      expect(content).to include('<body>')
     end
 
     it 'should get an instance of pdf statement' do
       opts = { query_params: { customer_id: '22603' } }
-      _request, status_code, _headers = pdf_statement.execute_with_http_info('15554784', opts)
+      response_data, status_code, headers = pdf_statement.execute_with_http_info('15554784', opts)
+
       expect(status_code).to eq(200)
-      expect(_request).to include('PDF')
+      expect(headers['Content-Type']).to include('application/pdf')
+
+      # Read the first few bytes of the Tempfile
+      response_data.open
+      initial_bytes = response_data.read(4)
+      response_data.close
+
+      expect(initial_bytes).to eq('%PDF')
     end
 
     it 'should get an instance of bank verification pdf statement' do
-      _request, status_code, _headers = verification_statement.execute_with_http_info('27573')
-      expect(_request).to include('PDF')
+      response_data, status_code, headers = verification_statement.execute_with_http_info('27573')
       expect(status_code).to eq(200)
+
+      # If the response_data is a string:
+      if response_data.is_a?(String)
+        expect(response_data[0, 4]).to eq('%PDF')
+      elsif response_data.is_a?(Tempfile)  # If the response_data is a Tempfile:
+        response_data.open
+        initial_bytes = response_data.read(4)
+        response_data.close
+        expect(initial_bytes).to eq('%PDF')
+      else
+        fail "Unexpected response_data type: #{response_data.class}"
+      end
     end
   end
 end

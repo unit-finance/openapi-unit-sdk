@@ -18,7 +18,7 @@ RSpec.describe 'Card' do
             additional_embossed_text: 'additional_text', expiry_date: '03/27' }
         ),
                                                                      relationships: OpenapiClient::CardRelationships.new(account: { "data": { "type": 'depositAccount',
-                                                                                                                                              "id": '1568614' } })).to_hash }
+                                                                                                                                              "id": '2002413' } })).to_hash }
       response = api_instance.execute(request)
       expect(response.data.type).to eq('individualDebitCard')
     end

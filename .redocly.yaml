@@ -6,6 +6,14 @@ rules:
     enabled: false
     severity: off
 
+  path-not-include-query:
+    enabled: false
+    severity: off
+
+  no-path-trailing-slash:
+    enabled: false
+    severity: off
+
   operation-4xx-response:
     enabled: false
     severity: off

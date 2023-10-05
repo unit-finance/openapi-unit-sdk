@@ -1,12 +1,14 @@
 from __future__ import absolute_import
 
-import os
+import base64
 import unittest
 
-from e2e_tests.python.helpers.helpers import create_api_client, create_individual_application_request, create_business_application_request
-from swagger_client import GetListApplicationsApi, CreateApplicationApi, UploadADocumentForAnApplicationApi, \
-    CreateSoleProprietorApplication, CreateSoleProprietorApplicationAttributes, Address, FullName, Phone, \
-    CreateTrustApplication, CreateTrustApplicationAttributes, Grantor, Trustee, Beneficiary, TrustContact
+from e2e_tests.python.helpers.helpers import create_api_client, create_individual_application_request,\
+    create_business_application_request
+from swagger_client import GetListApplicationsApi, CreateApplicationApi, CreateSoleProprietorApplication, \
+    CreateSoleProprietorApplicationAttributes, Address, FullName, Phone, \
+    CreateTrustApplication, CreateTrustApplicationAttributes, Grantor, Trustee, Beneficiary, TrustContact, \
+    UploadAPNGDocumentForAnApplicationApi, UploadAJPEGDocumentForAnApplicationApi, UploadAPDFDocumentForAnApplicationApi
 from swagger_client.api.get_application_api import GetApplicationApi  # noqa: E501
 
 ApplicationTypes = ["individualApplication", "businessApplication", "trustApplication"]
@@ -16,7 +18,6 @@ class TestApplicationApi(unittest.TestCase):
     """ApplicationApi unit test stubs"""
 
     def setUp(self):
-        token = os.environ.get('TOKEN')
         self.api_client = create_api_client()
 
     def tearDown(self):
@@ -76,10 +77,10 @@ class TestApplicationApi(unittest.TestCase):
         application_id = app.id
         document_id = app.relationships.documents.data[0].id
 
-        image_file = open("dog.png")
+        image_file = open("unit_photo.png", 'rb').read()
 
-        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file.read(), application_id, document_id)
-        assert res.data == "document"
+        res = UploadAPNGDocumentForAnApplicationApi(self.api_client).execute(image_file.decode('latin-1'), application_id, document_id)
+        assert res.data.type == "document"
 
     def test_upload_jpg_document(self):
         app = self.create_individual_application("000000003")
@@ -87,10 +88,10 @@ class TestApplicationApi(unittest.TestCase):
         application_id = app.id
         document_id = app.relationships.documents.data[0].id
 
-        image_file = open("Unit_Logo.jpg", "r").read()
+        image_file = open("Unit_Logo.jpg", "r", encoding='latin-1').read()
 
-        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file, application_id, document_id)
-        assert res.data == "document"
+        res = UploadAJPEGDocumentForAnApplicationApi(self.api_client).execute(str(image_file), application_id, document_id)
+        assert res.data.type == "document"
 
     def test_upload_pdf_document(self):
         app = self.create_individual_application("000000003")
@@ -100,8 +101,8 @@ class TestApplicationApi(unittest.TestCase):
 
         image_file = open("sample.pdf", "r").read()
 
-        res = UploadADocumentForAnApplicationApi(self.api_client).execute(image_file, application_id, document_id)
-        assert res.data == "document"
+        res = UploadAPDFDocumentForAnApplicationApi(self.api_client).execute(str(image_file), application_id, document_id)
+        assert res.data.type == "document"
 
     def test_create_sole_proprietor_application(self):
         address = Address(street="1600 Pennsylvania Avenue Northwest", city="Washington", state="CA",
@@ -129,7 +130,7 @@ class TestApplicationApi(unittest.TestCase):
         address = Address(street="1600 Pennsylvania Avenue Northwest", city="Washington", state="CA",
                           postal_code="20500",
                           country="US")
-        full_name = FullName("Richard","Hendricks")
+        full_name = FullName("Richard", "Hendricks")
 
         attr = CreateTrustApplicationAttributes("Trust me Inc.", "CA", "Revocable", "Salary", "123456789",
                                                 Grantor(full_name, "richard@piedpiper.com",

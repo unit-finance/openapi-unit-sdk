@@ -133,7 +133,7 @@
                 "dateOfBirth"
             ]
         },
-        "beneficialOwner": {
+        "createBeneficialOwner": {
             "title": "CreateBeneficialOwner",
             "type": "object",
             "properties": {
@@ -507,7 +507,7 @@
                   "beneficialOwners": {
                       "type": "array",
                       "items": {
-                          "$ref": "#/definitions/beneficialOwner"
+                          "$ref": "#/definitions/createBeneficialOwner"
                       }
                   },
                   "tags": {

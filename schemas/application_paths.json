@@ -8,6 +8,15 @@
 			}
 		}
 	},
+	"UnitDocumentResponse":{
+		"type": "object",
+		"title":"UnitDocumentResponse",
+		"properties":{
+			"data":{
+				"$ref":"document.json"
+			}
+		}
+	},
 	"UnitApplicationResponseWithIncluded":{
 		"type":"object",
 		"title":"UnitApplicationResponse",
@@ -506,10 +515,10 @@
 			}
 		}
 	},
-	"upload_file":{
+	"upload_pdf_file":{
 		"put":{
 			"tags":[
-				"Upload a Document for an Application"
+				"Upload a PDF Document for an Application"
 			],
 			"operationId":"execute",
 			"parameters":[
@@ -532,16 +541,15 @@
 					"description":"ID of the document to upload a file for"
 				}
 			],
-			"summary":"Upload a document",
-			"description":"Upload a file via API ",
+			"summary":"Upload a PDF document",
+			"description":"Upload a PDF file via API ",
 			"requestBody":{
-				"description":"Upload File",
+				"description":"Upload PDF File",
 				"required": true,
 				"content":{
-					"image/png":{
+					"application/pdf":{
 						"schema":{
-							"type":"string",
-							"format":"binary"
+							"type": "object"
 						}
 					}
 				}
@@ -552,12 +560,113 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type": "object",
-								"properties":{
-									"data":{
-										"$ref":"document.json"
-									}
-								}
+								"$ref": "#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"upload_png_file":{
+		"put":{
+			"tags":[
+				"Upload a PNG Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to upload a file to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to upload a file for"
+				}
+			],
+			"summary":"Upload a PNG document",
+			"description":"Upload a PNG file via API ",
+			"requestBody":{
+				"description":"Upload PNG File",
+				"required": true,
+				"content":{
+					"image/png":{
+						"schema":{
+							"type": "object"
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"upload_jpg_file":{
+		"put":{
+			"tags":[
+				"Upload a JPEG Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to upload a file to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to upload a file for"
+				}
+			],
+			"summary":"Upload a JPEG document",
+			"description":"Upload a JPEG file via API ",
+			"requestBody":{
+				"description":"Upload JPEG File",
+				"required": true,
+				"content":{
+					"image/jpeg":{
+						"schema":{
+							"type": "object"
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "#/UnitDocumentResponse"
 							}
 						}
 					}

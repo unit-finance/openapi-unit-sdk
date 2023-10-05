@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require '../unit/lib/openapi_client'
+require 'openapi_client'
 require 'rspec'
 
 module SpecHelper
@@ -24,46 +24,6 @@ module SpecHelper
       access_t = config.access_token
       config.api_key['Authorization'] = access_t
       config.api_key_prefix['Authorization'] = 'Bearer'
-    end
-  end
-
-  class TestApiClient < OpenapiClient::ApiClient
-    def deserialize(response, return_type)
-      body = response.body
-
-      # handle file downloading - return the File instance processed in request callbacks
-      # note that response body is empty when the file is written in chunks in request on_body callback
-      return @tempfile if return_type == 'File'
-
-      return nil if body.nil? || body.empty?
-
-      # return response body directly for String return type
-      return body if return_type == 'String'
-
-      # ensuring a default content type
-      content_type = response.headers['Content-Type'] || 'application/json'
-
-      unless json_mime?(content_type) || content_type == 'application/pdf'
-        # Unsupported content type
-        raise "Content-Type is not supported: #{content_type}"
-      end
-
-      if content_type == 'application/pdf'
-        # Return the original PDF content
-        return body
-      end
-
-      begin
-        data = JSON.parse("[#{body}]", symbolize_names: true)[0]
-      rescue JSON::ParserError => e
-        if %w[String Date Time].include?(return_type)
-          data = body
-        else
-          raise e
-        end
-      end
-
-      convert_to_type(data, return_type)
     end
   end
 

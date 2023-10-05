@@ -24,9 +24,22 @@ RSpec.describe 'Statement' do
           language: 'en'
         }
       }
-      _request, status_code, _headers = html_statement.execute_with_http_info('9755166', opts)
+      response_data, status_code, headers = html_statement.execute_with_http_info('9755166', opts)
 
       expect(status_code).to eq(200)
+
+      expect(headers['Content-Type']).to include('text/html')
+
+      # Read the content from the IO stream, if it's an IO object
+      content = if response_data.is_a?(Tempfile) || response_data.is_a?(File)
+        File.read(response_data.path)
+      else
+        response_data
+      end
+
+      # Check for common HTML tags in the content
+      expect(content).to match(/<html[^>]*>/)
+      expect(content).to include('<body>')
     end
 
     it 'should get an instance of pdf statement' do
@@ -43,8 +56,6 @@ RSpec.describe 'Statement' do
 
       expect(initial_bytes).to eq('%PDF')
     end
-
-
 
     it 'should get an instance of bank verification pdf statement' do
       response_data, status_code, headers = verification_statement.execute_with_http_info('27573')

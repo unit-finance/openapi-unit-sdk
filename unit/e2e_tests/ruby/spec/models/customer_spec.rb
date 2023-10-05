@@ -36,10 +36,11 @@ RSpec.describe 'Customer' do
     let(:api_instance) { OpenapiClient::GetListCustomersApi.new(OpenapiClient::ApiClient.new(configuration)) }
 
     it 'should list customers' do
-      request = { "page[limit]": 10, "page[offset]": 20, "filter[email]": 'jone.doe1@unit-finance.com' }
-      response = api_instance.execute(request)
-      pp response
+      opts =  { query_params: {"page[limit]": 10, "page[offset]": 0, "filter[email]": 'jone.doe1@unit-finance.com'}}
+      response = api_instance.execute(opts)
+
       expect(response.data[0].type).to eq('individualCustomer')
     end
+
   end
 end

@@ -249,12 +249,7 @@
 					"name":"sort",
 					"in":"query",
 					"schema":{
-						"type":"string",
-						"enum":[
-							"createdAt",
-							"-createdAt"
-						],
-						"default":"-createdAt"
+						"type": "string"
 					}
 				}
 			],
@@ -392,12 +387,7 @@
 					"name": "sort",
 					"in": "query",
 					"schema": {
-						"type": "string",
-						"enum": [
-							"createdAt",
-							"-createdAt"
-						],
-						"default": "-createdAt"
+						"type": "string"
 					}
 				}
 			],

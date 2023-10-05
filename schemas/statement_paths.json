@@ -39,12 +39,7 @@
                     "name": "sort",
                     "in": "query",
                     "schema": {
-                        "type": "string",
-                        "enum": [
-                            "period",
-                            "-period"
-                        ],
-                        "default": "-period"
+                        "type": "string"
                     }
                 }
             ],

@@ -1,9 +1,7 @@
 import os
 import unittest
 from e2e_tests.python.helpers.helpers import create_api_client
-from swagger_client import GetListCustomersApi, GetCustomerApi
-
-token = os.environ.get('TOKEN')
+from swagger_client import *
 
 CustomerTypes = ["individualCustomer", "businessCustomer"]
 
@@ -31,18 +29,25 @@ class TestCustomerApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def list_customers(self):
+        return GetListCustomersApi(self.api_client).execute()
+
     def test_get_customer(self):
-        response = GetListCustomersApi(self.api_client).get_customers_list()
-        for c in response.data:
-            assert c.type in CustomerTypes
-            customer = GetCustomerApi(self.api_client).find_customer_by_id(c.id).data
-            assert c.id == customer.id
-            assert c.type == customer.type
+        customers = self.list_customers()
+        for customer in customers.data:
+            GetCustomerApi(self.api_client).execute(customer.id)
+            assert customer.type in CustomerTypes
 
     def test_list_customers(self):
-        response = GetListCustomersApi(self.api_client).get_customers_list()
-        for customer in response.data:
+        customers = self.list_customers()
+        for customer in customers.data:
             assert customer.type in CustomerTypes
+    def test_update_individual_customer():
+        _address = create_address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
+        _attributes = IndividualCustomerAttributes(address=_address, tags={"test": "updated"})
+        request = UpdateCustomer(type="individualCustomer",)
+        response = UpdateCustomerApi(request)
+        assert response.data.type == "individualCustomer"
 
     if __name__ == '__main__':
         unittest.main()
@@ -55,36 +60,11 @@ class TestCustomerApi(unittest.TestCase):
 #             return c
 #     return None
 #
-#
-# def test_update_individual_customer():
-#     individual_customer_id = get_customer_by_type("individualCustomer").id
-#     request = PatchIndividualCustomerRequest(individual_customer_id, phone=Phone("1", "1115551111"))
-#     response = client.customers.update(request)
-#     assert response.data.type == "individualCustomer"
-#
-#
 # def test_update_business_customer():
 #     business_customer_id = get_customer_by_type("businessCustomer").id
 #     request = PatchBusinessCustomerRequest(business_customer_id, phone=Phone("1", "1115551111"))
 #     response = client.customers.update(request)
 #     assert response.data.type == "businessCustomer"
-#
-#
-# def test_get_customer():
-#     customer_ids = []
-#     response = client.customers.list()
-#     for c in response.data:
-#         customer_ids.append(c.id)
-#
-#     for id in customer_ids:
-#         response = client.customers.get(id)
-#         assert response.data.type == "individualCustomer" or response.data.type == "businessCustomer"
-#
-#
-# def test_list_customers():
-#     response = client.customers.list()
-#     for customer in response.data:
-#         assert customer.type == "individualCustomer" or customer.type == "businessCustomer"
 #
 #
 # def test_business_customer():

@@ -663,5 +663,147 @@
 				}
 			}
 		}
+	},
+	"download_file":{
+		"get":{
+			"tags":[
+				"Get a Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application that the file belongs to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to download"
+				}
+			],
+			"summary":"Download a document",
+			"description":"Download a file via API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/octet-stream": {
+							"schema": {
+								"type": "string",
+								"format": "binary"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"create_document":{
+		"post":{
+			"tags":[
+				"Create a Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to create a document to"
+				}
+			],
+			"summary":"Create a document",
+			"description":"Create a document via API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"verify_document":{
+		"post":{
+			"tags":[
+				"Verify a Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application that the document belongs to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to verify"
+				}
+			],
+			"summary":"Verify a document",
+			"description":"Verify a Document via API ",
+			"requestBody":{
+				"description":"Verify Document",
+				"required": true,
+				"content":{
+					"application/vnd.api+json":{
+						"schema": {
+							"type": "object",
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"attributes": {
+									"type": "object",
+									"properties": {
+										"jobId": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

@@ -1,6 +1,6 @@
 import os
 import unittest
-from e2e_tests.python.helpers.helpers import create_api_client
+from e2e_tests.python.helpers.helpers import *
 from swagger_client import *
 
 CustomerTypes = ["individualCustomer", "businessCustomer"]
@@ -42,11 +42,22 @@ class TestCustomerApi(unittest.TestCase):
         customers = self.list_customers()
         for customer in customers.data:
             assert customer.type in CustomerTypes
-    def test_update_individual_customer():
+
+    def get_customer(self, customer_type='individualCustomer'):
+        customers = self.list_customers()
+
+        for customer in customers.data:
+            if customer.type == customer_type:
+                return GetCustomerApi(self.api_client).execute(customer.id)
+
+        return None
+
+    def test_update_individual_customer(self):
         _address = create_address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
-        _attributes = IndividualCustomerAttributes(address=_address, tags={"test": "updated"})
-        request = UpdateCustomer(type="individualCustomer",)
-        response = UpdateCustomerApi(request)
+        _attributes = UpdateIndividualCustomerAttributes(address=_address, tags={"test": "updated"})
+        request = UpdateIndividualCustomer(type="individualCustomer", attributes=_attributes)
+
+        response = UpdateCustomerApi(self.api_client).execute(customer_id=self.get_customer().data.id, body={"data": request})
         assert response.data.type == "individualCustomer"
 
     if __name__ == '__main__':

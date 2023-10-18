@@ -1,16 +1,9 @@
 import os
 import unittest
-import requests
 
-from e2e_tests.python.helpers.helpers import create_api_client, create_individual_application_request, \
-    create_business_application_request
-from swagger_client import GetListOfCardsApi, GetCardApi, CreateApplicationApi, CreateDepositAccountAttributes, \
-    CreateDepositAccountRelationships, CreateDepositAccount, CreateAnAccountApi, CreateACardApi, FreezeACardApi, \
-    UnfreezeACardApi, CloseACardApi, ReportCardAsStolenApi, ReportCardAsLostApi, CreateIndividualDebitCard, \
-    CreateIndividualDebitCardAttributes, Address, CardLevelLimits, CreateCardRelationships, Relationship, \
-    RelationshipData, CreateBusinessDebitCard, CreateBusinessDebitCardAttributes, FullName, Phone, \
-    CreateBusinessVirtualDebitCardAttributes, CreateBusinessVirtualDebitCard, CreateIndividualVirtualDebitCard, \
-    CreateIndividualVirtualDebitCardAttributes
+from e2e_tests.python.helpers.helpers import *
+from swagger_client import *
+
 
 card_types = ["individualDebitCard", "businessDebitCard", "individualVirtualDebitCard", "businessVirtualDebitCard",
               "businessCreditCard", "businessVirtualCreditCard"]
@@ -37,12 +30,14 @@ class TestCardApi(unittest.TestCase):
     def create_card_relationships(self, account_id: str, _type="depositAccount"):
         return CreateCardRelationships(Relationship(RelationshipData(account_id, _type)))
 
+
+    def card_list(self):
+        return GetListOfCardsApi(self.api_client).execute().data
+
     def test_card_list(self):
-        res = GetListOfCardsApi(self.api_client).execute().data
+        res = self.card_list()
         for card in res:
             assert card.type in card_types
-            if card.attributes.status == "Inactive":
-                requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
 
     def test_card_list_and_get(self):
         res = GetListOfCardsApi(self.api_client).execute()
@@ -105,12 +100,6 @@ class TestCardApi(unittest.TestCase):
         req = CreateIndividualDebitCard(attributes=attributes, relationships=self.create_card_relationships(account_id))
 
         card = CreateACardApi(self.api_client).execute({"data": req}).data
-
-        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
-
-        if res.status_code != 200:
-            print("Failed to activate card")
-
         return card
 
     def test_create_individual_debit_card(self):
@@ -126,12 +115,6 @@ class TestCardApi(unittest.TestCase):
         req = CreateBusinessDebitCard(attributes=attributes, relationships=self.create_card_relationships(account_id))
 
         card = CreateACardApi(self.api_client).execute({"data": req}).data
-
-        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
-
-        if res.status_code != 200:
-            print("Failed to activate card")
-
         return card
 
     def test_create_business_debit_card(self):
@@ -147,12 +130,6 @@ class TestCardApi(unittest.TestCase):
         req = CreateBusinessVirtualDebitCard(attributes=attributes, relationships=self.create_card_relationships(account_id))
 
         card = CreateACardApi(self.api_client).execute({"data": req}).data
-
-        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
-
-        if res.status_code != 200:
-            print("Failed to activate card")
-
         return card
 
     def test_create_business_virtual_debit_card(self):
@@ -167,12 +144,6 @@ class TestCardApi(unittest.TestCase):
                                                relationships=self.create_card_relationships(account_id))
 
         card = CreateACardApi(self.api_client).execute({"data": req}).data
-
-        res = requests.post(f"https://api.s.unit.sh/sandbox/cards/{card.id}/activate/", headers=headers)
-
-        if res.status_code != 200:
-            print("Failed to activate card")
-
         return card
 
     def test_create_individual_virtual_debit_card(self):
@@ -199,35 +170,44 @@ class TestCardApi(unittest.TestCase):
     #     assert response.data.type == "individualDebitCard"
     #
 
-    def test_report_stolen_card(self):
+    def test_get_debit_card(self):
         card = self.create_individual_debit_card()
-        response = ReportCardAsStolenApi(self.api_client).execute(card.id)
+        response = GetCardApi(self.api_client).execute(card.id)
         assert response.data.type in card_types
-        assert response.data.attributes.status == "Stolen"
 
-    def test_report_lost_card(self):
+    def test_update_individual_card(self):
         card = self.create_individual_debit_card()
-        response = ReportCardAsLostApi(self.api_client).execute(card.id)
-        assert response.data.type in card_types
-        assert response.data.attributes.status == "Lost"
+        _address = create_address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
+        _attributes = PatchIndividualDebitCardAttributes(shipping_address=_address, tags={"test": "updated"})
+        request = PatchIndividualDebitCard(type="individualDebitCard",attributes=_attributes)
+        response = UpdateCardApi(self.api_client).execute(card_id=card.id,body={"data": request})
+        assert response.data.type == "individualDebitCard"
+
+    def test_get_pin_status(self):
+        response = self.card_list()
+
+        for card in response:
+            card_status = card.attributes.status
+            if card_status == "active":
+                card_id = card.id
+                if card_id:
+                    pin_status = GetCardPINStatusApi(self.api_client).execute(card_id=card_id)
+                    assert pin_status.type == "pinStatus"
+
 
     if __name__ == '__main__':
         unittest.main()
 
-#
-# def test_get_debit_card_include_customer():
-#     card_id = create_individual_debit_card().data.id
-#     response = client.cards.get(card_id, "customer")
-#     assert response.data.type in card_types and response.included is not None
-#
-# def test_update_individual_card():
-#     card_id = find_card_id({"type": "individualDebitCard", "status": "Active"})
-#     _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
-#     request = PatchIndividualDebitCard(card_id, _address, tags={"test": "updated"})
-#     response = client.cards.update(request)
-#     assert response.data.type == "individualDebitCard"
-#     assert response.data.attributes.get("tags").get("test") == "updated"
-#
+    # def test_report_stolen_card(self):
+    #     card = self.create_individual_debit_card()
+    #     response = ReportCardAsStolenApi(self.api_client).execute(card.id)
+    #     assert response.data.type in card_types
+    #     assert response.data.attributes.status == "Stolen"
+    # def test_report_lost_card(self):
+    #     card = self.create_individual_debit_card()
+    #     response = ReportCardAsLostApi(self.api_client).execute(card.id)
+    #     assert response.data.type in card_types
+    #     assert response.data.attributes.status == "Lost"
 # def test_update_business_card():
 #     card_id = create_business_debit_card().id
 #     _address = Address("1818 Pennsylvania Avenue Northwest", "Washington", "CA", "21500", "US")
@@ -236,13 +216,7 @@ class TestCardApi(unittest.TestCase):
 #     assert response.data.type == "businessDebitCard"
 #     assert response.data.attributes.get("tags").get("test") == "updated"
 #
-# def test_get_pin_status():
-#     response = client.cards.list()
-#     for card in response.data:
-#         if card.attributes["status"] != "Inactive":
-#             pin_status = client.cards.get_pin_status(card.id).data
-#             assert pin_status.type == "pinStatus"
-#
+
 # def test_card_limits():
 #     card_id = find_card_id({"type": "individualDebitCard", "status": "Active"})
 #     response = client.cards.limits(card_id)

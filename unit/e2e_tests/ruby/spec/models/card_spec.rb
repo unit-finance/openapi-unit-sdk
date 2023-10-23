@@ -17,10 +17,10 @@ RSpec.describe 'Card' do
           { shipping_address: ADDRESS, tags: { "purpose": 'checking' },
             additional_embossed_text: 'additional_text', expiry_date: '03/27' }
         ),
-                                                                     relationships: OpenapiClient::CardRelationships.new(account: { "data": { "type": 'depositAccount',
+                                                                     relationships: OpenapiClient::Relationships.new(account: { "data": { "type": 'depositAccount',
                                                                                                                                               "id": '2002413' } })).to_hash }
       response = api_instance.execute(request)
-      expect(response.data.type).to eq('individualDebitCard')
+      expect(response.data[:type]).to eq('individualDebitCard')
     end
 
     it 'should create a business debit card' do
@@ -31,10 +31,10 @@ RSpec.describe 'Card' do
             tags: { "purpose": 'business' }, limits: LIMITS, idempotency_key: '1234567890',
             print_only_business_name: false, expiry_date: '03/27' }
         ),
-                                                                   relationships: OpenapiClient::CardRelationships.new(account: { "data": { "type": 'account',
+                                                                   relationships: OpenapiClient::Relationships.new(account: { "data": { "type": 'account',
                                                                                                                                             "id": '1567861' } })).to_hash }
       response = api_instance.execute(request)
-      expect(response.data.type).to eq('businessDebitCard')
+      expect(response.data[:type]).to eq('businessDebitCard')
     end
   end
 end

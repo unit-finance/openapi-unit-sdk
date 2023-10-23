@@ -557,23 +557,24 @@
         },
         "additionalProperties": false
     },
-    "title": "Payment Resource",
-    "type": "object",
-    "properties": {
-        "type": {
-            "type": "string"
+    "Payment Resource": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string"
+            },
+            "id": {
+                "$ref": "types.json#/definitions/identifier"
+            }
         },
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "achPayment": "#/definitions/AchPayment",
-            "bookPayment": "#/definitions/BookPayment",
-            "wirePayment": "#/definitions/WirePayment",
-            "billPayment": "#/definitions/BillPayment"
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "achPayment": "#/definitions/AchPayment",
+                "bookPayment": "#/definitions/BookPayment",
+                "wirePayment": "#/definitions/WirePayment",
+                "billPayment": "#/definitions/BillPayment"
+            }
         }
     }
 }

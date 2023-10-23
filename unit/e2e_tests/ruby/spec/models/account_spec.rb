@@ -24,7 +24,7 @@ RSpec.describe 'Account' do
         ).to_hash).to_hash }
 
       response = api_instance.execute(request)
-      expect(response.data.type).to eq('depositAccount')
+      expect(response.data[:type]).to eq('depositAccount')
     end
 
     it 'Should create a credit account' do
@@ -40,7 +40,7 @@ RSpec.describe 'Account' do
                                                                                        "id": '851228' } }
                                                                ).to_hash).to_hash }
       response = api_instance.execute(request)
-      expect(response.data.type).to eq('creditAccount')
+      expect(response.data[:type]).to eq('creditAccount')
     end
   end
 end

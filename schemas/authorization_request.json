@@ -424,22 +424,23 @@
             ]
         }
     },
-    "title": "AuthorizationRequest Document",
-    "type": "object",
-    "properties": {
-        "type": {
-            "type": "string"
+    "AuthorizationRequestDocument": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string"
+            },
+            "id": {
+                "$ref": "types.json#/definitions/identifier"
+            }
         },
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "purchaseAuthorizationRequest": "#/definitions/PurchaseAuthorizationRequest",
-            "cardTransactionAuthorizationRequest": "#/definitions/CardTransactionAuthorizationRequest",
-            "atmAuthorizationRequest": "#/definitions/AtmAuthorizationRequest"
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "purchaseAuthorizationRequest": "#/definitions/PurchaseAuthorizationRequest",
+                "cardTransactionAuthorizationRequest": "#/definitions/CardTransactionAuthorizationRequest",
+                "atmAuthorizationRequest": "#/definitions/AtmAuthorizationRequest"
+            }
         }
     }
 }

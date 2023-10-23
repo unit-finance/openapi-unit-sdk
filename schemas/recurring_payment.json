@@ -364,22 +364,23 @@
             ]
         }
     },
-    "title": "Recurring Payment Resource",
-    "type": "object",
-    "properties": {
-        "type": {
-            "type": "string"
+    "Recurring Payment Resource": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string"
+            },
+            "id": {
+                "$ref": "types.json#/definitions/identifier"
+            }
         },
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "recurringCreditAchPayment": "#/definitions/RecurringCreditAchPayment",
-            "recurringDebitAchPayment": "#/definitions/RecurringDebitAchPayment",
-            "recurringCreditBookPayment": "#/definitions/RecurringCreditBookPayment"
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "recurringCreditAchPayment": "#/definitions/RecurringCreditAchPayment",
+                "recurringDebitAchPayment": "#/definitions/RecurringDebitAchPayment",
+                "recurringCreditBookPayment": "#/definitions/RecurringCreditBookPayment"
+            }
         }
     }
 }

@@ -538,21 +538,22 @@
             }
         }
     },
-    "title": "Account Document",
-    "type": "object",
-    "properties": {
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
+    "AccountDocument": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "types.json#/definitions/identifier"
+            },
+            "type": {
+                "type": "string"
+            }
         },
-        "type": {
-            "type": "string"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "depositAccount": "#/definitions/DepositAccount",
-            "creditAccount": "#/definitions/CreditAccount"
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "depositAccount": "#/definitions/DepositAccount",
+                "creditAccount": "#/definitions/CreditAccount"
+            }
         }
     }
 }

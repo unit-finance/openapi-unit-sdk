@@ -630,25 +630,26 @@
             ]
         }
     },
-    "title": "Card Document",
-    "type": "object",
-    "properties": {
-        "type": {
-            "type": "string"
+    "Card Document": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string"
+            },
+            "id": {
+                "$ref": "types.json#/definitions/identifier"
+            }
         },
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "businessDebitCard": "#/definitions/BusinessDebitCard",
-            "individualDebitCard": "#/definitions/IndividualDebitCard",
-            "businessVirtualDebitCard": "#/definitions/BusinessVirtualDebitCard",
-            "individualVirtualDebitCard": "#/definitions/IndividualVirtualDebitCard",
-            "businessCreditCard": "#/definitions/BusinessCreditCard",
-            "businessVirtualCreditCard": "#/definitions/BusinessVirtualCreditCard"
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "businessDebitCard": "#/definitions/BusinessDebitCard",
+                "individualDebitCard": "#/definitions/IndividualDebitCard",
+                "businessVirtualDebitCard": "#/definitions/BusinessVirtualDebitCard",
+                "individualVirtualDebitCard": "#/definitions/IndividualVirtualDebitCard",
+                "businessCreditCard": "#/definitions/BusinessCreditCard",
+                "businessVirtualCreditCard": "#/definitions/BusinessVirtualCreditCard"
+            }
         }
     }
 }

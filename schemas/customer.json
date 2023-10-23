@@ -358,22 +358,23 @@
             ]
         }
     },
-    "title": "Customer",
-    "type": "object",
-    "properties": {
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        },
-        "type": {
-            "type": "string"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "individualCustomer": "#/definitions/IndividualCustomer",
-            "businessCustomer": "#/definitions/BusinessCustomer",
-            "trustCustomer": "#/definitions/TrustCustomer"
-        }
-    }
+    "Customer": {
+      "type": "object",
+      "properties": {
+          "id": {
+              "$ref": "types.json#/definitions/identifier"
+          },
+          "type": {
+              "type": "string"
+          }
+      },
+      "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+              "individualCustomer": "#/definitions/IndividualCustomer",
+              "businessCustomer": "#/definitions/BusinessCustomer",
+              "trustCustomer": "#/definitions/TrustCustomer"
+          }
+      }
+   }
 }

@@ -51,6 +51,7 @@ class TestAccountApi(unittest.TestCase):
 
     def test_create_credit_account_for_business(self):
         response = self.create_credit_account_for_business()
+        print(response)
         assert response.type == "creditAccount"
 
     def create_deposit_account_for_business(self):

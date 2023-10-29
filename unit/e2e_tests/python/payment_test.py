@@ -1,6 +1,6 @@
 import unittest
 
-from e2e_tests.helpers import create_api_client, create_individual_application_request, create_relationship, \
+from e2e_tests.python.helpers.helpers import create_api_client, create_individual_application_request, create_relationship, \
     create_counterparty_dto, create_wire_counterparty_dto
 from swagger_client import CreateBookPayment, CreateBookPaymentAttributes, \
     CreateBookPaymentRelationships, CreateDepositAccountAttributes, CreateDepositAccountRelationships, \
@@ -19,7 +19,7 @@ class TestPaymentApi(unittest.TestCase):
         pass
 
     def create_individual_customer(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_individual_application_request()).data
+        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request()).data
         return app.relationships.customer.data.id
 
     def create_deposit_account(self):
@@ -30,7 +30,7 @@ class TestPaymentApi(unittest.TestCase):
                                                                     "id": customer_id}})
         req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        response = CreateAnAccountApi(self.api_client).execute({"data": req})
         return response.data.id
 
     # def test_get_payments_list(self):

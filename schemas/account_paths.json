@@ -4,7 +4,7 @@
         "title": "UnitAccountResponse",
         "properties": {
             "data": {
-                "$ref": "account.json"
+                "$ref": "account.json#/AccountDocument"
             }
         }
     },
@@ -13,12 +13,12 @@
         "title": "UnitAccountResponseWithIncluded",
         "properties": {
             "data": {
-                "$ref": "account.json"
+                "$ref": "account.json#/AccountDocument"
             },
             "included": {
                 "type": "array",
                 "items": {
-                    "$ref": "customer.json"
+                    "$ref": "customer.json#/Customer"
                 }
             }
         }
@@ -103,13 +103,13 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "account.json"
+                                            "$ref": "account.json#/AccountDocument"
                                         }
                                     },
                                     "included": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "customer.json"
+                                            "$ref": "customer.json#/Customer"
                                         }
                                     }
                                 }

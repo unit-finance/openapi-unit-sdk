@@ -22,7 +22,7 @@ RSpec.describe 'Application' do
                                                                          occupation: 'ArchitectOrEngineer', annual_income: 'UpTo10k', source_of_income: 'EmploymentOrPayrollIncome'
                                                                        )).to_hash }
       response = api_instance.execute(request)
-      expect(response.data[:type]).to eq('individualApplication')
+      expect(response.data.type).to eq('individualApplication')
     end
 
     it 'should upload a document for the application' do

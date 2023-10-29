@@ -15,7 +15,7 @@ RSpec.describe 'Transaction' do
 
     it 'should create an instance of Transaction' do
       response = api_instance.execute('1060441', '2246427')
-      expect(response.data[:type]).to eq("originatedAchTransaction")
+      expect(response.data.type).to eq("originatedAchTransaction")
     end
   end
 end

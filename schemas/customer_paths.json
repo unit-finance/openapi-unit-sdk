@@ -4,7 +4,7 @@
         "title": "UnitCustomerResponse",
         "properties": {
             "data": {
-                "$ref": "customer.json"
+                "$ref": "customer.json#/Customer"
             }
         }
     },
@@ -103,7 +103,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "customer.json"
+                                            "$ref": "customer.json#/Customer"
                                         }
                                     },
                                     "meta": {

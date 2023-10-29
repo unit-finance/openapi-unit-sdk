@@ -18,7 +18,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "customer.json"
+                    "$ref": "customer.json#/Customer"
                 },
                 {
                     "type": "object",
@@ -140,7 +140,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "customer.json"
+                    "$ref": "customer.json#/Customer"
                 },
                 {
                     "type": "object",
@@ -244,7 +244,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "customer.json"
+                    "$ref": "customer.json#/Customer"
                 },
                 {
                     "type": "object",

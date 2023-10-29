@@ -5,7 +5,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "account.json"
+                    "$ref": "account.json#/AccountDocument"
                 },
                 {
                     "type": "object",
@@ -169,7 +169,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "account.json"
+                    "$ref": "account.json#/AccountDocument"
                 },
                 {
                     "type": "object",

@@ -20,7 +20,7 @@ RSpec.describe 'Card' do
                                                                      relationships: OpenapiClient::Relationships.new(account: { "data": { "type": 'depositAccount',
                                                                                                                                               "id": '2002413' } })).to_hash }
       response = api_instance.execute(request)
-      expect(response.data[:type]).to eq('individualDebitCard')
+      expect(response.data.type).to eq('individualDebitCard')
     end
 
     it 'should create a business debit card' do
@@ -34,7 +34,7 @@ RSpec.describe 'Card' do
                                                                    relationships: OpenapiClient::Relationships.new(account: { "data": { "type": 'account',
                                                                                                                                             "id": '1567861' } })).to_hash }
       response = api_instance.execute(request)
-      expect(response.data[:type]).to eq('businessDebitCard')
+      expect(response.data.type).to eq('businessDebitCard')
     end
   end
 end

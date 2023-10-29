@@ -4,7 +4,7 @@
 		"title":"UnitApplicationResponse",
 		"properties":{
 			"data":{
-				"$ref":"application.json"
+				"$ref":"application.json#/Application"
 			}
 		}
 	},
@@ -22,7 +22,7 @@
 		"title":"UnitApplicationResponse",
 		"properties": {
 			"data": {
-				"$ref": "application.json"
+				"$ref": "application.json#/Application"
 			},
 			"included": {
 				"type": "array",
@@ -179,7 +179,7 @@
 								"title":"UnitCancelApplicationResponse",
 								"properties":{
 									"data":{
-										"$ref":"application.json"
+										"$ref":"application.json#/Application"
 									},
 									"included":{
 										"type":"array",
@@ -265,7 +265,7 @@
 									"data":{
 										"type":"array",
 										"items":{
-											"$ref":"application.json"
+											"$ref":"application.json#/Application"
 										}
 									},
 									"meta":{
@@ -321,7 +321,7 @@
 								"title":"UnitCreateApplicationResponse",
 								"properties":{
 									"data":{
-										"$ref":"application.json"
+										"$ref":"application.json#/Application"
 									},
 									"included":{
 										"type":"array",
@@ -495,7 +495,7 @@
 										"$ref":"application_form.json"
 									},
 									"included":{
-										"$ref":"application.json"
+										"$ref":"application.json#/Application"
 									}
 								}
 							}

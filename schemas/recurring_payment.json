@@ -364,7 +364,7 @@
             ]
         }
     },
-    "Recurring Payment Resource": {
+    "RecurringPaymentResource": {
         "type": "object",
         "properties": {
             "type": {

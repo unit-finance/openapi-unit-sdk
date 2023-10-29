@@ -46,7 +46,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json"
+                    "$ref": "payment.json#/PaymentResource"
                 },
                 {
                     "type": "object",
@@ -142,7 +142,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json"
+                    "$ref": "payment.json#/PaymentResource"
                 },
                 {
                     "type": "object",
@@ -217,7 +217,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json"
+                    "$ref": "payment.json#/PaymentResource"
                 },
                 {
                     "type": "object",
@@ -305,7 +305,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json"
+                    "$ref": "payment.json#/PaymentResource"
                 },
                 {
                     "type": "object",
@@ -377,7 +377,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json"
+                    "$ref": "payment.json#/PaymentResource"
                 },
                 {
                     "type": "object",
@@ -557,7 +557,7 @@
         },
         "additionalProperties": false
     },
-    "Payment Resource": {
+    "PaymentResource": {
         "type": "object",
         "properties": {
             "type": {

@@ -17,7 +17,7 @@ RSpec.describe 'Repayment' do
                                                                           counterparty_account: { "data": { "type": 'account', "id": '36981' } })
       request = { data: OpenapiClient::CreateBookRepayment.new(type: 'bookRepayment', attributes: attributes, relationships: relationships).to_hash }
       response = api_instance.execute(request)
-      expect(response.data[:type]).to eq('bookRepayment')
+      expect(response.data.type).to eq('bookRepayment')
     end
 
     it 'should create an instance of ach Repayment' do
@@ -28,7 +28,7 @@ RSpec.describe 'Repayment' do
                                                                           counterparty: { "data": { "type": 'counterparty', "id": '396872' } })
       request = { data: OpenapiClient::CreateAchRepayment.new(type: 'achRepayment', attributes: attributes, relationships: relationships).to_hash }
       response = api_instance.execute(request)
-      expect(response.data[:type]).to eq('achRepayment')
+      expect(response.data.type).to eq('achRepayment')
     end
   end
 end

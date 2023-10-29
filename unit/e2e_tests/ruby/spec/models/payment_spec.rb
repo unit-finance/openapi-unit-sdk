@@ -18,15 +18,15 @@ RSpec.describe 'Payment' do
         OpenapiClient::CreateBookPaymentAttributes.new(amount: 1000, description: 'test payment', tags: { "test": 'test-tag' }),
                                                              relationships: OpenapiClient::CreateBookPaymentRelationships.new(account: { "data": { "type": 'depositAccount', "id": '27573' } }, counterparty_account: { "data": { "type": 'depositAccount', "id": '36981' } }).to_hash).to_hash }
       response = api_instance.execute(request)
-      expect(response.data[:type]).to eq('bookPayment')
+      expect(response.data.type).to eq('bookPayment')
     end
 
     it 'should create an instance of AchPayment' do
       request = { data: OpenapiClient::CreateAchPayment.new(type: 'achPayment', attributes:
-        OpenapiClient::CreateAchPaymentAttributes.new(amount: 1000, direction: 'Credit', counterparty: OpenapiClient::Counterparty1.new(name: 'Jane Doe', routing_number: '812345678', account_number: '27573', account_type: 'Checking'), description: 'test payment'),
+        OpenapiClient::CreateAchPaymentAttributes.new(amount: 1000, direction: 'Credit', counterparty: OpenapiClient::Counterparty.new(name: 'Jane Doe', routing_number: '812345678', account_number: '27573', account_type: 'Checking'), description: 'test payment'),
                                                             relationships: OpenapiClient::CreateAchPaymentRelationships.new(account: { "data": { "type": 'account', "id": '27573' } }).to_hash).to_hash }
       response = api_instance.execute(request)
-      expect(response.data[:type]).to eq('achPayment')
+      expect(response.data.type).to eq('achPayment')
     end
 
     it 'should create an instance of AchPayment with plaid token' do
@@ -35,7 +35,7 @@ RSpec.describe 'Payment' do
                                                                  relationships: OpenapiClient::CreateAchPaymentRelationships.new(account: { "data": { "type": 'depositAccount', "id": '27573' } }).to_hash).to_hash }
       response = api_instance.execute(request)
 
-      expect(response.data[:type]).to eq('achPayment')
+      expect(response.data.type).to eq('achPayment')
     end
   end
 end

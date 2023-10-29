@@ -23,12 +23,12 @@ RSpec.describe 'Customer' do
     let(:api_instance) { OpenapiClient::GetCustomerApi.new(OpenapiClient::ApiClient.new(configuration)) }
     it 'should get an instance of individual Customer' do
       response = api_instance.execute('733576')
-      expect(response.data[:type]).to eq('individualCustomer')
+      expect(response.data.type).to eq('individualCustomer')
     end
 
     it 'should get an instance of individual Customer' do
       response = api_instance.execute('733565')
-      expect(response.data[:type]).to eq('businessCustomer')
+      expect(response.data.type).to eq('businessCustomer')
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe 'Customer' do
       opts =  { query_params: {"page[limit]": 10, "page[offset]": 0, "filter[email]": 'jone.doe1@unit-finance.com'}}
       response = api_instance.execute(opts)
 
-      expect(response.data[0][:type]).to eq('individualCustomer')
+      expect(response.data[0].type).to eq('individualCustomer')
     end
   end
 end

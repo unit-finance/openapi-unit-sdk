@@ -5,7 +5,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "repayment.json#/RepaymentResource"
+          "$ref": "repayment.json#/Repayment"
         },
         {
           "type": "object",
@@ -201,7 +201,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "repayment.json#/RepaymentResource"
+          "$ref": "repayment.json#/Repayment"
         },
         {
           "type": "object",
@@ -389,7 +389,7 @@
       ]
     }
   },
-  "RepaymentResource": {
+  "Repayment": {
     "type": "object",
     "properties": {
       "id": {

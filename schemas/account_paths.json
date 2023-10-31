@@ -4,7 +4,7 @@
         "title": "UnitAccountResponse",
         "properties": {
             "data": {
-                "$ref": "account.json#/AccountDocument"
+                "$ref": "account.json#/Account"
             }
         }
     },
@@ -13,7 +13,7 @@
         "title": "UnitAccountResponseWithIncluded",
         "properties": {
             "data": {
-                "$ref": "account.json#/AccountDocument"
+                "$ref": "account.json#/Account"
             },
             "included": {
                 "type": "array",
@@ -103,7 +103,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "account.json#/AccountDocument"
+                                            "$ref": "account.json#/Account"
                                         }
                                     },
                                     "included": {

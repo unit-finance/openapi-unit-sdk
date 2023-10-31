@@ -4,7 +4,7 @@
         "title": "UnitRepaymentResponse",
         "properties": {
             "data": {
-                "$ref": "repayment.json#/RepaymentResource"
+                "$ref": "repayment.json#/Repayment"
             }
         }
     },
@@ -80,7 +80,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "repayment.json#/RepaymentResource"
+                                            "$ref": "repayment.json#/Repayment"
                                         }
                                     },
                                     "meta": {

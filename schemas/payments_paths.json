@@ -4,7 +4,7 @@
         "title": "UnitPaymentResponse",
         "properties": {
             "data": {
-                "$ref": "payment.json"
+                "$ref": "payment.json#/Payment"
             }
         }
     },
@@ -22,7 +22,7 @@
         "title": "UnitRecurringPaymentResponse",
         "properties": {
             "data": {
-                "$ref": "recurring_payment.json"
+                "$ref": "recurring_payment.json#/RecurringPayment"
             }
         }
     },
@@ -148,7 +148,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "payment.json"
+                                            "$ref": "payment.json#/Payment"
                                         }
                                     },
                                     "included": {
@@ -234,7 +234,7 @@
                                 "type": "object",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
+                                        "$ref": "payment.json#/Payment"
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
@@ -512,7 +512,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "recurring_payment.json"
+                                            "$ref": "recurring_payment.json#/RecurringPayment"
                                         }
                                     }
                                 }

@@ -514,6 +514,9 @@
                                         "items": {
                                             "$ref": "recurring_payment.json#/RecurringPayment"
                                         }
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
                                     }
                                 }
                             }

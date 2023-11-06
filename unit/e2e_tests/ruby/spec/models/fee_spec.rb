@@ -11,8 +11,8 @@ RSpec.describe 'Fee' do
   describe 'test an instance of Fee' do
     let(:api_instance) { OpenapiClient::CreateFeeApi.new(OpenapiClient::ApiClient.new(configuration)) }
     it 'should create an instance of Fee' do
-      request = { data: OpenapiClient::CreateFee.new(type: 'fee', attributes: OpenapiClient::FeeAttributes.new(
-        { amount: 100, description: 'test', tags: { "purpose": 'tax' } } ),
+      request = { data: OpenapiClient::CreateFee.new(type: 'fee', attributes: OpenapiClient::CreateFeeAttributes.new(
+        { amount: 100, description: 'test', tags: { "purpose": 'tax' }, idempotency_key: "13848484884" } ),
                                                      relationships: OpenapiClient::FeeRelationships.new(
                                                        account: { "data": { "type": 'account', "id": '36099' } }
                                                       ).to_hash).to_hash }

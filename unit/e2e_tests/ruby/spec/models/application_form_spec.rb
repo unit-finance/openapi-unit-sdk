@@ -28,22 +28,4 @@ RSpec.describe 'ApplicationForm' do
       expect(response.data[0].type).to eq('applicationForm')
     end
   end
-
-  # describe 'creation of an instance of application forms' do
-  #   let(:api_instance) { OpenapiClient::CreateApplicationFormApi.new(OpenapiClient::ApiClient.new(configuration)) }
-  #
-  #   it 'should create an instance of ApplicationForm' do
-  #     request = { data: OpenapiClient::CreateApplicationForm.new(type: 'applicationForm',
-  #                                                               attributes:
-  #                                                                 OpenapiClient::CreateApplicationFormAttributes.new(
-  #                                                                   { email: "john@gmail.com",
-  #                                                                     tags: { "purpose": 'tax' } }),
-  #                                                               relationships: OpenapiClient::CreateApplicationFormRelationships.new(
-  #                                                                 customer: { "data": { "type": 'customer',
-  #                                                                                       "id": '851228' } }
-  #                                                               ).to_hash).to_hash }
-  #     response = api_instance.execute(request)
-  #     expect(response.data.type).to eq('applicationForm')
-  #   end
-  # end
 end

@@ -9,7 +9,7 @@ We encourage our SDK community to share feedback of experience with our specific
 
 ## Generating Unit Client Libraries
 Below you can find examples for generating client libraries using [OpenAPI generator](https://openapi-generator.tech/). 
-You may also use any other known generator, such as [Swagger Codegen](https://github.com/swagger-api/swagger-codegen#generating-a-client-from-local-files).
+You may also use any other known generator, such as [Swagger Codegen](https://github.com/swagger-api/swagger-codegen#generating-a-client-from-local-files), download the jar from [here](https://mvnrepository.com/artifact/io.swagger.codegen.v3/swagger-codegen-cli)
 
 The following examples are with the use of [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli). 
 
@@ -25,7 +25,7 @@ We recommend using our script which can be found in this repository:
 ```commandline
 python "./generate.py"
 ```
-Or generate with swagger-codegen-cli:
+Or generate by yourself with swagger-codegen-cli:
 ```
 java -jar swagger-codegen-cli-3.0.47.jar generate -i openapi.json -l python -o unit
 ```

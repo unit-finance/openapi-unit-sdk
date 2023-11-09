@@ -231,16 +231,7 @@
                   "format": "date"
               },
               "ip": {
-                  "oneOf": [
-                      {
-                          "type": "string",
-                          "format": "ipv4"
-                      },
-                      {
-                          "type": "string",
-                          "format": "ipv6"
-                      }
-                  ]
+                  "type": "string"
               },
               "tags": {
                   "$ref": "tags.json#/definitions/tags"
@@ -355,16 +346,7 @@
                   "pattern": "^\\d{9}$"
               },
               "ip": {
-                  "oneOf": [
-                      {
-                          "type": "string",
-                          "format": "ipv4"
-                      },
-                      {
-                          "type": "string",
-                          "format": "ipv6"
-                      }
-                  ]
+                  "type": "string"
               },
               "soleProprietorship": {
                   "type": "boolean",
@@ -490,16 +472,7 @@
                       "$ref": "#/definitions/officer"
                   },
                   "ip": {
-                      "oneOf": [
-                          {
-                              "type": "string",
-                              "format": "ipv4"
-                          },
-                          {
-                              "type": "string",
-                              "format": "ipv6"
-                          }
-                      ]
+                      "type": "string"
                   },
                   "website": {
                       "type": "string"
@@ -627,16 +600,7 @@
                             "$ref": "types.json#/definitions/trustContact"
                         },
                         "ip": {
-                            "oneOf": [
-                                {
-                                    "type": "string",
-                                    "format": "ipv4"
-                                },
-                                {
-                                    "type": "string",
-                                    "format": "ipv6"
-                                }
-                            ]
+                            "type": "string"
                         },
                         "tags": {
                             "$ref": "tags.json#/definitions/tags"

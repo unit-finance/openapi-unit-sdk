@@ -142,7 +142,7 @@
                 "account",
                 "customer"
             ],
-            "additionalProperties": false
+            "additionalProperties": true
         }
     },
     "title": "Received Payment Resource",
@@ -187,6 +187,9 @@
                 "isAdvanceable": {
                     "type": "boolean"
                 },
+                "isAdvaceable": {
+                    "type": "boolean"
+                },
                 "companyName": {
                     "type": "string"
                 },
@@ -227,11 +230,9 @@
                 "counterpartyRoutingNumber",
                 "traceNumber",
                 "wasAdvanced",
-                "isAdvaceable",
                 "direction",
                 "secCode"
-            ],
-            "additionalProperties": false
+            ]
         },
         "relationships": {
             "$ref": "#/definitions/receivedPaymentRelationships"

@@ -294,7 +294,7 @@
             "additionalProperties": false
         },
         "BusinessApplication": {
-            "title": "Business Application",
+            "title": "BusinessApplication",
             "type": "object",
             "allOf": [
                 {
@@ -475,7 +475,7 @@
             ]
         },
         "IndividualApplication": {
-            "title": "Individual Application",
+            "title": "IndividualApplication",
             "type": "object",
             "allOf": [
                 {
@@ -642,7 +642,7 @@
             ]
         },
         "TrustApplication": {
-            "title": "Trust Application",
+            "title": "TrustApplication",
             "type": "object",
             "allOf": [
                 {

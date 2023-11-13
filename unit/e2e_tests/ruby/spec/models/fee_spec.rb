@@ -15,7 +15,7 @@ RSpec.describe 'Fee' do
         { amount: 100, description: 'test', tags: { "purpose": 'tax' }, idempotency_key: "13848484884" } ),
                                                      relationships: OpenapiClient::FeeRelationships.new(
                                                        account: { "data": { "type": 'account', "id": '36099' } }
-                                                      ).to_hash).to_hash }
+                                                      )).to_hash }
       response = api_instance.execute(request)
       expect(response.data.type).to eq('fee')
     end

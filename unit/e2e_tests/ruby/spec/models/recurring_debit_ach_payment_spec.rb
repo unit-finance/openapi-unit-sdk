@@ -22,7 +22,7 @@ RSpec.describe 'RecurringPayment' do
                                                                     ), relationships: OpenapiClient::CreateAchPaymentCounterpartyRelationships.new(
         account: {data: {type: "account", id: "27573"}}, counterparty:
           {data: {type: "counterparty", id: "679784"}}
-      ).to_hash
+      )
       ).to_hash }
       response = ach_instance.execute(request)
       expect(response.data.type).to eq("recurringDebitAchPayment")

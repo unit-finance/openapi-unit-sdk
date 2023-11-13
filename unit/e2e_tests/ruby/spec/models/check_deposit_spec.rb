@@ -22,7 +22,7 @@ RSpec.describe 'CheckDeposit' do
                                                                     tags: { "purpose": 'tax' },
                                                                     idempotency_key: '1234567890' }),
                                                               relationships: OpenapiClient::CreateCheckDepositRelationships.new(
-                                                                account: { "data": { "type": 'account', "id": '2110693' } }).to_hash).to_hash }
+                                                                account: { "data": { "type": 'account', "id": '2110693' } })).to_hash }
       response = api_instance.execute(request)
       expect(response.data.type).to eq('checkDeposit')
     end
@@ -50,7 +50,7 @@ RSpec.describe 'CheckDeposit' do
       request = { data: OpenapiClient::PatchCheckDeposit.new(attributes:
                                                                 OpenapiClient::PatchCheckDepositAttributes.new(
                                                                   tags: { "status": "Awaiting Customer Confirmation",
-                                                                          "id": "23033b64-38f8-4dbc-91a1-313ff0156d02" }).to_hash).to_hash }
+                                                                          "id": "23033b64-38f8-4dbc-91a1-313ff0156d02" })).to_hash }
       response = instance.execute('16558', request)
       expect(response.data.type).to eq('checkDeposit')
     end

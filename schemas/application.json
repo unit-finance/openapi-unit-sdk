@@ -206,7 +206,11 @@
                 },
                 "idTheftScore": {
                     "type": "integer"
-                }
+                },
+                "evaluationCodes": { "type": "array", "items": { "type": "string" } },
+                "occupation": { "$ref": "types.json#/definitions/occupation" },
+                "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+                "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" }
             }
         },
         "applicationRelationships": {
@@ -289,6 +293,22 @@
                             }
                         }
                     }
+                },
+                "beneficialOwners": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": { "type": "string", "default": "beneficialOwner" },
+                          "id": { "$ref": "types.json#/definitions/identifier" }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  }
                 }
             },
             "additionalProperties": false
@@ -619,7 +639,14 @@
                                 },
                                 "idTheftScore": {
                                     "type": "integer"
-                                }
+                                },
+                                "occupation": { "$ref": "types.json#/definitions/occupation" },
+                                "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+                                "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" },
+                                "annualRevenue": { "$ref": "types.json#/definitions/soleProprietorshipAnnualRevenue" },
+                                "numberOfEmployees": { "$ref": "types.json#/definitions/soleProprietorshipNumberOfEmployees" },
+                                "businessVertical": { "$ref": "types.json#/definitions/businessVertical"},
+                                "website": { "type": "string" }
                             },
                             "additionalProperties": false,
                             "required": [

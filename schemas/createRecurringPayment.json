@@ -3,13 +3,14 @@
         "createRecurringCreditAchPayment": {
             "title": "Create Recurring Credit ACH Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createRecurringPayment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "recurringCreditAchPayment",
+                    "enum": [
+                        "recurringCreditAchPayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -68,19 +69,18 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "createRecurringDebitAchPayment": {
             "title": "Create Recurring Debit ACH Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createRecurringPayment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "recurringDebitAchPayment",
+                    "enum": [
+                        "recurringDebitAchPayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -147,19 +147,18 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "createRecurringCreditBookPayment": {
             "title": "Create Recurring Credit Book Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "createRecurringPayment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "recurringCreditBookPayment",
+                    "enum": [
+                        "recurringCreditBookPayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -218,9 +217,7 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "schedule": {
             "title": "schedule",
             "properties": {
@@ -266,5 +263,14 @@
         "type": {
             "type": "string"
         }
-    }
+    },
+    "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+            "createRecurringCreditAchPayment": "#/definitions/createRecurringCreditAchPayment",
+            "createRecurringDebitAchPayment": "#/definitions/createRecurringDebitAchPayment",
+            "createRecurringCreditBookPayment": "#/definitions/createRecurringCreditBookPayment"
+        }
+    },
+    "additionalProperties":false
 }

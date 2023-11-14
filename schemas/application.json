@@ -141,6 +141,15 @@
                 },
                 "idTheftScore": {
                     "type": "integer"
+                },
+                "occupation": {
+                    "$ref": "types.json#/definitions/occupation"
+                },
+                "annualIncome": {
+                    "$ref": "types.json#/definitions/annualIncome"
+                },
+                "sourceOfIncome": {
+                    "$ref": "types.json#/definitions/sourceOfIncome"
                 }
             }
         },

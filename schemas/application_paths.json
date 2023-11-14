@@ -297,13 +297,8 @@
 				"required": true,
 				"content":{
 					"application/vnd.api+json":{
-						"schema":{
-							"type":"object",
-							"properties":{
-								"data":{
-									"$ref":"createApplication.json"
-								}
-							}
+						"schema": {
+							"$ref": "createApplication.json"
 						}
 					}
 				}

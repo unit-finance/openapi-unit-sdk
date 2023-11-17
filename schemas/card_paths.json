@@ -77,7 +77,7 @@
 									"data":{
 										"type":"array",
 										"items":{
-											"$ref":"card.json#/Card"
+											"$ref":"card.json"
 										}
 									},
 									"included":{
@@ -126,7 +126,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									}
 								}
 							}
@@ -172,7 +172,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									},
 									"included": {
 										"type": "array",
@@ -226,7 +226,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									}
 								}
 							}
@@ -265,7 +265,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									}
 								}
 							}
@@ -304,7 +304,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									}
 								}
 							}
@@ -343,7 +343,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									}
 								}
 							}
@@ -421,7 +421,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									}
 								}
 							}
@@ -460,7 +460,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/Card"
+										"$ref":"card.json"
 									}
 								}
 							}

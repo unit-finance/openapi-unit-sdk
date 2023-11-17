@@ -46,7 +46,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json#/Payment"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -142,7 +142,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json#/Payment"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -217,7 +217,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json#/Payment"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -305,7 +305,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json#/Payment"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -377,7 +377,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "payment.json#/Payment"
+                    "$ref": "payment.json"
                 },
                 {
                     "type": "object",
@@ -557,24 +557,23 @@
         },
         "additionalProperties": false
     },
-    "Payment": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
-            },
-            "id": {
-                "$ref": "types.json#/definitions/identifier"
-            }
+    "title": "Payment Resource",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string"
         },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "achPayment": "#/definitions/AchPayment",
-                "bookPayment": "#/definitions/BookPayment",
-                "wirePayment": "#/definitions/WirePayment",
-                "billPayment": "#/definitions/BillPayment"
-            }
+        "id": {
+            "$ref": "types.json#/definitions/identifier"
+        }
+    },
+    "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+            "achPayment": "#/definitions/AchPayment",
+            "bookPayment": "#/definitions/BookPayment",
+            "wirePayment": "#/definitions/WirePayment",
+            "billPayment": "#/definitions/BillPayment"
         }
     }
 }

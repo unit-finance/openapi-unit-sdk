@@ -19,7 +19,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -100,10 +100,10 @@
                                 "title": "UnitTransactionsListResponse",
                                 "properties": {
                                     "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "transaction.json#/Transaction"
-                                            }
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "transaction.json"
+                                        }
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
@@ -154,7 +154,7 @@
                                 "title": "UnitTransactionResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "transaction.json#/Transaction"
+                                        "$ref": "transaction.json"
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
@@ -214,7 +214,7 @@
                                 "title": "UnitTransactionResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "transaction.json#/Transaction"
+                                        "$ref": "transaction.json"
                                     }
                                 }
                             }

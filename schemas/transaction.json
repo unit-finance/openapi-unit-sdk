@@ -552,7 +552,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -627,7 +627,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -711,7 +711,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -788,7 +788,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -854,7 +854,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -938,7 +938,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1000,7 +1000,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1116,7 +1116,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1215,7 +1215,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1273,7 +1273,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1348,7 +1348,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1453,7 +1453,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1544,7 +1544,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1605,7 +1605,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1663,7 +1663,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1721,7 +1721,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1779,7 +1779,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1841,7 +1841,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1899,7 +1899,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -1957,7 +1957,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2032,7 +2032,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2090,7 +2090,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2156,7 +2156,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2214,7 +2214,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2275,7 +2275,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2336,7 +2336,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2394,7 +2394,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2452,7 +2452,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2510,7 +2510,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2568,7 +2568,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2626,7 +2626,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2687,7 +2687,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2745,7 +2745,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2807,7 +2807,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2869,7 +2869,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2927,7 +2927,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -2984,7 +2984,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "transaction.json#/Transaction"
+                    "$ref": "transaction.json"
                 },
                 {
                     "type": "object",
@@ -3044,56 +3044,55 @@
             ]
         }
     },
-    "Transaction": {
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "types.json#/definitions/identifier"
-            },
-            "type": {
-                "type": "string"
-            }
+    "title": "Transaction Resource",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "types.json#/definitions/identifier"
         },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "originatedAchTransaction": "#/definitions/OriginatedAchTransaction",
-                "receivedAchTransaction": "#/definitions/ReceivedAchTransaction",
-                "returnedAchTransaction": "#/definitions/ReturnedAchTransaction",
-                "returnedReceivedAchTransaction": "#/definitions/ReturnedReceivedAchTransaction",
-                "dishonoredAchTransaction": "#/definitions/DishonoredAchTransaction",
-                "purchaseTransaction": "#/definitions/PurchaseTransaction",
-                "bookTransaction": "#/definitions/BookTransaction",
-                "atmTransaction": "#/definitions/AtmTransaction",
-                "feeTransaction": "#/definitions/FeeTransaction",
-                "reversalTransaction": "#/definitions/ReversalTransaction",
-                "cardTransaction": "#/definitions/CardTransaction",
-                "releaseTransaction": "#/definitions/ReleaseTransaction",
-                "wireTransaction": "#/definitions/WireTransaction",
-                "interchangeTransaction": "#/definitions/InterchangeTransaction",
-                "interestShareTransaction": "#/definitions/InterestShareTransaction",
-                "interestTransaction": "#/definitions/InterestTransaction",
-                "adjustmentTransaction": "#/definitions/AdjustmentTransaction",
-                "disputeSettlementTransaction": "#/definitions/DisputeSettlementTransaction",
-                "disputeTransaction": "#/definitions/DisputeTransaction",
-                "checkDepositTransaction": "#/definitions/CheckDepositTransaction",
-                "returnedCheckDepositTransaction": "#/definitions/ReturnedCheckDepositTransaction",
-                "billPayTransaction": "#/definitions/BillPayTransaction",
-                "settlementTransaction": "#/definitions/SettlementTransaction",
-                "sponsoredInterestTransaction": "#/definitions/SponsoredInterestTransaction",
-                "paymentAdvanceTransaction": "#/definitions/PaymentAdvanceTransaction",
-                "repaidPaymentAdvanceTransaction": "#/definitions/RepaidPaymentAdvanceTransaction",
-                "chargebackTransaction": "#/definitions/ChargebackTransaction",
-                "rewardTransaction": "#/definitions/RewardTransaction",
-                "negativeBalanceCoverageTransaction": "#/definitions/NegativeBalanceCoverageTransaction",
-                "accountLowBalanceClosureTransaction": "#/definitions/AccountLowBalanceClosureTransaction",
-                "bankRepaymentTransaction": "#/definitions/BankRepaymentTransaction",
-                "cashDepositTransaction": "#/definitions/CashDepositTransaction",
-                "customerRepaymentTransaction": "#/definitions/CustomerRepaymentTransaction",
-                "customerRepaymentReturnedTransaction": "#/definitions/CustomerRepaymentReturnedTransaction",
-                "checkPaymentTransaction": "#/definitions/CheckPaymentTransaction",
-                "returnedCheckPaymentTransaction": "#/definitions/ReturnedCheckPaymentTransaction"
-            }
+        "type": {
+            "type": "string"
+        }
+    },
+    "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+            "originatedAchTransaction": "#/definitions/OriginatedAchTransaction",
+            "receivedAchTransaction": "#/definitions/ReceivedAchTransaction",
+            "returnedAchTransaction": "#/definitions/ReturnedAchTransaction",
+            "returnedReceivedAchTransaction": "#/definitions/ReturnedReceivedAchTransaction",
+            "dishonoredAchTransaction": "#/definitions/DishonoredAchTransaction",
+            "purchaseTransaction": "#/definitions/PurchaseTransaction",
+            "bookTransaction": "#/definitions/BookTransaction",
+            "atmTransaction": "#/definitions/AtmTransaction",
+            "feeTransaction": "#/definitions/FeeTransaction",
+            "reversalTransaction": "#/definitions/ReversalTransaction",
+            "cardTransaction": "#/definitions/CardTransaction",
+            "releaseTransaction": "#/definitions/ReleaseTransaction",
+            "wireTransaction": "#/definitions/WireTransaction",
+            "interchangeTransaction": "#/definitions/InterchangeTransaction",
+            "interestShareTransaction": "#/definitions/InterestShareTransaction",
+            "interestTransaction": "#/definitions/InterestTransaction",
+            "adjustmentTransaction": "#/definitions/AdjustmentTransaction",
+            "disputeSettlementTransaction": "#/definitions/DisputeSettlementTransaction",
+            "disputeTransaction": "#/definitions/DisputeTransaction",
+            "checkDepositTransaction": "#/definitions/CheckDepositTransaction",
+            "returnedCheckDepositTransaction": "#/definitions/ReturnedCheckDepositTransaction",
+            "billPayTransaction": "#/definitions/BillPayTransaction",
+            "settlementTransaction": "#/definitions/SettlementTransaction",
+            "sponsoredInterestTransaction": "#/definitions/SponsoredInterestTransaction",
+            "paymentAdvanceTransaction": "#/definitions/PaymentAdvanceTransaction",
+            "repaidPaymentAdvanceTransaction": "#/definitions/RepaidPaymentAdvanceTransaction",
+            "chargebackTransaction": "#/definitions/ChargebackTransaction",
+            "rewardTransaction": "#/definitions/RewardTransaction",
+            "negativeBalanceCoverageTransaction": "#/definitions/NegativeBalanceCoverageTransaction",
+            "accountLowBalanceClosureTransaction": "#/definitions/AccountLowBalanceClosureTransaction",
+            "bankRepaymentTransaction": "#/definitions/BankRepaymentTransaction",
+            "cashDepositTransaction": "#/definitions/CashDepositTransaction",
+            "customerRepaymentTransaction": "#/definitions/CustomerRepaymentTransaction",
+            "customerRepaymentReturnedTransaction": "#/definitions/CustomerRepaymentReturnedTransaction",
+            "checkPaymentTransaction": "#/definitions/CheckPaymentTransaction",
+            "returnedCheckPaymentTransaction": "#/definitions/ReturnedCheckPaymentTransaction"
         }
     }
 }

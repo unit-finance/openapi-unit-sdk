@@ -5,7 +5,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "repayment.json#/Repayment"
+          "$ref": "repayment.json"
         },
         {
           "type": "object",
@@ -201,7 +201,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "repayment.json#/Repayment"
+          "$ref": "repayment.json"
         },
         {
           "type": "object",
@@ -389,22 +389,21 @@
       ]
     }
   },
-  "Repayment": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "$ref": "types.json#/definitions/identifier"
-      },
-      "type": {
-        "type": "string"
-      }
+  "title": "Repayment Resource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "types.json#/definitions/identifier"
     },
-    "discriminator": {
-      "propertyName": "type",
-      "mapping": {
-        "achRepayment": "#/definitions/AchRepayment",
-        "bookRepayment": "#/definitions/BookRepayment"
-      }
+    "type": {
+      "type": "string"
+    }
+  },
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "achRepayment": "#/definitions/AchRepayment",
+      "bookRepayment": "#/definitions/BookRepayment"
     }
   }
 }

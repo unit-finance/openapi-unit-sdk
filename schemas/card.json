@@ -108,17 +108,17 @@
                     "properties": {
                         "status": {
                             "type": "string"
-                            }
                         }
                     }
                 }
-            },
+            }
+        },
         "IndividualDebitCard": {
             "title": "Individual Debit Card",
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "card.json#/Card"
+                    "$ref": "card.json"
                 },
                 {
                     "type": "object",
@@ -187,7 +187,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "card.json#/Card"
+                    "$ref": "card.json"
                 },
                 {
                     "type": "object",
@@ -286,7 +286,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "card.json#/Card"
+                    "$ref": "card.json"
                 },
                 {
                     "type": "object",
@@ -349,7 +349,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "card.json#/Card"
+                    "$ref": "card.json"
                 },
                 {
                     "type": "object",
@@ -442,7 +442,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "card.json#/Card"
+                    "$ref": "card.json"
                 },
                 {
                     "type": "object",
@@ -541,7 +541,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "card.json#/Card"
+                    "$ref": "card.json"
                 },
                 {
                     "type": "object",
@@ -630,26 +630,25 @@
             ]
         }
     },
-    "Card": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
-            },
-            "id": {
-                "$ref": "types.json#/definitions/identifier"
-            }
+    "title": "Card Document",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string"
         },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "businessDebitCard": "#/definitions/BusinessDebitCard",
-                "individualDebitCard": "#/definitions/IndividualDebitCard",
-                "businessVirtualDebitCard": "#/definitions/BusinessVirtualDebitCard",
-                "individualVirtualDebitCard": "#/definitions/IndividualVirtualDebitCard",
-                "businessCreditCard": "#/definitions/BusinessCreditCard",
-                "businessVirtualCreditCard": "#/definitions/BusinessVirtualCreditCard"
-            }
+        "id": {
+            "$ref": "types.json#/definitions/identifier"
+        }
+    },
+    "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+            "businessDebitCard": "#/definitions/BusinessDebitCard",
+            "individualDebitCard": "#/definitions/IndividualDebitCard",
+            "businessVirtualDebitCard": "#/definitions/BusinessVirtualDebitCard",
+            "individualVirtualDebitCard": "#/definitions/IndividualVirtualDebitCard",
+            "businessCreditCard": "#/definitions/BusinessCreditCard",
+            "businessVirtualCreditCard": "#/definitions/BusinessVirtualCreditCard"
         }
     }
 }

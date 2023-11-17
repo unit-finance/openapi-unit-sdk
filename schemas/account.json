@@ -5,7 +5,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "account.json#/Account"
+                    "$ref": "account.json"
                 },
                 {
                     "type": "object",
@@ -169,7 +169,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "account.json#/Account"
+                    "$ref": "account.json"
                 },
                 {
                     "type": "object",
@@ -538,22 +538,21 @@
             }
         }
     },
-    "Account": {
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "types.json#/definitions/identifier"
-            },
-            "type": {
-                "type": "string"
-            }
+    "title": "Account Document",
+    "type": "object",
+    "properties": {
+        "id": {
+            "$ref": "types.json#/definitions/identifier"
         },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "depositAccount": "#/definitions/DepositAccount",
-                "creditAccount": "#/definitions/CreditAccount"
-            }
+        "type": {
+            "type": "string"
+        }
+    },
+    "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+            "depositAccount": "#/definitions/DepositAccount",
+            "creditAccount": "#/definitions/CreditAccount"
         }
     }
 }

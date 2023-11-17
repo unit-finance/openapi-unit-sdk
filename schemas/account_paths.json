@@ -4,7 +4,7 @@
         "title": "UnitAccountResponse",
         "properties": {
             "data": {
-                "$ref": "account.json#/Account"
+                "$ref": "account.json"
             }
         }
     },
@@ -13,12 +13,12 @@
         "title": "UnitAccountResponseWithIncluded",
         "properties": {
             "data": {
-                "$ref": "account.json#/Account"
+                "$ref": "account.json"
             },
             "included": {
                 "type": "array",
                 "items": {
-                    "$ref": "customer.json#/Customer"
+                    "$ref": "customer.json"
                 }
             }
         }
@@ -43,7 +43,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -103,13 +103,13 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "account.json#/Account"
+                                            "$ref": "account.json"
                                         }
                                     },
                                     "included": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "customer.json#/Customer"
+                                            "$ref": "customer.json"
                                         }
                                     }
                                 }

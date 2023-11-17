@@ -1,10 +1,10 @@
 {
-  "UnitRepaymentResponse": {
+    "UnitRepaymentResponse": {
         "type": "object",
         "title": "UnitRepaymentResponse",
         "properties": {
             "data": {
-                "$ref": "repayment.json#/Repayment"
+                "$ref": "repayment.json"
             }
         }
     },
@@ -28,7 +28,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -80,7 +80,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "repayment.json#/Repayment"
+                                            "$ref": "repayment.json"
                                         }
                                     },
                                     "meta": {

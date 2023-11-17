@@ -287,19 +287,18 @@
             ]
         }
     },
-    "Account Limits Resource": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "limits": "#/definitions/DepositLimits",
-                "creditLimits": "#/definitions/CreditLimits"
-            }
+    "title": "Account Limits Resource",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string"
+        }
+    },
+    "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+            "limits": "#/definitions/DepositLimits",
+            "creditLimits": "#/definitions/CreditLimits"
         }
     }
 }

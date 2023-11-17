@@ -4,7 +4,7 @@
 		"title":"UnitApplicationResponse",
 		"properties":{
 			"data":{
-				"$ref":"application.json#/Application"
+				"$ref":"application.json"
 			}
 		}
 	},
@@ -22,7 +22,7 @@
 		"title":"UnitApplicationResponse",
 		"properties": {
 			"data": {
-				"$ref": "application.json#/Application"
+				"$ref": "application.json"
 			},
 			"included": {
 				"type": "array",
@@ -179,7 +179,7 @@
 								"title":"UnitCancelApplicationResponse",
 								"properties":{
 									"data":{
-										"$ref":"application.json#/Application"
+										"$ref":"application.json"
 									},
 									"included":{
 										"type":"array",
@@ -214,7 +214,7 @@
 				{
 					"name":"filter",
 					"in":"query",
-                    "style": "deepObject",
+					"style": "deepObject",
 					"allowReserved": true,
 					"schema":{
 						"type":"object",
@@ -265,7 +265,7 @@
 									"data":{
 										"type":"array",
 										"items":{
-											"$ref":"application.json#/Application"
+											"$ref":"application.json"
 										}
 									},
 									"meta":{
@@ -321,7 +321,7 @@
 								"title":"UnitCreateApplicationResponse",
 								"properties":{
 									"data":{
-										"$ref":"application.json#/Application"
+										"$ref":"application.json"
 									},
 									"included":{
 										"type":"array",
@@ -356,7 +356,7 @@
 				{
 					"name": "filter",
 					"in": "query",
-                    "style": "deepObject",
+					"style": "deepObject",
 					"allowReserved": true,
 					"schema": {
 						"type": "object",
@@ -495,7 +495,7 @@
 										"$ref":"application_form.json"
 									},
 									"included":{
-										"$ref":"application.json#/Application"
+										"$ref":"application.json"
 									}
 								}
 							}

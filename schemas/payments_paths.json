@@ -4,7 +4,7 @@
         "title": "UnitPaymentResponse",
         "properties": {
             "data": {
-                "$ref": "payment.json#/Payment"
+                "$ref": "payment.json"
             }
         }
     },
@@ -22,7 +22,7 @@
         "title": "UnitRecurringPaymentResponse",
         "properties": {
             "data": {
-                "$ref": "recurring_payment.json#/RecurringPayment"
+                "$ref": "recurring_payment.json"
             }
         }
     },
@@ -46,7 +46,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -148,7 +148,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "payment.json#/Payment"
+                                            "$ref": "payment.json"
                                         }
                                     },
                                     "included": {
@@ -174,9 +174,9 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                                "type": "object",
-                                "properties": {
-                                 "data": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
                                     "$ref": "createPayment.json"
                                 }
                             }
@@ -234,7 +234,7 @@
                                 "type": "object",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json#/Payment"
+                                        "$ref": "payment.json"
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
@@ -358,8 +358,8 @@
                                         "$ref": "openapi_types.json#/IncludedResource"
                                     },
                                     "meta":{
-										"$ref":"types.json#/definitions/paginationMeta"
-									}
+                                        "$ref":"types.json#/definitions/paginationMeta"
+                                    }
                                 }
                             }
                         }
@@ -512,7 +512,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "recurring_payment.json#/RecurringPayment"
+                                            "$ref": "recurring_payment.json"
                                         }
                                     },
                                     "meta": {

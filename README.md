@@ -8,13 +8,15 @@ Below, we have included some examples of applications of this specification in s
 We encourage our SDK community to share feedback of experience with our specification to help identify and address any potential issues. Any feedback will play a crucial role in improving and refining our OpenAPI schema.
 
 ## Generating Unit Client Libraries
-Below you can find examples for generating client libraries using Swagger Generator
-(for official documentation see [Swagger Codegen docs](https://github.com/swagger-api/swagger-codegen#generating-a-client-from-local-files)).
-You may also use any other known generator, such as [OpenAPI generator](https://openapi-generator.tech/).
+Below you can find examples for generating client libraries using [OpenAPI generator](https://openapi-generator.tech/). 
+You may also use any other known generator, such as [Swagger Codegen](https://github.com/swagger-api/swagger-codegen#generating-a-client-from-local-files), download the jar from [here](https://mvnrepository.com/artifact/io.swagger.codegen.v3/swagger-codegen-cli)
+
+The following examples are with the use of [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli). 
+
 
 ### unit-java
-```
-java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l java -o unit
+```commandline
+openapi-generator-cli generate -g java -i openapi.json -o unit
 ```
 
 ### unit-python
@@ -23,19 +25,13 @@ We recommend using our script which can be found in this repository:
 ```commandline
 python "./generate.py"
 ```
-
-Or generate with swagger-codegen-cli: 
-
+Or generate by yourself with swagger-codegen-cli:
 ```
-java -jar swagger-codegen-cli-3.0.36.jar generate -i openapi.json -l python -o unit
+java -jar swagger-codegen-cli-3.0.47.jar generate -i openapi.json -l python -o unit
 ```
 
 ### unit-typescript-axios
-
-an [OpenAPI generator](https://openapi-generator.tech/) execution:
-
 ```commandline
-npm install @openapitools/openapi-generator-cli
 openapi-generator-cli generate -g typescript-axios -i openapi.json -o unit -p npmName=TypescriptUnitClient
 ```
 
@@ -84,43 +80,14 @@ you can find more examples in the unit/e2e_tests directory
 
 #### Java
 
-    ApplicationsBody body = new ApplicationsBody();
-    CreateIndividualApplication d = new CreateIndividualApplication();
-    CreateIndividualApplicationAttributes attr = new CreateIndividualApplicationAttributes();
-    
-    FullName fn = new FullName();
-    fn.setFirst("Peter");
-    fn.setLast("Parker");
-    attr.setFullName(fn);
-    
-    Address address = new Address();
-    address.setStreet("20 Ingram St");
-    address.setCity("Forest Hills");
-    address.setPostalCode("11375");
-    address.setCountry("US");
-    address.setState("NY");
-    attr.setAddress(address);
-
-    attr.setSsn("721074426");
-    attr.setDateOfBirth(LocalDate.parse("2001-08-10"));
-    attr.setEin("123456789");
-    attr.setEmail("peter@oscorp.com");
-    Phone p = new Phone();
-    p.setNumber("5555555555");
-    p.setCountryCode("1");
-    attr.setPhone(p);
-    attr.setDba("Piedpiper Inc");
-    attr.setIdempotencyKey("3a1a33be-4e12-4603-9ed0-820922389fb8");
-    
-    d.setAttributes(attr);
-    body.setData(d);
-
+    String access_token = "access_token";
     ApiClient cl = new ApiClient();
-    cl.setAccessToken("access_token");
+    cl.setBearerToken(access_token);
     Configuration.setDefaultApiClient(cl);
-    
-    CreateApplicationApi apiClient = new CreateApplicationApi();
-    UnitCreateApplicationResponse res = apiClient.execute(body);
+
+    GetListRecurringPaymentsApi api = new GetListRecurringPaymentsApi();
+
+    UnitRecurringPaymentListResponse response = api.execute();
 
 
 #### Typescript
@@ -156,3 +123,12 @@ When generating a python-sdk, you should change the configurations to:
         "in": "header",
         "name": "Authorization"
     }
+
+### CLI version
+Use the follow command to check the openapi-generator-cli version:
+
+```openapi-generator-cli version``` 
+
+We recommend using v7.0.1, you can change the version with the command:
+
+```openapi-generator-cli version-manager set 7.0.1```

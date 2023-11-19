@@ -111,7 +111,10 @@
                                         "items": {
                                             "$ref": "customer.json"
                                         }
-                                    }
+                                    },
+                                    "meta":{
+										"$ref":"types.json#/definitions/paginationMeta"
+									}
                                 }
                             }
                         }

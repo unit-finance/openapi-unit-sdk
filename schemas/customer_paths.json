@@ -70,12 +70,12 @@
                 }
             },
             "responses": {
-                "201": {
+                "200": {
                     "description": "Successful Response",
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "$ref": "customer_paths.json#/UnitCustomerResponse"
+                                "$ref": "#/UnitCustomerResponse"
                             }
                         }
                     }

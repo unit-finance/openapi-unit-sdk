@@ -41,6 +41,5 @@ RSpec.describe 'Customer' do
 
       expect(response.data[0].type).to eq('individualCustomer')
     end
-
   end
 end

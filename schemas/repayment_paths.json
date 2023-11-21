@@ -4,8 +4,14 @@
         "title": "UnitRepaymentResponse",
         "properties": {
             "data": {
-                "$ref": "repayment.json"
-            }
+                "oneOf": [
+                    {
+                        "$ref": "repayment.json#/definitions/AchRepayment"
+                    },
+                    {
+                        "$ref": "repayment.json#/definitions/BookRepayment"
+                    }
+                ]            }
         }
     },
     "repayments": {
@@ -80,8 +86,14 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "repayment.json"
-                                        }
+                                            "oneOf": [
+                                                {
+                                                    "$ref": "repayment.json#/definitions/AchRepayment"
+                                                },
+                                                {
+                                                    "$ref": "repayment.json#/definitions/BookRepayment"
+                                                }
+                                            ]                                        }
                                     },
                                     "meta": {
                                         "$ref": "types.json#/definitions/paginationMeta"

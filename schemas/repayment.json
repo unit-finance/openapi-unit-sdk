@@ -3,13 +3,17 @@
     "AchRepayment": {
       "title": "ACH Repayment",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "repayment.json"
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "achRepayment",
+          "enum": [
+            "achRepayment"
+          ]
         },
-        {
-          "type": "object",
-          "properties": {
+        "id": {
+          "$ref": "types.json#/definitions/identifier"
+        },
             "attributes": {
               "type": "object",
               "properties": {
@@ -193,19 +197,21 @@
               }
             }
           }
-        }
-      ]
     },
     "BookRepayment": {
       "title": "Book Repayment",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "repayment.json"
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "bookRepayment",
+          "enum": [
+            "bookRepayment"
+          ]
         },
-        {
-          "type": "object",
-          "properties": {
+        "id": {
+          "$ref": "types.json#/definitions/identifier"
+        },
             "attributes": {
               "type": "object",
               "properties": {
@@ -386,8 +392,6 @@
             }
           }
         }
-      ]
-    }
   },
   "title": "Repayment Resource",
   "type": "object",
@@ -397,13 +401,6 @@
     },
     "type": {
       "type": "string"
-    }
-  },
-  "discriminator": {
-    "propertyName": "type",
-    "mapping": {
-      "achRepayment": "#/definitions/AchRepayment",
-      "bookRepayment": "#/definitions/BookRepayment"
     }
   }
 }

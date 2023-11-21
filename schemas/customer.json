@@ -16,13 +16,17 @@
         "IndividualCustomer": {
             "title": "IndividualCustomer",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "customer.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "individualCustomer",
+                    "enum": [
+                        "individualCustomer"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -132,19 +136,21 @@
                         }
                     },
                     "additionalProperties": false
-                }
-            ]
-        },
+                },
         "BusinessCustomer": {
             "title": "BusinessCustomer",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "customer.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "businessCustomer",
+                    "enum": [
+                        "businessCustomer"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -234,21 +240,23 @@
                         "relationships": {
                             "$ref": "#/definitions/customerRelationships"
                         }
-                    }
-                }
-            ],
+                    },
             "additionalProperties": false
         },
         "TrustCustomer": {
             "title": "TrustCustomer",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "customer.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "trustCustomer",
+                    "enum": [
+                        "trustCustomer"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -325,9 +333,7 @@
                         }
                     },
                     "additionalProperties": false
-                }
-            ]
-        },
+                },
         "customerLinkage": {
             "type": "object",
             "properties": {
@@ -366,14 +372,6 @@
         },
         "type": {
             "type": "string"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "individualCustomer": "#/definitions/IndividualCustomer",
-            "businessCustomer": "#/definitions/BusinessCustomer",
-            "trustCustomer": "#/definitions/TrustCustomer"
         }
     }
 }

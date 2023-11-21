@@ -3,13 +3,17 @@
         "DepositAccount": {
             "title": "Deposit Account",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "account.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "depositAccount",
+                    "enum": [
+                        "depositAccount"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -161,19 +165,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "CreditAccount": {
             "title": "Credit Account",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "account.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "creditAccount",
+                    "enum": [
+                        "creditAccount"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -279,8 +285,6 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "orgGeneralLedgerAccount": {
             "title": "Org General Ledger Account",
@@ -538,7 +542,7 @@
             }
         }
     },
-    "title": "Account Document",
+    "title": "Account",
     "type": "object",
     "properties": {
         "id": {
@@ -546,13 +550,6 @@
         },
         "type": {
             "type": "string"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "depositAccount": "#/definitions/DepositAccount",
-            "creditAccount": "#/definitions/CreditAccount"
         }
     }
 }

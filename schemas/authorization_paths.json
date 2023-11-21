@@ -194,8 +194,17 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "authorization_request.json"
-                                        }
+                                            "oneOf": [
+                                                {
+                                                    "$ref": "authorization_request.json#/definitions/PurchaseAuthorizationRequest"
+                                                },
+                                                {
+                                                    "$ref": "authorization_request.json#/definitions/CardTransactionAuthorizationRequest"
+                                                },
+                                                {
+                                                    "$ref": "authorization_request.json#/definitions/AtmAuthorizationRequest"
+                                                }
+                                            ]                                        }
                                     }
                                 }
                             }
@@ -234,8 +243,17 @@
                                 "title": "UnitAuthorizationRequestsResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorization_request.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/PurchaseAuthorizationRequest"
+                                            },
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/CardTransactionAuthorizationRequest"
+                                            },
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/AtmAuthorizationRequest"
+                                            }
+                                        ]                                     }
                                 }
                             }
                         }
@@ -289,8 +307,17 @@
                                 "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorization_request.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/PurchaseAuthorizationRequest"
+                                            },
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/CardTransactionAuthorizationRequest"
+                                            },
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/AtmAuthorizationRequest"
+                                            }
+                                        ]                                     }
                                 }
                             }
                         }
@@ -344,8 +371,17 @@
                                 "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorization_request.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/PurchaseAuthorizationRequest"
+                                            },
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/CardTransactionAuthorizationRequest"
+                                            },
+                                            {
+                                                "$ref": "authorization_request.json#/definitions/AtmAuthorizationRequest"
+                                            }
+                                        ]                                     }
                                 }
                             }
                         }

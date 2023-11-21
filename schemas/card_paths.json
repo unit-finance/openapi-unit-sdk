@@ -77,7 +77,26 @@
 									"data":{
 										"type":"array",
 										"items":{
-											"$ref":"card.json"
+											"oneOf": [
+												{
+													"$ref": "card.json#/definitions/BusinessDebitCard"
+												},
+												{
+													"$ref": "card.json#/definitions/IndividualDebitCard"
+												},
+												{
+													"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+												},
+												{
+													"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+												},
+												{
+													"$ref": "card.json#/definitions/BusinessCreditCard"
+												},
+												{
+													"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+												}
+											]
 										}
 									},
 									"included":{
@@ -126,8 +145,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									}
 								}
 							}
 						}
@@ -172,8 +209,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									},
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									},
 									"included": {
 										"type": "array",
 										"items": {
@@ -226,8 +281,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									}
 								}
 							}
 						}
@@ -265,8 +338,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									}
 								}
 							}
 						}
@@ -304,8 +395,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									}
 								}
 							}
 						}
@@ -343,8 +452,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									}
 								}
 							}
 						}
@@ -421,8 +548,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									}
 								}
 							}
 						}
@@ -460,8 +605,26 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "card.json#/definitions/BusinessDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/IndividualVirtualDebitCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessCreditCard"
+											},
+											{
+												"$ref": "card.json#/definitions/BusinessVirtualCreditCard"
+											}
+										]									}
 								}
 							}
 						}
@@ -499,8 +662,14 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"limits.json"
-									}
+										"oneOf": [
+											{
+												"$ref": "limits.json#/definitions/DepositLimits"
+											},
+											{
+												"$ref": "limits.json#/definitions/CreditLimits"
+											}
+										]									}
 								}
 							}
 						}

@@ -181,13 +181,17 @@
         "PurchaseAuthorizationRequest": {
             "title": "PurchaseAuthorizationRequest Resource",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "authorization_request.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "purchaseAuthorizationRequest",
+                    "enum": [
+                        "purchaseAuthorizationRequest"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -268,13 +272,17 @@
         "CardTransactionAuthorizationRequest": {
             "title": "CardTransactionAuthorizationRequest Resource",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "authorization_request.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "cardTransactionAuthorizationRequest",
+                    "enum": [
+                        "cardTransactionAuthorizationRequest"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -337,19 +345,21 @@
                     "required": [
                         "relationships"
                     ]
-                }
-            ]
         },
         "AtmAuthorizationRequest": {
             "title": "AtmAuthorizationRequest Resource",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "authorization_request.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "atmAuthorizationRequest",
+                    "enum": [
+                        "atmAuthorizationRequest"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -420,8 +430,6 @@
                     "required": [
                         "relationships"
                     ]
-                }
-            ]
         }
     },
     "title": "AuthorizationRequest Document",
@@ -432,14 +440,6 @@
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "purchaseAuthorizationRequest": "#/definitions/PurchaseAuthorizationRequest",
-            "cardTransactionAuthorizationRequest": "#/definitions/CardTransactionAuthorizationRequest",
-            "atmAuthorizationRequest": "#/definitions/AtmAuthorizationRequest"
         }
     }
 }

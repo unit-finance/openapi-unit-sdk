@@ -550,13 +550,17 @@
         "OriginatedAchTransaction": {
             "title": "Originated ACH",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "originatedAchTransaction",
+                    "enum": [
+                        "originatedAchTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -619,19 +623,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ReceivedAchTransaction": {
             "title": "Received ACH",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "receivedAchTransaction",
+                    "enum": [
+                        "receivedAchTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -703,19 +709,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ReturnedAchTransaction": {
             "title": "Returned ACH",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "returnedAchTransaction",
+                    "enum": [
+                        "returnedAchTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -780,19 +788,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ReturnedReceivedAchTransaction": {
             "title": "Returned Received ACH",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "returnedReceivedAchTransaction",
+                    "enum": [
+                        "returnedReceivedAchTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -846,19 +856,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "DishonoredAchTransaction": {
             "title": "Dishonored Return ACH",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "dishonoredAchTransaction",
+                    "enum": [
+                        "dishonoredAchTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -930,19 +942,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "BookTransaction": {
             "title": "Book",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "bookTransaction",
+                    "enum": [
+                        "bookTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -992,19 +1006,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "PurchaseTransaction": {
             "title": "Purchase",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "purchaseTransaction",
+                    "enum": [
+                        "purchaseTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1108,19 +1124,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "AtmTransaction": {
             "title": "ATM",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "atmTransaction",
+                    "enum": [
+                        "atmTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1207,19 +1225,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "FeeTransaction": {
             "title": "Fee",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "feeTransaction",
+                    "enum": [
+                        "feeTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1265,19 +1285,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ReversalTransaction": {
             "title": "Reversal",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "cardReversalTransaction",
+                    "enum": [
+                        "cardReversalTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1340,19 +1362,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "CardTransaction": {
             "title": "cardTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "cardTransaction",
+                    "enum": [
+                        "cardTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1445,19 +1469,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "WireTransaction": {
             "title": "wireTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "wireTransaction",
+                    "enum": [
+                        "wireTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1536,19 +1562,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "AdjustmentTransaction": {
             "title": "adjustmentTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "adjustmentTransaction",
+                    "enum": [
+                        "adjustmentTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1597,19 +1625,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "InterchangeTransaction": {
             "title": "interchangeShareTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "interchangeShareTransaction",
+                    "enum": [
+                        "interchangeShareTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1655,19 +1685,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "InterestShareTransaction": {
             "title": "interestShareTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "interestShareTransaction",
+                    "enum": [
+                        "interestShareTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1713,19 +1745,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "InterestTransaction": {
             "title": "interestTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "interestTransaction",
+                    "enum": [
+                        "interestTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1771,19 +1805,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "BankRepaymentTransaction": {
             "title": "bankRepaymentTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "bankRepaymentTransaction",
+                    "enum": [
+                        "bankRepaymentTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1833,19 +1869,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "CustomerRepaymentReturnedTransaction": {
             "title": "customerRepaymentReturnedTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "customerRepaymentReturnedTransaction",
+                    "enum": [
+                        "customerRepaymentReturnedTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1891,19 +1929,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "CustomerRepaymentTransaction": {
             "title": "customerRepaymentTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "customerRepaymentTransaction",
+                    "enum": [
+                        "customerRepaymentTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -1949,19 +1989,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ReleaseTransaction": {
             "title": "releaseTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "releaseTransaction",
+                    "enum": [
+                        "releaseTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2024,19 +2066,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "DisputeSettlementTransaction": {
             "title": "disputeSettlementTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "disputeSettlementTransaction",
+                    "enum": [
+                        "disputeSettlementTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2082,19 +2126,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "DisputeTransaction": {
             "title": "disputeTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "disputeTransaction",
+                    "enum": [
+                        "disputeTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2148,19 +2194,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "CheckDepositTransaction": {
             "title": "checkDepositTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "checkDepositTransaction",
+                    "enum": [
+                        "checkDepositTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2206,19 +2254,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ReturnedCheckDepositTransaction": {
             "title": "returnedCheckDepositTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "returnedCheckDepositTransaction",
+                    "enum": [
+                        "returnedCheckDepositTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2267,19 +2317,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "PaymentCanceledTransaction": {
             "title": "paymentCanceledTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "paymentCanceledTransaction",
+                    "enum": [
+                        "paymentCanceledTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2328,19 +2380,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "BillPayTransaction": {
             "title": "billPayTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "billPayTransaction",
+                    "enum": [
+                        "billPayTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2386,19 +2440,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "SettlementTransaction": {
             "title": "settlementTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "settlementTransaction",
+                    "enum": [
+                        "settlementTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2444,19 +2500,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "SponsoredInterestTransaction": {
             "title": "sponsoredInterestTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "sponsoredInterestTransaction",
+                    "enum": [
+                        "sponsoredInterestTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2502,19 +2560,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "PaymentAdvanceTransaction": {
             "title": "paymentAdvanceTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "paymentAdvanceTransaction",
+                    "enum": [
+                        "paymentAdvanceTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2560,19 +2620,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "RepaidPaymentAdvanceTransaction": {
             "title": "repaidPaymentAdvanceTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "repaidPaymentAdvanceTransaction",
+                    "enum": [
+                        "repaidPaymentAdvanceTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2618,19 +2680,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ChargebackTransaction": {
             "title": "Chargeback",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "chargebackTransaction",
+                    "enum": [
+                        "chargebackTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2679,19 +2743,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "CheckPaymentTransaction": {
             "title": "checkPaymentTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "checkPaymentTransaction",
+                    "enum": [
+                        "checkPaymentTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2737,19 +2803,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "ReturnedCheckPaymentTransaction": {
             "title": "returnedCheckPaymentTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "returnedCheckPaymentTransaction",
+                    "enum": [
+                        "returnedCheckPaymentTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2799,19 +2867,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "RewardTransaction": {
             "title": "Reward",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "rewardTransaction",
+                    "enum": [
+                        "rewardTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2861,19 +2931,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "NegativeBalanceCoverageTransaction": {
             "title": "NegativeBalanceCoverage",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "negativeBalanceCoverageTransaction",
+                    "enum": [
+                        "negativeBalanceCoverageTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2919,19 +2991,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "AccountLowBalanceClosureTransaction": {
             "title": "AccountLowBalanceClosure",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "accountLowBalanceClosureTransaction",
+                    "enum": [
+                        "accountLowBalanceClosureTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -2976,19 +3050,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "CashDepositTransaction": {
             "title": "cashDepositTransaction",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "transaction.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "cashDepositTransaction",
+                    "enum": [
+                        "cashDepositTransaction"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -3040,8 +3116,6 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         }
     },
     "title": "Transaction Resource",

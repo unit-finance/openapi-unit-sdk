@@ -4,7 +4,17 @@
         "title": "UnitCustomerResponse",
         "properties": {
             "data": {
-                "$ref": "customer.json"
+                "oneOf": [
+                    {
+                        "$ref": "customer.json#/definitions/IndividualCustomer"
+                    },
+                    {
+                        "$ref": "customer.json#/definitions/BusinessCustomer"
+                    },
+                    {
+                        "$ref": "customer.json#/definitions/TrustCustomer"
+                    }
+                ]
             }
         }
     },
@@ -75,13 +85,31 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "$ref": "customer_paths.json#/UnitCustomerResponse"
-                            }
+                                "type": "object",
+                                "title": "UnitCustomerResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "oneOf": [
+                                                {
+                                                    "$ref": "customer.json#/definitions/IndividualCustomer"
+                                                },
+                                                {
+                                                    "$ref": "customer.json#/definitions/BusinessCustomer"
+                                                },
+                                                {
+                                                    "$ref": "customer.json#/definitions/TrustCustomer"
+                                                }
+                                            ]                                        }
+                                    }
+                                }
                         }
                     }
                 }
             }
         }
+    }
     },
     "list_customers": {
         "get": {
@@ -103,8 +131,17 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "customer.json"
-                                        }
+                                            "oneOf": [
+                                                {
+                                                    "$ref": "customer.json#/definitions/IndividualCustomer"
+                                                },
+                                                {
+                                                    "$ref": "customer.json#/definitions/BusinessCustomer"
+                                                },
+                                                {
+                                                    "$ref": "customer.json#/definitions/TrustCustomer"
+                                                }
+                                            ]                                        }
                                     },
                                     "meta": {
                                         "$ref": "types.json#/definitions/paginationMeta"
@@ -179,8 +216,25 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "customer_paths.json#/UnitCustomerResponse"
+                                "type":"object",
+                                "title": "UnitCustomerResponse",
+                                "properties":{
+                                    "data":{
+                                "oneOf": [
+                                    {
+                                        "$ref": "customer.json#/definitions/IndividualCustomer"
+                                    },
+                                    {
+                                        "$ref": "customer.json#/definitions/BusinessCustomer"
+                                    },
+                                    {
+                                        "$ref": "customer.json#/definitions/TrustCustomer"
+                                    }
+                                ]
+                                    }
+                                }
                             }
+
                         }
                     }
                 }

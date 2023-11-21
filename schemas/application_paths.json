@@ -4,7 +4,11 @@
 		"title":"UnitApplicationResponse",
 		"properties":{
 			"data":{
-				"$ref":"application.json"
+				"oneOf": [
+					{"$ref": "application.json#/definitions/IndividualApplication"},
+					{"$ref": "application.json#/definitions/BusinessApplication"},
+					{"$ref": "application.json#/definitions/TrustApplication"}
+				]
 			}
 		}
 	},
@@ -22,7 +26,11 @@
 		"title":"UnitApplicationResponse",
 		"properties": {
 			"data": {
-				"$ref": "application.json"
+				"oneOf": [
+					{"$ref": "application.json#/definitions/IndividualApplication"},
+					{"$ref": "application.json#/definitions/BusinessApplication"},
+					{"$ref": "application.json#/definitions/TrustApplication"}
+				]
 			},
 			"included": {
 				"type": "array",
@@ -68,7 +76,23 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"$ref":"application_paths.json#/UnitApplicationResponseWithIncluded"
+								"type":"object",
+								"title":"UnitApplicationResponseWithIncluded",
+								"properties":{
+									"data":{
+										"oneOf": [
+											{"$ref": "application.json#/definitions/IndividualApplication"},
+											{"$ref": "application.json#/definitions/BusinessApplication"},
+											{"$ref": "application.json#/definitions/TrustApplication"}
+										]
+									},
+									"included":{
+										"type":"array",
+										"items":{
+											"$ref":"document.json"
+										}
+									}
+								}
 							}
 						}
 					}
@@ -179,7 +203,11 @@
 								"title":"UnitCancelApplicationResponse",
 								"properties":{
 									"data":{
-										"$ref":"application.json"
+										"oneOf": [
+											{"$ref": "application.json#/definitions/IndividualApplication"},
+											{"$ref": "application.json#/definitions/BusinessApplication"},
+											{"$ref": "application.json#/definitions/TrustApplication"}
+										]
 									},
 									"included":{
 										"type":"array",
@@ -214,7 +242,7 @@
 				{
 					"name":"filter",
 					"in":"query",
-                    "style": "deepObject",
+					"style": "deepObject",
 					"allowReserved": true,
 					"schema":{
 						"type":"object",
@@ -265,8 +293,11 @@
 									"data":{
 										"type":"array",
 										"items":{
-											"$ref":"application.json"
-										}
+											"oneOf": [
+												{"$ref": "application.json#/definitions/IndividualApplication"},
+												{"$ref": "application.json#/definitions/BusinessApplication"},
+												{"$ref": "application.json#/definitions/TrustApplication"}
+											]									}
 									},
 									"meta":{
 										"$ref":"types.json#/definitions/paginationMeta"
@@ -321,8 +352,11 @@
 								"title":"UnitCreateApplicationResponse",
 								"properties":{
 									"data":{
-										"$ref":"application.json"
-									},
+										"oneOf": [
+											{"$ref": "application.json#/definitions/IndividualApplication"},
+											{"$ref": "application.json#/definitions/BusinessApplication"},
+											{"$ref": "application.json#/definitions/TrustApplication"}
+										]},
 									"included":{
 										"type":"array",
 										"items":{
@@ -356,7 +390,7 @@
 				{
 					"name": "filter",
 					"in": "query",
-                    "style": "deepObject",
+					"style": "deepObject",
 					"allowReserved": true,
 					"schema": {
 						"type": "object",
@@ -495,7 +529,11 @@
 										"$ref":"application_form.json"
 									},
 									"included":{
-										"$ref":"application.json"
+										"oneOf": [
+											{"$ref": "application.json#/definitions/IndividualApplication"},
+											{"$ref": "application.json#/definitions/BusinessApplication"},
+											{"$ref": "application.json#/definitions/TrustApplication"}
+										]
 									}
 								}
 							}

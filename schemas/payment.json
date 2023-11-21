@@ -44,13 +44,17 @@
         "AchPayment": {
             "title": "ACH Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "payment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "achPayment",
+                    "enum": [
+                        "achPayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -134,19 +138,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "BookPayment": {
             "title": "Book Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "payment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "bookPayment",
+                    "enum": [
+                        "bookPayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -209,19 +215,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "WirePayment": {
             "title": "Wire Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "payment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "wirePayment",
+                    "enum": [
+                        "wirePayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -297,19 +305,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "BillPayment": {
             "title": "Bill Payment",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "payment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "billPayment",
+                    "enum": [
+                        "billPayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -369,19 +379,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "pushToCardPayment": {
             "title": "Push To Card Payment Response",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "payment.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "pushToCardPayment",
+                    "enum": [
+                        "pushToCardPayment"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -442,8 +454,6 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "counterparty": {
             "title": "Counterparty",
@@ -565,15 +575,6 @@
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "achPayment": "#/definitions/AchPayment",
-            "bookPayment": "#/definitions/BookPayment",
-            "wirePayment": "#/definitions/WirePayment",
-            "billPayment": "#/definitions/BillPayment"
         }
     }
 }

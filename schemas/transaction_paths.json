@@ -102,8 +102,45 @@
                                     "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "transaction.json"
-                                            }
+                                                "oneOf" : [
+                                                    { "$ref": "transaction.json#/definitions/OriginatedAchTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/ReceivedAchTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/ReturnedAchTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/ReturnedReceivedAchTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/DishonoredAchTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/PurchaseTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/BookTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/AtmTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/FeeTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/ReversalTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/CardTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/ReleaseTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/WireTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/InterchangeTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/InterestShareTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/InterestTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/AdjustmentTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/DisputeSettlementTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/DisputeTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/CheckDepositTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/ReturnedCheckDepositTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/BillPayTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/SettlementTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/SponsoredInterestTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/PaymentAdvanceTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/RepaidPaymentAdvanceTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/ChargebackTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/RewardTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/NegativeBalanceCoverageTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/AccountLowBalanceClosureTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/BankRepaymentTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/CashDepositTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/CustomerRepaymentTransaction"},
+                                                    { "$ref" :  "transaction.json#/definitions/CustomerRepaymentReturnedTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/CheckPaymentTransaction"},
+                                                    { "$ref" : "transaction.json#/definitions/ReturnedCheckPaymentTransaction"}
+
+                                                ]                                           }
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
@@ -154,8 +191,45 @@
                                 "title": "UnitTransactionResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "transaction.json"
-                                    },
+                                        "oneOf" : [
+                                            { "$ref": "transaction.json#/definitions/OriginatedAchTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/ReceivedAchTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/ReturnedAchTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReturnedReceivedAchTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/DishonoredAchTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/PurchaseTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/BookTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/AtmTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/FeeTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReversalTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CardTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReleaseTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/WireTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/InterchangeTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/InterestShareTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/InterestTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/AdjustmentTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/DisputeSettlementTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/DisputeTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/CheckDepositTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReturnedCheckDepositTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/BillPayTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/SettlementTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/SponsoredInterestTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/PaymentAdvanceTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/RepaidPaymentAdvanceTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ChargebackTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/RewardTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/NegativeBalanceCoverageTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/AccountLowBalanceClosureTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/BankRepaymentTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CashDepositTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CustomerRepaymentTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CustomerRepaymentReturnedTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/CheckPaymentTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/ReturnedCheckPaymentTransaction"}
+
+                                        ]                                    },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
                                     }
@@ -214,8 +288,45 @@
                                 "title": "UnitTransactionResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "transaction.json"
-                                    }
+                                        "oneOf" : [
+                                            { "$ref": "transaction.json#/definitions/OriginatedAchTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/ReceivedAchTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/ReturnedAchTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReturnedReceivedAchTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/DishonoredAchTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/PurchaseTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/BookTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/AtmTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/FeeTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReversalTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CardTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReleaseTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/WireTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/InterchangeTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/InterestShareTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/InterestTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/AdjustmentTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/DisputeSettlementTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/DisputeTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/CheckDepositTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ReturnedCheckDepositTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/BillPayTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/SettlementTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/SponsoredInterestTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/PaymentAdvanceTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/RepaidPaymentAdvanceTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/ChargebackTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/RewardTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/NegativeBalanceCoverageTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/AccountLowBalanceClosureTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/BankRepaymentTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CashDepositTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CustomerRepaymentTransaction"},
+                                            { "$ref" :  "transaction.json#/definitions/CustomerRepaymentReturnedTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/CheckPaymentTransaction"},
+                                            { "$ref" : "transaction.json#/definitions/ReturnedCheckPaymentTransaction"}
+
+                                        ]                                    }
                                 }
                             }
                         }

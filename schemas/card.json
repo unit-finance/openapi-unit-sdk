@@ -116,13 +116,17 @@
         "IndividualDebitCard": {
             "title": "Individual Debit Card",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "card.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "individualDebitCard",
+                    "enum": [
+                        "individualDebitCard"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -179,20 +183,22 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
-        },
+                },
         "BusinessDebitCard": {
             "title": "Business Debit Card",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "card.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "businessDebitCard",
+                    "enum": [
+                        "businessDebitCard"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
-                        "attributes": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
+                "attributes": {
                             "type": "object",
                             "properties": {
                                 "createdAt": {
@@ -278,19 +284,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "IndividualVirtualDebitCard": {
             "title": "Individual Virtual Debit Card",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "card.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "individualVirtualDebitCard",
+                    "enum": [
+                        "individualVirtualDebitCard"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -341,19 +349,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "BusinessVirtualDebitCard": {
             "title": "Business Virtual Debit Card",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "card.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "businessVirtualDebitCard",
+                    "enum": [
+                        "businessVirtualDebitCard"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -434,19 +444,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "BusinessCreditCard": {
             "title": "Business Credit Card",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "card.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "businessCreditCard",
+                    "enum": [
+                        "businessCreditCard"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -533,19 +545,21 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         },
         "BusinessVirtualCreditCard": {
             "title": "Business Virtual Credit Card",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "card.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "businessVirtualCreditCard",
+                    "enum": [
+                        "businessVirtualCreditCard"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -626,11 +640,9 @@
                         "attributes",
                         "relationships"
                     ]
-                }
-            ]
         }
     },
-    "title": "Card Document",
+    "title": "Card",
     "type": "object",
     "properties": {
         "type": {
@@ -638,17 +650,6 @@
         },
         "id": {
             "$ref": "types.json#/definitions/identifier"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "businessDebitCard": "#/definitions/BusinessDebitCard",
-            "individualDebitCard": "#/definitions/IndividualDebitCard",
-            "businessVirtualDebitCard": "#/definitions/BusinessVirtualDebitCard",
-            "individualVirtualDebitCard": "#/definitions/IndividualVirtualDebitCard",
-            "businessCreditCard": "#/definitions/BusinessCreditCard",
-            "businessVirtualCreditCard": "#/definitions/BusinessVirtualCreditCard"
         }
     }
 }

@@ -4,7 +4,14 @@
         "title": "UnitAccountResponse",
         "properties": {
             "data": {
-                "$ref": "account.json"
+                "oneOf": [
+                    {
+                        "$ref": "account.json#/definitions/DepositAccount"
+                    },
+                    {
+                        "$ref": "account.json#/definitions/CreditAccount"
+                    }
+                ]
             }
         }
     },
@@ -13,12 +20,29 @@
         "title": "UnitAccountResponseWithIncluded",
         "properties": {
             "data": {
-                "$ref": "account.json"
+                "oneOf": [
+                    {
+                        "$ref": "account.json#/definitions/DepositAccount"
+                    },
+                    {
+                        "$ref": "account.json#/definitions/CreditAccount"
+                    }
+                ]
             },
             "included": {
                 "type": "array",
                 "items": {
-                    "$ref": "customer.json"
+                    "oneOf": [
+                        {
+                            "$ref": "customer.json#/definitions/IndividualCustomer"
+                        },
+                        {
+                            "$ref": "customer.json#/definitions/BusinessCustomer"
+                        },
+                        {
+                            "$ref": "customer.json#/definitions/TrustCustomer"
+                        }
+                    ]
                 }
             }
         }
@@ -43,7 +67,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -103,13 +127,30 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "account.json"
+                                            "oneOf": [
+                                                {
+                                                    "$ref": "account.json#/definitions/DepositAccount"
+                                                },
+                                                {
+                                                    "$ref": "account.json#/definitions/CreditAccount"
+                                                }
+                                            ]
                                         }
                                     },
                                     "included": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "customer.json"
+                                            "oneOf": [
+                                                {
+                                                    "$ref": "customer.json#/definitions/IndividualCustomer"
+                                                },
+                                                {
+                                                    "$ref": "customer.json#/definitions/BusinessCustomer"
+                                                },
+                                                {
+                                                    "$ref": "customer.json#/definitions/TrustCustomer"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -194,7 +235,20 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "account_paths.json#/UnitAccountResponseWithIncluded"
+                                "type": "object",
+                                "title": "UnitAccountResponseWithIncluded",
+                                "properties": {
+                                    "data": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "account.json#/definitions/DepositAccount"
+                                            },
+                                            {
+                                                "$ref": "account.json#/definitions/CreditAccount"
+                                            }
+                                        ]
+                                    }
+                                }
                             }
                         }
                     }
@@ -236,7 +290,20 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "$ref": "account_paths.json#/UnitAccountResponse"
+                                "type": "object",
+                                "title": "UnitAccountResponse",
+                                "properties": {
+                                    "data": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "account.json#/definitions/DepositAccount"
+                                            },
+                                            {
+                                                "$ref": "account.json#/definitions/CreditAccount"
+                                            }
+                                        ]
+                                    }
+                                }
                             }
                         }
                     }

@@ -121,8 +121,20 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "payment.json"
-                                        }
+                                            "oneOf": [
+                                                {
+                                                    "$ref": "payment.json#/definitions/AchPayment"
+                                                },
+                                                {
+                                                    "$ref": "payment.json#/definitions/BookPayment"
+                                                },
+                                                {
+                                                    "$ref": "payment.json#/definitions/WirePayment"
+                                                },
+                                                {
+                                                    "$ref": "payment.json#/definitions/BillPayment"
+                                                }
+                                            ]                                           }
                                     },
                                     "included": {
                                         "type": "array",
@@ -170,8 +182,20 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "payment.json#/definitions/AchPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BookPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/WirePayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BillPayment"
+                                            }
+                                        ]                                       }
                                 }
                             }
                         }
@@ -216,8 +240,20 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "payment.json#/definitions/AchPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BookPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/WirePayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BillPayment"
+                                            }
+                                        ]                                       }
                                 }
                             }
                         }
@@ -264,8 +300,20 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "payment.json#/definitions/AchPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BookPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/WirePayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BillPayment"
+                                            }
+                                        ]                                       }
                                 }
                             }
                         }
@@ -303,8 +351,20 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "payment.json#/definitions/AchPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BookPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/WirePayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BillPayment"
+                                            }
+                                        ]                                       }
                                 }
                             }
                         }
@@ -340,8 +400,20 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "payment.json#/definitions/AchPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BookPayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/WirePayment"
+                                            },
+                                            {
+                                                "$ref": "payment.json#/definitions/BillPayment"
+                                            }
+                                        ]                                    }
                                 }
                             }
                         }
@@ -504,7 +576,17 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurring_payment.json"
+                                        "oneOf": [
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringDebitAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditBookPayment"
+                                            }
+                                        ]
                                     }
                                 }
                             }
@@ -546,8 +628,17 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringDebitAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditBookPayment"
+                                            }
+                                        ]                                    }
                                 }
                             }
                         }
@@ -585,8 +676,17 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringDebitAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditBookPayment"
+                                            }
+                                        ]                                       }
                                 }
                             }
                         }
@@ -624,8 +724,17 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringDebitAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditBookPayment"
+                                            }
+                                        ]                                    }
                                 }
                             }
                         }
@@ -663,8 +772,17 @@
                                 "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
+                                        "oneOf": [
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringDebitAchPayment"
+                                            },
+                                            {
+                                                "$ref": "recurring_payment.json#/definitions/RecurringCreditBookPayment"
+                                            }
+                                        ]                                       }
                                 }
                             }
                         }

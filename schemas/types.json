@@ -1063,6 +1063,10 @@
     "soleProprietorshipNumberOfEmployees": { "type": "string", "enum": ["One", "Between2And5", "Between5And10", "Over10"] },
     "businessNumberOfEmployees": { "type": "string", "enum": ["UpTo10", "Between10And50", "Between50And100", "Between100And500", "Over500"] },
     "entityType": { "type": "string", "enum": [ "Corporation", "LLC", "Partnership", "PubliclyTradedCorporation", "PrivatelyHeldCorporation", "NotForProfitOrganization" ]},
-    "disputeType": {"type": "string", "enum": [ "Issuer", "Fraud", "NonFraud" ]}
+    "disputeType": {"type": "string", "enum": [ "Issuer", "Fraud", "NonFraud" ]},
+		"responseContact": {
+      "allOf": [{ "$ref": "#/definitions/contact" }],
+      "required": [ "fullName" ]
+    }
 	}
 }

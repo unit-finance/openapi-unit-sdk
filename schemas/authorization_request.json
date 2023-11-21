@@ -266,8 +266,6 @@
                     "required": [
                         "relationships"
                     ]
-                }
-            ]
         },
         "CardTransactionAuthorizationRequest": {
             "title": "CardTransactionAuthorizationRequest Resource",

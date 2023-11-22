@@ -43,7 +43,5 @@ public class AccountTests {
                 throw new RuntimeException(e);
             }
         });
-
-
     }
 }

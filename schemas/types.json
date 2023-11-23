@@ -509,13 +509,13 @@
 					"type":"object",
 					"properties":{
 						"limit":{
-							"type":"string"
+							"type":"integer"
 						},
 						"offset":{
-							"type":"string"
+							"type":"integer"
 						},
 						"total":{
-							"type":"string"
+							"type":"integer"
 						}
 					}
 				}

@@ -9,31 +9,22 @@
           "default": "depositAccount"
         },
         "attributes": {
-          "anyOf": [
-          {
-              "type": "object",
-              "properties": {
-                "tags": {
-                  "$ref": "tags.json#/definitions/tagsPatch"
-                }
-              }
+          "type": "object",
+          "properties": {
+            "tags": {
+              "$ref": "tags.json#/definitions/tagsPatch"
             },
-            {
-              "type": "object",
-              "properties": {
-                "depositProduct": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "overdraftLimit": {
-                  "type": "integer",
-                  "minimum": 0
-                }
-              }
+            "depositProduct": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "overdraftLimit": {
+              "type": "integer",
+              "minimum": 0
             }
-          ]
+          }
         }
       },
       "additionalProperties": false,
@@ -51,24 +42,15 @@
           "default": "creditAccount"
         },
         "attributes": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "tags": {
-                  "$ref": "tags.json#/definitions/tagsPatch"
-                }
-              }
+          "type": "object",
+          "properties": {
+            "tags": {
+              "$ref": "tags.json#/definitions/tagsPatch"
             },
-            {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
+            "name": {
+              "type": "string"
             }
-          ]
+          }
         }
       },
       "additionalProperties": false,

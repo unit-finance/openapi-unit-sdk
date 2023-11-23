@@ -141,43 +141,6 @@
 					"format":"date"
 				}
 			},
-			"oneOf":[
-				{
-					"properties":{
-						"ssn":{
-							"type":"string",
-							"pattern":"^\\d{9}$"
-						}
-					},
-					"required":[
-						"ssn"
-					]
-				},
-				{
-					"properties":{
-						"passport":{
-							"type":"string"
-						},
-						"nationality":{
-							"$ref":"types.json#/definitions/country"
-						}
-					},
-					"required":[
-						"passport",
-						"nationality"
-					]
-				},
-				{
-					"properties":{
-						"matriculaConsular":{
-							"type":"string"
-						}
-					},
-					"required":[
-						"matriculaConsular"
-					]
-				}
-			],
 			"additionalProperties":false,
 			"required":[
 				"fullName",
@@ -237,43 +200,6 @@
 					"pattern":"^\\*{5}\\d{4}$"
 				}
 			},
-			"oneOf":[
-				{
-					"properties":{
-						"ssn":{
-							"type":"string",
-							"pattern":"^\\d{9}$"
-						}
-					},
-					"required":[
-						"ssn"
-					]
-				},
-				{
-					"properties":{
-						"passport":{
-							"type":"string"
-						},
-						"nationality":{
-							"$ref":"types.json#/definitions/country"
-						}
-					},
-					"required":[
-						"passport",
-						"nationality"
-					]
-				},
-				{
-					"properties":{
-						"matriculaConsular":{
-							"type":"string"
-						}
-					},
-					"required":[
-						"matriculaConsular"
-					]
-				}
-			],
 			"additionalProperties":false,
 			"required":[
 				"fullName",
@@ -583,13 +509,13 @@
 					"type":"object",
 					"properties":{
 						"limit":{
-							"type":"string"
+							"type":"integer"
 						},
 						"offset":{
-							"type":"string"
+							"type":"integer"
 						},
 						"total":{
-							"type":"string"
+							"type":"integer"
 						}
 					}
 				}
@@ -722,43 +648,6 @@
 					"maximum":100
 				}
 			},
-			"oneOf":[
-				{
-					"properties":{
-						"ssn":{
-							"type":"string",
-							"pattern":"^\\d{9}$"
-						}
-					},
-					"required":[
-						"ssn"
-					]
-				},
-				{
-					"properties":{
-						"passport":{
-							"type":"string"
-						},
-						"nationality":{
-							"$ref":"types.json#/definitions/country"
-						}
-					},
-					"required":[
-						"passport",
-						"nationality"
-					]
-				},
-				{
-					"properties":{
-						"matriculaConsular":{
-							"type":"string"
-						}
-					},
-					"required":[
-						"matriculaConsular"
-					]
-				}
-			],
 			"additionalProperties":false,
 			"required":[
 				"fullName",

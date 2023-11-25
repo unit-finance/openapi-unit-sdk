@@ -14,9 +14,6 @@
         "/applications/{applicationId}": {
             "$ref": "./schemas/application_paths.json#/application"
         },
-        "/applications/{applicationId}/documents/{documentId}": {
-            "$ref": "./schemas/application_paths.json#/upload_pdf_file"
-        },
         "/applications/{applicationId}/cancel": {
             "$ref": "./schemas/application_paths.json#/cancel_application"
         },
@@ -40,6 +37,18 @@
         },
         "/applications/{applicationId}/documents/{documentId}/back/?": {
             "$ref": "./schemas/application_paths.json#/upload_jpg_file_back"
+        },
+        "/applications/{applicationId}/documents/{documentId}": {
+            "$ref": "./schemas/application_paths.json#/documents"
+        },
+        "/applications/{applicationId}/documents/{documentId}/verify": {
+            "$ref": "./schemas/application_paths.json#/verify_document"
+        },
+        "/applications/{applicationId}/documents/{documentId}/download": {
+            "$ref": "./schemas/application_paths.json#/download_document"
+        },
+        "/applications/{applicationId}/documents/{documentId}/download/back": {
+            "$ref": "./schemas/application_paths.json#/download_back_side_document"
         },
         "/application-forms/{applicationFormId}": {
             "$ref": "./schemas/application_paths.json#/application_form"

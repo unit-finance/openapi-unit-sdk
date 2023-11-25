@@ -497,59 +497,6 @@
 			}
 		}
 	},
-	"upload_pdf_file":{
-		"put":{
-			"tags":[
-				"Upload a PDF Document for an Application"
-			],
-			"operationId":"execute",
-			"parameters":[
-				{
-					"schema":{
-						"type":"string"
-					},
-					"name":"applicationId",
-					"in":"path",
-					"required":true,
-					"description":"ID of the application to upload a file to"
-				},
-				{
-					"schema":{
-						"type":"string"
-					},
-					"name":"documentId",
-					"in":"path",
-					"required":true,
-					"description":"ID of the document to upload a file for"
-				}
-			],
-			"summary":"Upload a PDF document",
-			"description":"Upload a PDF file via API ",
-			"requestBody":{
-				"description":"Upload PDF File",
-				"required": true,
-				"content":{
-					"application/pdf":{
-						"schema":{
-							"type": "object"
-						}
-					}
-				}
-			},
-			"responses":{
-				"200":{
-					"description":"Successful Response",
-					"content":{
-						"application/vnd.api+json; charset=utf-8":{
-							"schema":{
-								"$ref": "application_paths.json#/UnitDocumentResponse"
-							}
-						}
-					}
-				}
-			}
-		}
-	},
 	"upload_pdf_file_back":{
 		"put":{
 			"tags":[
@@ -808,6 +755,268 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
 								"$ref": "application_paths.json#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"documents":{
+		"get":{
+			"tags":[
+				"Get List of Documents"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to get documents for"
+				}
+			],
+			"summary":"Get List of Documents",
+			"description":"Get List of Documents via API ",
+			"responses":{
+				"200":{
+					"description": "Successful Response",
+					"content": {
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"type": "array",
+								"items": {
+									"$ref": "document.json"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"post":{
+			"tags":[
+				"Create a Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to create a file for"
+				}
+			],
+			"summary":"Create a document",
+			"description":"Create a document via API ",
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "application_paths.json#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		},
+		"put":{
+			"tags":[
+				"Upload a PDF Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to upload a file to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to upload a file for"
+				}
+			],
+			"summary":"Upload a PDF document",
+			"description":"Upload a PDF file via API ",
+			"requestBody":{
+				"description":"Upload PDF File",
+				"required": true,
+				"content":{
+					"application/pdf":{
+						"schema":{
+							"type": "object"
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "application_paths.json#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"verify_document":{
+		"put":{
+			"tags":[
+				"Verify a Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to verify a file for"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to verify"
+				}
+			],
+			"summary":"Verify a document",
+			"description":"Verify a document via API ",
+			"requestBody":{
+				"description":"Verify Document",
+				"required": true,
+				"content":{
+					"application/json":{
+						"schema":{
+							"type": "object",
+							"properties": {
+								"jobId": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "application_paths.json#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"download_document": {
+		"get":{
+			"tags":[
+				"Download a Document"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to download"
+				}
+			],
+			"summary":"Download a Document",
+			"description":"Download a Document via API ",
+			"responses":{
+				"200":{
+					"description": "Successful Response",
+					"content": {
+						"application/octet-stream":{
+							"schema":{
+								"type": "string",
+								"format": "binary"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"download_back_side_document": {
+		"get":{
+			"tags":[
+				"Download a Document - Back Side"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to download"
+				}
+			],
+			"summary":"Download a Document - Back Side",
+			"description":"Download a Document - Back Side via API",
+			"responses":{
+				"200":{
+					"description": "Successful Response",
+					"content": {
+						"application/octet-stream":{
+							"schema":{
+								"type": "string",
+								"format": "binary"
 							}
 						}
 					}

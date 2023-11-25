@@ -17,33 +17,6 @@
         "/applications/{applicationId}/documents/{documentId}": {
             "$ref": "./schemas/application_paths.json#/upload_pdf_file"
         },
-        "/applications/{applicationId}/documents/{documentId}/": {
-            "$ref": "./schemas/application_paths.json#/upload_png_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/?": {
-            "$ref": "./schemas/application_paths.json#/upload_jpg_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/back": {
-            "$ref": "./schemas/application_paths.json#/upload_pdf_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/back/": {
-            "$ref": "./schemas/application_paths.json#/upload_png_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/back/?": {
-            "$ref": "./schemas/application_paths.json#/upload_jpg_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/download": {
-            "$ref": "./schemas/application_paths.json#/download_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/download/back": {
-            "$ref": "./schemas/application_paths.json#/download_file"
-        },
-        "/applications/{applicationId}/documents": {
-            "$ref": "./schemas/application_paths.json#/create_document"
-        },
-        "/applications/{applicationId}/documents/{documentId}/verify": {
-            "$ref": "./schemas/application_paths.json#/verify_document"
-        },
         "/applications/{applicationId}/cancel": {
             "$ref": "./schemas/application_paths.json#/cancel_application"
         },
@@ -52,6 +25,21 @@
         },
         "/application-forms": {
             "$ref": "./schemas/application_paths.json#/application_forms"
+        },
+        "/applications/{applicationId}/documents/{documentId}/": {
+            "$ref": "./schemas/application_paths.json#/upload_png_file"
+        },
+        "/applications/{applicationId}/documents/{documentId}/?": {
+            "$ref": "./schemas/application_paths.json#/upload_jpg_file"
+        },
+        "/applications/{applicationId}/documents/{documentId}/back": {
+            "$ref": "./schemas/application_paths.json#/upload_pdf_file_back"
+        },
+        "/applications/{applicationId}/documents/{documentId}/back/": {
+            "$ref": "./schemas/application_paths.json#/upload_png_file_back"
+        },
+        "/applications/{applicationId}/documents/{documentId}/back/?": {
+            "$ref": "./schemas/application_paths.json#/upload_jpg_file_back"
         },
         "/application-forms/{applicationFormId}": {
             "$ref": "./schemas/application_paths.json#/application_form"

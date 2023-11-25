@@ -542,7 +542,60 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"$ref": "#/UnitDocumentResponse"
+								"$ref": "application_paths.json#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"upload_pdf_file_back":{
+		"put":{
+			"tags":[
+				"Upload a PDF Document for an Application - Back Side"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to upload a file to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to upload a file for"
+				}
+			],
+			"summary":"Upload a PDF document - Back Side",
+			"description":"Upload a PDF file via API - Back Side",
+			"requestBody":{
+				"description":"Upload PDF File - Back Side",
+				"required": true,
+				"content":{
+					"application/pdf":{
+						"schema":{
+							"type": "object"
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "application_paths.json#/UnitDocumentResponse"
 							}
 						}
 					}
@@ -595,7 +648,60 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"$ref": "#/UnitDocumentResponse"
+								"$ref": "application_paths.json#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"upload_png_file_back":{
+		"put":{
+			"tags":[
+				"Upload a PNG Document for an Application - Back Side"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to upload a file to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to upload a file for"
+				}
+			],
+			"summary":"Upload a PNG document - Back Side",
+			"description":"Upload a PNG file via API - Back Side",
+			"requestBody":{
+				"description":"Upload PNG File - Back Side",
+				"required": true,
+				"content":{
+					"image/png":{
+						"schema":{
+							"type": "object"
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "application_paths.json#/UnitDocumentResponse"
 							}
 						}
 					}
@@ -648,7 +754,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"$ref": "#/UnitDocumentResponse"
+								"$ref": "application_paths.json#/UnitDocumentResponse"
 							}
 						}
 					}
@@ -656,10 +762,10 @@
 			}
 		}
 	},
-	"download_file":{
-		"get":{
+	"upload_jpg_file_back":{
+		"put":{
 			"tags":[
-				"Get a Document for an Application"
+				"Upload a JPEG Document for an Application - Back Side"
 			],
 			"operationId":"execute",
 			"parameters":[
@@ -670,7 +776,7 @@
 					"name":"applicationId",
 					"in":"path",
 					"required":true,
-					"description":"ID of the application that the file belongs to"
+					"description":"ID of the application to upload a file to"
 				},
 				{
 					"schema":{
@@ -679,107 +785,18 @@
 					"name":"documentId",
 					"in":"path",
 					"required":true,
-					"description":"ID of the document to download"
+					"description":"ID of the document to upload a file for"
 				}
 			],
-			"summary":"Download a document",
-			"description":"Download a file via API ",
-			"responses":{
-				"200":{
-					"description":"Successful Response",
-					"content":{
-						"application/octet-stream": {
-							"schema": {
-								"type": "string",
-								"format": "binary"
-							}
-						}
-					}
-				}
-			}
-		}
-	},
-	"create_document":{
-		"post":{
-			"tags":[
-				"Create a Document for an Application"
-			],
-			"operationId":"execute",
-			"parameters":[
-				{
-					"schema":{
-						"type":"string"
-					},
-					"name":"applicationId",
-					"in":"path",
-					"required":true,
-					"description":"ID of the application to create a document to"
-				}
-			],
-			"summary":"Create a document",
-			"description":"Create a document via API ",
-			"responses":{
-				"200":{
-					"description":"Successful Response",
-					"content":{
-						"application/vnd.api+json; charset=utf-8":{
-							"schema":{
-								"$ref": "#/UnitDocumentResponse"
-							}
-						}
-					}
-				}
-			}
-		}
-	},
-	"verify_document":{
-		"post":{
-			"tags":[
-				"Verify a Document for an Application"
-			],
-			"operationId":"execute",
-			"parameters":[
-				{
-					"schema":{
-						"type":"string"
-					},
-					"name":"applicationId",
-					"in":"path",
-					"required":true,
-					"description":"ID of the application that the document belongs to"
-				},
-				{
-					"schema":{
-						"type":"string"
-					},
-					"name":"documentId",
-					"in":"path",
-					"required":true,
-					"description":"ID of the document to verify"
-				}
-			],
-			"summary":"Verify a document",
-			"description":"Verify a Document via API ",
+			"summary":"Upload a JPEG document - Back Side",
+			"description":"Upload a JPEG file via API - Back Side",
 			"requestBody":{
-				"description":"Verify Document",
+				"description":"Upload JPEG File - Back Side",
 				"required": true,
 				"content":{
-					"application/vnd.api+json":{
-						"schema": {
-							"type": "object",
-							"properties": {
-								"type": {
-									"type": "string"
-								},
-								"attributes": {
-									"type": "object",
-									"properties": {
-										"jobId": {
-											"type": "string"
-										}
-									}
-								}
-							}
+					"image/jpeg":{
+						"schema":{
+							"type": "object"
 						}
 					}
 				}
@@ -790,7 +807,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"$ref": "#/UnitDocumentResponse"
+								"$ref": "application_paths.json#/UnitDocumentResponse"
 							}
 						}
 					}

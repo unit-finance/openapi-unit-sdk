@@ -497,6 +497,59 @@
 			}
 		}
 	},
+	"upload_pdf_file": {
+		"put":{
+			"tags":[
+				"Upload a PDF Document for an Application"
+			],
+			"operationId":"execute",
+			"parameters":[
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"applicationId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the application to upload a file to"
+				},
+				{
+					"schema":{
+						"type":"string"
+					},
+					"name":"documentId",
+					"in":"path",
+					"required":true,
+					"description":"ID of the document to upload a file for"
+				}
+			],
+			"summary":"Upload a PDF document",
+			"description":"Upload a PDF file via API ",
+			"requestBody":{
+				"description":"Upload PDF File",
+				"required": true,
+				"content":{
+					"application/pdf":{
+						"schema":{
+							"type": "object"
+						}
+					}
+				}
+			},
+			"responses":{
+				"200":{
+					"description":"Successful Response",
+					"content":{
+						"application/vnd.api+json; charset=utf-8":{
+							"schema":{
+								"$ref": "application_paths.json#/UnitDocumentResponse"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
 	"upload_pdf_file_back":{
 		"put":{
 			"tags":[
@@ -786,10 +839,15 @@
 					"description": "Successful Response",
 					"content": {
 						"application/vnd.api+json; charset=utf-8":{
-							"schema":{
-								"type": "array",
-								"items": {
-									"$ref": "document.json"
+							"schema": {
+								"type": "object",
+								"properties": {
+									"data": {
+										"type": "array",
+										"items": {
+											"$ref": "document.json"
+										}
+									}
 								}
 							}
 						}
@@ -815,57 +873,6 @@
 			],
 			"summary":"Create a document",
 			"description":"Create a document via API ",
-			"responses":{
-				"200":{
-					"description":"Successful Response",
-					"content":{
-						"application/vnd.api+json; charset=utf-8":{
-							"schema":{
-								"$ref": "application_paths.json#/UnitDocumentResponse"
-							}
-						}
-					}
-				}
-			}
-		},
-		"put":{
-			"tags":[
-				"Upload a PDF Document for an Application"
-			],
-			"operationId":"execute",
-			"parameters":[
-				{
-					"schema":{
-						"type":"string"
-					},
-					"name":"applicationId",
-					"in":"path",
-					"required":true,
-					"description":"ID of the application to upload a file to"
-				},
-				{
-					"schema":{
-						"type":"string"
-					},
-					"name":"documentId",
-					"in":"path",
-					"required":true,
-					"description":"ID of the document to upload a file for"
-				}
-			],
-			"summary":"Upload a PDF document",
-			"description":"Upload a PDF file via API ",
-			"requestBody":{
-				"description":"Upload PDF File",
-				"required": true,
-				"content":{
-					"application/pdf":{
-						"schema":{
-							"type": "object"
-						}
-					}
-				}
-			},
 			"responses":{
 				"200":{
 					"description":"Successful Response",

@@ -23,6 +23,9 @@
         "/application-forms": {
             "$ref": "./schemas/application_paths.json#/application_forms"
         },
+        "/applications/{applicationId}/documents/{documentId}": {
+            "$ref": "./schemas/application_paths.json#/upload_pdf_file"
+        },
         "/applications/{applicationId}/documents/{documentId}/": {
             "$ref": "./schemas/application_paths.json#/upload_png_file"
         },
@@ -38,7 +41,7 @@
         "/applications/{applicationId}/documents/{documentId}/back/?": {
             "$ref": "./schemas/application_paths.json#/upload_jpg_file_back"
         },
-        "/applications/{applicationId}/documents/{documentId}": {
+        "/applications/{applicationId}/documents": {
             "$ref": "./schemas/application_paths.json#/documents"
         },
         "/applications/{applicationId}/documents/{documentId}/verify": {

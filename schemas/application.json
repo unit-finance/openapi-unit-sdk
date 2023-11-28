@@ -296,13 +296,17 @@
         "BusinessApplication": {
             "title": "Business Application",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "application.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "businessApplication",
+                    "enum": [
+                        "businessApplication"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -471,19 +475,21 @@
                         "type",
                         "attributes"
                     ]
-                }
-            ]
         },
         "IndividualApplication": {
             "title": "Individual Application",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "application.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "individualApplication",
+                    "enum": [
+                        "individualApplication"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -638,19 +644,21 @@
                         "type",
                         "attributes"
                     ]
-                }
-            ]
         },
         "TrustApplication": {
             "title": "Trust Application",
             "type": "object",
-            "allOf": [
-                {
-                    "$ref": "application.json"
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "individualApplication",
+                    "enum": [
+                        "individualApplication"
+                    ]
                 },
-                {
-                    "type": "object",
-                    "properties": {
+                "id": {
+                    "$ref": "types.json#/definitions/identifier"
+                },
                         "attributes": {
                             "type": "object",
                             "properties": {
@@ -775,9 +783,7 @@
                         "attributes"
                     ]
                 }
-            ]
-        }
-    },
+        },
     "title": "Application",
     "type": "object",
     "properties": {
@@ -795,5 +801,16 @@
             "businessApplication": "#/definitions/BusinessApplication",
             "trustApplication": "#/definitions/TrustApplication"
         }
-    }
+    },
+    "oneOf": [
+        {
+            "$ref": "#/definitions/IndividualApplication"
+        },
+        {
+            "$ref": "#/definitions/BusinessApplication"
+        },
+        {
+            "$ref": "#/definitions/TrustApplication"
+        }
+    ]
 }

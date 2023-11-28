@@ -651,9 +651,9 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "default": "individualApplication",
+                    "default": "trustApplication",
                     "enum": [
-                        "individualApplication"
+                        "trustApplication"
                     ]
                 },
                 "id": {

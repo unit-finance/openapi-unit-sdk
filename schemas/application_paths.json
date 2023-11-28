@@ -19,16 +19,13 @@
 	},
 	"UnitApplicationResponseWithIncluded":{
 		"type":"object",
-		"title":"UnitApplicationResponse",
+		"title":"UnitApplicationResponseWithIncluded",
 		"properties": {
 			"data": {
 				"$ref": "application.json"
 			},
 			"included": {
-				"type": "array",
-				"items": {
-					"$ref": "openapi_types.json#/IncludedResource"
-				}
+				"$ref": "openapi_types.json#/IncludedResource"
 			}
 		}
 	},
@@ -110,7 +107,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"$ref":"application_paths.json#/UnitApplicationResponse"
+								"$ref":"application_paths.json#/UnitApplicationResponseWithIncluded"
 							}
 						}
 					}
@@ -300,13 +297,8 @@
 				"required": true,
 				"content":{
 					"application/vnd.api+json":{
-						"schema":{
-							"type":"object",
-							"properties":{
-								"data":{
-									"$ref":"createApplication.json"
-								}
-							}
+						"schema": {
+							"$ref": "createApplication.json"
 						}
 					}
 				}

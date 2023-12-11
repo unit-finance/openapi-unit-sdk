@@ -238,6 +238,12 @@
               },
               "tags": {
                 "type": "object"
+              },
+              "since": {
+                "type": "string"
+              },
+              "until": {
+                "type": "string"
               }
             }
           }

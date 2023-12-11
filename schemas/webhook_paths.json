@@ -23,24 +23,17 @@
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "since": {
                                 "type": "string"
                             },
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
-                            },
-                            "email": {
+                            "until": {
                                 "type": "string"
                             },
-                            "tags": {
-                                "type": "object"
+                            "fromId": {
+                                "type": "integer"
+                            },
+                            "toId": {
+                                "type": "integer"
                             }
                         }
                     }

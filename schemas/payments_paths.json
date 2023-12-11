@@ -64,8 +64,13 @@
                                 "items": {
                                     "type": "string",
                                     "enum": [
+                                        "Rejected",
                                         "Pending",
-                                        "Approved"
+                                        "Canceled",
+                                        "Pending Review",
+                                        "Clearing",
+                                        "Sent",
+                                        "Returned"
                                     ]
                                 }
                             },

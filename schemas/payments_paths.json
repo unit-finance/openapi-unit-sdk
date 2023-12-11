@@ -505,6 +505,68 @@
             "operationId": "execute",
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "recurringCreditAchPayment",
+                                        "recurringDebitAchPayment",
+                                        "recurringCreditBookPayment"
+                                    ]
+                                }
+                            },
+                            "fromStartTime": {
+                                "type": "string"
+                            },
+                            "toStartTime": {
+                                "type": "string"
+                            },
+                            "fromEndTime": {
+                                "type": "string"
+                            },
+                            "toEndTime": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "responses": {
                 "200": {
                     "description": "Successful Response",

@@ -237,7 +237,10 @@
 								"type":"string"
 							},
 							"tags":{
-								"type":"object"
+								"type": "object",
+								"additionalProperties":{
+									"type": "string"
+								}
 							}
 						}
 					}

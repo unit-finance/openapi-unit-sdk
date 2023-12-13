@@ -284,6 +284,18 @@
         "/check-payments/{checkPaymentId}/approve": {
             "$ref": "./schemas/check_payment_paths.json#/check_payment_approve"
         },
+        "/check-payments/{checkPaymentId}/cancel": {
+            "$ref": "./schemas/check_payment_paths.json#/check_payment_cancel"
+        },
+        "/check-payments/{checkPaymentId}/return": {
+            "$ref": "./schemas/check_payment_paths.json#/check_payment_return"
+        },
+        "/check-payments/{checkPaymentId}/front": {
+            "$ref": "./schemas/check_payment_paths.json#/download_check_payment_front"
+        },
+        "/check-payments/{checkPaymentId}/back": {
+            "$ref": "./schemas/check_payment_paths.json#/download_check_payment_back"
+        },
         "/stop-payments": {
             "$ref": "./schemas/stop_payment_paths.json#/stop_payments"
         },

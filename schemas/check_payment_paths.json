@@ -1,6 +1,23 @@
 {
   "components": {
     "schemas": {
+      "returnReason": {
+        "type": "string",
+        "enum": [
+          "InsufficientFunds",
+          "AccountClosed",
+          "AlteredCheck",
+          "ForgedSignature",
+          "PostdatedCheck",
+          "StopPaymentOrder",
+          "UnauthorizedDebit",
+          "WrongAmount",
+          "DuplicatePayment",
+          "MissingSignature",
+          "IrregularEndorsement",
+          "Other"
+        ]
+      },
       "CheckPayment": {
         "title": "Check Payment Resource",
         "type": "object",
@@ -47,7 +64,7 @@
                 "type": "string"
               },
               "returnReason": {
-                "type": "string"
+                "$ref": "#/components/schemas/returnReason"
               },
               "pendingReviewReasons": {
                 "type": "array",
@@ -373,6 +390,28 @@
           "description": "ID of the check payment to approve"
         }
       ],
+      "requestBody": {
+        "description": "Approve Check Payment Request",
+        "required": true,
+        "content": {
+          "application/vnd.api+json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "default": "additionalVerification"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "summary": "Approve Check Payment by Id",
       "description": "Approve a Check Payment via API ",
       "responses": {
@@ -388,11 +427,11 @@
         }
       }
     }
-  }
-  "check_payment_approve": {
+  },
+  "check_payment_return": {
     "post": {
       "tags": [
-        "Approve Check Payment"
+        "Return Check Payment"
       ],
       "operationId": "execute",
       "parameters": [
@@ -403,11 +442,41 @@
           "name": "checkPaymentId",
           "in": "path",
           "required": true,
-          "description": "ID of the check payment to approve"
+          "description": "ID of the check payment to return"
         }
       ],
-      "summary": "Approve Check Payment by Id",
-      "description": "Approve a Check Payment via API ",
+      "requestBody": {
+        "description": "Return Check Payment Request",
+        "required": true,
+        "content": {
+          "application/vnd.api+json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "default": "checkPaymentReturn"
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "properties": {
+                        "reason": {
+                          "$ref": "#/components/schemas/returnReason"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "summary": "Return Check Payment by Id",
+      "description": "Return a Check Payment via API ",
       "responses": {
         "200": {
           "description": "Successful Response",
@@ -415,6 +484,107 @@
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
                 "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "check_payment_cancel": {
+    "post": {
+      "tags": [
+        "Cancel Check Payment"
+      ],
+      "operationId": "execute",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "checkPaymentId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the check payment to cancel"
+        }
+      ],
+      "summary": "Cancel Check Payment by Id",
+      "description": "Cancel a Check Payment via API ",
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json; charset=utf-8": {
+              "schema": {
+                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "download_check_payment_front": {
+    "get": {
+      "tags": [
+        "Get a front image"
+      ],
+      "operationId": "execute",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "checkPaymentId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the check payment"
+        }
+      ],
+      "summary": "Get front image",
+      "description": "Get front image via API ",
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "download_check_payment_front": {
+    "get": {
+      "tags": [
+        "Get a back image"
+      ],
+      "operationId": "execute",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "checkPaymentId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the check payment"
+        }
+      ],
+      "summary": "Get back image",
+      "description": "Get back image via API ",
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
               }
             }
           }

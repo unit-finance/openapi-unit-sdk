@@ -291,10 +291,10 @@
             "$ref": "./schemas/check_payment_paths.json#/check_payment_return"
         },
         "/check-payments/{checkPaymentId}/front": {
-            "$ref": "./schemas/check_payment_paths.json#/download_check_payment_front"
+            "$ref": "./schemas/check_payment_paths.json#/get_check_payment_front"
         },
         "/check-payments/{checkPaymentId}/back": {
-            "$ref": "./schemas/check_payment_paths.json#/download_check_payment_back"
+            "$ref": "./schemas/check_payment_paths.json#/get_check_payment_back"
         },
         "/stop-payments": {
             "$ref": "./schemas/stop_payment_paths.json#/stop_payments"

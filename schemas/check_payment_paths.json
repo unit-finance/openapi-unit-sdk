@@ -195,6 +195,15 @@
           "attributes",
           "relationships"
         ]
+      },
+      "UnitCheckPaymentResponse": {
+        "type": "object",
+        "title": "UnitCheckPaymentResponse",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CheckPayment"
+          }
+        }
       }
     }
   },
@@ -276,6 +285,42 @@
           }
         }
       }
+    },
+    "post": {
+      "tags": [
+        "Create Check Payment"
+      ],
+      "operationId": "execute",
+      "summary": "Create Check Payment",
+      "description": "Create Check Payment via API ",
+      "requestBody": {
+        "description": "Create Check Payment Request",
+        "required": true,
+        "content": {
+          "application/vnd.api+json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "createCheckPayment.json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "201": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "check_payment": {
@@ -303,13 +348,7 @@
           "content": {
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
-                "type": "object",
-                "title": "UnitCheckPaymentResponse",
-                "properties": {
-                  "data": {
-                    "$ref": "#/components/schemas/CheckPayment"
-                  }
-                }
+                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
               }
             }
           }
@@ -342,13 +381,40 @@
           "content": {
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
-                "type": "object",
-                "title": "UnitCheckPaymentResponse",
-                "properties": {
-                  "data": {
-                    "$ref": "#/components/schemas/CheckPayment"
-                  }
-                }
+                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  "check_payment_approve": {
+    "post": {
+      "tags": [
+        "Approve Check Payment"
+      ],
+      "operationId": "execute",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "checkPaymentId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the check payment to approve"
+        }
+      ],
+      "summary": "Approve Check Payment by Id",
+      "description": "Approve a Check Payment via API ",
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json; charset=utf-8": {
+              "schema": {
+                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
               }
             }
           }

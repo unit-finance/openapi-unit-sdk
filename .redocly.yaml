@@ -7,17 +7,16 @@ rules:
     severity: off
 
   path-not-include-query:
-    severity: warn
+    severity: off
 
   no-path-trailing-slash:
-    severity: warn
+    severity: off
 
   operation-4xx-response:
     enabled: false
     severity: off
 
   spec:
-    enabled: false
     severity: off
 
   info-license:

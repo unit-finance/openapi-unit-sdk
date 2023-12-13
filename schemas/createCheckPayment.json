@@ -81,7 +81,7 @@
                   "maxLength": 40
                 },
                 "address": {
-                  "$ref": "types.json#/definitions/usAddress"
+                  "$ref": "types.json#/definitions/address"
                 }
               },
               "required": [

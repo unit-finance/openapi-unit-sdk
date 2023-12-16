@@ -59,9 +59,15 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "api_token.json"
+                                "title": "UnitOrgApiTokensListResponse",
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "api_token.json"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -215,10 +221,10 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCustomerTokenVerificationResponse",
+                                "title": "UnitCustomerTokenResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "customer_token_verification.json"
+                                        "$ref": "customer_token.json"
                                     }
                                 }
                             }

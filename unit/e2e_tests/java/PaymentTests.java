@@ -4,8 +4,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openapitools.client.api.CreateAPaymentApi;
 import org.openapitools.client.api.GetListPaymentsApi;
+import org.openapitools.client.api.GetPaymentApi;
 import org.openapitools.client.model.*;
 import static org.openapitools.client.AccountTests.CreateDepositAccount;
+import static org.openapitools.client.TestHelpers.CreateCounterparty;
 
 public class PaymentTests {
     @BeforeAll
@@ -16,7 +18,6 @@ public class PaymentTests {
         Configuration.setDefaultApiClient(cl);
     }
 
-
     @Test
     public void GetPaymentsListApiTest() throws ApiException {
         GetListPaymentsApi api = new GetListPaymentsApi();
@@ -26,13 +27,26 @@ public class PaymentTests {
     }
 
     @Test
-    public void CreateBookPayment() throws ApiException {
+    public void GetPaymentsApiTest() throws ApiException {
+        GetListPaymentsApi api = new GetListPaymentsApi();
+
+        UnitPaymentsListResponse response = api.execute(null, null, null, null);
+        assert response.getData().size() > 0;
+
+        GetPaymentApi getPaymentApi = new GetPaymentApi();
+
+        for (Payment p: response.getData()) {
+            UnitPaymentResponseWithIncluded paymentResponse = getPaymentApi.execute(p.getId(), null);
+            assert paymentResponse.getData().getType().contains("Payment");
+        }
+    }
+
+    @Test
+    public void CreateBookPaymentTest() throws ApiException {
         CreateBookPayment createBookPayment = new CreateBookPayment();
         CreateBookPaymentAttributes attributes = new CreateBookPaymentAttributes();
         attributes.setAmount(1000);
         attributes.setDescription("Funding");
-
-        createBookPayment.setType("bookPayment");
         createBookPayment.setAttributes(attributes);
 
         DepositAccount account1 = (DepositAccount) CreateDepositAccount();
@@ -63,4 +77,31 @@ public class PaymentTests {
         assert response.getData().getType().equals("bookPayment");
     }
 
+    @Test
+    public void CreateAchPaymentTest() throws ApiException {
+        CreateAchPayment createAchPayment = new CreateAchPayment();
+        CreateAchPaymentAttributes attributes = new CreateAchPaymentAttributes();
+        attributes.setAmount(1000);
+        attributes.setCounterparty(CreateCounterparty());
+        attributes.setDirection(CreateAchPaymentAttributes.DirectionEnum.CREDIT);
+        attributes.setDescription("Funding");
+        createAchPayment.setAttributes(attributes);
+
+        DepositAccount account = (DepositAccount) CreateDepositAccount();
+
+        CreateAchPaymentRelationships relationships = new CreateAchPaymentRelationships();
+        AccountRelationship accountRelationship = new AccountRelationship();
+        AccountRelationshipData accountRelationshipData = new AccountRelationshipData();
+        accountRelationshipData.setId(account.getId());
+        accountRelationshipData.setType(AccountRelationshipData.TypeEnum.ACCOUNT);
+        accountRelationship.setData(accountRelationshipData);
+        relationships.setAccount(accountRelationship);
+        createAchPayment.setRelationships(relationships);
+
+        CreateAPaymentApi createApi = new CreateAPaymentApi();
+        ExecuteRequest6 request = new ExecuteRequest6();
+        request.setData(new CreatePayment(createAchPayment));
+        UnitPaymentResponse response = createApi.execute(request);
+        assert response.getData().getType().equals("achPayment");
+    }
 }

@@ -3,7 +3,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "default": "customerBearerToken"
+            "default": "customerToken"
         },
         "attributes": {
             "type": "object",

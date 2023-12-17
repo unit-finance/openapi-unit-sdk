@@ -228,10 +228,7 @@
             "$ref": "./schemas/check_deposit_paths.json#/get_back_check_deposit"
         },
         "/users/{userId}/api-tokens": {
-            "$ref": "./schemas/token_paths.json#/create_token"
-        },
-        "/users": {
-            "$ref": "./schemas/token_paths.json#/list_tokens"
+            "$ref": "./schemas/token_paths.json#/api_tokens"
         },
         "/users/{userId}/api-tokens/{tokenId}": {
             "$ref": "./schemas/token_paths.json#/delete_token"

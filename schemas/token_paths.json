@@ -1,58 +1,23 @@
 {
-    "list_tokens": {
+    "api_tokens": {
         "get": {
             "tags": [
                 "Get List Org API Tokens"
             ],
             "operationId": "execute",
             "summary": "Get List Org API Tokens",
-            "description": "Get List Org API Tokens from API ",
             "parameters": [
                 {
-                    "name": "page",
-                    "in": "query",
-                    "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
-                    }
-                },
-                {
-                    "name": "filter",
-                    "in": "query",
-                    "style": "deepObject",
-					"allowReserved": true,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "query": {
-                                "type": "string"
-                            },
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "tags": {
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                {
-                    "name": "sort",
-                    "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the user to revoke token"
                 }
             ],
+            "description": "Get List Org API Tokens from API ",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -74,10 +39,8 @@
                     }
                 }
             }
-        }
-    },
-    "create_token": {
-        "post": {
+        },
+         "post": {
             "tags": [
                 "Create Org Api Token"
             ],

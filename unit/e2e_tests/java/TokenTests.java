@@ -21,10 +21,10 @@ public class TokenTests {
     @Test
     public void GetOrgTokensTest() throws ApiException {
         GetListOrgApiTokensApi listApi = new GetListOrgApiTokensApi();
-        List<ApiToken> response = listApi.execute(null, null, null).getData();
+        List<ApiToken> response = listApi.execute("252").getData();
 
         for (ApiToken t: response) {
-            assert t.getType().equals("orgUser");
+            assert t.getType().equals("apiToken");
         }
     }
 

@@ -91,6 +91,52 @@
             "operationId": "execute",
             "summary": "Get Customers List",
             "description": "Get Customers List from API ",
+            "parameters":[
+            {
+               "name":"page",
+               "in":"query",
+               "schema":{
+                  "$ref":"types.json#/definitions/listPageParametersObject"
+               }
+            },
+            {
+               "name":"filter",
+               "in":"query",
+               "style":"deepObject",
+               "allowReserved":true,
+               "schema":{
+                  "type":"object",
+                  "properties":{
+                     "query":{
+                        "type":"string"
+                     },
+                     "status":{
+                        "type":"array",
+                        "items":{
+                           "type":"string",
+                           "enum":[
+                              "Active",
+                              "Archived"
+                           ]
+                        }
+                     },
+                     "email": {
+                         "type": "string"
+                     },
+                     "tags":{
+                        "type":"object"
+                     }
+                  }
+               }
+            },
+            {
+               "name":"sort",
+               "in":"query",
+               "schema":{
+                  "type":"string"
+               }
+            }
+         ],
             "responses": {
                 "200": {
                     "description": "Successful Response",

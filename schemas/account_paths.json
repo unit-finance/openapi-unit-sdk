@@ -127,23 +127,18 @@
       },
       "post":{
          "tags":[
-            "Create an Account"
+            "Create Account"
          ],
          "operationId":"execute",
-         "summary":"Create an Account",
-         "description":"Create an Account via API ",
+         "summary":"Create Account",
+         "description":"Create Account via API ",
          "requestBody":{
             "description":"Create Account Request",
             "required":true,
             "content":{
                "application/vnd.api+json":{
-                  "schema":{
-                     "type":"object",
-                     "properties":{
-                        "data":{
-                           "$ref":"createAccount.json"
-                        }
-                     }
+                  "schema": {
+                     "$ref": "createAccount.json"
                   }
                }
             }
@@ -154,7 +149,7 @@
                "content":{
                   "application/vnd.api+json; charset=utf-8":{
                      "schema":{
-                        "$ref":"account_paths.json#/UnitAccountResponse"
+                        "$ref":"#/UnitAccountResponse"
                      }
                   }
                }
@@ -331,8 +326,8 @@
             "Freeze an Account"
          ],
          "operationId":"execute",
-         "summary":"Freeze an Account by Id",
-         "description":"Freeze an Account via API ",
+         "summary":"Freeze Account by Id",
+         "description":"Freeze Account via API ",
          "parameters":[
             {
                "schema":{

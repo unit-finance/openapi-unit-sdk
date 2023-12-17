@@ -31,6 +31,25 @@
                             },
                             "tags": {
                                 "type": "object"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AwaitingImages",
+                                        "AwaitingFrontImage",
+                                        "AwaitingBackImage",
+                                        "Pending",
+                                        "PendingReview",
+                                        "Rejected",
+                                        "Clearing",
+                                        "Sent",
+                                        "Canceled",
+                                        "Returned",
+                                        "AwaitingCustomerConfirmation"
+                                    ]
+                                }
                             }
                         }
                     }

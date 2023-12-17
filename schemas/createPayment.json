@@ -327,235 +327,236 @@
         "CreateBookPayment": {
             "title": "Create Book Payment",
             "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "bookPayment"
+                },
+                "attributes": {
+                    "type": "object",
                     "properties": {
-                        "type": {
-            "type": "string"
-        },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "amount": {
-                                    "type": "integer"
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "transactionSummaryOverride": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "amount",
-                                "description"
-                            ],
-                            "additionalProperties": false
+                        "amount": {
+                            "type": "integer"
                         },
-                        "relationships": {
-                            "type": "object",
-                            "properties": {
-                                "account": {
-                                    "$ref": "#/definitions/accountRelationship"
-                                },
-                                "counterpartyAccount": {
-                                    "$ref": "#/definitions/counterpartyAccountRelationship"
-                                }
-                            },
-                            "required": [
-                                "account",
-                                "counterpartyAccount"
-                            ],
-                            "additionalProperties": false
+                        "description": {
+                            "type": "string"
+                        },
+                        "idempotencyKey": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "transactionSummaryOverride": {
+                            "type": "string"
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "attributes",
-                        "relationships"
-                    ]
+                        "amount",
+                        "description"
+                    ],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "properties": {
+                        "account": {
+                            "$ref": "#/definitions/accountRelationship"
+                        },
+                        "counterpartyAccount": {
+                            "$ref": "#/definitions/counterpartyAccountRelationship"
+                        }
+                    },
+                    "required": [
+                        "account",
+                        "counterpartyAccount"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "attributes",
+                "relationships"
+            ]
         },
         "CreateWirePayment": {
             "title": "Create Wire Payment",
             "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "object",
                     "properties": {
-                        "type": {
-            "type": "string"
-        },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "amount": {
-                                    "type": "integer"
-                                },
-                                "direction": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Credit"
-                                    ]
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "counterparty": {
-                                    "$ref": "payment.json#/definitions/wireCounterparty"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                }
-                            },
-                            "required": [
-                                "amount",
-                                "description",
-                                "counterparty"
-                            ],
-                            "additionalProperties": false
+                        "amount": {
+                            "type": "integer"
                         },
-                        "relationships": {
-                            "type": "object",
-                            "properties": {
-                                "account": {
-                                    "$ref": "#/definitions/accountRelationship"
-                                }
-                            },
-                            "required": [
-                                "account"
-                            ],
-                            "additionalProperties": false
+                        "direction": {
+                            "type": "string",
+                            "enum": [
+                                "Credit"
+                            ]
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "counterparty": {
+                            "$ref": "payment.json#/definitions/wireCounterparty"
+                        },
+                        "idempotencyKey": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "attributes",
-                        "relationships"
-                    ]
+                        "amount",
+                        "description",
+                        "counterparty"
+                    ],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "properties": {
+                        "account": {
+                            "$ref": "#/definitions/accountRelationship"
+                        }
+                    },
+                    "required": [
+                        "account"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "attributes",
+                "relationships"
+            ]
         },
         "CreateBillPayment": {
             "title": "Create Bill Payment",
             "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "object",
                     "properties": {
-                        "type": {
-            "type": "string"
-        },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "billerId": {
-                                    "type": "string"
-                                },
-                                "accountNumber": {
-                                    "type": "string"
-                                },
-                                "amount": {
-                                    "type": "integer"
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "fullName": {
-                                    "$ref": "types.json#/definitions/fullName"
-                                },
-                                "dateOfBirth": {
-                                    "type": "string",
-                                    "format": "date"
-                                }
-                            },
-                            "required": [
-                                "billerId",
-                                "accountNumber",
-                                "amount",
-                                "description"
-                            ],
-                            "additionalProperties": false
+                        "billerId": {
+                            "type": "string"
                         },
-                        "relationships": {
-                            "type": "object",
-                            "properties": {
-                                "account": {
-                                    "$ref": "#/definitions/accountRelationship"
-                                }
-                            },
-                            "required": [
-                                "account"
-                            ],
-                            "additionalProperties": false
+                        "accountNumber": {
+                            "type": "string"
+                        },
+                        "amount": {
+                            "type": "integer"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "idempotencyKey": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "fullName": {
+                            "$ref": "types.json#/definitions/fullName"
+                        },
+                        "dateOfBirth": {
+                            "type": "string",
+                            "format": "date"
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "attributes",
-                        "relationships"
-                    ]
+                        "billerId",
+                        "accountNumber",
+                        "amount",
+                        "description"
+                    ],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "properties": {
+                        "account": {
+                            "$ref": "#/definitions/accountRelationship"
+                        }
+                    },
+                    "required": [
+                        "account"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "attributes",
+                "relationships"
+            ]
         },
         "CreatePushToCardPayment": {
             "title": "Create Push To Card Payment",
             "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "object",
                     "properties": {
-                        "type": {
-            "type": "string"
-        },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "amount": {
-                                    "type": "integer"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "configuration": {
-                                    "type": "object",
-                                    "properties": {
-                                        "astra": {
-                                            "$ref": "payment.json#/definitions/astra"
-                                        }
-                                    }
-                                }
-                            },
-                            "required": [
-                                "amount",
-                                "description",
-                                "configuration"
-                            ],
-                            "additionalProperties": false
+                        "amount": {
+                            "type": "integer"
                         },
-                        "relationships": {
+                        "idempotencyKey": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "configuration": {
                             "type": "object",
                             "properties": {
-                                "account": {
-                                    "$ref": "createPayment.json#/definitions/accountRelationship"
+                                "astra": {
+                                    "$ref": "payment.json#/definitions/astra"
                                 }
-                            },
-                            "required": [
-                                "account"
-                            ],
-                            "additionalProperties": false
+                            }
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "attributes",
-                        "relationships"
-                    ]
+                        "amount",
+                        "description",
+                        "configuration"
+                    ],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "properties": {
+                        "account": {
+                            "$ref": "createPayment.json#/definitions/accountRelationship"
+                        }
+                    },
+                    "required": [
+                        "account"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "attributes",
+                "relationships"
+            ]
         },
         "additionalProperties": false
     },

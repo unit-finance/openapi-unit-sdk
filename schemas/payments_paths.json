@@ -147,7 +147,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitPaymentListResponse",
+                                "title": "UnitPaymentsListResponse",
                                 "type": "object",
                                 "properties": {
                                     "data": {
@@ -158,6 +158,9 @@
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
+                                    },
+                                    "meta": {
+                                        "$ref":"types.json#/definitions/paginationMeta"
                                     }
                                 }
                             }

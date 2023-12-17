@@ -2,13 +2,19 @@ package org.openapitools.client;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.CreateApplicationApi;
-import org.openapitools.client.api.GetApplicationApi;
-import org.openapitools.client.api.GetListApplicationsApi;
-import org.openapitools.client.api.UpdateApplicationApi;
+import org.openapitools.client.api.*;
 import org.openapitools.client.model.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.openapitools.client.TestHelpers.CreateApplicationRequest;
+
 public class ApplicationTests {
     @BeforeAll
     static void init() {
@@ -22,8 +28,47 @@ public class ApplicationTests {
     public void GetApplicationListApiTest() throws ApiException {
         GetListApplicationsApi api = new GetListApplicationsApi();
 
-        UnitListApplicationsResponse response = api.execute(null, null, null);
+        ExecuteFilterParameter filter = new ExecuteFilterParameter();
+        ListPageParametersObject page = new  ListPageParametersObject();
+        page.setLimit(20);
+        page.setOffset(3);
+
+        ArrayList statuses = new ArrayList();
+        statuses.add(ExecuteFilterParameter.StatusEnum.APPROVED);
+        statuses.add(ExecuteFilterParameter.StatusEnum.AWAITINGDOCUMENTS);
+        filter.setQuery("John");
+        filter.setStatus(statuses);
+
+        UnitListApplicationsResponse response = api.execute(page, filter, null);
+        assert response.getData().size() <= 20;
+    }
+
+    @Test
+    public void GetApplicationListWithFilterApiTest() throws ApiException {
+        GetListApplicationsApi api = new GetListApplicationsApi();
+        ExecuteFilterParameter filter = new ExecuteFilterParameter();
+        ListPageParametersObject page = new  ListPageParametersObject();
+        page.setLimit(20);
+        page.setOffset(3);
+
+        ArrayList statuses = new ArrayList();
+        statuses.add(ExecuteFilterParameter.StatusEnum.APPROVED);
+        filter.setQuery("John");
+        filter.setStatus(statuses);
+
+//        UnitListApplicationsResponse response = api.execute(null,null, statuses,
+//                null, null , null, null );
+        UnitListApplicationsResponse response = api.execute(page, filter ,null);
         assert response.getData().size() != 0;
+
+        response.getData().forEach(x -> {
+            if(!x.getType().equals("individualApplication"))
+                return;
+
+            IndividualApplication individualApp = (IndividualApplication)x;
+            String status = individualApp.getAttributes().getStatus().getValue();
+            assert status.equals("Approved");
+        });
     }
 
     @Test
@@ -86,42 +131,61 @@ public class ApplicationTests {
         });
     }
 
+
     @Test
     public void CreateApplicationApiTest() throws ApiException {
-        CreateIndividualApplication createIndividualApplication = new CreateIndividualApplication();
-        CreateIndividualApplicationAttributes attr = new CreateIndividualApplicationAttributes();
-
-        FullName fn = new FullName();
-        fn.setFirst("Peter");
-        fn.setLast("Parker");
-        attr.setFullName(fn);
-
-        Address address = new Address();
-        address.setStreet("20 Ingram St");
-        address.setCity("Forest Hills");
-        address.setPostalCode("11375");
-        address.setCountry("US");
-        address.setState("NY");
-        attr.setAddress(address);
-
-        attr.setSsn("721074426");
-        attr.setDateOfBirth(LocalDate.parse("2001-08-10"));
-        attr.setEmail("peter@oscorp.com");
-        Phone p = new Phone();
-        p.setNumber("5555555555");
-        p.setCountryCode("1");
-        attr.setPhone(p);
-        attr.setIdempotencyKey("3a1a33be-4e12-4603-9ed0-820922389fb8");
-        attr.setOccupation(Occupation.ARCHITECTORENGINEER);
-
-        createIndividualApplication.setAttributes(attr);
-
-        CreateApplication ca = new CreateApplication();
-        ca.data(new CreateApplicationData(createIndividualApplication));
-
         CreateApplicationApi apiClient = new CreateApplicationApi();
-        UnitCreateApplicationResponse res = apiClient.execute(ca);
+        UnitCreateApplicationResponse res = apiClient.execute(CreateApplicationRequest());
         assert res.getData().getType().equals("individualApplication");
     }
 
+    @Test
+    public void CreateDocumentForApplicationApiTest() throws ApiException {
+        CreateApplicationApi apiClient = new CreateApplicationApi();
+        UnitCreateApplicationResponse res = apiClient.execute(CreateApplicationRequest());
+        assert res.getData().getType().equals("individualApplication");
+
+        CreateADocumentForAnApplicationApi createApi = new CreateADocumentForAnApplicationApi();
+        UnitDocumentResponse document = createApi.execute(res.getData().getId());
+        assert document.getData().getType().equals("document");
+    }
+
+    @Test
+    public void GetApplicationDocumentsApiTest() throws ApiException {
+        GetListApplicationsApi api = new GetListApplicationsApi();
+
+        UnitListApplicationsResponse response = api.execute(null, null, null);
+        assert response.getData().size() != 0;
+    }
+
+    @Test
+    public void ListDocumentsApiTest() throws ApiException {
+        GetListOfDocumentsApi api = new GetListOfDocumentsApi();
+        GetListApplicationsApi listApplicationsApi = new GetListApplicationsApi();
+
+        UnitListApplicationsResponse response = listApplicationsApi.execute(null, null, null);
+        assert response.getData().size() != 0;
+
+        response.getData().forEach(x -> {
+            try {
+                List<Document> documents = api.execute(x.getId()).getData();
+                documents.forEach(doc -> {
+                   assert doc.getType().equals("document");
+                });
+            } catch (ApiException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @Test
+    public void uploadPngFile() throws ApiException, IOException {
+        Path path = Paths.get("file_path");
+        byte[] data = Files.readAllBytes(path);
+
+        UploadAPngDocumentForAnApplicationApi api = new UploadAPngDocumentForAnApplicationApi();
+        UnitDocumentResponse response = api.execute("applicationId", "documentId", data);
+
+        assert response.getData().getType().equals("document");
+    }
 }

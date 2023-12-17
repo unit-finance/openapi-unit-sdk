@@ -31,10 +31,9 @@
                 }
             },
             "required": [
-                "createdAt",
-                "description",
-                "expiration"
-            ]
+                "createdAt"
+            ],
+            "additionalProperties": true
         }
     },
     "required": [
@@ -42,5 +41,5 @@
         "id",
         "attributes"
     ],
-    "additionalProperties": false
+    "additionalProperties": true
 }

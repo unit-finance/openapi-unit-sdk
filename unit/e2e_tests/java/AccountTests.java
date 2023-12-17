@@ -2,11 +2,10 @@ package org.openapitools.client;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.GetAccountApi;
-import org.openapitools.client.api.GetListAccountsApi;
-import org.openapitools.client.api.UpdateAccountApi;
+import org.openapitools.client.api.*;
 import org.openapitools.client.model.*;
 
+import static org.openapitools.client.CustomerTests.CreateIndividualCustomer;
 import java.util.HashMap;
 
 public class AccountTests {
@@ -79,5 +78,35 @@ public class AccountTests {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public static Account CreateDepositAccount() throws ApiException {
+        IndividualCustomer customer = CreateIndividualCustomer();
+
+        CreateDepositAccount cda = new CreateDepositAccount();
+        CreateDepositAccountAttributes attributes = new CreateDepositAccountAttributes();
+        attributes.setDepositProduct("checking");
+
+        CreateDepositAccountRelationships relationships = new CreateDepositAccountRelationships();
+        CustomerLinkageData customerRelationshipData = new CustomerLinkageData();
+        customerRelationshipData.setId(customer.getId());
+        customerRelationshipData.setType(CustomerLinkageData.TypeEnum.CUSTOMER);
+        CustomerLinkage customerLinkageRelationship = new CustomerLinkage();
+        customerLinkageRelationship.setData(customerRelationshipData);
+
+        relationships.setCustomer(customerLinkageRelationship);
+
+        cda.setAttributes(attributes);
+        cda.setRelationships(relationships);
+
+        CreateAccountApi createAccountApi = new CreateAccountApi();
+        CreateAccount ca = new CreateAccount();
+        ca.setData(new CreateAccountData(cda));
+        return createAccountApi.execute(ca).getData();
+    }
+
+    @Test
+    public void CreateDepositAccountTest() throws ApiException {
+        assert CreateDepositAccount().getType().equals("depositAccount");
     }
 }

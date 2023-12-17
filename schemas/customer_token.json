@@ -6,9 +6,6 @@
             "type": "string",
             "default": "customerToken"
         },
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        },
         "attributes": {
             "type": "object",
             "properties": {

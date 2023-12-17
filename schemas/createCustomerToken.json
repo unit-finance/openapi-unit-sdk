@@ -3,7 +3,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "default": "customerToken"
+            "default": "customerBearerToken"
         },
         "attributes": {
             "type": "object",
@@ -44,6 +44,9 @@
                             }
                         }
                     }
+                },
+                "upgradableScope": {
+                    "type": "string"
                 }
             }
         }

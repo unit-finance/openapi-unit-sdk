@@ -7,6 +7,7 @@ import org.openapitools.client.api.GetListPaymentsApi;
 import org.openapitools.client.api.GetPaymentApi;
 import org.openapitools.client.model.*;
 import static org.openapitools.client.AccountTests.CreateDepositAccount;
+import static org.openapitools.client.TestHelpers.CreateWireCounterparty;
 import static org.openapitools.client.TestHelpers.CreateCounterparty;
 
 public class PaymentTests {
@@ -103,5 +104,34 @@ public class PaymentTests {
         request.setData(new CreatePayment(createAchPayment));
         UnitPaymentResponse response = createApi.execute(request);
         assert response.getData().getType().equals("achPayment");
+    }
+
+    @Test
+    public void CreateWirePaymentTest() throws ApiException {
+        CreateWirePayment createWirePayment = new CreateWirePayment();
+        CreateWirePaymentAttributes attributes = new CreateWirePaymentAttributes();
+        createWirePayment.setType("wirePayment");
+        attributes.setAmount(100);
+        attributes.setDirection(CreateWirePaymentAttributes.DirectionEnum.CREDIT);
+        attributes.setCounterparty(CreateWireCounterparty());
+        attributes.setDescription("Wire payment");
+        createWirePayment.setAttributes(attributes);
+
+        DepositAccount account = (DepositAccount) CreateDepositAccount();
+
+        CreateAchPaymentRelationships relationships = new CreateAchPaymentRelationships();
+        AccountRelationship accountRelationship = new AccountRelationship();
+        AccountRelationshipData accountRelationshipData = new AccountRelationshipData();
+        accountRelationshipData.setId(account.getId());
+        accountRelationshipData.setType(AccountRelationshipData.TypeEnum.ACCOUNT);
+        accountRelationship.setData(accountRelationshipData);
+        relationships.setAccount(accountRelationship);
+        createWirePayment.setRelationships(relationships);
+
+        CreateAPaymentApi createApi = new CreateAPaymentApi();
+        ExecuteRequest6 request = new ExecuteRequest6();
+        request.setData(new CreatePayment(createWirePayment));
+        UnitPaymentResponse response = createApi.execute(request);
+        assert response.getData().getType().equals("wirePayment");
     }
 }

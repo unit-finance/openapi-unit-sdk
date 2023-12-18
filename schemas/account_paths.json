@@ -77,8 +77,11 @@
                      "toBalance":{
                         "type":"number"
                      },
-                     "tags":{
-                        "type":"object"
+                     "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                           "type": "string"
+                        }
                      }
                   }
                }

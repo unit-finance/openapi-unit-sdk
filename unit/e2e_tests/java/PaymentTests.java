@@ -77,7 +77,7 @@ public class PaymentTests {
         UnitPaymentResponse response = createApi.execute(request);
         assert response.getData().getType().equals("bookPayment");
     }
-
+`
     @Test
     public void CreateAchPaymentTest() throws ApiException {
         CreateAchPayment createAchPayment = new CreateAchPayment();

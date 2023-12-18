@@ -33,7 +33,10 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             },
                             "since": {
                                 "type": "string"

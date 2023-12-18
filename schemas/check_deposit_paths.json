@@ -30,8 +30,11 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": "object"
-                            },
+								"type": "object",
+								"additionalProperties":{
+									"type": "string"
+								}
+							},
                             "status": {
                                 "type": "array",
                                 "items": {

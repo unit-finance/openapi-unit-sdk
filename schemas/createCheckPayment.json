@@ -1,0 +1,149 @@
+{
+  "definitions": {
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "account",
+                    "depositAccount"
+                  ]
+                },
+                "id": {
+                  "$ref": "types.json#/definitions/identifier"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            }
+          }
+        },
+        "customer": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "businessCustomer",
+                    "individualCustomer"
+                  ]
+                },
+                "id": {
+                  "$ref": "types.json#/definitions/identifier"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "account",
+        "customer"
+      ]
+    },
+    "checkPayment": {
+      "title": "Check Payment",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "checkPayment"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "counterparty": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "address": {
+                  "$ref": "types.json#/definitions/address"
+                }
+              },
+              "required": [
+                "name",
+                "address"
+              ],
+              "additionalProperties": false
+            },
+            "amount": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "sendDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "memo": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "tags": {
+              "$ref": "tags.json#/definitions/tags"
+            }
+          },
+          "required": [
+            "counterparty",
+            "amount",
+            "idempotencyKey",
+            "description"
+          ],
+          "additionalProperties": false
+        },
+        "relationships": {
+          "$ref": "#/definitions/relationships"
+        }
+      },
+      "required": [
+        "type",
+        "attributes",
+        "relationships"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "title": "Create Check Payment",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/checkPayment"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "data"
+  ]
+}

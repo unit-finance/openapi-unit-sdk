@@ -71,6 +71,9 @@
                             },
                             "toAmount": {
                                 "type": "integer"
+                            },
+                            "accountType": {
+                                "type": "string"
                             }
                         }
                     }

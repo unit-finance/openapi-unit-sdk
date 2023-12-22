@@ -54,16 +54,29 @@ for filename in os.listdir(path_of_the_directory):
         #     f2.write(line)
         f2.close()
 
-path_of_the_directory = "./unit/swagger_client"
-for root, dirs, files in os.walk(path_of_the_directory, topdown=False):
-    for name in files:
-        os.remove(os.path.join(root, name))
-    for name in dirs:
-        os.rmdir(os.path.join(root, name))
+try:
+    path_of_the_directory = "./unit/swagger_client"
+    for root, dirs, files in os.walk(path_of_the_directory, topdown=False):
+        for name in files:
+            os.remove(os.path.join(root, name))
+        for name in dirs:
+            os.rmdir(os.path.join(root, name))
+except FileNotFoundError:
+    print("ignore")
 
-os.system("java -jar swagger-codegen-cli-3.0.47.jar generate -i openapi.json -l python -o unit")
+file_name = "swagger-codegen-cli-3.0.47.jar"
+if not os.path.exists(file_name):
+    print(f"Error: Unable to access jarfile {file_name}")
+    change_bearer(default_bearer_auth)
+    exit(1)
+
+os.system(f"java -jar {file_name} generate -i openapi.json -l python -o unit")
 
 path_of_the_directory = './unit/swagger_client/models/'
+
+if not os.path.exists(path_of_the_directory):
+    change_bearer(default_bearer_auth)
+    exit(1)
 
 for filename in os.listdir(path_of_the_directory):
     f_path = os.path.join(path_of_the_directory, filename)

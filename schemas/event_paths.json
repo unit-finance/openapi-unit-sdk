@@ -16,6 +16,38 @@
             "operationId": "execute",
             "summary": "Get Events List",
             "description": "Get Events List from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
             "responses": {
                 "200": {
                     "description": "Successful Response",

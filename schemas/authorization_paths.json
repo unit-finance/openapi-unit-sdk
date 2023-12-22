@@ -26,26 +26,17 @@
                             "accountId": {
                                 "type": "string"
                             },
+                            "accountType": {
+                                "type": "string"
+                            },
                             "customerId": {
                                 "type": "string"
                             },
                             "cardId": {
                                 "type": "string"
                             },
-                            "since": {
-                                "type": "string"
-                            },
-                            "until": {
-                                "type": "string"
-                            },
                             "includeNonAuthorized": {
                                 "type": "boolean"
-                            },
-                            "status": {
-                                "type": "string",
-                                "enum": [
-                                    "Authorized", "Completed", "Canceled", "Declined"
-                                ]
                             },
                             "merchantCategoryCode": {
                                 "type": "array",
@@ -53,11 +44,29 @@
                                     "type": "string"
                                 }
                             },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
                             "fromAmount": {
                                 "type": "integer"
                             },
                             "toAmount": {
                                 "type": "integer"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Authorized",
+                                        "Completed",
+                                        "Canceled",
+                                        "Declined"
+                                    ]
+                                }
                             }
                         }
                     }

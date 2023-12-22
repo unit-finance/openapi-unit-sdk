@@ -89,12 +89,18 @@
     },
     "title": "Create Account",
     "type": "object",
-    "oneOf": [
-        {
-            "$ref": "#/definitions/CreateCreditAccount"
-        },
-        {
-            "$ref": "#/definitions/CreateDepositAccount"
+    "properties": {
+        "data": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/CreateCreditAccount"
+                },
+                {
+                    "$ref": "#/definitions/CreateDepositAccount"
+                }
+            ]
         }
-    ]
+    },
+      "additionalProperties": false,
+      "required": [ "data" ]
 }

@@ -1,0 +1,40 @@
+{
+  "definitions": {
+    "patchCheckDeposit": {
+      "title": "Patch Check Deposit",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "checkDeposit"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": "integer", "minimum": 1 },
+            "tags": {
+              "$ref": "tags.json#/definitions/tagsPatch"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    }
+  },
+  "title": "Patch Check Deposit",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/patchCheckDeposit"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "data"
+  ]
+}

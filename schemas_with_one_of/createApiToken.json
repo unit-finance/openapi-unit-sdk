@@ -1,0 +1,60 @@
+{
+    "title": "Create API Token",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "default": "apiToken"
+        },
+        "attributes": {
+            "type": "object",
+            "properties": {
+                "scope": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "expiration": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "sourceIp": {
+                    "type": "string"
+                },
+                "resources": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "card",
+                                    "account"
+                                ]
+                            },
+                            "ids": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "types.json#/definitions/identifier"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "description",
+                "expiration"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "type",
+        "attributes"
+    ]
+}

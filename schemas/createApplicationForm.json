@@ -49,7 +49,7 @@
                     "$ref": "types.json#/definitions/contact"
                 },
                 "officer": {
-                    "$ref": "createApplication.json#/definitions/officer"
+                    "$ref": "createApplication.json#/definitions/createOfficer"
                 },
                 "beneficialOwners": {
                     "type": "array",

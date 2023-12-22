@@ -1,6 +1,6 @@
 import uuid
 import os
-
+from dotenv import load_dotenv
 from datetime import date, timedelta
 from swagger_client import configuration, api_client, Address, CreateIndividualApplicationAttributes, FullName, Phone \
     , CreateIndividualApplication, CreateBusinessApplication, CreateBusinessApplicationAttributes, BeneficialOwner, \
@@ -11,8 +11,9 @@ ac = None
 
 def create_api_client():
     global ac
-
+    load_dotenv('helpers/.env')
     if not ac:
+
         access_token = os.environ.get("TOKEN")
         _configuration = configuration.Configuration()
         _configuration.api_key['Authorization'] = access_token

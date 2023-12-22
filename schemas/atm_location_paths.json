@@ -9,13 +9,6 @@
             "description": "Get List ATM Locations from API ",
             "parameters": [
                 {
-                    "name": "page",
-                    "in": "query",
-                    "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
-                    }
-                },
-                {
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
@@ -23,33 +16,19 @@
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "query": {
+                            "coordinates": {
+                                "type": "object"
+                            },
+                            "searchRadius": {
+                                "type": "integer"
+                            },
+                            "postalCode": {
                                 "type": "string"
                             },
-                            "status": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Pending",
-                                        "Approved"
-                                    ]
-                                }
-                            },
-                            "email": {
-                                "type": "string"
-                            },
-                            "tags": {
+                            "address": {
                                 "type": "object"
                             }
                         }
-                    }
-                },
-                {
-                    "name": "sort",
-                    "in": "query",
-                    "schema": {
-                        "type": "string"
                     }
                 }
             ],

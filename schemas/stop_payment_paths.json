@@ -1,181 +1,11 @@
 {
   "components": {
     "schemas": {
-      "StopPayment": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "types.json#/definitions/identifier"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "stopPayment"
-            ]
-          },
-          "attributes": {
-            "type": "object",
-            "properties": {
-              "createdAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "amount": {
-                "type": "number"
-              },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "Active",
-                  "Disabled"
-                ]
-              },
-              "checkNumber": {
-                "type": "string"
-              },
-              "tags": {
-                "$ref": "tags.json#/definitions/tags"
-              }
-            },
-            "required": [
-              "createdAt",
-              "updatedAt",
-              "amount",
-              "checkNumber"
-            ],
-            "additionalProperties": false
-          },
-          "relationships": {
-            "type": "object",
-            "properties": {
-              "account": {
-                "type": "object",
-                "properties": {
-                  "data": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "depositAccount",
-                          "account"
-                        ]
-                      },
-                      "id": {
-                        "$ref": "types.json#/definitions/identifier"
-                      }
-                    },
-                    "required": [
-                      "type",
-                      "id"
-                    ],
-                    "additionalProperties": false
-                  }
-                },
-                "required": [
-                  "data"
-                ],
-                "additionalProperties": false
-              },
-              "customer": {
-                "type": "object",
-                "properties": {
-                  "data": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "businessCustomer",
-                          "individualCustomer",
-                          "customer"
-                        ]
-                      },
-                      "id": {
-                        "$ref": "types.json#/definitions/identifier"
-                      }
-                    },
-                    "required": [
-                      "type",
-                      "id"
-                    ],
-                    "additionalProperties": false
-                  }
-                },
-                "required": [
-                  "data"
-                ],
-                "additionalProperties": false
-              },
-              "customers": {
-                "$ref": "types.json#/definitions/customersRelationship"
-              },
-              "checkPayments": {
-                "type": "object",
-                "properties": {
-                  "data": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        },
-                        "type": {
-                          "type": "string",
-                          "default": "checkPayment"
-                        }
-                      }
-                    }
-                  }
-                },
-                "required": [
-                  "data"
-                ],
-                "additionalProperties": false
-              }
-            },
-            "required": [
-              "account",
-              "customer"
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "type",
-          "id",
-          "attributes",
-          "relationships"
-        ]
-      },
-      "StopPaymentRequest": {
-        "type": "object",
-        "properties": {
-          "account_id": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "number"
-          },
-          "description": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "account_id",
-          "amount"
-        ]
-      },
       "StopPaymentResponse": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/StopPayment"
+            "$ref": "stopPayment.json"
           }
         }
       },
@@ -185,21 +15,10 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StopPayment"
+              "$ref": "stopPayment.json"
             }
           }
         }
-      },
-      "DisableStopPaymentRequest": {
-        "type": "object",
-        "properties": {
-          "stop_payment_id": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "stop_payment_id"
-        ]
       }
     }
   },
@@ -212,7 +31,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/StopPaymentRequest"
+              "$ref": "createStopPayment.json"
             }
           }
         }
@@ -325,16 +144,17 @@
     "post": {
       "summary": "Disable a stop payment",
       "operationId":"execute",
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/DisableStopPaymentRequest"
-            }
+      "parameters": [
+        {
+          "name": "stop_payment_id",
+          "in": "path",
+          "description": "ID of the stop payment",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
         }
-      },
+      ],
       "responses": {
         "200": {
           "description": "OK",

@@ -50,12 +50,6 @@
                             "excludeFees": {
                                 "type": "boolean"
                             },
-                            "status": {
-                                "type": "string",
-                                "enum": [
-                                    "Authorized", "Completed", "Canceled", "Declined"
-                                ]
-                            },
                             "type": {
                                 "type": "array",
                                 "items": {
@@ -113,6 +107,9 @@
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
                                     }
                                 }
                             }

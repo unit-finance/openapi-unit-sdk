@@ -368,7 +368,7 @@
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
                                     },
-                                    "meta":{
+                                    "meta": {
 										"$ref":"types.json#/definitions/paginationMeta"
 									}
                                 }

@@ -268,8 +268,8 @@
 											"$ref":"application.json"
 										}
 									},
-									"meta":{
-										"$ref":"types.json#/definitions/paginationMeta"
+									"meta": {
+										"$ref": "types.json#/definitions/paginationMeta"
 									}
 								}
 							}

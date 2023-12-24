@@ -54,18 +54,61 @@
       "operationId":"execute",
       "parameters": [
         {
-          "name": "account_id",
+          "name": "page",
           "in": "query",
-          "description": "ID of the account",
-          "required": true,
           "schema": {
-            "type": "string"
+            "$ref": "types.json#/definitions/listPageParametersObject"
           }
         },
         {
-          "name": "status",
+          "name": "filter",
           "in": "query",
-          "description": "Status of the stop payments",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "accountId": {
+                "type": "string"
+              },
+              "customerId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Active",
+                    "Disabled"
+                  ]
+                }
+              },
+              "tags": {
+                "type": "object",
+                 "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "since": {
+                "type": "string"
+              },
+              "until": {
+                "type": "string"
+              },
+              "fromAmount": {
+                "type": "integer"
+              },
+              "toAmount": {
+                "type": "integer"
+              },
+              "checkNumber": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "sort",
+          "in": "query",
           "schema": {
             "type": "string"
           }

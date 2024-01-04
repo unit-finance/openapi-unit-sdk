@@ -91,7 +91,7 @@
             "additionalProperties": false
         },
         "CreateAchPayment": {
-            "title": "Create ACH Payment",
+            "title": "Create ACH Payment to inline Counterparty",
                     "type": "object",
                     "properties": {
                         "type": {
@@ -166,7 +166,7 @@
                     ]
         },
         "CreateAchPaymentCounterparty": {
-            "title": "Create ACH Payment",
+            "title": "Create ACH Payment to linked Counterparty",
             "type": "object",
             "properties": {
                 "type": {
@@ -245,7 +245,7 @@
             ]
         },
         "CreateAchPaymentPlaid": {
-            "title": "Create ACH Payment",
+            "title": "Create ACH Payment with Plaid token",
             "type": "object",
             "properties": {
                 "type": {

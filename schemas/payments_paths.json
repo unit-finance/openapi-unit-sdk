@@ -121,7 +121,10 @@
                                 }
                             },
                             "tags": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }
@@ -365,7 +368,7 @@
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
                                     },
-                                    "meta":{
+                                    "meta": {
 										"$ref":"types.json#/definitions/paginationMeta"
 									}
                                 }

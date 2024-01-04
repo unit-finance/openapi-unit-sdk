@@ -17,10 +17,7 @@
             }
         },
         "meta": {
-            "type": "object",
-            "items": {
-                "$ref": "types.json#/definitions/paginationMeta"
-            }
+            "$ref": "types.json#/definitions/paginationMeta"
         }
     },
     "required": [

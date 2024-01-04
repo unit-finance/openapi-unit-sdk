@@ -123,8 +123,11 @@
                      "email": {
                          "type": "string"
                      },
-                     "tags":{
-                        "type":"object"
+                     "tags": {
+                         "type": "object",
+                         "additionalProperties": {
+                             "type": "string"
+                         }
                      }
                   }
                }

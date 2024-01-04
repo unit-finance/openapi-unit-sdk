@@ -16,13 +16,6 @@
             },
             "depositProduct": {
               "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "overdraftLimit": {
-              "type": "integer",
-              "minimum": 0
             }
           }
         }
@@ -47,8 +40,8 @@
             "tags": {
               "$ref": "tags.json#/definitions/tagsPatch"
             },
-            "name": {
-              "type": "string"
+            "creditLimit": {
+              "type": "integer"
             }
           }
         }
@@ -64,7 +57,10 @@
   "type": "object",
   "properties": {
     "data": {
-      "oneOf": [{ "$ref": "#/definitions/updateDepositAccount" }, { "$ref": "#/definitions/updateCreditAccount" }]
+      "oneOf": [
+        { "$ref": "#/definitions/updateDepositAccount" },
+        { "$ref": "#/definitions/updateCreditAccount" }
+      ]
     }
   },
   "additionalProperties": false,

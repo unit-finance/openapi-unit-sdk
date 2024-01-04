@@ -1,33 +1,31 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "createPayments.json",
-    "title": "Create Payments In Bulk",
-    "type": "object",
-    "properties": {
-        "data": {
-            "type": "array",
-            "items": {
-                "oneOf": [
-                    {
-                        "$ref": "createPayment.json#/definitions/createAchPayment"
-                    },
-                    {
-                        "$ref": "createPayment.json#/definitions/createAchPaymentCounterparty"
-                    },
-                    {
-                        "$ref": "createPayment.json#/definitions/createAchPaymentPlaid"
-                    },
-                    {
-                        "$ref": "createPayment.json#/definitions/createBookPayment"
-                    },
-                    {
-                        "$ref": "createPayment.json#/definitions/createWirePayment"
-                    }
-                ]
-            }
-        }
-    },
-    "required": [
-        "data"
-    ]
+  "title": "Create Payments In Bulk",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "createPayment.json#/definitions/createAchPayment"
+          },
+          {
+            "$ref": "createPayment.json#/definitions/createAchPaymentCounterparty"
+          },
+          {
+            "$ref": "createPayment.json#/definitions/createAchPaymentPlaid"
+          },
+          {
+            "$ref": "createPayment.json#/definitions/createBookPayment"
+          },
+          {
+            "$ref": "createPayment.json#/definitions/createWirePayment"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
 }

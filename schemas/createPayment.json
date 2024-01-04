@@ -91,7 +91,7 @@
             "additionalProperties": false
         },
         "CreateAchPayment": {
-            "title": "Create ACH Payment",
+            "title": "Create ACH Payment to inline Counterparty",
                     "type": "object",
                     "properties": {
                         "type": {
@@ -166,164 +166,166 @@
                     ]
         },
         "CreateAchPaymentCounterparty": {
-            "title": "Create ACH Payment",
+            "title": "Create ACH Payment to linked Counterparty",
             "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "achPayment"
+                },
+                "attributes": {
+                    "type": "object",
                     "properties": {
-                        "type": {
-            "type": "string"
-        },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "amount": {
-                                    "type": "integer"
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "addenda": {
-                                    "type": "string"
-                                },
-                                "direction": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Debit",
-                                        "Credit"
-                                    ]
-                                },
-                                "sameDay": {
-                                    "type": "boolean"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "verifyCounterpartyBalance": {
-                                    "type": "boolean",
-                                    "default": false
-                                },
-                                "secCode": {
-                                    "type": "string",
-                                    "enum": [
-                                        "WEB",
-                                        "CCD",
-                                        "PPD"
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "amount",
-                                "description",
-                                "direction"
-                            ],
-                            "additionalProperties": false
+                        "amount": {
+                            "type": "integer"
                         },
-                        "relationships": {
-                            "type": "object",
-                            "properties": {
-                                "account": {
-                                    "$ref": "#/definitions/accountRelationship"
-                                },
-                                "counterparty": {
-                                    "$ref": "#/definitions/counterpartyRelationship"
-                                }
-                            },
-                            "required": [
-                                "account",
-                                "counterparty"
-                            ],
-                            "additionalProperties": false
+                        "description": {
+                            "type": "string"
+                        },
+                        "addenda": {
+                            "type": "string"
+                        },
+                        "direction": {
+                            "type": "string",
+                            "enum": [
+                                "Debit",
+                                "Credit"
+                            ]
+                        },
+                        "sameDay": {
+                            "type": "boolean"
+                        },
+                        "idempotencyKey": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "verifyCounterpartyBalance": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "secCode": {
+                            "type": "string",
+                            "enum": [
+                                "WEB",
+                                "CCD",
+                                "PPD"
+                            ]
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "attributes",
-                        "relationships"
-                    ]
+                        "amount",
+                        "description",
+                        "direction"
+                    ],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "properties": {
+                        "account": {
+                            "$ref": "#/definitions/accountRelationship"
+                        },
+                        "counterparty": {
+                            "$ref": "#/definitions/counterpartyRelationship"
+                        }
+                    },
+                    "required": [
+                        "account",
+                        "counterparty"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "attributes",
+                "relationships"
+            ]
         },
         "CreateAchPaymentPlaid": {
-            "title": "Create ACH Payment",
+            "title": "Create ACH Payment with Plaid token",
             "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "achPayment"
+                },
+                "attributes": {
+                    "type": "object",
                     "properties": {
-                        "type": {
-            "type": "string"
-        },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "amount": {
-                                    "type": "integer"
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "addenda": {
-                                    "type": "string"
-                                },
-                                "direction": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Debit",
-                                        "Credit"
-                                    ]
-                                },
-                                "idempotencyKey": {
-                                    "type": "string"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "plaidProcessorToken": {
-                                    "type": "string",
-                                    "pattern": "^processor-.*$"
-                                },
-                                "counterpartyName": {
-                                    "type": "string"
-                                },
-                                "sameDay": {
-                                    "type": "boolean"
-                                },
-                                "verifyCounterpartyBalance": {
-                                    "type": "boolean",
-                                    "default": false
-                                },
-                                "secCode": {
-                                    "type": "string",
-                                    "enum": [
-                                        "WEB",
-                                        "CCD",
-                                        "PPD"
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "amount",
-                                "description",
-                                "direction",
-                                "plaidProcessorToken"
-                            ],
-                            "additionalProperties": false
+                        "amount": {
+                            "type": "integer"
                         },
-                        "relationships": {
-                            "type": "object",
-                            "properties": {
-                                "account": {
-                                    "$ref": "#/definitions/accountRelationship"
-                                }
-                            },
-                            "required": [
-                                "account"
-                            ],
-                            "additionalProperties": false
+                        "description": {
+                            "type": "string"
+                        },
+                        "addenda": {
+                            "type": "string"
+                        },
+                        "direction": {
+                            "type": "string",
+                            "enum": [
+                                "Debit",
+                                "Credit"
+                            ]
+                        },
+                        "idempotencyKey": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "plaidProcessorToken": {
+                            "type": "string",
+                            "pattern": "^processor-.*$"
+                        },
+                        "counterpartyName": {
+                            "type": "string"
+                        },
+                        "sameDay": {
+                            "type": "boolean"
+                        },
+                        "verifyCounterpartyBalance": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "secCode": {
+                            "type": "string",
+                            "enum": [
+                                "WEB",
+                                "CCD",
+                                "PPD"
+                            ]
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "attributes",
-                        "relationships"
-                    ]
+                        "amount",
+                        "description",
+                        "direction",
+                        "plaidProcessorToken"
+                    ],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "properties": {
+                        "account": {
+                            "$ref": "#/definitions/accountRelationship"
+                        }
+                    },
+                    "required": [
+                        "account"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "attributes",
+                "relationships"
+            ]
         },
         "CreateBookPayment": {
             "title": "Create Book Payment",
@@ -386,7 +388,8 @@
             "type": "object",
             "properties": {
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "wirePayment"
                 },
                 "attributes": {
                     "type": "object",
@@ -507,7 +510,8 @@
             "type": "object",
             "properties": {
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "pushToCardPayment"
                 },
                 "attributes": {
                     "type": "object",

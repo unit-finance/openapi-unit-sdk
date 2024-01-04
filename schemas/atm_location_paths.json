@@ -41,7 +41,7 @@
                                 "type": "array",
                                 "title": "UnitAtmLocationsListResponse",
                                 "items": {
-                                    "type": "object"
+                                    "$ref": "atm_location.json"
                                 }
                             }
                         }

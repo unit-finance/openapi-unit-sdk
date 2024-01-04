@@ -447,7 +447,8 @@
             "type": "object",
             "properties": {
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "billPayment"
                 },
                 "attributes": {
                     "type": "object",

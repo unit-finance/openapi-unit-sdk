@@ -467,12 +467,12 @@
       ],
       "requestBody": {
         "description": "Approve Check Payment Request",
-        "title": "ApproveCheckPaymentRequest",
         "required": true,
         "content": {
           "application/vnd.api+json": {
             "schema": {
               "type": "object",
+              "title": "ApproveCheckPaymentRequest",
               "properties": {
                 "data": {
                   "type": "object",
@@ -528,6 +528,7 @@
           "application/vnd.api+json": {
             "schema": {
               "type": "object",
+              "title": "ReturnCheckPaymentRequest",
               "properties": {
                 "data": {
                   "type": "object",

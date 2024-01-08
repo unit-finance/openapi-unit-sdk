@@ -87,7 +87,6 @@
             "additionalProperties": false
         }
     },
-    "title": "Create Account",
     "type": "object",
     "properties": {
         "data": {

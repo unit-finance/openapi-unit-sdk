@@ -101,12 +101,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createCheckDeposit.json"
-                                }
-                            }
+                            "$ref": "createCheckDeposit.json"
                         }
                     }
                 }

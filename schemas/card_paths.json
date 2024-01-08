@@ -108,13 +108,8 @@
 				"required":true,
 				"content":{
 					"application/vnd.api+json":{
-						"schema":{
-							"type":"object",
-							"properties":{
-								"data":{
-									"$ref":"createCard.json"
-								}
-							}
+						"schema": {
+							"$ref": "createCard.json"
 						}
 					}
 				}

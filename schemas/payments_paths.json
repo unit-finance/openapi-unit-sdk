@@ -185,12 +185,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                                "type": "object",
-                                "properties": {
-                                 "data": {
-                                    "$ref": "createPayment.json"
-                                }
-                            }
+                            "$ref": "createPayment.json"
                         }
                     }
                 }
@@ -611,12 +606,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createRecurringPayment.json"
-                                }
-                            }
+                            "$ref": "createRecurringPayment.json"
                         }
                     }
                 }

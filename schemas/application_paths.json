@@ -298,6 +298,7 @@
 			"requestBody":{
 				"description":"Create Application Request",
 				"required": true,
+				"title": "CreateApplicationRequest",
 				"content":{
 					"application/vnd.api+json":{
 						"schema": {
@@ -423,13 +424,8 @@
 				"required": true,
 				"content":{
 					"application/vnd.api+json":{
-						"schema":{
-							"type":"object",
-							"properties":{
-								"data":{
-									"$ref":"createApplicationForm.json"
-								}
-							}
+						"schema": {
+							"$ref": "createApplicationForm.json"
 						}
 					}
 				}

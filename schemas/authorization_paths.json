@@ -273,12 +273,13 @@
             "summary": "Approve Authorization Request by Id",
             "description": "Approve a Authorization Request via API ",
             "requestBody":{
-				"description":"Approve Authorization Request Request",
+				"description":"Approve Authorization Request",
 				"required": true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
 							"type":"object",
+                            "title": "ApproveAuthorizationRequest",
 							"properties":{
 								"data":{
 									"$ref":"authorization_request.json#/definitions/approveAuthorizationRequest"
@@ -328,12 +329,13 @@
             "summary": "Decline Authorization Request",
             "description": "Decline Authorization Request via API ",
             "requestBody":{
-				"description":"Decline Authorization Request Request",
+				"description":"Decline Authorization Request",
 				"required": true,
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
 							"type":"object",
+                            "title": "DeclineAuthorizationRequest",
 							"properties":{
 								"data":{
 									"$ref":"authorization_request.json#/definitions/declineAuthorizationRequest"

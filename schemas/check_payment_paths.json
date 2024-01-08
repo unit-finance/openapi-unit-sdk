@@ -369,6 +369,7 @@
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
                 "type": "object",
+                "title": "UnitListCheckPaymentsResponse",
                 "properties": {
                   "data": {
                     "type": "array",

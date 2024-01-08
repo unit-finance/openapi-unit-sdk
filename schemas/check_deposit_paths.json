@@ -78,10 +78,15 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "array",
+                                "type": "object",
                                 "title": "UnitListCheckDepositsResponse",
-                                "items": {
-                                    "$ref": "check_deposit.json"
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "check_deposit.json"
+                                        }
+                                    }
                                 }
                             }
                         }

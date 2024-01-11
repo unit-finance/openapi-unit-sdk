@@ -299,7 +299,7 @@
         "/stop-payments/{stop_payment_id}": {
             "$ref": "./schemas/stop_payment_paths.json#/stop_payment"
         },
-        "/stop-payments/disable": {
+        "/stop-payments/{stop_payment_id}/disable": {
             "$ref": "./schemas/stop_payment_paths.json#/disable_stop_payment"
         }
     },

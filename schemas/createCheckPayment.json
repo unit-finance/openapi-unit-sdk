@@ -82,6 +82,9 @@
                 },
                 "address": {
                   "$ref": "types.json#/definitions/address"
+                },
+                "counterpartyMoved": {
+                  "type": "boolean"
                 }
               },
               "required": [

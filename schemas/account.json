@@ -141,8 +141,7 @@
                                 "customer": {
                                     "$ref": "customer.json#/definitions/customerLinkage"
                                 }
-                            },
-                            "additionalProperties": true
+                            }
                         }
                     },
                     "additionalProperties": false,

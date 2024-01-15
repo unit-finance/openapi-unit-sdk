@@ -369,6 +369,7 @@
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
                 "type": "object",
+                "title": "UnitListCheckPaymentsResponse",
                 "properties": {
                   "data": {
                     "type": "array",
@@ -396,12 +397,7 @@
         "content": {
           "application/vnd.api+json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "createCheckPayment.json"
-                }
-              }
+              "$ref": "createCheckPayment.json"
             }
           }
         }
@@ -477,6 +473,7 @@
           "application/vnd.api+json": {
             "schema": {
               "type": "object",
+              "title": "ApproveCheckPaymentRequest",
               "properties": {
                 "data": {
                   "type": "object",
@@ -532,6 +529,7 @@
           "application/vnd.api+json": {
             "schema": {
               "type": "object",
+              "title": "ReturnCheckPaymentRequest",
               "properties": {
                 "data": {
                   "type": "object",

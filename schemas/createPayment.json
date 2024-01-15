@@ -566,29 +566,32 @@
         },
         "additionalProperties": false
     },
-    "title": "Create Payment",
     "type": "object",
-    "oneOf": [
-        {
-            "$ref": "#/definitions/CreateAchPayment"
-        },
-        {
-            "$ref": "#/definitions/CreateAchPaymentCounterparty"
-        },
-        {
-            "$ref": "#/definitions/CreateAchPaymentPlaid"
-        },
-        {
-            "$ref": "#/definitions/CreateBookPayment"
-        },
-        {
-            "$ref": "#/definitions/CreateWirePayment"
-        },
-        {
-            "$ref": "#/definitions/CreateBillPayment"
-        },
-        {
-            "$ref": "#/definitions/CreatePushToCardPayment"
+    "properties": {
+        "data": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/CreateAchPayment"
+                },
+                {
+                    "$ref": "#/definitions/CreateAchPaymentCounterparty"
+                },
+                {
+                    "$ref": "#/definitions/CreateAchPaymentPlaid"
+                },
+                {
+                    "$ref": "#/definitions/CreateBookPayment"
+                },
+                {
+                    "$ref": "#/definitions/CreateWirePayment"
+                },
+                {
+                    "$ref": "#/definitions/CreateBillPayment"
+                },
+                {
+                    "$ref": "#/definitions/CreatePushToCardPayment"
+                }
+            ]
         }
-    ]
+    }
 }

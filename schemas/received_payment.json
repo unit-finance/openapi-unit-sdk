@@ -141,8 +141,7 @@
             "required": [
                 "account",
                 "customer"
-            ],
-            "additionalProperties": true
+            ]
         }
     },
     "title": "Received Payment Resource",

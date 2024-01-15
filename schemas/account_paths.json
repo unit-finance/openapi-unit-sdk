@@ -352,6 +352,7 @@
                "application/vnd.api+json":{
                   "schema":{
                      "type":"object",
+                     "title": "FreezeAccountRequest",
                      "properties":{
                         "data":{
                            "$ref":"types.json#/definitions/freezeAccountRequest"
@@ -405,6 +406,7 @@
                "application/vnd.api+json":{
                   "schema":{
                      "type":"object",
+                     "title": "CloseAccountRequest",
                      "properties":{
                         "data":{
                            "$ref":"types.json#/definitions/closeAccountRequest"

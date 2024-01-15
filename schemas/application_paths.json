@@ -141,6 +141,7 @@
 					"application/vnd.api+json":{
 						"schema":{
 							"type":"object",
+							"title": "CancelApplicationRequest",
 							"properties":{
 								"data":{
 									"type":"object",
@@ -843,6 +844,7 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema": {
 								"type": "object",
+								"title": "UnitListDocumentsResponse",
 								"properties": {
 									"data": {
 										"type": "array",
@@ -924,6 +926,7 @@
 					"application/json":{
 						"schema":{
 							"type": "object",
+							"title": "VerifyDocument",
 							"properties": {
 								"jobId": {
 									"type": "string"

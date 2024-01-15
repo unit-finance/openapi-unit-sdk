@@ -64,12 +64,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createApiToken.json"
-                                }
-                            }
+                            "$ref": "createApiToken.json"
                         }
                     }
                 }
@@ -167,12 +162,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createCustomerToken.json"
-                                }
-                            }
+                            "$ref": "createCustomerToken.json"
                         }
                     }
                 }
@@ -222,12 +212,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createCustomerTokenVerification.json"
-                                }
-                            }
+                            "$ref": "createCustomerTokenVerification.json"
                         }
                     }
                 }

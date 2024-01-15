@@ -19,66 +19,70 @@
             "additionalProperties": false
         }
     },
-    "title": "Create Application Form",
     "type": "object",
     "properties": {
-        "type": {
-            "type": "string",
-            "default": "applicationForm"
-        },
-        "attributes": {
+        "data": {
             "type": "object",
             "properties": {
-                "tags": {
-                    "$ref": "tags.json#/definitions/tags"
-                },
-                "applicantDetails": {
-                    "$ref": "application_form.json#/definitions/ApplicationFormPrefill"
-                },
-                "settingsOverride": {
-                    "$ref": "application_form.json#/definitions/ApplicationFormSettingsOverride"
-                },
-                "requireIdVerification": {
-                    "$ref": "#/definitions/requireIdVerification"
-                },
-                "allowedApplicationTypes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "Individual",
-                            "Business",
-                            "SoleProprietorship"
-                        ]
-                    }
-                },
-                "lang": {
+                "type": {
                     "type": "string",
-                    "enum": [
-                        "en",
-                        "es"
-                    ]
+                    "default": "applicationForm"
                 },
-                "hideApplicationProgressTracker": {
-                    "type": "boolean"
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "applicantDetails": {
+                            "$ref": "application_form.json#/definitions/ApplicationFormPrefill"
+                        },
+                        "settingsOverride": {
+                            "$ref": "application_form.json#/definitions/ApplicationFormSettingsOverride"
+                        },
+                        "requireIdVerification": {
+                            "$ref": "#/definitions/requireIdVerification"
+                        },
+                        "allowedApplicationTypes": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Individual",
+                                    "Business",
+                                    "SoleProprietorship"
+                                ]
+                            }
+                        },
+                        "lang": {
+                            "type": "string",
+                            "enum": [
+                                "en",
+                                "es"
+                            ]
+                        },
+                        "hideApplicationProgressTracker": {
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "title": "createApplicationFormRelationships",
+                    "properties": {
+                        "application": {
+                            "$ref": "types.json#/definitions/Relationship"
+                        }
+                    },
+                    "required": [],
+                    "additionalProperties": false
                 }
             },
-            "additionalProperties": false
-        },
-        "relationships": {
-            "type": "object",
-            "title": "createApplicationFormRelationships",
-            "properties": {
-                "application": {
-                    "$ref": "types.json#/definitions/Relationship"
-                }
-            },
-            "required": [],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "required": [
+                "type"
+            ]
         }
-    },
-    "additionalProperties": false,
-    "required": [
-        "type"
-    ]
+    }
 }

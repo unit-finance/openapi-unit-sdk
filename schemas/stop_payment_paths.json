@@ -24,7 +24,7 @@
   },
   "stop_payments": {
     "post": {
-      "summary": "Create a new stop payment",
+      "summary": "Create Stop Payment",
       "operationId":"execute",
       "requestBody": {
         "required": true,

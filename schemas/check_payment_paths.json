@@ -396,12 +396,7 @@
         "content": {
           "application/vnd.api+json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "$ref": "createCheckPayment.json"
-                }
-              }
+              "$ref": "createCheckPayment.json"
             }
           }
         }
@@ -472,6 +467,7 @@
       ],
       "requestBody": {
         "description": "Approve Check Payment Request",
+        "title": "ApproveCheckPaymentRequest",
         "required": true,
         "content": {
           "application/vnd.api+json": {

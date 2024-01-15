@@ -143,14 +143,17 @@
 			]
 		}
 	},
-	"title":"Create Counterparty",
 	"type":"object",
-	"oneOf":[
-		{
-			"$ref":"#/definitions/CreateAchCounterparty"
-		},
-		{
-			"$ref":"#/definitions/CreatePlaidCounterparty"
+	"properties": {
+		"data": {
+			"oneOf": [
+				{
+					"$ref": "#/definitions/CreateAchCounterparty"
+				},
+				{
+					"$ref": "#/definitions/CreatePlaidCounterparty"
+				}
+			]
 		}
-	]
+	}
 }

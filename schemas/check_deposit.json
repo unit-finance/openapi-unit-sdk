@@ -51,7 +51,7 @@
                     "required": [
                         "data"
                     ],
-                    "additionalProperties": false
+                    "additionalProperties": true
                 },
                 "customer": {
                     "type": "object",

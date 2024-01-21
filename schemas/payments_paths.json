@@ -38,6 +38,8 @@
                 {
                     "name": "page",
                     "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
                     "schema": {
                         "$ref": "types.json#/definitions/listPageParametersObject"
                     }
@@ -510,6 +512,8 @@
                 {
                     "name": "page",
                     "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
                     "schema": {
                         "$ref": "types.json#/definitions/listPageParametersObject"
                     }

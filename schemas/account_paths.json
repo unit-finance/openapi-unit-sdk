@@ -35,8 +35,10 @@
             {
                "name":"page",
                "in":"query",
-               "schema":{
-                  "$ref":"types.json#/definitions/listPageParametersObject"
+               "style":"deepObject",
+               "allowReserved":true,
+               "schema": {
+                  "$ref": "types.json#/definitions/listPageParametersObject"
                }
             },
             {

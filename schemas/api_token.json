@@ -32,14 +32,7 @@
             },
             "required": [
                 "createdAt"
-            ],
-            "additionalProperties": true
+            ]
         }
-    },
-    "required": [
-        "type",
-        "id",
-        "attributes"
-    ],
-    "additionalProperties": true
+    }
 }

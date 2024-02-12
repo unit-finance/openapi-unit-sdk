@@ -141,6 +141,7 @@
 					"application/vnd.api+json":{
 						"schema":{
 							"type":"object",
+							"title": "CancelApplicationRequest",
 							"properties":{
 								"data":{
 									"type":"object",
@@ -298,6 +299,7 @@
 			"requestBody":{
 				"description":"Create Application Request",
 				"required": true,
+				"title": "CreateApplicationRequest",
 				"content":{
 					"application/vnd.api+json":{
 						"schema": {
@@ -423,13 +425,8 @@
 				"required": true,
 				"content":{
 					"application/vnd.api+json":{
-						"schema":{
-							"type":"object",
-							"properties":{
-								"data":{
-									"$ref":"createApplicationForm.json"
-								}
-							}
+						"schema": {
+							"$ref": "createApplicationForm.json"
 						}
 					}
 				}
@@ -847,6 +844,7 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema": {
 								"type": "object",
+								"title": "UnitListDocumentsResponse",
 								"properties": {
 									"data": {
 										"type": "array",
@@ -928,6 +926,7 @@
 					"application/json":{
 						"schema":{
 							"type": "object",
+							"title": "VerifyDocument",
 							"properties": {
 								"jobId": {
 									"type": "string"

@@ -41,7 +41,8 @@
                 "recurringPayment": {
                     "$ref": "types.json#/definitions/Relationship"
                 }
-            }
+            },
+            "additionalProperties": true
         },
         "AchPayment": {
             "title": "ACH Payment",

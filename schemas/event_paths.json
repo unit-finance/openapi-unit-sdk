@@ -96,13 +96,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitEventResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "event.json"
-                                    }
-                                }
+                                "$ref": "event_paths.json#/UnitEventResponse"
                             }
                         }
                     }

@@ -167,7 +167,7 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
 								"type":"object",
-								"title":"UnitCardResponse",
+								"title":"UnitCardResponseWithIncluded",
 								"properties":{
 									"data":{
 										"$ref":"card.json"
@@ -377,7 +377,7 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
 								"type":"object",
-								"title":"UnitCardResponse",
+								"title":"UnitPinStatusResponse",
 								"properties":{
 									"data":{
 										"$ref":"card.json#/definitions/pinStatus"
@@ -494,7 +494,7 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
 								"type":"object",
-								"title":"UnitCardResponse",
+								"title":"UnitCardLimitsResponse",
 								"properties":{
 									"data":{
 										"$ref":"limits.json"

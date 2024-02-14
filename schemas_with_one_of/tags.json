@@ -1,0 +1,18 @@
+{
+    "definitions": {
+        "tags": {
+            "type": "object",
+            "maxProperties": 15,
+            "additionalProperties": false
+        },
+        "tagsPatch": {
+            "type": "object",
+            "maxProperties": 15,
+            "additionalProperties": false
+        }
+    },
+    "title": "Tags",
+    "type": "object",
+    "maxProperties": 15,
+    "additionalProperties": false
+}

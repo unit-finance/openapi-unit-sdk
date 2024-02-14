@@ -1,0 +1,88 @@
+{
+    "definitions": {
+        "createRewardRelationships": {
+            "type": "object",
+            "properties": {
+                "fundingAccount": {
+                    "$ref": "types.json#/definitions/Relationship"
+                },
+                "receivingAccount": {
+                    "$ref": "types.json#/definitions/Relationship"
+                },
+                "rewardedTransaction": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "default": "transaction"
+                                },
+                                "id": {
+                                    "$ref": "types.json#/definitions/identifier"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "id"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "receivingAccount"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "title": "Reward",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "default": "reward"
+        },
+        "attributes": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "description": {
+                    "type": "string",
+                    "maxLength": 50
+                },
+                "idempotencyKey": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255
+                },
+                "tags": {
+                    "$ref": "tags.json#/definitions/tags"
+                }
+            },
+            "required": [
+                "amount",
+                "description"
+            ],
+            "additionalProperties": false
+        },
+        "relationships": {
+            "$ref": "#/definitions/createRewardRelationships"
+        }
+    },
+    "required": [
+        "type",
+        "attributes",
+        "relationships"
+    ],
+    "additionalProperties": false
+}

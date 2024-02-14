@@ -1,4 +1,13 @@
 {
+	"UnitCardResponse": {
+		"type": "object",
+		"title": "UnitCardResponse",
+		"properties": {
+			"data": {
+				"$ref": "card.json"
+			}
+		}
+	},
 	"cards":{
 		"get":{
 			"tags":[
@@ -120,13 +129,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -220,13 +223,7 @@
 					"content":{
 						"application/vnd.api+json":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -259,13 +256,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -298,13 +289,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -337,13 +322,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -415,13 +394,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -454,13 +427,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}

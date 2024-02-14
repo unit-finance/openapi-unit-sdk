@@ -1,0 +1,198 @@
+{
+    "definitions": {
+        "createCustomerRelationships": {
+            "type": "object",
+            "properties": {
+                "org": {
+                    "$ref": "types.json#/definitions/orgRelationship"
+                }
+            },
+            "required": [
+                "org"
+            ],
+            "additionalProperties": false
+        },
+        "CreateIndividualCustomer": {
+            "title": "Create Individual Customer",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "individualCustomer"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "fullName": {
+                            "$ref": "types.json#/definitions/fullName"
+                        },
+                        "email": {
+                            "$ref": "types.json#/definitions/email"
+                        },
+                        "phone": {
+                            "$ref": "types.json#/definitions/phone"
+                        },
+                        "ssn": {
+                            "type": "string",
+                            "pattern": "^\\d{9}$"
+                        },
+                        "passport": {
+                            "type": "string"
+                        },
+                        "nationality": {
+                            "$ref": "types.json#/definitions/country"
+                        },
+                        "matriculaConsular": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "$ref": "types.json#/definitions/address"
+                        },
+                        "dateOfBirth": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "dba": {
+                            "type": "string"
+                        },
+                        "ein": {
+                            "type": "string",
+                            "pattern": "^\\d{9}$"
+                        },
+                        "soleProprietorship": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "authorizedUsers": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "types.json#/definitions/authorizedUser"
+                            }
+                        },
+                        "jwtSubject": {
+                            "$ref": "types.json#/definitions/jwtSubject"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "fullName",
+                        "email",
+                        "phone",
+                        "address",
+                        "dateOfBirth"
+                    ]
+                },
+                "relationships": {
+                    "$ref": "#/definitions/createCustomerRelationships"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes",
+                "relationships"
+            ]
+        },
+        "CreateBusinessCustomer": {
+            "title": "Create Business Customer",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "businessCustomer"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        "dba": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        "ein": {
+                            "type": "string",
+                            "pattern": "^\\d{9}$"
+                        },
+                        "entityType": {
+                            "type": "string",
+                            "enum": [
+                                "Corporation",
+                                "LLC",
+                                "Partnership"
+                            ]
+                        },
+                        "dateOfIncorporation": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "stateOfIncorporation": {
+                            "type": "string",
+                            "minLength": 2,
+                            "maxLength": 2
+                        },
+                        "purpose": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 1024
+                        },
+                        "phone": {
+                            "$ref": "types.json#/definitions/phone"
+                        },
+                        "address": {
+                            "$ref": "types.json#/definitions/address"
+                        },
+                        "contact": {
+                            "$ref": "types.json#/definitions/createContact"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "authorizedUsers": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "types.json#/definitions/authorizedUser"
+                            }
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "name",
+                        "ein",
+                        "entityType",
+                        "stateOfIncorporation",
+                        "phone",
+                        "address",
+                        "contact"
+                    ]
+                },
+                "relationships": {
+                    "$ref": "#/definitions/createCustomerRelationships"
+                }
+            },
+            "additionalProperties": false,
+            "required": [
+                "type",
+                "attributes",
+                "relationships"
+            ]
+        }
+    },
+    "title": "Create Customer",
+    "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/CreateBusinessCustomer"
+                },
+                {
+                    "$ref": "#/definitions/CreateIndividualCustomer"
+                }
+                ]
+}

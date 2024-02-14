@@ -44,7 +44,10 @@
                            }
                        },
                        "tags": {
-                           "type": "object"
+                           "type": "object",
+                           "additionalProperties": {
+                               "type": "string"
+                           }
                        }
                    }
                }
@@ -89,12 +92,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createCounterparty.json"
-                                }
-                            }
+                            "$ref": "createCounterparty.json"
                         }
                     }
                 }

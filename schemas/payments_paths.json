@@ -121,7 +121,10 @@
                                 }
                             },
                             "tags": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }
@@ -182,12 +185,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                                "type": "object",
-                                "properties": {
-                                 "data": {
-                                    "$ref": "createPayment.json"
-                                }
-                            }
+                            "$ref": "createPayment.json"
                         }
                     }
                 }
@@ -365,7 +363,7 @@
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
                                     },
-                                    "meta":{
+                                    "meta": {
 										"$ref":"types.json#/definitions/paginationMeta"
 									}
                                 }
@@ -608,12 +606,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createRecurringPayment.json"
-                                }
-                            }
+                            "$ref": "createRecurringPayment.json"
                         }
                     }
                 }

@@ -258,6 +258,7 @@
                                     "$ref": "customer.json#/definitions/customerLinkage"
                                 }
                             },
+                            "additionalProperties": true,
                             "required": [
                                 "customer"
                             ]

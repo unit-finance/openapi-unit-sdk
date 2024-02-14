@@ -494,26 +494,29 @@
       ]
     }
 	},
-	"title":"Create Card",
 	"type":"object",
-	"oneOf":[
-		{
-			"$ref":"#/definitions/CreateIndividualDebitCard"
-		},
-		{
-			"$ref":"#/definitions/CreateBusinessDebitCard"
-		},
-		{
-			"$ref":"#/definitions/CreateBusinessCreditCard"
-		},
-		{
-			"$ref":"#/definitions/CreateIndividualVirtualDebitCard"
-		},
-		{
-			"$ref":"#/definitions/CreateBusinessVirtualDebitCard"
-		},
-		{
-			"$ref":"#/definitions/CreateBusinessVirtualCreditCard"
+	"properties": {
+		"data": {
+			"oneOf": [
+				{
+					"$ref": "#/definitions/CreateIndividualDebitCard"
+				},
+				{
+					"$ref": "#/definitions/CreateBusinessDebitCard"
+				},
+				{
+					"$ref": "#/definitions/CreateBusinessCreditCard"
+				},
+				{
+					"$ref": "#/definitions/CreateIndividualVirtualDebitCard"
+				},
+				{
+					"$ref": "#/definitions/CreateBusinessVirtualDebitCard"
+				},
+				{
+					"$ref": "#/definitions/CreateBusinessVirtualCreditCard"
+				}
+			]
 		}
-	]
+	}
 }

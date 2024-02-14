@@ -805,6 +805,7 @@
 		},
 		"closeAccountRequest":{
 			"type":"object",
+			"title": "CloseAccountRequest",
 			"properties":{
 				"type":{
 					"type":"string",

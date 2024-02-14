@@ -123,8 +123,11 @@
                      "email": {
                          "type": "string"
                      },
-                     "tags":{
-                        "type":"object"
+                     "tags": {
+                         "type": "object",
+                         "additionalProperties": {
+                             "type": "string"
+                         }
                      }
                   }
                }
@@ -181,12 +184,13 @@
                 }
             ],
             "requestBody": {
-                "description": "Update Payment Request",
+                "description": "Archive Customer Request",
                 "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
+                            "title": "ArchiveCustomerRequest",
                             "properties": {
                                 "type": {
                                     "type": "string",

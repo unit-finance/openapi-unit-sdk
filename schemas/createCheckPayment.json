@@ -82,6 +82,9 @@
                 },
                 "address": {
                   "$ref": "types.json#/definitions/address"
+                },
+                "counterpartyMoved": {
+                  "type": "boolean"
                 }
               },
               "required": [
@@ -135,7 +138,6 @@
       "additionalProperties": false
     }
   },
-  "title": "Create Check Payment",
   "type": "object",
   "properties": {
     "data": {

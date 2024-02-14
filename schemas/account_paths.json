@@ -77,8 +77,11 @@
                      "toBalance":{
                         "type":"number"
                      },
-                     "tags":{
-                        "type":"object"
+                     "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                           "type": "string"
+                        }
                      }
                   }
                }
@@ -112,8 +115,8 @@
                                  "$ref":"customer.json"
                               }
                            },
-                           "meta":{
-                              "$ref":"types.json#/definitions/paginationMeta"
+                           "meta": {
+                              "$ref": "types.json#/definitions/paginationMeta"
                            }
                         }
                      }
@@ -134,6 +137,7 @@
          "description":"Create Account via API ",
          "requestBody":{
             "description":"Create Account Request",
+            "title": "CreateAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
@@ -219,6 +223,7 @@
          ],
          "requestBody":{
             "description":"Update Account Request",
+            "title": "UpdateAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
@@ -341,11 +346,13 @@
          ],
          "requestBody":{
             "description":"Freeze Account Request",
+            "title": "FreezeAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
                   "schema":{
                      "type":"object",
+                     "title": "FreezeAccountRequest",
                      "properties":{
                         "data":{
                            "$ref":"types.json#/definitions/freezeAccountRequest"
@@ -393,11 +400,13 @@
          ],
          "requestBody":{
             "description":"Close Account Request",
+            "title": "CloseAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
                   "schema":{
                      "type":"object",
+                     "title": "CloseAccountRequest",
                      "properties":{
                         "data":{
                            "$ref":"types.json#/definitions/closeAccountRequest"

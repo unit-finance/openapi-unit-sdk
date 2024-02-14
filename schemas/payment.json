@@ -132,8 +132,7 @@
                                 "description",
                                 "amount",
                                 "direction"
-                            ],
-                            "additionalProperties": true
+                            ]
                         },
                         "relationships": {
                             "$ref": "#/definitions/paymentRelationships"

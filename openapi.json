@@ -227,6 +227,24 @@
         "/check-deposits/{checkDepositId}/back": {
             "$ref": "./schemas/check_deposit_paths.json#/get_back_check_deposit"
         },
+        "/store-locations": {
+            "$ref": './schemas/cash_deposit_paths.json#/cash_deposits'
+        },
+        "/cash-deposits/barcodes": {
+            "$ref": './schemas/cash_deposit_paths.json#/generate_cash_deposit_barcode'
+        },
+        "/cash-deposits/barcodes/{barcodeNumber}/image": {
+            "$ref": './schemas/cash_deposit_paths.json#/cash_deposit_barcode'
+        },
+        "/tax-forms/{id}": {
+            "$ref": './schemas/tax_form_paths.json#/tax_form'
+        },
+        "/tax-forms": {
+            "$ref": './schemas/tax_form_paths.json#/tax_forms'
+        },
+        "/tax-forms/{id}/pdf": {
+            "$ref": './schemas/tax_form_paths.json#/get_tax_form_pdf'
+        },
         "/users/{userId}/api-tokens": {
             "$ref": "./schemas/token_paths.json#/api_tokens"
         },

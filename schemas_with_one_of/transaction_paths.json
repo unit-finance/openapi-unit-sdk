@@ -33,7 +33,10 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             },
                             "since": {
                                 "type": "string"
@@ -46,12 +49,6 @@
                             },
                             "excludeFees": {
                                 "type": "boolean"
-                            },
-                            "status": {
-                                "type": "string",
-                                "enum": [
-                                    "Authorized", "Completed", "Canceled", "Declined"
-                                ]
                             },
                             "type": {
                                 "type": "array",
@@ -71,6 +68,9 @@
                             },
                             "toAmount": {
                                 "type": "integer"
+                            },
+                            "accountType": {
+                                "type": "string"
                             }
                         }
                     }
@@ -107,6 +107,9 @@
                                     },
                                     "included": {
                                         "$ref": "openapi_types.json#/IncludedResource"
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
                                     }
                                 }
                             }

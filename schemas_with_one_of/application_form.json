@@ -27,6 +27,123 @@
             },
             "required": [],
             "additionalProperties": false
+        },
+        "ApplicationFormPrefill": {
+            "title": "Application Form Prefilled",
+            "type": "object",
+            "properties": {
+                "applicationType": {
+                    "type": "string",
+                    "enum": [
+                        "Individual",
+                        "Business",
+                        "SoleProprietorship"
+                    ]
+                },
+                "fullName": {
+                    "$ref": "types.json#/definitions/fullName"
+                },
+                "ssn": {
+                    "type": "string",
+                    "pattern": "^\\d{9}$"
+                },
+                "passport": {
+                    "type": "string"
+                },
+                "nationality": {
+                    "$ref": "types.json#/definitions/country"
+                },
+                "dateOfBirth": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "email": {
+                    "$ref": "types.json#/definitions/email"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255
+                },
+                "stateOfIncorporation": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "entityType": {
+                    "$ref": "types.json#/definitions/entityType"
+                },
+                "contact": {
+                    "$ref": "types.json#/definitions/contact"
+                },
+                "officer": {
+                    "$ref": "createApplication.json#/definitions/createOfficer"
+                },
+                "beneficialOwners": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "createApplication.json#/definitions/createBeneficialOwner"
+                    }
+                },
+                "website": {
+                    "type": "string"
+                },
+                "phone": {
+                    "$ref": "types.json#/definitions/phone"
+                },
+                "address": {
+                    "$ref": "types.json#/definitions/address"
+                },
+                "dba": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255
+                },
+                "ein": {
+                    "type": "string",
+                    "pattern": "^\\d{9}$"
+                },
+                "jwtSubject": {
+                    "$ref": "types.json#/definitions/jwtSubject"
+                },
+                "industry": {
+                    "$ref": "types.json#/definitions/industry"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ApplicationFormSettingsOverride": {
+            "type": "object",
+            "properties": {
+                "redirectUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "privacyPolicyUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "electronicDisclosuresUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "depositTermsUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "clientTermsUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "cardholderTermsUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "cashAdvancedTermsUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "debitCardDisclosureUrl": {
+                    "$ref": "types.json#/definitions/url"
+                },
+                "additionalDisclosures": {
+                    "$ref": "org_settings.json#/definitions/applicationFormAdditionalDisclosures"
+                }
+            },
+            "additionalProperties": false
         }
     },
     "title": "Application Form",
@@ -49,13 +166,29 @@
                     "type": "string"
                 },
                 "stage": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "ChooseBusinessOrIndividual",
+                        "EnterIndividualInformation",
+                        "IndividualPhoneVerification",
+                        "IndividualApplicationCreated",
+                        "EnterBusinessInformation",
+                        "EnterBusinessAdditionalInformation",
+                        "EnterOfficerInformation",
+                        "BusinessPhoneVerification",
+                        "EnterBeneficialOwnersInformation",
+                        "BusinessApplicationCreated",
+                        "EnterSoleProprietorshipInformation",
+                        "EnterSoleProprietorshipBusinessInformation",
+                        "SoleProprietorshipPhoneVerification",
+                        "SoleProprietorshipApplicationCreated"
+                    ]
                 },
                 "applicantDetails": {
-                    "$ref": "createApplicationForm.json#/definitions/prefilled"
+                    "$ref": "#/definitions/ApplicationFormPrefill"
                 },
                 "settingsOverride": {
-                    "$ref": "createApplicationForm.json#/definitions/settingsOverride"
+                    "$ref": "#/definitions/ApplicationFormSettingsOverride"
                 },
                 "tags": {
                     "$ref": "tags.json#/definitions/tags"
@@ -79,13 +212,8 @@
         },
         "relationships": {
             "$ref": "#/definitions/applicationFormRelationships"
-        },
-        "officerIsBeneficialOwner": {
-            "type": "boolean",
-            "default": false
         }
     },
-    "additionalProperties": false,
     "required": [
         "type",
         "id",

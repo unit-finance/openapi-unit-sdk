@@ -1,125 +1,5 @@
 {
     "definitions": {
-        "prefilled": {
-            "title": "Application Form Prefilled",
-            "type": "object",
-            "properties": {
-                "applicationType": {
-                    "type": "string",
-                    "enum": [
-                        "Individual",
-                        "Business",
-                        "SoleProprietorship"
-                    ]
-                },
-                "fullName": {
-                    "$ref": "types.json#/definitions/fullName"
-                },
-                "ssn": {
-                    "type": "string",
-                    "pattern": "^\\d{9}$"
-                },
-                "passport": {
-                    "type": "string"
-                },
-                "nationality": {
-                    "$ref": "types.json#/definitions/country"
-                },
-                "dateOfBirth": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "email": {
-                    "$ref": "types.json#/definitions/email"
-                },
-                "name": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255
-                },
-                "stateOfIncorporation": {
-                    "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
-                },
-                "entityType": {
-                    "$ref": "types.json#/definitions/entityType"
-                },
-                "contact": {
-                    "$ref": "types.json#/definitions/contact"
-                },
-                "officer": {
-                    "$ref": "createApplication.json#/definitions/officer"
-                },
-                "beneficialOwners": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "createApplication.json#/definitions/createBeneficialOwner"
-                    }
-                },
-                "website": {
-                    "type": "string"
-                },
-                "phone": {
-                    "$ref": "types.json#/definitions/phone"
-                },
-                "address": {
-                    "$ref": "types.json#/definitions/address"
-                },
-                "dba": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255
-                },
-                "ein": {
-                    "type": "string",
-                    "pattern": "^\\d{9}$"
-                },
-                "jwtSubject": {
-                    "$ref": "types.json#/definitions/jwtSubject"
-                },
-                "industry": {
-                    "$ref": "types.json#/definitions/industry"
-                }
-            },
-            "additionalProperties": false
-        },
-        "settingsOverride": {
-            "type": "object",
-            "properties": {
-                "redirectUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "privacyPolicyUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "electronicDisclosuresUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "depositTermsUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "clientTermsUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "cardholderTermsUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "cashAdvancedTermsUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "debitCardDisclosureUrl": {
-                    "$ref": "types.json#/definitions/url"
-                },
-                "additionalDisclosures": {
-                    "$ref": "org_settings.json#/definitions/applicationFormAdditionalDisclosures"
-                },
-                "validatePhoneNumber": {
-                    "$ref": "org_settings.json#/definitions/applicationFormValidatePhoneNumber"
-                }
-            },
-            "additionalProperties": false
-        },
         "requireIdVerification": {
             "type": "object",
             "properties": {
@@ -139,69 +19,70 @@
             "additionalProperties": false
         }
     },
-    "title": "Create Application Form",
     "type": "object",
     "properties": {
-        "type": {
-            "type": "string",
-            "default": "applicationForm"
-        },
-        "attributes": {
+        "data": {
             "type": "object",
             "properties": {
-                "email": {
-                    "$ref": "types.json#/definitions/email"
-                },
-                "tags": {
-                    "$ref": "tags.json#/definitions/tags"
-                },
-                "applicantDetails": {
-                    "$ref": "#/definitions/prefilled"
-                },
-                "settingsOverride": {
-                    "$ref": "#/definitions/settingsOverride"
-                },
-                "requireIdVerification": {
-                    "$ref": "#/definitions/requireIdVerification"
-                },
-                "allowedApplicationTypes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "Individual",
-                            "Business",
-                            "SoleProprietorship"
-                        ]
-                    }
-                },
-                "lang": {
+                "type": {
                     "type": "string",
-                    "enum": [
-                        "en",
-                        "es"
-                    ]
+                    "default": "applicationForm"
                 },
-                "hideApplicationProgressTracker": {
-                    "type": "boolean"
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "applicantDetails": {
+                            "$ref": "application_form.json#/definitions/ApplicationFormPrefill"
+                        },
+                        "settingsOverride": {
+                            "$ref": "application_form.json#/definitions/ApplicationFormSettingsOverride"
+                        },
+                        "requireIdVerification": {
+                            "$ref": "#/definitions/requireIdVerification"
+                        },
+                        "allowedApplicationTypes": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "Individual",
+                                    "Business",
+                                    "SoleProprietorship"
+                                ]
+                            }
+                        },
+                        "lang": {
+                            "type": "string",
+                            "enum": [
+                                "en",
+                                "es"
+                            ]
+                        },
+                        "hideApplicationProgressTracker": {
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "type": "object",
+                    "title": "createApplicationFormRelationships",
+                    "properties": {
+                        "application": {
+                            "$ref": "types.json#/definitions/Relationship"
+                        }
+                    },
+                    "required": [],
+                    "additionalProperties": false
                 }
             },
-            "additionalProperties": false
-        },
-        "relationships": {
-            "type": "object",
-            "title": "createApplicationFormRelationships",
-            "properties": {
-                "application": {
-                    "$ref": "types.json#/definitions/Relationship"
-                }
-            },
-            "required": [],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "required": [
+                "type"
+            ]
         }
-    },
-    "additionalProperties": false,
-    "required": [
-        "type"
-    ]
+    }
 }

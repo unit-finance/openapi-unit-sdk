@@ -11,6 +11,8 @@
         {
           "name": "page",
           "in": "query",
+          "style": "deepObject",
+          "allowReserved": true,
           "schema": {
             "$ref": "types.json#/definitions/listPageParametersObject"
           }
@@ -43,7 +45,7 @@
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
                 "type": "array",
-                "title": "UnitTaxFormResponse",
+                "title": "UnitCashDepositsListResponse",
                 "items": {
                   "$ref": "store_location.json"
                 }

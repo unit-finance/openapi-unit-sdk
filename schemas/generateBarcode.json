@@ -22,6 +22,7 @@
   "properties": {
     "type": {
       "type": "string",
+      "default": "cashDepositBarcode",
       "enum": [
         "cashDepositBarcode"
       ]

@@ -236,13 +236,13 @@
         "/cash-deposits/barcodes/{barcodeNumber}/image": {
             "$ref": './schemas/cash_deposit_paths.json#/cash_deposit_barcode'
         },
-        "/tax-forms/{id}": {
+        "/tax-forms/{taxFormId}": {
             "$ref": './schemas/tax_form_paths.json#/tax_form'
         },
         "/tax-forms": {
             "$ref": './schemas/tax_form_paths.json#/tax_forms'
         },
-        "/tax-forms/{id}/pdf": {
+        "/tax-forms/{taxFormId}/pdf": {
             "$ref": './schemas/tax_form_paths.json#/get_tax_form_pdf'
         },
         "/users/{userId}/api-tokens": {

@@ -21,52 +21,13 @@
           "type": "string"
         },
         "phone": {
-          "type": "string",
-          "pattern": "^\\d{10}$"
+          "$ref": "types.json#/definitions/phone"
         },
-        "address": {
-          "type": "object",
-          "properties": {
-            "street": {
-              "type": "string"
-            },
-            "city": {
-              "type": "string"
-            },
-            "state": {
-              "type": "string"
-            },
-            "postalCode": {
-              "type": "string"
-            },
-            "country": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "street",
-            "city",
-            "state",
-            "postalCode",
-            "country"
-          ],
-          "additionalProperties": false
+        "address":{
+          "$ref":"types.json#/definitions/address"
         },
         "coordinates": {
-          "type": "object",
-          "properties": {
-            "longitude": {
-              "type": "number"
-            },
-            "latitude": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "longitude",
-            "latitude"
-          ],
-          "additionalProperties": false
+          "$ref": "types.json#/definitions/coordinates"
         },
         "distance": {
           "type": "number"

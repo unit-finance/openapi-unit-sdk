@@ -46,7 +46,7 @@
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
                 "type": "array",
-                "title": "UnitTaxFormResponse",
+                "title": "UnitTaxFormListResponse",
                 "items": {
                   "$ref": "tax_form.json"
                 }
@@ -87,6 +87,7 @@
           "content": {
             "application/vnd.api+json; charset=utf-8": {
               "schema": {
+                "title": "UnitTaxFormResponse",
                 "type": "object",
                 "properties": {
                   "data": {

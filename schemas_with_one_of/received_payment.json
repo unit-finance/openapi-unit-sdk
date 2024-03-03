@@ -138,11 +138,11 @@
                     "additionalProperties": false
                 }
             },
+            "additionalProperties": true,
             "required": [
                 "account",
                 "customer"
-            ],
-            "additionalProperties": false
+            ]
         }
     },
     "title": "Received Payment Resource",
@@ -177,7 +177,17 @@
                 "completionDate": {
                     "type": "string"
                 },
+                "direction": {
+                    "type": "string",
+                    "enum": ["Debit", "Credit"]
+                },
                 "wasAdvanced": {
+                    "type": "boolean"
+                },
+                "isAdvanceable": {
+                    "type": "boolean"
+                },
+                "isAdvaceable": {
                     "type": "boolean"
                 },
                 "companyName": {
@@ -203,6 +213,9 @@
                 "returnReason": {
                     "type": "string"
                 },
+                "receivingEntityName": {
+                    "type": "string"
+                },
                 "tags": {
                     "$ref": "tags.json#/definitions/tags"
                 }
@@ -216,9 +229,10 @@
                 "companyName",
                 "counterpartyRoutingNumber",
                 "traceNumber",
+                "wasAdvanced",
+                "direction",
                 "secCode"
-            ],
-            "additionalProperties": false
+            ]
         },
         "relationships": {
             "$ref": "#/definitions/receivedPaymentRelationships"

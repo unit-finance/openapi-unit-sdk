@@ -68,7 +68,7 @@
                 "dateOfBirth"
             ]
         },
-        "officer": {
+        "createOfficer": {
             "title": "CreateOfficer",
             "type": "object",
             "properties": {
@@ -122,6 +122,15 @@
                 },
                 "evaluationParams": {
                     "$ref": "#/definitions/evaluationParams"
+                },
+                "occupation": {
+                    "$ref": "types.json#/definitions/occupation"
+                },
+                "annualIncome": {
+                    "$ref": "types.json#/definitions/annualIncome"
+                },
+                "sourceOfIncome": {
+                    "$ref": "types.json#/definitions/sourceOfIncome"
                 }
             },
             "additionalProperties": false,
@@ -130,7 +139,8 @@
                 "email",
                 "phone",
                 "address",
-                "dateOfBirth"
+                "dateOfBirth",
+                "occupation"
             ]
         },
         "createBeneficialOwner": {
@@ -173,7 +183,10 @@
                 },
                 "evaluationParams": {
                     "$ref": "#/definitions/evaluationParams"
-                }
+                },
+                "occupation": { "$ref": "types.json#/definitions/occupation" },
+                "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+                "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" }
             },
             "additionalProperties": false,
             "required": [
@@ -231,16 +244,7 @@
                   "format": "date"
               },
               "ip": {
-                  "oneOf": [
-                      {
-                          "type": "string",
-                          "format": "ipv4"
-                      },
-                      {
-                          "type": "string",
-                          "format": "ipv6"
-                      }
-                  ]
+                  "type": "string"
               },
               "tags": {
                   "$ref": "tags.json#/definitions/tags"
@@ -355,16 +359,7 @@
                   "pattern": "^\\d{9}$"
               },
               "ip": {
-                  "oneOf": [
-                      {
-                          "type": "string",
-                          "format": "ipv4"
-                      },
-                      {
-                          "type": "string",
-                          "format": "ipv6"
-                      }
-                  ]
+                  "type": "string"
               },
               "soleProprietorship": {
                   "type": "boolean",
@@ -487,19 +482,10 @@
                       "$ref": "types.json#/definitions/contact"
                   },
                   "officer": {
-                      "$ref": "#/definitions/officer"
+                      "$ref": "#/definitions/createOfficer"
                   },
                   "ip": {
-                      "oneOf": [
-                          {
-                              "type": "string",
-                              "format": "ipv4"
-                          },
-                          {
-                              "type": "string",
-                              "format": "ipv6"
-                          }
-                      ]
+                      "type": "string"
                   },
                   "website": {
                       "type": "string"
@@ -627,16 +613,7 @@
                             "$ref": "types.json#/definitions/trustContact"
                         },
                         "ip": {
-                            "oneOf": [
-                                {
-                                    "type": "string",
-                                    "format": "ipv4"
-                                },
-                                {
-                                    "type": "string",
-                                    "format": "ipv6"
-                                }
-                            ]
+                            "type": "string"
                         },
                         "tags": {
                             "$ref": "tags.json#/definitions/tags"
@@ -675,20 +652,25 @@
             ]
         }
     },
-    "title": "Create Application",
     "type": "object",
-    "oneOf": [
-        {
-            "$ref": "#/definitions/CreateIndividualApplication"
-        },
-        {
-            "$ref": "#/definitions/CreateSoleProprietorApplication"
-        },
-        {
-            "$ref": "#/definitions/CreateBusinessApplication"
-        },
-        {
-            "$ref": "#/definitions/CreateTrustApplication"
+    "properties": {
+        "data": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/CreateIndividualApplication"
+                },
+                {
+                    "$ref": "#/definitions/CreateSoleProprietorApplication"
+                },
+                {
+                    "$ref": "#/definitions/CreateBusinessApplication"
+                },
+                {
+                    "$ref": "#/definitions/CreateTrustApplication"
+                }
+            ]
         }
-    ]
+    },
+      "additionalProperties": false,
+      "required": [ "data" ]
 }

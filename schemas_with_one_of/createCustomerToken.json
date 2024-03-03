@@ -1,47 +1,55 @@
 {
     "type": "object",
     "properties": {
-        "type": {
-            "type": "string",
-            "default": "customerToken"
-        },
-        "attributes": {
+        "data": {
             "type": "object",
             "properties": {
-                "scope": {
-                    "type": "string"
+                "type": {
+                    "type": "string",
+                    "default": "customerToken"
                 },
-                "verificationToken": {
-                    "type": "string"
-                },
-                "jwtToken": {
-                    "type": "string"
-                },
-                "expiresIn": {
-                    "type": "integer"
-                },
-                "verificationCode": {
-                    "type": "string"
-                },
-                "resources": {
-                    "type": "array",
-                    "minItems": 1,
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": [
-                                    "card",
-                                    "account"
-                                ]
-                            },
-                            "ids": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "types.json#/definitions/identifier"
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "scope": {
+                            "type": "string"
+                        },
+                        "verificationToken": {
+                            "type": "string"
+                        },
+                        "jwtToken": {
+                            "type": "string"
+                        },
+                        "expiresIn": {
+                            "type": "integer"
+                        },
+                        "verificationCode": {
+                            "type": "string"
+                        },
+                        "resources": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "card",
+                                            "account"
+                                        ]
+                                    },
+                                    "ids": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "types.json#/definitions/identifier"
+                                        }
+                                    }
                                 }
                             }
+                        },
+                        "upgradableScope": {
+                            "type": "string"
                         }
                     }
                 }

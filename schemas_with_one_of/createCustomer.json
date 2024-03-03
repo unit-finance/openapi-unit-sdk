@@ -185,8 +185,9 @@
             ]
         }
     },
-    "title": "Create Customer",
     "type": "object",
+    "properties": {
+        "data": {
             "oneOf": [
                 {
                     "$ref": "#/definitions/CreateBusinessCustomer"
@@ -194,5 +195,7 @@
                 {
                     "$ref": "#/definitions/CreateIndividualCustomer"
                 }
-                ]
+            ]
+        }
+    }
 }

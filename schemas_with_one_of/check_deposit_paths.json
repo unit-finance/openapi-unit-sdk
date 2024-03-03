@@ -30,7 +30,29 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": "object"
+								"type": "object",
+								"additionalProperties":{
+									"type": "string"
+								}
+							},
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AwaitingImages",
+                                        "AwaitingFrontImage",
+                                        "AwaitingBackImage",
+                                        "Pending",
+                                        "PendingReview",
+                                        "Rejected",
+                                        "Clearing",
+                                        "Sent",
+                                        "Canceled",
+                                        "Returned",
+                                        "AwaitingCustomerConfirmation"
+                                    ]
+                                }
                             }
                         }
                     }
@@ -56,9 +78,15 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "check_deposit.json"
+                                "type": "object",
+                                "title": "UnitListCheckDepositsResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "check_deposit.json"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -79,12 +107,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createCheckDeposit.json"
-                                }
-                            }
+                            "$ref": "createCheckDeposit.json"
                         }
                     }
                 }

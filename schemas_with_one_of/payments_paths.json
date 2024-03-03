@@ -1,4 +1,31 @@
 {
+    "UnitPaymentResponse": {
+        "type": "object",
+        "title": "UnitPaymentResponse",
+        "properties": {
+            "data": {
+                "$ref": "payment.json"
+            }
+        }
+    },
+    "UnitReceivedPaymentResponse": {
+        "type": "object",
+        "title": "UnitReceivedPaymentResponse",
+        "properties": {
+            "data": {
+                "$ref": "received_payment.json"
+            }
+        }
+    },
+    "UnitRecurringPaymentResponse": {
+        "type": "object",
+        "title": "UnitRecurringPaymentResponse",
+        "properties": {
+            "data": {
+                "$ref": "recurring_payment.json"
+            }
+        }
+    },
     "get_and_create_payments": {
         "get": {
             "tags": [
@@ -37,8 +64,13 @@
                                 "items": {
                                     "type": "string",
                                     "enum": [
+                                        "Rejected",
                                         "Pending",
-                                        "Approved"
+                                        "Canceled",
+                                        "Pending Review",
+                                        "Clearing",
+                                        "Sent",
+                                        "Returned"
                                     ]
                                 }
                             },
@@ -89,7 +121,10 @@
                                 }
                             },
                             "tags": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }
@@ -115,7 +150,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitPaymentListResponse",
+                                "title": "UnitPaymentsListResponse",
                                 "type": "object",
                                 "properties": {
                                     "data": {
@@ -125,10 +160,10 @@
                                         }
                                     },
                                     "included": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "openapi_types.json#/IncludedResource"
-                                        }
+                                        "$ref": "openapi_types.json#/IncludedResource"
+                                    },
+                                    "meta": {
+                                        "$ref":"types.json#/definitions/paginationMeta"
                                     }
                                 }
                             }
@@ -150,12 +185,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                                "type": "object",
-                                "properties": {
-                                 "data": {
-                                    "$ref": "createPayment.json"
-                                }
-                            }
+                            "$ref": "createPayment.json"
                         }
                     }
                 }
@@ -166,13 +196,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitPaymentResponse"
                             }
                         }
                     }
@@ -212,11 +236,14 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
+                                "title": "UnitPaymentResponseWithIncluded",
                                 "type": "object",
-                                "title": "UnitPaymentResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "payment.json"
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }
@@ -260,13 +287,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitPaymentResponse"
                             }
                         }
                     }
@@ -299,13 +320,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitPaymentResponse"
                             }
                         }
                     }
@@ -337,11 +352,20 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitPaymentResponse",
+                                "title": "UnitReceivedPaymentListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
-                                    }
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "received_payment.json"
+                                        }
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
+                                    },
+                                    "meta": {
+										"$ref":"types.json#/definitions/paginationMeta"
+									}
                                 }
                             }
                         }
@@ -383,7 +407,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitPaymentResponse",
+                                "title": "UnitReceivedPaymentResponseWithIncluded",
                                 "properties": {
                                     "data": {
                                         "$ref": "received_payment.json"
@@ -433,13 +457,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "received_payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitReceivedPaymentResponse"
                             }
                         }
                     }
@@ -472,13 +490,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "received_payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitReceivedPaymentResponse"
                             }
                         }
                     }
@@ -494,6 +506,68 @@
             "operationId": "execute",
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "recurringCreditAchPayment",
+                                        "recurringDebitAchPayment",
+                                        "recurringCreditBookPayment"
+                                    ]
+                                }
+                            },
+                            "fromStartTime": {
+                                "type": "string"
+                            },
+                            "toStartTime": {
+                                "type": "string"
+                            },
+                            "fromEndTime": {
+                                "type": "string"
+                            },
+                            "toEndTime": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -501,10 +575,16 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitPaymentResponse",
+                                "title": "UnitRecurringPaymentListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "recurring_payment.json"
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "recurring_payment.json"
+                                        }
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
                                     }
                                 }
                             }
@@ -526,12 +606,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createRecurringPayment.json"
-                                }
-                            }
+                            "$ref": "createRecurringPayment.json"
                         }
                     }
                 }
@@ -542,13 +617,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitRecurringPaymentResponse"
                             }
                         }
                     }
@@ -581,13 +650,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitRecurringPaymentResponse"
                             }
                         }
                     }
@@ -620,13 +683,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitRecurringPaymentResponse"
                             }
                         }
                     }
@@ -659,13 +716,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitPaymentResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "recurring_payment.json"
-                                    }
-                                }
+                                "$ref": "#/UnitRecurringPaymentResponse"
                             }
                         }
                     }

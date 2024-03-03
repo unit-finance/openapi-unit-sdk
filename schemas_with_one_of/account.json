@@ -142,6 +142,7 @@
                                     "$ref": "customer.json#/definitions/customerLinkage"
                                 }
                             },
+                            "additionalProperties": true,
                             "oneOf": [
                                 {
                                     "required": [

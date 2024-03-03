@@ -25,6 +25,19 @@ RSpec.describe 'Application' do
       expect(response.data.type).to eq('individualApplication')
     end
 
+    it 'should list applications' do
+      api_instance = OpenapiClient::GetListApplicationsApi.new(client)
+      opts = { query_params: { 'filter[customer_id]': '836683' } }
+      response = api_instance.execute(opts)
+      expect(response.data[0].type).to eq('individualApplication')
+    end
+
+    it 'should get an individual application' do
+      api_instance = OpenapiClient::GetApplicationApi.new(client)
+      response = api_instance.execute("824008")
+      expect(response.data.type).to eq("individualApplication")
+    end
+
     it 'should upload a document for the application' do
       api_instance = OpenapiClient::UploadAPDFDocumentForAnApplicationApi.new(client)
       request = api_instance.execute('836683', '125214', get_document_contents)

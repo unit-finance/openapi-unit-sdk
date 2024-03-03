@@ -32,10 +32,10 @@ RSpec.describe 'Statement' do
 
       # Read the content from the IO stream, if it's an IO object
       content = if response_data.is_a?(Tempfile) || response_data.is_a?(File)
-        File.read(response_data.path)
-      else
-        response_data
-      end
+                  File.read(response_data.path)
+                else
+                  response_data
+                end
 
       # Check for common HTML tags in the content
       expect(content).to match(/<html[^>]*>/)

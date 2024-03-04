@@ -9,31 +9,15 @@
           "default": "depositAccount"
         },
         "attributes": {
-          "anyOf": [
-          {
-              "type": "object",
-              "properties": {
-                "tags": {
-                  "$ref": "tags.json#/definitions/tagsPatch"
-                }
-              }
+          "type": "object",
+          "properties": {
+            "tags": {
+              "$ref": "tags.json#/definitions/tagsPatch"
             },
-            {
-              "type": "object",
-              "properties": {
-                "depositProduct": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "overdraftLimit": {
-                  "type": "integer",
-                  "minimum": 0
-                }
-              }
+            "depositProduct": {
+              "type": "string"
             }
-          ]
+          }
         }
       },
       "additionalProperties": false,
@@ -51,24 +35,15 @@
           "default": "creditAccount"
         },
         "attributes": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "tags": {
-                  "$ref": "tags.json#/definitions/tagsPatch"
-                }
-              }
+          "type": "object",
+          "properties": {
+            "tags": {
+              "$ref": "tags.json#/definitions/tagsPatch"
             },
-            {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
+            "creditLimit": {
+              "type": "integer"
             }
-          ]
+          }
         }
       },
       "additionalProperties": false,
@@ -82,7 +57,10 @@
   "type": "object",
   "properties": {
     "data": {
-      "oneOf": [{ "$ref": "#/definitions/updateDepositAccount" }, { "$ref": "#/definitions/updateCreditAccount" }]
+      "oneOf": [
+        { "$ref": "#/definitions/updateDepositAccount" },
+        { "$ref": "#/definitions/updateCreditAccount" }
+      ]
     }
   },
   "additionalProperties": false,

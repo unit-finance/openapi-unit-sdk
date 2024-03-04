@@ -16,7 +16,7 @@
                     "type": "string",
                     "format": "date-time"
                 },
-                "lebel": {
+                "label": {
                     "type": "string"
                 },
                 "url": {
@@ -40,6 +40,9 @@
                     ]
                 },
                 "token": {
+                    "type": "string"
+                },
+                "subscriptionType": {
                     "type": "string"
                 }
             }

@@ -31,16 +31,8 @@
                 }
             },
             "required": [
-                "createdAt",
-                "description",
-                "expiration"
+                "createdAt"
             ]
         }
-    },
-    "required": [
-        "type",
-        "id",
-        "attributes"
-    ],
-    "additionalProperties": false
+    }
 }

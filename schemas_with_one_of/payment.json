@@ -6,6 +6,29 @@
                 "account": {
                     "$ref": "types.json#/definitions/Relationship"
                 },
+                "customer": {
+                    "$ref": "types.json#/definitions/Relationship"
+                },
+                "customers": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "types.json#/definitions/identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "default": "org"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "counterparty": {
                     "$ref": "types.json#/definitions/Relationship"
                 },
@@ -13,33 +36,13 @@
                     "$ref": "types.json#/definitions/Relationship"
                 },
                 "transaction": {
-                    "type": "object",
-                    "title": "transactionRelationship",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "transaction"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "types.json#/definitions/Relationship"
+                },
+                "recurringPayment": {
+                    "$ref": "types.json#/definitions/Relationship"
                 }
-            }
+            },
+            "additionalProperties": true
         },
         "AchPayment": {
             "title": "ACH Payment",

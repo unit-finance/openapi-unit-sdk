@@ -25,6 +25,15 @@ new_paths = {
   "/applications/{applicationId}": {
     "$ref": './schemas_with_one_of/application_paths.json#/application'
   },
+  "/applications/{applicationId}/cancel": {
+    "$ref": './schemas_with_one_of/application_paths.json#/cancel_application'
+  },
+  "/applications": {
+    "$ref": './schemas_with_one_of/application_paths.json#/applications'
+  },
+  "/application-forms": {
+    "$ref": './schemas_with_one_of/application_paths.json#/application_forms'
+  },
   "/applications/{applicationId}/documents/{documentId}": {
     "$ref": './schemas_with_one_of/application_paths.json#/upload_pdf_file'
   },
@@ -34,14 +43,26 @@ new_paths = {
   "/applications/{applicationId}/documents/{documentId}/?": {
     "$ref": './schemas_with_one_of/application_paths.json#/upload_jpg_file'
   },
-  "/applications/{applicationId}/cancel": {
-    "$ref": './schemas_with_one_of/application_paths.json#/cancel_application'
+  "/applications/{applicationId}/documents/{documentId}/back": {
+    "$ref": './schemas_with_one_of/application_paths.json#/upload_pdf_file_back'
   },
-  "/applications": {
-    "$ref": './schemas_with_one_of/application_paths.json#/applications'
+  "/applications/{applicationId}/documents/{documentId}/back/": {
+    "$ref": './schemas_with_one_of/application_paths.json#/upload_png_file_back'
   },
-  "/application-forms": {
-    "$ref": './schemas_with_one_of/application_paths.json#/application_forms'
+  "/applications/{applicationId}/documents/{documentId}/back/?": {
+    "$ref": './schemas_with_one_of/application_paths.json#/upload_jpg_file_back'
+  },
+  "/applications/{applicationId}/documents": {
+    "$ref": './schemas_with_one_of/application_paths.json#/documents'
+  },
+  "/applications/{applicationId}/documents/{documentId}/verify": {
+    "$ref": './schemas_with_one_of/application_paths.json#/verify_document'
+  },
+  "/applications/{applicationId}/documents/{documentId}/download": {
+    "$ref": './schemas_with_one_of/application_paths.json#/download_document'
+  },
+  "/applications/{applicationId}/documents/{documentId}/download/back": {
+    "$ref": './schemas_with_one_of/application_paths.json#/download_back_side_document'
   },
   "/application-forms/{applicationFormId}": {
     "$ref": './schemas_with_one_of/application_paths.json#/application_form'
@@ -236,10 +257,7 @@ new_paths = {
     "$ref": './schemas/tax_form_paths.json#/get_tax_form_pdf'
   },
   "/users/{userId}/api-tokens": {
-    "$ref": './schemas_with_one_of/token_paths.json#/create_token'
-  },
-  "/users": {
-    "$ref": './schemas_with_one_of/token_paths.json#/list_tokens'
+    "$ref": './schemas_with_one_of/token_paths.json#/api_tokens'
   },
   "/users/{userId}/api-tokens/{tokenId}": {
     "$ref": './schemas_with_one_of/token_paths.json#/delete_token'
@@ -292,13 +310,25 @@ new_paths = {
   "/check-payments/{checkPaymentId}/approve": {
     "$ref": './schemas_with_one_of/check_payment_paths.json#/check_payment_approve'
   },
+  "/check-payments/{checkPaymentId}/cancel": {
+    "$ref": './schemas_with_one_of/check_payment_paths.json#/check_payment_cancel'
+  },
+  "/check-payments/{checkPaymentId}/return": {
+    "$ref": './schemas_with_one_of/check_payment_paths.json#/check_payment_return'
+  },
+  "/check-payments/{checkPaymentId}/front": {
+    "$ref": './schemas_with_one_of/check_payment_paths.json#/get_check_payment_front'
+  },
+  "/check-payments/{checkPaymentId}/back": {
+    "$ref": './schemas_with_one_of/check_payment_paths.json#/get_check_payment_back'
+  },
   "/stop-payments": {
     "$ref": './schemas_with_one_of/stop_payment_paths.json#/stop_payments'
   },
   "/stop-payments/{stop_payment_id}": {
     "$ref": './schemas_with_one_of/stop_payment_paths.json#/stop_payment'
   },
-  "/stop-payments/disable": {
+  "/stop-payments/{stop_payment_id}/disable": {
     "$ref": './schemas_with_one_of/stop_payment_paths.json#/disable_stop_payment'
   }
 }
@@ -307,7 +337,7 @@ replace_paths_with_one_of('openapi.json', new_paths)
 
 # Generate the Ruby SDK using openapi-generator-cli
 command = 'openapi-generator-cli generate -g ruby -i openapi.json -o unit/e2e_tests/ruby'
-STDOUT, stderr, status = Open3.capture3(command)
+stdout, stderr, status = Open3.capture3(command)
 
 if status.success?
   puts 'SDK generated successfully.'

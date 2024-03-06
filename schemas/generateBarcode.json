@@ -1,0 +1,52 @@
+{
+  "definitions": {
+    "createCashDepositRelationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "customer": {
+          "$ref": "types.json#/definitions/customersRelationship"
+        }
+      },
+      "required": [
+        "account",
+        "customer"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "title": "Cash Deposit Barcode",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "default": "cashDepositBarcode",
+      "enum": [
+        "cashDepositBarcode"
+      ]
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "string"
+        }
+      },
+        "required": [
+          "storeId"
+        ],
+        "additionalProperties": false
+      },
+      "relationships": {
+        "$ref": "#/definitions/createCashDepositRelationships"
+      }
+    },
+    "required": [
+      "type",
+      "attributes",
+      "relationships"
+    ],
+    "additionalProperties": false
+  }

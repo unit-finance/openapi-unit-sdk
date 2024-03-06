@@ -1,0 +1,139 @@
+{
+  "cash_deposits": {
+    "get": {
+      "tags": [
+        "Get List Store Locations"
+      ],
+      "operationId": "execute",
+      "summary": "Get List Cash Deposits",
+      "description": "Get List Cash Deposits from API ",
+      "parameters": [
+        {
+          "name": "page",
+          "in": "query",
+          "style": "deepObject",
+          "allowReserved": true,
+          "schema": {
+            "$ref": "types.json#/definitions/listPageParametersObject"
+          }
+        },
+        {
+          "name": "filter",
+          "in": "query",
+          "style": "deepObject",
+          "allowReserved": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "$ref": "types.json#/definitions/coordinates"
+              },
+              "postalCode": {
+                "type": "string"
+              },
+              "serviceType": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json; charset=utf-8": {
+              "schema": {
+                "type": "array",
+                "title": "UnitCashDepositsListResponse",
+                "items": {
+                  "$ref": "store_location.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "cash_deposit_barcode": {
+    "get": {
+      "tags": [
+        "Retrieve Barcode Image"
+      ],
+      "operationId": "execute",
+      "description": "Retrieves a cash deposit barcode image using the unique barcode number provided by the Generate Barcode endpoint.",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "barcodeNumber",
+          "in": "path",
+          "description": "The unique identifier of a barcode, obtained from Generate Barcode endpoint.",
+          "required": true
+        }
+      ],
+      "summary": "Get Barcode Image",
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/pdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "generate_cash_deposit_barcode": {
+    "post": {
+      "tags": [
+        "Generate Barcode"
+      ],
+      "operationId": "execute",
+      "summary": "Create Check Deposit",
+      "description": "Create a Check Deposit via API ",
+      "requestBody": {
+        "description": "Create Check Deposit Request",
+        "required": true,
+        "content": {
+          "application/vnd.api+json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "generateBarcode.json"
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json; charset=utf-8": {
+              "schema": {
+                "type": "object",
+                "title": "UnitCashDepositResponse",
+                "properties": {
+                  "data": {
+                    "$ref": "cash_deposit_barcode.json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

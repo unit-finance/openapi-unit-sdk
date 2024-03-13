@@ -464,7 +464,7 @@
 								"title":"UnitCardLimitsResponse",
 								"properties":{
 									"data":{
-										"$ref":"limits.json"
+										"$ref":"account_limits.json"
 									}
 								}
 							}

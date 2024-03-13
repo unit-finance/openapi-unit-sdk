@@ -5,7 +5,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "limits.json"
+                    "$ref": "account_limits.json"
                 },
                 {
                     "type": "object",
@@ -206,7 +206,7 @@
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "limits.json"
+                    "$ref": "account_limits.json"
                 },
                 {
                     "type": "object",

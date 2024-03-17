@@ -1,0 +1,37 @@
+{
+  "title": "Beneficial Owner Resource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "types.json#/definitions/identifier"
+    },
+    "type": {
+      "type": "string",
+      "default": "beneficialOwner"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "$ref": "tags.json#/definitions/tagsPatch"
+        },
+        "occupation": {
+          "$ref": "types.json#/definitions/occupation"
+        },
+        "annualIncome": {
+          "$ref": "types.json#/definitions/annualIncome"
+        },
+        "sourceOfIncome": {
+          "$ref": "types.json#/definitions/sourceOfIncome"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "attributes"
+  ]
+}

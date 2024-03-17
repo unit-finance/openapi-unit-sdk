@@ -12,8 +12,35 @@
     "attributes": {
       "type": "object",
       "properties": {
-        "tags": {
-          "$ref": "tags.json#/definitions/tagsPatch"
+        "status": {
+          "type": "string",
+          "enum": ["Approved", "Denied", "PendingReview"]
+        },
+        "fullName": {
+          "$ref": "types.json#/definitions/fullName"
+        },
+        "email": {
+          "$ref": "types.json#/definitions/email"
+        },
+        "phone": {
+          "$ref": "types.json#/definitions/phone"
+        },
+        "ssn": {
+          "type": "string",
+          "pattern": "^\\d{9}$"
+        },
+        "passport": {
+          "type": "string"
+        },
+        "nationality": {
+          "$ref": "types.json#/definitions/country"
+        },
+        "address": {
+          "type": "object"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
         },
         "occupation": {
           "$ref": "types.json#/definitions/occupation"

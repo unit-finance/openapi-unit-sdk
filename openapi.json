@@ -54,7 +54,7 @@
             "$ref": "./schemas/application_paths.json#/download_back_side_document"
         },
         "/beneficial-owner/{beneficialOwnerId}": {
-            "$ref": "./schemas/beneficial_owner_paths.json#/beneficial_owners"
+            "$ref": "./schemas/beneficial_owner_paths.json#/patch_beneficial_owners"
         },
         "/application-forms/{applicationFormId}": {
             "$ref": "./schemas/application_paths.json#/application_form"

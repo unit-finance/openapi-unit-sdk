@@ -11,7 +11,7 @@
                     "$ref": "types.json#/definitions/Relationship"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": true
         },
         "IndividualCustomer": {
             "title": "IndividualCustomer",

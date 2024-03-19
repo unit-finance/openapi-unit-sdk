@@ -1,0 +1,262 @@
+{
+  "definitions": {
+    "contact": {
+      "title": "Contact",
+      "type": "object",
+      "properties": {
+        "fullName": { "$ref": "types.json#/definitions/fullName" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "$ref": "types.json#/definitions/phone" }
+      },
+      "additionalProperties": false
+    },
+    "grantor": {
+      "title": "Grantor",
+      "type": "object",
+      "properties": {
+        "fullName": { "$ref": "types.json#/definitions/fullName" },
+        "ssn": { "$ref": "types.json#/definitions/ssn" },
+        "passport": { "type": "string" },
+        "nationality": { "$ref": "types.json#/definitions/country" },
+        "matriculaConsular" : {"type":  "string"},
+        "address": { "$ref": "types.json#/definitions/address" },
+        "dateOfBirth": { "type": "string", "format": "date" },
+        "phone": { "$ref": "types.json#/definitions/phone" },
+        "email": { "type": "string", "format": "email" }
+      },
+      "additionalProperties": false
+    },
+    "officer": {
+      "title": "Officer",
+      "type": "object",
+      "properties": {
+        "fullName": { "$ref": "types.json#/definitions/fullName" },
+        "ssn": { "$ref": "types.json#/definitions/ssn" },
+        "passport": { "type": "string" },
+        "nationality": { "$ref": "types.json#/definitions/country" },
+        "matriculaConsular" : {"type":  "string"},
+        "address": { "$ref": "types.json#/definitions/address" },
+        "dateOfBirth": { "type": "string", "format": "date" },
+        "phone": { "$ref": "types.json#/definitions/phone" },
+        "email": { "type": "string", "format": "email" },
+        "occupation": { "$ref": "types.json#/definitions/occupation" },
+        "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+        "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" }
+      },
+      "additionalProperties": false
+    },
+    "beneficialOwner": {
+      "title": "Beneficial Owner",
+      "type": "object",
+      "properties": {
+        "ssn": {
+          "$ref": "types.json#/definitions/ssn"
+        },
+        "passport": {
+          "type": "string"
+        },
+        "nationality": {
+          "$ref": "types.json#/definitions/country"
+        },
+        "matriculaConsular": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "types.json#/definitions/address"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        },
+        "occupation": {
+          "$ref": "types.json#/definitions/occupation"
+        },
+        "annualIncome": {
+          "$ref": "types.json#/definitions/annualIncome"
+        },
+        "sourceOfIncome": {
+          "$ref": "types.json#/definitions/sourceOfIncome"
+        }
+      },
+      "additionalProperties": false
+    },
+    "patchIndividualApplication": {
+      "title": "Patch Individual Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "individualApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "tags": { "$ref": "tags.json#/definitions/tagsPatch" },
+            "occupation": { "$ref": "types.json#/definitions/occupation" },
+            "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+            "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "patchBusinessApplication": {
+      "title": "Patch Business Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "businessApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "tags": { "$ref": "tags.json#/definitions/tagsPatch" },
+            "annualRevenue": { "$ref": "types.json#/definitions/businessAnnualRevenue" },
+            "numberOfEmployees": { "$ref": "types.json#/definitions/businessNumberOfEmployees" },
+            "cashFlow": { "$ref": "types.json#/definitions/cashFlow" },
+            "yearOfIncorporation": { "$ref": "types.json#/definitions/year" },
+            "countriesOfOperation": {"type": "array", "items": {"$ref": "types.json#/definitions/country"}, "minItems": 1},
+            "stockSymbol": {"type": "string"},
+            "website": {"type": "string"},
+            "businessVertical": { "$ref": "types.json#/definitions/businessVertical"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "patchBusinessApplicationOfficer": {
+      "title": "Patch Business Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "businessApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "officer": {
+              "type": "object",
+              "properties": {
+                "occupation": { "$ref": "types.json#/definitions/occupation" },
+                "annualIncome": { "$ref": "types.json#/definitions/annualIncome" },
+                "sourceOfIncome": { "$ref": "types.json#/definitions/sourceOfIncome" }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "patchBusinessApplicationBeneficialOwner": {
+      "title": "Patch Business Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "beneficialOwner" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "occupation": {
+              "$ref": "types.json#/definitions/occupation"
+            },
+            "annualIncome": {
+              "$ref": "types.json#/definitions/annualIncome"
+            },
+            "sourceOfIncome": {
+              "$ref": "types.json#/definitions/sourceOfIncome"
+            }
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "application": {
+                "$ref": "types.json#/definitions/Relationship"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "patchTrustApplication": {
+      "title": "Patch Trust Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "trustApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "tags": { "$ref": "tags.json#/definitions/tagsPatch" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    },
+    "patchSoleProprietorApplication": {
+      "title": "Patch Individual Application",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "default": "individualApplication" },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "tags": {
+              "$ref": "tags.json#/definitions/tagsPatch"
+            },
+            "annualRevenue": {
+              "$ref": "types.json#/definitions/soleProprietorshipAnnualRevenue"
+            },
+            "numberOfEmployees": {
+              "$ref": "types.json#/definitions/soleProprietorshipNumberOfEmployees"
+            },
+            "businessVertical": {
+              "$ref": "types.json#/definitions/businessVertical"
+            },
+            "website": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "attributes"
+      ]
+    }
+  },
+  "title": "Patch Application",
+  "type": "object",
+  "properties": {
+    "data": {
+      "oneOf": [
+        { "$ref": "#/definitions/patchBusinessApplication" },
+        { "$ref": "#/definitions/patchBusinessApplicationOfficer" },
+        { "$ref": "#/definitions/patchBusinessApplicationBeneficialOwner" },
+        { "$ref": "#/definitions/patchSoleProprietorApplication" },
+        { "$ref": "#/definitions/patchIndividualApplication" },
+        { "$ref": "#/definitions/patchTrustApplication" }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "data" ]
+}

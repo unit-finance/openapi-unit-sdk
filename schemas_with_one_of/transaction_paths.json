@@ -1,0 +1,230 @@
+{
+    "list_transactions": {
+        "get": {
+            "tags": [
+                "Get List Transactions"
+            ],
+            "operationId": "execute",
+            "summary": "Get List Transactions",
+            "description": "Get List Transactions from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "query": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "cardId": {
+                                "type": "string"
+                            },
+                            "excludeFees": {
+                                "type": "boolean"
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "direction": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["Debit", "Credit"]
+                                }
+                            },
+                            "fromAmount": {
+                                "type": "integer"
+                            },
+                            "toAmount": {
+                                "type": "integer"
+                            },
+                            "accountType": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitTransactionsListResponse",
+                                "properties": {
+                                    "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "transaction.json"
+                                            }
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "transaction": {
+        "get": {
+            "tags": [
+                "Get Transaction"
+            ],
+            "operationId": "execute",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to get transaction from"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "transactionId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the transaction"
+                }
+            ],
+            "summary": "Get Transaction by Id",
+            "description": "Get a Transaction from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitTransactionResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "transaction.json"
+                                    },
+                                    "included": {
+                                        "$ref": "openapi_types.json#/IncludedResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "tags": [
+                "Update Transaction"
+            ],
+            "operationId": "execute",
+            "summary": "Update Transaction",
+            "description": "Update a Transaction via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to update transaction from"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "transactionId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the transaction to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Transaction Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "update_transaction.json"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitTransactionResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "transaction.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

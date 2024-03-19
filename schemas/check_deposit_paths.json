@@ -284,7 +284,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "UnitCheckDepositImageResponse",
                                 "properties": {
                                     "data": {
                                         "type": "string"
@@ -323,7 +323,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "UnitCheckDepositImageResponse",
                                 "properties": {
                                     "data": {
                                         "type": "string"

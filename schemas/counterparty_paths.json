@@ -261,7 +261,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCounterpartyResponse",
+                                "title": "UnitCounterpartyBalanceResponse",
                                 "properties": {
                                     "data": {
                                         "$ref": "counterparty_balance.json"

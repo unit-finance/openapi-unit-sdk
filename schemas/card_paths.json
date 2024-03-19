@@ -1,4 +1,13 @@
 {
+	"UnitCardResponse": {
+		"type": "object",
+		"title": "UnitCardResponse",
+		"properties": {
+			"data": {
+				"$ref": "card.json"
+			}
+		}
+	},
 	"cards":{
 		"get":{
 			"tags":[
@@ -120,13 +129,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -167,7 +170,7 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
 								"type":"object",
-								"title":"UnitCardResponse",
+								"title":"UnitCardResponseWithIncluded",
 								"properties":{
 									"data":{
 										"$ref":"card.json"
@@ -220,13 +223,7 @@
 					"content":{
 						"application/vnd.api+json":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -259,13 +256,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -298,13 +289,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -337,13 +322,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -377,7 +356,7 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
 								"type":"object",
-								"title":"UnitCardResponse",
+								"title":"UnitPinStatusResponse",
 								"properties":{
 									"data":{
 										"$ref":"card.json#/definitions/pinStatus"
@@ -415,13 +394,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -454,13 +427,7 @@
 					"content":{
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
-								"type":"object",
-								"title":"UnitCardResponse",
-								"properties":{
-									"data":{
-										"$ref":"card.json"
-									}
-								}
+								"$ref": "card_paths.json#/UnitCardResponse"
 							}
 						}
 					}
@@ -494,10 +461,10 @@
 						"application/vnd.api+json; charset=utf-8":{
 							"schema":{
 								"type":"object",
-								"title":"UnitCardResponse",
+								"title":"UnitCardLimitsResponse",
 								"properties":{
 									"data":{
-										"$ref":"limits.json"
+										"$ref":"account_limits.json"
 									}
 								}
 							}

@@ -50,7 +50,9 @@
                                         "PendingReview",
                                         "Returned",
                                         "Sent",
-                                        "Rejected"
+                                        "Rejected",
+                                        "Clearing",
+                                        "Canceled"
                                     ]
                                 }
                             },
@@ -60,7 +62,9 @@
                                     "type": "string",
                                     "enum": [
                                         "AchRepayment",
-                                        "BookRepayment"
+                                        "BookRepayment",
+                                        "CapitalPartnerBookRepayment",
+                                        "CapitalPartnerAchRepayment"
                                     ]
                                 }
                             }

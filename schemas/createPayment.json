@@ -22,14 +22,12 @@
                     "required": [
                         "type",
                         "id"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
             "required": [
                 "data"
-            ],
-            "additionalProperties": false
+            ]
         },
         "counterpartyRelationship": {
             "type": "object",
@@ -52,14 +50,12 @@
                     "required": [
                         "type",
                         "id"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
             "required": [
                 "data"
-            ],
-            "additionalProperties": false
+            ]
         },
         "counterpartyAccountRelationship": {
             "type": "object",
@@ -81,89 +77,84 @@
                     "required": [
                         "type",
                         "id"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
             "required": [
                 "data"
-            ],
-            "additionalProperties": false
+            ]
         },
         "CreateAchPayment": {
             "title": "Create ACH Payment to inline Counterparty",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "default": "achPayment"
+                },
+                "attributes": {
                     "type": "object",
                     "properties": {
-                        "type": {
+                        "amount": {
+                            "type": "integer"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "addenda": {
+                            "type": "string"
+                        },
+                        "direction": {
                             "type": "string",
-                            "default": "achPayment"
+                            "enum": [
+                                "Debit",
+                                "Credit"
+                            ]
                         },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "amount": {
-                                    "type": "integer"
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "addenda": {
-                                    "type": "string"
-                                },
-                                "direction": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Debit",
-                                        "Credit"
-                                    ]
-                                },
-                                "counterparty": {
-                                    "$ref": "payment.json#/definitions/counterparty"
-                                },
-                                "idempotencyKey": {
-                                    "type": "string"
-                                },
-                                "sameDay": {
-                                    "type": "boolean"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "secCode": {
-                                    "type": "string",
-                                    "enum": [
-                                        "WEB",
-                                        "CCD",
-                                        "PPD"
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "amount",
-                                "description",
-                                "direction",
-                                "counterparty"
-                            ],
-                            "additionalProperties": false
+                        "counterparty": {
+                            "$ref": "payment.json#/definitions/counterparty"
                         },
-                        "relationships": {
-                            "type": "object",
-                            "properties": {
-                                "account": {
-                                    "$ref": "#/definitions/accountRelationship"
-                                }
-                            },
-                            "required": [
-                                "account"
-                            ],
-                            "additionalProperties": false
+                        "idempotencyKey": {
+                            "type": "string"
+                        },
+                        "sameDay": {
+                            "type": "boolean"
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        },
+                        "secCode": {
+                            "type": "string",
+                            "enum": [
+                                "WEB",
+                                "CCD",
+                                "PPD"
+                            ]
                         }
                     },
-                    "additionalProperties": false,
                     "required": [
-                        "attributes",
-                        "relationships"
+                        "amount",
+                        "description",
+                        "direction",
+                        "counterparty"
                     ]
+                },
+                "relationships": {
+                    "type": "object",
+                    "properties": {
+                        "account": {
+                            "$ref": "#/definitions/accountRelationship"
+                        }
+                    },
+                    "required": [
+                        "account"
+                    ]
+                }
+            },
+            "required": [
+                "attributes",
+                "relationships"
+            ]
         },
         "CreateAchPaymentCounterparty": {
             "title": "Create ACH Payment to linked Counterparty",
@@ -218,8 +209,7 @@
                         "amount",
                         "description",
                         "direction"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "relationships": {
                     "type": "object",
@@ -234,11 +224,9 @@
                     "required": [
                         "account",
                         "counterparty"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
-            "additionalProperties": false,
             "required": [
                 "attributes",
                 "relationships"
@@ -305,8 +293,7 @@
                         "description",
                         "direction",
                         "plaidProcessorToken"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "relationships": {
                     "type": "object",
@@ -317,11 +304,9 @@
                     },
                     "required": [
                         "account"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
-            "additionalProperties": false,
             "required": [
                 "attributes",
                 "relationships"
@@ -357,8 +342,7 @@
                     "required": [
                         "amount",
                         "description"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "relationships": {
                     "type": "object",
@@ -373,11 +357,9 @@
                     "required": [
                         "account",
                         "counterpartyAccount"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
-            "additionalProperties": false,
             "required": [
                 "attributes",
                 "relationships"
@@ -420,8 +402,7 @@
                         "amount",
                         "description",
                         "counterparty"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "relationships": {
                     "type": "object",
@@ -432,11 +413,9 @@
                     },
                     "required": [
                         "account"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
-            "additionalProperties": false,
             "required": [
                 "attributes",
                 "relationships"
@@ -484,8 +463,7 @@
                         "accountNumber",
                         "amount",
                         "description"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "relationships": {
                     "type": "object",
@@ -496,11 +474,9 @@
                     },
                     "required": [
                         "account"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
-            "additionalProperties": false,
             "required": [
                 "attributes",
                 "relationships"
@@ -542,8 +518,7 @@
                         "amount",
                         "description",
                         "configuration"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "relationships": {
                     "type": "object",
@@ -554,17 +529,14 @@
                     },
                     "required": [
                         "account"
-                    ],
-                    "additionalProperties": false
+                    ]
                 }
             },
-            "additionalProperties": false,
             "required": [
                 "attributes",
                 "relationships"
             ]
-        },
-        "additionalProperties": false
+        }
     },
     "type": "object",
     "properties": {

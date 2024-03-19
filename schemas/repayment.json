@@ -1,409 +1,289 @@
 {
   "definitions": {
-    "AchRepayment": {
-      "title": "ACH Repayment",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "repayment.json"
-        },
-        {
+      "RepaymentRelationships": {
+       "type": "object",
+        "properties": {
+            "creditAccount": {
+                "$ref": "types.json#/definitions/Relationship"
+            },
+            "org": {
+                "$ref": "types.json#/definitions/Relationship"
+            },
+            "payment": {
+                "$ref": "types.json#/definitions/Relationship"
+            },
+            "customer": {
+                "$ref": "types.json#/definitions/Relationship"
+            },
+            "recurringRepayment": {
+                "$ref": "types.json#/definitions/Relationship"
+            }
+      },
+      "additionalProperties": true
+      },
+      "BaseRepayment": {
           "type": "object",
           "properties": {
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "amount": {
-                  "type": "integer",
-                  "minimum": 1
-                },
-                "tags": {
-                  "$ref": "tags.json#/definitions/tags"
-                },
-                "sameDay": {
-                  "type": "boolean"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "Pending",
-                    "PendingReview",
-                    "Sent",
-                    "Returned",
-                    "Rejected",
-                    "Clearing"
-                  ]
-                }
+              "id": {
+                  "type": "string"
               },
-              "required": [
-                "createdAt",
-                "status",
-                "amount"
-              ],
-              "additionalProperties": false
-            },
-            "relationships": {
-              "type": "object",
-              "properties": {
-                "account": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "depositAccount",
-                            "account"
-                          ]
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "creditAccount": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "creditAccount"
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "counterparty": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "counterparty"
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "customer": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "businessCustomer",
-                            "individualCustomer",
-                            "customer"
-                          ]
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "payment": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "payment"
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "BookRepayment": {
-      "title": "Book Repayment",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "repayment.json"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "amount": {
-                  "type": "integer",
-                  "minimum": 1
-                },
-                "tags": {
-                  "$ref": "tags.json#/definitions/tags"
-                },
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "Pending",
-                    "PendingReview",
-                    "Sent",
-                    "Returned",
-                    "Rejected"
-                  ]
-                }
+              "type": {
+                  "type": "string"
               },
-              "required": [
-                "createdAt",
-                "status",
-                "amount"
-              ],
-              "additionalProperties": false
-            },
-            "relationships": {
-              "type": "object",
-              "properties": {
-                "account": {
+              "attributes": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "depositAccount",
-                            "account"
-                          ]
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
+                      "createdAt": {
+                          "type": "string"
                       },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
+                      "updatedAt": {
+                          "type": "string"
+                      },
+                      "amount": {
+                          "type": "number"
+                      },
+                      "tags": {
+                          "$ref": "tags.json#/definitions/Tags"
+                      }
                   },
                   "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "creditAccount": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "creditAccount"
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "counterpartyAccount": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "account"
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "customer": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "businessCustomer",
-                            "individualCustomer",
-                            "customer"
-                          ]
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                },
-                "payment": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "default": "payment"
-                        },
-                        "id": {
-                          "$ref": "types.json#/definitions/identifier"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "id"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "additionalProperties": false
-                }
+                      "createdAt",
+                      "updatedAt",
+                      "amount"
+                  ]
+              },
+              "relationships": {
+                  "$ref": "#/definitions/RepaymentRelationships"
               }
-            }
-          }
-        }
-      ]
-    }
+          },
+          "required": [
+              "id",
+              "type",
+              "attributes",
+              "relationships"
+          ]
+      },
+      "BookRepaymentStatus": {
+          "type": "string",
+          "enum": [
+              "Sent",
+              "Rejected"
+          ]
+      },
+      "BaseBookRepayment": {
+          "allOf": [
+              {
+                  "$ref": "#/definitions/BaseRepayment"
+              },
+              {
+                  "type": "object",
+                  "properties": {
+                      "attributes": {
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "$ref": "#/definitions/BookRepaymentStatus"
+                              }
+                          },
+                          "required": [
+                              "status"
+                          ]
+                      },
+                      "relationships": {
+                          "type": "object",
+                          "properties": {
+                              "counterpartyAccount": {
+                                  "$ref": "types.json#/definitions/Relationship"
+                              }
+                          },
+                          "required": [
+                              "counterpartyAccount"
+                          ]
+                      }
+                  },
+                  "required": [
+                      "attributes",
+                      "relationships"
+                  ]
+              }
+          ]
+      },
+      "BookRepayment": {
+          "allOf": [
+              {
+                  "$ref": "#/definitions/BaseBookRepayment"
+              },
+              {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string",
+                          "enum": [
+                              "bookRepayment"
+                          ]
+                      },
+                      "relationships": {
+                          "type": "object",
+                          "properties": {
+                              "account": {
+                                  "$ref": "types.json#/definitions/Relationship"
+                              }
+                          },
+                          "required": [
+                              "account"
+                          ]
+                      }
+                  },
+                  "required": [
+                      "type",
+                      "relationships"
+                  ]
+              }
+          ]
+      },
+      "CapitalPartnerBookRepayment": {
+          "allOf": [
+              {
+                  "$ref": "#/definitions/BaseBookRepayment"
+              },
+              {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string",
+                          "enum": [
+                              "capitalPartnerBookRepayment"
+                          ]
+                      }
+                  },
+                  "required": [
+                      "type"
+                  ]
+              }
+          ]
+      },
+      "AchRepaymentStatus": {
+          "type": "string",
+          "enum": [
+              "Pending",
+              "PendingReview",
+              "Clearing",
+              "Returned",
+              "Sent",
+              "Rejected",
+              "Canceled"
+          ]
+      },
+      "BaseAchRepayment": {
+          "allOf": [
+              {
+                  "$ref": "#/definitions/BaseRepayment"
+              },
+              {
+                  "type": "object",
+                  "properties": {
+                      "attributes": {
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "$ref": "#/definitions/AchRepaymentStatus"
+                              }
+                          },
+                          "required": [
+                              "status"
+                          ]
+                      },
+                      "relationships": {
+                          "type": "object",
+                          "properties": {
+                              "counterparty": {
+                                  "$ref": "types.json#/definitions/Relationship"
+                              }
+                          },
+                          "required": [
+                              "counterparty"
+                          ]
+                      }
+                  },
+                  "required": [
+                      "attributes",
+                      "relationships"
+                  ]
+              }
+          ]
+      },
+      "AchRepayment": {
+          "allOf": [
+              {
+                  "$ref": "#/definitions/BaseAchRepayment"
+              },
+              {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string",
+                          "enum": [
+                              "achRepayment"
+                          ]
+                      },
+                      "relationships": {
+                          "type": "object",
+                          "properties": {
+                              "account": {
+                                  "$ref": "types.json#/definitions/Relationship"
+                              }
+                          },
+                          "required": [
+                              "account"
+                          ]
+                      }
+                  },
+                  "required": [
+                      "type",
+                      "relationships"
+                  ]
+              }
+          ]
+      },
+      "CapitalPartnerAchRepayment": {
+          "allOf": [
+              {
+                  "$ref": "#/definitions/BaseAchRepayment"
+              },
+              {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string",
+                          "enum": [
+                              "capitalPartnerAchRepayment"
+                          ]
+                      }
+                  },
+                  "required": [
+                      "type"
+                  ]
+              }
+          ]
+      }
   },
   "title": "Repayment Resource",
   "type": "object",
   "properties": {
-    "id": {
-      "$ref": "types.json#/definitions/identifier"
-    },
-    "type": {
-      "type": "string"
-    }
+      "type": {
+          "type": "string"
+      },
+      "id": {
+          "$ref": "types.json#/definitions/identifier"
+      }
   },
   "discriminator": {
-    "propertyName": "type",
-    "mapping": {
-      "achRepayment": "#/definitions/AchRepayment",
-      "bookRepayment": "#/definitions/BookRepayment"
-    }
+      "propertyName": "type",
+      "mapping": {
+          "achRepayment": "#/definitions/AchRepayment",
+          "bookRepayment": "#/definitions/BookRepayment",
+          "capitalPartnerAchRepayment": "#/definitions/CapitalPartnerAchRepayment",
+          "capitalPartnerBookRepayment": "#/definitions/CapitalPartnerBookRepayment"
+      }
   }
 }

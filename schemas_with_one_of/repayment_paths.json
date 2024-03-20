@@ -1,0 +1,174 @@
+{
+  "UnitRepaymentResponse": {
+        "type": "object",
+        "title": "UnitRepaymentResponse",
+        "properties": {
+            "data": {
+                "$ref": "repayment.json"
+            }
+        }
+    },
+    "repayments": {
+        "get": {
+            "tags": [
+                "Get List Repayments"
+            ],
+            "operationId": "execute",
+            "summary": "Get List Repayments",
+            "description": "Get List Repayments from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "types.json#/definitions/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+					"allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "creditAccountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Pending",
+                                        "PendingReview",
+                                        "Returned",
+                                        "Sent",
+                                        "Rejected"
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AchRepayment",
+                                        "BookRepayment"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "title": "UnitRepaymentsListResponse",
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "repayment.json"
+                                        }
+                                    },
+                                    "meta": {
+                                        "$ref": "types.json#/definitions/paginationMeta"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "types.json#/definitions/unitError"
+                }
+            }
+        },
+        "post": {
+            "tags": [
+                "Create a Repayment"
+            ],
+            "operationId": "execute",
+            "summary": "Create a Repayment",
+            "description": "Create a Repayment via API ",
+            "requestBody": {
+                "description": "Create a Repayment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "createRepayment.json"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "repayment_paths.json#/UnitRepaymentResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "types.json#/definitions/unitError"
+                }
+            }
+        }
+    },
+    "repayment": {
+        "get": {
+            "tags": [
+                "Get Repayment"
+            ],
+            "operationId": "execute",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "repaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the repayment to get"
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "summary": "Get Repayment by Id",
+            "description": "Get an Repayment from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "repayment_paths.json#/UnitRepaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "definitions": {
+        "createCheckDepositRelationships": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "types.json#/definitions/Relationship"
+                }
+            },
+            "required": [
+                "account"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "type": "object",
+    "properties": {
+        "data": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "checkDeposit"
+                    ],
+                    "default": "checkDeposit"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "amount": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 50
+                        },
+                        "idempotencyKey": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                        },
+                        "tags": {
+                            "$ref": "tags.json#/definitions/tags"
+                        }
+                    },
+                    "required": [
+                        "amount",
+                        "description"
+                    ],
+                    "additionalProperties": false
+                },
+                "relationships": {
+                    "$ref": "#/definitions/createCheckDepositRelationships"
+                }
+            },
+            "required": [
+                "type",
+                "attributes",
+                "relationships"
+            ]
+        }
+    }
+}

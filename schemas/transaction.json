@@ -1539,6 +1539,75 @@
                 }
             ]
         },
+        "ReturnedWireTransaction": {
+            "title": "returnedWireTransaction",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "transaction.json"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "attributes": {
+                            "type": "object",
+                            "properties": {
+                                "createdAt": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                },
+                                "direction": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Credit",
+                                        "Debit"
+                                    ]
+                                },
+                                "amount": {
+                                    "type": "integer"
+                                },
+                                "balance": {
+                                    "type": "integer"
+                                },
+                                "summary": {
+                                    "type": "string"
+                                },
+                                "reason": {
+                                    "type": "string"
+                                },
+                                "imad": {
+                                    "type": "string"
+                                },
+                                "omad": {
+                                    "type": "string"
+                                },
+                                "tags": {
+                                    "$ref": "tags.json#/definitions/tags"
+                                }
+                            },
+                            "required": [
+                                "createdAt",
+                                "amount",
+                                "direction",
+                                "balance",
+                                "summary",
+                                "reason",
+                                "imad"
+                            ],
+                            "additionalProperties": false
+                        },
+                        "relationships": {
+                            "$ref": "#/definitions/transactionRelationships"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "attributes",
+                        "relationships"
+                    ]
+                }
+            ]
+        },
         "AdjustmentTransaction": {
             "title": "adjustmentTransaction",
             "type": "object",
@@ -3070,6 +3139,7 @@
             "cardTransaction": "#/definitions/CardTransaction",
             "releaseTransaction": "#/definitions/ReleaseTransaction",
             "wireTransaction": "#/definitions/WireTransaction",
+            "returnedWireTransaction": "#/definitions/ReturnedWireTransaction",
             "interchangeTransaction": "#/definitions/InterchangeTransaction",
             "interestShareTransaction": "#/definitions/InterestShareTransaction",
             "interestTransaction": "#/definitions/InterestTransaction",

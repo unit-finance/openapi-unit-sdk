@@ -1,156 +1,399 @@
 {
   "definitions": {
-    "CreateAchRepayment": {
-      "title": "Create ACH Repayment",
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "default": "achRepayment"
-        },
-        "attributes": {
+      "accountRelationship": {
           "type": "object",
           "properties": {
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "description": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 10
-            },
-            "addenda": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            "idempotencyKey": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            },
-            "sameDay": {
-              "type": "boolean"
-            },
-            "tags": {
-              "$ref": "tags.json#/definitions/tags"
-            }
+              "data": {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string",
+                          "enum": [
+                              "account",
+                              "depositAccount",
+                              "creditAccount",
+                              "batchAccount"
+                          ]
+                      },
+                      "id": {
+                          "$ref": "types.json#/definitions/identifier"
+                      }
+                  },
+                  "required": ["type", "id"],
+                  "additionalProperties": false
+              }
           },
-          "required": [
-            "amount",
-            "description"
-          ],
+          "required": ["data"],
           "additionalProperties": false
-        },
-        "relationships": {
-          "type": "object",
-          "properties": {
-            "account": {
-              "$ref": "types.json#/definitions/Relationship"
-            },
-            "creditAccount": {
-              "$ref": "types.json#/definitions/Relationship"
-            },
-            "counterparty": {
-              "$ref": "types.json#/definitions/Relationship"
-            }
-          },
-          "required": [
-            "account",
-            "creditAccount",
-            "counterparty"
-          ],
-          "additionalProperties": false
-        }
       },
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "attributes",
-        "relationships"
-      ]
-    },
-    "CreateBookRepayment": {
-      "title": "Create Book Repayment",
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "default": "bookRepayment"
-        },
-        "attributes": {
+      "counterpartyRelationship": {
           "type": "object",
           "properties": {
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "description": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 80
-            },
-            "transactionSummaryOverride": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100
-            },
-            "idempotencyKey": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
-            },
-            "tags": {
-              "$ref": "tags.json#/definitions/tags"
-            }
+              "data": {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string",
+                          "enum": [
+                              "account",
+                              "depositAccount",
+                              "counterparty"
+                          ]
+                      },
+                      "id": {
+                          "$ref": "types.json#/definitions/identifier"
+                      }
+                  },
+                  "required": ["type", "id"],
+                  "additionalProperties": false
+              }
           },
-          "required": [
-            "amount",
-            "description"
-          ],
+          "required": ["data"],
           "additionalProperties": false
-        },
-        "relationships": {
-          "type": "object",
-          "properties": {
-            "account": {
-              "$ref": "types.json#/definitions/Relationship"
-            },
-            "creditAccount": {
-              "$ref": "types.json#/definitions/Relationship"
-            },
-            "counterpartyAccount": {
-              "$ref": "types.json#/definitions/Relationship"
-            }
-          },
-          "required": [
-            "account",
-            "creditAccount",
-            "counterpartyAccount"
-          ],
-          "additionalProperties": false
-        }
       },
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "attributes",
-        "relationships"
-      ]
-    }
-  },
-  "type": "object",
-  "properties": {
-    "data": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/CreateAchRepayment"
+      "creditAccountRelationship": {
+        "type": "object",
+        "properties": {
+            "data": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "creditAccount"
+                        ]
+                    },
+                    "id": {
+                        "$ref": "types.json#/definitions/identifier"
+                    }
+                },
+                "required": ["type", "id"],
+                "additionalProperties": false
+            }
         },
-        {
-          "$ref": "#/definitions/CreateBookRepayment"
-        }
-      ]
-    }
+        "required": ["data"],
+        "additionalProperties": false
+      },
+      "counterpartyAccountRelationship": {
+          "type": "object",
+          "properties": {
+              "data": {
+                  "type": "object",
+                  "properties": {
+                      "type": {
+                          "type": "string",
+                          "enum": ["account", "depositAccount"]
+                      },
+                      "id": {
+                          "$ref": "types.json#/definitions/identifier"
+                      }
+                  },
+                  "required": ["type", "id"],
+                  "additionalProperties": false
+              }
+          },
+          "required": ["data"],
+          "additionalProperties": false
+      },
+      "BaseCreateRepaymentRequest": {
+          "type": "object",
+          "properties": {
+              "type": {
+                  "type": "string"
+              },
+              "attributes": {
+                  "type": "object",
+                  "properties": {
+                      "description": {
+                          "type": "string"
+                      },
+                      "amount": {
+                          "type": "number"
+                      },
+                      "addenda": {
+                          "type": "string"
+                      },
+                      "sameDay": {
+                          "type": "boolean"
+                      },
+                      "secCode": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["description", "amount"],
+                  "additionalProperties": false
+              },
+              "relationships": {
+                  "type": "object",
+                  "properties": {
+                      "creditAccount": {
+                          "$ref": "#/definitions/creditAccountRelationship"
+                      }
+                  },
+                  "required": ["creditAccount"],
+                  "additionalProperties": false
+              }
+          },
+          "required": ["type", "attributes", "relationships"],
+          "additionalProperties": false
+      },
+      "BaseCreateBookRepaymentRequest": {
+          "type": "object",
+          "properties": {
+              "attributes": {
+                  "type": "object",
+                  "properties": {
+                      "transactionSummaryOverride": {
+                          "type": "string"
+                      }
+                  },
+                  "additionalProperties": false
+              },
+              "relationships": {
+                  "type": "object",
+                  "properties": {
+                      "counterpartyAccount": {
+                          "$ref": "#/definitions/counterpartyAccountRelationship"
+                      }
+                  },
+                  "required": ["counterpartyAccount"],
+                  "additionalProperties": false
+              }
+          },
+          "additionalProperties": false
+      },
+      "CreateBookRepaymentRequest": {
+          "type": "object",
+          "properties": {
+              "type": {
+                  "type": "string",
+                  "enum": ["bookRepayment"]
+              },
+              "attributes": {
+                  "type": "object",
+                  "properties": {
+                      "description": {
+                          "type": "string"
+                      },
+                      "amount": {
+                          "type": "number"
+                      },
+                      "transactionSummaryOverride": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["description", "amount"],
+                  "additionalProperties": false
+              },
+              "relationships": {
+                  "type": "object",
+                  "properties": {
+                      "creditAccount": {
+                          "$ref": "#/definitions/creditAccountRelationship"
+                      },
+                      "account": {
+                          "$ref": "#/definitions/accountRelationship"
+                      }
+                  },
+                  "required": ["creditAccount", "account"],
+                  "additionalProperties": false
+              }
+          },
+          "required": ["type", "attributes", "relationships"],
+          "additionalProperties": false
+      },
+      "CreateCapitalPartnerBookRepayment": {
+          "type": "object",
+          "properties": {
+              "type": {
+                  "type": "string",
+                  "enum": ["capitalPartnerBookRepayment"]
+              },
+              "attributes": {
+                  "type": "object",
+                  "properties": {
+                      "description": {
+                          "type": "string"
+                      },
+                      "amount": {
+                          "type": "number"
+                      },
+                      "transactionSummaryOverride": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["description", "amount"],
+                  "additionalProperties": false
+              },
+              "relationships": {
+                  "type": "object",
+                  "properties": {
+                      "creditAccount": {
+                          "$ref": "#/definitions/creditAccountRelationship"
+                      },
+                      "counterpartyAccount": {
+                          "$ref": "#/definitions/counterpartyAccountRelationship"
+                      }
+                  },
+                  "required": ["creditAccount", "counterpartyAccount"],
+                  "additionalProperties": false
+              }
+          },
+          "required": ["type", "attributes", "relationships"],
+          "additionalProperties": false
+      },
+      "BaseAchRepaymentRequest": {
+          "type": "object",
+          "properties": {
+              "attributes": {
+                  "type": "object",
+                  "properties": {
+                      "description": {
+                          "type": "string"
+                      },
+                      "amount": {
+                          "type": "number"
+                      },
+                      "addenda": {
+                          "type": "string"
+                      },
+                      "sameDay": {
+                          "type": "boolean"
+                      },
+                      "secCode": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["description", "amount"],
+                  "additionalProperties": false
+              },
+              "relationships": {
+                  "type": "object",
+                  "properties": {
+                      "counterparty": {
+                          "$ref": "#/definitions/counterpartyRelationship"
+                      }
+                  },
+                  "required": ["counterparty"],
+                  "additionalProperties": false
+              }
+          },
+          "additionalProperties": false
+      },
+      "CreateAchRepaymentRequest": {
+          "type": "object",
+          "properties": {
+              "type": {
+                  "type": "string",
+                  "enum": ["achRepayment"]
+              },
+              "attributes": {
+                  "type": "object",
+                  "properties": {
+                      "description": {
+                          "type": "string"
+                      },
+                      "amount": {
+                          "type": "number"
+                      },
+                      "addenda": {
+                          "type": "string"
+                      },
+                      "sameDay": {
+                          "type": "boolean"
+                      },
+                      "secCode": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["description", "amount"],
+                  "additionalProperties": false
+              },
+              "relationships": {
+                  "type": "object",
+                  "properties": {
+                      "creditAccount": {
+                          "$ref": "#/definitions/creditAccountRelationship"
+                      },
+                      "account": {
+                          "$ref": "#/definitions/accountRelationship"
+                      }
+                  },
+                  "required": ["creditAccount", "account"],
+                  "additionalProperties": false
+              }
+          },
+          "required": ["type", "attributes", "relationships"],
+          "additionalProperties": false
+      },
+      "CreateCapitalPartnerAchRepaymentRequest": {
+          "type": "object",
+          "properties": {
+              "type": {
+                  "type": "string",
+                  "enum": ["capitalPartnerAchRepayment"]
+              },
+              "attributes": {
+                  "type": "object",
+                  "properties": {
+                      "description": {
+                          "type": "string"
+                      },
+                      "amount": {
+                          "type": "number"
+                      },
+                      "addenda": {
+                          "type": "string"
+                      },
+                      "sameDay": {
+                          "type": "boolean"
+                      },
+                      "secCode": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["description", "amount"],
+                  "additionalProperties": false
+              },
+              "relationships": {
+                  "type": "object",
+                  "properties": {
+                      "creditAccount": {
+                          "$ref": "#/definitions/creditAccountRelationship"
+                      },
+                      "counterpartyAccount": {
+                          "$ref": "#/definitions/counterpartyAccountRelationship"
+                      }
+                  },
+                  "required": ["creditAccount", "counterpartyAccount"],
+                  "additionalProperties": false
+              }
+          },
+          "required": ["type", "attributes", "relationships"],
+          "additionalProperties": false
+      },
+      "CreateRepaymentRequest": {
+          "type": "object",
+          "properties": {
+              "data": {
+                  "oneOf": [
+                      {
+                          "$ref": "#/definitions/CreateBookRepaymentRequest"
+                      },
+                      {
+                          "$ref": "#/definitions/CreateCapitalPartnerBookRepayment"
+                      },
+                      {
+                          "$ref": "#/definitions/CreateAchRepaymentRequest"
+                      },
+                      {
+                          "$ref": "#/definitions/CreateCapitalPartnerAchRepaymentRequest"
+                      }
+                  ]
+              }
+          },
+          "required": ["data"],
+          "additionalProperties": false
+      }
   }
 }

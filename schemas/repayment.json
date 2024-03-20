@@ -18,8 +18,7 @@
             "recurringRepayment": {
                 "$ref": "types.json#/definitions/Relationship"
             }
-      },
-      "additionalProperties": true
+        }
       },
       "BaseRepayment": {
           "type": "object",

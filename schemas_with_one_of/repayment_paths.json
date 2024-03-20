@@ -1,5 +1,5 @@
 {
-  "UnitRepaymentResponse": {
+    "UnitRepaymentResponse": {
         "type": "object",
         "title": "UnitRepaymentResponse",
         "properties": {
@@ -10,9 +10,7 @@
     },
     "repayments": {
         "get": {
-            "tags": [
-                "Get List Repayments"
-            ],
+            "tags": ["Get List Repayments"],
             "operationId": "execute",
             "summary": "Get List Repayments",
             "description": "Get List Repayments from API ",
@@ -28,7 +26,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -101,9 +99,7 @@
             }
         },
         "post": {
-            "tags": [
-                "Create a Repayment"
-            ],
+            "tags": ["Create a Repayment"],
             "operationId": "execute",
             "summary": "Create a Repayment",
             "description": "Create a Repayment via API ",
@@ -137,9 +133,7 @@
     },
     "repayment": {
         "get": {
-            "tags": [
-                "Get Repayment"
-            ],
+            "tags": ["Get Repayment"],
             "operationId": "execute",
             "parameters": [
                 {

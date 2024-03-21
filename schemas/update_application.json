@@ -155,41 +155,6 @@
         "attributes"
       ]
     },
-    "patchBusinessApplicationBeneficialOwner": {
-      "title": "Patch Business Application",
-      "type": "object",
-      "properties": {
-        "type": { "type": "string", "default": "beneficialOwner" },
-        "attributes": {
-          "type": "object",
-          "properties": {
-            "occupation": {
-              "$ref": "types.json#/definitions/occupation"
-            },
-            "annualIncome": {
-              "$ref": "types.json#/definitions/annualIncome"
-            },
-            "sourceOfIncome": {
-              "$ref": "types.json#/definitions/sourceOfIncome"
-            }
-          },
-          "relationships": {
-            "type": "object",
-            "properties": {
-              "application": {
-                "$ref": "types.json#/definitions/Relationship"
-              }
-            }
-          },
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "attributes"
-      ]
-    },
     "patchTrustApplication": {
       "title": "Patch Trust Application",
       "type": "object",
@@ -250,7 +215,6 @@
       "oneOf": [
         { "$ref": "#/definitions/patchBusinessApplication" },
         { "$ref": "#/definitions/patchBusinessApplicationOfficer" },
-        { "$ref": "#/definitions/patchBusinessApplicationBeneficialOwner" },
         { "$ref": "#/definitions/patchSoleProprietorApplication" },
         { "$ref": "#/definitions/patchIndividualApplication" },
         { "$ref": "#/definitions/patchTrustApplication" }

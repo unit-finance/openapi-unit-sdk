@@ -42,7 +42,7 @@
                           "type": "number"
                       },
                       "tags": {
-                          "$ref": "tags.json#/definitions/Tags"
+                          "$ref": "tags.json#/definitions/tags"
                       }
                   },
                   "required": [

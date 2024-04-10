@@ -1,65 +1,57 @@
 {
-    "definitions": {
-        "relationships": {
-            "type": "object",
-            "properties": {
-                "customer": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "customer"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                },
-                "account": {
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "account"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                }
+    "components": {
+        "schemas": {
+            "identifier": {
+                "type": "string",
+                "pattern": "^[1-9]\\d*$"
             },
-            "required": [
-                "account"
-            ],
-            "additionalProperties": false
+            "relationshipData": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "customer"
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/identifier"
+                    }
+                },
+                "required": ["type", "id"],
+                "additionalProperties": false
+            },
+            "relationship": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/relationshipData"
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            },
+            "attributes": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "balance": {
+                        "type": "integer"
+                    },
+                    "hold": {
+                        "type": "integer"
+                    },
+                    "available": {
+                        "type": "integer"
+                    },
+                    "overdraftLimit": {
+                        "type": "integer"
+                    }
+                },
+                "required": ["date", "balance", "hold", "available"],
+                "additionalProperties": false
+            }
         }
     },
     "title": "Account End Of Day Resource",
@@ -67,50 +59,18 @@
     "properties": {
         "type": {
             "type": "string",
-            "enum": [
-                "accountEndOfDay"
-            ]
+            "enum": ["accountEndOfDay"]
         },
         "id": {
-            "$ref": "types.json#/definitions/identifier"
+            "$ref": "#/components/schemas/identifier"
         },
         "attributes": {
-            "type": "object",
-            "properties": {
-                "date": {
-                    "type": "string",
-                    "format": "date"
-                },
-                "balance": {
-                    "type": "integer"
-                },
-                "hold": {
-                    "type": "integer"
-                },
-                "available": {
-                    "type": "integer"
-                },
-                "overdraftLimit": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "date",
-                "balance",
-                "hold",
-                "available"
-            ],
-            "additionalProperties": false
+            "$ref": "#/components/schemas/attributes"
         },
         "relationships": {
-            "$ref": "#/definitions/relationships"
+            "$ref": "#/components/schemas/relationship"
         }
     },
     "additionalProperties": false,
-    "required": [
-        "type",
-        "id",
-        "relationships",
-        "attributes"
-    ]
+    "required": ["type", "id", "relationships", "attributes"]
 }

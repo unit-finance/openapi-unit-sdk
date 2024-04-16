@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Disputes"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List Disputes",
             "description": "Get List Disputes from API ",
             "parameters": [
@@ -12,7 +12,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -53,7 +53,7 @@
             "tags": [
                 "Get Dispute"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {

@@ -25,20 +25,16 @@
 				"$ref": "application.json"
 			},
 			"included": {
-				"$ref": "openapi_types.json#/IncludedResource"
+				"$ref": "./openapi_types.json#/IncludedResource"
 			}
 		}
-	},
-	"UnitError":{
-		"type":"object",
-		"title":"UnitError"
 	},
 	"application":{
 		"get":{
 			"tags":[
 				"Get Application"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -76,7 +72,7 @@
 			"tags":[
 				"Update Application"
 			],
-			"operationId":"execute",
+			
 			"summary":"Update Application",
 			"description":"Update an Application via API ",
 			"parameters":[
@@ -120,7 +116,7 @@
 			"tags":[
 				"Cancel Application"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -198,7 +194,7 @@
 			"tags":[
 				"Get List Applications"
 			],
-			"operationId":"execute",
+			
 			"summary":"Get List Application",
 			"description":"Get List Applications from API ",
 			"parameters":[
@@ -206,7 +202,7 @@
 					"name":"page",
 					"in":"query",
 					"schema":{
-						"$ref":"types.json#/definitions/listPageParametersObject"
+						"$ref":"./types.json#/components/schemas/listPageParametersObject"
 					}
 				},
 				{
@@ -270,7 +266,7 @@
 										}
 									},
 									"meta": {
-										"$ref": "types.json#/definitions/paginationMeta"
+										"$ref": "./types.json#/components/schemas/paginationMeta"
 									}
 								}
 							}
@@ -282,7 +278,7 @@
 					"content":{
 						"application/json":{
 							"schema":{
-								"$ref":"application_paths.json#/UnitError"
+								"$ref": "./types.json#/components/schemas/testError"
 							}
 						}
 					}
@@ -293,13 +289,12 @@
 			"tags":[
 				"Create Application"
 			],
-			"operationId":"execute",
+			
 			"summary":"Create Application",
 			"description":"Create an Application via API ",
 			"requestBody":{
 				"description":"Create Application Request",
 				"required": true,
-				"title": "CreateApplicationRequest",
 				"content":{
 					"application/vnd.api+json":{
 						"schema": {
@@ -339,7 +334,7 @@
 			"tags": [
 				"Get List Application Forms"
 			],
-			"operationId": "execute",
+			
 			"summary": "Get List Application Forms",
 			"description": "Get List Application Forms from API ",
 			"parameters": [
@@ -347,7 +342,7 @@
 					"name": "page",
 					"in": "query",
 					"schema": {
-						"$ref": "types.json#/definitions/listPageParametersObject"
+						"$ref": "./types.json#/components/schemas/listPageParametersObject"
 					}
 				},
 				{
@@ -417,7 +412,7 @@
 			"tags":[
 				"Create ApplicationForm"
 			],
-			"operationId":"execute",
+			
 			"summary":"Create Application Form",
 			"description":"Create an Application Form via API ",
 			"requestBody":{
@@ -456,7 +451,7 @@
 			"tags":[
 				"Get Application Form"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -505,7 +500,7 @@
 			"tags":[
 				"Upload a PDF Document for an Application"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -558,7 +553,7 @@
 			"tags":[
 				"Upload a PDF Document for an Application - Back Side"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -611,7 +606,7 @@
 			"tags":[
 				"Upload a PNG Document for an Application"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -664,7 +659,7 @@
 			"tags":[
 				"Upload a PNG Document for an Application - Back Side"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -717,7 +712,7 @@
 			"tags":[
 				"Upload a JPEG Document for an Application"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -770,7 +765,7 @@
 			"tags":[
 				"Upload a JPEG Document for an Application - Back Side"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -823,7 +818,7 @@
 			"tags":[
 				"Get List of Documents"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -863,7 +858,7 @@
 			"tags":[
 				"Create a Document for an Application"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -896,7 +891,7 @@
 			"tags":[
 				"Verify a Document for an Application"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -955,7 +950,7 @@
 			"tags":[
 				"Download a Document"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -998,7 +993,7 @@
 			"tags":[
 				"Download a Document - Back Side"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{

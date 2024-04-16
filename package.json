@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "bundle": "npx @redocly/cli bundle openapi.json -o dist/bundledApi.json",
+    "refactor": "ts-node cli/refactor.ts -p ./schemas",
+    "generate-java": "npx @openapitools/openapi-generator-cli generate -g java -i openapi.json -o unit",
+    "redocly-lint": "npx @redocly/openapi-cli lint --config .redocly.yaml openapi.json"
+  },
   "dependencies": {
     "ts-node": "^10.9.2"
   }

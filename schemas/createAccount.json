@@ -1,105 +1,107 @@
 {
-    "definitions": {
-        "CreateCreditAccount": {
-            "title": "Create Credit Account",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "default": "creditAccount",
-                    "enum": ["creditAccount"]
-                },
-                "attributes": {
-                    "type": "object",
-                    "properties": {
-                        "creditTerms": {
-                            "type": "string"
-                        },
-                        "creditLimit": {
-                            "type": "integer"
-                        },
-                        "tags": {
-                            "type": "object",
-                            "nullable": true
-                        },
-                        "idempotencyKey": {
-                            "type": "string",
-                            "nullable": true
-                        }
+    "components": {
+        "schemas": {
+            "CreateCreditAccount": {
+                "title": "Create Credit Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "creditAccount",
+                        "enum": ["creditAccount"]
                     },
-                    "additionalProperties": false,
-                    "required": [
-                        "creditTerms",
-                        "creditLimit"
-                    ]
-                },
-                "relationships": {
-                    "type": "object",
-                    "properties": {
-                        "customer": {
-                            "$ref": "customer.json#/definitions/customerLinkage"
-                        }
-                    }
-                }
-            }
-        },
-        "CreateDepositAccount": {
-            "title": "Create Deposit Account",
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "default": "depositAccount",
-                    "enum": ["depositAccount"]
-                },
-                "attributes": {
-                    "type": "object",
-                    "properties": {
-                        "depositProduct": {
-                            "type": "string"
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "creditTerms": {
+                                "type": "string"
+                            },
+                            "creditLimit": {
+                                "type": "integer"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "nullable": true
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "nullable": true
+                            }
                         },
-                        "tags": {
-                            "type": "object",
-                            "nullable": true
-                        },
-                        "idempotencyKey": {
-                            "type": "string",
-                            "nullable": true
-                        }
+                        "additionalProperties": false,
+                        "required": [
+                            "creditTerms",
+                            "creditLimit"
+                        ]
                     },
-                    "additionalProperties": false,
-                    "required": [
-                        "depositProduct"
-                    ]
-                },
-                "relationships": {
-                    "type": "object",
-                    "properties": {
-                        "customer": {
-                            "$ref": "customer.json#/definitions/customerLinkage"
-                        },
-                        "customers": {
-                            "$ref": "types.json#/definitions/customersRelationship"
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "customer": {
+                                "$ref": "customer.json#/components/schemas/customerLinkage"
+                            }
                         }
                     }
                 }
             },
-            "additionalProperties": false
-        }
-    },
-    "type": "object",
-    "properties": {
-        "data": {
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/CreateCreditAccount"
+            "CreateDepositAccount": {
+                "title": "Create Deposit Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "depositAccount",
+                        "enum": ["depositAccount"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "depositProduct": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "nullable": true
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "depositProduct"
+                        ]
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "customer": {
+                                "$ref": "customer.json#/components/schemas/customerLinkage"
+                            },
+                            "customers": {
+                                "$ref": "./types.json#/components/schemas/customersRelationship"
+                            }
+                        }
+                    }
                 },
-                {
-                    "$ref": "#/definitions/CreateDepositAccount"
-                }
-            ]
-        }
-    },
-      "additionalProperties": false,
-      "required": [ "data" ]
+                "additionalProperties": false
+            }
+        },
+        "type": "object",
+        "properties": {
+            "data": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/CreateCreditAccount"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreateDepositAccount"
+                    }
+                ]
+            }
+        },
+          "additionalProperties": false,
+          "required": [ "data" ]
+    }
 }

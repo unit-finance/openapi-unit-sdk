@@ -16,10 +16,10 @@
                     "type": "string"
                 },
                 "coordinates": {
-                    "$ref": "types.json#/definitions/coordinates"
+                    "$ref": "./types.json#/components/schemas/coordinates"
                 },
                 "address": {
-                    "$ref": "types.json#/definitions/address"
+                    "$ref": "./types.json#/components/schemas/address"
                 },
                 "distance": {
                     "type": "integer"

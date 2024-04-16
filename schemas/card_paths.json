@@ -4,7 +4,7 @@
 			"tags":[
 				"Get List of Cards"
 			],
-			"operationId":"execute",
+			
 			"summary":"Get List of Cards",
 			"description":"Get List of Cards from API ",
 			"parameters":[
@@ -12,7 +12,7 @@
 					"name":"page",
 					"in":"query",
 					"schema":{
-						"$ref":"types.json#/definitions/listPageParametersObject"
+						"$ref":"./types.json#/components/schemas/listPageParametersObject"
 					}
 				},
 				{
@@ -86,7 +86,7 @@
 									"included":{
 										"type":"array",
 										"items":{
-											"$ref": "openapi_types.json#/IncludedResource"
+											"$ref": "./openapi_types.json#/IncludedResource"
 										}
 									}
 								}
@@ -100,7 +100,7 @@
 			"tags":[
 				"Create a Card"
 			],
-			"operationId":"execute",
+			
 			"summary":"Create a Card",
 			"description":"Create a Card via API ",
 			"requestBody":{
@@ -139,7 +139,7 @@
 			"tags":[
 				"Get Card"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -175,7 +175,7 @@
 									"included": {
 										"type": "array",
 										"items": {
-											"$ref": "openapi_types.json#/IncludedResource"
+											"$ref": "./openapi_types.json#/IncludedResource"
 										}
 									}
 								}
@@ -189,7 +189,7 @@
 			"tags":[
 				"Update Card"
 			],
-			"operationId":"execute",
+			
 			"summary":"Update Card",
 			"description":"Update a Card via API ",
 			"parameters":[
@@ -239,7 +239,7 @@
 			"tags":[
 				"Report Card as Lost"
 			],
-			"operationId":"execute",
+			
 			"summary":"Report lost as stolen",
 			"parameters":[
 				{
@@ -278,7 +278,7 @@
 			"tags":[
 				"Report Card as Stolen"
 			],
-			"operationId":"execute",
+			
 			"summary":"Report card as stolen",
 			"parameters":[
 				{
@@ -317,7 +317,7 @@
 			"tags":[
 				"Close a Card"
 			],
-			"operationId":"execute",
+			
 			"summary":"Close a Card",
 			"description":"Close a Card via API ",
 			"parameters":[
@@ -356,7 +356,7 @@
 			"tags":[
 				"Get Card PIN Status"
 			],
-			"operationId":"execute",
+			
 			"summary":"Get Card PIN Status",
 			"description":"Get Card PIN Status via API ",
 			"parameters":[
@@ -380,7 +380,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/definitions/pinStatus"
+										"$ref":"card.json#/components/schemas/pinStatus"
 									}
 								}
 							}
@@ -395,7 +395,7 @@
 			"tags":[
 				"Freeze a Card"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -434,7 +434,7 @@
 			"tags":[
 				"Unfreeze a Card"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{
@@ -473,7 +473,7 @@
 			"tags":[
 				"Get Card Limits"
 			],
-			"operationId":"execute",
+			
 			"parameters":[
 				{
 					"schema":{

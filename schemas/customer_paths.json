@@ -13,7 +13,7 @@
             "tags": [
                 "Get Customer"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -44,7 +44,7 @@
             "tags": [
                 "Update Customer"
             ],
-            "operationId": "execute",
+            
             "summary": "Update Customer",
             "description": "Update an Customer via API ",
             "parameters": [
@@ -88,7 +88,7 @@
             "tags": [
                 "Get List Customers"
             ],
-            "operationId": "execute",
+            
             "summary": "Get Customers List",
             "description": "Get Customers List from API ",
             "parameters":[
@@ -96,7 +96,7 @@
                "name":"page",
                "in":"query",
                "schema":{
-                  "$ref":"types.json#/definitions/listPageParametersObject"
+                  "$ref":"./types.json#/components/schemas/listPageParametersObject"
                }
             },
             {
@@ -156,7 +156,7 @@
                                         }
                                     },
                                     "meta": {
-                                        "$ref": "types.json#/definitions/paginationMeta"
+                                        "$ref": "./types.json#/components/schemas/paginationMeta"
                                     }
                                 }
                             }
@@ -171,7 +171,7 @@
             "tags": [
                 "Archive Customer"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {

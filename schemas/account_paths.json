@@ -28,7 +28,7 @@
          "tags":[
             "Get List Accounts"
          ],
-         "operationId":"execute",
+         
          "summary":"Get List Accounts",
          "description":"Get List Accounts from API ",
          "parameters":[
@@ -36,7 +36,7 @@
                "name":"page",
                "in":"query",
                "schema":{
-                  "$ref":"types.json#/definitions/listPageParametersObject"
+                  "$ref":"./types.json#/components/schemas/listPageParametersObject"
                }
             },
             {
@@ -116,7 +116,7 @@
                               }
                            },
                            "meta": {
-                              "$ref": "types.json#/definitions/paginationMeta"
+                              "$ref": "./types.json#/components/schemas/paginationMeta"
                            }
                         }
                      }
@@ -124,7 +124,7 @@
                }
             },
             "401":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       },
@@ -132,12 +132,11 @@
          "tags":[
             "Create Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Create Account",
          "description":"Create Account via API ",
          "requestBody":{
             "description":"Create Account Request",
-            "title": "CreateAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
@@ -159,7 +158,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -169,7 +168,7 @@
          "tags":[
             "Get Account"
          ],
-         "operationId":"execute",
+         
          "parameters":[
             {
                "schema":{
@@ -207,7 +206,7 @@
          "tags":[
             "Update Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Update Account",
          "description":"Update an Account via API ",
          "parameters":[
@@ -223,7 +222,6 @@
          ],
          "requestBody":{
             "description":"Update Account Request",
-            "title": "UpdateAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
@@ -245,7 +243,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -255,7 +253,7 @@
          "tags":[
             "Get Account Limits"
          ],
-         "operationId":"execute",
+         
          "parameters":[
             {
                "schema":{
@@ -279,7 +277,7 @@
                         "title":"UnitGetAccountLimitsResponse",
                         "properties":{
                            "data":{
-                              "$ref":"types.json#/definitions/limits"
+                              "$ref":"./types.json#/components/schemas/limits"
                            }
                         }
                      }
@@ -294,7 +292,7 @@
          "tags":[
             "Unfreeze Account"
          ],
-         "operationId":"execute",
+         
          "parameters":[
             {
                "schema":{
@@ -320,7 +318,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -330,7 +328,7 @@
          "tags":[
             "Freeze an Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Freeze Account by Id",
          "description":"Freeze Account via API ",
          "parameters":[
@@ -346,7 +344,6 @@
          ],
          "requestBody":{
             "description":"Freeze Account Request",
-            "title": "FreezeAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
@@ -355,7 +352,7 @@
                      "title": "FreezeAccountRequest",
                      "properties":{
                         "data":{
-                           "$ref":"types.json#/definitions/freezeAccountRequest"
+                           "$ref":"./types.json#/components/schemas/freezeAccountRequest"
                         }
                      }
                   }
@@ -374,7 +371,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -384,7 +381,7 @@
          "tags":[
             "Close an Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Close an Account by Id",
          "description":"Close an Account via API ",
          "parameters":[
@@ -400,7 +397,6 @@
          ],
          "requestBody":{
             "description":"Close Account Request",
-            "title": "CloseAccountRequest",
             "required":true,
             "content":{
                "application/vnd.api+json":{
@@ -409,7 +405,7 @@
                      "title": "CloseAccountRequest",
                      "properties":{
                         "data":{
-                           "$ref":"types.json#/definitions/closeAccountRequest"
+                           "$ref":"./types.json#/components/schemas/closeAccountRequest"
                         }
                      }
                   }
@@ -428,7 +424,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -438,7 +434,7 @@
          "tags":[
             "Reopen an Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Reopen an Account by Id",
          "description":"Reopen an Account via API ",
          "parameters":[
@@ -464,7 +460,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -474,7 +470,7 @@
          "tags":[
             "Enter Control Agreement for Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Enter Account Control Agreement by Id",
          "description":"Enter Control Agreement for Account via API ",
          "parameters":[
@@ -500,7 +496,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -510,7 +506,7 @@
          "tags":[
             "Activate Control Agreement for Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Activate Account Control Agreement by Id",
          "description":"Activate Control Agreement for Account via API ",
          "parameters":[
@@ -536,7 +532,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -546,7 +542,7 @@
          "tags":[
             "Deactivate Control Agreement for Account"
          ],
-         "operationId":"execute",
+         
          "summary":"Deactivate Account Control Agreement by Id",
          "description":"Deactivate Control Agreement for Account via API",
          "parameters":[
@@ -572,7 +568,7 @@
                }
             },
             "404":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }
@@ -582,7 +578,7 @@
          "tags":[
             "Get list account end-of-day balances history"
          ],
-         "operationId":"execute",
+         
          "summary":"Get AccountEndOfDay List",
          "description":"Get AccountEndOfDay List from API ",
          "responses":{
@@ -603,7 +599,7 @@
                }
             },
             "default":{
-               "$ref":"types.json#/definitions/unitError"
+               "$ref":"./types.json#/components/schemas/testError"
             }
          }
       }

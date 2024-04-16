@@ -1,379 +1,381 @@
 {
-    "definitions": {
-        "customerRelationships": {
-            "type": "object",
-            "title": "customerRelationships",
-            "properties": {
-                "org": {
-                    "$ref": "types.json#/definitions/orgRelationship"
-                },
-                "application": {
-                    "$ref": "types.json#/definitions/Relationship"
-                }
-            },
-            "additionalProperties": true
-        },
-        "IndividualCustomer": {
-            "title": "IndividualCustomer",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "customer.json"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "createdAt": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                },
-                                "fullName": {
-                                    "$ref": "types.json#/definitions/fullName"
-                                },
-                                "email": {
-                                    "$ref": "types.json#/definitions/email"
-                                },
-                                "phone": {
-                                    "$ref": "types.json#/definitions/phone"
-                                },
-                                "ssn": {
-                                    "type": "string",
-                                    "pattern": "^\\d{9}$"
-                                },
-                                "passport": {
-                                    "type": "string"
-                                },
-                                "nationality": {
-                                    "$ref": "types.json#/definitions/country"
-                                },
-                                "matriculaConsular": {
-                                    "type": "string"
-                                },
-                                "address": {
-                                    "$ref": "types.json#/definitions/address"
-                                },
-                                "dateOfBirth": {
-                                    "type": "string",
-                                    "format": "date"
-                                },
-                                "ein": {
-                                    "type": "string"
-                                },
-                                "dba": {
-                                    "type": "string"
-                                },
-                                "soleProprietorship": {
-                                    "type": "boolean",
-                                    "default": "false"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "riskRate": {
-                                    "type": "string",
-                                    "enum": [
-                                        "low",
-                                        "medium",
-                                        "high"
-                                    ]
-                                },
-                                "maskedSSN": {
-                                    "type": "string",
-                                    "pattern": "^\\*{5}\\d{4}$"
-                                },
-                                "maskedPassport": {
-                                    "type": "string"
-                                },
-                                "maskedMatriculaConsular": {
-                                    "type": "string"
-                                },
-                                "authorizedUsers": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "types.json#/definitions/authorizedUser"
-                                    }
-                                },
-                                "jwtSubject": {
-                                    "$ref": "types.json#/definitions/jwtSubject"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Active",
-                                        "Archived"
-                                    ]
-                                },
-                                "archiveReason": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Inactive",
-                                        "FraudACHActivity",
-                                        "FraudCardActivity",
-                                        "FraudCheckActivity",
-                                        "FraudApplicationHistory",
-                                        "FraudAccountActivity",
-                                        "FraudClientIdentified",
-                                        "FraudLinkedToFraudulentCustomer"
-                                    ]
-                                }
-                            },
-                            "additionalProperties": false,
-                            "required": [
-                                "createdAt",
-                                "fullName",
-                                "status"
-                            ]
-                        },
-                        "relationships": {
-                            "$ref": "#/definitions/customerRelationships"
-                        }
+    "components": {
+        "schemas": {
+            "customerRelationships": {
+                "type": "object",
+                "title": "customerRelationships",
+                "properties": {
+                    "org": {
+                        "$ref": "./types.json#/components/schemas/orgRelationship"
                     },
-                    "additionalProperties": false
-                }
-            ]
-        },
-        "BusinessCustomer": {
-            "title": "BusinessCustomer",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "customer.json"
+                    "application": {
+                        "$ref": "./types.json#/components/schemas/Relationship"
+                    }
                 },
-                {
-                    "type": "object",
-                    "properties": {
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "createdAt": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "dba": {
-                                    "type": "string"
-                                },
-                                "ein": {
-                                    "type": "string",
-                                    "pattern": "^\\d{9}$"
-                                },
-                                "entityType": {
-                                    "$ref": "types.json#/definitions/entityType"
-                                },
-                                "dateOfIncorporation": {
-                                    "type": "string",
-                                    "format": "date"
-                                },
-                                "stateOfIncorporation": {
-                                    "type": "string"
-                                },
-                                "purpose": {
-                                    "type": "string"
-                                },
-                                "phone": {
-                                    "$ref": "types.json#/definitions/phone"
-                                },
-                                "address": {
-                                    "$ref": "types.json#/definitions/address"
-                                },
-                                "contact": {
-                                    "$ref": "types.json#/definitions/contact"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "riskRate": {
-                                    "type": "string",
-                                    "enum": [
-                                        "low",
-                                        "medium",
-                                        "high"
-                                    ]
-                                },
-                                "authorizedUsers": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "types.json#/definitions/authorizedUser"
+                "additionalProperties": true
+            },
+            "IndividualCustomer": {
+                "title": "IndividualCustomer",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "customer.json"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "fullName": {
+                                        "$ref": "./types.json#/components/schemas/fullName"
+                                    },
+                                    "email": {
+                                        "$ref": "./types.json#/components/schemas/email"
+                                    },
+                                    "phone": {
+                                        "$ref": "./types.json#/components/schemas/phone"
+                                    },
+                                    "ssn": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "passport": {
+                                        "type": "string"
+                                    },
+                                    "nationality": {
+                                        "$ref": "./types.json#/components/schemas/country"
+                                    },
+                                    "matriculaConsular": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "$ref": "./types.json#/components/schemas/address"
+                                    },
+                                    "dateOfBirth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "ein": {
+                                        "type": "string"
+                                    },
+                                    "dba": {
+                                        "type": "string"
+                                    },
+                                    "soleProprietorship": {
+                                        "type": "boolean",
+                                        "default": "false"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/components/schemas/tags"
+                                    },
+                                    "riskRate": {
+                                        "type": "string",
+                                        "enum": [
+                                            "low",
+                                            "medium",
+                                            "high"
+                                        ]
+                                    },
+                                    "maskedSSN": {
+                                        "type": "string",
+                                        "pattern": "^\\*{5}\\d{4}$"
+                                    },
+                                    "maskedPassport": {
+                                        "type": "string"
+                                    },
+                                    "maskedMatriculaConsular": {
+                                        "type": "string"
+                                    },
+                                    "authorizedUsers": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./types.json#/components/schemas/authorizedUser"
+                                        }
+                                    },
+                                    "jwtSubject": {
+                                        "$ref": "./types.json#/components/schemas/jwtSubject"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Active",
+                                            "Archived"
+                                        ]
+                                    },
+                                    "archiveReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Inactive",
+                                            "FraudACHActivity",
+                                            "FraudCardActivity",
+                                            "FraudCheckActivity",
+                                            "FraudApplicationHistory",
+                                            "FraudAccountActivity",
+                                            "FraudClientIdentified",
+                                            "FraudLinkedToFraudulentCustomer"
+                                        ]
                                     }
                                 },
-                                "status": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Active",
-                                        "Archived"
-                                    ]
-                                },
-                                "archiveReason": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Inactive",
-                                        "FraudACHActivity",
-                                        "FraudCardActivity",
-                                        "FraudCheckActivity",
-                                        "FraudApplicationHistory",
-                                        "FraudAccountActivity",
-                                        "FraudClientIdentified",
-                                        "FraudLinkedToFraudulentCustomer"
-                                    ]
-                                }
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "fullName",
+                                    "status"
+                                ]
                             },
-                            "additionalProperties": false,
-                            "required": [
-                                "name",
-                                "entityType",
-                                "stateOfIncorporation",
-                                "contact",
-                                "status"
-                            ]
+                            "relationships": {
+                                "$ref": "#/components/schemas/customerRelationships"
+                            }
                         },
-                        "relationships": {
-                            "$ref": "#/definitions/customerRelationships"
+                        "additionalProperties": false
+                    }
+                ]
+            },
+            "BusinessCustomer": {
+                "title": "BusinessCustomer",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "customer.json"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "dba": {
+                                        "type": "string"
+                                    },
+                                    "ein": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "entityType": {
+                                        "$ref": "./types.json#/components/schemas/entityType"
+                                    },
+                                    "dateOfIncorporation": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "stateOfIncorporation": {
+                                        "type": "string"
+                                    },
+                                    "purpose": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "$ref": "./types.json#/components/schemas/phone"
+                                    },
+                                    "address": {
+                                        "$ref": "./types.json#/components/schemas/address"
+                                    },
+                                    "contact": {
+                                        "$ref": "./types.json#/components/schemas/contact"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/components/schemas/tags"
+                                    },
+                                    "riskRate": {
+                                        "type": "string",
+                                        "enum": [
+                                            "low",
+                                            "medium",
+                                            "high"
+                                        ]
+                                    },
+                                    "authorizedUsers": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./types.json#/components/schemas/authorizedUser"
+                                        }
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Active",
+                                            "Archived"
+                                        ]
+                                    },
+                                    "archiveReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Inactive",
+                                            "FraudACHActivity",
+                                            "FraudCardActivity",
+                                            "FraudCheckActivity",
+                                            "FraudApplicationHistory",
+                                            "FraudAccountActivity",
+                                            "FraudClientIdentified",
+                                            "FraudLinkedToFraudulentCustomer"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "name",
+                                    "entityType",
+                                    "stateOfIncorporation",
+                                    "contact",
+                                    "status"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/customerRelationships"
+                            }
                         }
                     }
-                }
-            ],
-            "additionalProperties": false
-        },
-        "TrustCustomer": {
-            "title": "TrustCustomer",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "customer.json"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "createdAt": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "stateOfIncorporation": {
-                                    "type": "string"
-                                },
-                                "contact": {
-                                    "$ref": "types.json#/definitions/trustContact"
-                                },
-                                "tags": {
-                                    "$ref": "tags.json#/definitions/tags"
-                                },
-                                "revocability": {
-                                    "$ref": "types.json#/definitions/revocability"
-                                },
-                                "sourceOfFunds": {
-                                    "$ref": "types.json#/definitions/sourceOfFunds"
-                                },
-                                "taxId": {
-                                    "type": "string"
-                                },
-                                "riskRate": {
-                                    "type": "string",
-                                    "enum": [
-                                        "low",
-                                        "medium",
-                                        "high"
-                                    ]
-                                },
-                                "authorizedUsers": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "types.json#/definitions/authorizedUser"
+                ],
+                "additionalProperties": false
+            },
+            "TrustCustomer": {
+                "title": "TrustCustomer",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "customer.json"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "stateOfIncorporation": {
+                                        "type": "string"
+                                    },
+                                    "contact": {
+                                        "$ref": "./types.json#/components/schemas/trustContact"
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/components/schemas/tags"
+                                    },
+                                    "revocability": {
+                                        "$ref": "./types.json#/components/schemas/revocability"
+                                    },
+                                    "sourceOfFunds": {
+                                        "$ref": "./types.json#/components/schemas/sourceOfFunds"
+                                    },
+                                    "taxId": {
+                                        "type": "string"
+                                    },
+                                    "riskRate": {
+                                        "type": "string",
+                                        "enum": [
+                                            "low",
+                                            "medium",
+                                            "high"
+                                        ]
+                                    },
+                                    "authorizedUsers": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./types.json#/components/schemas/authorizedUser"
+                                        }
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Active",
+                                            "Archived"
+                                        ]
+                                    },
+                                    "archiveReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Inactive",
+                                            "FraudACHActivity",
+                                            "FraudCardActivity",
+                                            "FraudCheckActivity",
+                                            "FraudApplicationHistory",
+                                            "FraudAccountActivity",
+                                            "FraudClientIdentified",
+                                            "FraudLinkedToFraudulentCustomer"
+                                        ]
                                     }
                                 },
-                                "status": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Active",
-                                        "Archived"
-                                    ]
-                                },
-                                "archiveReason": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Inactive",
-                                        "FraudACHActivity",
-                                        "FraudCardActivity",
-                                        "FraudCheckActivity",
-                                        "FraudApplicationHistory",
-                                        "FraudAccountActivity",
-                                        "FraudClientIdentified",
-                                        "FraudLinkedToFraudulentCustomer"
-                                    ]
-                                }
+                                "additionalProperties": false,
+                                "required": [
+                                    "name",
+                                    "stateOfIncorporation",
+                                    "contact",
+                                    "status"
+                                ]
                             },
-                            "additionalProperties": false,
-                            "required": [
-                                "name",
-                                "stateOfIncorporation",
-                                "contact",
-                                "status"
-                            ]
+                            "relationships": {
+                                "$ref": "#/components/schemas/customerRelationships"
+                            }
                         },
-                        "relationships": {
-                            "$ref": "#/definitions/customerRelationships"
-                        }
-                    },
-                    "additionalProperties": false
-                }
-            ]
-        },
-        "customerLinkage": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "customer",
-                                "businessCustomer",
-                                "individualCustomer"
-                            ]
-                        },
-                        "id": {
-                            "$ref": "types.json#/definitions/identifier"
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "id"
-                    ]
-                }
+                        "additionalProperties": false
+                    }
+                ]
             },
-            "additionalProperties": false,
-            "required": [
-                "data"
-            ]
-        }
-    },
-    "title": "Customer",
-    "type": "object",
-    "properties": {
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
+            "customerLinkage": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "customer",
+                                    "businessCustomer",
+                                    "individualCustomer"
+                                ]
+                            },
+                            "id": {
+                                "$ref": "./types.json#/components/schemas/identifier"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "id"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "data"
+                ]
+            }
         },
-        "type": {
-            "type": "string"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "individualCustomer": "#/definitions/IndividualCustomer",
-            "businessCustomer": "#/definitions/BusinessCustomer",
-            "trustCustomer": "#/definitions/TrustCustomer"
+        "title": "Customer",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "./types.json#/components/schemas/identifier"
+            },
+            "type": {
+                "type": "string"
+            }
+        },
+        "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+                "individualCustomer": "#/components/schemas/IndividualCustomer",
+                "businessCustomer": "#/components/schemas/BusinessCustomer",
+                "trustCustomer": "#/components/schemas/TrustCustomer"
+            }
         }
     }
 }

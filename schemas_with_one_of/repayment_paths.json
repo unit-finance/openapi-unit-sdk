@@ -94,7 +94,7 @@
                     }
                 },
                 "401": {
-                    "$ref": "types.json#/definitions/unitError"
+                    "$ref": "types.json#/definitions/testError"
                 }
             }
         },
@@ -126,7 +126,7 @@
                     }
                 },
                 "default": {
-                    "$ref": "types.json#/definitions/unitError"
+                    "$ref": "types.json#/definitions/testError"
                 }
             }
         }

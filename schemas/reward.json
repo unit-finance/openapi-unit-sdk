@@ -1,140 +1,142 @@
 {
-    "definitions": {
-        "rewardRelationships": {
-            "type": "object",
-            "properties": {
-                "receivingAccount": {
-                    "$ref": "types.json#/definitions/Relationship"
-                },
-                "fundingAccount": {
-                    "$ref": "types.json#/definitions/Relationship"
-                },
-                "customer": {
-                    "$ref": "types.json#/definitions/Relationship"
-                },
-                "rewardedTransaction": {
-                    "$ref": "types.json#/definitions/Relationship"
-                },
-                "transaction": {
-                    "type": "object",
-                    "title": "transactionRelationship",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "transaction"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
+    "components": {
+        "schemas": {
+            "rewardRelationships": {
+                "type": "object",
+                "properties": {
+                    "receivingAccount": {
+                        "$ref": "./types.json#/components/schemas/Relationship"
                     },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                },
-                "card": {
-                    "title": "cardRelationship",
-                    "type": "object",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "default": "card"
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
+                    "fundingAccount": {
+                        "$ref": "./types.json#/components/schemas/Relationship"
                     },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
-                }
+                    "customer": {
+                        "$ref": "./types.json#/components/schemas/Relationship"
+                    },
+                    "rewardedTransaction": {
+                        "$ref": "./types.json#/components/schemas/Relationship"
+                    },
+                    "transaction": {
+                        "type": "object",
+                        "title": "transactionRelationship",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "card": {
+                        "title": "cardRelationship",
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "card"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                },
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "receivingAccount",
+                    "fundingAccount",
+                    "customer"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "title": "Reward",
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "default": "reward"
             },
-            "required": [
-                "receivingAccount",
-                "fundingAccount",
-                "customer"
-            ],
-            "additionalProperties": false
-        }
-    },
-    "title": "Reward",
-    "type": "object",
-    "properties": {
-        "type": {
-            "type": "string",
-            "default": "reward"
-        },
-        "id": {
-            "$ref": "types.json#/definitions/identifier"
-        },
-        "attributes": {
-            "type": "object",
-            "properties": {
-                "createdAt": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "amount": {
-                    "type": "integer",
-                    "minimum": 1
-                },
-                "description": {
-                    "type": "string",
-                    "maxLength": 50
-                },
-                "status": {
-                    "type": "string",
-                    "enum": [
-                        "Rejected",
-                        "Sent"
-                    ]
-                },
-                "rejectReason": {
-                    "type": "string"
-                },
-                "tags": {
-                    "$ref": "tags.json#/definitions/tags"
-                }
+            "id": {
+                "$ref": "./types.json#/components/schemas/identifier"
             },
-            "required": [
-                "description",
-                "createdAt",
-                "amount",
-                "tags",
-                "status"
-            ],
-            "additionalProperties": false
+            "attributes": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "amount": {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "description": {
+                        "type": "string",
+                        "maxLength": 50
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "Rejected",
+                            "Sent"
+                        ]
+                    },
+                    "rejectReason": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "$ref": "tags.json#/components/schemas/tags"
+                    }
+                },
+                "required": [
+                    "description",
+                    "createdAt",
+                    "amount",
+                    "tags",
+                    "status"
+                ],
+                "additionalProperties": false
+            },
+            "relationships": {
+                "$ref": "#/components/schemas/rewardRelationships"
+            }
         },
-        "relationships": {
-            "$ref": "#/definitions/rewardRelationships"
-        }
-    },
-    "required": [
-        "type",
-        "id",
-        "relationships",
-        "attributes"
-    ],
-    "additionalProperties": false
+        "required": [
+            "type",
+            "id",
+            "relationships",
+            "attributes"
+        ],
+        "additionalProperties": false
+    }
 }

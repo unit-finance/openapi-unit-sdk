@@ -27,7 +27,7 @@
             "default": "checkPayment"
           },
           "id": {
-            "$ref": "types.json#/definitions/identifier"
+            "$ref": "./types.json#/components/schemas/identifier"
           },
           "attributes": {
             "type": "object",
@@ -81,7 +81,7 @@
                     "type": "string"
                   },
                   "address": {
-                    "$ref": "types.json#/definitions/address"
+                    "$ref": "./types.json#/components/schemas/address"
                   },
                   "counterpartyMoved": {
                     "type": "boolean"
@@ -110,7 +110,7 @@
                 "type": "string"
               },
               "tags": {
-                "$ref": "tags.json#/definitions/tags"
+                "$ref": "tags.json#/components/schemas/tags"
               },
               "description": {
                 "type": "string"
@@ -175,7 +175,7 @@
                         ]
                       },
                       "id": {
-                        "$ref": "types.json#/definitions/identifier"
+                        "$ref": "./types.json#/components/schemas/identifier"
                       }
                     },
                     "required": [
@@ -205,7 +205,7 @@
                         ]
                       },
                       "id": {
-                        "$ref": "types.json#/definitions/identifier"
+                        "$ref": "./types.json#/components/schemas/identifier"
                       }
                     },
                     "required": [
@@ -221,7 +221,7 @@
                 "additionalProperties": false
               },
               "customers": {
-                "$ref": "types.json#/definitions/customersRelationship"
+                "$ref": "./types.json#/components/schemas/customersRelationship"
               },
               "transaction": {
                 "type": "object",
@@ -234,7 +234,7 @@
                         "default": "transaction"
                       },
                       "id": {
-                        "$ref": "types.json#/definitions/identifier"
+                        "$ref": "./types.json#/components/schemas/identifier"
                       }
                     },
                     "required": [
@@ -279,7 +279,7 @@
       "tags": [
         "Get List Check Payments"
       ],
-      "operationId": "execute",
+      
       "summary": "Get List Check Payments",
       "description": "Get List Check Payments from API ",
       "parameters": [
@@ -287,7 +287,7 @@
           "name": "page",
           "in": "query",
           "schema": {
-            "$ref": "types.json#/definitions/listPageParametersObject"
+            "$ref": "./types.json#/components/schemas/listPageParametersObject"
           }
         },
         {
@@ -388,7 +388,7 @@
       "tags": [
         "Create Check Payment"
       ],
-      "operationId": "execute",
+      
       "summary": "Create Check Payment",
       "description": "Create Check Payment via API ",
       "requestBody": {
@@ -421,7 +421,7 @@
       "tags": [
         "Get Check Payment"
       ],
-      "operationId": "execute",
+      
       "parameters": [
         {
           "schema": {
@@ -454,7 +454,7 @@
       "tags": [
         "Approve Check Payment"
       ],
-      "operationId": "execute",
+      
       "parameters": [
         {
           "schema": {
@@ -510,7 +510,7 @@
       "tags": [
         "Return Check Payment"
       ],
-      "operationId": "execute",
+      
       "parameters": [
         {
           "schema": {
@@ -574,7 +574,7 @@
       "tags": [
         "Cancel Check Payment"
       ],
-      "operationId": "execute",
+      
       "parameters": [
         {
           "schema": {
@@ -607,7 +607,7 @@
       "tags": [
         "Get a front image"
       ],
-      "operationId": "execute",
+      
       "parameters": [
         {
           "schema": {
@@ -641,7 +641,7 @@
       "tags": [
         "Get a back image"
       ],
-      "operationId": "execute",
+      
       "parameters": [
         {
           "schema": {

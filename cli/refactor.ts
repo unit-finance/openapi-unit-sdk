@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const REF_DEFINITIONS_REGEX = /(^.*"\$ref":\s*".*)(definitions)/gm;
+const REF_DEFINITIONS_REGEX = /\/definitions/gm;
 const DEFINITIONS_REGEX = /("definitions":\s*{)((.|\n|\r)*)(})/;
 
 const replaceDefinitionsWithComponents = (filePath: string) => {
@@ -8,7 +8,7 @@ const replaceDefinitionsWithComponents = (filePath: string) => {
 
     const stringWithReplacedDefinitions = fileContents.replace(
         DEFINITIONS_REGEX,
-        (match, p1, p2: string, p3) => {
+        (_, __, p2: string) => {
             const indentedContent = p2.replace(
                 /(\r\n|\n|\r)/g,
                 (match) => match + '    '
@@ -23,17 +23,31 @@ const replaceDefinitionsWithComponents = (filePath: string) => {
 
     const modifiedContent = stringWithReplacedDefinitions.replace(
         REF_DEFINITIONS_REGEX,
-        (match, p1) => {
-            return p1 + 'components/schemas';
-        }
+        '/components/schemas'
     );
 
     fs.writeFileSync(filePath, modifiedContent);
 };
+const main = () => {
+    let path: string | null = null;
+    process.argv.forEach((val, index) => {
+        if (val === '--path' || val === '-p') {
+            path = process.argv[index + 1];
+        }
+    });
 
-const dir = fs.readdirSync('./schemas');
-dir.forEach(
-    (file) =>
-        file.endsWith('.json') &&
-        replaceDefinitionsWithComponents(`./schemas/${file}`)
-);
+    if (!path) {
+        console.log(
+            'Please provide a path to the schemas folder using --path or -p flag'
+        );
+        return;
+    }
+    const dir = fs.readdirSync(path);
+    dir.forEach(
+        (file) =>
+            file.endsWith('.json') &&
+            replaceDefinitionsWithComponents(`./schemas/${file}`)
+    );
+};
+
+main();

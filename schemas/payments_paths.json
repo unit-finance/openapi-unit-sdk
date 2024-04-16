@@ -31,7 +31,7 @@
             "tags": [
                 "Get List Payments"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List Payments",
             "description": "Get List Payments from API ",
             "parameters": [
@@ -39,7 +39,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -160,10 +160,10 @@
                                         }
                                     },
                                     "included": {
-                                        "$ref": "openapi_types.json#/IncludedResource"
+                                        "$ref": "./openapi_types.json#/IncludedResource"
                                     },
                                     "meta": {
-                                        "$ref":"types.json#/definitions/paginationMeta"
+                                        "$ref":"./types.json#/components/schemas/paginationMeta"
                                     }
                                 }
                             }
@@ -176,7 +176,7 @@
             "tags": [
                 "Create a Payment"
             ],
-            "operationId": "execute",
+            
             "summary": "Create a Payment",
             "description": "Create a Payment via API ",
             "requestBody": {
@@ -209,7 +209,7 @@
             "tags": [
                 "Get Payment"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -243,7 +243,7 @@
                                         "$ref": "payment.json"
                                     },
                                     "included": {
-                                        "$ref": "openapi_types.json#/IncludedResource"
+                                        "$ref": "./openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }
@@ -256,7 +256,7 @@
             "tags": [
                 "Update Payment"
             ],
-            "operationId": "execute",
+            
             "summary": "Update Payment",
             "description": "Update an Payment via API ",
             "parameters": [
@@ -300,7 +300,7 @@
             "tags": [
                 "Cancel Payment"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -333,7 +333,7 @@
             "tags": [
                 "Get Received Payments List"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "name": "included",
@@ -361,10 +361,10 @@
                                         }
                                     },
                                     "included": {
-                                        "$ref": "openapi_types.json#/IncludedResource"
+                                        "$ref": "./openapi_types.json#/IncludedResource"
                                     },
                                     "meta": {
-										"$ref":"types.json#/definitions/paginationMeta"
+										"$ref":"./types.json#/components/schemas/paginationMeta"
 									}
                                 }
                             }
@@ -379,7 +379,7 @@
             "tags": [
                 "Get Received Payment"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -413,7 +413,7 @@
                                         "$ref": "received_payment.json"
                                     },
                                     "included": {
-                                        "$ref": "openapi_types.json#/IncludedResource"
+                                        "$ref": "./openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }
@@ -426,7 +426,7 @@
             "tags": [
                 "Update Received Payment"
             ],
-            "operationId": "execute",
+            
             "summary": "Update Received Payment",
             "description": "Update a Received Payment via API ",
             "parameters": [
@@ -470,7 +470,7 @@
             "tags": [
                 "Advance Received Payment"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -503,7 +503,7 @@
             "tags": [
                 "Get List Recurring Payments"
             ],
-            "operationId": "execute",
+            
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
             "parameters": [
@@ -511,7 +511,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -584,7 +584,7 @@
                                         }
                                     },
                                     "meta": {
-                                        "$ref": "types.json#/definitions/paginationMeta"
+                                        "$ref": "./types.json#/components/schemas/paginationMeta"
                                     }
                                 }
                             }
@@ -597,7 +597,7 @@
             "tags": [
                 "Create Recurring Payment"
             ],
-            "operationId": "execute",
+            
             "summary": "Create Recurring Payment",
             "description": "Create a Recurring Payment via API ",
             "requestBody": {
@@ -630,7 +630,7 @@
             "tags": [
                 "Get Recurring Payment"
             ],
-            "operationId": "execute",
+            
             "summary": "Get Recurring Payment",
             "parameters": [
                 {
@@ -663,7 +663,7 @@
             "tags": [
                 "Disable Recurring Payment"
             ],
-            "operationId": "execute",
+            
             "summary": "Disable Recurring Payment",
             "parameters": [
                 {
@@ -696,7 +696,7 @@
             "tags": [
                 "Enable Recurring Payment"
             ],
-            "operationId": "execute",
+            
             "summary": "Enable Recurring Payment",
             "parameters": [
                 {

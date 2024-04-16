@@ -4,7 +4,7 @@
             "tags": [
                 "Create Reward"
             ],
-            "operationId": "execute",
+            
             "summary": "Create Reward",
             "description": "Create a Reward via API ",
             "requestBody": {
@@ -41,7 +41,7 @@
             "tags": [
                 "Get List Rewards"
             ],
-            "operationId": "execute",
+            
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
             "parameters": [
@@ -49,7 +49,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -136,7 +136,7 @@
             "tags": [
                 "Get Reward"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {

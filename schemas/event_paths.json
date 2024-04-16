@@ -13,7 +13,7 @@
             "tags": [
                 "Get List Events"
             ],
-            "operationId": "execute",
+            
             "summary": "Get Events List",
             "description": "Get Events List from API ",
             "parameters": [
@@ -21,7 +21,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -76,7 +76,7 @@
             "tags": [
                 "Get Event"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -113,7 +113,7 @@
             "tags": [
                 "Fire Event"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {

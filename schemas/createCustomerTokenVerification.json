@@ -19,7 +19,7 @@
                             ]
                         },
                         "phone": {
-                            "$ref": "types.json#/definitions/phone"
+                            "$ref": "./types.json#/components/schemas/phone"
                         },
                         "appHash": {
                             "type": "string",

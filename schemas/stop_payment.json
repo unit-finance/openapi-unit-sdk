@@ -7,7 +7,7 @@
           "default": "stopPayment"
         },
         "id": {
-          "$ref": "types.json#/definitions/identifier"
+          "$ref": "./types.json#/components/schemas/identifier"
         },
         "attributes": {
           "type": "object",
@@ -32,7 +32,7 @@
               ]
             },
             "tags": {
-              "$ref": "tags.json#/definitions/tags"
+              "$ref": "tags.json#/components/schemas/tags"
             },
             "checkNumber": {
               "type": "string"
@@ -63,7 +63,7 @@
                       ]
                     },
                     "id": {
-                      "$ref": "types.json#/definitions/identifier"
+                      "$ref": "./types.json#/components/schemas/identifier"
                     }
                   },
                   "required": [
@@ -93,7 +93,7 @@
                       ]
                     },
                     "id": {
-                      "$ref": "types.json#/definitions/identifier"
+                      "$ref": "./types.json#/components/schemas/identifier"
                     }
                   },
                   "required": [
@@ -109,7 +109,7 @@
               "additionalProperties": false
             },
             "customers": {
-              "$ref": "types.json#/definitions/customersRelationship"
+              "$ref": "./types.json#/components/schemas/customersRelationship"
             },
             "checkPayments": {
               "type": "object",
@@ -120,7 +120,7 @@
                     "type": "object",
                     "properties": {
                       "id": {
-                        "$ref": "types.json#/definitions/identifier"
+                        "$ref": "./types.json#/components/schemas/identifier"
                       },
                       "type": {
                         "type": "string",

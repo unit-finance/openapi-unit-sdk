@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Webhooks"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List Webhooks",
             "description": "Get List Webhooks from API ",
             "parameters": [
@@ -12,7 +12,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -72,7 +72,7 @@
             "tags": [
                 "Create Webhook"
             ],
-            "operationId": "execute",
+            
             "summary": "Create Webhook",
             "description": "Create a Webhook via API ",
             "requestBody": {
@@ -165,7 +165,7 @@
             "tags": [
                 "Get Webhook"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -202,7 +202,7 @@
             "tags": [
                 "Update Webhook"
             ],
-            "operationId": "execute",
+            
             "summary": "Update Webhook",
             "description": "Update a Webhook via API ",
             "parameters": [
@@ -222,7 +222,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "types.json#/definitions/updateUnitRequest"
+                            "$ref": "./types.json#/components/schemas/updateUnitRequest"
                         }
                     }
                 }
@@ -252,7 +252,7 @@
             "tags": [
                 "Enable Webhook"
             ],
-            "operationId": "execute",
+            
             "summary": "Enable Webhook",
             "parameters": [
                 {
@@ -291,7 +291,7 @@
             "tags": [
                 "Disable Webhook"
             ],
-            "operationId": "execute",
+            
             "summary": "Disable a Webhook",
             "parameters": [
                 {

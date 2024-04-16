@@ -1,55 +1,57 @@
 {
-  "definitions": {
-    "patchAchPayment": {
-      "title": "Patch ACH Payment",
-      "type": "object",
-      "properties": {
-        "type": { "type": "string", "default": "achPayment" },
-        "attributes": {
+  "components": {
+        "schemas": {
+        "patchAchPayment": {
+          "title": "Patch ACH Payment",
           "type": "object",
           "properties": {
-            "tags": { "$ref": "tags.json#/definitions/tagsPatch" }
+            "type": { "type": "string", "default": "achPayment" },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" }
+              },
+              "additionalProperties": false
+            }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes"
+          ]
+        },
+        "patchBookPayment": {
+          "title": "Patch Book Payment",
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "default": "bookPayment" },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "attributes"
+          ]
+        }
+      },
+    
+      "title": "Patch Payment",
+      "type": "object",
+      "properties": {
+        "data": {
+          "oneOf": [
+            { "$ref": "#/components/schemas/patchAchPayment" },
+            { "$ref": "#/components/schemas/patchBookPayment" }
+          ]
         }
       },
       "additionalProperties": false,
-      "required": [
-        "type",
-        "attributes"
-      ]
-    },
-    "patchBookPayment": {
-      "title": "Patch Book Payment",
-      "type": "object",
-      "properties": {
-        "type": { "type": "string", "default": "bookPayment" },
-        "attributes": {
-          "type": "object",
-          "properties": {
-            "tags": { "$ref": "tags.json#/definitions/tagsPatch" }
-          },
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "attributes"
-      ]
+      "required": [ "data" ]
     }
-  },
-
-  "title": "Patch Payment",
-  "type": "object",
-  "properties": {
-    "data": {
-      "oneOf": [
-        { "$ref": "#/definitions/patchAchPayment" },
-        { "$ref": "#/definitions/patchBookPayment" }
-      ]
-    }
-  },
-  "additionalProperties": false,
-  "required": [ "data" ]
 }

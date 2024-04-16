@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Authorizations"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List authorizations",
             "description": "Get List Authorizations from API ",
             "parameters": [
@@ -12,7 +12,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -107,7 +107,7 @@
             "tags": [
                 "Get Authorization"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -153,7 +153,7 @@
             "tags": [
                 "Get List Authorization Requests"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List Authorization Requests",
             "description": "Get List Authorization Requests from API ",
             "parameters": [
@@ -161,7 +161,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -222,7 +222,7 @@
             "tags": [
                 "Get Authorization Request"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -261,7 +261,7 @@
             "tags": [
                 "Approve Authorization Request"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -285,7 +285,7 @@
                             "title": "ApproveAuthorizationRequest",
 							"properties":{
 								"data":{
-									"$ref":"authorization_request.json#/definitions/approveAuthorizationRequest"
+									"$ref":"authorization_request.json#/components/schemas/approveAuthorizationRequest"
 								}
 							}
 						}
@@ -317,7 +317,7 @@
             "tags": [
                 "Decline Authorization Request"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -341,7 +341,7 @@
                             "title": "DeclineAuthorizationRequest",
 							"properties":{
 								"data":{
-									"$ref":"authorization_request.json#/definitions/declineAuthorizationRequest"
+									"$ref":"authorization_request.json#/components/schemas/declineAuthorizationRequest"
 								}
 							}
 						}

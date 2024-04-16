@@ -1,66 +1,68 @@
 {
-    "definitions": {
-        "createCheckDepositRelationships": {
-            "type": "object",
-            "properties": {
-                "account": {
-                    "$ref": "types.json#/definitions/Relationship"
-                }
-            },
-            "required": [
-                "account"
-            ],
-            "additionalProperties": false
-        }
-    },
-    "type": "object",
-    "properties": {
-        "data": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "checkDeposit"
-                    ],
-                    "default": "checkDeposit"
+    "components": {
+        "schemas": {
+            "createCheckDepositRelationships": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "./types.json#/components/schemas/Relationship"
+                    }
                 },
-                "attributes": {
-                    "type": "object",
-                    "properties": {
-                        "amount": {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        "description": {
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 50
-                        },
-                        "idempotencyKey": {
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 255
-                        },
-                        "tags": {
-                            "$ref": "tags.json#/definitions/tags"
-                        }
+                "required": [
+                    "account"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "type": "object",
+        "properties": {
+            "data": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "checkDeposit"
+                        ],
+                        "default": "checkDeposit"
                     },
-                    "required": [
-                        "amount",
-                        "description"
-                    ],
-                    "additionalProperties": false
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 255
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tags"
+                            }
+                        },
+                        "required": [
+                            "amount",
+                            "description"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/createCheckDepositRelationships"
+                    }
                 },
-                "relationships": {
-                    "$ref": "#/definitions/createCheckDepositRelationships"
-                }
-            },
-            "required": [
-                "type",
-                "attributes",
-                "relationships"
-            ]
+                "required": [
+                    "type",
+                    "attributes",
+                    "relationships"
+                ]
+            }
         }
     }
 }

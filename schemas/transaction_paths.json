@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Transactions"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List Transactions",
             "description": "Get List Transactions from API ",
             "parameters": [
@@ -12,7 +12,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -106,10 +106,10 @@
                                             }
                                     },
                                     "included": {
-                                        "$ref": "openapi_types.json#/IncludedResource"
+                                        "$ref": "./openapi_types.json#/IncludedResource"
                                     },
                                     "meta": {
-                                        "$ref": "types.json#/definitions/paginationMeta"
+                                        "$ref": "./types.json#/components/schemas/paginationMeta"
                                     }
                                 }
                             }
@@ -124,7 +124,7 @@
             "tags": [
                 "Get Transaction"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -160,7 +160,7 @@
                                         "$ref": "transaction.json"
                                     },
                                     "included": {
-                                        "$ref": "openapi_types.json#/IncludedResource"
+                                        "$ref": "./openapi_types.json#/IncludedResource"
                                     }
                                 }
                             }
@@ -173,7 +173,7 @@
             "tags": [
                 "Update Transaction"
             ],
-            "operationId": "execute",
+            
             "summary": "Update Transaction",
             "description": "Update a Transaction via API ",
             "parameters": [

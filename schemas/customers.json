@@ -7,7 +7,7 @@
         "data": {
             "type": "array",
             "items": {
-                "$ref": "customer.json#/definitions/customer"
+                "$ref": "customer.json#/components/schemas/customer"
             }
         },
         "included": {
@@ -17,7 +17,7 @@
             }
         },
         "meta": {
-            "$ref": "types.json#/definitions/paginationMeta"
+            "$ref": "./types.json#/components/schemas/paginationMeta"
         }
     },
     "required": [

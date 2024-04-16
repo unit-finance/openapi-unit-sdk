@@ -1,98 +1,100 @@
 {
-  "definitions": {
-    "relationships": {
-      "type": "object",
-      "properties": {
-        "account": {
+  "components": {
+        "schemas": {
+        "relationships": {
           "type": "object",
           "properties": {
-            "data": {
+            "account": {
               "type": "object",
               "properties": {
-                "type": {
-                  "type": "string",
-                  "enum": [
-                    "account",
-                    "depositAccount",
-                    "financialBusinessFBOAccount"
-                  ]
-                },
-                "id": {
-                  "$ref": "types.json#/definitions/identifier"
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "account",
+                        "depositAccount",
+                        "financialBusinessFBOAccount"
+                      ]
+                    },
+                    "id": {
+                      "$ref": "./types.json#/components/schemas/identifier"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id"
+                  ],
+                  "additionalProperties": false
                 }
               },
               "required": [
-                "type",
-                "id"
+                "data"
               ],
               "additionalProperties": false
             }
           },
           "required": [
-            "data"
+            "account"
           ],
           "additionalProperties": false
-        }
-      },
-      "required": [
-        "account"
-      ],
-      "additionalProperties": false
-    },
-    "stopPayment": {
-      "title": "Stop Payment",
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "default": "stopPayment"
         },
-        "attributes": {
+        "stopPayment": {
+          "title": "Stop Payment",
           "type": "object",
           "properties": {
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "checkNumber": {
+            "type": {
               "type": "string",
-              "maxLength": 12
+              "default": "stopPayment"
             },
-            "tags": {
-              "$ref": "tags.json#/definitions/tags"
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "checkNumber": {
+                  "type": "string",
+                  "maxLength": 12
+                },
+                "tags": {
+                  "$ref": "tags.json#/components/schemas/tags"
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                }
+              },
+              "required": [
+                "amount",
+                "checkNumber"
+              ],
+              "additionalProperties": false
             },
-            "idempotencyKey": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 255
+            "relationships": {
+              "$ref": "#/components/schemas/relationships"
             }
           },
           "required": [
-            "amount",
-            "checkNumber"
+            "type",
+            "attributes",
+            "relationships"
           ],
           "additionalProperties": false
-        },
-        "relationships": {
-          "$ref": "#/definitions/relationships"
         }
       },
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/components/schemas/stopPayment"
+        }
+      },
+      "additionalProperties": false,
       "required": [
-        "type",
-        "attributes",
-        "relationships"
-      ],
-      "additionalProperties": false
+        "data"
+      ]
     }
-  },
-  "type": "object",
-  "properties": {
-    "data": {
-      "$ref": "#/definitions/stopPayment"
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "data"
-  ]
 }

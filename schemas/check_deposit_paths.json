@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Check Deposits"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List Check Deposits",
             "description": "Get List Check Deposits from API ",
             "parameters": [
@@ -12,7 +12,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -98,7 +98,7 @@
             "tags": [
                 "Create Check Deposit"
             ],
-            "operationId": "execute",
+            
             "summary": "Create Check Deposit",
             "description": "Create a Check Deposit via API ",
             "requestBody": {
@@ -137,7 +137,7 @@
             "tags": [
                 "Get Check Deposit"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -174,7 +174,7 @@
             "tags": [
                 "Update Check Deposit"
             ],
-            "operationId": "execute",
+            
             "summary": "Update Check Deposit",
             "description": "Update a Check Deposit via API ",
             "parameters": [
@@ -224,7 +224,7 @@
             "tags": [
                 "Confirm Check Deposit"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -263,7 +263,7 @@
             "tags": [
                 "Get Check Deposit Front Image"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -302,7 +302,7 @@
             "tags": [
                 "Get Check Deposit Back Image"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {

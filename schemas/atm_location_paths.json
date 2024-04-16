@@ -4,7 +4,7 @@
             "tags": [
                 "Get ATM Locations List"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List ATM Locations",
             "description": "Get List ATM Locations from API ",
             "parameters": [

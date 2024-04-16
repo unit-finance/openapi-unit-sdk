@@ -4,7 +4,7 @@
             "tags": [
                 "Get List Statements"
             ],
-            "operationId": "execute",
+            
             "summary": "Get List Statements",
             "description": "Get List Statements from API ",
             "parameters": [
@@ -12,7 +12,7 @@
                     "name": "page",
                     "in": "query",
                     "schema": {
-                        "$ref": "types.json#/definitions/listPageParametersObject"
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
                     }
                 },
                 {
@@ -71,7 +71,7 @@
             "tags": [
                 "Get Statement HTML"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -104,7 +104,7 @@
             "tags": [
                 "Get Statement PDF"
             ],
-            "operationId": "execute",
+            
             "parameters": [
                 {
                     "schema": {
@@ -138,7 +138,7 @@
             "tags": [
                 "Get Bank verification PDF"
             ],
-            "operationId": "execute",
+            
             "summary": "Get Bank verification PDF",
             "parameters": [
                 {

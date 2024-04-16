@@ -7,7 +7,7 @@
             "default": "document"
         },
         "id": {
-            "$ref": "types.json#/definitions/identifier"
+            "$ref": "./types.json#/components/schemas/identifier"
         },
         "attributes": {
             "type": "object",
@@ -22,7 +22,7 @@
                     "type": "string"
                 },
                 "nationality": {
-                    "$ref": "types.json#/definitions/country"
+                    "$ref": "./types.json#/components/schemas/country"
                 },
                 "ssn": {
                     "type": "string",
@@ -38,7 +38,7 @@
                     "type": "string"
                 },
                 "address": {
-                    "$ref": "types.json#/definitions/address"
+                    "$ref": "./types.json#/components/schemas/address"
                 },
                 "dateOfIncorporation": {
                     "type": "string",

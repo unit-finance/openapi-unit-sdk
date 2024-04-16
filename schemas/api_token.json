@@ -7,7 +7,7 @@
             "default": "apiToken"
         },
         "id": {
-            "$ref": "types.json#/definitions/identifier"
+            "$ref": "./types.json#/components/schemas/identifier"
         },
         "attributes": {
             "type": "object",

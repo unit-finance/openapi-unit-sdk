@@ -39,7 +39,7 @@
                                 "type": "array",
                                 "title": "UnitDisputesListResponse",
                                 "items": {
-                                    "$ref": "dispute.json"
+                                    "$ref": "./dispute.json#/components/schemas/dispute"
                                 }
                             }
                         }
@@ -77,7 +77,7 @@
                                 "title": "UnitDisputeResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "dispute.json"
+                                        "$ref": "./dispute.json#/components/schemas/dispute"
                                     }
                                 }
                             }

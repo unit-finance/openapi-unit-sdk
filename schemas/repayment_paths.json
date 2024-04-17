@@ -1,19 +1,17 @@
 {
-  "UnitRepaymentResponse": {
+    "UnitRepaymentResponse": {
         "type": "object",
         "title": "UnitRepaymentResponse",
         "properties": {
             "data": {
-                "$ref": "repayment.json"
+                "$ref": "./repayment.json#/components/schemas/repayment"
             }
         }
     },
     "repayments": {
         "get": {
-            "tags": [
-                "Get List Repayments"
-            ],
-            
+            "tags": ["Get List Repayments"],
+
             "summary": "Get List Repayments",
             "description": "Get List Repayments from API ",
             "parameters": [
@@ -28,7 +26,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -58,10 +56,7 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": [
-                                        "AchRepayment",
-                                        "BookRepayment"
-                                    ]
+                                    "enum": ["AchRepayment", "BookRepayment"]
                                 }
                             }
                         }
@@ -80,7 +75,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "repayment.json"
+                                            "$ref": "./repayment.json#/components/schemas/repayment"
                                         }
                                     },
                                     "meta": {
@@ -92,15 +87,13 @@
                     }
                 },
                 "401": {
-                    "$ref": "./types.json#/components/schemas/testError"
+                    "$ref": "./types.json#/components/schemas/defaultError"
                 }
             }
         },
         "post": {
-            "tags": [
-                "Create a Repayment"
-            ],
-            
+            "tags": ["Create a Repayment"],
+
             "summary": "Create a Repayment",
             "description": "Create a Repayment via API ",
             "requestBody": {
@@ -109,7 +102,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "createRepayment.json"
+                            "$ref": "./createRepayment.json#/components/schemas/CreateRepaymentRequest"
                         }
                     }
                 }
@@ -126,17 +119,15 @@
                     }
                 },
                 "default": {
-                    "$ref": "./types.json#/components/schemas/testError"
+                    "$ref": "./types.json#/components/schemas/defaultError"
                 }
             }
         }
     },
     "repayment": {
         "get": {
-            "tags": [
-                "Get Repayment"
-            ],
-            
+            "tags": ["Get Repayment"],
+
             "parameters": [
                 {
                     "schema": {

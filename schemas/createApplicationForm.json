@@ -18,72 +18,74 @@
                     }
                 },
                 "additionalProperties": false
-            }
-        },
-        "type": "object",
-        "properties": {
-            "data": {
+            },
+            "createApplicationForm": {
                 "type": "object",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "applicationForm"
-                    },
-                    "attributes": {
+                    "data": {
                         "type": "object",
                         "properties": {
-                            "tags": {
-                                "$ref": "tags.json#/components/schemas/tags"
-                            },
-                            "applicantDetails": {
-                                "$ref": "application_form.json#/components/schemas/ApplicationFormPrefill"
-                            },
-                            "settingsOverride": {
-                                "$ref": "application_form.json#/components/schemas/ApplicationFormSettingsOverride"
-                            },
-                            "requireIdVerification": {
-                                "$ref": "#/components/schemas/requireIdVerification"
-                            },
-                            "allowedApplicationTypes": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string",
-                                    "enum": [
-                                        "Individual",
-                                        "Business",
-                                        "SoleProprietorship"
-                                    ]
-                                }
-                            },
-                            "lang": {
+                            "type": {
                                 "type": "string",
-                                "enum": [
-                                    "en",
-                                    "es"
-                                ]
+                                "default": "applicationForm"
                             },
-                            "hideApplicationProgressTracker": {
-                                "type": "boolean"
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "tags": {
+                                        "$ref": "tags.json#/components/schemas/tags"
+                                    },
+                                    "applicantDetails": {
+                                        "$ref": "./application_form.json#/components/schemas/ApplicationFormPrefill"
+                                    },
+                                    "settingsOverride": {
+                                        "$ref": "./application_form.json#/components/schemas/ApplicationFormSettingsOverride"
+                                    },
+                                    "requireIdVerification": {
+                                        "$ref": "#/components/schemas/requireIdVerification"
+                                    },
+                                    "allowedApplicationTypes": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "Individual",
+                                                "Business",
+                                                "SoleProprietorship"
+                                            ]
+                                        }
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "enum": [
+                                            "en",
+                                            "es"
+                                        ]
+                                    },
+                                    "hideApplicationProgressTracker": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "title": "createApplicationFormRelationships",
+                                "properties": {
+                                    "application": {
+                                        "$ref": "./types.json#/components/schemas/Relationship"
+                                    }
+                                },
+                                "required": [],
+                                "additionalProperties": false
                             }
                         },
-                        "additionalProperties": false
-                    },
-                    "relationships": {
-                        "type": "object",
-                        "title": "createApplicationFormRelationships",
-                        "properties": {
-                            "application": {
-                                "$ref": "./types.json#/components/schemas/Relationship"
-                            }
-                        },
-                        "required": [],
-                        "additionalProperties": false
+                        "additionalProperties": false,
+                        "required": [
+                            "type"
+                        ]
                     }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "type"
-                ]
+                }
             }
         }
     }

@@ -7,7 +7,7 @@
         "data": {
             "type": "array",
             "items": {
-                "$ref": "customer.json#/components/schemas/customer"
+                "$ref": "./customer.json#/components/schemas/customer"
             }
         },
         "included": {

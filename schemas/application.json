@@ -337,7 +337,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "application.json"
+                        "$ref": "#/components/schemas/application"
                     },
                     {
                         "type": "object",
@@ -372,8 +372,7 @@
                                         "type": "string"
                                     },
                                     "dba": {
-                                        "type": "string",
-                                        "nullable": true
+                                        "type": ["string", "null"]
                                     },
                                     "ein": {
                                         "type": "string",
@@ -507,7 +506,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "application.json"
+                        "$ref": "#/components/schemas/application"
                     },
                     {
                         "type": "object",
@@ -678,7 +677,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "application.json"
+                        "$ref": "#/components/schemas/application"
                     },
                     {
                         "type": "object",
@@ -797,25 +796,27 @@
                         "required": ["id", "type", "attributes"]
                     }
                 ]
+            },
+            "application": {
+                "title": "Application",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "individualApplication": "#/components/schemas/IndividualApplication",
+                        "businessApplication": "#/components/schemas/BusinessApplication",
+                        "trustApplication": "#/components/schemas/TrustApplication"
+                    }
+                }
             }
-        }
-    },
-    "title": "Application",
-    "type": "object",
-    "properties": {
-        "id": {
-            "$ref": "./types.json#/components/schemas/identifier"
-        },
-        "type": {
-            "type": "string"
-        }
-    },
-    "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-            "individualApplication": "#/components/schemas/IndividualApplication",
-            "businessApplication": "#/components/schemas/BusinessApplication",
-            "trustApplication": "#/components/schemas/TrustApplication"
         }
     }
 }

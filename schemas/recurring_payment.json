@@ -12,25 +12,17 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "depositAccount",
-                                            "account"
-                                        ]
+                                        "enum": ["depositAccount", "account"]
                                     },
                                     "id": {
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "counterparty": {
@@ -41,25 +33,17 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "account",
-                                            "counterparty"
-                                        ]
+                                        "enum": ["account", "counterparty"]
                                     },
                                     "id": {
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "customer": {
@@ -80,16 +64,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "org": {
@@ -105,16 +84,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 }
@@ -130,25 +104,17 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "depositAccount",
-                                            "account"
-                                        ]
+                                        "enum": ["depositAccount", "account"]
                                     },
                                     "id": {
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "counterpartyAccount": {
@@ -159,24 +125,17 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "account"
-                                        ]
+                                        "enum": ["account"]
                                     },
                                     "id": {
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "customer": {
@@ -197,16 +156,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "org": {
@@ -222,16 +176,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 }
@@ -241,7 +190,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "recurring_payment.json"
+                        "$ref": "./recurring_payment.json#/components/schemas/recurringPayment"
                     },
                     {
                         "type": "object",
@@ -305,10 +254,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -317,7 +263,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "recurring_payment.json"
+                        "$ref": "./recurring_payment.json#/components/schemas/recurringPayment"
                     },
                     {
                         "type": "object",
@@ -389,10 +335,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -401,7 +344,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "recurring_payment.json"
+                        "$ref": "./recurring_payment.json#/components/schemas/recurringPayment"
                     },
                     {
                         "type": "object",
@@ -461,10 +404,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -482,9 +422,7 @@
                     },
                     "interval": {
                         "type": "string",
-                        "enum": [
-                            "Monthly"
-                        ]
+                        "enum": ["Monthly"]
                     },
                     "dayOfMonth": {
                         "type": "integer",
@@ -501,28 +439,27 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "interval",
-                    "nextScheduledAction"
-                ]
-            }
-        },
-        "title": "Recurring Payment Resource",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
+                "required": ["interval", "nextScheduledAction"]
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "recurringCreditAchPayment": "#/components/schemas/RecurringCreditAchPayment",
-                "recurringDebitAchPayment": "#/components/schemas/RecurringDebitAchPayment",
-                "recurringCreditBookPayment": "#/components/schemas/RecurringCreditBookPayment"
+            "recurringPayment": {
+                "title": "Recurring Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "recurringCreditAchPayment": "#/components/schemas/RecurringCreditAchPayment",
+                        "recurringDebitAchPayment": "#/components/schemas/RecurringDebitAchPayment",
+                        "recurringCreditBookPayment": "#/components/schemas/RecurringCreditBookPayment"
+                    }
+                }
             }
         }
     }

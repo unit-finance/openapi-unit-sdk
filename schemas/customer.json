@@ -19,7 +19,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "customer.json"
+                        "$ref": "./customer.json#/components/schemas/customer"
                     },
                     {
                         "type": "object",
@@ -75,11 +75,7 @@
                                     },
                                     "riskRate": {
                                         "type": "string",
-                                        "enum": [
-                                            "low",
-                                            "medium",
-                                            "high"
-                                        ]
+                                        "enum": ["low", "medium", "high"]
                                     },
                                     "maskedSSN": {
                                         "type": "string",
@@ -102,10 +98,7 @@
                                     },
                                     "status": {
                                         "type": "string",
-                                        "enum": [
-                                            "Active",
-                                            "Archived"
-                                        ]
+                                        "enum": ["Active", "Archived"]
                                     },
                                     "archiveReason": {
                                         "type": "string",
@@ -122,11 +115,7 @@
                                     }
                                 },
                                 "additionalProperties": false,
-                                "required": [
-                                    "createdAt",
-                                    "fullName",
-                                    "status"
-                                ]
+                                "required": ["createdAt", "fullName", "status"]
                             },
                             "relationships": {
                                 "$ref": "#/components/schemas/customerRelationships"
@@ -141,7 +130,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "customer.json"
+                        "$ref": "./customer.json#/components/schemas/customer"
                     },
                     {
                         "type": "object",
@@ -190,11 +179,7 @@
                                     },
                                     "riskRate": {
                                         "type": "string",
-                                        "enum": [
-                                            "low",
-                                            "medium",
-                                            "high"
-                                        ]
+                                        "enum": ["low", "medium", "high"]
                                     },
                                     "authorizedUsers": {
                                         "type": "array",
@@ -204,10 +189,7 @@
                                     },
                                     "status": {
                                         "type": "string",
-                                        "enum": [
-                                            "Active",
-                                            "Archived"
-                                        ]
+                                        "enum": ["Active", "Archived"]
                                     },
                                     "archiveReason": {
                                         "type": "string",
@@ -245,7 +227,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "customer.json"
+                        "$ref": "./customer.json#/components/schemas/customer"
                     },
                     {
                         "type": "object",
@@ -280,11 +262,7 @@
                                     },
                                     "riskRate": {
                                         "type": "string",
-                                        "enum": [
-                                            "low",
-                                            "medium",
-                                            "high"
-                                        ]
+                                        "enum": ["low", "medium", "high"]
                                     },
                                     "authorizedUsers": {
                                         "type": "array",
@@ -294,10 +272,7 @@
                                     },
                                     "status": {
                                         "type": "string",
-                                        "enum": [
-                                            "Active",
-                                            "Archived"
-                                        ]
+                                        "enum": ["Active", "Archived"]
                                     },
                                     "archiveReason": {
                                         "type": "string",
@@ -347,34 +322,31 @@
                                 "$ref": "./types.json#/components/schemas/identifier"
                             }
                         },
-                        "required": [
-                            "type",
-                            "id"
-                        ]
+                        "required": ["type", "id"]
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "data"
-                ]
-            }
-        },
-        "title": "Customer",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
+                "required": ["data"]
             },
-            "type": {
-                "type": "string"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "individualCustomer": "#/components/schemas/IndividualCustomer",
-                "businessCustomer": "#/components/schemas/BusinessCustomer",
-                "trustCustomer": "#/components/schemas/TrustCustomer"
+            "customer": {
+                "title": "Customer",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "individualCustomer": "#/components/schemas/IndividualCustomer",
+                        "businessCustomer": "#/components/schemas/BusinessCustomer",
+                        "trustCustomer": "#/components/schemas/TrustCustomer"
+                    }
+                }
             }
         }
     }

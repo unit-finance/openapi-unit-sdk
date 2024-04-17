@@ -6,7 +6,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "account.json"
+                        "$ref": "./account.json#/components/schemas/account"
                     },
                     {
                         "type": "object",
@@ -70,18 +70,11 @@
                                         "$ref": "tags.json#/components/schemas/tags"
                                     },
                                     "status": {
-                                        "enum": [
-                                            "Open",
-                                            "Closed",
-                                            "Frozen"
-                                        ]
+                                        "enum": ["Open", "Closed", "Frozen"]
                                     },
                                     "closeReason": {
                                         "type": "string",
-                                        "enum": [
-                                            "ByCustomer",
-                                            "Fraud"
-                                        ]
+                                        "enum": ["ByCustomer", "Fraud"]
                                     },
                                     "fraudReason": {
                                         "type": "string",
@@ -111,10 +104,7 @@
                                         "type": "boolean"
                                     },
                                     "dacaStatus": {
-                                        "enum": [
-                                            "Activated",
-                                            "Entered"
-                                        ]
+                                        "enum": ["Activated", "Entered"]
                                     },
                                     "updatedAt": {
                                         "type": "string",
@@ -140,17 +130,14 @@
                                 "title": "depositAccountRelationships",
                                 "properties": {
                                     "customer": {
-                                        "$ref": "customer.json#/components/schemas/customerLinkage"
+                                        "$ref": "./customer.json#/components/schemas/customerLinkage"
                                     }
                                 },
                                 "additionalProperties": true
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -159,7 +146,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "account.json"
+                        "$ref": "./account.json#/components/schemas/account"
                     },
                     {
                         "type": "object",
@@ -194,11 +181,7 @@
                                         "$ref": "tags.json#/components/schemas/tags"
                                     },
                                     "status": {
-                                        "enum": [
-                                            "Open",
-                                            "Closed",
-                                            "Frozen"
-                                        ]
+                                        "enum": ["Open", "Closed", "Frozen"]
                                     },
                                     "closeReason": {
                                         "type": "string",
@@ -256,20 +239,15 @@
                                 "title": "creditAccountRelationships",
                                 "properties": {
                                     "customer": {
-                                        "$ref": "customer.json#/components/schemas/customerLinkage"
+                                        "$ref": "./customer.json#/components/schemas/customerLinkage"
                                     }
                                 },
                                 "additionalProperties": true,
-                                "required": [
-                                    "customer"
-                                ]
+                                "required": ["customer"]
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -316,16 +294,10 @@
                             },
                             "category": {
                                 "type": "string",
-                                "enum": [
-                                    "Asset",
-                                    "Liability"
-                                ]
+                                "enum": ["Asset", "Liability"]
                             },
                             "status": {
-                                "enum": [
-                                    "Open",
-                                    "Closed"
-                                ]
+                                "enum": ["Open", "Closed"]
                             },
                             "tags": {
                                 "$ref": "tags.json#/components/schemas/tags"
@@ -384,22 +356,13 @@
                             },
                             "category": {
                                 "type": "string",
-                                "enum": [
-                                    "Asset",
-                                    "Liability"
-                                ]
+                                "enum": ["Asset", "Liability"]
                             },
                             "status": {
-                                "enum": [
-                                    "Open",
-                                    "Closed"
-                                ]
+                                "enum": ["Open", "Closed"]
                             },
                             "closeReason": {
-                                "enum": [
-                                    "ByCustomer",
-                                    "Fraud"
-                                ]
+                                "enum": ["ByCustomer", "Fraud"]
                             },
                             "fraudReason": {
                                 "type": "string",
@@ -474,16 +437,10 @@
                                 "type": "integer"
                             },
                             "status": {
-                                "enum": [
-                                    "Open",
-                                    "Closed"
-                                ]
+                                "enum": ["Open", "Closed"]
                             },
                             "closeReason": {
-                                "enum": [
-                                    "ByCustomer",
-                                    "Fraud"
-                                ]
+                                "enum": ["ByCustomer", "Fraud"]
                             },
                             "fraudReason": {
                                 "type": "string",
@@ -522,28 +479,28 @@
                                 "$ref": "./types.json#/components/schemas/orgRelationship"
                             }
                         },
-                        "required": [
-                            "org"
-                        ]
+                        "required": ["org"]
                     }
                 }
-            }
-        },
-        "title": "Account Document",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
             },
-            "type": {
-                "type": "string"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "depositAccount": "#/components/schemas/DepositAccount",
-                "creditAccount": "#/components/schemas/CreditAccount"
+            "account": {
+                "title": "Account Document",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "depositAccount": "#/components/schemas/DepositAccount",
+                        "creditAccount": "#/components/schemas/CreditAccount"
+                    }
+                }
             }
         }
     }

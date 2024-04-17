@@ -40,25 +40,17 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "account",
-                                            "depositAccount"
-                                        ]
+                                        "enum": ["account", "depositAccount"]
                                     },
                                     "id": {
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "customer": {
@@ -79,22 +71,15 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 },
-                "required": [
-                    "account"
-                ],
+                "required": ["account"],
                 "additionalProperties": false
             },
             "pinStatus": {
@@ -109,17 +94,17 @@
                         "properties": {
                             "status": {
                                 "type": "string"
-                                }
                             }
                         }
                     }
-                },
+                }
+            },
             "IndividualDebitCard": {
                 "title": "Individual Debit Card",
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "card.json"
+                        "$ref": "./card.json#/components/schemas/card"
                     },
                     {
                         "type": "object",
@@ -176,10 +161,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -188,7 +170,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "card.json"
+                        "$ref": "./card.json#/components/schemas/card"
                     },
                     {
                         "type": "object",
@@ -275,10 +257,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -287,7 +266,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "card.json"
+                        "$ref": "./card.json#/components/schemas/card"
                     },
                     {
                         "type": "object",
@@ -338,10 +317,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -350,7 +326,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "card.json"
+                        "$ref": "./card.json#/components/schemas/card"
                     },
                     {
                         "type": "object",
@@ -431,10 +407,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -443,7 +416,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "card.json"
+                        "$ref": "./card.json#/components/schemas/card"
                     },
                     {
                         "type": "object",
@@ -530,10 +503,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -542,7 +512,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "card.json"
+                        "$ref": "./card.json#/components/schemas/card"
                     },
                     {
                         "type": "object",
@@ -623,33 +593,32 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
-            }
-        },
-        "title": "Card Document",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "businessDebitCard": "#/components/schemas/BusinessDebitCard",
-                "individualDebitCard": "#/components/schemas/IndividualDebitCard",
-                "businessVirtualDebitCard": "#/components/schemas/BusinessVirtualDebitCard",
-                "individualVirtualDebitCard": "#/components/schemas/IndividualVirtualDebitCard",
-                "businessCreditCard": "#/components/schemas/BusinessCreditCard",
-                "businessVirtualCreditCard": "#/components/schemas/BusinessVirtualCreditCard"
+            "card": {
+                "title": "Card Document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "businessDebitCard": "#/components/schemas/BusinessDebitCard",
+                        "individualDebitCard": "#/components/schemas/IndividualDebitCard",
+                        "businessVirtualDebitCard": "#/components/schemas/BusinessVirtualDebitCard",
+                        "individualVirtualDebitCard": "#/components/schemas/IndividualVirtualDebitCard",
+                        "businessCreditCard": "#/components/schemas/BusinessCreditCard",
+                        "businessVirtualCreditCard": "#/components/schemas/BusinessVirtualCreditCard"
+                    }
+                }
             }
         }
     }

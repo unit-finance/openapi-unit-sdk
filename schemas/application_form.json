@@ -16,9 +16,7 @@
                                     },
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "application"
-                                        ]
+                                        "enum": ["application"]
                                     }
                                 }
                             }
@@ -35,11 +33,7 @@
                 "properties": {
                     "applicationType": {
                         "type": "string",
-                        "enum": [
-                            "Individual",
-                            "Business",
-                            "SoleProprietorship"
-                        ]
+                        "enum": ["Individual", "Business", "SoleProprietorship"]
                     },
                     "fullName": {
                         "$ref": "./types.json#/components/schemas/fullName"
@@ -145,80 +139,76 @@
                     }
                 },
                 "additionalProperties": false
-            }
-        },
-        "title": "Application Form",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "default": "applicationForm"
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            },
-            "attributes": {
+            "applicationForm": {
+                "title": "Application Form",
                 "type": "object",
                 "properties": {
-                    "email": {
-                        "$ref": "./types.json#/components/schemas/email"
-                    },
-                    "url": {
-                        "type": "string"
-                    },
-                    "stage": {
+                    "type": {
                         "type": "string",
-                        "enum": [
-                            "ChooseBusinessOrIndividual",
-                            "EnterIndividualInformation",
-                            "IndividualPhoneVerification",
-                            "IndividualApplicationCreated",
-                            "EnterBusinessInformation",
-                            "EnterBusinessAdditionalInformation",
-                            "EnterOfficerInformation",
-                            "BusinessPhoneVerification",
-                            "EnterBeneficialOwnersInformation",
-                            "BusinessApplicationCreated",
-                            "EnterSoleProprietorshipInformation",
-                            "EnterSoleProprietorshipBusinessInformation",
-                            "SoleProprietorshipPhoneVerification",
-                            "SoleProprietorshipApplicationCreated"
-                        ]
+                        "default": "applicationForm"
                     },
-                    "applicantDetails": {
-                        "$ref": "#/components/schemas/ApplicationFormPrefill"
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
                     },
-                    "settingsOverride": {
-                        "$ref": "#/components/schemas/ApplicationFormSettingsOverride"
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "$ref": "./types.json#/components/schemas/email"
+                            },
+                            "url": {
+                                "type": "string"
+                            },
+                            "stage": {
+                                "type": "string",
+                                "enum": [
+                                    "ChooseBusinessOrIndividual",
+                                    "EnterIndividualInformation",
+                                    "IndividualPhoneVerification",
+                                    "IndividualApplicationCreated",
+                                    "EnterBusinessInformation",
+                                    "EnterBusinessAdditionalInformation",
+                                    "EnterOfficerInformation",
+                                    "BusinessPhoneVerification",
+                                    "EnterBeneficialOwnersInformation",
+                                    "BusinessApplicationCreated",
+                                    "EnterSoleProprietorshipInformation",
+                                    "EnterSoleProprietorshipBusinessInformation",
+                                    "SoleProprietorshipPhoneVerification",
+                                    "SoleProprietorshipApplicationCreated"
+                                ]
+                            },
+                            "applicantDetails": {
+                                "$ref": "#/components/schemas/ApplicationFormPrefill"
+                            },
+                            "settingsOverride": {
+                                "$ref": "#/components/schemas/ApplicationFormSettingsOverride"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tags"
+                            },
+                            "allowedApplicationTypes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Individual",
+                                        "Business",
+                                        "SoleProprietorship"
+                                    ]
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["url"]
                     },
-                    "tags": {
-                        "$ref": "tags.json#/components/schemas/tags"
-                    },
-                    "allowedApplicationTypes": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": [
-                                "Individual",
-                                "Business",
-                                "SoleProprietorship"
-                            ]
-                        }
+                    "relationships": {
+                        "$ref": "#/components/schemas/applicationFormRelationships"
                     }
                 },
-                "additionalProperties": false,
-                "required": [
-                    "url"
-                ]
-            },
-            "relationships": {
-                "$ref": "#/components/schemas/applicationFormRelationships"
+                "required": ["type", "id", "attributes"]
             }
-        },
-        "required": [
-            "type",
-            "id",
-            "attributes"
-        ]
+        }
     }
 }

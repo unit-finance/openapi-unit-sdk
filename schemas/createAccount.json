@@ -20,25 +20,20 @@
                                 "type": "integer"
                             },
                             "tags": {
-                                "type": "object",
-                                "nullable": true
+                                "type": ["object", "null"]
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "creditTerms",
-                            "creditLimit"
-                        ]
+                        "required": ["creditTerms", "creditLimit"]
                     },
                     "relationships": {
                         "type": "object",
                         "properties": {
                             "customer": {
-                                "$ref": "customer.json#/components/schemas/customerLinkage"
+                                "$ref": "./customer.json#/components/schemas/customerLinkage"
                             }
                         }
                     }
@@ -60,24 +55,20 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": "object",
-                                "nullable": true
+                                "type": ["object", "null"]
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "depositProduct"
-                        ]
+                        "required": ["depositProduct"]
                     },
                     "relationships": {
                         "type": "object",
                         "properties": {
                             "customer": {
-                                "$ref": "customer.json#/components/schemas/customerLinkage"
+                                "$ref": "./customer.json#/components/schemas/customerLinkage"
                             },
                             "customers": {
                                 "$ref": "./types.json#/components/schemas/customersRelationship"
@@ -86,22 +77,24 @@
                     }
                 },
                 "additionalProperties": false
-            }
-        },
-        "type": "object",
-        "properties": {
-            "data": {
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/CreateCreditAccount"
-                    },
-                    {
-                        "$ref": "#/components/schemas/CreateDepositAccount"
+            },
+            "createAccount": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateCreditAccount"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateDepositAccount"
+                            }
+                        ]
                     }
-                ]
+                },
+                "additionalProperties": false,
+                "required": ["data"]
             }
-        },
-          "additionalProperties": false,
-          "required": [ "data" ]
+        }
     }
 }

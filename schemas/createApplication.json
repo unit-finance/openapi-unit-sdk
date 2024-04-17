@@ -221,13 +221,11 @@
                                 "$ref": "./types.json#/components/schemas/phone"
                             },
                             "ssn": {
-                                "type": "string",
-                                "nullable": true,
+                                "type": ["string", "null"],
                                 "pattern": "^\\d{9}|\\d{4}"
                             },
                             "passport": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             },
                             "nationality": {
                                 "oneOf": [
@@ -320,13 +318,11 @@
                                 "$ref": "./types.json#/components/schemas/phone"
                             },
                             "ssn": {
-                                "type": "string",
-                                "nullable": true,
+                                "type": ["string", "null"],
                                 "pattern": "^\\d{9}|\\d{4}"
                             },
                             "passport": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             },
                             "nationality": {
                                 "oneOf": [
@@ -339,8 +335,7 @@
                                 ]
                             },
                             "matriculaConsular": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             },
                             "address": {
                                 "$ref": "./types.json#/components/schemas/address"
@@ -350,12 +345,10 @@
                                 "format": "date"
                             },
                             "dba": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             },
                             "ein": {
-                                "type": "string",
-                                "nullable": true,
+                                "type": ["string", "null"],
                                 "pattern": "^\\d{9}$"
                             },
                             "ip": {
@@ -647,28 +640,30 @@
                 },
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
+            },
+            "createApplication": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateIndividualApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateSoleProprietorApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateBusinessApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateTrustApplication"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
             }
         }
-    },
-    "type": "object",
-    "properties": {
-        "data": {
-            "oneOf": [
-                {
-                    "$ref": "#/components/schemas/CreateIndividualApplication"
-                },
-                {
-                    "$ref": "#/components/schemas/CreateSoleProprietorApplication"
-                },
-                {
-                    "$ref": "#/components/schemas/CreateBusinessApplication"
-                },
-                {
-                    "$ref": "#/components/schemas/CreateTrustApplication"
-                }
-            ]
-        }
-    },
-    "additionalProperties": false,
-    "required": ["data"]
+    }
 }

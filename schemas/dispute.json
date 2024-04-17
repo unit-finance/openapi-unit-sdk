@@ -15,93 +15,84 @@
                         "$ref": "./types.json#/components/schemas/Relationship"
                     }
                 },
-                "required": [
-                    "customer",
-                    "account",
-                    "transaction"
-                ],
+                "required": ["customer", "account", "transaction"],
                 "additionalProperties": false
-            }
-        },
-        "title": "Dispute Document",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "default": "dispute"
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            },
-            "attributes": {
+            "dispute": {
+                "title": "Dispute Document",
                 "type": "object",
                 "properties": {
-                    "source": {
+                    "type": {
                         "type": "string",
-                        "enum": [
-                            "DebitCard",
-                            "ACH"
-                        ]
+                        "default": "dispute"
                     },
-                    "externalId": {
-                        "type": "string",
-                        "maxLength": 255
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
                     },
-                    "link": {
-                        "$ref": "./types.json#/components/schemas/url"
-                    },
-                    "description": {
-                        "$ref": "./types.json#/components/schemas/description"
-                    },
-                    "amount": {
-                        "type": "integer"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "statusHistory": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string"
-                                },
-                                "updatedAt": {
-                                    "type": "string",
-                                    "format": "date-time"
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "source": {
+                                "type": "string",
+                                "enum": ["DebitCard", "ACH"]
+                            },
+                            "externalId": {
+                                "type": "string",
+                                "maxLength": 255
+                            },
+                            "link": {
+                                "$ref": "./types.json#/components/schemas/url"
+                            },
+                            "description": {
+                                "$ref": "./types.json#/components/schemas/description"
+                            },
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "statusHistory": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "additionalProperties": false
                                 }
                             },
-                            "additionalProperties": false
-                        }
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "decisionReason": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "externalId",
+                            "source",
+                            "description",
+                            "status",
+                            "createdAt",
+                            "amount"
+                        ],
+                        "additionalProperties": false
                     },
-                    "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "decisionReason": {
-                        "type": "string"
+                    "relationships": {
+                        "$ref": "#/components/schemas/disputeRelationships"
                     }
                 },
-                "required": [
-                    "externalId",
-                    "source",
-                    "description",
-                    "status",
-                    "createdAt",
-                    "amount"
-                ],
-                "additionalProperties": false
-            },
-            "relationships": {
-                "$ref": "#/components/schemas/disputeRelationships"
+                "additionalProperties": false,
+                "required": ["type", "id", "relationships"]
             }
-        },
-        "additionalProperties": false,
-        "required": [
-            "type",
-            "id",
-            "relationships"
-        ]
+        }
     }
 }

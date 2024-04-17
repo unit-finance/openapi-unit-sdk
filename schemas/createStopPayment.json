@@ -1,100 +1,86 @@
 {
-  "components": {
+    "components": {
         "schemas": {
-        "relationships": {
-          "type": "object",
-          "properties": {
-            "account": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": [
-                        "account",
-                        "depositAccount",
-                        "financialBusinessFBOAccount"
-                      ]
-                    },
-                    "id": {
-                      "$ref": "./types.json#/components/schemas/identifier"
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "id"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "required": [
-                "data"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "required": [
-            "account"
-          ],
-          "additionalProperties": false
-        },
-        "stopPayment": {
-          "title": "Stop Payment",
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "default": "stopPayment"
-            },
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "amount": {
-                  "type": "integer",
-                  "minimum": 1
-                },
-                "checkNumber": {
-                  "type": "string",
-                  "maxLength": 12
-                },
-                "tags": {
-                  "$ref": "tags.json#/components/schemas/tags"
-                },
-                "idempotencyKey": {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255
-                }
-              },
-              "required": [
-                "amount",
-                "checkNumber"
-              ],
-              "additionalProperties": false
-            },
             "relationships": {
-              "$ref": "#/components/schemas/relationships"
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "account",
+                                            "depositAccount",
+                                            "financialBusinessFBOAccount"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["account"],
+                "additionalProperties": false
+            },
+            "stopPayment": {
+                "title": "Stop Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "stopPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "checkNumber": {
+                                "type": "string",
+                                "maxLength": 12
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tags"
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 255
+                            }
+                        },
+                        "required": ["amount", "checkNumber"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/relationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "createStopPayment": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/stopPayment"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
             }
-          },
-          "required": [
-            "type",
-            "attributes",
-            "relationships"
-          ],
-          "additionalProperties": false
         }
-      },
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/components/schemas/stopPayment"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "data"
-      ]
     }
 }

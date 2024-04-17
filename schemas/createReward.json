@@ -24,70 +24,98 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 },
-                "required": [
-                    "receivingAccount"
-                ],
+                "required": ["receivingAccount"],
                 "additionalProperties": false
-            }
-        },
-        "type": "object",
-        "properties": {
-            "data": {
+            },
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "default": "reward"
+                        },
+                        "attributes": {
+                            "type": "object",
+                            "properties": {
+                                "amount": {
+                                    "type": "integer",
+                                    "minimum": 1
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "maxLength": 50
+                                },
+                                "idempotencyKey": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 255
+                                },
+                                "tags": {
+                                    "$ref": "tags.json#/components/schemas/tags"
+                                }
+                            },
+                            "required": ["amount", "description"],
+                            "additionalProperties": false
+                        },
+                        "relationships": {
+                            "$ref": "#/components/schemas/createRewardRelationships"
+                        }
+                    },
+                    "required": ["type", "attributes", "relationships"],
+                    "additionalProperties": false
+                }
+            },
+            "createReward": {
                 "type": "object",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "reward"
-                    },
-                    "attributes": {
+                    "data": {
                         "type": "object",
                         "properties": {
-                            "amount": {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            "description": {
+                            "type": {
                                 "type": "string",
-                                "maxLength": 50
+                                "default": "reward"
                             },
-                            "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "idempotencyKey": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 255
+                                    },
+                                    "tags": {
+                                        "$ref": "tags.json#/components/schemas/tags"
+                                    }
+                                },
+                                "required": ["amount", "description"],
+                                "additionalProperties": false
                             },
-                            "tags": {
-                                "$ref": "tags.json#/components/schemas/tags"
+                            "relationships": {
+                                "$ref": "#/components/schemas/createRewardRelationships"
                             }
                         },
-                        "required": [
-                            "amount",
-                            "description"
-                        ],
+                        "required": ["type", "attributes", "relationships"],
                         "additionalProperties": false
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/createRewardRelationships"
                     }
-                },
-                "required": [
-                    "type",
-                    "attributes",
-                    "relationships"
-                ],
-                "additionalProperties": false
+                }
             }
         }
     }

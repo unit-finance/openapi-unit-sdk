@@ -4,7 +4,7 @@
         "title": "UnitCustomerResponse",
         "properties": {
             "data": {
-                "$ref": "customer.json"
+                "$ref": "./customer.json#/components/schemas/customer"
             }
         }
     },
@@ -64,7 +64,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "update_customer.json"
+                            "$ref": "./update_customer.json#/components/schemas/updateCustomer"
                         }
                     }
                 }
@@ -152,7 +152,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "customer.json"
+                                            "$ref": "./customer.json#/components/schemas/customer"
                                         }
                                     },
                                     "meta": {

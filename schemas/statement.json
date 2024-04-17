@@ -14,34 +14,31 @@
                         "$ref": "./types.json#/components/schemas/customersRelationship"
                     }
                 }
-            }
-        },
-        "title": "Statement",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            },
-            "attributes": {
+            "statement": {
+                "title": "Statement",
                 "type": "object",
                 "properties": {
-                    "period": {
+                    "type": {
                         "type": "string"
+                    },
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "period": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/statementRelationships"
                     }
-                }
-            },
-            "relationships": {
-                "$ref": "#/components/schemas/statementRelationships"
+                },
+                "required": ["type", "id", "relationships", "attributes"]
             }
-        },
-        "required": [
-            "type",
-            "id",
-            "relationships",
-            "attributes"
-        ]
+        }
     }
 }

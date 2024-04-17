@@ -50,7 +50,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "payment.json"
+                        "$ref": "./payment.json#/components/schemas/payment"
                     },
                     {
                         "type": "object",
@@ -68,10 +68,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "description": {
                                         "type": "string",
@@ -154,7 +151,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "payment.json"
+                        "$ref": "./payment.json#/components/schemas/payment"
                     },
                     {
                         "type": "object",
@@ -172,10 +169,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "description": {
                                         "type": "string",
@@ -231,7 +225,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "payment.json"
+                        "$ref": "./payment.json#/components/schemas/payment"
                     },
                     {
                         "type": "object",
@@ -249,9 +243,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit"
-                                        ]
+                                        "enum": ["Credit"]
                                     },
                                     "description": {
                                         "type": "string",
@@ -259,7 +251,7 @@
                                         "maxLength": 50
                                     },
                                     "counterparty": {
-                                        "$ref": "payment.json#/components/schemas/wireCounterparty"
+                                        "$ref": "./payment.json#/components/schemas/wireCounterparty"
                                     },
                                     "status": {
                                         "type": "string",
@@ -319,7 +311,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "payment.json"
+                        "$ref": "./payment.json#/components/schemas/payment"
                     },
                     {
                         "type": "object",
@@ -337,10 +329,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "description": {
                                         "type": "string",
@@ -391,7 +380,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "payment.json"
+                        "$ref": "./payment.json#/components/schemas/payment"
                     },
                     {
                         "type": "object",
@@ -409,10 +398,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Debit",
-                                            "Credit"
-                                        ]
+                                        "enum": ["Debit", "Credit"]
                                     },
                                     "description": {
                                         "type": "string",
@@ -420,11 +406,7 @@
                                     },
                                     "status": {
                                         "type": "string",
-                                        "enum": [
-                                            "Pending",
-                                            "Rejected",
-                                            "Sent"
-                                        ]
+                                        "enum": ["Pending", "Rejected", "Sent"]
                                     },
                                     "reason": {
                                         "type": "string"
@@ -473,11 +455,7 @@
                     },
                     "accountType": {
                         "type": "string",
-                        "enum": [
-                            "Checking",
-                            "Savings",
-                            "Loan"
-                        ]
+                        "enum": ["Checking", "Savings", "Loan"]
                     },
                     "name": {
                         "type": "string",
@@ -569,25 +547,27 @@
                     "referenceId"
                 ]
             },
-            "additionalProperties": false
-        },
-        "title": "Payment Resource",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
-            },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "achPayment": "#/components/schemas/AchPayment",
-                "bookPayment": "#/components/schemas/BookPayment",
-                "wirePayment": "#/components/schemas/WirePayment",
-                "billPayment": "#/components/schemas/BillPayment"
+            "payment": {
+                "title": "Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "achPayment": "#/components/schemas/AchPayment",
+                        "bookPayment": "#/components/schemas/BookPayment",
+                        "wirePayment": "#/components/schemas/WirePayment",
+                        "billPayment": "#/components/schemas/BillPayment"
+                    }
+                },
+                "additionalProperties": false
             }
         }
     }

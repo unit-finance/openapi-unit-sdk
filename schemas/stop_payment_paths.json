@@ -31,7 +31,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "createStopPayment.json"
+              "$ref": "./createStopPayment.json#/components/schemas/createStopPayment"
             }
           }
         }

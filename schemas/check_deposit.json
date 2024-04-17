@@ -42,16 +42,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": true
                     },
                     "customer": {
@@ -72,16 +67,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "transaction": {
@@ -98,22 +88,15 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 },
-                "required": [
-                    "account"
-                ],
+                "required": ["account"],
                 "additionalProperties": false
             },
             "statusEvent": {
@@ -134,9 +117,7 @@
                         }
                     }
                 },
-                "required": [
-                    "status"
-                ]
+                "required": ["status"]
             },
             "counterparty": {
                 "title": "Counterparty",
@@ -157,112 +138,102 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "routingNumber",
-                    "accountNumber",
-                    "name"
-                ]
-            }
-        },
-        "title": "Check Deposit",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": [
-                    "checkDeposit"
-                ]
+                "required": ["routingNumber", "accountNumber", "name"]
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            },
-            "attributes": {
+            "checkDeposit": {
+                "title": "Check Deposit",
                 "type": "object",
                 "properties": {
-                    "createdAt": {
+                    "type": {
                         "type": "string",
-                        "format": "date-time"
+                        "enum": ["checkDeposit"]
                     },
-                    "settlementDate": {
-                        "type": "string",
-                        "format": "date"
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
                     },
-                    "amount": {
-                        "type": "integer",
-                        "minimum": 1
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "settlementDate": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "AwaitingImages",
+                                    "AwaitingFrontImage",
+                                    "AwaitingBackImage",
+                                    "Pending",
+                                    "PendingReview",
+                                    "AwaitingCustomerConfirmation",
+                                    "Rejected",
+                                    "Clearing",
+                                    "Sent",
+                                    "Canceled",
+                                    "Returned"
+                                ]
+                            },
+                            "reason": {
+                                "type": ["string", "null"]
+                            },
+                            "statusCreatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "statusSetBy": {
+                                "type": "string"
+                            },
+                            "statusHistory": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/statusEvent"
+                                }
+                            },
+                            "reasonText": {
+                                "type": "string"
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            },
+                            "vendor": {
+                                "type": "string"
+                            },
+                            "counterparty": {
+                                "$ref": "./counterparty.json#/components/schemas/counterparty"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "amount",
+                            "description",
+                            "status"
+                        ],
+                        "additionalProperties": false
                     },
-                    "description": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 50
-                    },
-                    "status": {
-                        "type": "string",
-                        "enum": [
-                            "AwaitingImages",
-                            "AwaitingFrontImage",
-                            "AwaitingBackImage",
-                            "Pending",
-                            "PendingReview",
-                            "AwaitingCustomerConfirmation",
-                            "Rejected",
-                            "Clearing",
-                            "Sent",
-                            "Canceled",
-                            "Returned"
-                        ]
-                    },
-                    "reason": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "statusCreatedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "statusSetBy": {
-                        "type": "string"
-                    },
-                    "statusHistory": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/statusEvent"
-                        }
-                    },
-                    "reasonText": {
-                        "type": "string"
-                    },
-                    "checkNumber": {
-                        "type": "string"
-                    },
-                    "vendor": {
-                        "type": "string"
-                    },
-                    "counterparty": {
-                        "$ref": "check_deposit.json#/components/schemas/counterparty"
-                    },
-                    "tags": {
-                        "$ref": "tags.json#/components/schemas/tags"
+                    "relationships": {
+                        "$ref": "#/components/schemas/checkDepositRelationships"
                     }
                 },
-                "required": [
-                    "createdAt",
-                    "amount",
-                    "description",
-                    "status"
-                ],
-                "additionalProperties": false
-            },
-            "relationships": {
-                "$ref": "#/components/schemas/checkDepositRelationships"
+                "additionalProperties": false,
+                "required": ["type", "id", "attributes", "relationships"]
             }
-        },
-        "additionalProperties": false,
-        "required": [
-            "type",
-            "id",
-            "attributes",
-            "relationships"
-        ]
+        }
     }
 }

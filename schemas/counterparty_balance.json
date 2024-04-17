@@ -19,16 +19,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "customer": {
@@ -45,60 +40,48 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 },
-                "required": [
-                    "customer",
-                    "counterparty"
-                ],
+                "required": ["customer", "counterparty"],
                 "additionalProperties": false
-            }
-        },
-        "title": "Counterparty Balance",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "default": "counterpartyBalance"
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            },
-            "attributes": {
+            "counterpartyBalance": {
+                "title": "Counterparty Balance",
                 "type": "object",
                 "properties": {
-                    "balance": {
-                        "type": "number"
+                    "type": {
+                        "type": "string",
+                        "default": "counterpartyBalance"
                     },
-                    "available": {
-                        "type": "number"
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "balance": {
+                                "type": "number"
+                            },
+                            "available": {
+                                "type": "number"
+                            }
+                        },
+                        "required": ["balance"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/counterpartyBalanceRelationships"
                     }
                 },
-                "required": [
-                    "balance"
-                ],
-                "additionalProperties": false
-            },
-            "relationships": {
-                "$ref": "#/components/schemas/counterpartyBalanceRelationships"
+                "additionalProperties": false,
+                "required": ["type", "id", "relationships"]
             }
-        },
-        "additionalProperties": false,
-        "required": [
-            "type",
-            "id",
-            "relationships"
-        ]
+        }
     }
 }

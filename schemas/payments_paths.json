@@ -4,7 +4,7 @@
         "title": "UnitPaymentResponse",
         "properties": {
             "data": {
-                "$ref": "payment.json"
+                "$ref": "./payment.json#/components/schemas/payment"
             }
         }
     },
@@ -13,7 +13,7 @@
         "title": "UnitReceivedPaymentResponse",
         "properties": {
             "data": {
-                "$ref": "received_payment.json"
+                "$ref": "./update_payment.json#/components/schemas/updatePayment"
             }
         }
     },
@@ -22,7 +22,7 @@
         "title": "UnitRecurringPaymentResponse",
         "properties": {
             "data": {
-                "$ref": "recurring_payment.json"
+                "$ref": "./recurring_payment.json#/components/schemas/recurringPayment"
             }
         }
     },
@@ -156,7 +156,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "payment.json"
+                                            "$ref": "./payment.json#/components/schemas/payment"
                                         }
                                     },
                                     "included": {
@@ -185,7 +185,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "createPayment.json"
+                            "$ref": "./createPayment.json#/components/schemas/CreateRepaymentRequest"
                         }
                     }
                 }
@@ -240,7 +240,7 @@
                                 "type": "object",
                                 "properties": {
                                     "data": {
-                                        "$ref": "payment.json"
+                                        "$ref": "./payment.json#/components/schemas/payment"
                                     },
                                     "included": {
                                         "$ref": "./openapi_types.json#/IncludedResource"
@@ -276,7 +276,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "update_payment.json"
+                            "$ref": "./update_payment.json#/components/schemas/updatePayment"
                         }
                     }
                 }
@@ -357,7 +357,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "received_payment.json"
+                                            "$ref": "./update_payment.json#/components/schemas/updatePayment"
                                         }
                                     },
                                     "included": {
@@ -410,7 +410,7 @@
                                 "title": "UnitReceivedPaymentResponseWithIncluded",
                                 "properties": {
                                     "data": {
-                                        "$ref": "received_payment.json"
+                                        "$ref": "./update_payment.json#/components/schemas/updatePayment"
                                     },
                                     "included": {
                                         "$ref": "./openapi_types.json#/IncludedResource"
@@ -446,7 +446,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "update_received_payment.json"
+                            "$ref": "./update_received_payment.json#/components/schemas/updateReceivedPayment"
                         }
                     }
                 }
@@ -580,7 +580,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "recurring_payment.json"
+                                            "$ref": "./recurring_payment.json#/components/schemas/recurringPayment"
                                         }
                                     },
                                     "meta": {
@@ -606,7 +606,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "createRecurringPayment.json"
+                            "$ref": "./createRecurringPayment.json#/components/schemas/createRecurringPayment"
                         }
                     }
                 }

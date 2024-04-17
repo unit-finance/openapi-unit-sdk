@@ -24,16 +24,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "receivingAccount": {
@@ -45,25 +40,17 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "depositAccount",
-                                            "account"
-                                        ]
+                                        "enum": ["depositAccount", "account"]
                                     },
                                     "id": {
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "customer": {
@@ -85,16 +72,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "customers": {
@@ -115,16 +97,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "counterpartyCustomer": {
@@ -142,16 +119,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "relatedTransaction": {
@@ -169,16 +141,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "disputedTransaction": {
@@ -199,16 +166,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "returned": {
@@ -226,16 +188,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "payment": {
@@ -253,16 +210,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "checkPayment": {
@@ -280,16 +232,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "repayment": {
@@ -307,16 +254,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "recurringPayment": {
@@ -334,16 +276,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "org": {
@@ -364,16 +301,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "incomingAch": {
@@ -391,16 +323,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "checkDeposit": {
@@ -418,16 +345,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "authorizationRequest": {
@@ -445,16 +367,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "paymentAdvanceTransaction": {
@@ -475,16 +392,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "chargeback": {
@@ -502,16 +414,11 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     },
                     "reward": {
@@ -529,23 +436,15 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "type",
-                            "id"
-                        ],
+                        "required": ["type", "id"],
                         "additionalProperties": false
                     }
                 },
-                "required": [
-                    "account"
-                ],
+                "required": ["account"],
                 "additionalProperties": false
             },
             "OriginatedAchTransaction": {
@@ -553,7 +452,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -567,10 +466,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -588,7 +484,7 @@
                                         "type": "string"
                                     },
                                     "counterparty": {
-                                        "$ref": "payment.json#/components/schemas/counterparty"
+                                        "$ref": "./payment.json#/components/schemas/counterparty"
                                     },
                                     "tags": {
                                         "$ref": "tags.json#/components/schemas/tags"
@@ -616,10 +512,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -628,7 +521,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -642,10 +535,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -700,10 +590,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -712,7 +599,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -726,10 +613,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -777,10 +661,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -789,7 +670,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -803,10 +684,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -843,10 +721,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -855,7 +730,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -869,10 +744,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -927,10 +799,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -939,7 +808,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -953,10 +822,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -968,7 +834,7 @@
                                         "type": "string"
                                     },
                                     "counterparty": {
-                                        "$ref": "payment.json#/components/schemas/counterparty"
+                                        "$ref": "./payment.json#/components/schemas/counterparty"
                                     },
                                     "tags": {
                                         "$ref": "tags.json#/components/schemas/tags"
@@ -989,10 +855,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1001,7 +864,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1015,10 +878,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1105,10 +965,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1117,7 +974,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1131,10 +988,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1204,10 +1058,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1216,7 +1067,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1230,10 +1081,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1262,10 +1110,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1274,7 +1119,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1288,10 +1133,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1337,10 +1179,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1349,7 +1188,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1363,10 +1202,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1442,10 +1278,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1454,7 +1287,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1468,10 +1301,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1483,7 +1313,7 @@
                                         "type": "string"
                                     },
                                     "counterparty": {
-                                        "$ref": "payment.json#/components/schemas/counterparty"
+                                        "$ref": "./payment.json#/components/schemas/counterparty"
                                     },
                                     "description": {
                                         "type": "string"
@@ -1533,10 +1363,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1545,7 +1372,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1559,10 +1386,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1594,10 +1418,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1606,7 +1427,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1620,10 +1441,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1652,10 +1470,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1664,7 +1479,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1678,10 +1493,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1710,10 +1522,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1722,7 +1531,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1736,10 +1545,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1768,10 +1574,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1780,7 +1583,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1794,10 +1597,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1830,10 +1630,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1842,7 +1639,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1856,10 +1653,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1888,10 +1682,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1900,7 +1691,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1914,10 +1705,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -1946,10 +1734,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -1958,7 +1743,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -1972,10 +1757,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2000,7 +1782,7 @@
                                         "$ref": "./types.json#/components/schemas/address"
                                     },
                                     "counterparty": {
-                                        "$ref": "payment.json#/components/schemas/counterparty"
+                                        "$ref": "./payment.json#/components/schemas/counterparty"
                                     },
                                     "tags": {
                                         "$ref": "tags.json#/components/schemas/tags"
@@ -2021,10 +1803,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2033,7 +1812,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2047,10 +1826,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2079,10 +1855,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2091,7 +1864,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2105,10 +1878,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2145,10 +1915,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2157,7 +1924,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2174,10 +1941,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2203,10 +1967,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2215,7 +1976,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2232,10 +1993,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2264,10 +2022,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2276,7 +2031,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2293,10 +2048,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2325,10 +2077,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2337,7 +2086,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2354,10 +2103,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2383,10 +2129,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2395,7 +2138,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2412,10 +2155,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2441,10 +2181,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2453,7 +2190,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2470,10 +2207,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2499,10 +2233,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2511,7 +2242,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2528,10 +2259,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2557,10 +2285,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2569,7 +2294,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2586,10 +2311,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2615,10 +2337,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2627,7 +2346,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2641,13 +2360,10 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "counterparty": {
-                                        "$ref": "payment.json#/components/schemas/counterparty"
+                                        "$ref": "./payment.json#/components/schemas/counterparty"
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2676,10 +2392,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2688,7 +2401,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2705,10 +2418,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2734,10 +2444,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2746,7 +2453,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2763,10 +2470,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
                                         "type": "integer"
@@ -2796,10 +2500,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2808,7 +2509,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2822,13 +2523,10 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "receiverCounterparty": {
-                                        "$ref": "payment.json#/components/schemas/counterparty"
+                                        "$ref": "./payment.json#/components/schemas/counterparty"
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2858,10 +2556,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2870,7 +2565,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2884,10 +2579,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2916,10 +2608,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2928,7 +2617,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2942,10 +2631,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2973,10 +2659,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
             },
@@ -2985,7 +2668,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "transaction.json"
+                        "$ref": "./transaction.json#/components/schemas/transaction"
                     },
                     {
                         "type": "object",
@@ -2999,10 +2682,7 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": [
-                                            "Credit",
-                                            "Debit"
-                                        ]
+                                        "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -3037,63 +2717,62 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes",
-                            "relationships"
-                        ]
+                        "required": ["attributes", "relationships"]
                     }
                 ]
-            }
-        },
-        "title": "Transaction Resource",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
             },
-            "type": {
-                "type": "string"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "originatedAchTransaction": "#/components/schemas/OriginatedAchTransaction",
-                "receivedAchTransaction": "#/components/schemas/ReceivedAchTransaction",
-                "returnedAchTransaction": "#/components/schemas/ReturnedAchTransaction",
-                "returnedReceivedAchTransaction": "#/components/schemas/ReturnedReceivedAchTransaction",
-                "dishonoredAchTransaction": "#/components/schemas/DishonoredAchTransaction",
-                "purchaseTransaction": "#/components/schemas/PurchaseTransaction",
-                "bookTransaction": "#/components/schemas/BookTransaction",
-                "atmTransaction": "#/components/schemas/AtmTransaction",
-                "feeTransaction": "#/components/schemas/FeeTransaction",
-                "reversalTransaction": "#/components/schemas/ReversalTransaction",
-                "cardTransaction": "#/components/schemas/CardTransaction",
-                "releaseTransaction": "#/components/schemas/ReleaseTransaction",
-                "wireTransaction": "#/components/schemas/WireTransaction",
-                "interchangeTransaction": "#/components/schemas/InterchangeTransaction",
-                "interestShareTransaction": "#/components/schemas/InterestShareTransaction",
-                "interestTransaction": "#/components/schemas/InterestTransaction",
-                "adjustmentTransaction": "#/components/schemas/AdjustmentTransaction",
-                "disputeSettlementTransaction": "#/components/schemas/DisputeSettlementTransaction",
-                "disputeTransaction": "#/components/schemas/DisputeTransaction",
-                "checkDepositTransaction": "#/components/schemas/CheckDepositTransaction",
-                "returnedCheckDepositTransaction": "#/components/schemas/ReturnedCheckDepositTransaction",
-                "billPayTransaction": "#/components/schemas/BillPayTransaction",
-                "settlementTransaction": "#/components/schemas/SettlementTransaction",
-                "sponsoredInterestTransaction": "#/components/schemas/SponsoredInterestTransaction",
-                "paymentAdvanceTransaction": "#/components/schemas/PaymentAdvanceTransaction",
-                "repaidPaymentAdvanceTransaction": "#/components/schemas/RepaidPaymentAdvanceTransaction",
-                "chargebackTransaction": "#/components/schemas/ChargebackTransaction",
-                "rewardTransaction": "#/components/schemas/RewardTransaction",
-                "negativeBalanceCoverageTransaction": "#/components/schemas/NegativeBalanceCoverageTransaction",
-                "accountLowBalanceClosureTransaction": "#/components/schemas/AccountLowBalanceClosureTransaction",
-                "bankRepaymentTransaction": "#/components/schemas/BankRepaymentTransaction",
-                "cashDepositTransaction": "#/components/schemas/CashDepositTransaction",
-                "customerRepaymentTransaction": "#/components/schemas/CustomerRepaymentTransaction",
-                "customerRepaymentReturnedTransaction": "#/components/schemas/CustomerRepaymentReturnedTransaction",
-                "checkPaymentTransaction": "#/components/schemas/CheckPaymentTransaction",
-                "returnedCheckPaymentTransaction": "#/components/schemas/ReturnedCheckPaymentTransaction"
+            "transaction": {
+                "title": "Transaction Resource",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "originatedAchTransaction": "#/components/schemas/OriginatedAchTransaction",
+                        "receivedAchTransaction": "#/components/schemas/ReceivedAchTransaction",
+                        "returnedAchTransaction": "#/components/schemas/ReturnedAchTransaction",
+                        "returnedReceivedAchTransaction": "#/components/schemas/ReturnedReceivedAchTransaction",
+                        "dishonoredAchTransaction": "#/components/schemas/DishonoredAchTransaction",
+                        "purchaseTransaction": "#/components/schemas/PurchaseTransaction",
+                        "bookTransaction": "#/components/schemas/BookTransaction",
+                        "atmTransaction": "#/components/schemas/AtmTransaction",
+                        "feeTransaction": "#/components/schemas/FeeTransaction",
+                        "reversalTransaction": "#/components/schemas/ReversalTransaction",
+                        "cardTransaction": "#/components/schemas/CardTransaction",
+                        "releaseTransaction": "#/components/schemas/ReleaseTransaction",
+                        "wireTransaction": "#/components/schemas/WireTransaction",
+                        "interchangeTransaction": "#/components/schemas/InterchangeTransaction",
+                        "interestShareTransaction": "#/components/schemas/InterestShareTransaction",
+                        "interestTransaction": "#/components/schemas/InterestTransaction",
+                        "adjustmentTransaction": "#/components/schemas/AdjustmentTransaction",
+                        "disputeSettlementTransaction": "#/components/schemas/DisputeSettlementTransaction",
+                        "disputeTransaction": "#/components/schemas/DisputeTransaction",
+                        "checkDepositTransaction": "#/components/schemas/CheckDepositTransaction",
+                        "returnedCheckDepositTransaction": "#/components/schemas/ReturnedCheckDepositTransaction",
+                        "billPayTransaction": "#/components/schemas/BillPayTransaction",
+                        "settlementTransaction": "#/components/schemas/SettlementTransaction",
+                        "sponsoredInterestTransaction": "#/components/schemas/SponsoredInterestTransaction",
+                        "paymentAdvanceTransaction": "#/components/schemas/PaymentAdvanceTransaction",
+                        "repaidPaymentAdvanceTransaction": "#/components/schemas/RepaidPaymentAdvanceTransaction",
+                        "chargebackTransaction": "#/components/schemas/ChargebackTransaction",
+                        "rewardTransaction": "#/components/schemas/RewardTransaction",
+                        "negativeBalanceCoverageTransaction": "#/components/schemas/NegativeBalanceCoverageTransaction",
+                        "accountLowBalanceClosureTransaction": "#/components/schemas/AccountLowBalanceClosureTransaction",
+                        "bankRepaymentTransaction": "#/components/schemas/BankRepaymentTransaction",
+                        "cashDepositTransaction": "#/components/schemas/CashDepositTransaction",
+                        "customerRepaymentTransaction": "#/components/schemas/CustomerRepaymentTransaction",
+                        "customerRepaymentReturnedTransaction": "#/components/schemas/CustomerRepaymentReturnedTransaction",
+                        "checkPaymentTransaction": "#/components/schemas/CheckPaymentTransaction",
+                        "returnedCheckPaymentTransaction": "#/components/schemas/ReturnedCheckPaymentTransaction"
+                    }
+                }
             }
         }
     }

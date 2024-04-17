@@ -230,13 +230,13 @@
                             },
                             "sourceOfIncome": {
                                 "$ref": "./types.json#/components/schemas/sourceOfIncome"
-                            }
-                        },
-                        "relationships": {
-                            "type": "object",
-                            "properties": {
-                                "application": {
-                                    "$ref": "./types.json#/components/schemas/Relationship"
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "application": {
+                                        "$ref": "./types.json#/components/schemas/Relationship"
+                                    }
                                 }
                             }
                         },
@@ -296,31 +296,37 @@
                 },
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
+            },
+            "updateApplication": {
+                "title": "Patch Application",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/patchBusinessApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchBusinessApplicationOfficer"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchBusinessApplicationBeneficialOwner"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchSoleProprietorApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchIndividualApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchTrustApplication"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
             }
         }
-    },
-    "title": "Patch Application",
-    "type": "object",
-    "properties": {
-        "data": {
-            "oneOf": [
-                { "$ref": "#/components/schemas/patchBusinessApplication" },
-                {
-                    "$ref": "#/components/schemas/patchBusinessApplicationOfficer"
-                },
-                {
-                    "$ref": "#/components/schemas/patchBusinessApplicationBeneficialOwner"
-                },
-                {
-                    "$ref": "#/components/schemas/patchSoleProprietorApplication"
-                },
-                {
-                    "$ref": "#/components/schemas/patchIndividualApplication"
-                },
-                { "$ref": "#/components/schemas/patchTrustApplication" }
-            ]
-        }
-    },
-    "additionalProperties": false,
-    "required": ["data"]
+    }
 }

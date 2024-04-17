@@ -91,7 +91,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "authorization.json"
+                                            "$ref": "./authorization.json#/components/schemas/authorization"
                                         }
                                     }
                                 }
@@ -138,7 +138,7 @@
                                 "title": "UnitAuthorizationResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorization.json"
+                                        "$ref": "./authorization.json#/components/schemas/authorization"
                                     }
                                 }
                             }
@@ -206,7 +206,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "authorization_request.json"
+                                            "$ref": "./authorization_request.json#/components/schemas/authorizationRequest"
                                         }
                                     }
                                 }
@@ -246,7 +246,7 @@
                                 "title": "UnitAuthorizationRequestsResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorization_request.json"
+                                        "$ref": "./authorization_request.json#/components/schemas/authorizationRequest"
                                     }
                                 }
                             }
@@ -285,7 +285,7 @@
                             "title": "ApproveAuthorizationRequest",
 							"properties":{
 								"data":{
-									"$ref":"authorization_request.json#/components/schemas/approveAuthorizationRequest"
+									"$ref":"./authorization_request.json#/components/schemas/approveAuthorizationRequest"
 								}
 							}
 						}
@@ -302,7 +302,7 @@
                                 "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorization_request.json"
+                                        "$ref": "./authorization_request.json#/components/schemas/authorizationRequest"
                                     }
                                 }
                             }
@@ -341,7 +341,7 @@
                             "title": "DeclineAuthorizationRequest",
 							"properties":{
 								"data":{
-									"$ref":"authorization_request.json#/components/schemas/declineAuthorizationRequest"
+									"$ref":"./authorization_request.json#/components/schemas/declineAuthorizationRequest"
 								}
 							}
 						}
@@ -358,7 +358,7 @@
                                 "title": "UnitAuthorizationRequestResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "authorization_request.json"
+                                        "$ref": "./authorization_request.json#/components/schemas/authorizationRequest"
                                     }
                                 }
                             }

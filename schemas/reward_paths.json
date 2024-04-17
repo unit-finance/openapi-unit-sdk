@@ -13,7 +13,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "createReward.json"
+                            "$ref": "./createReward.json#/components/schemas/createReward"
                         }
                     }
                 }
@@ -28,7 +28,7 @@
                                 "title": "UnitRewardResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "reward.json"
+                                        "$ref": "./reward.json#/components/schemas/reward"
                                     }
                                 }
                             }
@@ -120,7 +120,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "reward.json"
+                                            "$ref": "./reward.json#/components/schemas/reward"
                                         }
                                     }
                                 }
@@ -160,7 +160,7 @@
                                 "title": "UnitRewardResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "reward.json"
+                                        "$ref": "./reward.json#/components/schemas/reward"
                                     }
                                 }
                             }

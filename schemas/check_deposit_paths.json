@@ -84,7 +84,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "check_deposit.json"
+                                            "$ref": "./check_deposit.json#/components/schemas/checkDeposit"
                                         }
                                     }
                                 }
@@ -107,7 +107,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "createCheckDeposit.json"
+                            "$ref": "./createCheckDeposit.json#/components/schemas/createCheckDeposit"
                         }
                     }
                 }
@@ -122,7 +122,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "check_deposit.json"
+                                        "$ref": "./check_deposit.json#/components/schemas/checkDeposit"
                                     }
                                 }
                             }
@@ -161,7 +161,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "check_deposit.json"
+                                        "$ref": "./check_deposit.json#/components/schemas/checkDeposit"
                                     }
                                 }
                             }
@@ -194,7 +194,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "update_check_deposit.json"
+                            "$ref": "./update_check_deposit.json#/components/schemas/updateCheckDeposit"
                         }
                     }
                 }
@@ -209,7 +209,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "check_deposit.json"
+                                        "$ref": "./check_deposit.json#/components/schemas/checkDeposit"
                                     }
                                 }
                             }
@@ -248,7 +248,7 @@
                                 "title": "UnitCheckDepositResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "check_deposit.json"
+                                        "$ref": "./check_deposit.json#/components/schemas/checkDeposit"
                                     }
                                 }
                             }

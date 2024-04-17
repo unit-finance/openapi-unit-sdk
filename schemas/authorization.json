@@ -4,84 +4,83 @@
             "authorizationRelationships": {
                 "type": "object",
                 "title": "authorizationRelationships"
-            }
-        },
-        "title": "Authorization Document",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "default": "authorization"
             },
-            "id": {
-                "$ref": "./types.json#/components/schemas/identifier"
-            },
-            "attributes": {
+            "authorization": {
+                "title": "Authorization Document",
                 "type": "object",
                 "properties": {
-                    "createdAt": {
+                    "type": {
                         "type": "string",
-                        "format": "date-time"
+                        "default": "authorization"
                     },
-                    "amount": {
-                        "type": "integer"
+                    "id": {
+                        "$ref": "./types.json#/components/schemas/identifier"
                     },
-                    "cardLast4Digits": {
-                        "type": "string"
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "cardLast4Digits": {
+                                "type": "string"
+                            },
+                            "merchant": {
+                                "$ref": "./types.json#/components/schemas/merchant"
+                            },
+                            "recurring": {
+                                "type": "boolean"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "declineReason": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tags"
+                            },
+                            "paymentMethod": {
+                                "type": "string"
+                            },
+                            "digitalWallet": {
+                                "type": "string"
+                            },
+                            "summary": {
+                                "type": "string"
+                            },
+                            "cardVerificationData": {
+                                "$ref": "./types.json#/components/schemas/cardVerificationData"
+                            },
+                            "cardNetwork": {
+                                "type": "string"
+                            },
+                            "cashWithdrawalAmount": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "amount",
+                            "cardLast4Digits",
+                            "merchant",
+                            "recurring",
+                            "status"
+                        ],
+                        "additionalProperties": false
                     },
-                    "merchant": {
-                        "$ref": "./types.json#/components/schemas/merchant"
-                    },
-                    "recurring": {
-                        "type": "boolean"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "declineReason": {
-                        "type": "string"
-                    },
-                    "tags": {
-                        "$ref": "tags.json#/components/schemas/tags"
-                    },
-                    "paymentMethod": {
-                        "type": "string"
-                    },
-                    "digitalWallet": {
-                        "type": "string"
-                    },
-                    "summary": {
-                        "type": "string"
-                    },
-                    "cardVerificationData": {
-                        "$ref": "./types.json#/components/schemas/cardVerificationData"
-                    },
-                    "cardNetwork": {
-                        "type": "string"
-                    },
-                    "cashWithdrawalAmount": {
-                        "type": "integer"
+                    "relationships": {
+                        "$ref": "#/components/schemas/authorizationRelationships"
                     }
                 },
-                "required": [
-                    "createdAt",
-                    "amount",
-                    "cardLast4Digits",
-                    "merchant",
-                    "recurring",
-                    "status"
-                ],
-                "additionalProperties": false
-            },
-            "relationships": {
-                "$ref": "#/components/schemas/authorizationRelationships"
+                "additionalProperties": false,
+                "required": ["type", "id", "relationships"]
+                
             }
-        },
-        "additionalProperties": false,
-        "required": [
-            "type",
-            "id",
-            "relationships"
-        ]
+        }
     }
 }

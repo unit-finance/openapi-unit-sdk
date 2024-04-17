@@ -20,8 +20,7 @@
                         "pattern": "^.*$"
                     },
                     "street2": {
-                        "type": "string",
-                        "nullable": true,
+                        "type": ["string", "null"],
                         "pattern": "^.*$"
                     },
                     "city": {
@@ -58,8 +57,7 @@
                 "pattern": "^\\d{9}$"
             },
             "jwtSubject": {
-                "type": "string",
-                "nullable": true
+                "type": ["string", "null"]
             },
             "contact": {
                 "title": "Contact",
@@ -740,8 +738,7 @@
                                 "enum": ["Fraud", "Other"]
                             },
                             "reasonText": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             }
                         }
                     }
@@ -764,7 +761,7 @@
                                 "default": "ByCustomer"
                             },
                             "fraudReason": {
-                                "type": "string",
+                                "type": ["string", "null"],
                                 "enum": [
                                     "ACHActivity",
                                     "CardActivity",
@@ -774,51 +771,57 @@
                                     "ClientIdentified",
                                     "IdentityTheft",
                                     "LinkedToFraudulentCustomer"
-                                ],
-                                "nullable": true
+                                ]
                             }
                         }
-                    }
-                }
-            },
-            "errorItem": {
-                "title": "Error Item",
-                "type": "object",
-                "properties": {
-                    "status": {
-                        "type": "string"
-                    },
-                    "title": {
-                        "type": "string"
-                    },
-                    "code": {
-                        "type": "string"
-                    },
-                    "detail": {
-                        "type": "string"
-                    },
-                    "details": {
-                        "type": "string"
-                    },
-                    "source": {
-                        "type": "object",
-                        "properties": {
-                            "pointer": {
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "meta": {
-                        "type": "object"
                     }
                 }
             },
 
-            "testError": {
-                "title": "Test Error",
+            "unitError": {
                 "type": "array",
+                "title": "Unit Error",
                 "items": {
-                    "$ref": "#/components/schemas/errorItem"
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "code": {
+                            "type": "string"
+                        },
+                        "detail": {
+                            "type": "string"
+                        },
+                        "details": {
+                            "type": "string"
+                        },
+                        "source": {
+                            "type": "object",
+                            "properties": {
+                                "pointer": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "meta": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+
+            "defaultError": {
+                "description": "Unexpected error",
+                "content": {
+                    "application/vnd.api+json; charset=utf-8": {
+                        "schema": {
+                            "$ref": "#/components/schemas/unitError"
+                        }
+                    }
                 }
             },
 

@@ -1,275 +1,295 @@
 {
-  "components": {
+    "components": {
         "schemas": {
-        "patchIndividualDebitCard": {
-          "title": "Patch Individual Debit Card",
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "individualDebitCard"
-              ]
+            "patchIndividualDebitCard": {
+                "title": "Patch Individual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/address"
+                                    }
+                                ]
+                            },
+                            "design": { "type": "string" },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tagsPatch"
+                            },
+                            "limits": {
+                                "$ref": "./types.json#/components/schemas/cardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
             },
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "shippingAddress": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/address"}
-                  ]
+            "patchIndividualVirtualDebitCard": {
+                "title": "Patch Individual Virtual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualVirtualDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tagsPatch"
+                            },
+                            "limits": {
+                                "$ref": "./types.json#/components/schemas/cardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false
+                    }
                 },
-                "design": { "type": "string" },
-                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" },
-                "limits": { "$ref": "./types.json#/components/schemas/cardLevelLimits" },
-                "defaultFundingAccountId": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/identifier"}
-                  ]
-                }
-              },
-              "additionalProperties": false
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "attributes"
-          ]
-        },
-        "patchIndividualVirtualDebitCard": {
-          "title": "Patch Individual Virtual Debit Card",
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "individualVirtualDebitCard"
-              ]
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
             },
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" },
-                "limits": { "$ref": "./types.json#/components/schemas/cardLevelLimits" },
-                "defaultFundingAccountId": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/identifier"}
-                  ]
-                }
-              },
-              "additionalProperties": false
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "attributes"
-          ]
-        },
-        "patchBusinessDebitCard": {
-          "title": "Patch Business Debit Card",
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "businessDebitCard"
-              ]
+            "patchBusinessDebitCard": {
+                "title": "Patch Business Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/address"
+                                    }
+                                ]
+                            },
+                            "address": {
+                                "$ref": "./types.json#/components/schemas/address"
+                            },
+                            "phone": {
+                                "$ref": "./types.json#/components/schemas/phone"
+                            },
+                            "email": {
+                                "$ref": "./types.json#/components/schemas/email"
+                            },
+                            "design": { "type": "string" },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tagsPatch"
+                            },
+                            "limits": {
+                                "$ref": "./types.json#/components/schemas/cardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
             },
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "shippingAddress": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/address"}
-                  ]
+            "patchBusinessVirtualDebitCard": {
+                "title": "Patch Business Virtual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessVirtualDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "$ref": "./types.json#/components/schemas/address"
+                            },
+                            "phone": {
+                                "$ref": "./types.json#/components/schemas/phone"
+                            },
+                            "email": {
+                                "$ref": "./types.json#/components/schemas/email"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tagsPatch"
+                            },
+                            "limits": {
+                                "$ref": "./types.json#/components/schemas/cardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
+                    }
                 },
-                "address": {
-                  "$ref": "./types.json#/components/schemas/address"
-                },
-                "phone": {
-                  "$ref": "./types.json#/components/schemas/phone"
-                },
-                "email": { "$ref": "./types.json#/components/schemas/email" },
-                "design": { "type": "string" },
-                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" },
-                "limits": { "$ref": "./types.json#/components/schemas/cardLevelLimits" },
-                "defaultFundingAccountId": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/identifier"}
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "required": []
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "attributes"
-          ]
-        },
-        "patchBusinessVirtualDebitCard": {
-          "title": "Patch Business Virtual Debit Card",
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "businessVirtualDebitCard"
-              ]
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
             },
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "address": {
-                  "$ref": "./types.json#/components/schemas/address"
+            "patchBusinessCreditCard": {
+                "title": "Patch Business Credit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessCreditCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/address"
+                                    }
+                                ]
+                            },
+                            "address": {
+                                "$ref": "./types.json#/components/schemas/address"
+                            },
+                            "phone": {
+                                "$ref": "./types.json#/components/schemas/phone"
+                            },
+                            "email": {
+                                "$ref": "./types.json#/components/schemas/email"
+                            },
+                            "design": { "type": "string" },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tagsPatch"
+                            },
+                            "limits": {
+                                "$ref": "./types.json#/components/schemas/cardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
+                    }
                 },
-                "phone": {
-                  "$ref": "./types.json#/components/schemas/phone"
-                },
-                "email": { "$ref": "./types.json#/components/schemas/email" },
-                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" },
-                "limits": { "$ref": "./types.json#/components/schemas/cardLevelLimits" },
-                "defaultFundingAccountId": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/identifier"}
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "required": []
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "attributes"
-          ]
-        },
-        "patchBusinessCreditCard": {
-          "title": "Patch Business Credit Card",
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "businessCreditCard"
-              ]
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
             },
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "shippingAddress": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/address"}
-                  ]
+            "patchBusinessVirtualCreditCard": {
+                "title": "Patch Business Virtual Credit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessVirtualCreditCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "$ref": "./types.json#/components/schemas/address"
+                            },
+                            "phone": {
+                                "$ref": "./types.json#/components/schemas/phone"
+                            },
+                            "email": {
+                                "$ref": "./types.json#/components/schemas/email"
+                            },
+                            "tags": {
+                                "$ref": "tags.json#/components/schemas/tagsPatch"
+                            },
+                            "limits": {
+                                "$ref": "./types.json#/components/schemas/cardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "oneOf": [
+                                    { "type": "null" },
+                                    {
+                                        "$ref": "./types.json#/components/schemas/identifier"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
+                    }
                 },
-                "address": {
-                  "$ref": "./types.json#/components/schemas/address"
-                },
-                "phone": {
-                  "$ref": "./types.json#/components/schemas/phone"
-                },
-                "email": { "$ref": "./types.json#/components/schemas/email" },
-                "design": { "type": "string" },
-                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" },
-                "limits": { "$ref": "./types.json#/components/schemas/cardLevelLimits" },
-                "defaultFundingAccountId": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/identifier"}
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "required": []
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "attributes"
-          ]
-        },
-        "patchBusinessVirtualCreditCard": {
-          "title": "Patch Business Virtual Credit Card",
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "businessVirtualCreditCard"
-              ]
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
             },
-            "attributes": {
-              "type": "object",
-              "properties": {
-                "address": {
-                  "$ref": "./types.json#/components/schemas/address"
+            "updateCard": {
+                "title": "Patch Card",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/patchIndividualDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchIndividualVirtualDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchBusinessDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchBusinessVirtualDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchBusinessCreditCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/patchBusinessVirtualCreditCard"
+                            }
+                        ]
+                    }
                 },
-                "phone": {
-                  "$ref": "./types.json#/components/schemas/phone"
-                },
-                "email": { "$ref": "./types.json#/components/schemas/email" },
-                "tags": { "$ref": "tags.json#/components/schemas/tagsPatch" },
-                "limits": { "$ref": "./types.json#/components/schemas/cardLevelLimits" },
-                "defaultFundingAccountId": {
-                  "oneOf": [
-                    {"type": "null"},
-                    {"$ref": "./types.json#/components/schemas/identifier"}
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "required": []
+                "additionalProperties": false,
+                "required": ["data"]
             }
-          },
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "attributes"
-          ]
         }
-      },
-      "title": "Patch Card",
-      "type": "object",
-      "properties": {
-        "data": {
-          "oneOf": [
-            {
-              "$ref": "#/components/schemas/patchIndividualDebitCard"
-            },
-            {
-              "$ref": "#/components/schemas/patchIndividualVirtualDebitCard"
-            },
-            {
-              "$ref": "#/components/schemas/patchBusinessDebitCard"
-            },
-            {
-              "$ref": "#/components/schemas/patchBusinessVirtualDebitCard"
-            },
-            {
-              "$ref": "#/components/schemas/patchBusinessCreditCard"
-            },
-            {
-              "$ref": "#/components/schemas/patchBusinessVirtualCreditCard"
-            }
-          ]
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "data"
-      ]
     }
 }

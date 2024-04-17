@@ -70,7 +70,7 @@
                                 "title": "UnitCounterpartiesListResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "counterparty.json"
+                                        "$ref": "./counterparty.json#/components/schemas/counterparty"
                                     }
                                 }
                             }
@@ -92,7 +92,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "createCounterparty.json"
+                            "$ref": "./createCounterparty.json#/components/schemas/createCounterparty"
                         }
                     }
                 }
@@ -107,7 +107,7 @@
                                 "title": "UnitCounterpartyResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "counterparty.json"
+                                        "$ref": "./counterparty.json#/components/schemas/counterparty"
                                     }
                                 }
                             }
@@ -153,7 +153,7 @@
                                 "title": "UnitCounterpartyResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "counterparty.json"
+                                        "$ref": "./counterparty.json#/components/schemas/counterparty"
                                     }
                                 }
                             }
@@ -186,7 +186,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "update_counterparty.json"
+                            "$ref": "./update_counterparty.json#/components/schemas/updateCounterparty"
                         }
                     }
                 }
@@ -201,7 +201,7 @@
                                 "title": "UnitCounterpartyResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "counterparty.json"
+                                        "$ref": "./counterparty.json#/components/schemas/counterparty"
                                     }
                                 }
                             }
@@ -264,7 +264,7 @@
                                 "title": "UnitCounterpartyResponse",
                                 "properties": {
                                     "data": {
-                                        "$ref": "counterparty_balance.json"
+                                        "$ref": "./counterparty_balance.json#/components/schemas/counterpartyBalance"
                                     }
                                 }
                             }

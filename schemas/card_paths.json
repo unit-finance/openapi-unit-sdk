@@ -80,7 +80,7 @@
 									"data":{
 										"type":"array",
 										"items":{
-											"$ref":"card.json"
+											"$ref":"./card.json#/components/schemas/card"
 										}
 									},
 									"included":{
@@ -109,7 +109,7 @@
 				"content":{
 					"application/vnd.api+json":{
 						"schema": {
-							"$ref": "createCard.json"
+							"$ref": "./createCard.json#/components/schemas/createCard"
 						}
 					}
 				}
@@ -124,7 +124,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -170,7 +170,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									},
 									"included": {
 										"type": "array",
@@ -209,7 +209,7 @@
 				"content":{
 					"application/vnd.api+json":{
 						"schema":{
-							"$ref":"update_card.json"
+							"$ref":"./update_card.json#/components/schemas/updateCard"
 						}
 					}
 				}
@@ -224,7 +224,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -263,7 +263,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -302,7 +302,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -341,7 +341,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -380,7 +380,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json#/components/schemas/pinStatus"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -419,7 +419,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -458,7 +458,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"card.json"
+										"$ref":"./card.json#/components/schemas/card"
 									}
 								}
 							}
@@ -497,7 +497,7 @@
 								"title":"UnitCardResponse",
 								"properties":{
 									"data":{
-										"$ref":"limits.json"
+										"$ref":"./limits.json#/components/schemas/limits"
 									}
 								}
 							}

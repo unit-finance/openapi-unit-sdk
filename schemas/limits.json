@@ -6,7 +6,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "limits.json"
+                        "$ref": "./limits.json#/components/schemas/limits"
                     },
                     {
                         "type": "object",
@@ -139,10 +139,7 @@
                                                 "additionalProperties": false
                                             }
                                         },
-                                        "required": [
-                                            "limits",
-                                            "totalsDaily"
-                                        ],
+                                        "required": ["limits", "totalsDaily"],
                                         "additionalProperties": false
                                     },
                                     "checkDeposit": {
@@ -187,18 +184,12 @@
                                         "additionalProperties": false
                                     }
                                 },
-                                "required": [
-                                    "ach",
-                                    "card",
-                                    "checkDeposit"
-                                ],
+                                "required": ["ach", "card", "checkDeposit"],
                                 "additionalProperties": false
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes"
-                        ]
+                        "required": ["attributes"]
                     }
                 ]
             },
@@ -207,7 +198,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "limits.json"
+                        "$ref": "./limits.json#/components/schemas/limits"
                     },
                     {
                         "type": "object",
@@ -267,39 +258,34 @@
                                                 "additionalProperties": false
                                             }
                                         },
-                                        "required": [
-                                            "limits",
-                                            "totalsDaily"
-                                        ],
+                                        "required": ["limits", "totalsDaily"],
                                         "additionalProperties": false
                                     }
                                 },
-                                "required": [
-                                    "card"
-                                ],
+                                "required": ["card"],
                                 "additionalProperties": false
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "attributes"
-                        ]
+                        "required": ["attributes"]
                     }
                 ]
-            }
-        },
-        "title": "Account Limits Resource",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
-            }
-        },
-        "discriminator": {
-            "propertyName": "type",
-            "mapping": {
-                "limits": "#/components/schemas/DepositLimits",
-                "creditLimits": "#/components/schemas/CreditLimits"
+            },
+            "limits": {
+                "title": "Account Limits Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "limits": "#/components/schemas/DepositLimits",
+                        "creditLimits": "#/components/schemas/CreditLimits"
+                    }
+                }
             }
         }
     }

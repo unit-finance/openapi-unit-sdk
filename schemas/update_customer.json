@@ -48,18 +48,16 @@
                                 "nullable": true
                             },
                             "dba": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             },
                             "tags": {
                                 "$ref": "tags.json#/components/schemas/tags"
                             },
                             "authorizedUsers": {
-                                "type": "array",
+                                "type": ["array", "null"],
                                 "items": {
                                     "$ref": "./types.json#/components/schemas/authorizedUser"
-                                },
-                                "nullable": true
+                                }
                             },
                             "jwtSubject": {
                                 "$ref": "./types.json#/components/schemas/jwtSubject",
@@ -82,8 +80,7 @@
                         "type": "object",
                         "properties": {
                             "dba": {
-                                "type": "string",
-                                "nullable": true
+                                "type": ["string", "null"]
                             },
                             "ein": {
                                 "type": "string",
@@ -106,11 +103,10 @@
                                 "nullable": true
                             },
                             "authorizedUsers": {
-                                "type": "array",
+                                "type": ["array", "null"],
                                 "items": {
                                     "$ref": "./types.json#/components/schemas/authorizedUser"
-                                },
-                                "nullable": true
+                                }
                             }
                         },
                         "additionalProperties": false
@@ -137,34 +133,35 @@
                                 "nullable": true
                             },
                             "authorizedUsers": {
-                                "type": "array",
+                                "type": ["array", "null"],
                                 "items": {
                                     "$ref": "./types.json#/components/schemas/authorizedUser"
-                                },
-                                "nullable": true
+                                }
                             }
                         },
                         "additionalProperties": false
                     }
                 },
                 "additionalProperties": false
-            }
-        },
-        "title": "Patch Customer",
-        "type": "object",
-        "properties": {
-            "data": {
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/updateIndividualCustomer"
-                    },
-                    {
-                        "$ref": "#/components/schemas/updateBusinessCustomer"
-                    },
-                    {
-                        "$ref": "#/components/schemas/updateTrustCustomer"
+            },
+            "updateCustomer": {
+                "title": "Patch Customer",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/updateIndividualCustomer"
+                            },
+                            {
+                                "$ref": "#/components/schemas/updateBusinessCustomer"
+                            },
+                            {
+                                "$ref": "#/components/schemas/updateTrustCustomer"
+                            }
+                        ]
                     }
-                ]
+                }
             }
         }
     }

@@ -7,19 +7,19 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "createPayment.json#/components/schemas/createAchPayment"
+            "$ref": "./createPayment.json#/components/schemas/createAchPayment"
           },
           {
-            "$ref": "createPayment.json#/components/schemas/createAchPaymentCounterparty"
+            "$ref": "./createPayment.json#/components/schemas/createAchPaymentCounterparty"
           },
           {
-            "$ref": "createPayment.json#/components/schemas/createAchPaymentPlaid"
+            "$ref": "./createPayment.json#/components/schemas/createAchPaymentPlaid"
           },
           {
-            "$ref": "createPayment.json#/components/schemas/createBookPayment"
+            "$ref": "./createPayment.json#/components/schemas/createBookPayment"
           },
           {
-            "$ref": "createPayment.json#/components/schemas/createWirePayment"
+            "$ref": "./createPayment.json#/components/schemas/createWirePayment"
           }
         ]
       }

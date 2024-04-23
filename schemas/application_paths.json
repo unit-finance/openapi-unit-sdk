@@ -31,7 +31,7 @@
     },
     "application": {
         "get": {
-            "tags": ["Get Application"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -67,7 +67,7 @@
             }
         },
         "patch": {
-            "tags": ["Update Application"],
+            "tags": ["unit"],
 
             "summary": "Update Application",
             "description": "Update an Application via API ",
@@ -109,7 +109,7 @@
     },
     "cancel_application": {
         "post": {
-            "tags": ["Cancel Application"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -183,7 +183,7 @@
     },
     "applications": {
         "get": {
-            "tags": ["Get List Applications"],
+            "tags": ["unit"],
 
             "summary": "Get List Application",
             "description": "Get List Applications from API ",
@@ -269,7 +269,7 @@
             }
         },
         "post": {
-            "tags": ["Create Application"],
+            "tags": ["unit"],
 
             "summary": "Create Application",
             "description": "Create an Application via API ",
@@ -312,7 +312,7 @@
     },
     "application_forms": {
         "get": {
-            "tags": ["Get List Application Forms"],
+            "tags": ["unit"],
 
             "summary": "Get List Application Forms",
             "description": "Get List Application Forms from API ",
@@ -385,7 +385,7 @@
             }
         },
         "post": {
-            "tags": ["Create ApplicationForm"],
+            "tags": ["unit"],
 
             "summary": "Create Application Form",
             "description": "Create an Application Form via API ",
@@ -422,7 +422,7 @@
     },
     "application_form": {
         "get": {
-            "tags": ["Get Application Form"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -469,7 +469,7 @@
     },
     "upload_pdf_file": {
         "put": {
-            "tags": ["Upload a PDF Document for an Application"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -520,7 +520,7 @@
     },
     "upload_pdf_file_back": {
         "put": {
-            "tags": ["Upload a PDF Document for an Application - Back Side"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -571,7 +571,7 @@
     },
     "upload_png_file": {
         "put": {
-            "tags": ["Upload a PNG Document for an Application"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -622,7 +622,7 @@
     },
     "upload_png_file_back": {
         "put": {
-            "tags": ["Upload a PNG Document for an Application - Back Side"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -673,7 +673,7 @@
     },
     "upload_jpg_file": {
         "put": {
-            "tags": ["Upload a JPEG Document for an Application"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -724,7 +724,7 @@
     },
     "upload_jpg_file_back": {
         "put": {
-            "tags": ["Upload a JPEG Document for an Application - Back Side"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -775,7 +775,7 @@
     },
     "documents": {
         "get": {
-            "tags": ["Get List of Documents"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -813,7 +813,7 @@
             }
         },
         "post": {
-            "tags": ["Create a Document for an Application"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -844,7 +844,7 @@
     },
     "verify_document": {
         "put": {
-            "tags": ["Verify a Document for an Application"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -901,7 +901,7 @@
     },
     "download_document": {
         "get": {
-            "tags": ["Download a Document"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -942,7 +942,7 @@
     },
     "download_back_side_document": {
         "get": {
-            "tags": ["Download a Document - Back Side"],
+            "tags": ["unit"],
 
             "parameters": [
                 {

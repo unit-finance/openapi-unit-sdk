@@ -1,9 +1,7 @@
 {
     "rewards": {
         "post": {
-            "tags": [
-                "Create Reward"
-            ],
+            "tags": ["unit"],
             
             "summary": "Create Reward",
             "description": "Create a Reward via API ",
@@ -38,9 +36,7 @@
             }
         },
         "get": {
-            "tags": [
-                "Get List Rewards"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
@@ -133,9 +129,7 @@
     },
     "get_reward": {
         "get": {
-            "tags": [
-                "Get Reward"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {

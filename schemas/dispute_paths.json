@@ -1,9 +1,7 @@
 {
     "list_disputes": {
         "get": {
-            "tags": [
-                "Get List Disputes"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get List Disputes",
             "description": "Get List Disputes from API ",
@@ -50,9 +48,7 @@
     },
     "get_dispute": {
         "get": {
-            "tags": [
-                "Get Dispute"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {

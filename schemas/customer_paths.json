@@ -10,9 +10,7 @@
     },
     "customer": {
         "get": {
-            "tags": [
-                "Get Customer"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -41,9 +39,7 @@
             }
         },
         "patch": {
-            "tags": [
-                "Update Customer"
-            ],
+            "tags": ["unit"],
             
             "summary": "Update Customer",
             "description": "Update an Customer via API ",
@@ -85,9 +81,7 @@
     },
     "list_customers": {
         "get": {
-            "tags": [
-                "Get List Customers"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get Customers List",
             "description": "Get Customers List from API ",
@@ -168,9 +162,7 @@
     },
     "archive_customer": {
         "post": {
-            "tags": [
-                "Archive Customer"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {

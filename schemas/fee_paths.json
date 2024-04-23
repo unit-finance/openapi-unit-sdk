@@ -1,9 +1,7 @@
 {
     "create_fee": {
         "post": {
-            "tags": [
-                "Create Fee"
-            ],
+            "tags": ["unit"],
             
             "summary": "Create Fee",
             "description": "Create a Fee via API ",

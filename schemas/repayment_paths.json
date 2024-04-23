@@ -10,7 +10,7 @@
     },
     "repayments": {
         "get": {
-            "tags": ["Get List Repayments"],
+            "tags": ["unit"],
 
             "summary": "Get List Repayments",
             "description": "Get List Repayments from API ",
@@ -92,7 +92,7 @@
             }
         },
         "post": {
-            "tags": ["Create a Repayment"],
+            "tags": ["unit"],
 
             "summary": "Create a Repayment",
             "description": "Create a Repayment via API ",
@@ -126,7 +126,7 @@
     },
     "repayment": {
         "get": {
-            "tags": ["Get Repayment"],
+            "tags": ["unit"],
 
             "parameters": [
                 {

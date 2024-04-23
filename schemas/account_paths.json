@@ -25,7 +25,7 @@
     },
     "accounts": {
         "get": {
-            "tags": ["Get List Accounts"],
+            "tags": ["unit"],
 
             "summary": "Get List Accounts",
             "description": "Get List Accounts from API ",
@@ -120,7 +120,7 @@
             }
         },
         "post": {
-            "tags": ["Create Account"],
+            "tags": ["unit"],
 
             "summary": "Create Account",
             "description": "Create Account via API ",
@@ -154,7 +154,7 @@
     },
     "account": {
         "get": {
-            "tags": ["Get Account"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -190,7 +190,7 @@
             }
         },
         "patch": {
-            "tags": ["Update Account"],
+            "tags": ["unit"],
 
             "summary": "Update Account",
             "description": "Update an Account via API ",
@@ -235,7 +235,7 @@
     },
     "get_account_limits": {
         "get": {
-            "tags": ["Get Account Limits"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -272,7 +272,7 @@
     },
     "unfreeze_account": {
         "post": {
-            "tags": ["Unfreeze Account"],
+            "tags": ["unit"],
 
             "parameters": [
                 {
@@ -306,7 +306,7 @@
     },
     "freeze_account": {
         "post": {
-            "tags": ["Freeze an Account"],
+            "tags": ["unit"],
 
             "summary": "Freeze Account by Id",
             "description": "Freeze Account via API ",
@@ -357,7 +357,7 @@
     },
     "close_account": {
         "post": {
-            "tags": ["Close an Account"],
+            "tags": ["unit"],
 
             "summary": "Close an Account by Id",
             "description": "Close an Account via API ",
@@ -408,7 +408,7 @@
     },
     "reopen_account": {
         "post": {
-            "tags": ["Reopen an Account"],
+            "tags": ["unit"],
 
             "summary": "Reopen an Account by Id",
             "description": "Reopen an Account via API ",
@@ -442,7 +442,7 @@
     },
     "enter_daca": {
         "post": {
-            "tags": ["Enter Control Agreement for Account"],
+            "tags": ["unit"],
 
             "summary": "Enter Account Control Agreement by Id",
             "description": "Enter Control Agreement for Account via API ",
@@ -476,7 +476,7 @@
     },
     "activate_daca": {
         "post": {
-            "tags": ["Activate Control Agreement for Account"],
+            "tags": ["unit"],
 
             "summary": "Activate Account Control Agreement by Id",
             "description": "Activate Control Agreement for Account via API ",
@@ -510,7 +510,7 @@
     },
     "deactivate_daca": {
         "post": {
-            "tags": ["Deactivate Control Agreement for Account"],
+            "tags": ["unit"],
 
             "summary": "Deactivate Account Control Agreement by Id",
             "description": "Deactivate Control Agreement for Account via API",
@@ -544,7 +544,7 @@
     },
     "get_account_end_of_day": {
         "get": {
-            "tags": ["Get list account end-of-day balances history"],
+            "tags": ["unit"],
 
             "summary": "Get AccountEndOfDay List",
             "description": "Get AccountEndOfDay List from API ",

@@ -1,9 +1,7 @@
 {
     "authorizations": {
         "get": {
-            "tags": [
-                "Get List Authorizations"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get List authorizations",
             "description": "Get List Authorizations from API ",
@@ -104,9 +102,7 @@
     },
     "get_authorization": {
         "get": {
-            "tags": [
-                "Get Authorization"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -150,9 +146,7 @@
     },
     "get_authorizations_requests": {
         "get": {
-            "tags": [
-                "Get List Authorization Requests"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get List Authorization Requests",
             "description": "Get List Authorization Requests from API ",
@@ -219,9 +213,7 @@
     },
     "get_authorization_requests": {
         "get": {
-            "tags": [
-                "Get Authorization Request"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -258,9 +250,7 @@
     },
     "approve_authorization_requests": {
         "post": {
-            "tags": [
-                "Approve Authorization Request"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -314,9 +304,7 @@
     },
     "decline_authorization_requests": {
         "post": {
-            "tags": [
-                "Decline Authorization Request"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {

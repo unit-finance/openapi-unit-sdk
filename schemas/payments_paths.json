@@ -28,9 +28,7 @@
     },
     "get_and_create_payments": {
         "get": {
-            "tags": [
-                "Get List Payments"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get List Payments",
             "description": "Get List Payments from API ",
@@ -173,9 +171,7 @@
             }
         },
         "post": {
-            "tags": [
-                "Create a Payment"
-            ],
+            "tags": ["unit"],
             
             "summary": "Create a Payment",
             "description": "Create a Payment via API ",
@@ -206,9 +202,7 @@
     },
     "get_and_patch_payment": {
         "get": {
-            "tags": [
-                "Get Payment"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -253,9 +247,7 @@
             }
         },
         "patch": {
-            "tags": [
-                "Update Payment"
-            ],
+            "tags": ["unit"],
             
             "summary": "Update Payment",
             "description": "Update an Payment via API ",
@@ -297,9 +289,7 @@
     },
     "cancel_payment": {
         "post": {
-            "tags": [
-                "Cancel Payment"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -330,9 +320,7 @@
     },
     "list_received_payments": {
         "get": {
-            "tags": [
-                "Get Received Payments List"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -376,9 +364,7 @@
     },
     "received_payments": {
         "get": {
-            "tags": [
-                "Get Received Payment"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -423,9 +409,7 @@
             }
         },
         "patch": {
-            "tags": [
-                "Update Received Payment"
-            ],
+            "tags": ["unit"],
             
             "summary": "Update Received Payment",
             "description": "Update a Received Payment via API ",
@@ -467,9 +451,7 @@
     },
     "advance_received_payment": {
         "post": {
-            "tags": [
-                "Advance Received Payment"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -500,9 +482,7 @@
     },
     "recurring_payments": {
         "get": {
-            "tags": [
-                "Get List Recurring Payments"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
@@ -594,9 +574,7 @@
             }
         },
         "post": {
-            "tags": [
-                "Create Recurring Payment"
-            ],
+            "tags": ["unit"],
             
             "summary": "Create Recurring Payment",
             "description": "Create a Recurring Payment via API ",
@@ -627,9 +605,7 @@
     },
     "get_recurring_payment": {
         "get": {
-            "tags": [
-                "Get Recurring Payment"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get Recurring Payment",
             "parameters": [
@@ -660,9 +636,7 @@
     },
     "disable_recurring_payment": {
         "post": {
-            "tags": [
-                "Disable Recurring Payment"
-            ],
+            "tags": ["unit"],
             
             "summary": "Disable Recurring Payment",
             "parameters": [
@@ -693,9 +667,7 @@
     },
     "enable_recurring_payment": {
         "post": {
-            "tags": [
-                "Enable Recurring Payment"
-            ],
+            "tags": ["unit"],
             
             "summary": "Enable Recurring Payment",
             "parameters": [

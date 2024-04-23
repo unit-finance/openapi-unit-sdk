@@ -1,9 +1,7 @@
 {
     "list_atm_locations": {
         "get": {
-            "tags": [
-                "Get ATM Locations List"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get List ATM Locations",
             "description": "Get List ATM Locations from API ",

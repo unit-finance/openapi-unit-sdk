@@ -10,9 +10,7 @@
     },
     "list_events": {
         "get": {
-            "tags": [
-                "Get List Events"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get Events List",
             "description": "Get Events List from API ",
@@ -73,9 +71,7 @@
     },
     "event": {
         "get": {
-            "tags": [
-                "Get Event"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -110,9 +106,7 @@
             }
         },
         "post": {
-            "tags": [
-                "Fire Event"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {

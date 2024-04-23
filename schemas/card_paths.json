@@ -1,9 +1,7 @@
 {
 	"cards":{
 		"get":{
-			"tags":[
-				"Get List of Cards"
-			],
+			"tags": ["unit"],
 			
 			"summary":"Get List of Cards",
 			"description":"Get List of Cards from API ",
@@ -97,9 +95,7 @@
 			}
 		},
 		"post":{
-			"tags":[
-				"Create a Card"
-			],
+			"tags": ["unit"],
 			
 			"summary":"Create a Card",
 			"description":"Create a Card via API ",
@@ -136,9 +132,7 @@
 	},
 	"card":{
 		"get":{
-			"tags":[
-				"Get Card"
-			],
+			"tags": ["unit"],
 			
 			"parameters":[
 				{
@@ -186,9 +180,7 @@
 			}
 		},
 		"patch":{
-			"tags":[
-				"Update Card"
-			],
+			"tags": ["unit"],
 			
 			"summary":"Update Card",
 			"description":"Update a Card via API ",
@@ -236,9 +228,7 @@
 	},
 	"report_lost_card":{
 		"post":{
-			"tags":[
-				"Report Card as Lost"
-			],
+			"tags": ["unit"],
 			
 			"summary":"Report lost as stolen",
 			"parameters":[
@@ -275,9 +265,7 @@
 	},
 	"report_stolen_card":{
 		"post":{
-			"tags":[
-				"Report Card as Stolen"
-			],
+			"tags": ["unit"],
 			
 			"summary":"Report card as stolen",
 			"parameters":[
@@ -314,9 +302,7 @@
 	},
 	"close_card":{
 		"post":{
-			"tags":[
-				"Close a Card"
-			],
+			"tags": ["unit"],
 			
 			"summary":"Close a Card",
 			"description":"Close a Card via API ",
@@ -353,9 +339,7 @@
 	},
 	"card_pin_status":{
 		"get":{
-			"tags":[
-				"Get Card PIN Status"
-			],
+			"tags": ["unit"],
 			
 			"summary":"Get Card PIN Status",
 			"description":"Get Card PIN Status via API ",
@@ -392,9 +376,7 @@
 	},
 	"freeze_card":{
 		"post":{
-			"tags":[
-				"Freeze a Card"
-			],
+			"tags": ["unit"],
 			
 			"parameters":[
 				{
@@ -431,9 +413,7 @@
 	},
 	"unfreeze_card":{
 		"post":{
-			"tags":[
-				"Unfreeze a Card"
-			],
+			"tags": ["unit"],
 			
 			"parameters":[
 				{
@@ -470,9 +450,7 @@
 	},
 	"card_limits":{
 		"get":{
-			"tags":[
-				"Get Card Limits"
-			],
+			"tags": ["unit"],
 			
 			"parameters":[
 				{

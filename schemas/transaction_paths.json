@@ -1,9 +1,7 @@
 {
     "list_transactions": {
         "get": {
-            "tags": [
-                "Get List Transactions"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get List Transactions",
             "description": "Get List Transactions from API ",
@@ -121,9 +119,7 @@
     },
     "transaction": {
         "get": {
-            "tags": [
-                "Get Transaction"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -170,9 +166,7 @@
             }
         },
         "patch": {
-            "tags": [
-                "Update Transaction"
-            ],
+            "tags": ["unit"],
             
             "summary": "Update Transaction",
             "description": "Update a Transaction via API ",

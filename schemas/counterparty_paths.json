@@ -1,9 +1,7 @@
 {
     "counterparties": {
         "get": {
-            "tags": [
-                "Get List Counterparties"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get Counterparties List",
             "description": "Get Counterparties List from API ",
@@ -80,9 +78,7 @@
             }
         },
         "post": {
-            "tags": [
-                "Create Counterparty"
-            ],
+            "tags": ["unit"],
             
             "summary": "Create Counterparty",
             "description": "Create a counterparty via API ",
@@ -119,9 +115,7 @@
     },
     "counterparty": {
         "get": {
-            "tags": [
-                "Get Counterparty"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -163,9 +157,7 @@
             }
         },
         "patch": {
-            "tags": [
-                "Update Counterparty"
-            ],
+            "tags": ["unit"],
             
             "summary": "Update Counterparty",
             "description": "Update a Counterparty via API ",
@@ -211,9 +203,7 @@
             }
         },
         "delete": {
-            "tags": [
-                "Delete Counterparty"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {
@@ -237,9 +227,7 @@
     },
     "counterparty_balance": {
         "get": {
-            "tags": [
-                "Get Counterparty Balance"
-            ],
+            "tags": ["unit"],
             
             "summary": "Get Counterparty Balance",
             "parameters": [

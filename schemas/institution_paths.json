@@ -1,9 +1,7 @@
 {
     "get_institution": {
         "get": {
-            "tags": [
-                "Get Institution"
-            ],
+            "tags": ["unit"],
             
             "parameters": [
                 {

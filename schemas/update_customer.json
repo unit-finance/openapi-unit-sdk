@@ -48,13 +48,15 @@
                                 "nullable": true
                             },
                             "dba": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             },
                             "tags": {
                                 "$ref": "tags.json#/components/schemas/tags"
                             },
                             "authorizedUsers": {
-                                "type": ["array", "null"],
+                                "type": "array",
+                                "nullable": true,
                                 "items": {
                                     "$ref": "./types.json#/components/schemas/authorizedUser"
                                 }
@@ -80,7 +82,8 @@
                         "type": "object",
                         "properties": {
                             "dba": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             },
                             "ein": {
                                 "type": "string",
@@ -103,7 +106,8 @@
                                 "nullable": true
                             },
                             "authorizedUsers": {
-                                "type": ["array", "null"],
+                                "type": "array",
+                                "nullable": true,
                                 "items": {
                                     "$ref": "./types.json#/components/schemas/authorizedUser"
                                 }
@@ -133,7 +137,8 @@
                                 "nullable": true
                             },
                             "authorizedUsers": {
-                                "type": ["array", "null"],
+                                "type": "array",
+                                "nullable": true,
                                 "items": {
                                     "$ref": "./types.json#/components/schemas/authorizedUser"
                                 }

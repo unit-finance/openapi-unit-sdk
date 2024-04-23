@@ -76,7 +76,7 @@
                                         "$ref": "./types.json#/components/schemas/Relationship"
                                     }
                                 },
-                                "required": [],
+                                "required": ["application"],
                                 "additionalProperties": false
                             }
                         },

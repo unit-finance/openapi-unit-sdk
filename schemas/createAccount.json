@@ -20,10 +20,12 @@
                                 "type": "integer"
                             },
                             "tags": {
-                                "type": ["object", "null"]
+                                "type": "object",
+                                "nullable": true
                             },
                             "idempotencyKey": {
-                                "type": ["string", "null"]
+                                "type": "string", 
+                                "nullable": true
                             }
                         },
                         "additionalProperties": false,
@@ -55,10 +57,12 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": ["object", "null"]
+                                "type": "object",
+                                "nullable": true 
                             },
                             "idempotencyKey": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             }
                         },
                         "additionalProperties": false,

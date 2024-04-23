@@ -18,22 +18,15 @@
                                         "$ref": "./types.json#/components/schemas/identifier"
                                     }
                                 },
-                                "required": [
-                                    "type",
-                                    "id"
-                                ],
+                                "required": ["type", "id"],
                                 "additionalProperties": false
                             }
                         },
-                        "required": [
-                            "data"
-                        ],
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 },
-                "required": [
-                    "org"
-                ],
+                "required": ["org"],
                 "additionalProperties": false
             },
             "applicationFormAdditionalDisclosures": {
@@ -115,18 +108,9 @@
                         "type": "string"
                     },
                     "applicationFormCertificateStatus": {
-                        "oneOf": [
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "Verified",
-                                    "Unverified"
-                                ]
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
+                        "type": "string",
+                        "enum": ["Verified", "Unverified"],
+                        "nullable": true
                     }
                 }
             },
@@ -175,11 +159,7 @@
                                 "type": "object",
                                 "properties": {
                                     "provider": {
-                                        "enum": [
-                                            "Auth0",
-                                            "Cognito",
-                                            "Stytch"
-                                        ]
+                                        "enum": ["Auth0", "Cognito", "Stytch"]
                                     },
                                     "jwksPath": {
                                         "type": "string"
@@ -188,10 +168,7 @@
                                         "type": "string"
                                     }
                                 },
-                                "required": [
-                                    "provider",
-                                    "jwksPath"
-                                ],
+                                "required": ["provider", "jwksPath"],
                                 "additionalProperties": false
                             },
                             "plaidSecretsSet": {
@@ -241,10 +218,7 @@
                                     }
                                 },
                                 "additionalProperties": false,
-                                "required": [
-                                    "statementPhone",
-                                    "statementEmail"
-                                ]
+                                "required": ["statementPhone", "statementEmail"]
                             },
                             "applicationFormSettings": {
                                 "$ref": "#/components/schemas/applicationFormSettings"
@@ -290,10 +264,7 @@
                                 "format": "date-time"
                             }
                         },
-                        "required": [
-                            "generalSettings",
-                            "createdAt"
-                        ],
+                        "required": ["generalSettings", "createdAt"],
                         "additionalProperties": false
                     },
                     "relationships": {
@@ -301,12 +272,7 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "type",
-                    "id",
-                    "relationships",
-                    "attributes"
-                ]
+                "required": ["type", "id", "relationships", "attributes"]
             }
         },
         "title": "Org Settings Document",
@@ -320,8 +286,6 @@
             }
         },
         "additionalProperties": false,
-        "required": [
-            "data"
-        ]
+        "required": ["data"]
     }
 }

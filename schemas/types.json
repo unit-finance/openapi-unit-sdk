@@ -20,7 +20,8 @@
                         "pattern": "^.*$"
                     },
                     "street2": {
-                        "type": ["string", "null"],
+                        "type": "string",
+                        "nullable": true, 
                         "pattern": "^.*$"
                     },
                     "city": {
@@ -57,7 +58,8 @@
                 "pattern": "^\\d{9}$"
             },
             "jwtSubject": {
-                "type": ["string", "null"]
+                "type": "string",
+                "nullable": true 
             },
             "contact": {
                 "title": "Contact",
@@ -738,7 +740,8 @@
                                 "enum": ["Fraud", "Other"]
                             },
                             "reasonText": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true 
                             }
                         }
                     }
@@ -761,7 +764,8 @@
                                 "default": "ByCustomer"
                             },
                             "fraudReason": {
-                                "type": ["string", "null"],
+                                "type": "string",
+                                "nullable": true,
                                 "enum": [
                                     "ACHActivity",
                                     "CardActivity",

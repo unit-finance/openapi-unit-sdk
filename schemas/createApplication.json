@@ -221,21 +221,17 @@
                                 "$ref": "./types.json#/components/schemas/phone"
                             },
                             "ssn": {
-                                "type": ["string", "null"],
+                                "type": "string",
+                                "nullable": true,
                                 "pattern": "^\\d{9}|\\d{4}"
                             },
                             "passport": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             },
                             "nationality": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "./types.json#/components/schemas/country"
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/country",
+                                "nullable": true
                             },
                             "address": {
                                 "$ref": "./types.json#/components/schemas/address"
@@ -318,24 +314,21 @@
                                 "$ref": "./types.json#/components/schemas/phone"
                             },
                             "ssn": {
-                                "type": ["string", "null"],
+                                "type": "string",
+                                "nullable": true,
                                 "pattern": "^\\d{9}|\\d{4}"
                             },
                             "passport": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             },
                             "nationality": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "./types.json#/components/schemas/country"
-                                    },
-                                    {
-                                        "type": "null"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/country",
+                                "nullable": true
                             },
                             "matriculaConsular": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             },
                             "address": {
                                 "$ref": "./types.json#/components/schemas/address"
@@ -345,10 +338,12 @@
                                 "format": "date"
                             },
                             "dba": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             },
                             "ein": {
-                                "type": ["string", "null"],
+                                "type": "string",
+                                "nullable": true,
                                 "pattern": "^\\d{9}$"
                             },
                             "ip": {

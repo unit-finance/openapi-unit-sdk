@@ -908,14 +908,8 @@
                                         "type": "string"
                                     },
                                     "interchange": {
-                                        "oneOf": [
-                                            {
-                                                "type": "string"
-                                            },
-                                            {
-                                                "type": "null"
-                                            }
-                                        ]
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "ecommerce": {
                                         "type": "boolean"
@@ -924,14 +918,8 @@
                                         "type": "boolean"
                                     },
                                     "internationalServiceFee": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "null"
-                                            }
-                                        ]
+                                        "type": "integer",
+                                        "nullable": true
                                     },
                                     "paymentMethod": {
                                         "type": "string"
@@ -1018,24 +1006,12 @@
                                         "type": "string"
                                     },
                                     "interchange": {
-                                        "oneOf": [
-                                            {
-                                                "type": "string"
-                                            },
-                                            {
-                                                "type": "null"
-                                            }
-                                        ]
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "internationalServiceFee": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "null"
-                                            }
-                                        ]
+                                        "type": "integer",
+                                        "nullable": true
                                     },
                                     "cardNetwork": {
                                         "type": "string"
@@ -1154,14 +1130,8 @@
                                         "type": "string"
                                     },
                                     "internationalServiceFee": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "null"
-                                            }
-                                        ]
+                                        "type": "integer",
+                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -1223,24 +1193,12 @@
                                         "type": "string"
                                     },
                                     "interchange": {
-                                        "oneOf": [
-                                            {
-                                                "type": "string"
-                                            },
-                                            {
-                                                "type": "null"
-                                            }
-                                        ]
+                                        "type": "string",
+                                        "nullable": true
                                     },
                                     "internationalServiceFee": {
-                                        "oneOf": [
-                                            {
-                                                "type": "integer"
-                                            },
-                                            {
-                                                "type": "null"
-                                            }
-                                        ]
+                                        "type": "integer",
+                                        "nullable": true
                                     },
                                     "merchant": {
                                         "$ref": "./types.json#/components/schemas/merchant"

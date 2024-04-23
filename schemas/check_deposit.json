@@ -188,7 +188,8 @@
                                 ]
                             },
                             "reason": {
-                                "type": ["string", "null"]
+                                "type": "string",
+                                "nullable": true
                             },
                             "statusCreatedAt": {
                                 "type": "string",

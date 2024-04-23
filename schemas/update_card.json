@@ -13,12 +13,8 @@
                         "type": "object",
                         "properties": {
                             "shippingAddress": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/address"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/address",
+                                "nullable": true
                             },
                             "design": { "type": "string" },
                             "tags": {
@@ -28,12 +24,8 @@
                                 "$ref": "./types.json#/components/schemas/cardLevelLimits"
                             },
                             "defaultFundingAccountId": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/identifier"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/identifier",
+                                "nullable": true
                             }
                         },
                         "additionalProperties": false
@@ -60,12 +52,8 @@
                                 "$ref": "./types.json#/components/schemas/cardLevelLimits"
                             },
                             "defaultFundingAccountId": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/identifier"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/identifier",
+                                "nullable": true
                             }
                         },
                         "additionalProperties": false
@@ -86,12 +74,8 @@
                         "type": "object",
                         "properties": {
                             "shippingAddress": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/address"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/address",
+                                "nullable": true
                             },
                             "address": {
                                 "$ref": "./types.json#/components/schemas/address"
@@ -110,16 +94,11 @@
                                 "$ref": "./types.json#/components/schemas/cardLevelLimits"
                             },
                             "defaultFundingAccountId": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/identifier"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/identifier",
+                                "nullable": true
                             }
                         },
-                        "additionalProperties": false,
-                        "required": []
+                        "additionalProperties": false
                     }
                 },
                 "additionalProperties": false,
@@ -152,16 +131,11 @@
                                 "$ref": "./types.json#/components/schemas/cardLevelLimits"
                             },
                             "defaultFundingAccountId": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/identifier"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/identifier",
+                                "nullable": true
                             }
                         },
-                        "additionalProperties": false,
-                        "required": []
+                        "additionalProperties": false
                     }
                 },
                 "additionalProperties": false,
@@ -179,12 +153,8 @@
                         "type": "object",
                         "properties": {
                             "shippingAddress": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/address"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/address",
+                                "nullable": true
                             },
                             "address": {
                                 "$ref": "./types.json#/components/schemas/address"
@@ -203,16 +173,11 @@
                                 "$ref": "./types.json#/components/schemas/cardLevelLimits"
                             },
                             "defaultFundingAccountId": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/identifier"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/identifier",
+                                "nullable": true
                             }
                         },
-                        "additionalProperties": false,
-                        "required": []
+                        "additionalProperties": false
                     }
                 },
                 "additionalProperties": false,
@@ -245,16 +210,11 @@
                                 "$ref": "./types.json#/components/schemas/cardLevelLimits"
                             },
                             "defaultFundingAccountId": {
-                                "oneOf": [
-                                    { "type": "null" },
-                                    {
-                                        "$ref": "./types.json#/components/schemas/identifier"
-                                    }
-                                ]
+                                "$ref": "./types.json#/components/schemas/identifier",
+                                "nullable": true
                             }
                         },
-                        "additionalProperties": false,
-                        "required": []
+                        "additionalProperties": false
                     }
                 },
                 "additionalProperties": false,

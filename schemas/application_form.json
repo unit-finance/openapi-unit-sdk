@@ -24,7 +24,6 @@
                         "additionalProperties": false
                     }
                 },
-                "required": [],
                 "additionalProperties": false
             },
             "ApplicationFormPrefill": {

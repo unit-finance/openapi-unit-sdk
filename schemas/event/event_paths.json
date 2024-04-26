@@ -1,0 +1,141 @@
+{
+    "UnitEventResponse": {
+        "type": "object",
+        "title": "UnitEventResponse",
+        "properties": {
+            "data": {
+                "$ref": "event.json"
+            }
+        }
+    },
+    "list_events": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getEvents",
+
+            "summary": "Get Events List",
+            "description": "Get Events List from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitEventListResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "event.json"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "event": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getEventById",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "eventId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the event to get"
+                }
+            ],
+            "summary": "Get Event by Id",
+            "description": "Get an Event from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitEventResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "event.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "fireEvent",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "eventId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the event to fire"
+                }
+            ],
+            "summary": "Fire Event by Id",
+            "description": "Fire an Event via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "event_paths.json#/UnitEventResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "components": {
+        "schemas": {
+            "patchAchReceivedPayment": {
+                "title": "Patch ACH Received Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "achReceivedPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tagsPatch"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "updateReceivedPayment": {
+                "title": "Patch Received Payment",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/patchAchReceivedPayment"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

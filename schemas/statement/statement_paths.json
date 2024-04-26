@@ -1,0 +1,166 @@
+{
+    "get_statements": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getStatements",
+
+            "summary": "Get List Statements",
+            "description": "Get List Statements from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "period": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitStatementsResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./statement.json#/components/schemas/statement"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_statement_html": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getStatementHtmlById",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "statementId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the statement to get"
+                }
+            ],
+            "summary": "Get HTML Statement by Id",
+            "description": "Get a HTML Statement from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "text/html": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_statement_pdf": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getStatementPdfById",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "statementId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the statement to get"
+                }
+            ],
+            "summary": "Get PDF Statement by Id",
+            "description": "Get a PDF Statement from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/pdf": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_statement_bank_pdf": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getStatementBankPdfById",
+
+            "summary": "Get Bank verification PDF",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to get"
+                }
+            ],
+            "description": "Get Get Bank verification PDF from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/pdf": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

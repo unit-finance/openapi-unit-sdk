@@ -1,0 +1,122 @@
+{
+    "components": {
+        "schemas": {
+            "createRewardRelationships": {
+                "type": "object",
+                "properties": {
+                    "fundingAccount": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    },
+                    "receivingAccount": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    },
+                    "rewardedTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "../types.json#/components/schemas/identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["receivingAccount"],
+                "additionalProperties": false
+            },
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "default": "reward"
+                        },
+                        "attributes": {
+                            "type": "object",
+                            "properties": {
+                                "amount": {
+                                    "type": "integer",
+                                    "minimum": 1
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "maxLength": 50
+                                },
+                                "idempotencyKey": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 255
+                                },
+                                "tags": {
+                                    "$ref": "../tags.json#/components/schemas/tags"
+                                }
+                            },
+                            "required": ["amount", "description"],
+                            "additionalProperties": false
+                        },
+                        "relationships": {
+                            "$ref": "#/components/schemas/createRewardRelationships"
+                        }
+                    },
+                    "required": ["type", "attributes", "relationships"],
+                    "additionalProperties": false
+                }
+            },
+            "createReward": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "default": "reward"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "idempotencyKey": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 255
+                                    },
+                                    "tags": {
+                                        "$ref": "../tags.json#/components/schemas/tags"
+                                    }
+                                },
+                                "required": ["amount", "description"],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/createRewardRelationships"
+                            }
+                        },
+                        "required": ["type", "attributes", "relationships"],
+                        "additionalProperties": false
+                    }
+                }
+            }
+        }
+    }
+}

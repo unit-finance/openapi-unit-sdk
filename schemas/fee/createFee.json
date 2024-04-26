@@ -1,0 +1,54 @@
+{
+    "components": {
+        "schemas": {
+            "createFeeRelationships": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    }
+                },
+                "required": ["account"],
+                "additionalProperties": false
+            },
+            "createFee": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["fee"],
+                        "default": "fee"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 50
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 255
+                            }
+                        },
+                        "required": ["amount", "description"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/createFeeRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

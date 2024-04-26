@@ -1,0 +1,62 @@
+{
+    "components": {
+        "schemas": {
+            "patchCounterparty": {
+                "title": "Patch Counterparty",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "counterparty"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "plaidProcessorToken": {
+                                "$ref": "../types.json#/components/schemas/plaidProcessorToken"
+                            },
+                            "name": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "permissions": {
+                                "type": "string",
+                                "enum": [
+                                    "CreditOnly",
+                                    "DebitOnly",
+                                    "CreditAndDebit"
+                                ]
+                            },
+                            "verifyName": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tagsPatch"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "updateCounterparty": {
+                "title": "Patch Counterparty",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/patchCounterparty"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

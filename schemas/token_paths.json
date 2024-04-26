@@ -2,6 +2,7 @@
     "api_tokens": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getApiTokens",
             
             "summary": "Get List Org API Tokens",
             "parameters": [
@@ -40,6 +41,7 @@
         },
          "post": {
             "tags": ["unit"],
+            "operationId": "createApiToken",
             
             "summary": "Create Org API Token",
             "description": "Create an Org API Token via API ",
@@ -88,6 +90,7 @@
     "delete_token": {
         "delete": {
             "tags": ["unit"],
+            "operationId": "deleteToken",
             
             "parameters": [
                 {
@@ -134,6 +137,7 @@
     "create_customer_token": {
         "post": {
             "tags": ["unit"],
+            "operationId": "createCustomerToken",
             
             "parameters": [
                 {
@@ -182,6 +186,7 @@
     "create_customer_token_verification": {
         "post": {
             "tags": ["unit"],
+            "operationId": "createCustomerTokenVerification",
             
             "parameters": [
                 {

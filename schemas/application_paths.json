@@ -32,7 +32,7 @@
     "application": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getApplicationById",
             "parameters": [
                 {
                     "schema": {
@@ -68,7 +68,7 @@
         },
         "patch": {
             "tags": ["unit"],
-
+            "operationId": "updateApplication",
             "summary": "Update Application",
             "description": "Update an Application via API ",
             "parameters": [
@@ -110,7 +110,7 @@
     "cancel_application": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "cancelApplication",
             "parameters": [
                 {
                     "schema": {
@@ -184,7 +184,7 @@
     "applications": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getApplications",
             "summary": "Get List Application",
             "description": "Get List Applications from API ",
             "parameters": [
@@ -270,7 +270,7 @@
         },
         "post": {
             "tags": ["unit"],
-
+            "operationId": "createApplication",
             "summary": "Create Application",
             "description": "Create an Application via API ",
             "requestBody": {
@@ -313,7 +313,7 @@
     "application_forms": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getApplicationForms",
             "summary": "Get List Application Forms",
             "description": "Get List Application Forms from API ",
             "parameters": [
@@ -386,7 +386,7 @@
         },
         "post": {
             "tags": ["unit"],
-
+            "operationId": "createApplicationForm",
             "summary": "Create Application Form",
             "description": "Create an Application Form via API ",
             "requestBody": {
@@ -423,7 +423,7 @@
     "application_form": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getApplicationFormById",
             "parameters": [
                 {
                     "schema": {
@@ -470,7 +470,7 @@
     "upload_pdf_file": {
         "put": {
             "tags": ["unit"],
-
+            "operationId": "uploadApplicationPdfFile",
             "parameters": [
                 {
                     "schema": {
@@ -521,7 +521,7 @@
     "upload_pdf_file_back": {
         "put": {
             "tags": ["unit"],
-
+            "operationId": "uploadApplicationPdfFileBackSide",
             "parameters": [
                 {
                     "schema": {
@@ -572,6 +572,7 @@
     "upload_png_file": {
         "put": {
             "tags": ["unit"],
+            "operationId": "uploadApplicationPngFile",
 
             "parameters": [
                 {
@@ -623,6 +624,7 @@
     "upload_png_file_back": {
         "put": {
             "tags": ["unit"],
+            "operationId": "uploadApplicationPngFileBackSide",
 
             "parameters": [
                 {
@@ -674,6 +676,7 @@
     "upload_jpg_file": {
         "put": {
             "tags": ["unit"],
+            "operationId": "uploadApplicationJpgFile",
 
             "parameters": [
                 {
@@ -725,6 +728,7 @@
     "upload_jpg_file_back": {
         "put": {
             "tags": ["unit"],
+            "operationId": "uploadApplicationJpgFileBackSide",
 
             "parameters": [
                 {
@@ -776,6 +780,7 @@
     "documents": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getApplicationDocuments",
 
             "parameters": [
                 {
@@ -814,6 +819,7 @@
         },
         "post": {
             "tags": ["unit"],
+            "operationId": "createApplicationDocument",
 
             "parameters": [
                 {
@@ -845,6 +851,7 @@
     "verify_document": {
         "put": {
             "tags": ["unit"],
+            "operationId": "verifyApplicationDocument",
 
             "parameters": [
                 {
@@ -902,6 +909,7 @@
     "download_document": {
         "get": {
             "tags": ["unit"],
+            "operationId": "downloadApplicationDocument",
 
             "parameters": [
                 {
@@ -943,6 +951,7 @@
     "download_back_side_document": {
         "get": {
             "tags": ["unit"],
+            "operationId": "downloadApplicationBackSideDocument",
 
             "parameters": [
                 {

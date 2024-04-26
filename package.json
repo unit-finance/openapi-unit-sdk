@@ -1,11 +1,12 @@
 {
   "scripts": {
-    "bundle": "npx @redocly/cli bundle openapi.json -o dist/bundledSchema.json",
-    "generate-java": "cp -r unit dist/ && openapi-generator-cli generate -g java -i ./dist/bundledSchema.json -o ./dist/unit",
-    "redocly-lint": "npx @redocly/openapi-cli lint --config .redocly.yaml openapi.json"
+    "bundle": "npm @redocly/cli bundle openapi.json -o dist/bundledSchema.json",
+    "generate-java": "cp -r unit ./dist/java-sdk && openapi-generator-cli generate -g java -i ./dist/bundledSchema.json -o ./dist/java-sdk",
+    "redocly-lint": "npm @redocly/openapi-cli lint --config .redocly.yaml openapi.json"
   },
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.4",
+    "@redocly/cli": "^1.12.0",
     "ts-node": "^10.9.2"
   }
 }

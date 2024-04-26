@@ -11,6 +11,7 @@
     "repayments": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getRepayments",
 
             "summary": "Get List Repayments",
             "description": "Get List Repayments from API ",
@@ -93,6 +94,7 @@
         },
         "post": {
             "tags": ["unit"],
+            "operationId": "createRepayment",
 
             "summary": "Create a Repayment",
             "description": "Create a Repayment via API ",
@@ -127,6 +129,7 @@
     "repayment": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getRepaymentById",
 
             "parameters": [
                 {

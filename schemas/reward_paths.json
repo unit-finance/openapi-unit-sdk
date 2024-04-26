@@ -2,6 +2,7 @@
     "rewards": {
         "post": {
             "tags": ["unit"],
+            "operationId": "createReward",
             
             "summary": "Create Reward",
             "description": "Create a Reward via API ",
@@ -37,6 +38,7 @@
         },
         "get": {
             "tags": ["unit"],
+            "operationId": "getRewards",
             
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
@@ -130,6 +132,7 @@
     "get_reward": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getRewardById",
             
             "parameters": [
                 {

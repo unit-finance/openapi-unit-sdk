@@ -2,6 +2,7 @@
     "webhooks": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getWebhooks",
             
             "summary": "Get List Webhooks",
             "description": "Get List Webhooks from API ",
@@ -68,6 +69,7 @@
             },
         "post": {
             "tags": ["unit"],
+            "operationId": "createWebhook",
             
             "summary": "Create Webhook",
             "description": "Create a Webhook via API ",
@@ -159,6 +161,7 @@
     "webhook": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getWebhookById",
             
             "parameters": [
                 {
@@ -194,6 +197,7 @@
         },
         "patch": {
             "tags": ["unit"],
+            "operationId": "updateWebhook",
             
             "summary": "Update Webhook",
             "description": "Update a Webhook via API ",
@@ -242,6 +246,7 @@
     "enable_webhook": {
         "post": {
             "tags": ["unit"],
+            "operationId": "enableWebhook",
             
             "summary": "Enable Webhook",
             "parameters": [
@@ -279,6 +284,7 @@
     "disable_webhook": {
         "post": {
             "tags": ["unit"],
+            "operationId": "disableWebhook",
             
             "summary": "Disable a Webhook",
             "parameters": [

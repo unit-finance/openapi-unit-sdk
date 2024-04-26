@@ -29,6 +29,7 @@
     "get_and_create_payments": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getPayments",
             
             "summary": "Get List Payments",
             "description": "Get List Payments from API ",
@@ -172,6 +173,7 @@
         },
         "post": {
             "tags": ["unit"],
+            "operationId": "createPayment",
             
             "summary": "Create a Payment",
             "description": "Create a Payment via API ",
@@ -203,6 +205,7 @@
     "get_and_patch_payment": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getPaymentById",
             
             "parameters": [
                 {
@@ -248,6 +251,7 @@
         },
         "patch": {
             "tags": ["unit"],
+            "operationId": "updatePayment",
             
             "summary": "Update Payment",
             "description": "Update an Payment via API ",
@@ -290,6 +294,7 @@
     "cancel_payment": {
         "post": {
             "tags": ["unit"],
+            "operationId": "cancelPayment",
             
             "parameters": [
                 {
@@ -321,6 +326,7 @@
     "list_received_payments": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getReceivedPayments",
             
             "parameters": [
                 {
@@ -365,6 +371,7 @@
     "received_payments": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getReceivedPaymentById",
             
             "parameters": [
                 {
@@ -452,6 +459,7 @@
     "advance_received_payment": {
         "post": {
             "tags": ["unit"],
+            "operationId": "advanceReceivedPayment",
             
             "parameters": [
                 {
@@ -483,6 +491,7 @@
     "recurring_payments": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getRecurringPayments",
             
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
@@ -575,6 +584,7 @@
         },
         "post": {
             "tags": ["unit"],
+            "operationId": "createRecurringPayment",
             
             "summary": "Create Recurring Payment",
             "description": "Create a Recurring Payment via API ",
@@ -606,6 +616,7 @@
     "get_recurring_payment": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getRecurringPaymentById",
             
             "summary": "Get Recurring Payment",
             "parameters": [
@@ -637,6 +648,7 @@
     "disable_recurring_payment": {
         "post": {
             "tags": ["unit"],
+            "operationId": "disableRecurringPayment",
             
             "summary": "Disable Recurring Payment",
             "parameters": [
@@ -668,6 +680,7 @@
     "enable_recurring_payment": {
         "post": {
             "tags": ["unit"],
+            "operationId": "enableRecurringPayment",
             
             "summary": "Enable Recurring Payment",
             "parameters": [

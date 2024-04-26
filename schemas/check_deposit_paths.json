@@ -2,6 +2,7 @@
     "check_deposits": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getCheckDeposits",
             
             "summary": "Get List Check Deposits",
             "description": "Get List Check Deposits from API ",
@@ -94,6 +95,7 @@
         },
         "post": {
             "tags": ["unit"],
+            "operationId": "createCheckDeposit",
             
             "summary": "Create Check Deposit",
             "description": "Create a Check Deposit via API ",
@@ -131,6 +133,7 @@
     "check_deposit": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getCheckDepositById",
             
             "parameters": [
                 {
@@ -166,6 +169,7 @@
         },
         "patch": {
             "tags": ["unit"],
+            "operationId": "updateCheckDeposit",
             
             "summary": "Update Check Deposit",
             "description": "Update a Check Deposit via API ",
@@ -214,6 +218,7 @@
     "confirm_check_deposit": {
         "post": {
             "tags": ["unit"],
+            "operationId": "confirmCheckDeposit",
             
             "parameters": [
                 {
@@ -251,6 +256,7 @@
     "get_front_check_deposit": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getFrontCheckDepositById",
             
             "parameters": [
                 {
@@ -288,6 +294,7 @@
     "get_back_check_deposit": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getBackCheckDepositById",
             
             "parameters": [
                 {

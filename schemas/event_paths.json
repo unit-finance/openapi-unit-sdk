@@ -11,6 +11,7 @@
     "list_events": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getEvents",
             
             "summary": "Get Events List",
             "description": "Get Events List from API ",
@@ -72,6 +73,7 @@
     "event": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getEventById",
             
             "parameters": [
                 {
@@ -107,6 +109,7 @@
         },
         "post": {
             "tags": ["unit"],
+            "operationId": "fireEvent",
             
             "parameters": [
                 {

@@ -26,7 +26,7 @@
     "accounts": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getAccounts",
             "summary": "Get List Accounts",
             "description": "Get List Accounts from API ",
             "parameters": [
@@ -121,7 +121,7 @@
         },
         "post": {
             "tags": ["unit"],
-
+            "operationId": "createAccount",
             "summary": "Create Account",
             "description": "Create Account via API ",
             "requestBody": {
@@ -155,7 +155,7 @@
     "account": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getAccountById",
             "parameters": [
                 {
                     "schema": {
@@ -191,7 +191,7 @@
         },
         "patch": {
             "tags": ["unit"],
-
+            "operationId": "updateAccount",
             "summary": "Update Account",
             "description": "Update an Account via API ",
             "parameters": [
@@ -236,7 +236,7 @@
     "get_account_limits": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getAccountLimits",
             "parameters": [
                 {
                     "schema": {
@@ -273,7 +273,7 @@
     "unfreeze_account": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "unfreezeAccount",
             "parameters": [
                 {
                     "schema": {
@@ -307,7 +307,7 @@
     "freeze_account": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "freezeAccount",
             "summary": "Freeze Account by Id",
             "description": "Freeze Account via API ",
             "parameters": [
@@ -358,7 +358,7 @@
     "close_account": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "closeAccount",
             "summary": "Close an Account by Id",
             "description": "Close an Account via API ",
             "parameters": [
@@ -409,7 +409,7 @@
     "reopen_account": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "reopenAccount",
             "summary": "Reopen an Account by Id",
             "description": "Reopen an Account via API ",
             "parameters": [
@@ -443,7 +443,7 @@
     "enter_daca": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "enterControlAgreementForAccount",
             "summary": "Enter Account Control Agreement by Id",
             "description": "Enter Control Agreement for Account via API ",
             "parameters": [
@@ -477,7 +477,7 @@
     "activate_daca": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "activateControlAgreementForAccount",
             "summary": "Activate Account Control Agreement by Id",
             "description": "Activate Control Agreement for Account via API ",
             "parameters": [
@@ -511,7 +511,7 @@
     "deactivate_daca": {
         "post": {
             "tags": ["unit"],
-
+            "operationId": "deactivateControlAgreementForAccount",
             "summary": "Deactivate Account Control Agreement by Id",
             "description": "Deactivate Control Agreement for Account via API",
             "parameters": [
@@ -545,7 +545,7 @@
     "get_account_end_of_day": {
         "get": {
             "tags": ["unit"],
-
+            "operationId": "getAccountEndOfDay",   
             "summary": "Get AccountEndOfDay List",
             "description": "Get AccountEndOfDay List from API ",
             "responses": {

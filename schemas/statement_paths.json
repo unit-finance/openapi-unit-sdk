@@ -2,6 +2,7 @@
     "get_statements": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getStatements",
             
             "summary": "Get List Statements",
             "description": "Get List Statements from API ",
@@ -67,6 +68,7 @@
     "get_statement_html": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getStatementHtmlById",
             
             "parameters": [
                 {
@@ -98,6 +100,7 @@
     "get_statement_pdf": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getStatementPdfById",
             
             "parameters": [
                 {
@@ -130,6 +133,7 @@
     "get_statement_bank_pdf": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getStatementBankPdfById",
             
             "summary": "Get Bank verification PDF",
             "parameters": [

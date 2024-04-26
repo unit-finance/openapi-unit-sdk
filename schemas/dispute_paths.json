@@ -2,6 +2,7 @@
     "list_disputes": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getDisputes",
             
             "summary": "Get List Disputes",
             "description": "Get List Disputes from API ",
@@ -49,6 +50,7 @@
     "get_dispute": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getDisputeById",
             
             "parameters": [
                 {

@@ -277,6 +277,7 @@
   "check_payments": {
     "get": {
       "tags": ["unit"],
+      "operationId": "getCheckPayments",
       
       "summary": "Get List Check Payments",
       "description": "Get List Check Payments from API ",
@@ -384,6 +385,7 @@
     },
     "post": {
       "tags": ["unit"],
+      "operationId": "createCheckPayment",
       
       "summary": "Create Check Payment",
       "description": "Create Check Payment via API ",
@@ -415,6 +417,7 @@
   "check_payment": {
     "get": {
       "tags": ["unit"],
+      "operationId": "getCheckPaymentById",
       
       "parameters": [
         {
@@ -446,6 +449,7 @@
   "check_payment_approve": {
     "post": {
       "tags": ["unit"],
+      "operationId": "approveCheckPayment",
       
       "parameters": [
         {
@@ -500,6 +504,7 @@
   "check_payment_return": {
     "post": {
       "tags": ["unit"],
+      "operationId": "returnCheckPayment",
       
       "parameters": [
         {
@@ -562,6 +567,7 @@
   "check_payment_cancel": {
     "post": {
       "tags": ["unit"],
+      "operationId": "cancelCheckPayment",
       
       "parameters": [
         {
@@ -593,6 +599,7 @@
   "get_check_payment_front": {
     "get": {
       "tags": ["unit"],
+      "operationId": "getCheckPaymentFrontById",
       
       "parameters": [
         {
@@ -625,6 +632,7 @@
   "get_check_payment_back": {
     "get": {
       "tags": ["unit"],
+      "operationId": "getCheckPaymentBackById",
       
       "parameters": [
         {

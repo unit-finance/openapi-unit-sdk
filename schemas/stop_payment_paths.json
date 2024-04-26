@@ -26,6 +26,7 @@
     "post": {
       "summary": "Create Stop Payment",
       "tags": ["unit"],
+      "operationId": "createStopPayment",
       
       "requestBody": {
         "required": true,
@@ -53,6 +54,7 @@
     "get": {
       "summary": "Get a list of stop payments",
       "tags": ["unit"],
+      "operationId": "getStopPayments",
       
       "parameters": [
         {
@@ -134,6 +136,7 @@
     "get": {
       "summary": "Get details of a specific stop payment",
       "tags": ["unit"],
+      "operationId": "getStopPaymentById",
 
       "parameters": [
         {
@@ -191,6 +194,7 @@
     "post": {
       "summary": "Disable a stop payment",
       "tags": ["unit"],
+      "operationId": "disableStopPayment",
       
       "parameters": [
         {

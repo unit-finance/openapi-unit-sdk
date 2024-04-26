@@ -2,6 +2,7 @@
     "get_institution": {
         "get": {
             "tags": ["unit"],
+            "operationId": "getInstitutionByRoutingNumber",
             
             "parameters": [
                 {

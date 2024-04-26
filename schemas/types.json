@@ -21,7 +21,7 @@
                     },
                     "street2": {
                         "type": "string",
-                        "nullable": true, 
+                        "nullable": true,
                         "pattern": "^.*$"
                     },
                     "city": {
@@ -59,7 +59,7 @@
             },
             "jwtSubject": {
                 "type": "string",
-                "nullable": true 
+                "nullable": true
             },
             "contact": {
                 "title": "Contact",
@@ -741,7 +741,7 @@
                             },
                             "reasonText": {
                                 "type": "string",
-                                "nullable": true 
+                                "nullable": true
                             }
                         }
                     }

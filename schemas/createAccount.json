@@ -24,7 +24,7 @@
                                 "nullable": true
                             },
                             "idempotencyKey": {
-                                "type": "string", 
+                                "type": "string",
                                 "nullable": true
                             }
                         },
@@ -58,7 +58,7 @@
                             },
                             "tags": {
                                 "type": "object",
-                                "nullable": true 
+                                "nullable": true
                             },
                             "idempotencyKey": {
                                 "type": "string",

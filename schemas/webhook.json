@@ -27,17 +27,11 @@
                 },
                 "contentType": {
                     "type": "string",
-                    "enum": [
-                        "Json",
-                        "JsonAPI"
-                    ]
+                    "enum": ["Json", "JsonAPI"]
                 },
                 "deliveryMode": {
                     "type": "string",
-                    "enum": [
-                        "AtMostOnce",
-                        "AtLeastOnce"
-                    ]
+                    "enum": ["AtMostOnce", "AtLeastOnce"]
                 },
                 "token": {
                     "type": "string"
@@ -48,10 +42,6 @@
             }
         }
     },
-    "required": [
-        "type",
-        "id",
-        "attributes"
-    ],
+    "required": ["type", "id", "attributes"],
     "additionalProperties": false
 }

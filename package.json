@@ -1,12 +1,15 @@
 {
-  "scripts": {
-    "bundle": "npm @redocly/cli bundle openapi.json -o dist/bundledSchema.json",
-    "generate-java": "cp -r unit ./dist/java-sdk && openapi-generator-cli generate -g java -i ./dist/bundledSchema.json -o ./dist/java-sdk",
-    "redocly-lint": "npm @redocly/openapi-cli lint --config .redocly.yaml openapi.json"
-  },
-  "dependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.4",
-    "@redocly/cli": "^1.12.0",
-    "ts-node": "^10.9.2"
-  }
+    "scripts": {
+        "bundle": "redocly bundle openapi.json -o dist/bundledSchema.json",
+        "generate-java": "npm run bundle && cp -r unit ./dist/java-sdk && openapi-generator-cli generate -g java -i ./dist/bundledSchema.json -o ./dist/java-sdk",
+        "generate-ruby": "npm run bundle && cp -r unit ./dist/ruby-sdk && openapi-generator-cli generate -g ruby -i ./dist/bundledSchema.json -o ./dist/ruby-sdk",
+        "lint": "redocly lint --config .redocly.yaml openapi.json",
+        "format": "prettier ./schemas --write"
+    },
+    "dependencies": {
+        "@openapitools/openapi-generator-cli": "^2.13.4",
+        "@redocly/cli": "^1.12.0",
+        "prettier": "^3.2.5",
+        "ts-node": "^10.9.2"
+    }
 }

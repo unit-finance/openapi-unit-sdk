@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCheckDeposits",
-            
+
             "summary": "Get List Check Deposits",
             "description": "Get List Check Deposits from API ",
             "parameters": [
@@ -18,7 +18,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -29,11 +29,11 @@
                                 "type": "string"
                             },
                             "tags": {
-								"type": "object",
-								"additionalProperties":{
-									"type": "string"
-								}
-							},
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
                             "status": {
                                 "type": "array",
                                 "items": {
@@ -96,7 +96,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createCheckDeposit",
-            
+
             "summary": "Create Check Deposit",
             "description": "Create a Check Deposit via API ",
             "requestBody": {
@@ -134,7 +134,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCheckDepositById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -170,7 +170,7 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateCheckDeposit",
-            
+
             "summary": "Update Check Deposit",
             "description": "Update a Check Deposit via API ",
             "parameters": [
@@ -219,7 +219,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "confirmCheckDeposit",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -257,7 +257,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getFrontCheckDepositById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -295,7 +295,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getBackCheckDepositById",
-            
+
             "parameters": [
                 {
                     "schema": {

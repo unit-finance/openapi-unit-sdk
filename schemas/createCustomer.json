@@ -8,9 +8,7 @@
                         "$ref": "./types.json#/components/schemas/orgRelationship"
                     }
                 },
-                "required": [
-                    "org"
-                ],
+                "required": ["org"],
                 "additionalProperties": false
             },
             "CreateIndividualCustomer": {
@@ -91,11 +89,7 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "type",
-                    "attributes",
-                    "relationships"
-                ]
+                "required": ["type", "attributes", "relationships"]
             },
             "CreateBusinessCustomer": {
                 "title": "Create Business Customer",
@@ -124,11 +118,7 @@
                             },
                             "entityType": {
                                 "type": "string",
-                                "enum": [
-                                    "Corporation",
-                                    "LLC",
-                                    "Partnership"
-                                ]
+                                "enum": ["Corporation", "LLC", "Partnership"]
                             },
                             "dateOfIncorporation": {
                                 "type": "string",
@@ -179,11 +169,7 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "type",
-                    "attributes",
-                    "relationships"
-                ]
+                "required": ["type", "attributes", "relationships"]
             }
         },
         "type": "object",

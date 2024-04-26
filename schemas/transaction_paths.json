@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getTransactions",
-            
+
             "summary": "Get List Transactions",
             "description": "Get List Transactions from API ",
             "parameters": [
@@ -18,7 +18,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -99,10 +99,10 @@
                                 "title": "UnitTransactionsListResponse",
                                 "properties": {
                                     "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "./transaction.json#/components/schemas/transaction"
-                                            }
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./transaction.json#/components/schemas/transaction"
+                                        }
                                     },
                                     "included": {
                                         "$ref": "./openapi_types.json#/IncludedResource"
@@ -122,7 +122,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getTransactionById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -170,7 +170,7 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateTransaction",
-            
+
             "summary": "Update Transaction",
             "description": "Update a Transaction via API ",
             "parameters": [

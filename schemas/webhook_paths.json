@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getWebhooks",
-            
+
             "summary": "Get List Webhooks",
             "description": "Get List Webhooks from API ",
             "parameters": [
@@ -18,7 +18,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -58,7 +58,6 @@
                                         "type": "array",
                                         "items": {
                                             "$ref": "webhook.json"
-                                            }
                                         }
                                     }
                                 }
@@ -66,11 +65,12 @@
                         }
                     }
                 }
-            },
+            }
+        },
         "post": {
             "tags": ["unit"],
             "operationId": "createWebhook",
-            
+
             "summary": "Create Webhook",
             "description": "Create a Webhook via API ",
             "requestBody": {
@@ -92,36 +92,33 @@
                                         "attributes": {
                                             "type": "object",
                                             "properties": {
-                                            "label": {
-                                                "type": "string"
+                                                "label": {
+                                                    "type": "string"
+                                                },
+                                                "url": {
+                                                    "type": "string"
+                                                },
+                                                "token": {
+                                                    "type": "string"
+                                                },
+                                                "contentType": {
+                                                    "type": "string",
+                                                    "enum": ["Json", "JsonAPI"]
+                                                },
+                                                "deliveryMode": {
+                                                    "type": "string"
+                                                },
+                                                "includeResources": {
+                                                    "type": "boolean"
+                                                },
+                                                "subscriptionType": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "All",
+                                                        "OnlyAuthorizationRequest"
+                                                    ]
+                                                }
                                             },
-                                            "url": {
-                                                "type": "string"
-                                            },
-                                            "token": {
-                                                "type": "string"
-                                            },
-                                            "contentType": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "Json",
-                                                    "JsonAPI"
-                                                ]
-                                            },
-                                            "deliveryMode": {
-                                                "type": "string"
-                                            },
-                                            "includeResources": {
-                                                "type": "boolean"
-                                            },
-                                            "subscriptionType": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "All",
-                                                    "OnlyAuthorizationRequest"
-                                                ]
-                                            }
-                                        },
                                             "additionalProperties": false,
                                             "required": [
                                                 "label",
@@ -162,7 +159,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getWebhookById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -198,7 +195,7 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateWebhook",
-            
+
             "summary": "Update Webhook",
             "description": "Update a Webhook via API ",
             "parameters": [
@@ -247,7 +244,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "enableWebhook",
-            
+
             "summary": "Enable Webhook",
             "parameters": [
                 {
@@ -285,7 +282,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "disableWebhook",
-            
+
             "summary": "Disable a Webhook",
             "parameters": [
                 {

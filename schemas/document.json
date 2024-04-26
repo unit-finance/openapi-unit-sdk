@@ -78,15 +78,9 @@
                 }
             },
             "additionalProperties": false,
-            "required": [
-                "status"
-            ]
+            "required": ["status"]
         }
     },
     "additionalProperties": false,
-    "required": [
-        "type",
-        "id",
-        "attributes"
-    ]
+    "required": ["type", "id", "attributes"]
 }

@@ -30,7 +30,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getPayments",
-            
+
             "summary": "Get List Payments",
             "description": "Get List Payments from API ",
             "parameters": [
@@ -45,7 +45,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -88,10 +88,7 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": [
-                                        "Debit",
-                                        "Credit"
-                                    ]
+                                    "enum": ["Debit", "Credit"]
                                 }
                             },
                             "since": {
@@ -113,10 +110,7 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": [
-                                        "SameDay",
-                                        "RecurringPayment"
-                                    ]
+                                    "enum": ["SameDay", "RecurringPayment"]
                                 }
                             },
                             "tags": {
@@ -162,7 +156,7 @@
                                         "$ref": "./openapi_types.json#/IncludedResource"
                                     },
                                     "meta": {
-                                        "$ref":"./types.json#/components/schemas/paginationMeta"
+                                        "$ref": "./types.json#/components/schemas/paginationMeta"
                                     }
                                 }
                             }
@@ -174,7 +168,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createPayment",
-            
+
             "summary": "Create a Payment",
             "description": "Create a Payment via API ",
             "requestBody": {
@@ -206,7 +200,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getPaymentById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -252,7 +246,7 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updatePayment",
-            
+
             "summary": "Update Payment",
             "description": "Update an Payment via API ",
             "parameters": [
@@ -295,7 +289,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "cancelPayment",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -327,7 +321,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getReceivedPayments",
-            
+
             "parameters": [
                 {
                     "name": "included",
@@ -358,8 +352,8 @@
                                         "$ref": "./openapi_types.json#/IncludedResource"
                                     },
                                     "meta": {
-										"$ref":"./types.json#/components/schemas/paginationMeta"
-									}
+                                        "$ref": "./types.json#/components/schemas/paginationMeta"
+                                    }
                                 }
                             }
                         }
@@ -372,7 +366,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getReceivedPaymentById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -417,7 +411,7 @@
         },
         "patch": {
             "tags": ["unit"],
-            
+
             "summary": "Update Received Payment",
             "description": "Update a Received Payment via API ",
             "parameters": [
@@ -460,7 +454,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "advanceReceivedPayment",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -492,7 +486,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getRecurringPayments",
-            
+
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
             "parameters": [
@@ -507,7 +501,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -585,7 +579,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createRecurringPayment",
-            
+
             "summary": "Create Recurring Payment",
             "description": "Create a Recurring Payment via API ",
             "requestBody": {
@@ -617,7 +611,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getRecurringPaymentById",
-            
+
             "summary": "Get Recurring Payment",
             "parameters": [
                 {
@@ -649,7 +643,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "disableRecurringPayment",
-            
+
             "summary": "Disable Recurring Payment",
             "parameters": [
                 {
@@ -681,7 +675,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "enableRecurringPayment",
-            
+
             "summary": "Enable Recurring Payment",
             "parameters": [
                 {

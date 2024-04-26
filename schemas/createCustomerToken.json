@@ -34,10 +34,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "card",
-                                            "account"
-                                        ]
+                                        "enum": ["card", "account"]
                                     },
                                     "ids": {
                                         "type": "array",

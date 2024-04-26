@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatements",
-            
+
             "summary": "Get List Statements",
             "description": "Get List Statements from API ",
             "parameters": [
@@ -18,7 +18,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -69,7 +69,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatementHtmlById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -86,7 +86,7 @@
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "content":{
+                    "content": {
                         "text/html": {
                             "schema": {
                                 "type": "string"
@@ -101,7 +101,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatementPdfById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -118,7 +118,7 @@
             "responses": {
                 "200": {
                     "description": "Successful Response",
-                    "content":{
+                    "content": {
                         "application/pdf": {
                             "schema": {
                                 "type": "string",
@@ -134,7 +134,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatementBankPdfById",
-            
+
             "summary": "Get Bank verification PDF",
             "parameters": [
                 {

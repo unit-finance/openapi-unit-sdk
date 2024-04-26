@@ -79,7 +79,6 @@
                 },
                 "additionalProperties": false,
                 "required": ["type", "id", "relationships"]
-                
             }
         }
     }

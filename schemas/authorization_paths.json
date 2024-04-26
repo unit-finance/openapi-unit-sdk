@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorizations",
-            
+
             "summary": "Get List authorizations",
             "description": "Get List Authorizations from API ",
             "parameters": [
@@ -18,7 +18,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -105,7 +105,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorizationById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -150,7 +150,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorizationRequests",
-            
+
             "summary": "Get List Authorization Requests",
             "description": "Get List Authorization Requests from API ",
             "parameters": [
@@ -165,7 +165,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -218,7 +218,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorizationRequestById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -256,7 +256,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "approveAuthorizationRequest",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -270,23 +270,23 @@
             ],
             "summary": "Approve Authorization Request by Id",
             "description": "Approve a Authorization Request via API ",
-            "requestBody":{
-				"description":"Approve Authorization Request",
-				"required": true,
-				"content":{
-					"application/vnd.api+json":{
-						"schema":{
-							"type":"object",
+            "requestBody": {
+                "description": "Approve Authorization Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
                             "title": "ApproveAuthorizationRequest",
-							"properties":{
-								"data":{
-									"$ref":"./authorization_request.json#/components/schemas/approveAuthorizationRequest"
-								}
-							}
-						}
-					}
-				}
-			},
+                            "properties": {
+                                "data": {
+                                    "$ref": "./authorization_request.json#/components/schemas/approveAuthorizationRequest"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -311,7 +311,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "declineAuthorizationRequest",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -325,23 +325,23 @@
             ],
             "summary": "Decline Authorization Request",
             "description": "Decline Authorization Request via API ",
-            "requestBody":{
-				"description":"Decline Authorization Request",
-				"required": true,
-				"content":{
-					"application/vnd.api+json":{
-						"schema":{
-							"type":"object",
+            "requestBody": {
+                "description": "Decline Authorization Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
                             "title": "DeclineAuthorizationRequest",
-							"properties":{
-								"data":{
-									"$ref":"./authorization_request.json#/components/schemas/declineAuthorizationRequest"
-								}
-							}
-						}
-					}
-				}
-			},
+                            "properties": {
+                                "data": {
+                                    "$ref": "./authorization_request.json#/components/schemas/declineAuthorizationRequest"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "Successful Response",

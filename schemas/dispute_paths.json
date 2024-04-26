@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getDisputes",
-            
+
             "summary": "Get List Disputes",
             "description": "Get List Disputes from API ",
             "parameters": [
@@ -18,7 +18,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -51,7 +51,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getDisputeById",
-            
+
             "parameters": [
                 {
                     "schema": {

@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAtmLocations",
-            
+
             "summary": "Get List ATM Locations",
             "description": "Get List ATM Locations from API ",
             "parameters": [
@@ -11,7 +11,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {

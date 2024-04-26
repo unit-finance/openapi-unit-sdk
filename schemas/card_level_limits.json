@@ -24,18 +24,12 @@
                                 "$ref": "./types.json#/components/schemas/cardTotals"
                             }
                         },
-                        "required": [
-                            "dailyTotals",
-                            "monthlyTotals"
-                        ],
+                        "required": ["dailyTotals", "monthlyTotals"],
                         "additionalProperties": false
                     }
                 },
                 "additionalProperties": false,
-                "required": [
-                    "type",
-                    "attributes"
-                ]
+                "required": ["type", "attributes"]
             }
         },
         "title": "Card Level Limits Resource",
@@ -46,8 +40,6 @@
             }
         },
         "additionalProperties": false,
-        "required": [
-            "data"
-        ]
+        "required": ["data"]
     }
 }

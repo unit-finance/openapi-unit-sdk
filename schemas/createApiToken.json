@@ -33,10 +33,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "enum": [
-                                            "card",
-                                            "account"
-                                        ]
+                                        "enum": ["card", "account"]
                                     },
                                     "ids": {
                                         "type": "array",
@@ -49,17 +46,11 @@
                         }
                     },
                     "additionalProperties": false,
-                    "required": [
-                        "description",
-                        "expiration"
-                    ]
+                    "required": ["description", "expiration"]
                 }
             },
             "additionalProperties": false,
-            "required": [
-                "type",
-                "attributes"
-            ]
+            "required": ["type", "attributes"]
         }
     }
 }

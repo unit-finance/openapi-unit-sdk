@@ -3,7 +3,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createReward",
-            
+
             "summary": "Create Reward",
             "description": "Create a Reward via API ",
             "requestBody": {
@@ -39,7 +39,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getRewards",
-            
+
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
             "parameters": [
@@ -54,7 +54,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -133,7 +133,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getRewardById",
-            
+
             "parameters": [
                 {
                     "schema": {

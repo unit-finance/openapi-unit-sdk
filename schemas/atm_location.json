@@ -33,9 +33,6 @@
             }
         }
     },
-    "required": [
-        "type",
-        "attributes"
-    ],
+    "required": ["type", "attributes"],
     "additionalProperties": false
 }

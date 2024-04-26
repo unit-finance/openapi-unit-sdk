@@ -15,10 +15,6 @@
             }
         }
     },
-    "required": [
-        "type",
-        "id",
-        "attributes"
-    ],
+    "required": ["type", "id", "attributes"],
     "additionalProperties": false
 }

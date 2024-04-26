@@ -57,10 +57,7 @@
                                     },
                                     "lang": {
                                         "type": "string",
-                                        "enum": [
-                                            "en",
-                                            "es"
-                                        ]
+                                        "enum": ["en", "es"]
                                     },
                                     "hideApplicationProgressTracker": {
                                         "type": "boolean"
@@ -81,9 +78,7 @@
                             }
                         },
                         "additionalProperties": false,
-                        "required": [
-                            "type"
-                        ]
+                        "required": ["type"]
                     }
                 }
             }

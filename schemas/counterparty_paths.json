@@ -3,62 +3,62 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCounterparties",
-            
+
             "summary": "Get Counterparties List",
             "description": "Get Counterparties List from API ",
-            "parameters":[
-            {
-               "name":"page",
-               "in":"query",
-               "schema":{
-                  "$ref":"./types.json#/components/schemas/listPageParametersObject"
-               }
-            },
-            {
-               "name":"filter",
-               "in":"query",
-               "style":"deepObject",
-               "allowReserved":true,
-               "schema": {
-                   "type": "object",
-                   "properties": {
-                       "customerId": {
-                           "type": "string"
-                       },
-                       "accountNumber": {
-                           "type": "string"
-                       },
-                       "routingNumber": {
-                           "type": "string"
-                       },
-                       "permissions": {
-                           "type": "array",
-                           "items": {
-                               "type": "string",
-                               "enum": [
-                                   "CreditOnly",
-                                   "DebitOnly",
-                                   "CreditAndDebit"
-                               ]
-                           }
-                       },
-                       "tags": {
-                           "type": "object",
-                           "additionalProperties": {
-                               "type": "string"
-                           }
-                       }
-                   }
-               }
-            },
-            {
-               "name":"sort",
-               "in":"query",
-               "schema":{
-                  "type":"string"
-               }
-            }
-         ],
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "accountNumber": {
+                                "type": "string"
+                            },
+                            "routingNumber": {
+                                "type": "string"
+                            },
+                            "permissions": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "CreditOnly",
+                                        "DebitOnly",
+                                        "CreditAndDebit"
+                                    ]
+                                }
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -81,7 +81,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createCounterparty",
-            
+
             "summary": "Create Counterparty",
             "description": "Create a counterparty via API ",
             "requestBody": {
@@ -119,7 +119,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCounterpartyById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -162,7 +162,7 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateCounterparty",
-            
+
             "summary": "Update Counterparty",
             "description": "Update a Counterparty via API ",
             "parameters": [
@@ -209,7 +209,7 @@
         "delete": {
             "tags": ["unit"],
             "operationId": "deleteCounterparty",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -234,7 +234,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCounterpartyBalanceById",
-            
+
             "summary": "Get Counterparty Balance",
             "parameters": [
                 {

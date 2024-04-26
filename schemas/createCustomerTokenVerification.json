@@ -13,10 +13,7 @@
                     "properties": {
                         "channel": {
                             "type": "string",
-                            "enum": [
-                                "sms",
-                                "call"
-                            ]
+                            "enum": ["sms", "call"]
                         },
                         "phone": {
                             "$ref": "./types.json#/components/schemas/phone"
@@ -73,17 +70,12 @@
                             ]
                         }
                     },
-                    "required": [
-                        "channel"
-                    ],
+                    "required": ["channel"],
                     "additionalProperties": false
                 }
             },
             "additionalProperties": false,
-            "required": [
-                "type",
-                "attributes"
-            ]
+            "required": ["type", "attributes"]
         }
     }
 }

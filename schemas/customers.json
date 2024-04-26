@@ -20,7 +20,5 @@
             "$ref": "./types.json#/components/schemas/paginationMeta"
         }
     },
-    "required": [
-        "data"
-    ]
+    "required": ["data"]
 }

@@ -3,7 +3,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getInstitutionByRoutingNumber",
-            
+
             "parameters": [
                 {
                     "schema": {

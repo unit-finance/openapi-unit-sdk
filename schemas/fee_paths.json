@@ -3,7 +3,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createFee",
-            
+
             "summary": "Create Fee",
             "description": "Create a Fee via API ",
             "requestBody": {

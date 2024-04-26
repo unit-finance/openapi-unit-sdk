@@ -53,27 +53,25 @@
                 "additionalProperties": false
             },
             "creditAccountRelationship": {
-              "type": "object",
-              "properties": {
-                  "data": {
-                      "type": "object",
-                      "properties": {
-                          "type": {
-                              "type": "string",
-                              "enum": [
-                                  "creditAccount"
-                              ]
-                          },
-                          "id": {
-                              "$ref": "./types.json#/components/schemas/identifier"
-                          }
-                      },
-                      "required": ["type", "id"],
-                      "additionalProperties": false
-                  }
-              },
-              "required": ["data"],
-              "additionalProperties": false
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["creditAccount"]
+                            },
+                            "id": {
+                                "$ref": "./types.json#/components/schemas/identifier"
+                            }
+                        },
+                        "required": ["type", "id"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
             },
             "counterpartyAccountRelationship": {
                 "type": "object",

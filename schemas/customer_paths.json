@@ -12,7 +12,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCustomerById",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -42,7 +42,7 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateCustomer",
-            
+
             "summary": "Update Customer",
             "description": "Update an Customer via API ",
             "parameters": [
@@ -85,58 +85,55 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCustomers",
-            
+
             "summary": "Get Customers List",
             "description": "Get Customers List from API ",
-            "parameters":[
-            {
-               "name":"page",
-               "in":"query",
-               "schema":{
-                  "$ref":"./types.json#/components/schemas/listPageParametersObject"
-               }
-            },
-            {
-               "name":"filter",
-               "in":"query",
-               "style":"deepObject",
-               "allowReserved":true,
-               "schema":{
-                  "type":"object",
-                  "properties":{
-                     "query":{
-                        "type":"string"
-                     },
-                     "status":{
-                        "type":"array",
-                        "items":{
-                           "type":"string",
-                           "enum":[
-                              "Active",
-                              "Archived"
-                           ]
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "./types.json#/components/schemas/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["Active", "Archived"]
+                                }
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
                         }
-                     },
-                     "email": {
-                         "type": "string"
-                     },
-                     "tags": {
-                         "type": "object",
-                         "additionalProperties": {
-                             "type": "string"
-                         }
-                     }
-                  }
-               }
-            },
-            {
-               "name":"sort",
-               "in":"query",
-               "schema":{
-                  "type":"string"
-               }
-            }
-         ],
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -167,7 +164,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "archiveCustomer",
-            
+
             "parameters": [
                 {
                     "schema": {
@@ -190,9 +187,7 @@
                             "properties": {
                                 "type": {
                                     "type": "string",
-                                    "enum": [
-                                        "archiveCustomer"
-                                    ]
+                                    "enum": ["archiveCustomer"]
                                 },
                                 "attributes": {
                                     "type": "object",

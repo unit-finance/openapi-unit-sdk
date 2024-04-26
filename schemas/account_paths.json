@@ -545,7 +545,7 @@
     "get_account_end_of_day": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAccountEndOfDay",   
+            "operationId": "getAccountEndOfDay",
             "summary": "Get AccountEndOfDay List",
             "description": "Get AccountEndOfDay List from API ",
             "responses": {

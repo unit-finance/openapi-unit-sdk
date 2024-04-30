@@ -1,0 +1,637 @@
+{
+    "components": {
+        "schemas": {
+            "returnReason": {
+                "type": "string",
+                "enum": [
+                    "InsufficientFunds",
+                    "AccountClosed",
+                    "AlteredCheck",
+                    "ForgedSignature",
+                    "PostdatedCheck",
+                    "StopPaymentOrder",
+                    "UnauthorizedDebit",
+                    "WrongAmount",
+                    "DuplicatePayment",
+                    "MissingSignature",
+                    "IrregularEndorsement",
+                    "Other"
+                ]
+            },
+            "CheckPayment": {
+                "title": "Check Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "checkPayment"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "returnCutoffTime": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "MarkedForReturn",
+                                    "Returned",
+                                    "Processed",
+                                    "PendingReview"
+                                ]
+                            },
+                            "memo": {
+                                "type": "string"
+                            },
+                            "deliveryStatus": {
+                                "type": "string",
+                                "enum": [
+                                    "Mailed",
+                                    "InLocalArea",
+                                    "Delivered",
+                                    "Rerouted",
+                                    "ReturnedToSender"
+                                ]
+                            },
+                            "sendAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "counterparty": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/address"
+                                    },
+                                    "counterpartyMoved": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "trackedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "postalCode": {
+                                "type": "string"
+                            },
+                            "expectedDelivery": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "originated": {
+                                "type": "boolean"
+                            },
+                            "expirationDate": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "rejectReason": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "returnReason": {
+                                "$ref": "#/components/schemas/returnReason"
+                            },
+                            "pendingReviewReasons": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["NameMissMatch", "SoftLimit"]
+                                }
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            },
+                            "onUsAuxiliary": {
+                                "type": "string"
+                            },
+                            "onUs": {
+                                "type": "string"
+                            },
+                            "counterpartyRoutingNumber": {
+                                "type": "string"
+                            },
+                            "additionalVerificationStatus": {
+                                "type": "string",
+                                "enum": ["Required", "NotRequired", "Approved"]
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "amount",
+                            "status",
+                            "originated"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "account": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "depositAccount",
+                                                    "account"
+                                                ]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "customer": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "businessCustomer",
+                                                    "individualCustomer",
+                                                    "customer"
+                                                ]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "customers": {
+                                "$ref": "../types.json#/components/schemas/customersRelationship"
+                            },
+                            "transaction": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "transaction"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["account"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "UnitCheckPaymentResponse": {
+                "type": "object",
+                "title": "UnitCheckPaymentResponse",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/CheckPayment"
+                    }
+                }
+            }
+        }
+    },
+    "check_payments": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPayments",
+
+            "summary": "Get List Check Payments",
+            "description": "Get List Check Payments from API ",
+            "parameters": [
+                {
+                    "name": "page",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/listPageParametersObject"
+                    }
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "New",
+                                        "Pending",
+                                        "Canceled",
+                                        "Rejected",
+                                        "InDelivery",
+                                        "InProduction",
+                                        "Delivered",
+                                        "ReturnedToSender",
+                                        "Pending",
+                                        "Processed",
+                                        "PendingReview",
+                                        "MarkedForReturn",
+                                        "Returned"
+                                    ]
+                                }
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "fromAmount": {
+                                "type": "integer"
+                            },
+                            "toAmount": {
+                                "type": "integer"
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitListCheckPaymentsResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/CheckPayment"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createCheckPayment",
+
+            "summary": "Create Check Payment",
+            "description": "Create Check Payment via API ",
+            "requestBody": {
+                "description": "Create Check Payment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCheckPayment.json#/components/schemas/createCheckPayment"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "check_payment": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPaymentById",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to get"
+                }
+            ],
+            "summary": "Get Check Payment by Id",
+            "description": "Get a Check Payment from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "check_payment_approve": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "approveCheckPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to approve"
+                }
+            ],
+            "requestBody": {
+                "description": "Approve Check Payment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "ApproveCheckPaymentRequest",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "additionalVerification"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "summary": "Approve Check Payment by Id",
+            "description": "Approve a Check Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "check_payment_return": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "returnCheckPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to return"
+                }
+            ],
+            "requestBody": {
+                "description": "Return Check Payment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "ReturnCheckPaymentRequest",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "checkPaymentReturn"
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "reason": {
+                                                    "$ref": "#/components/schemas/returnReason"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "summary": "Return Check Payment by Id",
+            "description": "Return a Check Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "check_payment_cancel": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "cancelCheckPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to cancel"
+                }
+            ],
+            "summary": "Cancel Check Payment by Id",
+            "description": "Cancel a Check Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_check_payment_front": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPaymentFrontById",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment"
+                }
+            ],
+            "summary": "Get front image",
+            "description": "Get front image via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "image/png": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "get_check_payment_back": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPaymentBackById",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment"
+                }
+            ],
+            "summary": "Get back image",
+            "description": "Get back image via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "image/png": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

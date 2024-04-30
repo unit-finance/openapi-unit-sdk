@@ -1,0 +1,138 @@
+{
+    "components": {
+        "schemas": {
+            "createCounterpartyRelationships": {
+                "type": "object",
+                "properties": {
+                    "customer": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    }
+                },
+                "required": ["customer"],
+                "additionalProperties": false
+            },
+            "CreateAchCounterparty": {
+                "title": "Create Ach Counterparty",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "routingNumber": {
+                                "type": "string"
+                            },
+                            "accountNumber": {
+                                "type": "string"
+                            },
+                            "accountType": {
+                                "type": "string",
+                                "enum": ["Checking", "Savings", "Loan"]
+                            },
+                            "permissions": {
+                                "type": "string",
+                                "enum": [
+                                    "CreditOnly",
+                                    "DebitOnly",
+                                    "CreditAndDebit"
+                                ]
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": ["Business", "Person", "Unknown"]
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            },
+                            "idempotencyKey": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "name",
+                            "accountType",
+                            "accountNumber",
+                            "routingNumber"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/createCounterpartyRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreatePlaidCounterparty": {
+                "title": "Create Plaid Counterparty",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["Business", "Person", "Unknown"]
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "verifyName": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "plaidProcessorToken": {
+                                "$ref": "../types.json#/components/schemas/plaidProcessorToken"
+                            },
+                            "permissions": {
+                                "type": "string",
+                                "enum": [
+                                    "CreditOnly",
+                                    "DebitOnly",
+                                    "CreditAndDebit"
+                                ]
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            },
+                            "idempotencyKey": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["type", "plaidProcessorToken"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/createCounterpartyRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "createCounterparty": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateAchCounterparty"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreatePlaidCounterparty"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -282,7 +282,7 @@
 					"content":{
 						"application/json":{
 							"schema":{
-								"$ref":"application_paths.json#/UnitError"
+								"$ref":"application_paths.json#/testError"
 							}
 						}
 					}

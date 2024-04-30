@@ -2,22 +2,6 @@ extends:
   - recommended
 
 rules:
-  operation-operationId-unique:
-    enabled: false
-    severity: off
-
-  path-not-include-query:
-    severity: off
-
-  no-path-trailing-slash:
-    severity: off
-
-  operation-4xx-response:
-    enabled: false
-    severity: off
-
+  # disabling this rule since it misfires in referenced files
   spec:
-    severity: off
-
-  info-license:
     severity: off

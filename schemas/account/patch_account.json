@@ -1,0 +1,70 @@
+{
+    "components": {
+        "schemas": {
+            "updateDepositAccount": {
+                "title": "Update Deposit Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "depositAccount"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tagsPatch"
+                            },
+                            "depositProduct": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "updateCreditAccount": {
+                "title": "Update Credit Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "creditAccount"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tagsPatch"
+                            },
+                            "creditLimit": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "patchAccount": {
+                "title": "Update Account",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/updateDepositAccount"
+                            },
+                            {
+                                "$ref": "#/components/schemas/updateCreditAccount"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

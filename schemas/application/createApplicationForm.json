@@ -1,0 +1,87 @@
+{
+    "components": {
+        "schemas": {
+            "requireIdVerification": {
+                "type": "object",
+                "properties": {
+                    "individual": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "officer": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "beneficialOwners": {
+                        "type": "boolean",
+                        "default": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "createApplicationForm": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "default": "applicationForm"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "tags": {
+                                        "$ref": "../tags.json#/components/schemas/tags"
+                                    },
+                                    "applicantDetails": {
+                                        "$ref": "./application_form.json#/components/schemas/ApplicationFormPrefill"
+                                    },
+                                    "settingsOverride": {
+                                        "$ref": "./application_form.json#/components/schemas/ApplicationFormSettingsOverride"
+                                    },
+                                    "requireIdVerification": {
+                                        "$ref": "#/components/schemas/requireIdVerification"
+                                    },
+                                    "allowedApplicationTypes": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "Individual",
+                                                "Business",
+                                                "SoleProprietorship"
+                                            ]
+                                        }
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "enum": ["en", "es"]
+                                    },
+                                    "hideApplicationProgressTracker": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "title": "createApplicationFormRelationships",
+                                "properties": {
+                                    "application": {
+                                        "$ref": "../types.json#/components/schemas/Relationship"
+                                    }
+                                },
+                                "required": ["application"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["type"]
+                    }
+                }
+            }
+        }
+    }
+}

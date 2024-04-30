@@ -1,0 +1,173 @@
+{
+    "components": {
+        "schemas": {
+            "relationships": {
+                "type": "object",
+                "properties": {
+                    "org": {
+                        "$ref": "../types.json#/components/schemas/orgRelationship"
+                    },
+                    "application": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "businessApplication",
+                                    "individualApplication"
+                                ]
+                            },
+                            "id": {
+                                "$ref": "../types.json#/components/schemas/identifier"
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false
+            },
+            "updateIndividualCustomer": {
+                "title": "UpdateIndividualCustomer",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/email",
+                                "nullable": true
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/phone",
+                                "nullable": true
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/address",
+                                "nullable": true
+                            },
+                            "dba": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            },
+                            "authorizedUsers": {
+                                "type": "array",
+                                "nullable": true,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/authorizedUser"
+                                }
+                            },
+                            "jwtSubject": {
+                                "$ref": "../types.json#/components/schemas/jwtSubject",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "updateBusinessCustomer": {
+                "title": "UpdateBusinessCustomer",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "dba": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "ein": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/phone",
+                                "nullable": true
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/address",
+                                "nullable": true
+                            },
+                            "contact": {
+                                "$ref": "../types.json#/components/schemas/responseContact",
+                                "nullable": true
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags",
+                                "nullable": true
+                            },
+                            "authorizedUsers": {
+                                "type": "array",
+                                "nullable": true,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/authorizedUser"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "updateTrustCustomer": {
+                "title": "UpdateTrustCustomer",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "contact": {
+                                "$ref": "../types.json#/components/schemas/trustContact",
+                                "nullable": true
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags",
+                                "nullable": true
+                            },
+                            "authorizedUsers": {
+                                "type": "array",
+                                "nullable": true,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/authorizedUser"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "updateCustomer": {
+                "title": "Patch Customer",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/updateIndividualCustomer"
+                            },
+                            {
+                                "$ref": "#/components/schemas/updateBusinessCustomer"
+                            },
+                            {
+                                "$ref": "#/components/schemas/updateTrustCustomer"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

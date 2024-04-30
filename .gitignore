@@ -68,3 +68,9 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+#IDE local files
+.vscode
+
+#node
+node_modules

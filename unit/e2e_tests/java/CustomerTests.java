@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.openapitools.client.api.CreateApplicationApi;
 import org.openapitools.client.api.GetCustomerApi;
 import org.openapitools.client.api.GetListCustomersApi;
+import org.openapitools.client.api.UnitApi;
 import org.openapitools.client.model.IndividualApplication;
 import org.openapitools.client.model.IndividualCustomer;
 import org.openapitools.client.model.UnitCreateApplicationResponse;
@@ -13,32 +14,30 @@ import org.openapitools.client.model.UnitCustomersListResponse;
 import static org.openapitools.client.TestHelpers.CreateApplicationRequest;
 
 public class CustomerTests {
+    UnitApi unitApi = null;
+
     @BeforeAll
-    static void init() {
+    void init() {
         String access_token = System.getenv("access_token");
         ApiClient cl = new ApiClient();
         cl.setBearerToken(access_token);
-        Configuration.setDefaultApiClient(cl);
+        unitApi = new UnitApi(cl);
     }
 
     @Test
     public void GetCustomersListApiTest() throws ApiException {
-        GetListCustomersApi api = new GetListCustomersApi();
-
-        UnitCustomersListResponse response = api.execute(null, null, null);
+        UnitCustomersListResponse response = unitApi.getCustomers(null, null, null);
         assert response.getData().size() > 0;
     }
 
-    public static IndividualCustomer CreateIndividualCustomer() throws ApiException {
-        CreateApplicationApi apiClient = new CreateApplicationApi();
-        UnitCreateApplicationResponse res = apiClient.execute(CreateApplicationRequest());
+    public IndividualCustomer CreateIndividualCustomer() throws ApiException {
+        UnitCreateApplicationResponse res = unitApi.createApplication(CreateApplicationRequest());
         assert res.getData().getType().equals("individualApplication");
 
         IndividualApplication app = (IndividualApplication) res.getData();
         String customerId = app.getRelationships().getCustomer().getData().getId();
-        GetCustomerApi customerApi = new GetCustomerApi();
 
-        return (IndividualCustomer) customerApi.execute(customerId).getData();
+        return (IndividualCustomer) unitApi.getCustomerById(customerId).getData();
     }
 
     @Test

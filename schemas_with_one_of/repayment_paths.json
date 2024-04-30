@@ -1,5 +1,5 @@
 {
-  "UnitRepaymentResponse": {
+    "UnitRepaymentResponse": {
         "type": "object",
         "title": "UnitRepaymentResponse",
         "properties": {
@@ -10,9 +10,7 @@
     },
     "repayments": {
         "get": {
-            "tags": [
-                "Get List Repayments"
-            ],
+            "tags": ["Get List Repayments"],
             "operationId": "execute",
             "summary": "Get List Repayments",
             "description": "Get List Repayments from API ",
@@ -28,7 +26,7 @@
                     "name": "filter",
                     "in": "query",
                     "style": "deepObject",
-					"allowReserved": true,
+                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
@@ -50,7 +48,9 @@
                                         "PendingReview",
                                         "Returned",
                                         "Sent",
-                                        "Rejected"
+                                        "Rejected",
+                                        "Clearing",
+                                        "Canceled"
                                     ]
                                 }
                             },
@@ -60,7 +60,9 @@
                                     "type": "string",
                                     "enum": [
                                         "AchRepayment",
-                                        "BookRepayment"
+                                        "BookRepayment",
+                                        "CapitalPartnerBookRepayment",
+                                        "CapitalPartnerAchRepayment"
                                     ]
                                 }
                             }
@@ -92,14 +94,12 @@
                     }
                 },
                 "401": {
-                    "$ref": "types.json#/definitions/unitError"
+                    "$ref": "types.json#/definitions/testError"
                 }
             }
         },
         "post": {
-            "tags": [
-                "Create a Repayment"
-            ],
+            "tags": ["Create a Repayment"],
             "operationId": "execute",
             "summary": "Create a Repayment",
             "description": "Create a Repayment via API ",
@@ -126,16 +126,14 @@
                     }
                 },
                 "default": {
-                    "$ref": "types.json#/definitions/unitError"
+                    "$ref": "types.json#/definitions/testError"
                 }
             }
         }
     },
     "repayment": {
         "get": {
-            "tags": [
-                "Get Repayment"
-            ],
+            "tags": ["Get Repayment"],
             "operationId": "execute",
             "parameters": [
                 {

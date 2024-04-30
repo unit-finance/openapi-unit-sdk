@@ -1,0 +1,236 @@
+{
+    "components": {
+        "schemas": {
+            "RepaymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "creditAccount": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    },
+                    "org": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    },
+                    "payment": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    },
+                    "customer": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    },
+                    "recurringRepayment": {
+                        "$ref": "../types.json#/components/schemas/Relationship"
+                    }
+                }
+            },
+            "BookRepaymentStatus": {
+                "type": "string",
+                "enum": ["Sent", "Rejected"]
+            },
+            "BookRepayment": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["bookRepayment"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string"
+                            },
+                            "updatedAt": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/BookRepaymentStatus"
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "amount",
+                            "status"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RepaymentRelationships"
+                    }
+                },
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "CapitalPartnerBookRepayment": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["capitalPartnerBookRepayment"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string"
+                            },
+                            "updatedAt": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/BookRepaymentStatus"
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "amount",
+                            "status"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RepaymentRelationships"
+                    }
+                },
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "AchRepaymentStatus": {
+                "type": "string",
+                "enum": [
+                    "Pending",
+                    "PendingReview",
+                    "Clearing",
+                    "Returned",
+                    "Sent",
+                    "Rejected",
+                    "Canceled"
+                ]
+            },
+            "AchRepayment": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["achRepayment"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string"
+                            },
+                            "updatedAt": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/AchRepaymentStatus"
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "amount",
+                            "status"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RepaymentRelationships"
+                    }
+                },
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "CapitalPartnerAchRepayment": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["capitalPartnerAchRepayment"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string"
+                            },
+                            "updatedAt": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/AchRepaymentStatus"
+                            },
+                            "tags": {
+                                "$ref": "../tags.json#/components/schemas/tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "amount",
+                            "status"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RepaymentRelationships"
+                    }
+                },
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "repayment": {
+                "title": "Repayment Resource",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/AchRepayment"
+                    },
+                    {
+                        "$ref": "#/components/schemas/BookRepayment"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CapitalPartnerAchRepayment"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CapitalPartnerBookRepayment"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "achRepayment": "#/components/schemas/AchRepayment",
+                        "bookRepayment": "#/components/schemas/BookRepayment",
+                        "capitalPartnerAchRepayment": "#/components/schemas/CapitalPartnerAchRepayment",
+                        "capitalPartnerBookRepayment": "#/components/schemas/CapitalPartnerBookRepayment"
+                    }
+                }
+            }
+        }
+    }
+}

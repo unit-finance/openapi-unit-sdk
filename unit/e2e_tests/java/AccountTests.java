@@ -9,34 +9,29 @@ import static org.openapitools.client.CustomerTests.CreateIndividualCustomer;
 import java.util.HashMap;
 
 public class AccountTests {
+    UnitApi unitApi = null;
+    
     @BeforeAll
-    static void init() {
+    void init() {
         String access_token = System.getenv("access_token");
         ApiClient cl = new ApiClient();
         cl.setBearerToken(access_token);
-        Configuration.setDefaultApiClient(cl);
+        unitApi = new UnitApi(cl);
     }
 
     @Test
     public void GetAccountListApiTest() throws ApiException {
-        GetListAccountsApi api = new GetListAccountsApi();
-
-        UnitAccountsListResponse response = api.execute(null, null, null);
+        UnitAccountsListResponse response = unitApi.getAccounts(null, null, null);
         assert response.getData().size() > 0;
     }
 
     @Test
     public void GetAccountApiTest() throws ApiException {
-        GetListAccountsApi api = new GetListAccountsApi();
-
-        UnitAccountsListResponse response = api.execute(null, null, null);
+        UnitAccountsListResponse response = unitApi.getAccounts(null, null, null);
         assert response.getData().size() > 0;
-
-        GetAccountApi getApi = new GetAccountApi();
-
         response.getData().forEach(x -> {
             try {
-                UnitAccountResponseWithIncluded account = getApi.execute(x.getId(), null);
+                UnitAccountResponseWithIncluded account = unitApi.getAccountById(x.getId(), null);
                 assert account.getData().getId().equals(x.getId());
                 assert account.getData().getType().toLowerCase()
                         .equals(account.getData().getClass().getSimpleName().toLowerCase());
@@ -47,18 +42,11 @@ public class AccountTests {
     }
     @Test
     public void UpdateAccountApiTest() throws ApiException {
-        GetListAccountsApi api = new GetListAccountsApi();
-
-        UnitAccountsListResponse response = api.execute(null, null, null);
+        UnitAccountsListResponse response = unitApi.getAccounts(null, null, null);
         assert response.getData().size() > 0;
-
-        GetAccountApi getApi = new GetAccountApi();
-
-        UpdateAccountApi updateAccountApi = new UpdateAccountApi();
-
         response.getData().forEach(x -> {
             try {
-                UnitAccountResponseWithIncluded account = getApi.execute(x.getId(), null);
+                UnitAccountResponseWithIncluded account = unitApi.getAccountById(x.getId(), null);
                 assert account.getData().getId().equals(x.getId());
                 assert account.getData().getType().toLowerCase()
                         .equals(account.getData().getClass().getSimpleName().toLowerCase());
@@ -72,7 +60,7 @@ public class AccountTests {
                 updateDepositAccount.attributes(attributes);
                 PatchAccount pa = new PatchAccount().data(new PatchAccountData(updateDepositAccount));
 
-                UnitAccountResponse res = updateAccountApi.execute(x.getId(), pa);
+                UnitAccountResponse res = unitApi.updateAccount(x.getId(), pa);
                 res.getData().getId().equals(x.getId());
             } catch (ApiException e) {
                 throw new RuntimeException(e);
@@ -80,7 +68,7 @@ public class AccountTests {
         });
     }
 
-    public static Account CreateDepositAccount() throws ApiException {
+    public Account CreateDepositAccount() throws ApiException {
         IndividualCustomer customer = CreateIndividualCustomer();
 
         CreateDepositAccount cda = new CreateDepositAccount();
@@ -99,10 +87,9 @@ public class AccountTests {
         cda.setAttributes(attributes);
         cda.setRelationships(relationships);
 
-        CreateAccountApi createAccountApi = new CreateAccountApi();
-        CreateAccount ca = new CreateAccount();
+
         ca.setData(new CreateAccountData(cda));
-        return createAccountApi.execute(ca).getData();
+        return unitApi.createAccount().getData();
     }
 
     @Test

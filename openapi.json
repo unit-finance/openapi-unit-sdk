@@ -24,16 +24,10 @@
             "$ref": "./schemas/application/application_paths.json#/application_forms"
         },
         "/applications/{applicationId}/documents/{documentId}": {
-            "$ref": "./schemas/application/application_paths.json#/upload_pdf_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/?": {
-            "$ref": "./schemas/application/application_paths.json#/upload_jpg_file"
+            "$ref": "./schemas/application/application_paths.json#/upload_application_document_file"
         },
         "/applications/{applicationId}/documents/{documentId}/back": {
-            "$ref": "./schemas/application/application_paths.json#/upload_pdf_file_back"
-        },
-        "/applications/{applicationId}/documents/{documentId}/back/?": {
-            "$ref": "./schemas/application/application_paths.json#/upload_jpg_file_back"
+            "$ref": "./schemas/application/application_paths.json#/upload_application_document_file_back"
         },
         "/applications/{applicationId}/documents": {
             "$ref": "./schemas/application/application_paths.json#/documents"

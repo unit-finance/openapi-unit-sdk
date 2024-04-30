@@ -467,10 +467,10 @@
             }
         }
     },
-    "upload_pdf_file": {
+    "upload_application_document_file": {
         "put": {
             "tags": ["unit"],
-            "operationId": "uploadApplicationPdfFile",
+            "operationId": "uploadApplicationDocumentFile",
             "parameters": [
                 {
                     "schema": {
@@ -491,222 +491,27 @@
                     "description": "ID of the document to upload a file for"
                 }
             ],
-            "summary": "Upload a PDF document",
-            "description": "Upload a PDF file via API ",
+            "summary": "Upload an application document file. Supports PDF, PNG and JPG files",
             "requestBody": {
-                "description": "Upload PDF File",
+                "description": "An application document file. Supports PDF, PNG and JPG files",
                 "required": true,
                 "content": {
                     "application/pdf": {
                         "schema": {
-                            "type": "object"
+                            "type": "object",
+                            "description": "PDF file"
                         }
-                    }
-                }
-            },
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "$ref": "application_paths.json#/UnitDocumentResponse"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "upload_pdf_file_back": {
-        "put": {
-            "tags": ["unit"],
-            "operationId": "uploadApplicationPdfFileBackSide",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
                     },
-                    "name": "applicationId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the application to upload a file to"
-                },
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "documentId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the document to upload a file for"
-                }
-            ],
-            "summary": "Upload a PDF document - Back Side",
-            "description": "Upload a PDF file via API - Back Side",
-            "requestBody": {
-                "description": "Upload PDF File - Back Side",
-                "required": true,
-                "content": {
-                    "application/pdf": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "$ref": "application_paths.json#/UnitDocumentResponse"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "upload_png_file": {
-        "put": {
-            "tags": ["unit"],
-            "operationId": "uploadApplicationPngFile",
-
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "applicationId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the application to upload a file to"
-                },
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "documentId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the document to upload a file for"
-                }
-            ],
-            "summary": "Upload a PNG document",
-            "description": "Upload a PNG file via API ",
-            "requestBody": {
-                "description": "Upload PNG File",
-                "required": true,
-                "content": {
                     "image/png": {
                         "schema": {
-                            "type": "object"
+                            "type": "object",
+                            "description": "PNG file"
                         }
-                    }
-                }
-            },
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "$ref": "application_paths.json#/UnitDocumentResponse"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "upload_png_file_back": {
-        "put": {
-            "tags": ["unit"],
-            "operationId": "uploadApplicationPngFileBackSide",
-
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
                     },
-                    "name": "applicationId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the application to upload a file to"
-                },
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "documentId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the document to upload a file for"
-                }
-            ],
-            "summary": "Upload a PNG document - Back Side",
-            "description": "Upload a PNG file via API - Back Side",
-            "requestBody": {
-                "description": "Upload PNG File - Back Side",
-                "required": true,
-                "content": {
-                    "image/png": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "$ref": "application_paths.json#/UnitDocumentResponse"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "upload_jpg_file": {
-        "put": {
-            "tags": ["unit"],
-            "operationId": "uploadApplicationJpgFile",
-
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "applicationId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the application to upload a file to"
-                },
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "documentId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the document to upload a file for"
-                }
-            ],
-            "summary": "Upload a JPEG document",
-            "description": "Upload a JPEG file via API ",
-            "requestBody": {
-                "description": "Upload JPEG File",
-                "required": true,
-                "content": {
                     "image/jpeg": {
                         "schema": {
-                            "type": "object"
+                            "type": "object",
+                            "description": "JPG file"
                         }
                     }
                 }
@@ -725,11 +530,10 @@
             }
         }
     },
-    "upload_jpg_file_back": {
+    "upload_application_document_file_back": {
         "put": {
             "tags": ["unit"],
-            "operationId": "uploadApplicationJpgFileBackSide",
-
+            "operationId": "uploadApplicationDocumentFileBackSide",
             "parameters": [
                 {
                     "schema": {
@@ -750,12 +554,22 @@
                     "description": "ID of the document to upload a file for"
                 }
             ],
-            "summary": "Upload a JPEG document - Back Side",
-            "description": "Upload a JPEG file via API - Back Side",
+            "summary": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
+            "description": "Upload an application file via API - Back Side. Supports PDF, PNG and JPG files",
             "requestBody": {
-                "description": "Upload JPEG File - Back Side",
+                "description": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
                 "required": true,
                 "content": {
+                    "application/pdf": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "image/png": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
                     "image/jpeg": {
                         "schema": {
                             "type": "object"

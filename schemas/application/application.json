@@ -93,7 +93,7 @@
                         "type": "string"
                     },
                     "address": {
-                        "$ref": "types.json#/definitions/address"
+                        "$ref": "../types.json#/components/schemas/address"
                     },
                     "dateOfBirth": {
                         "type": "string",
@@ -181,7 +181,7 @@
                         "type": "string"
                     },
                     "address": {
-                        "$ref": "types.json#/definitions/address"
+                        "$ref": "../types.json#/components/schemas/address"
                     },
                     "dateOfBirth": {
                         "type": "string",
@@ -561,7 +561,7 @@
                                         "type": "string"
                                     },
                                     "address": {
-                                        "$ref": "types.json#/definitions/address"
+                                        "$ref": "../types.json#/components/schemas/address"
                                     },
                                     "dateOfBirth": {
                                         "type": "string",

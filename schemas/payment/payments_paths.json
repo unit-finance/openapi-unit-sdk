@@ -177,7 +177,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "./createPayment.json#/components/schemas/CreateRepaymentRequest"
+                            "$ref": "./createPayment.json#/components/schemas/CreatePaymentRequest"
                         }
                     }
                 }

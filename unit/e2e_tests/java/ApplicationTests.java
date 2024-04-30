@@ -16,18 +16,18 @@ import java.util.List;
 import static org.openapitools.client.TestHelpers.CreateApplicationRequest;
 
 public class ApplicationTests {
+    UnitApi unitApi = null;
+
     @BeforeAll
-    static void init() {
+    void init() {
         String access_token = System.getenv("access_token");
         ApiClient cl = new ApiClient();
         cl.setBearerToken(access_token);
-        Configuration.setDefaultApiClient(cl);
+        unitApi = new UnitApi(cl);
     }
 
     @Test
     public void GetApplicationListApiTest() throws ApiException {
-        GetListApplicationsApi api = new GetListApplicationsApi();
-
         ExecuteFilterParameter filter = new ExecuteFilterParameter();
         ListPageParametersObject page = new  ListPageParametersObject();
         page.setLimit(20);
@@ -39,13 +39,12 @@ public class ApplicationTests {
         filter.setQuery("John");
         filter.setStatus(statuses);
 
-        UnitListApplicationsResponse response = api.execute(page, filter, null);
+        UnitListApplicationsResponse response = unitApi.getApplications(page, filter, null);
         assert response.getData().size() <= 20;
     }
 
     @Test
     public void GetApplicationListWithFilterApiTest() throws ApiException {
-        GetListApplicationsApi api = new GetListApplicationsApi();
         ExecuteFilterParameter filter = new ExecuteFilterParameter();
         ListPageParametersObject page = new  ListPageParametersObject();
         page.setLimit(20);
@@ -56,9 +55,7 @@ public class ApplicationTests {
         filter.setQuery("John");
         filter.setStatus(statuses);
 
-//        UnitListApplicationsResponse response = api.execute(null,null, statuses,
-//                null, null , null, null );
-        UnitListApplicationsResponse response = api.execute(page, filter ,null);
+        UnitListApplicationsResponse response = unitApi.getApplications(page, filter ,null);
         assert response.getData().size() != 0;
 
         response.getData().forEach(x -> {
@@ -73,16 +70,12 @@ public class ApplicationTests {
 
     @Test
     public void GetApplicationApiTest() throws ApiException {
-        GetListApplicationsApi api = new GetListApplicationsApi();
-
-        UnitListApplicationsResponse response = api.execute(null, null, null);
+        UnitListApplicationsResponse response = unitApi.getApplications(null, null, null);
         assert response.getData().size() != 0;
-
-        GetApplicationApi getApi = new GetApplicationApi();
 
         response.getData().forEach(x -> {
             try {
-                UnitApplicationResponseWithIncluded app = getApi.execute(x.getId(), null);
+                UnitApplicationResponseWithIncluded app = unitApi.getApplicationById(x.getId(), null);
                 assert app.getData().getId().equals(x.getId());
                 assert app.getData().getType().toLowerCase()
                         .equals(app.getData().getClass().getSimpleName().toLowerCase());
@@ -94,13 +87,9 @@ public class ApplicationTests {
 
     @Test
     public void UpdateApplicationApiTest() throws ApiException {
-        GetListApplicationsApi api = new GetListApplicationsApi();
         ExecuteFilterParameter filters = new ExecuteFilterParameter();
-        // filters.status(new ArrayList<StatusEnum>(){new ExecuteFilterParameter.StatusEnum[]{ExecuteFilterParameter.StatusEnum.APPROVED}})
-        UnitListApplicationsResponse response = api.execute(null, null, null);
+        UnitListApplicationsResponse response = unitApi.getApplications(null, null, null);
         assert response.getData().size() != 0;
-
-        UpdateApplicationApi updateApi = new UpdateApplicationApi();
 
         response.getData().forEach(x -> {
             try {
@@ -121,7 +110,7 @@ public class ApplicationTests {
                 UpdateApplication ua = new UpdateApplication();
                 ua.data(d);
 
-                UnitApplicationResponseWithIncluded app = updateApi.execute(x.getId(), ua);
+                UnitApplicationResponseWithIncluded app = unitApi.updateApplication(x.getId(), ua);
                 assert app.getData().getId().equals(x.getId());
                 assert app.getData().getType().toLowerCase()
                         .equals(app.getData().getClass().getSimpleName().toLowerCase());
@@ -134,19 +123,16 @@ public class ApplicationTests {
 
     @Test
     public void CreateApplicationApiTest() throws ApiException {
-        CreateApplicationApi apiClient = new CreateApplicationApi();
-        UnitCreateApplicationResponse res = apiClient.execute(CreateApplicationRequest());
+        UnitCreateApplicationResponse res = unitApi.createApplication(CreateApplicationRequest());
         assert res.getData().getType().equals("individualApplication");
     }
 
     @Test
     public void CreateDocumentForApplicationApiTest() throws ApiException {
-        CreateApplicationApi apiClient = new CreateApplicationApi();
-        UnitCreateApplicationResponse res = apiClient.execute(CreateApplicationRequest());
+        UnitCreateApplicationResponse res = unitApi.createApplication(CreateApplicationRequest());
         assert res.getData().getType().equals("individualApplication");
 
-        CreateADocumentForAnApplicationApi createApi = new CreateADocumentForAnApplicationApi();
-        UnitDocumentResponse document = createApi.execute(res.getData().getId());
+        UnitDocumentResponse document = unitApi.create(res.getData().getId());
         assert document.getData().getType().equals("document");
     }
 
@@ -160,15 +146,14 @@ public class ApplicationTests {
 
     @Test
     public void ListDocumentsApiTest() throws ApiException {
-        GetListOfDocumentsApi api = new GetListOfDocumentsApi();
-        GetListApplicationsApi listApplicationsApi = new GetListApplicationsApi();
 
-        UnitListApplicationsResponse response = listApplicationsApi.execute(null, null, null);
+
+        UnitListApplicationsResponse response = unitApi.getApplications(null, null, null);
         assert response.getData().size() != 0;
 
         response.getData().forEach(x -> {
             try {
-                List<Document> documents = api.execute(x.getId()).getData();
+                List<Document> documents = unitApi.getApplicationDocuments(x.getId()).getData();
                 documents.forEach(doc -> {
                    assert doc.getType().equals("document");
                 });
@@ -183,8 +168,7 @@ public class ApplicationTests {
         Path path = Paths.get("file_path");
         byte[] data = Files.readAllBytes(path);
 
-        UploadAPngDocumentForAnApplicationApi api = new UploadAPngDocumentForAnApplicationApi();
-        UnitDocumentResponse response = api.execute("applicationId", "documentId", data);
+        UnitDocumentResponse response = unitApi.uploadApplicationDocumentFile("applicationId", "documentId", data);
 
         assert response.getData().getType().equals("document");
     }

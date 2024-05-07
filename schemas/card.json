@@ -142,6 +142,10 @@
                                     "type": "string",
                                     "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
                                 },
+                                "nextExpirationDate": {
+                                    "type": "string",
+                                    "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                },
                                 "shippingAddress": {
                                     "$ref": "types.json#/definitions/address"
                                 },
@@ -208,6 +212,10 @@
                                     "pattern": "^\\d{4}$"
                                 },
                                 "expirationDate": {
+                                    "type": "string",
+                                    "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                },
+                                "nextExpirationDate": {
                                     "type": "string",
                                     "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
                                 },
@@ -310,6 +318,10 @@
                                     "type": "string",
                                     "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
                                 },
+                                "nextExpirationDate": {
+                                    "type": "string",
+                                    "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                },
                                 "bin": {
                                     "type": "string",
                                     "pattern": "^\\d{9}$"
@@ -370,6 +382,10 @@
                                     "pattern": "^\\d{4}$"
                                 },
                                 "expirationDate": {
+                                    "type": "string",
+                                    "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                },
+                                "nextExpirationDate": {
                                     "type": "string",
                                     "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
                                 },
@@ -463,6 +479,10 @@
                                     "pattern": "^\\d{4}$"
                                 },
                                 "expirationDate": {
+                                    "type": "string",
+                                    "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                },
+                                "nextExpirationDate": {
                                     "type": "string",
                                     "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
                                 },
@@ -562,6 +582,10 @@
                                     "pattern": "^\\d{4}$"
                                 },
                                 "expirationDate": {
+                                    "type": "string",
+                                    "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                },
+                                "nextExpirationDate": {
                                     "type": "string",
                                     "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
                                 },

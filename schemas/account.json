@@ -79,7 +79,12 @@
                                     "type": "string",
                                     "enum": [
                                         "ByCustomer",
-                                        "Fraud"
+                                        "Fraud",
+                                        "NegativeBalance",
+                                        "ByBank",
+                                        "BreachOfTermsAndConditions",
+                                        "NoAccountActivity",
+                                        "ProgramChange"
                                     ]
                                 },
                                 "fraudReason": {
@@ -204,7 +209,11 @@
                                     "enum": [
                                         "ByCustomer",
                                         "Fraud",
-                                        "Overdue"
+                                        "NegativeBalance",
+                                        "ByBank",
+                                        "BreachOfTermsAndConditions",
+                                        "NoAccountActivity",
+                                        "ProgramChange"
                                     ]
                                 },
                                 "fraudReason": {

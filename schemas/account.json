@@ -209,6 +209,7 @@
                                     "enum": [
                                         "ByCustomer",
                                         "Fraud",
+                                        "Overdue",
                                         "NegativeBalance",
                                         "ByBank",
                                         "BreachOfTermsAndConditions",

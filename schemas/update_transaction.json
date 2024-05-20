@@ -1,36 +1,5 @@
 {
   "definitions": {
-    "accountRelationship": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "account",
-                "depositAccount",
-                "creditAccount",
-                "batchAccount"
-              ]
-            },
-            "id": {
-              "$ref": "types.json#/definitions/identifier"
-            }
-          },
-          "required": [
-            "type",
-            "id"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "required": [
-        "data"
-      ],
-      "additionalProperties": false
-    },
     "patchTransactionTags": {
       "title": "Patch Transaction",
       "type": "object",
@@ -67,7 +36,7 @@
           "type": "object",
           "properties": {
             "account": {
-              "$ref": "#/definitions/accountRelationship"
+              "$ref": "./createPayment.json#/definitions/accountRelationship"
             }
           },
           "required": [
@@ -98,7 +67,7 @@
           "type": "object",
           "properties": {
             "account": {
-              "$ref": "#/definitions/accountRelationship"
+              "$ref": "./createPayment.json#/definitions/accountRelationship"
             }
           },
           "required": [

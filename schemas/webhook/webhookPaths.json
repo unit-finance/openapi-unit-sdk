@@ -1,0 +1,314 @@
+{
+    "webhooks": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getWebhooks",
+
+            "summary": "Get List Webhooks",
+            "description": "Get List Webhooks from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "fromId": {
+                                "type": "integer"
+                            },
+                            "toId": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitWebhooksListResponse",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./webhook.json#/components/schemas/Webhook"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createWebhook",
+
+            "summary": "Create Webhook",
+            "description": "Create a Webhook via API ",
+            "requestBody": {
+                "description": "Create Webhook Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "createWebhook",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "webhook"
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "label": {
+                                                    "type": "string"
+                                                },
+                                                "url": {
+                                                    "type": "string"
+                                                },
+                                                "token": {
+                                                    "type": "string"
+                                                },
+                                                "contentType": {
+                                                    "type": "string",
+                                                    "enum": ["Json", "JsonAPI"]
+                                                },
+                                                "deliveryMode": {
+                                                    "type": "string"
+                                                },
+                                                "includeResources": {
+                                                    "type": "boolean"
+                                                },
+                                                "subscriptionType": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "All",
+                                                        "OnlyAuthorizationRequest"
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": false,
+                                            "required": [
+                                                "label",
+                                                "url",
+                                                "token",
+                                                "contentType",
+                                                "deliveryMode"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitWebhookResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./webhook.json#/components/schemas/Webhook"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "webhook": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getWebhookById",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "webhookId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the webhook to get"
+                }
+            ],
+            "summary": "Get Webhook Id",
+            "description": "Get a Webhook from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitWebhookResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./webhook.json#/components/schemas/Webhook"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "tags": ["unit"],
+            "operationId": "updateWebhook",
+            "summary": "Update Webhook",
+            "description": "Update a Webhook via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "webhookId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the Webhook to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Webhook Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./updateWebhook.json#/components/schemas/UpdateWebhookRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitWebhookResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./webhook.json#/components/schemas/Webhook"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "enableWebhook": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "enableWebhook",
+
+            "summary": "Enable Webhook",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "webhookId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the webhook to enable"
+                }
+            ],
+            "description": "Enable a Webhook via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitWebhookResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./webhook.json#/components/schemas/Webhook"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "disableWebhook": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "disableWebhook",
+
+            "summary": "Disable a Webhook",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "webhookId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the webhook to disable"
+                }
+            ],
+            "description": "Disable a Webhook via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitWebhookResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./webhook.json#/components/schemas/Webhook"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

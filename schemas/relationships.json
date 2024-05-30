@@ -1,0 +1,715 @@
+{
+    "components": {
+        "schemas": {
+            "Relationship": {
+                "type": "object",
+                "title": "Relationship",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "./types.json#/components/schemas/Identifier"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["id", "type"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            },
+            "AccountRelationship": {
+                "type": "object",
+                "title": "Account Relationship",
+                "properties": {
+                    "account": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "account",
+                                            "depositAccount",
+                                            "creditAccount",
+                                            "batchAccount"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "CreditAccountRelationship": {
+                "type": "object",
+                "title": "Credit Account Relationship",
+                "properties": {
+                    "creditAccount": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["creditAccount"]
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "ApplicationRelationship": {
+                "type": "object",
+                "title": "Application Relationship",
+                "properties": {
+                    "application": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "businessApplication",
+                                            "individualApplication",
+                                            "application"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": ["id", "type"]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["data"]
+                    }
+                }
+            },
+            "CustomerRelationship": {
+                "type": "object",
+                "title": "Customer Relationship",
+                "properties": {
+                    "customer": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "customer",
+                                            "businessCustomer",
+                                            "individualCustomer"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["data"]
+                    }
+                }
+            },
+            "CustomersRelationship": {
+                "type": "object",
+                "title": "Customers Relationship",
+                "properties": {
+                    "customers": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "customer"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["data"]
+                    }
+                },
+                "additionalProperties": false
+            },
+            "OrgRelationship": {
+                "type": "object",
+                "title": "Org Relationship",
+                "properties": {
+                    "org": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "default": "org"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": ["id", "type"]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["data"]
+                    }
+                },
+                "additionalProperties": false
+            },
+            "DocumentsRelationship": {
+                "type": "object",
+                "title": "Documents Relationship",
+                "properties": {
+                    "documents": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "document"
+                                        },
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": true,
+                "required": ["data"]
+            },
+            "TrusteesRelationship": {
+                "type": "object",
+                "properties": {
+                    "trustees": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "trustee"
+                                        },
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "BeneficiariesRelationship": {
+                "type": "object",
+                "properties": {
+                    "beneficiaries": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "beneficiary"
+                                        },
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "BeneficialOwnersRelationship": {
+                "type": "object",
+                "properties": {
+                    "beneficialOwners": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "beneficialOwner"
+                                        },
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "AuthorizationRequestRelationship": {
+                "type": "object",
+                "properties": {
+                    "authorizationRequest": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "authorizationRequest"
+                                        },
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "FundingAccountRelationship": {
+                "type": "object",
+                "properties": {
+                    "fundingAccount": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "account"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "CardRelationship": {
+                "type": "object",
+                "properties": {
+                    "card": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "card"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "TransactionRelationship": {
+                "type": "object",
+                "properties": {
+                    "transaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "CounterpartyRelationship": {
+                "type": "object",
+                "properties": {
+                    "counterparty": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "counterparty"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "CounterpartyAccountRelationship": {
+                "type": "object",
+                "properties": {
+                    "counterpartyAccount": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["account", "depositAccount"]
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "CounterpartyCustomerRelationship": {
+                "type": "object",
+                "properties": {
+                    "counterpartyCustomer": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "customer",
+                                            "businessCustomer",
+                                            "individualCustomer"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "RecurringPaymentRelationship": {
+                "type": "object",
+                "properties": {
+                    "recurringPayment": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "recurringPayment"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "AchPaymentRelationship": {
+                "type": "object",
+                "properties": {
+                    "achPayment": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "achPayment"
+                                    },
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "ReceivePaymentTransactionRelationship": {
+                "type": "object",
+                "properties": {
+                    "receivePaymentTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "PaymentAdvanceTransactionRelationship": {
+                "type": "object",
+                "properties": {
+                    "paymentAdvanceTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "RepayPaymentAdvanceTransactionRelationship": {
+                "type": "object",
+                "properties": {
+                    "repayPaymentAdvanceTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "CheckPaymentsRelationship": {
+                "type": "object",
+                "properties": {
+                    "checkPayments": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "default": "checkPayment"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "RewardedTransactionRelationship": {
+                "type": "object",
+                "properties": {
+                    "rewardedTransaction": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "transaction"
+                                    },
+                                    "id": {
+                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "ReceivingAccountRelationship": {
+                "type": "object",
+                "properties": {
+                    "receivingAccount": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "account",
+                                            "depositAccount",
+                                            "creditAccount"
+                                        ]
+                                    }
+                                },
+                                "required": ["id", "type"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            }
+        }
+    }
+}

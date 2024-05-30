@@ -1,24 +1,26 @@
 {
     "components": {
         "schemas": {
-            "disputeRelationships": {
+            "DisputeRelationships": {
                 "type": "object",
                 "title": "disputeRelationships",
                 "properties": {
-                    "customer": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "account": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "transaction": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    }
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        }
+                    ]
                 },
                 "required": ["customer", "account", "transaction"],
                 "additionalProperties": false
             },
-            "dispute": {
+            "Dispute": {
                 "title": "Dispute Document",
                 "type": "object",
                 "properties": {
@@ -27,7 +29,7 @@
                         "default": "dispute"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -41,10 +43,10 @@
                                 "maxLength": 255
                             },
                             "link": {
-                                "$ref": "../types.json#/components/schemas/url"
+                                "$ref": "../types.json#/components/schemas/Url"
                             },
                             "description": {
-                                "$ref": "../types.json#/components/schemas/description"
+                                "$ref": "../types.json#/components/schemas/Description"
                             },
                             "amount": {
                                 "type": "integer"
@@ -87,7 +89,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/disputeRelationships"
+                        "$ref": "#/components/schemas/DisputeRelationships"
                     }
                 },
                 "additionalProperties": false,

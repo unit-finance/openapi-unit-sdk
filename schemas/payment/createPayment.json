@@ -1,76 +1,27 @@
 {
     "components": {
         "schemas": {
-            "accountRelationship": {
+            "CreatePaymentRelationships": {
                 "type": "object",
                 "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": [
-                                    "account",
-                                    "depositAccount",
-                                    "creditAccount",
-                                    "batchAccount"
-                                ]
-                            },
-                            "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
-                            }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                    }
+                    "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                 },
-                "required": ["data"],
+                "required": ["account"],
                 "additionalProperties": false
             },
-            "counterpartyRelationship": {
+            "CreatePaymentRelationshipsWithCounterparty": {
                 "type": "object",
                 "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": [
-                                    "account",
-                                    "depositAccount",
-                                    "counterparty"
-                                ]
-                            },
-                            "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
-                            }
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                         },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                    }
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                        }
+                    ]
                 },
-                "required": ["data"],
-                "additionalProperties": false
-            },
-            "counterpartyAccountRelationship": {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": ["account", "depositAccount"]
-                            },
-                            "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
-                            }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                    }
-                },
-                "required": ["data"],
+                "required": ["account", "counterparty"],
                 "additionalProperties": false
             },
             "CreateAchPayment": {
@@ -98,7 +49,7 @@
                                 "enum": ["Debit", "Credit"]
                             },
                             "counterparty": {
-                                "$ref": "payment.json#/components/schemas/counterparty"
+                                "$ref": "./payment.json#/components/schemas/PaymentCounterparty"
                             },
                             "idempotencyKey": {
                                 "type": "string"
@@ -107,7 +58,7 @@
                                 "type": "boolean"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "secCode": {
                                 "type": "string",
@@ -123,14 +74,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
-                            }
-                        },
-                        "required": ["account"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -167,7 +111,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "verifyCounterpartyBalance": {
                                 "type": "boolean",
@@ -182,17 +126,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
-                            },
-                            "counterparty": {
-                                "$ref": "#/components/schemas/counterpartyRelationship"
-                            }
-                        },
-                        "required": ["account", "counterparty"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
                     }
                 },
                 "additionalProperties": false,
@@ -226,7 +160,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "plaidProcessorToken": {
                                 "type": "string",
@@ -256,14 +190,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
-                            }
-                        },
-                        "required": ["account"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -290,7 +217,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "transactionSummaryOverride": {
                                 "type": "string"
@@ -300,17 +227,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
-                            },
-                            "counterpartyAccount": {
-                                "$ref": "#/components/schemas/counterpartyAccountRelationship"
-                            }
-                        },
-                        "required": ["account", "counterpartyAccount"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
                     }
                 },
                 "additionalProperties": false,
@@ -338,27 +255,20 @@
                                 "type": "string"
                             },
                             "counterparty": {
-                                "$ref": "payment.json#/components/schemas/wireCounterparty"
+                                "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty"
                             },
                             "idempotencyKey": {
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "required": ["amount", "description", "counterparty"],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
-                            }
-                        },
-                        "required": ["account"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -391,10 +301,10 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "fullName": {
-                                "$ref": "../types.json#/components/schemas/fullName"
+                                "$ref": "../types.json#/components/schemas/FullName"
                             },
                             "dateOfBirth": {
                                 "type": "string",
@@ -410,14 +320,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
-                            }
-                        },
-                        "required": ["account"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -441,7 +344,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "description": {
                                 "type": "string"
@@ -450,7 +353,7 @@
                                 "type": "object",
                                 "properties": {
                                     "astra": {
-                                        "$ref": "payment.json#/components/schemas/astra"
+                                        "$ref": "./payment.json#/components/schemas/Astra"
                                     }
                                 }
                             }
@@ -459,14 +362,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "createPayment.json#/components/schemas/accountRelationship"
-                            }
-                        },
-                        "required": ["account"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
                     }
                 },
                 "additionalProperties": false,

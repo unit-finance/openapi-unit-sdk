@@ -34,9 +34,7 @@
                     "relationships": {
                         "type": "object",
                         "properties": {
-                            "customer": {
-                                "$ref": "../customer/customer.json#/components/schemas/customerLinkage"
-                            }
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                         }
                     }
                 }
@@ -71,18 +69,20 @@
                     "relationships": {
                         "type": "object",
                         "properties": {
-                            "customer": {
-                                "$ref": "../customer/customer.json#/components/schemas/customerLinkage"
-                            },
-                            "customers": {
-                                "$ref": "../types.json#/components/schemas/customersRelationship"
-                            }
+                            "allOf": [
+                                {
+                                    "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                                },
+                                {
+                                    "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                                }
+                            ]
                         }
                     }
                 },
                 "additionalProperties": false
             },
-            "createAccount": {
+            "CreateAccountRequest": {
                 "type": "object",
                 "properties": {
                     "data": {

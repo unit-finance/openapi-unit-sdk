@@ -1,29 +1,35 @@
 {
-    "title": "Create Payments In Bulk",
-    "type": "object",
-    "properties": {
-        "data": {
-            "type": "array",
-            "items": {
-                "oneOf": [
-                    {
-                        "$ref": "./createPayment.json#/components/schemas/createAchPayment"
-                    },
-                    {
-                        "$ref": "./createPayment.json#/components/schemas/createAchPaymentCounterparty"
-                    },
-                    {
-                        "$ref": "./createPayment.json#/components/schemas/createAchPaymentPlaid"
-                    },
-                    {
-                        "$ref": "./createPayment.json#/components/schemas/createBookPayment"
-                    },
-                    {
-                        "$ref": "./createPayment.json#/components/schemas/createWirePayment"
+    "components": {
+        "schemas": {
+            "CreatePaymentsRequest": {
+                "title": "Create Payments In Bulk",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "./createPayment.json#/components/schemas/CreateAchPayment"
+                                },
+                                {
+                                    "$ref": "./createPayment.json#/components/schemas/CreateAchPaymentCounterparty"
+                                },
+                                {
+                                    "$ref": "./createPayment.json#/components/schemas/CreateAchPaymentPlaid"
+                                },
+                                {
+                                    "$ref": "./createPayment.json#/components/schemas/CreateBookPayment"
+                                },
+                                {
+                                    "$ref": "./createPayment.json#/components/schemas/CreateWirePayment"
+                                }
+                            ]
+                        }
                     }
-                ]
+                },
+                "required": ["data"]
             }
         }
-    },
-    "required": ["data"]
+    }
 }

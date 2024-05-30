@@ -1,0 +1,292 @@
+{
+    "components": {
+        "schemas": {
+            "DepositLimits": {
+                "title": "Deposit Account Limits",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./limits.json#/components/schemas/limits"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "ach": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dailyDebit": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyCredit": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlyDebit": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlyDebitSoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyDebitSoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlyCredit": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "dailyDebit",
+                                                    "dailyCredit",
+                                                    "monthlyDebit",
+                                                    "monthlyCredit"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsDaily": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "debits": {
+                                                        "type": "number"
+                                                    },
+                                                    "credits": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "debits",
+                                                    "credits"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsMonthly": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "debits": {
+                                                        "type": "number"
+                                                    },
+                                                    "credits": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "debits",
+                                                    "credits"
+                                                ],
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "required": [
+                                            "limits",
+                                            "totalsDaily",
+                                            "totalsMonthly"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    "card": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dailyWithdrawal": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyDeposit": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyPurchase": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyCardTransaction": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "dailyWithdrawal",
+                                                    "dailyDeposit",
+                                                    "dailyPurchase",
+                                                    "dailyCardTransaction"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsDaily": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "withdrawals": {
+                                                        "type": "number"
+                                                    },
+                                                    "deposits": {
+                                                        "type": "number"
+                                                    },
+                                                    "purchases": {
+                                                        "type": "number"
+                                                    },
+                                                    "cardTransactions": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "withdrawals",
+                                                    "deposits",
+                                                    "purchases",
+                                                    "cardTransactions"
+                                                ],
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "required": ["limits", "totalsDaily"],
+                                        "additionalProperties": false
+                                    },
+                                    "checkDeposit": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "daily": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthly": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailySoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlySoft": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "daily",
+                                                    "monthly",
+                                                    "dailySoft",
+                                                    "monthlySoft"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsDaily": {
+                                                "type": "number"
+                                            },
+                                            "totalsMonthly": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "limits",
+                                            "totalsDaily",
+                                            "totalsMonthly"
+                                        ],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["ach", "card", "checkDeposit"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes"]
+                    }
+                ]
+            },
+            "CreditLimits": {
+                "title": "Credit Account Limits",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./limits.json#/components/schemas/limits"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "card": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dailyWithdrawal": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyDeposit": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyPurchase": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyCardTransaction": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "dailyWithdrawal",
+                                                    "dailyDeposit",
+                                                    "dailyPurchase",
+                                                    "dailyCardTransaction"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsDaily": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "withdrawals": {
+                                                        "type": "number"
+                                                    },
+                                                    "deposits": {
+                                                        "type": "number"
+                                                    },
+                                                    "purchases": {
+                                                        "type": "number"
+                                                    },
+                                                    "cardTransactions": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "withdrawals",
+                                                    "deposits",
+                                                    "purchases",
+                                                    "cardTransactions"
+                                                ],
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "required": ["limits", "totalsDaily"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["card"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes"]
+                    }
+                ]
+            },
+            "Limits": {
+                "title": "Account Limits Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "limits": "#/components/schemas/DepositLimits",
+                        "creditLimits": "#/components/schemas/CreditLimits"
+                    }
+                }
+            }
+        }
+    }
+}

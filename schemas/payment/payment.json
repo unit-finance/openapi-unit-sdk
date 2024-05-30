@@ -1,48 +1,244 @@
 {
     "components": {
         "schemas": {
-            "paymentRelationships": {
+            "PaymentCounterparty": {
+                "title": "Counterparty",
                 "type": "object",
                 "properties": {
-                    "account": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                    "routingNumber": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
                     },
-                    "customer": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                    "accountNumber": {
+                        "type": "string",
+                        "pattern": "^\\d{1,17}$"
                     },
-                    "customers": {
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "$ref": "../types.json#/components/schemas/identifier"
-                                        },
-                                        "type": {
-                                            "type": "string",
-                                            "default": "org"
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    "accountType": {
+                        "type": "string",
+                        "enum": ["Checking", "Savings", "Loan"]
                     },
-                    "counterparty": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "counterpartyAccount": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "transaction": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "recurringPayment": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
                     }
                 },
+                "additionalProperties": false,
+                "required": [
+                    "routingNumber",
+                    "accountNumber",
+                    "accountType",
+                    "name"
+                ]
+            },
+            "WirePaymentCounterparty": {
+                "title": "WireCounterparty",
+                "type": "object",
+                "properties": {
+                    "routingNumber": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "accountNumber": {
+                        "type": "string",
+                        "maxLength": 17
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50
+                    },
+                    "address": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "routingNumber",
+                    "accountNumber",
+                    "address",
+                    "name"
+                ]
+            },
+            "Astra": {
+                "title": "AstraPushToCardConfiguration",
+                "type": "object",
+                "properties": {
+                    "authToken": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "debitFeePercent": {
+                        "type": "number"
+                    },
+                    "institutionId": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "destinationCardId": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "routingNumber": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "accountNumber": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "accountName": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "referenceId": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 80
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "debitFeePercent",
+                    "institutionId",
+                    "destinationCardId",
+                    "routingNumber",
+                    "accountNumber",
+                    "referenceId"
+                ]
+            },
+            "AchPaymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                        }
+                    ]
+                },
+                "required": ["account", "counterparty", "transaction"],
+                "additionalProperties": true
+            },
+            "WirePaymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        }
+                    ]
+                },
+                "required": ["account", "transaction"],
+                "additionalProperties": true
+            },
+            "BookPaymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CounterpartyCustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                        }
+                    ]
+                },
+                "required": [
+                    "account",
+                    "counterpartyAccount",
+                    "counterpartyCustomer",
+                    "transaction"
+                ],
+                "additionalProperties": true
+            },
+            "BillPaymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                        }
+                    ]
+                },
+                "required": ["account", "counterparty", "transaction"],
+                "additionalProperties": true
+            },
+            "PushToCardPaymentRelationships": {
+                "type": "object",
+                "properties": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AchPaymentRelationship"
+                        }
+                    ]
+                },
+                "required": ["account", "transaction", "achPayment"],
                 "additionalProperties": true
             },
             "AchPayment": {
@@ -50,7 +246,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./payment.json#/components/schemas/payment"
+                        "$ref": "./payment.json#/components/schemas/Payment"
                     },
                     {
                         "type": "object",
@@ -81,10 +277,10 @@
                                         "maxLength": 80
                                     },
                                     "counterparty": {
-                                        "$ref": "#/components/schemas/counterparty"
+                                        "$ref": "#/components/schemas/PaymentCounterparty"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "status": {
                                         "type": "string",
@@ -133,7 +329,7 @@
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/paymentRelationships"
+                                "$ref": "#/components/schemas/AchPaymentRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -151,7 +347,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./payment.json#/components/schemas/payment"
+                        "$ref": "./payment.json#/components/schemas/Payment"
                     },
                     {
                         "type": "object",
@@ -194,7 +390,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -207,7 +403,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/paymentRelationships"
+                                "$ref": "#/components/schemas/BookPaymentRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -225,7 +421,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./payment.json#/components/schemas/payment"
+                        "$ref": "./payment.json#/components/schemas/Payment"
                     },
                     {
                         "type": "object",
@@ -251,7 +447,7 @@
                                         "maxLength": 50
                                     },
                                     "counterparty": {
-                                        "$ref": "./payment.json#/components/schemas/wireCounterparty"
+                                        "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty"
                                     },
                                     "status": {
                                         "type": "string",
@@ -293,7 +489,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/paymentRelationships"
+                                "$ref": "#/components/schemas/WirePaymentRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -311,7 +507,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./payment.json#/components/schemas/payment"
+                        "$ref": "./payment.json#/components/schemas/Payment"
                     },
                     {
                         "type": "object",
@@ -362,7 +558,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/paymentRelationships"
+                                "$ref": "#/components/schemas/BillPaymentRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -375,12 +571,12 @@
                     }
                 ]
             },
-            "pushToCardPayment": {
+            "PushToCardPayment": {
                 "title": "Push To Card Payment Response",
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./payment.json#/components/schemas/payment"
+                        "$ref": "./payment.json#/components/schemas/Payment"
                     },
                     {
                         "type": "object",
@@ -412,7 +608,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "astraRoutineId": {
                                         "type": "string"
@@ -428,7 +624,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/paymentRelationships"
+                                "$ref": "#/components/schemas/PushToCardPaymentRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -441,113 +637,7 @@
                     }
                 ]
             },
-            "counterparty": {
-                "title": "Counterparty",
-                "type": "object",
-                "properties": {
-                    "routingNumber": {
-                        "type": "string",
-                        "pattern": "^\\d{9}$"
-                    },
-                    "accountNumber": {
-                        "type": "string",
-                        "pattern": "^\\d{1,17}$"
-                    },
-                    "accountType": {
-                        "type": "string",
-                        "enum": ["Checking", "Savings", "Loan"]
-                    },
-                    "name": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 50
-                    }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "routingNumber",
-                    "accountNumber",
-                    "accountType",
-                    "name"
-                ]
-            },
-            "wireCounterparty": {
-                "title": "WireCounterparty",
-                "type": "object",
-                "properties": {
-                    "routingNumber": {
-                        "type": "string",
-                        "pattern": "^\\d{9}$"
-                    },
-                    "accountNumber": {
-                        "type": "string",
-                        "maxLength": 17
-                    },
-                    "name": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 50
-                    },
-                    "address": {
-                        "$ref": "../types.json#/components/schemas/address"
-                    }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "routingNumber",
-                    "accountNumber",
-                    "address",
-                    "name"
-                ]
-            },
-            "astra": {
-                "title": "AstraPushToCardConfiguration",
-                "type": "object",
-                "properties": {
-                    "authToken": {
-                        "type": "string",
-                        "minLength": 1
-                    },
-                    "debitFeePercent": {
-                        "type": "number"
-                    },
-                    "institutionId": {
-                        "type": "string",
-                        "minLength": 1
-                    },
-                    "destinationCardId": {
-                        "type": "string",
-                        "minLength": 1
-                    },
-                    "routingNumber": {
-                        "type": "string",
-                        "minLength": 1
-                    },
-                    "accountNumber": {
-                        "type": "string",
-                        "minLength": 1
-                    },
-                    "accountName": {
-                        "type": "string",
-                        "minLength": 1
-                    },
-                    "referenceId": {
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 80
-                    }
-                },
-                "additionalProperties": false,
-                "required": [
-                    "debitFeePercent",
-                    "institutionId",
-                    "destinationCardId",
-                    "routingNumber",
-                    "accountNumber",
-                    "referenceId"
-                ]
-            },
-            "payment": {
+            "Payment": {
                 "title": "Payment Resource",
                 "type": "object",
                 "properties": {
@@ -555,7 +645,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     }
                 },
                 "discriminator": {

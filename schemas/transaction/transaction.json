@@ -1,448 +1,498 @@
 {
     "components": {
         "schemas": {
-            "transactionRelationships": {
+            "TransactionRelationships": {
                 "type": "object",
-                "title": "transactionRelationships",
+                "title": "Transaction Relationships",
                 "properties": {
-                    "account": {
-                        "type": "object",
-                        "title": "accountRelationship",
-                        "properties": {
-                            "data": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                        },
+
+                        {
+                            "account": {
                                 "type": "object",
+                                "title": "accountRelationship",
                                 "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "depositAccount",
-                                            "glAccount",
-                                            "account"
-                                        ]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "depositAccount",
+                                                    "GlAccount",
+                                                    "account"
+                                                ]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "receivingAccount": {
+                                "type": "object",
+                                "title": "receivingAccountRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "depositAccount",
+                                                    "account"
+                                                ]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "customer": {
+                                "type": "object",
+                                "title": "customerRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "businessCustomer",
+                                                    "individualCustomer",
+                                                    "customer"
+                                                ]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "counterpartyAccount": {
+                                "type": "object",
+                                "title": "counterpartyAccountRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "account"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "counterpartyCustomer": {
+                                "type": "object",
+                                "title": "counterpartyCustomerRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "customer"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "relatedTransaction": {
+                                "type": "object",
+                                "title": "relatedTransactionRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "transaction"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "disputedTransaction": {
+                                "$ref": "#/components/schemas/TransactionRelationships/properties/relatedTransaction"
+                            }
+                        },
+                        {
+                            "authorization": {
+                                "type": "object",
+                                "title": "authorizationRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "authorization"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "returned": {
+                                "type": "object",
+                                "title": "returnedRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "transaction"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "payment": {
+                                "type": "object",
+                                "title": "paymentRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "payment"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "checkPayment": {
+                                "type": "object",
+                                "title": "checkPaymentRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "payment"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "repayment": {
+                                "type": "object",
+                                "title": "repaymentRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "repayment"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "recurringPayment": {
+                                "type": "object",
+                                "title": "recurringPaymentRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "recurringPayment"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "org": {
+                                "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                            }
+                        },
+                        {
+                            "card": {
+                                "type": "object",
+                                "title": "cardRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "card"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "incomingAch": {
+                                "type": "object",
+                                "title": "incomingAchRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "incomingAch"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "checkDeposit": {
+                                "type": "object",
+                                "title": "checkDepositRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "checkDeposit"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "authorizationRequest": {
+                                "type": "object",
+                                "title": "authorizationRequestRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "authorizationRequest"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "paymentAdvanceTransaction": {
+                                "$ref": "#/components/schemas/TransactionRelationships/properties/relatedTransaction"
+                            }
+                        },
+                        {
+                            "receivedPayment": {
+                                "type": "object",
+                                "title": "receivedPaymentRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "receivedPayment"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "chargeback": {
+                                "type": "object",
+                                "title": "chargebackRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "chargeback"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        {
+                            "reward": {
+                                "type": "object",
+                                "title": "rewardRelationship",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "default": "reward"
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
                                     }
                                 },
                                 "required": ["type", "id"],
                                 "additionalProperties": false
                             }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "receivingAccount": {
-                        "type": "object",
-                        "title": "receivingAccountRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": ["depositAccount", "account"]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "customer": {
-                        "type": "object",
-                        "title": "customerRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "businessCustomer",
-                                            "individualCustomer",
-                                            "customer"
-                                        ]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "customers": {
-                        "$ref": "../types.json#/components/schemas/customersRelationship"
-                    },
-                    "counterpartyAccount": {
-                        "type": "object",
-                        "title": "counterpartyAccountRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "account"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "counterpartyCustomer": {
-                        "type": "object",
-                        "title": "counterpartyCustomerRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "customer"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "relatedTransaction": {
-                        "type": "object",
-                        "title": "relatedTransactionRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "transaction"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "disputedTransaction": {
-                        "$ref": "#/components/schemas/transactionRelationships/properties/relatedTransaction"
-                    },
-                    "authorization": {
-                        "type": "object",
-                        "title": "authorizationRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "authorization"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "returned": {
-                        "type": "object",
-                        "title": "returnedRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "transaction"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "payment": {
-                        "type": "object",
-                        "title": "paymentRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "payment"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "checkPayment": {
-                        "type": "object",
-                        "title": "checkPaymentRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "payment"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "repayment": {
-                        "type": "object",
-                        "title": "repaymentRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "repayment"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "recurringPayment": {
-                        "type": "object",
-                        "title": "recurringPaymentRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "recurringPayment"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "org": {
-                        "$ref": "../types.json#/components/schemas/orgRelationship"
-                    },
-                    "card": {
-                        "type": "object",
-                        "title": "cardRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "card"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "incomingAch": {
-                        "type": "object",
-                        "title": "incomingAchRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "incomingAch"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "checkDeposit": {
-                        "type": "object",
-                        "title": "checkDepositRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "checkDeposit"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "authorizationRequest": {
-                        "type": "object",
-                        "title": "authorizationRequestRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "authorizationRequest"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "paymentAdvanceTransaction": {
-                        "$ref": "#/components/schemas/transactionRelationships/properties/relatedTransaction"
-                    },
-                    "receivedPayment": {
-                        "type": "object",
-                        "title": "receivedPaymentRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "receivedPayment"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "chargeback": {
-                        "type": "object",
-                        "title": "chargebackRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "chargeback"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    },
-                    "reward": {
-                        "type": "object",
-                        "title": "rewardRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "reward"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                    }
+                        }
+                    ]
                 },
                 "required": ["account"],
                 "additionalProperties": false
@@ -452,7 +502,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -484,10 +534,10 @@
                                         "type": "string"
                                     },
                                     "counterparty": {
-                                        "$ref": "../payment/payment.json#/components/schemas/counterparty"
+                                        "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "secCode": {
                                         "type": "string"
@@ -508,7 +558,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -521,7 +571,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -570,7 +620,7 @@
                                         "maxLength": 3
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -586,7 +636,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -599,7 +649,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -640,7 +690,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -657,7 +707,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -670,7 +720,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -702,7 +752,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -717,7 +767,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -730,7 +780,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -779,7 +829,7 @@
                                         "maxLength": 3
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -795,7 +845,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -808,7 +858,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -834,10 +884,10 @@
                                         "type": "string"
                                     },
                                     "counterparty": {
-                                        "$ref": "../payment/payment.json#/components/schemas/counterparty"
+                                        "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -851,7 +901,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -864,7 +914,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -893,16 +943,16 @@
                                         "type": "string"
                                     },
                                     "merchant": {
-                                        "$ref": "../types.json#/components/schemas/merchant"
+                                        "$ref": "../types.json#/components/schemas/Merchant"
                                     },
                                     "coordinates": {
-                                        "$ref": "../types.json#/components/schemas/coordinates"
+                                        "$ref": "../types.json#/components/schemas/Coordinates"
                                     },
                                     "recurring": {
                                         "type": "boolean"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "networkTransactionId": {
                                         "type": "string"
@@ -928,7 +978,7 @@
                                         "type": "string"
                                     },
                                     "cardVerificationData": {
-                                        "$ref": "../types.json#/components/schemas/cardVerificationData"
+                                        "$ref": "../types.json#/components/schemas/CardVerificationData"
                                     },
                                     "cardNetwork": {
                                         "type": "string"
@@ -949,7 +999,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -962,7 +1012,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1000,7 +1050,7 @@
                                         "type": "integer"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "networkTransactionId": {
                                         "type": "string"
@@ -1030,7 +1080,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1043,7 +1093,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1069,7 +1119,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1082,7 +1132,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1095,7 +1145,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1124,7 +1174,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "networkTransactionId": {
                                         "type": "string"
@@ -1145,7 +1195,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1158,7 +1208,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1187,7 +1237,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "networkTransactionId": {
                                         "type": "string"
@@ -1201,7 +1251,7 @@
                                         "nullable": true
                                     },
                                     "merchant": {
-                                        "$ref": "../types.json#/components/schemas/merchant"
+                                        "$ref": "../types.json#/components/schemas/Merchant"
                                     },
                                     "recurring": {
                                         "type": "boolean"
@@ -1213,7 +1263,7 @@
                                         "type": "string"
                                     },
                                     "cardVerificationData": {
-                                        "$ref": "../types.json#/components/schemas/cardVerificationData"
+                                        "$ref": "../types.json#/components/schemas/CardVerificationData"
                                     },
                                     "cardNetwork": {
                                         "type": "string"
@@ -1232,7 +1282,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1245,7 +1295,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1271,7 +1321,7 @@
                                         "type": "string"
                                     },
                                     "counterparty": {
-                                        "$ref": "../payment/payment.json#/components/schemas/counterparty"
+                                        "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "description": {
                                         "type": "string"
@@ -1303,7 +1353,7 @@
                                         }
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1317,7 +1367,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1330,7 +1380,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1359,7 +1409,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1372,7 +1422,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1385,7 +1435,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1411,7 +1461,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1424,7 +1474,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1437,7 +1487,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1463,7 +1513,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1476,7 +1526,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1489,7 +1539,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1515,7 +1565,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1528,7 +1578,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1541,7 +1591,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1570,7 +1620,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1584,7 +1634,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1597,7 +1647,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1623,7 +1673,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1636,7 +1686,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1649,7 +1699,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1675,7 +1725,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1688,7 +1738,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1701,7 +1751,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1737,13 +1787,13 @@
                                         "maxLength": 17
                                     },
                                     "senderAddress": {
-                                        "$ref": "../types.json#/components/schemas/address"
+                                        "$ref": "../types.json#/components/schemas/Address"
                                     },
                                     "counterparty": {
-                                        "$ref": "../payment/payment.json#/components/schemas/counterparty"
+                                        "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1757,7 +1807,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1770,7 +1820,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1796,7 +1846,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1809,7 +1859,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1822,7 +1872,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1854,7 +1904,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1869,7 +1919,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1882,7 +1932,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1908,7 +1958,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1921,7 +1971,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1934,7 +1984,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -1963,7 +2013,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -1976,7 +2026,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1989,7 +2039,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2018,7 +2068,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2031,7 +2081,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2044,7 +2094,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2070,7 +2120,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2083,7 +2133,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2096,7 +2146,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2122,7 +2172,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2135,7 +2185,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2148,7 +2198,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2174,7 +2224,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2187,7 +2237,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2200,7 +2250,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2226,7 +2276,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2239,7 +2289,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2252,7 +2302,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2278,7 +2328,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2291,7 +2341,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2304,7 +2354,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2321,7 +2371,7 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "counterparty": {
-                                        "$ref": "../payment/payment.json#/components/schemas/counterparty"
+                                        "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2333,7 +2383,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2346,7 +2396,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2359,7 +2409,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2385,7 +2435,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2398,7 +2448,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2411,7 +2461,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2440,7 +2490,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2454,7 +2504,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2467,7 +2517,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2484,7 +2534,7 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "receiverCounterparty": {
-                                        "$ref": "../payment/payment.json#/components/schemas/counterparty"
+                                        "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "amount": {
                                         "type": "integer"
@@ -2496,7 +2546,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2510,7 +2560,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2523,7 +2573,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2549,7 +2599,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2562,7 +2612,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2575,7 +2625,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2601,7 +2651,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": [
@@ -2613,7 +2663,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2626,7 +2676,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/transaction"
+                        "$ref": "#/components/schemas/Transaction"
                     },
                     {
                         "type": "object",
@@ -2652,7 +2702,7 @@
                                         "type": "string"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "recurring": {
                                         "type": "boolean"
@@ -2671,7 +2721,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/transactionRelationships"
+                                "$ref": "#/components/schemas/TransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2679,12 +2729,12 @@
                     }
                 ]
             },
-            "transaction": {
+            "Transaction": {
                 "title": "Transaction Resource",
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "type": {
                         "type": "string"

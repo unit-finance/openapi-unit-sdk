@@ -1,21 +1,23 @@
 {
     "components": {
         "schemas": {
-            "statementRelationships": {
+            "StatementRelationships": {
                 "type": "object",
                 "properties": {
-                    "account": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "customer": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "customers": {
-                        "$ref": "../types.json#/components/schemas/customersRelationship"
-                    }
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                        }
+                    ]
                 }
             },
-            "statement": {
+            "Statement": {
                 "title": "Statement",
                 "type": "object",
                 "properties": {
@@ -23,7 +25,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -34,7 +36,7 @@
                         }
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/statementRelationships"
+                        "$ref": "#/components/schemas/StatementRelationships"
                     }
                 },
                 "required": ["type", "id", "relationships", "attributes"]

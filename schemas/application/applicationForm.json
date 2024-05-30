@@ -1,0 +1,206 @@
+{
+    "components": {
+        "schemas": {
+            "ApplicationFormRelationships": {
+                "type": "object",
+                "title": "Application Form Relationships",
+                "properties": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                        }
+                    ]
+                },
+                "additionalProperties": false
+            },
+            "ApplicationFormPrefill": {
+                "title": "Application Form Prefilled",
+                "type": "object",
+                "properties": {
+                    "applicationType": {
+                        "type": "string",
+                        "enum": ["Individual", "Business", "SoleProprietorship"]
+                    },
+                    "fullName": {
+                        "$ref": "../types.json#/components/schemas/FullName"
+                    },
+                    "ssn": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "passport": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "$ref": "../types.json#/components/schemas/Country"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "email": {
+                        "$ref": "../types.json#/components/schemas/Email"
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                    },
+                    "stateOfIncorporation": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2
+                    },
+                    "entityType": {
+                        "$ref": "../types.json#/components/schemas/EntityType"
+                    },
+                    "contact": {
+                        "$ref": "../types.json#/components/schemas/Contact"
+                    },
+                    "officer": {
+                        "$ref": "createApplication.json#/components/schemas/CreateOfficer"
+                    },
+                    "beneficialOwners": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "createApplication.json#/components/schemas/CreateBeneficialOwner"
+                        }
+                    },
+                    "website": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "$ref": "../types.json#/components/schemas/Phone"
+                    },
+                    "address": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    },
+                    "dba": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                    },
+                    "ein": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "jwtSubject": {
+                        "$ref": "../types.json#/components/schemas/JwtSubject"
+                    },
+                    "industry": {
+                        "$ref": "../types.json#/components/schemas/Industry"
+                    },
+                    "businessVertical": {
+                        "$ref": "../types.json#/components/schemas/BusinessVertical"
+                    },
+                    "occupation": {
+                        "$ref": "../types.json#/components/schemas/Occupation"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ApplicationFormSettingsOverride": {
+                "type": "object",
+                "properties": {
+                    "redirectUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "privacyPolicyUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "electronicDisclosuresUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "depositTermsUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "clientTermsUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "cardholderTermsUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "cashAdvancedTermsUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "debitCardDisclosureUrl": {
+                        "$ref": "../types.json#/components/schemas/Url"
+                    },
+                    "additionalDisclosures": {
+                        "$ref": "orgSettings.json#/components/schemas/ApplicationFormAdditionalDisclosures"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ApplicationForm": {
+                "title": "Application Form",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "applicationForm"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "url": {
+                                "type": "string"
+                            },
+                            "stage": {
+                                "type": "string",
+                                "enum": [
+                                    "ChooseBusinessOrIndividual",
+                                    "EnterIndividualInformation",
+                                    "IndividualPhoneVerification",
+                                    "IndividualApplicationCreated",
+                                    "EnterBusinessInformation",
+                                    "EnterBusinessAdditionalInformation",
+                                    "EnterOfficerInformation",
+                                    "BusinessPhoneVerification",
+                                    "EnterBeneficialOwnersInformation",
+                                    "businessApplicationCreated",
+                                    "EnterSoleProprietorshipInformation",
+                                    "EnterSoleProprietorshipBusinessInformation",
+                                    "SoleProprietorshipPhoneVerification",
+                                    "SoleProprietorshipApplicationCreated"
+                                ]
+                            },
+                            "applicantDetails": {
+                                "$ref": "#/components/schemas/ApplicationFormPrefill"
+                            },
+                            "settingsOverride": {
+                                "$ref": "#/components/schemas/ApplicationFormSettingsOverride"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "allowedApplicationTypes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Individual",
+                                        "Business",
+                                        "SoleProprietorship"
+                                    ]
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["url"]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/ApplicationFormRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes"]
+            }
+        }
+    }
+}

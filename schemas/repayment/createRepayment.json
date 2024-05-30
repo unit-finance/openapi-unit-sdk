@@ -13,11 +13,11 @@
                                     "account",
                                     "depositAccount",
                                     "creditAccount",
-                                    "batchAccount"
+                                    "BatchAccount"
                                 ]
                             },
                             "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
+                                "$ref": "../types.json#/components/schemas/Identifier"
                             }
                         },
                         "required": ["type", "id"],
@@ -42,7 +42,7 @@
                                 ]
                             },
                             "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
+                                "$ref": "../types.json#/components/schemas/Identifier"
                             }
                         },
                         "required": ["type", "id"],
@@ -63,7 +63,7 @@
                                 "enum": ["creditAccount"]
                             },
                             "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
+                                "$ref": "../types.json#/components/schemas/Identifier"
                             }
                         },
                         "required": ["type", "id"],
@@ -84,7 +84,7 @@
                                 "enum": ["account", "depositAccount"]
                             },
                             "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
+                                "$ref": "../types.json#/components/schemas/Identifier"
                             }
                         },
                         "required": ["type", "id"],
@@ -191,7 +191,7 @@
                                 "$ref": "#/components/schemas/creditAccountRelationship"
                             },
                             "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
+                                "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                             }
                         },
                         "required": ["creditAccount", "account"],
@@ -315,7 +315,7 @@
                                 "$ref": "#/components/schemas/creditAccountRelationship"
                             },
                             "account": {
-                                "$ref": "#/components/schemas/accountRelationship"
+                                "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                             }
                         },
                         "required": ["creditAccount", "account"],

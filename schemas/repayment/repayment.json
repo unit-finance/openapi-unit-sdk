@@ -5,19 +5,19 @@
                 "type": "object",
                 "properties": {
                     "creditAccount": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                        "$ref": "../relationships.json#/components/schemas/Relationship"
                     },
                     "org": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                        "$ref": "../relationships.json#/components/schemas/Relationship"
                     },
                     "payment": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                        "$ref": "../relationships.json#/components/schemas/Relationship"
                     },
                     "customer": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                        "$ref": "../relationships.json#/components/schemas/Relationship"
                     },
                     "recurringRepayment": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                        "$ref": "../relationships.json#/components/schemas/Relationship"
                     }
                 }
             },
@@ -51,7 +51,7 @@
                                 "$ref": "#/components/schemas/BookRepaymentStatus"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "required": [
@@ -93,7 +93,7 @@
                                 "$ref": "#/components/schemas/BookRepaymentStatus"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "required": [
@@ -147,7 +147,7 @@
                                 "$ref": "#/components/schemas/AchRepaymentStatus"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "required": [
@@ -189,7 +189,7 @@
                                 "$ref": "#/components/schemas/AchRepaymentStatus"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "required": [

@@ -1,39 +1,7 @@
 {
     "components": {
         "schemas": {
-            "relationships": {
-                "type": "object",
-                "properties": {
-                    "account": {
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "account",
-                                            "depositAccount",
-                                            "financialBusinessFBOAccount"
-                                        ]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    }
-                },
-                "required": ["account"],
-                "additionalProperties": false
-            },
-            "stopPayment": {
+            "StopPayment": {
                 "title": "Stop Payment",
                 "type": "object",
                 "properties": {
@@ -53,7 +21,7 @@
                                 "maxLength": 12
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
                                 "type": "string",
@@ -65,17 +33,17 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/relationships"
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationships"
                     }
                 },
                 "required": ["type", "attributes", "relationships"],
                 "additionalProperties": false
             },
-            "createStopPayment": {
+            "CreateStopPaymentRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
-                        "$ref": "#/components/schemas/stopPayment"
+                        "$ref": "#/components/schemas/StopPayment"
                     }
                 },
                 "additionalProperties": false,

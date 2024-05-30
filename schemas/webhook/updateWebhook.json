@@ -1,0 +1,25 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateWebhookRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "tags": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

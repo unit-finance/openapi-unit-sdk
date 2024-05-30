@@ -1,0 +1,39 @@
+{
+    "components": {
+        "schemas": {
+            "PatchCheckDeposit": {
+                "title": "Patch Check Deposit",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "checkDeposit"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": { "type": "integer", "minimum": 1 },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateCheckDepositRequest": {
+                "title": "Patch Check Deposit",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/PatchCheckDeposit"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

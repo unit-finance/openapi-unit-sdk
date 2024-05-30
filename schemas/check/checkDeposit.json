@@ -1,0 +1,180 @@
+{
+    "components": {
+        "schemas": {
+            "CheckDepositStatus": {
+                "type": "string",
+                "enum": [
+                    "AwaitingImages",
+                    "AwaitingFrontImage",
+                    "AwaitingBackImage",
+                    "AwaitingCustomerConfirmation",
+                    "Pending",
+                    "PendingReview",
+                    "Rejected",
+                    "Clearing",
+                    "Sent",
+                    "Canceled",
+                    "Returned"
+                ]
+            },
+            "CheckDepositRelationships": {
+                "type": "object",
+                "title": "checkDepositRelationships",
+                "properties": {
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        }
+                    ]
+                },
+                "required": ["account"],
+                "additionalProperties": false
+            },
+            "StatusEvent": {
+                "type": "object",
+                "properties": {
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "updatedBy": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "status": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "$ref": "#/components/schemas/CheckDepositStatus"
+                            }
+                        }
+                    }
+                },
+                "required": ["status"]
+            },
+            "CheckDepositCounterparty": {
+                "title": "Check Deposit Counterparty",
+                "type": "object",
+                "properties": {
+                    "routingNumber": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "accountNumber": {
+                        "type": "string",
+                        "maxLength": 17
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 250
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["routingNumber", "accountNumber", "name"]
+            },
+            "CheckDeposit": {
+                "title": "Check Deposit",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["checkDeposit"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "settlementDate": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "AwaitingImages",
+                                    "AwaitingFrontImage",
+                                    "AwaitingBackImage",
+                                    "Pending",
+                                    "PendingReview",
+                                    "AwaitingCustomerConfirmation",
+                                    "Rejected",
+                                    "Clearing",
+                                    "Sent",
+                                    "Canceled",
+                                    "Returned"
+                                ]
+                            },
+                            "reason": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "statusCreatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "statusSetBy": {
+                                "type": "string"
+                            },
+                            "statusHistory": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/StatusEvent"
+                                }
+                            },
+                            "reasonText": {
+                                "type": "string"
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            },
+                            "vendor": {
+                                "type": "string"
+                            },
+                            "counterparty": {
+                                "$ref": "#/components/schemas/CheckDepositCounterparty"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "amount",
+                            "description",
+                            "status"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CheckDepositRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "attributes", "relationships"]
+            }
+        }
+    }
+}

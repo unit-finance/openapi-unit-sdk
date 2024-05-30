@@ -1,0 +1,219 @@
+{
+    "components": {
+        "schemas": {
+            "StopPaymentResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "stopPayment.json"
+                    }
+                }
+            },
+            "StopPaymentListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "stopPayment.json"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "stopPayments": {
+        "post": {
+            "summary": "Create Stop Payment",
+            "tags": ["unit"],
+            "operationId": "createStopPayment",
+
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "./createStopPayment.json#/components/schemas/CreateStopPaymentRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "summary": "Get a list of stop payments",
+            "tags": ["unit"],
+            "operationId": "getStopPayments",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["Active", "Disabled"]
+                                }
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "fromAmount": {
+                                "type": "integer"
+                            },
+                            "toAmount": {
+                                "type": "integer"
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopPaymentListResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "stopPayment": {
+        "get": {
+            "summary": "Get details of a specific stop payment",
+            "tags": ["unit"],
+            "operationId": "getStopPaymentById",
+
+            "parameters": [
+                {
+                    "name": "stopPayment_id",
+                    "in": "path",
+                    "description": "ID of the stop payment",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopPaymentResponse"
+                            }
+                        }
+                    }
+                },
+                "404": {
+                    "description": "Stop payment not found"
+                }
+            }
+        },
+        "delete": {
+            "summary": "Cancel a stop payment",
+            "tags": ["unit"],
+
+            "parameters": [
+                {
+                    "name": "stopPayment_id",
+                    "in": "path",
+                    "description": "ID of the stop payment",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "204": {
+                    "description": "Stop payment successfully canceled"
+                },
+                "404": {
+                    "description": "Stop payment not found"
+                }
+            }
+        }
+    },
+    "disableStopPayment": {
+        "post": {
+            "summary": "Disable a stop payment",
+            "tags": ["unit"],
+            "operationId": "disableStopPayment",
+
+            "parameters": [
+                {
+                    "name": "stopPayment_id",
+                    "in": "path",
+                    "description": "ID of the stop payment",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopPaymentResponse"
+                            }
+                        }
+                    }
+                },
+                "404": {
+                    "description": "Stop payment not found"
+                }
+            }
+        }
+    }
+}

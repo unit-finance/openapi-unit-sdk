@@ -1,16 +1,19 @@
 {
     "components": {
         "schemas": {
-            "customerRelationships": {
+            "CustomerRelationships": {
                 "type": "object",
-                "title": "customerRelationships",
+                "title": "CustomerRelationships",
                 "properties": {
-                    "org": {
-                        "$ref": "../types.json#/components/schemas/orgRelationship"
-                    },
-                    "application": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    }
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                        },
+
+                        {
+                            "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                        }
+                    ]
                 },
                 "additionalProperties": true
             },
@@ -19,7 +22,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./customer.json#/components/schemas/customer"
+                        "$ref": "./customer.json#/components/schemas/Customer"
                     },
                     {
                         "type": "object",
@@ -32,13 +35,13 @@
                                         "format": "date-time"
                                     },
                                     "fullName": {
-                                        "$ref": "../types.json#/components/schemas/fullName"
+                                        "$ref": "../types.json#/components/schemas/FullName"
                                     },
                                     "email": {
-                                        "$ref": "../types.json#/components/schemas/email"
+                                        "$ref": "../types.json#/components/schemas/Email"
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/phone"
+                                        "$ref": "../types.json#/components/schemas/Phone"
                                     },
                                     "ssn": {
                                         "type": "string",
@@ -48,13 +51,13 @@
                                         "type": "string"
                                     },
                                     "nationality": {
-                                        "$ref": "../types.json#/components/schemas/country"
+                                        "$ref": "../types.json#/components/schemas/Country"
                                     },
                                     "matriculaConsular": {
                                         "type": "string"
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/address"
+                                        "$ref": "../types.json#/components/schemas/Address"
                                     },
                                     "dateOfBirth": {
                                         "type": "string",
@@ -71,7 +74,7 @@
                                         "default": "false"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "riskRate": {
                                         "type": "string",
@@ -90,11 +93,11 @@
                                     "authorizedUsers": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "../types.json#/components/schemas/authorizedUser"
+                                            "$ref": "../types.json#/components/schemas/AuthorizedUser"
                                         }
                                     },
                                     "jwtSubject": {
-                                        "$ref": "../types.json#/components/schemas/jwtSubject"
+                                        "$ref": "../types.json#/components/schemas/JwtSubject"
                                     },
                                     "status": {
                                         "type": "string",
@@ -118,7 +121,7 @@
                                 "required": ["createdAt", "fullName", "status"]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/customerRelationships"
+                                "$ref": "#/components/schemas/CustomerRelationships"
                             }
                         },
                         "additionalProperties": false
@@ -130,7 +133,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./customer.json#/components/schemas/customer"
+                        "$ref": "./customer.json#/components/schemas/Customer"
                     },
                     {
                         "type": "object",
@@ -153,7 +156,7 @@
                                         "pattern": "^\\d{9}$"
                                     },
                                     "entityType": {
-                                        "$ref": "../types.json#/components/schemas/entityType"
+                                        "$ref": "../types.json#/components/schemas/EntityType"
                                     },
                                     "dateOfIncorporation": {
                                         "type": "string",
@@ -166,16 +169,16 @@
                                         "type": "string"
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/phone"
+                                        "$ref": "../types.json#/components/schemas/Phone"
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/address"
+                                        "$ref": "../types.json#/components/schemas/Address"
                                     },
                                     "contact": {
-                                        "$ref": "../types.json#/components/schemas/contact"
+                                        "$ref": "../types.json#/components/schemas/Contact"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "riskRate": {
                                         "type": "string",
@@ -184,7 +187,7 @@
                                     "authorizedUsers": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "../types.json#/components/schemas/authorizedUser"
+                                            "$ref": "../types.json#/components/schemas/AuthorizedUser"
                                         }
                                     },
                                     "status": {
@@ -215,7 +218,7 @@
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/customerRelationships"
+                                "$ref": "#/components/schemas/CustomerRelationships"
                             }
                         }
                     }
@@ -227,7 +230,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./customer.json#/components/schemas/customer"
+                        "$ref": "./customer.json#/components/schemas/Customer"
                     },
                     {
                         "type": "object",
@@ -246,16 +249,16 @@
                                         "type": "string"
                                     },
                                     "contact": {
-                                        "$ref": "../types.json#/components/schemas/trustContact"
+                                        "$ref": "../types.json#/components/schemas/TrustContact"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "revocability": {
-                                        "$ref": "../types.json#/components/schemas/revocability"
+                                        "$ref": "../types.json#/components/schemas/Revocability"
                                     },
                                     "sourceOfFunds": {
-                                        "$ref": "../types.json#/components/schemas/sourceOfFunds"
+                                        "$ref": "../types.json#/components/schemas/SourceOfFunds"
                                     },
                                     "taxId": {
                                         "type": "string"
@@ -267,7 +270,7 @@
                                     "authorizedUsers": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "../types.json#/components/schemas/authorizedUser"
+                                            "$ref": "../types.json#/components/schemas/AuthorizedUser"
                                         }
                                     },
                                     "status": {
@@ -297,43 +300,19 @@
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/customerRelationships"
+                                "$ref": "#/components/schemas/CustomerRelationships"
                             }
                         },
                         "additionalProperties": false
                     }
                 ]
             },
-            "customerLinkage": {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": [
-                                    "customer",
-                                    "businessCustomer",
-                                    "individualCustomer"
-                                ]
-                            },
-                            "id": {
-                                "$ref": "../types.json#/components/schemas/identifier"
-                            }
-                        },
-                        "required": ["type", "id"]
-                    }
-                },
-                "additionalProperties": false,
-                "required": ["data"]
-            },
-            "customer": {
+            "Customer": {
                 "title": "Customer",
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "type": {
                         "type": "string"

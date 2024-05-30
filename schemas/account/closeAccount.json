@@ -1,0 +1,62 @@
+{
+    "components": {
+        "schemas": {
+            "CloseAccountRequest": {
+                "type": "object",
+                "title": "CloseAccountRequest",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["creditAccountClose", "depositAccountClose"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "reason": {
+                                "type": "string",
+                                "enum": ["ByCustomer", "Fraud"],
+                                "default": "ByCustomer"
+                            },
+                            "fraudReason": {
+                                "type": "string",
+                                "nullable": true,
+                                "enum": [
+                                    "ACHActivity",
+                                    "CardActivity",
+                                    "CheckActivity",
+                                    "ApplicationHistory",
+                                    "AccountActivity",
+                                    "ClientIdentified",
+                                    "IdentityTheft",
+                                    "LinkedToFraudulentCustomer"
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "FreezeAccountRequest": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["creditAccountFreeze", "accountFreeze"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "reason": {
+                                "type": "string",
+                                "enum": ["Fraud", "Other"]
+                            },
+                            "reasonText": {
+                                "type": "string",
+                                "nullable": true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

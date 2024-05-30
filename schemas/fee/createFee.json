@@ -1,17 +1,15 @@
 {
     "components": {
         "schemas": {
-            "createFeeRelationships": {
+            "CreateFeeRelationships": {
                 "type": "object",
                 "properties": {
-                    "account": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    }
+                    "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                 },
                 "required": ["account"],
                 "additionalProperties": false
             },
-            "createFee": {
+            "CreateFeeRequest": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -31,7 +29,7 @@
                                 "maxLength": 50
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
                                 "type": "string",
@@ -43,7 +41,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/createFeeRelationships"
+                        "$ref": "#/components/schemas/CreateFeeRelationships"
                     }
                 },
                 "required": ["type", "attributes", "relationships"],

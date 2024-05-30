@@ -1,0 +1,574 @@
+{
+    "components": {
+        "schemas": {
+            "UnitAccountResponse": {
+                "type": "object",
+                "title": "Unit Account Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./Account.json#/components/schemas/Account"
+                    }
+                }
+            },
+            "UnitAccountResponseWithIncluded": {
+                "type": "object",
+                "title": "UnitAccountResponseWithIncluded",
+                "properties": {
+                    "data": {
+                        "$ref": "./Account.json#/components/schemas/Account"
+                    },
+                    "included": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "../customer/customer.json#/components/schemas/Customer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "accounts": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getAccounts",
+            "summary": "Get List Accounts",
+            "description": "Get List Accounts from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["Open", "Frozen", "Closed"]
+                                }
+                            },
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["deposit", "credit"]
+                                }
+                            },
+                            "fromBalance": {
+                                "type": "number"
+                            },
+                            "toBalance": {
+                                "type": "number"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "title": "UnitAccountsListResponse",
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./Account.json#/components/schemas/Account"
+                                        }
+                                    },
+                                    "included": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "../customer/customer.json#/components/schemas/Customer"
+                                        }
+                                    },
+                                    "meta": {
+                                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "401": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createAccount",
+            "summary": "Create Account",
+            "description": "Create Account via API ",
+            "requestBody": {
+                "description": "Create Account Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createAccount.json#/components/schemas/CreateAccountRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "account": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getAccountById",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to get"
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "summary": "Get Account by Id",
+            "description": "Get an Account from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponseWithIncluded"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "tags": ["unit"],
+            "operationId": "updateAccount",
+            "summary": "Update Account",
+            "description": "Update an Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Account Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./patchAccount.json#/components/schemas/UpdateAccountRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "getAccountLimits": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getAccountLimits",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to get"
+                }
+            ],
+            "summary": "Get Account Limits by Id",
+            "description": "Get Account Limits from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitGetAccountLimitsResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "../types.json#/components/schemas/Limits"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "unfreezeAccount": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "unfreezeAccount",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to get"
+                }
+            ],
+            "summary": "Unfreeze Account by Id",
+            "description": "Unfreeze an Account via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "freezeAccount": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "freezeAccount",
+            "summary": "Freeze Account by Id",
+            "description": "Freeze Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to freeze"
+                }
+            ],
+            "requestBody": {
+                "description": "Freeze Account Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "FreezeAccountRequest",
+                            "properties": {
+                                "data": {
+                                    "$ref": "./closeAccount.json#/components/schemas/FreezeAccountRequest"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "closeAccount": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "closeAccount",
+            "summary": "Close an Account by Id",
+            "description": "Close an Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to close"
+                }
+            ],
+            "requestBody": {
+                "description": "Close Account Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "CloseAccountRequest",
+                            "properties": {
+                                "data": {
+                                    "$ref": "./closeAccount.json#/components/schemas/CloseAccountRequest"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "reopenAccount": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "reopenAccount",
+            "summary": "Reopen an Account by Id",
+            "description": "Reopen an Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to close"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "enterDaca": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "enterControlAgreementForAccount",
+            "summary": "Enter Account Control Agreement by Id",
+            "description": "Enter Control Agreement for Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "activateDaca": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "activateControlAgreementForAccount",
+            "summary": "Activate Account Control Agreement by Id",
+            "description": "Activate Control Agreement for Account via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "deactivateDaca": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "deactivateControlAgreementForAccount",
+            "summary": "Deactivate Account Control Agreement by Id",
+            "description": "Deactivate Control Agreement for Account via API",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "404": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "getAccountEndOfDay": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getAccountEndOfDay",
+            "summary": "Get AccountEndOfDay List",
+            "description": "Get AccountEndOfDay List from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitGetAccountEndOfDayListResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./accountEndOfDay.json#/components/schemas/AccountEndOfDay"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    }
+}

@@ -1,81 +1,25 @@
 {
     "components": {
         "schemas": {
-            "createRewardRelationships": {
+            "CreateRewardRelationships": {
                 "type": "object",
                 "properties": {
-                    "fundingAccount": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "receivingAccount": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "rewardedTransaction": {
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "transaction"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
+                    "allOf": [
+                        {
+                            "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
                         },
-                        "required": ["data"],
-                        "additionalProperties": false
-                    }
+                        {
+                            "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
+                        },
+                        {
+                            "$ref": "../relationships.json#/components/schemas/RewardedTransactionRelationship"
+                        }
+                    ]
                 },
                 "required": ["receivingAccount"],
                 "additionalProperties": false
             },
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "default": "reward"
-                        },
-                        "attributes": {
-                            "type": "object",
-                            "properties": {
-                                "amount": {
-                                    "type": "integer",
-                                    "minimum": 1
-                                },
-                                "description": {
-                                    "type": "string",
-                                    "maxLength": 50
-                                },
-                                "idempotencyKey": {
-                                    "type": "string",
-                                    "minLength": 1,
-                                    "maxLength": 255
-                                },
-                                "tags": {
-                                    "$ref": "../tags.json#/components/schemas/tags"
-                                }
-                            },
-                            "required": ["amount", "description"],
-                            "additionalProperties": false
-                        },
-                        "relationships": {
-                            "$ref": "#/components/schemas/createRewardRelationships"
-                        }
-                    },
-                    "required": ["type", "attributes", "relationships"],
-                    "additionalProperties": false
-                }
-            },
-            "createReward": {
+            "CreateRewardRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -102,14 +46,14 @@
                                         "maxLength": 255
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": ["amount", "description"],
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/createRewardRelationships"
+                                "$ref": "#/components/schemas/CreateRewardRelationships"
                             }
                         },
                         "required": ["type", "attributes", "relationships"],

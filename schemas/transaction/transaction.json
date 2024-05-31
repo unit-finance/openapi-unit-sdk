@@ -1,19 +1,45 @@
 {
     "components": {
         "schemas": {
-            "TransactionRelationships": {
+            "RelatedTransaction": {
                 "type": "object",
-                "title": "Transaction Relationships",
+                "title": "Related Transaction Relationship",
                 "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "default": "transaction"
+                            },
+                            "id": {
+                                "$ref": "../types.json#/components/schemas/Identifier"
+                            }
                         },
-
-                        {
+                        "required": ["type", "id"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            },
+            "TransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Transaction Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "account": {
                                 "type": "object",
-                                "title": "accountRelationship",
+                                "title": "Account Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -37,11 +63,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "receivingAccount": {
                                 "type": "object",
-                                "title": "receivingAccountRelationship",
+                                "title": "Receiving Account Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -64,11 +93,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "customer": {
                                 "type": "object",
-                                "title": "customerRelationship",
+                                "title": "Customer Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -92,11 +124,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "counterpartyAccount": {
                                 "type": "object",
-                                "title": "counterpartyAccountRelationship",
+                                "title": "Counterparty Account Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -116,11 +151,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "counterpartyCustomer": {
                                 "type": "object",
-                                "title": "counterpartyCustomerRelationship",
+                                "title": "Counterparty Customer Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -140,40 +178,30 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "relatedTransaction": {
-                                "type": "object",
-                                "title": "relatedTransactionRelationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "transaction"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
+                                "$ref": "#/components/schemas/RelatedTransaction"
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "disputedTransaction": {
-                                "$ref": "#/components/schemas/TransactionRelationships/properties/relatedTransaction"
+                                "$ref": "#/components/schemas/RelatedTransaction"
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "authorization": {
                                 "type": "object",
-                                "title": "authorizationRelationship",
+                                "title": "Authorization Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -193,11 +221,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "returned": {
                                 "type": "object",
-                                "title": "returnedRelationship",
+                                "title": "Returned Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -217,11 +248,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "payment": {
                                 "type": "object",
-                                "title": "paymentRelationship",
+                                "title": "Payment Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -241,11 +275,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "checkPayment": {
                                 "type": "object",
-                                "title": "checkPaymentRelationship",
+                                "title": "Check Payment Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -265,11 +302,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "repayment": {
                                 "type": "object",
-                                "title": "repaymentRelationship",
+                                "title": "Repayment Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -289,11 +329,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "recurringPayment": {
                                 "type": "object",
-                                "title": "recurringPaymentRelationship",
+                                "title": "Recurring Payment Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -313,16 +356,17 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
-                            "org": {
-                                "$ref": "../relationships.json#/components/schemas/OrgRelationship"
-                            }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "card": {
                                 "type": "object",
-                                "title": "cardRelationship",
+                                "title": "Card Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -342,11 +386,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "incomingAch": {
                                 "type": "object",
-                                "title": "incomingAchRelationship",
+                                "title": "Incoming Ach Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -366,11 +413,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "checkDeposit": {
                                 "type": "object",
-                                "title": "checkDepositRelationship",
+                                "title": "Check Deposit Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -390,11 +440,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "authorizationRequest": {
                                 "type": "object",
-                                "title": "authorizationRequestRelationship",
+                                "title": "Authorization Request Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -414,16 +467,22 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "paymentAdvanceTransaction": {
-                                "$ref": "#/components/schemas/TransactionRelationships/properties/relatedTransaction"
+                                "$ref": "#/components/schemas/RelatedTransaction"
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "receivedPayment": {
                                 "type": "object",
-                                "title": "receivedPaymentRelationship",
+                                "title": "Received Payment Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -443,11 +502,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "chargeback": {
                                 "type": "object",
-                                "title": "chargebackRelationship",
+                                "title": "Chargeback Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -467,11 +529,14 @@
                                 "required": ["data"],
                                 "additionalProperties": false
                             }
-                        },
-                        {
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "reward": {
                                 "type": "object",
-                                "title": "rewardRelationship",
+                                "title": "Reward Relationship",
                                 "properties": {
                                     "data": {
                                         "type": "object",
@@ -492,10 +557,8 @@
                                 "additionalProperties": false
                             }
                         }
-                    ]
-                },
-                "required": ["account"],
-                "additionalProperties": false
+                    }
+                ]
             },
             "OriginatedAchTransaction": {
                 "title": "Originated ACH",
@@ -1204,7 +1267,7 @@
                 ]
             },
             "CardTransaction": {
-                "title": "cardTransaction",
+                "title": "Card Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1291,7 +1354,7 @@
                 ]
             },
             "WireTransaction": {
-                "title": "wireTransaction",
+                "title": "Wire Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1376,7 +1439,7 @@
                 ]
             },
             "AdjustmentTransaction": {
-                "title": "adjustmentTransaction",
+                "title": "Adjustment Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1431,7 +1494,7 @@
                 ]
             },
             "InterchangeTransaction": {
-                "title": "interchangeShareTransaction",
+                "title": "Interchange Share Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1483,7 +1546,7 @@
                 ]
             },
             "InterestShareTransaction": {
-                "title": "interestShareTransaction",
+                "title": "Interest Share Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1535,7 +1598,7 @@
                 ]
             },
             "InterestTransaction": {
-                "title": "interestTransaction",
+                "title": "Interest Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1587,7 +1650,7 @@
                 ]
             },
             "BankRepaymentTransaction": {
-                "title": "bankRepaymentTransaction",
+                "title": "Bank Repayment Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1643,7 +1706,7 @@
                 ]
             },
             "CustomerRepaymentReturnedTransaction": {
-                "title": "customerRepaymentReturnedTransaction",
+                "title": "Customer Repayment Returned Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1695,7 +1758,7 @@
                 ]
             },
             "CustomerRepaymentTransaction": {
-                "title": "customerRepaymentTransaction",
+                "title": "Customer Repayment Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1747,7 +1810,7 @@
                 ]
             },
             "ReleaseTransaction": {
-                "title": "releaseTransaction",
+                "title": "Release Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1816,7 +1879,7 @@
                 ]
             },
             "DisputeSettlementTransaction": {
-                "title": "disputeSettlementTransaction",
+                "title": "Dispute Settlement Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1868,7 +1931,7 @@
                 ]
             },
             "DisputeTransaction": {
-                "title": "disputeTransaction",
+                "title": "Dispute Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1928,7 +1991,7 @@
                 ]
             },
             "CheckDepositTransaction": {
-                "title": "checkDepositTransaction",
+                "title": "Check Deposit Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1980,7 +2043,7 @@
                 ]
             },
             "ReturnedCheckDepositTransaction": {
-                "title": "returnedCheckDepositTransaction",
+                "title": "Returned Check Deposit Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2035,7 +2098,7 @@
                 ]
             },
             "PaymentCanceledTransaction": {
-                "title": "paymentCanceledTransaction",
+                "title": "Payment Canceled Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2090,7 +2153,7 @@
                 ]
             },
             "BillPayTransaction": {
-                "title": "billPayTransaction",
+                "title": "Bill Pay Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2142,7 +2205,7 @@
                 ]
             },
             "SettlementTransaction": {
-                "title": "settlementTransaction",
+                "title": "Settlement Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2194,7 +2257,7 @@
                 ]
             },
             "SponsoredInterestTransaction": {
-                "title": "sponsoredInterestTransaction",
+                "title": "Sponsored Interest Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2246,7 +2309,7 @@
                 ]
             },
             "PaymentAdvanceTransaction": {
-                "title": "paymentAdvanceTransaction",
+                "title": "Payment Advance Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2298,7 +2361,7 @@
                 ]
             },
             "RepaidPaymentAdvanceTransaction": {
-                "title": "repaidPaymentAdvanceTransaction",
+                "title": "Repaid Payment Advance Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2405,7 +2468,7 @@
                 ]
             },
             "CheckPaymentTransaction": {
-                "title": "checkPaymentTransaction",
+                "title": "Check Payment Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2457,7 +2520,7 @@
                 ]
             },
             "ReturnedCheckPaymentTransaction": {
-                "title": "returnedCheckPaymentTransaction",
+                "title": "Returned Check Payment Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -2569,7 +2632,7 @@
                 ]
             },
             "NegativeBalanceCoverageTransaction": {
-                "title": "NegativeBalanceCoverage",
+                "title": "Negative Balance Coverage",
                 "type": "object",
                 "allOf": [
                     {
@@ -2621,7 +2684,7 @@
                 ]
             },
             "AccountLowBalanceClosureTransaction": {
-                "title": "AccountLowBalanceClosure",
+                "title": "Account Low Balance Closure",
                 "type": "object",
                 "allOf": [
                     {
@@ -2672,7 +2735,7 @@
                 ]
             },
             "CashDepositTransaction": {
-                "title": "cashDepositTransaction",
+                "title": "Cash Deposit Transaction",
                 "type": "object",
                 "allOf": [
                     {

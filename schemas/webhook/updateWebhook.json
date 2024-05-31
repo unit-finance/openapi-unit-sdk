@@ -13,7 +13,9 @@
                             "attributes": {
                                 "type": "object",
                                 "properties": {
-                                    "tags": "object"
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
                                 }
                             }
                         }

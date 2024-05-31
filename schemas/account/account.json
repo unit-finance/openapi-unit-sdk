@@ -134,12 +134,16 @@
                                 ]
                             },
                             "relationships": {
-                                "type": "object",
-                                "title": "Deposit Account Relationships",
-                                "properties": {
-                                    "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                                },
-                                "additionalProperties": true
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Deposit Account Relationships",
+                                        "additionalProperties": true
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                                    }
+                                ]
                             }
                         },
                         "additionalProperties": false,
@@ -246,13 +250,17 @@
                                 ]
                             },
                             "relationships": {
-                                "type": "object",
-                                "title": "Credit Account Relationships",
-                                "properties": {
-                                    "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                                },
-                                "additionalProperties": true,
-                                "required": ["customer"]
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Credit Account Relationships",
+                                        "additionalProperties": true,
+                                        "required": ["customer"]
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                                    }
+                                ]
                             }
                         },
                         "additionalProperties": false,
@@ -482,11 +490,15 @@
                         ]
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "$ref": "../relationships.json#/components/schemas/OrgRelationship"
-                        },
-                        "required": ["org"]
+                        "allOf": [
+                            {
+                                "type": "object",
+                                "required": ["org"]
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                            }
+                        ]
                     }
                 }
             },

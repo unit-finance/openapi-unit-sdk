@@ -2,22 +2,22 @@
     "components": {
         "schemas": {
             "CreateRewardRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/RewardedTransactionRelationship"
-                        }
-                    ]
-                },
-                "required": ["receivingAccount"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["receivingAccount"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RewardedTransactionRelationship"
+                    }
+                ]
             },
             "CreateRewardRequest": {
                 "type": "object",

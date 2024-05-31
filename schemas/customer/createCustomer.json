@@ -2,12 +2,16 @@
     "components": {
         "schemas": {
             "CreateCustomerRelationships": {
-                "type": "object",
-                "properties": {
-                    "$ref": "../relationships.json#/components/schemas/OrgRelationship"
-                },
-                "required": ["org"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["org"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
             },
             "CreateIndividualCustomer": {
                 "title": "Create Individual Customer",

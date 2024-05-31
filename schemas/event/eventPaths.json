@@ -3,7 +3,7 @@
         "schemas": {
             "UnitEventResponse": {
                 "type": "object",
-                "title": "UnitEventResponse",
+                "title": "Unit Event Response",
                 "properties": {
                     "data": {
                         "$ref": "./event.json#/components/schemas/Event"
@@ -15,7 +15,7 @@
     "listEvents": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getEvents",
+            "operationId": "getEventsList",
 
             "summary": "Get Events List",
             "description": "Get Events List from API ",
@@ -54,12 +54,12 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitEventListResponse",
+                                "title": "Unit Event List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "event.json"
+                                            "$ref": "./event.json#/components/schemas/Event"
                                         }
                                     }
                                 }
@@ -73,7 +73,7 @@
     "event": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getEventById",
+            "operationId": "getEvent",
 
             "parameters": [
                 {
@@ -95,10 +95,10 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitEventResponse",
+                                "title": "Unit Event Response",
                                 "properties": {
                                     "data": {
-                                        "$ref": "event.json"
+                                        "$ref": "./event.json#/components/schemas/Event"
                                     }
                                 }
                             }

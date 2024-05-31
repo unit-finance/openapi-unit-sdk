@@ -141,7 +141,7 @@
                 ]
             },
             "CreateBeneficialOwner": {
-                "title": "CreateBeneficialOwner",
+                "title": "Create Beneficial Owner",
                 "type": "object",
                 "properties": {
                     "fullName": {

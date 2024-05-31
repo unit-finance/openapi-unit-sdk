@@ -2,21 +2,21 @@
     "components": {
         "schemas": {
             "UpdateCustomerRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/OrgRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
-                        }
-                    ]
-                },
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                    }
+                ]
             },
             "UpdateIndividualCustomer": {
-                "title": "UpdateIndividualCustomer",
+                "title": "Update Individual Customer",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -62,7 +62,7 @@
                 "additionalProperties": false
             },
             "UpdateBusinessCustomer": {
-                "title": "UpdateBusinessCustomer",
+                "title": "Update Business Customer",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -109,7 +109,7 @@
                 "additionalProperties": false
             },
             "UpdateTrustCustomer": {
-                "title": "UpdateTrustCustomer",
+                "title": "Update Trust Customer",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -160,7 +160,7 @@
             },
             "ArchiveCustomerRequest": {
                 "type": "object",
-                "title": "ArchiveCustomerRequest",
+                "title": "Archive Customer Request",
                 "properties": {
                     "type": {
                         "type": "string",

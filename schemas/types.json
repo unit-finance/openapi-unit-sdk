@@ -279,11 +279,6 @@
                     "type": "string",
                     "maxLength": 255,
                     "minLength": 1
-                },
-                "patternProperties": {
-                    "^[a-zA-Z0-9_]{1,128}$": {
-                        "type": "string"
-                    }
                 }
             },
             "Coordinates": {

@@ -2,12 +2,16 @@
     "components": {
         "schemas": {
             "CreateCheckDepositRelationships": {
-                "type": "object",
-                "properties": {
-                    "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                },
-                "required": ["account"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
             },
             "CreateCheckDepositRequest": {
                 "type": "object",

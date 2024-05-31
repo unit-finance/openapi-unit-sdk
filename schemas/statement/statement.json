@@ -2,20 +2,17 @@
     "components": {
         "schemas": {
             "StatementRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                        }
-                    ]
-                }
+                "allOf": [
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    }
+                ]
             },
             "Statement": {
                 "title": "Statement",

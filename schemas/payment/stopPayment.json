@@ -2,25 +2,25 @@
     "components": {
         "schemas": {
             "StopPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CheckPaymentsRelationship"
-                        }
-                    ]
-                },
-                "required": ["account", "customer"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "customer"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CheckPaymentsRelationship"
+                    }
+                ]
             },
             "StopPayment": {
                 "title": "Stop Payment",

@@ -2,7 +2,7 @@
     "getStatements": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getStatements",
+            "operationId": "getStatementsList",
             "summary": "Get List Statements",
             "description": "Get List Statements from API ",
             "parameters": [
@@ -44,7 +44,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitStatementsResponse",
+                                "title": "Unit Statements Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -63,7 +63,7 @@
     "getStatementHtml": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getStatementHtmlById",
+            "operationId": "getStatementHtml",
 
             "parameters": [
                 {
@@ -95,7 +95,7 @@
     "getStatementPdf": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getStatementPdfById",
+            "operationId": "getStatementPdf",
 
             "parameters": [
                 {
@@ -128,7 +128,7 @@
     "getStatementBankPdf": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getStatementBankPdfById",
+            "operationId": "getStatementBankPdf",
 
             "summary": "Get Bank verification PDF",
             "parameters": [

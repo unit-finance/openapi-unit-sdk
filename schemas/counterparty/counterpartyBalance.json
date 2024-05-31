@@ -2,20 +2,20 @@
     "components": {
         "schemas": {
             "CounterpartyBalanceRelationships": {
-                "type": "object",
-                "title": "Counterparty Balance Relationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        }
-                    ]
-                },
-                "required": ["customer", "counterparty"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Counterparty Balance Relationships",
+                        "required": ["customer", "counterparty"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    }
+                ]
             },
             "CounterpartyBalance": {
                 "title": "Counterparty Balance",

@@ -2,7 +2,7 @@
     "checkDeposits": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCheckDeposits",
+            "operationId": "getCheckDepositsList",
 
             "summary": "Get List Check Deposits",
             "description": "Get List Check Deposits from API ",
@@ -74,7 +74,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitListCheckDepositsResponse",
+                                "title": "Unit List Check Deposits Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -113,7 +113,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "Unit List Check Deposits Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
@@ -129,7 +129,7 @@
     "checkDeposit": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCheckDepositById",
+            "operationId": "getCheckDeposit",
 
             "parameters": [
                 {
@@ -151,7 +151,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "Unit Check Deposit Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
@@ -198,7 +198,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "Unit Patch Check Deposit Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
@@ -236,7 +236,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "Unit Confirm Check Deposit Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
@@ -252,7 +252,7 @@
     "getFrontCheckDeposit": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getFrontCheckDepositById",
+            "operationId": "getFrontCheckDeposit",
 
             "parameters": [
                 {
@@ -274,7 +274,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "Unit Front Check Deposit Response",
                                 "properties": {
                                     "data": {
                                         "type": "string"
@@ -290,7 +290,7 @@
     "getBackCheckDeposit": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getBackCheckDepositById",
+            "operationId": "getBackCheckDeposit",
 
             "parameters": [
                 {
@@ -312,7 +312,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCheckDepositResponse",
+                                "title": "Unit Back Check Deposit Response",
                                 "properties": {
                                     "data": {
                                         "type": "string"

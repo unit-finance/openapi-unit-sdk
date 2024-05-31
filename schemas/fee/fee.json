@@ -2,13 +2,17 @@
     "components": {
         "schemas": {
             "FeeRelationships": {
-                "type": "object",
-                "title": "feeRelationships",
-                "properties": {
-                    "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                },
-                "required": ["account"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Fee Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
             },
             "Fee": {
                 "title": "Fee",

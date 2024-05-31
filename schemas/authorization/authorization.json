@@ -2,29 +2,29 @@
     "components": {
         "schemas": {
             "AuthorizationRelationships": {
-                "type": "object",
-                "title": "authorizationRelationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CardRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AuthorizationRequestRelationship"
-                        }
-                    ]
-                },
-                "required": ["account", "card"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Authorization Relationships",
+                        "required": ["account", "card"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRequestRelationship"
+                    }
+                ]
             },
             "Authorization": {
                 "title": "Authorization Document",

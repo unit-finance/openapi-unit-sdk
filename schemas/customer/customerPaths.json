@@ -3,7 +3,7 @@
         "schemas": {
             "UnitCustomerResponse": {
                 "type": "object",
-                "title": "UnitCustomerResponse",
+                "title": "Unit Customer Response",
                 "properties": {
                     "data": {
                         "$ref": "./customer.json#/components/schemas/Customer"
@@ -15,7 +15,7 @@
     "customer": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCustomerById",
+            "operationId": "getCustomer",
 
             "parameters": [
                 {
@@ -87,7 +87,7 @@
     "listCustomers": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCustomers",
+            "operationId": "getCustomersList",
             "summary": "Get Customers List",
             "description": "Get Customers List from API ",
             "parameters": [
@@ -139,7 +139,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCustomersListResponse",
+                                "title": "Unit Customers List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",

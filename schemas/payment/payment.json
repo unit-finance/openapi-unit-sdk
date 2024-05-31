@@ -108,138 +108,138 @@
                 ]
             },
             "AchPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
-                        }
-                    ]
-                },
-                "required": ["account", "counterparty", "transaction"],
-                "additionalProperties": true
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "counterparty", "transaction"],
+                        "additionalProperties": true
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                    }
+                ]
             },
             "WirePaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                        }
-                    ]
-                },
-                "required": ["account", "transaction"],
-                "additionalProperties": true
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "transaction"],
+                        "additionalProperties": true
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    }
+                ]
             },
             "BookPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyCustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
-                        }
-                    ]
-                },
-                "required": [
-                    "account",
-                    "counterpartyAccount",
-                    "counterpartyCustomer",
-                    "transaction"
-                ],
-                "additionalProperties": true
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "counterpartyAccount",
+                            "counterpartyCustomer",
+                            "transaction"
+                        ],
+                        "additionalProperties": true
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyCustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                    }
+                ]
             },
             "BillPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
-                        }
-                    ]
-                },
-                "required": ["account", "counterparty", "transaction"],
-                "additionalProperties": true
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "counterparty", "transaction"],
+                        "additionalProperties": true
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                    }
+                ]
             },
             "PushToCardPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AchPaymentRelationship"
-                        }
-                    ]
-                },
-                "required": ["account", "transaction", "achPayment"],
-                "additionalProperties": true
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "transaction", "achPayment"],
+                        "additionalProperties": true
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AchPaymentRelationship"
+                    }
+                ]
             },
             "AchPayment": {
                 "title": "ACH Payment",

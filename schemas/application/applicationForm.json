@@ -2,16 +2,16 @@
     "components": {
         "schemas": {
             "ApplicationFormRelationships": {
-                "type": "object",
-                "title": "Application Form Relationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
-                        }
-                    ]
-                },
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Application Form Relationships",
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                    }
+                ]
             },
             "ApplicationFormPrefill": {
                 "title": "Application Form Prefilled",

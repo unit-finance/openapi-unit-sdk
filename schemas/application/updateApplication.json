@@ -126,12 +126,7 @@
                                 "$ref": "../types.json#/components/schemas/SourceOfIncome"
                             },
                             "relationships": {
-                                "type": "object",
-                                "properties": {
-                                    "application": {
-                                        "$ref": "../relationships.json#/components/schemas/Relationship"
-                                    }
-                                }
+                                "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
                             }
                         },
                         "additionalProperties": false

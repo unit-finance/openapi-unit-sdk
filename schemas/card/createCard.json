@@ -2,21 +2,28 @@
     "components": {
         "schemas": {
             "CreateCardRelationships": {
-                "type": "object",
-                "title": "createCardRelationships",
-                "properties": {
-                    "account": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Create Card Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
                     },
-                    "customer": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                     },
-                    "defaultFundingAccount": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "defaultFundingAccount": {
+                                "$ref": "../relationships.json#/components/schemas/Relationship"
+                            }
+                        }
                     }
-                },
-                "required": ["account"],
-                "additionalProperties": false
+                ]
             },
             "Bin": {
                 "type": "object",

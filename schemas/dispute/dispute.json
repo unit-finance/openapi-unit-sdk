@@ -2,23 +2,23 @@
     "components": {
         "schemas": {
             "DisputeRelationships": {
-                "type": "object",
-                "title": "disputeRelationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                        }
-                    ]
-                },
-                "required": ["customer", "account", "transaction"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Dispute Relationships",
+                        "required": ["customer", "account", "transaction"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    }
+                ]
             },
             "Dispute": {
                 "title": "Dispute Document",

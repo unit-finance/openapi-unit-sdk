@@ -1,6 +1,18 @@
 {
     "components": {
         "schemas": {
+            "UpdateTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
             "PatchTransactionTags": {
                 "title": "Patch Transaction",
                 "type": "object",
@@ -38,14 +50,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                            }
-                        },
-                        "required": ["account"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/UpdateTransactionRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -72,14 +77,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                            }
-                        },
-                        "required": ["account"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/UpdateTransactionRelationships"
                     }
                 },
                 "additionalProperties": false,

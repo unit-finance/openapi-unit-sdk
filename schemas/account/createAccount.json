@@ -32,10 +32,7 @@
                         "required": ["creditTerms", "creditLimit"]
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        }
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
                 }
             },
@@ -67,17 +64,14 @@
                         "required": ["depositProduct"]
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "allOf": [
-                                {
-                                    "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                                },
-                                {
-                                    "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                                }
-                            ]
-                        }
+                        "allOf": [
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                            }
+                        ]
                     }
                 },
                 "additionalProperties": false

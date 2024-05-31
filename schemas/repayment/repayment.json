@@ -1,25 +1,169 @@
 {
     "components": {
         "schemas": {
-            "RepaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "creditAccount": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+            "AchRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "creditAccount",
+                            "org",
+                            "counterparty",
+                            "payment",
+                            "recurringPayment"
+                        ]
                     },
-                    "org": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                     },
-                    "payment": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
                     },
-                    "customer": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
                     },
-                    "recurringRepayment": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringRepaymentRelationship"
                     }
-                }
+                ]
+            },
+            "BookRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "creditAccount",
+                            "org",
+                            "counterpartyAccount",
+                            "payment",
+                            "recurringPayment"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringRepaymentRelationship"
+                    }
+                ]
+            },
+            "CapitalPartnerAchRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "creditAccount",
+                            "org",
+                            "counterparty",
+                            "payment",
+                            "recurringPayment"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringRepaymentRelationship"
+                    }
+                ]
+            },
+            "CapitalPartnerBookRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "creditAccount",
+                            "org",
+                            "counterpartyAccount",
+                            "payment",
+                            "recurringPayment"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringRepaymentRelationship"
+                    }
+                ]
+            },
+            "RepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReccuringRepaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    }
+                ]
             },
             "BookRepaymentStatus": {
                 "type": "string",
@@ -62,7 +206,7 @@
                         ]
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/RepaymentRelationships"
+                        "$ref": "#/components/schemas/BookRepaymentRelationships"
                     }
                 },
                 "required": ["id", "type", "attributes", "relationships"]
@@ -104,7 +248,7 @@
                         ]
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/RepaymentRelationships"
+                        "$ref": "#/components/schemas/CapitalPartnerBookRepaymentRelationships"
                     }
                 },
                 "required": ["id", "type", "attributes", "relationships"]
@@ -158,7 +302,7 @@
                         ]
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/RepaymentRelationships"
+                        "$ref": "#/components/schemas/AchRepaymentRelationships"
                     }
                 },
                 "required": ["id", "type", "attributes", "relationships"]
@@ -200,12 +344,12 @@
                         ]
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/RepaymentRelationships"
+                        "$ref": "#/components/schemas/CapitalPartnerAchRepaymentRelationships"
                     }
                 },
                 "required": ["id", "type", "attributes", "relationships"]
             },
-            "repayment": {
+            "Repayment": {
                 "title": "Repayment Resource",
                 "oneOf": [
                     {

@@ -2,7 +2,7 @@
     "apiTokens": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getApiTokens",
+            "operationId": "getApiTokensList",
             "summary": "Get List Org API Tokens",
             "parameters": [
                 {
@@ -22,7 +22,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitOrgApiTokensListResponse",
+                                "title": "Unit Org Api Tokens List Response",
                                 "type": "object",
                                 "properties": {
                                     "data": {
@@ -72,7 +72,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitApiTokenResponse",
+                                "title": "Unit Api Token Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./apiToken.json#/components/schemas/ApiToken"
@@ -118,7 +118,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitApiTokenResponse",
+                                "title": "Unit Api Token Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./apiToken.json#/components/schemas/ApiToken"
@@ -166,7 +166,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCustomerTokenResponse",
+                                "title": "Unit Customer Token Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./customerToken.json#/components/schemas/CustomerToken"
@@ -215,7 +215,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCustomerTokenVerificationResponse",
+                                "title": "Unit Customer Token Verification Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./customerTokenVerification.json#/components/schemas/CustomerTokenVerification"

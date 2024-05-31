@@ -2,18 +2,18 @@
     "components": {
         "schemas": {
             "AccountEndOfDayRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        }
-                    ]
-                },
-                "required": ["customer", "account"]
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["customer", "account"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
             },
             "Attributes": {
                 "type": "object",

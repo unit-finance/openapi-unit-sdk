@@ -2,7 +2,7 @@
     "authorizations": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAuthorizations",
+            "operationId": "getAuthorizationsList",
 
             "summary": "Get List authorizations",
             "description": "Get List Authorizations from API ",
@@ -81,7 +81,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitListAuthorizationsResponse",
+                                "title": "Unit List Authorizations Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -100,7 +100,7 @@
     "authorization": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAuthorizationById",
+            "operationId": "getAuthorization",
 
             "parameters": [
                 {
@@ -129,7 +129,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitAuthorizationResponse",
+                                "title": "Unit Authorization Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./authorization.json#/components/schemas/Authorization"
@@ -145,7 +145,7 @@
     "authorizationsRequests": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAuthorizationRequests",
+            "operationId": "getAuthorizationRequestsList",
 
             "summary": "Get List Authorization Requests",
             "description": "Get List Authorization Requests from API ",
@@ -190,7 +190,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitListAuthorizationRequestsResponse",
+                                "title": "Unit List Authorization Requests Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -209,7 +209,7 @@
     "authorizationRequest": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAuthorizationRequestById",
+            "operationId": "getAuthorizationRequest",
 
             "parameters": [
                 {
@@ -231,7 +231,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitAuthorizationRequestsResponse",
+                                "title": "Unit Authorization Requests Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./authorizationRequest.json#/components/schemas/AuthorizationRequest"
@@ -269,7 +269,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "ApproveAuthorizationRequest",
+                            "title": "Approve Authorization Request",
                             "properties": {
                                 "data": {
                                     "$ref": "./authorizationRequest.json#/components/schemas/ApproveAuthorizationRequest"
@@ -286,7 +286,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitAuthorizationRequestResponse",
+                                "title": "Unit Authorization Request Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./authorizationRequest.json#/components/schemas/AuthorizationRequest"
@@ -324,7 +324,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "DeclineAuthorizationRequest",
+                            "title": "Decline Authorization Request",
                             "properties": {
                                 "data": {
                                     "$ref": "./authorizationRequest.json#/components/schemas/DeclineAuthorizationRequest"
@@ -341,7 +341,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitAuthorizationRequestResponse",
+                                "title": "Unit Authorization Request Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./authorizationRequest.json#/components/schemas/AuthorizationRequest"

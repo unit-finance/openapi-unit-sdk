@@ -1,8 +1,31 @@
 {
+    "components": {
+        "schemas": {
+            "UnitPinStatusResponse": {
+                "title": "Unit Pin Status Response",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "pinStatus"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "status": {
+                                "type": "string",
+                                "enum": ["Set", "NotSet"]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
     "cards": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getListOfCards",
+            "operationId": "getCardsList",
             "summary": "Get List of Cards",
             "description": "Get List of Cards from API ",
             "parameters": [
@@ -68,7 +91,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitCardResponseCardsList",
+                                "title": "Unit Card Response Cards List",
                                 "type": "object",
                                 "properties": {
                                     "data": {
@@ -113,7 +136,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit Cards List Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -157,7 +180,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit Card Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -177,7 +200,7 @@
         },
         "patch": {
             "tags": ["unit"],
-            "operationId": "UpdateCardRequest",
+            "operationId": "updateCard",
             "summary": "Update Card",
             "description": "Update a Card via API ",
             "parameters": [
@@ -209,7 +232,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit Update Card Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -246,7 +269,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit Report Lost Card Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -283,7 +306,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit Report Stolen Card Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -320,7 +343,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit Close Card Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -356,11 +379,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Pin Status Response",
-                                "properties": {
-                                    "$ref": "./card.json#/components/schemas/PinStatus"
-                                }
+                                "$ref": "#/components/schemas/UnitPinStatusResponse"
                             }
                         }
                     }
@@ -392,7 +411,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit  Freeze Card Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -429,7 +448,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit  Unfreeze Card Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./card.json#/components/schemas/Card"
@@ -466,7 +485,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCardResponse",
+                                "title": "Unit Card Limits Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./cardLevelLimits.json#/components/schemas/Limits"

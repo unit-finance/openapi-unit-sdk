@@ -24,10 +24,10 @@
             },
             "AccountRelationship": {
                 "type": "object",
-                "title": "Account Relationship",
                 "properties": {
                     "account": {
                         "type": "object",
+                        "title": "Account Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -56,10 +56,10 @@
             },
             "CreditAccountRelationship": {
                 "type": "object",
-                "title": "Credit Account Relationship",
                 "properties": {
                     "creditAccount": {
                         "type": "object",
+                        "title": "Credit Account Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -83,10 +83,10 @@
             },
             "ApplicationRelationship": {
                 "type": "object",
-                "title": "Application Relationship",
                 "properties": {
                     "application": {
                         "type": "object",
+                        "title": "Application Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -114,10 +114,10 @@
             },
             "CustomerRelationship": {
                 "type": "object",
-                "title": "Customer Relationship",
                 "properties": {
                     "customer": {
                         "type": "object",
+                        "title": "Customer Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -144,10 +144,10 @@
             },
             "CustomersRelationship": {
                 "type": "object",
-                "title": "Customers Relationship",
                 "properties": {
                     "customers": {
                         "type": "object",
+                        "title": "Customers Relationship",
                         "properties": {
                             "data": {
                                 "type": "array",
@@ -173,10 +173,10 @@
             },
             "OrgRelationship": {
                 "type": "object",
-                "title": "Org Relationship",
                 "properties": {
                     "org": {
                         "type": "object",
+                        "title": "Org Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -201,10 +201,10 @@
             },
             "DocumentsRelationship": {
                 "type": "object",
-                "title": "Documents Relationship",
                 "properties": {
                     "documents": {
                         "type": "object",
+                        "title": "Documents Relationship",
                         "properties": {
                             "data": {
                                 "type": "array",
@@ -234,6 +234,7 @@
                 "properties": {
                     "trustees": {
                         "type": "object",
+                        "title": "Trustees Relationship",
                         "properties": {
                             "data": {
                                 "type": "array",
@@ -261,6 +262,7 @@
                 "properties": {
                     "beneficiaries": {
                         "type": "object",
+                        "title": "Beneficiaries Relationship",
                         "properties": {
                             "data": {
                                 "type": "array",
@@ -288,6 +290,7 @@
                 "properties": {
                     "beneficialOwners": {
                         "type": "object",
+                        "title": "Beneficial Owners Relationship",
                         "properties": {
                             "data": {
                                 "type": "array",
@@ -315,6 +318,7 @@
                 "properties": {
                     "authorizationRequest": {
                         "type": "object",
+                        "title": "Authorization Request Relationship",
                         "properties": {
                             "data": {
                                 "type": "array",
@@ -342,6 +346,7 @@
                 "properties": {
                     "fundingAccount": {
                         "type": "object",
+                        "title": "Funding Account Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -368,6 +373,7 @@
                 "properties": {
                     "card": {
                         "type": "object",
+                        "title": "Card Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -394,6 +400,7 @@
                 "properties": {
                     "transaction": {
                         "type": "object",
+                        "title": "Transaction Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -420,6 +427,7 @@
                 "properties": {
                     "counterparty": {
                         "type": "object",
+                        "title": "Counterparty Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -446,6 +454,7 @@
                 "properties": {
                     "counterpartyAccount": {
                         "type": "object",
+                        "title": "Counterparty Account Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -472,6 +481,7 @@
                 "properties": {
                     "counterpartyCustomer": {
                         "type": "object",
+                        "title": "Counterparty Customer Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -502,6 +512,7 @@
                 "properties": {
                     "recurringPayment": {
                         "type": "object",
+                        "title": "Recurring Payment Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -528,6 +539,7 @@
                 "properties": {
                     "achPayment": {
                         "type": "object",
+                        "title": "ACH Payment Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -554,6 +566,7 @@
                 "properties": {
                     "receivePaymentTransaction": {
                         "type": "object",
+                        "title": "Receive Payment Transaction Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -563,7 +576,7 @@
                                         "default": "transaction"
                                     },
                                     "id": {
-                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                        "$ref": "./types.json#/components/schemas/Identifier"
                                     }
                                 },
                                 "required": ["type", "id"],
@@ -580,6 +593,7 @@
                 "properties": {
                     "paymentAdvanceTransaction": {
                         "type": "object",
+                        "title": "Payment Advance Transaction Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -589,7 +603,7 @@
                                         "default": "transaction"
                                     },
                                     "id": {
-                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                        "$ref": "./types.json#/components/schemas/Identifier"
                                     }
                                 },
                                 "required": ["type", "id"],
@@ -606,6 +620,7 @@
                 "properties": {
                     "repayPaymentAdvanceTransaction": {
                         "type": "object",
+                        "title": "Repay Payment Advance Transaction Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -615,7 +630,7 @@
                                         "default": "transaction"
                                     },
                                     "id": {
-                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                        "$ref": "./types.json#/components/schemas/Identifier"
                                     }
                                 },
                                 "required": ["type", "id"],
@@ -632,6 +647,7 @@
                 "properties": {
                     "checkPayments": {
                         "type": "object",
+                        "title": "Check Payments Relationship",
                         "properties": {
                             "data": {
                                 "type": "array",
@@ -659,6 +675,7 @@
                 "properties": {
                     "rewardedTransaction": {
                         "type": "object",
+                        "title": "Rewarded Transaction Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -668,7 +685,7 @@
                                         "default": "transaction"
                                     },
                                     "id": {
-                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                        "$ref": "./types.json#/components/schemas/Identifier"
                                     }
                                 },
                                 "required": ["type", "id"],
@@ -685,6 +702,7 @@
                 "properties": {
                     "receivingAccount": {
                         "type": "object",
+                        "title": "Receiving Account Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",
@@ -699,6 +717,70 @@
                                             "depositAccount",
                                             "creditAccount"
                                         ]
+                                    }
+                                },
+                                "required": ["id", "type"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "PaymentRelationship": {
+                "type": "object",
+                "properties": {
+                    "payment": {
+                        "type": "object",
+                        "title": "Payment Relationship",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "payment",
+                                            "achPayment",
+                                            "cardPayment",
+                                            "checkPayment",
+                                            "recurringPayment",
+                                            "paymentAdvance",
+                                            "repayPaymentAdvance",
+                                            "receivePayment",
+                                            "rewardedTransaction"
+                                        ]
+                                    }
+                                },
+                                "required": ["id", "type"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "RecurringRepaymentRelationship": {
+                "type": "object",
+                "properties": {
+                    "recurringRepayment": {
+                        "type": "object",
+                        "title": "Recurring Repayment Relationship",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["recurringRepayment"]
                                     }
                                 },
                                 "required": ["id", "type"],

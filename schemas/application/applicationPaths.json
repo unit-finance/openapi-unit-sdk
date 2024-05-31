@@ -3,7 +3,7 @@
         "schemas": {
             "UnitApplicationResponse": {
                 "type": "object",
-                "title": "UnitApplicationResponse",
+                "title": "Unit Application Response",
                 "properties": {
                     "data": {
                         "$ref": "./application.json#/components/schemas/Application"
@@ -12,7 +12,7 @@
             },
             "UnitDocumentResponse": {
                 "type": "object",
-                "title": "UnitDocumentResponse",
+                "title": "Unit Document Response",
                 "properties": {
                     "data": {
                         "$ref": "./document.json#/components/schemas/ApplicationDocument"
@@ -21,7 +21,7 @@
             },
             "UnitApplicationResponseWithIncluded": {
                 "type": "object",
-                "title": "UnitApplicationResponseWithIncluded",
+                "title": "Unit Application Response With Included",
                 "properties": {
                     "data": {
                         "$ref": "./application.json#/components/schemas/Application"
@@ -36,7 +36,7 @@
     "application": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getApplicationById",
+            "operationId": "getApplication",
             "parameters": [
                 {
                     "schema": {
@@ -135,7 +135,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "CancelApplicationRequest",
+                            "title": "Cancel Application Request",
                             "properties": {
                                 "data": {
                                     "type": "object",
@@ -166,7 +166,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCancelApplicationResponse",
+                                "title": "Unit Cancel Application Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./application.json#/components/schemas/Application"
@@ -188,7 +188,7 @@
     "applications": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getApplications",
+            "operationId": "getApplicationsList",
             "summary": "Get List Application",
             "description": "Get List Applications from API ",
             "parameters": [
@@ -247,7 +247,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitListApplicationsResponse",
+                                "title": "Unit List Applications Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -291,7 +291,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCreateApplicationResponse",
+                                "title": "Unit Create Application Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./application.json#/components/schemas/Application"
@@ -365,7 +365,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitApplicationFormsListResponse",
+                                "title": "Unit Application Forms List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -403,7 +403,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitApplicationFormResponse",
+                                "title": "Unit Application Form Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./applicationForm.json#/components/schemas/ApplicationForm"
@@ -419,7 +419,7 @@
     "applicationForm": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getApplicationFormById",
+            "operationId": "getApplicationForm",
             "parameters": [
                 {
                     "schema": {
@@ -447,7 +447,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitApplicationFormResponseWithIncluded",
+                                "title": "Unit Application Form Response With Included",
                                 "properties": {
                                     "data": {
                                         "$ref": "./applicationForm.json#/components/schemas/ApplicationForm"
@@ -612,7 +612,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitListDocumentsResponse",
+                                "title": "Unit List Documents Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -692,7 +692,7 @@
                     "application/json": {
                         "schema": {
                             "type": "object",
-                            "title": "VerifyDocument",
+                            "title": "Verify Document",
                             "properties": {
                                 "jobId": {
                                     "type": "string"

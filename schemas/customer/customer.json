@@ -2,23 +2,23 @@
     "components": {
         "schemas": {
             "CustomerRelationships": {
-                "type": "object",
-                "title": "CustomerRelationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/OrgRelationship"
-                        },
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Customer Relationships",
+                        "additionalProperties": true
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
 
-                        {
-                            "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
-                        }
-                    ]
-                },
-                "additionalProperties": true
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                    }
+                ]
             },
             "IndividualCustomer": {
-                "title": "IndividualCustomer",
+                "title": "Individual Customer",
                 "type": "object",
                 "allOf": [
                     {
@@ -129,7 +129,7 @@
                 ]
             },
             "BusinessCustomer": {
-                "title": "BusinessCustomer",
+                "title": "Business Customer",
                 "type": "object",
                 "allOf": [
                     {
@@ -226,7 +226,7 @@
                 "additionalProperties": false
             },
             "TrustCustomer": {
-                "title": "TrustCustomer",
+                "title": "Trust Customer",
                 "type": "object",
                 "allOf": [
                     {

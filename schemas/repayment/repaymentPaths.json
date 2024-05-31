@@ -1,18 +1,21 @@
 {
-    "UnitRepaymentResponse": {
-        "type": "object",
-        "title": "UnitRepaymentResponse",
-        "properties": {
-            "data": {
-                "$ref": "./repayment.json#/components/schemas/repayment"
+    "components": {
+        "schemas": {
+            "UnitRepaymentResponse": {
+                "type": "object",
+                "title": "Unit Repayment Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./repayment.json#/components/schemas/Repayment"
+                    }
+                }
             }
         }
     },
     "repayments": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getRepayments",
-
+            "operationId": "getRepaymentsList",
             "summary": "Get List Repayments",
             "description": "Get List Repayments from API ",
             "parameters": [
@@ -66,13 +69,13 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitRepaymentsListResponse",
+                                "title": "Unit Repayments List Response",
                                 "type": "object",
                                 "properties": {
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "./repayment.json#/components/schemas/repayment"
+                                            "$ref": "./repayment.json#/components/schemas/Repayment"
                                         }
                                     },
                                     "meta": {
@@ -111,7 +114,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "repaymentPaths.json#/UnitRepaymentResponse"
+                                "$ref": "repaymentPaths.json#/components/schemas/UnitRepaymentResponse"
                             }
                         }
                     }
@@ -125,7 +128,7 @@
     "repayment": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getRepaymentById",
+            "operationId": "getRepayment",
 
             "parameters": [
                 {
@@ -153,7 +156,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "repaymentPaths.json#/UnitRepaymentResponse"
+                                "$ref": "repaymentPaths.json#/components/schemas/UnitRepaymentResponse"
                             }
                         }
                     }

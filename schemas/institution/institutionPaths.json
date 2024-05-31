@@ -2,7 +2,7 @@
     "getInstitution": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getInstitutionByRoutingNumber",
+            "operationId": "getInstitution",
             "parameters": [
                 {
                     "schema": {
@@ -23,7 +23,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitInstitutionResponse",
+                                "title": "Unit Institution Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./institution.json#/components/schemas/Institution"

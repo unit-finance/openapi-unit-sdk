@@ -12,7 +12,7 @@
             },
             "UnitAccountResponseWithIncluded": {
                 "type": "object",
-                "title": "UnitAccountResponseWithIncluded",
+                "title": "Unit Account Response With Included",
                 "properties": {
                     "data": {
                         "$ref": "./Account.json#/components/schemas/Account"
@@ -30,7 +30,7 @@
     "accounts": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAccounts",
+            "operationId": "getAccountsList",
             "summary": "Get List Accounts",
             "description": "Get List Accounts from API ",
             "parameters": [
@@ -91,7 +91,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitAccountsListResponse",
+                                "title": "Unit Accounts List Response",
                                 "type": "object",
                                 "properties": {
                                     "data": {
@@ -155,7 +155,7 @@
     "account": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAccountById",
+            "operationId": "getAccount",
             "parameters": [
                 {
                     "schema": {
@@ -257,7 +257,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitGetAccountLimitsResponse",
+                                "title": "Unit Get Account Limits Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "../types.json#/components/schemas/Limits"
@@ -328,7 +328,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "FreezeAccountRequest",
+                            "title": "Freeze Account Request",
                             "properties": {
                                 "data": {
                                     "$ref": "./closeAccount.json#/components/schemas/FreezeAccountRequest"
@@ -379,7 +379,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "CloseAccountRequest",
+                            "title": "Close Account Request",
                             "properties": {
                                 "data": {
                                     "$ref": "./closeAccount.json#/components/schemas/CloseAccountRequest"
@@ -555,7 +555,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitGetAccountEndOfDayListResponse",
+                                "title": "Unit Get Account End Of Day List Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./accountEndOfDay.json#/components/schemas/AccountEndOfDay"

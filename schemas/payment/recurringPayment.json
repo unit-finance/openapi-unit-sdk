@@ -2,64 +2,64 @@
     "components": {
         "schemas": {
             "RecurringAchPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/OrgRelationship"
-                        }
-                    ]
-                },
-                "required": [
-                    "account",
-                    "creditAccount",
-                    "counterparty",
-                    "customer",
-                    "org"
-                ],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "creditAccount",
+                            "counterparty",
+                            "customer",
+                            "org"
+                        ],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
             },
             "RecurringBookPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/OrgRelationship"
-                        }
-                    ],
-                    "required": [
-                        "account",
-                        "creditAccount",
-                        "counterparty",
-                        "customer",
-                        "org"
-                    ],
-                    "additionalProperties": false
-                }
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "creditAccount",
+                            "counterparty",
+                            "customer",
+                            "org"
+                        ],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
             },
             "RecurringCreditAchPayment": {
                 "title": "Recurring Credit ACH Payment",

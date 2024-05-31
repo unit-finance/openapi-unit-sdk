@@ -2,7 +2,7 @@
     "listTransactions": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getTransactions",
+            "operationId": "getTransactionsList",
             "summary": "Get List Transactions",
             "description": "Get List Transactions from API ",
             "parameters": [
@@ -91,7 +91,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitTransactionsListResponse",
+                                "title": "Unit Transactions List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -116,7 +116,7 @@
     "transaction": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getTransactionById",
+            "operationId": "getTransaction",
 
             "parameters": [
                 {
@@ -147,7 +147,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitTransactionResponse",
+                                "title": "Unit Transaction Response With Included Resource",
                                 "properties": {
                                     "data": {
                                         "$ref": "./transaction.json#/components/schemas/Transaction"
@@ -206,7 +206,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitTransactionResponse",
+                                "title": "Unit Transaction Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./transaction.json#/components/schemas/Transaction"

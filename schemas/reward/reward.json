@@ -2,34 +2,38 @@
     "components": {
         "schemas": {
             "RewardRelationships": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/RewardedTransactionRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CardRelationship"
-                        }
-                    ]
-                },
-                "required": ["receivingAccount", "fundingAccount", "customer"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "receivingAccount",
+                            "fundingAccount",
+                            "customer"
+                        ],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RewardedTransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    }
+                ]
             },
             "Reward": {
                 "title": "Reward",

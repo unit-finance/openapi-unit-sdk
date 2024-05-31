@@ -1,8 +1,21 @@
 {
+    "components": {
+        "schemas": {
+            "WebhookResponse": {
+                "type": "object",
+                "title": "Unit Webhook Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./webhook.json#/components/schemas/Webhook"
+                    }
+                }
+            }
+        }
+    },
     "webhooks": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getWebhooks",
+            "operationId": "getWebhooksList",
 
             "summary": "Get List Webhooks",
             "description": "Get List Webhooks from API ",
@@ -48,7 +61,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitWebhooksListResponse",
+                                "title": "Unit Webhooks List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -66,7 +79,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createWebhook",
-
             "summary": "Create Webhook",
             "description": "Create a Webhook via API ",
             "requestBody": {
@@ -76,7 +88,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "createWebhook",
+                            "title": "Create Webhook",
                             "properties": {
                                 "data": {
                                     "type": "object",
@@ -137,13 +149,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitWebhookResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./webhook.json#/components/schemas/Webhook"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/WebhookResponse"
                             }
                         }
                     }
@@ -154,7 +160,7 @@
     "webhook": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getWebhookById",
+            "operationId": "getWebhook",
 
             "parameters": [
                 {
@@ -175,13 +181,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitWebhookResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./webhook.json#/components/schemas/Webhook"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/WebhookResponse"
                             }
                         }
                     }
@@ -221,13 +221,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitWebhookResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./webhook.json#/components/schemas/Webhook"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/WebhookResponse"
                             }
                         }
                     }
@@ -259,13 +253,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitWebhookResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./webhook.json#/components/schemas/Webhook"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/WebhookResponse"
                             }
                         }
                     }
@@ -297,13 +285,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "UnitWebhookResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./webhook.json#/components/schemas/Webhook"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/WebhookResponse"
                             }
                         }
                     }

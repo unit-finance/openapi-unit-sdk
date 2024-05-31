@@ -29,39 +29,20 @@
                 ]
             },
             "CardRelationships": {
-                "type": "object",
-                "title": "Card Relationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "ref": "../relationships.json$/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "ref": "../relationships.json$/components/schemas/CustomerRelationship"
-                        }
-                    ]
-                },
-                "required": ["account"],
-                "additionalProperties": false
-            },
-            "PinStatus": {
-                "title": "Pin Status",
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "pinStatus"
-                    },
-                    "attributes": {
+                "allOf": [
+                    {
                         "type": "object",
-                        "properties": {
-                            "status": {
-                                "type": "string",
-                                "enum": ["Set", "NotSet"]
-                            }
-                        }
+                        "title": "Card Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
-                }
+                ]
             },
             "IndividualDebitCard": {
                 "title": "Individual Debit Card",

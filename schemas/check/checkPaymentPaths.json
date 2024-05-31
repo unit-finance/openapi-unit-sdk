@@ -3,7 +3,7 @@
         "schemas": {
             "UnitCheckPaymentResponse": {
                 "type": "object",
-                "title": "UnitCheckPaymentResponse",
+                "title": "Unit Check Payment Response",
                 "properties": {
                     "data": {
                         "$ref": "./checkPayment.json#/components/schemas/CheckPayment"
@@ -15,8 +15,7 @@
     "checkPayments": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCheckPayments",
-
+            "operationId": "getCheckPaymentsList",
             "summary": "Get List Check Payments",
             "description": "Get List Check Payments from API ",
             "parameters": [
@@ -102,7 +101,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitListCheckPaymentsResponse",
+                                "title": "Unit List Check Payments Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -151,7 +150,7 @@
     "checkPayment": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCheckPaymentById",
+            "operationId": "getCheckPayment",
 
             "parameters": [
                 {
@@ -203,7 +202,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "ApproveCheckPaymentRequest",
+                            "title": "Approve Check Payment Request",
                             "properties": {
                                 "data": {
                                     "type": "object",
@@ -258,7 +257,7 @@
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "ReturnCheckPaymentRequest",
+                            "title": "Return Check Payment Request",
                             "properties": {
                                 "data": {
                                     "type": "object",
@@ -333,7 +332,7 @@
     "getCheckPaymentFront": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCheckPaymentFrontById",
+            "operationId": "getCheckPaymentFront",
 
             "parameters": [
                 {
@@ -366,7 +365,7 @@
     "getCheckPaymentBack": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCheckPaymentBackById",
+            "operationId": "getCheckPaymentBack",
 
             "parameters": [
                 {

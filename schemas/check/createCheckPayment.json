@@ -2,54 +2,19 @@
     "components": {
         "schemas": {
             "CreateCheckPaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "account": {
+                "allOf": [
+                    {
                         "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": ["account", "depositAccount"]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/Identifier"
-                                    }
-                                },
-                                "required": ["type", "id"]
-                            }
-                        }
+                        "required": ["account", "customer"]
                     },
-                    "customer": {
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "businessCustomer",
-                                            "individualCustomer"
-                                        ]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/Identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
-                },
-                "required": ["account", "customer"]
+                ]
             },
-
             "CreateCheckPaymentRequest": {
                 "type": "object",
                 "properties": {

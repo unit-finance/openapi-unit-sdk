@@ -2,14 +2,16 @@
     "components": {
         "schemas": {
             "CreateCounterpartyRelationships": {
-                "type": "object",
-                "properties": {
-                    "customer": {
-                        "$ref": "../relationships.json#/components/schemas/Relationship"
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["customer"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
-                },
-                "required": ["customer"],
-                "additionalProperties": false
+                ]
             },
             "CreateAchCounterparty": {
                 "title": "Create Ach Counterparty",

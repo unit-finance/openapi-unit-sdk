@@ -2,7 +2,7 @@
     "listDisputes": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getDisputes",
+            "operationId": "getDisputesList",
 
             "summary": "Get List Disputes",
             "description": "Get List Disputes from API ",
@@ -32,7 +32,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "array",
-                                "title": "UnitDisputesListResponse",
+                                "title": "Unit Disputes List Response",
                                 "items": {
                                     "$ref": "./dispute.json#/components/schemas/Dispute"
                                 }
@@ -46,7 +46,7 @@
     "getDispute": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getDisputeById",
+            "operationId": "getDispute",
 
             "parameters": [
                 {
@@ -68,7 +68,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitDisputeResponse",
+                                "title": "Unit Dispute Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./dispute.json#/components/schemas/Dispute"

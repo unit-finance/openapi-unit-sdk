@@ -2,7 +2,7 @@
     "counterparties": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCounterparties",
+            "operationId": "getCounterpartiesList",
 
             "summary": "Get Counterparties List",
             "description": "Get Counterparties List from API ",
@@ -62,7 +62,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCounterpartiesListResponse",
+                                "title": "Unit Counterparties List Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./counterparty.json#/components/schemas/Counterparty"
@@ -98,7 +98,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCounterpartyResponse",
+                                "title": "Unit Counterparty Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./counterparty.json#/components/schemas/Counterparty"
@@ -114,7 +114,7 @@
     "counterparty": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCounterpartyById",
+            "operationId": "getCounterparty",
 
             "parameters": [
                 {
@@ -143,7 +143,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCounterpartyResponse",
+                                "title": "Unit Counterparty Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./counterparty.json#/components/schemas/Counterparty"
@@ -190,7 +190,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCounterpartyResponse",
+                                "title": "Unit Counterparty Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./counterparty.json#/components/schemas/Counterparty"
@@ -229,7 +229,7 @@
     "counterpartyBalance": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getCounterpartyBalanceById",
+            "operationId": "getCounterpartyBalance",
 
             "summary": "Get Counterparty Balance",
             "parameters": [
@@ -251,7 +251,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitCounterpartyResponse",
+                                "title": "Unit Counterparty Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./counterpartyBalance.json#/components/schemas/CounterpartyBalance"

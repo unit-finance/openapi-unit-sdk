@@ -24,7 +24,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitRewardResponse",
+                                "title": "Unit Reward Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./reward.json#/components/schemas/Reward"
@@ -38,7 +38,7 @@
         },
         "get": {
             "tags": ["unit"],
-            "operationId": "getRewards",
+            "operationId": "getListRewards",
 
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
@@ -109,7 +109,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitRewardsListResponse",
+                                "title": "Unit Rewards List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -128,7 +128,7 @@
     "getReward": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getRewardById",
+            "operationId": "getReward",
 
             "parameters": [
                 {
@@ -150,7 +150,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitRewardResponse",
+                                "title": "Unit Reward Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./reward.json#/components/schemas/Reward"

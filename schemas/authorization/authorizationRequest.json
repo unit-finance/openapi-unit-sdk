@@ -58,29 +58,29 @@
                 "required": ["type", "attributes"]
             },
             "AuthorizationRequestRelationships": {
-                "type": "object",
-                "title": "authorizationRequestRelationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CardRelationship"
-                        }
-                    ]
-                },
-                "required": ["customer", "account", "card"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Authorization Request Relationships",
+                        "required": ["customer", "account", "card"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    }
+                ]
             },
             "PurchaseAuthorization": {
-                "title": "PurchaseAuthorizationRequest Resource",
+                "title": "Purchase Authorization Request Resource",
                 "type": "object",
                 "allOf": [
                     {
@@ -165,7 +165,7 @@
                 ]
             },
             "CardTransactionAuthorization": {
-                "title": "CardTransactionAuthorizationRequest Resource",
+                "title": "Card Transaction Authorization Request Resource",
                 "type": "object",
                 "allOf": [
                     {
@@ -238,7 +238,7 @@
                 ]
             },
             "AtmAuthorization": {
-                "title": "AtmAuthorizationRequest Resource",
+                "title": "Atm Authorization Request Resource",
                 "type": "object",
                 "allOf": [
                     {
@@ -313,7 +313,7 @@
                 ]
             },
             "AuthorizationRequest": {
-                "title": "AuthorizationRequest Document",
+                "title": "Authorization Request Document",
                 "type": "object",
                 "properties": {
                     "type": {

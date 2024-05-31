@@ -241,33 +241,36 @@
                 }
             },
             "ApplicationRelationships": {
-                "type": "object",
-                "title": "Application Relationships",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../types.json#/components/schemas/CustomerRelationship"
-                        },
-                        {
-                            "$ref": "../types.json#/components/schemas/DocumentsRelationship"
-                        },
-                        {
-                            "$ref": "../types.json#/components/schemas/TrusteesRelationship"
-                        },
-                        {
-                            "$ref": "../types.json#/components/schemas/BeneficiariesRelationship"
-                        },
-                        {
-                            "$ref": "../types.json#/components/schemas/BeneficialOwnersRelationship"
-                        },
-                        {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Application Relationships",
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/DocumentsRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TrusteesRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/BeneficiariesRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/BeneficialOwnersRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
                             "applicationForm": {
                                 "$ref": "../relationships.json#/components/schemas/Relationship"
                             }
                         }
-                    ]
-                },
-                "additionalProperties": false
+                    }
+                ]
             },
             "BusinessApplication": {
                 "title": "Business Application",
@@ -440,7 +443,7 @@
                 ]
             },
             "IndividualApplication": {
-                "title": "IndividualApplication",
+                "title": "Individual Application",
                 "type": "object",
                 "allOf": [
                     {
@@ -611,7 +614,7 @@
                 ]
             },
             "TrustApplication": {
-                "title": "TrustApplication",
+                "title": "Trust Application",
                 "type": "object",
                 "allOf": [
                     {

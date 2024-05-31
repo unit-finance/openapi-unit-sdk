@@ -2,27 +2,32 @@
     "components": {
         "schemas": {
             "CreatePaymentRelationships": {
-                "type": "object",
-                "properties": {
-                    "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                },
-                "required": ["account"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
             },
             "CreatePaymentRelationshipsWithCounterparty": {
-                "type": "object",
-                "properties": {
-                    "allOf": [
-                        {
-                            "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                        },
-                        {
-                            "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
-                        }
-                    ]
-                },
-                "required": ["account", "counterparty"],
-                "additionalProperties": false
+                "allOf": [
+                    {
+                        "type": "object",
+
+                        "required": ["account", "counterparty"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    }
+                ]
             },
             "CreateAchPayment": {
                 "title": "Create ACH Payment to inline Counterparty",

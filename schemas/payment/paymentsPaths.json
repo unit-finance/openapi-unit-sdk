@@ -3,7 +3,7 @@
         "schemas": {
             "UnitPaymentResponse": {
                 "type": "object",
-                "title": "UnitPaymentResponse",
+                "title": "Unit Payment Response",
                 "properties": {
                     "data": {
                         "$ref": "./payment.json#/components/schemas/Payment"
@@ -12,7 +12,7 @@
             },
             "UnitReceivedPaymentResponse": {
                 "type": "object",
-                "title": "UnitReceivedPaymentResponse",
+                "title": "Unit Received Payment Response",
                 "properties": {
                     "data": {
                         "$ref": "./updatePayment.json#/components/schemas/UpdatePaymentRequest"
@@ -21,7 +21,7 @@
             },
             "UnitRecurringPaymentResponse": {
                 "type": "object",
-                "title": "UnitRecurringPaymentResponse",
+                "title": "Unit Recurring Payment Response",
                 "properties": {
                     "data": {
                         "$ref": "./recurringPayment.json#/components/schemas/RecurringPayment"
@@ -33,7 +33,7 @@
     "getAndCreatePayments": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getPayments",
+            "operationId": "getPaymentsList",
 
             "summary": "Get List Payments",
             "description": "Get List Payments from API ",
@@ -143,7 +143,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitPaymentsListResponse",
+                                "title": "Unit Payments List Response",
                                 "type": "object",
                                 "properties": {
                                     "data": {
@@ -199,7 +199,7 @@
     "getAndPatchPayment": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getPaymentById",
+            "operationId": "getPayment",
 
             "parameters": [
                 {
@@ -227,7 +227,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "UnitPaymentResponseWithIncluded",
+                                "title": "Unit Payment Response With Included",
                                 "type": "object",
                                 "properties": {
                                     "data": {
@@ -320,7 +320,7 @@
     "listReceivedPayments": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getReceivedPayments",
+            "operationId": "getReceivedPaymentsList",
 
             "parameters": [
                 {
@@ -340,7 +340,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitReceivedPaymentListResponse",
+                                "title": "Unit Received Payment List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -365,7 +365,7 @@
     "receivedPayments": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getReceivedPaymentById",
+            "operationId": "getReceivedPayment",
 
             "parameters": [
                 {
@@ -394,7 +394,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitReceivedPaymentResponseWithIncluded",
+                                "title": "Unit Received Payment Response With Included",
                                 "properties": {
                                     "data": {
                                         "$ref": "./updatePayment.json#/components/schemas/UpdatePaymentRequest"
@@ -485,7 +485,7 @@
     "recurringPayments": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getRecurringPayments",
+            "operationId": "getRecurringPaymentsList",
 
             "summary": "Get Recurring Payments List",
             "description": "Get Recurring Payments List from API ",
@@ -554,7 +554,7 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "UnitRecurringPaymentListResponse",
+                                "title": "Unit Recurring Payment List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
@@ -606,7 +606,7 @@
     "getRecurringPayment": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getRecurringPaymentById",
+            "operationId": "getRecurringPayment",
 
             "summary": "Get Recurring Payment",
             "parameters": [

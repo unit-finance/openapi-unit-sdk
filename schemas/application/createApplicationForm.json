@@ -66,13 +66,17 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "type": "object",
-                                "title": "createApplicationFormRelationships",
-                                "properties": {
-                                    "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
-                                },
-                                "required": ["application"],
-                                "additionalProperties": false
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Create Application Form Relationships",
+                                        "required": ["application"],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                                    }
+                                ]
                             }
                         },
                         "additionalProperties": false,

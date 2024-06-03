@@ -1,15 +1,17 @@
 {
     "components": {
         "schemas": {
-            "createCustomerRelationships": {
-                "type": "object",
-                "properties": {
-                    "org": {
-                        "$ref": "../types.json#/components/schemas/orgRelationship"
+            "CreateCustomerRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["org"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
                     }
-                },
-                "required": ["org"],
-                "additionalProperties": false
+                ]
             },
             "CreateIndividualCustomer": {
                 "title": "Create Individual Customer",
@@ -23,13 +25,13 @@
                         "type": "object",
                         "properties": {
                             "fullName": {
-                                "$ref": "../types.json#/components/schemas/fullName"
+                                "$ref": "../types.json#/components/schemas/FullName"
                             },
                             "email": {
-                                "$ref": "../types.json#/components/schemas/email"
+                                "$ref": "../types.json#/components/schemas/Email"
                             },
                             "phone": {
-                                "$ref": "../types.json#/components/schemas/phone"
+                                "$ref": "../types.json#/components/schemas/Phone"
                             },
                             "ssn": {
                                 "type": "string",
@@ -39,13 +41,13 @@
                                 "type": "string"
                             },
                             "nationality": {
-                                "$ref": "../types.json#/components/schemas/country"
+                                "$ref": "../types.json#/components/schemas/Country"
                             },
                             "matriculaConsular": {
                                 "type": "string"
                             },
                             "address": {
-                                "$ref": "../types.json#/components/schemas/address"
+                                "$ref": "../types.json#/components/schemas/Address"
                             },
                             "dateOfBirth": {
                                 "type": "string",
@@ -63,16 +65,16 @@
                                 "default": false
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "authorizedUsers": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "../types.json#/components/schemas/authorizedUser"
+                                    "$ref": "../types.json#/components/schemas/AuthorizedUser"
                                 }
                             },
                             "jwtSubject": {
-                                "$ref": "../types.json#/components/schemas/jwtSubject"
+                                "$ref": "../types.json#/components/schemas/JwtSubject"
                             }
                         },
                         "additionalProperties": false,
@@ -85,7 +87,7 @@
                         ]
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/createCustomerRelationships"
+                        "$ref": "#/components/schemas/CreateCustomerRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -135,21 +137,21 @@
                                 "maxLength": 1024
                             },
                             "phone": {
-                                "$ref": "../types.json#/components/schemas/phone"
+                                "$ref": "../types.json#/components/schemas/Phone"
                             },
                             "address": {
-                                "$ref": "../types.json#/components/schemas/address"
+                                "$ref": "../types.json#/components/schemas/Address"
                             },
                             "contact": {
                                 "$ref": "../types.json#/components/schemas/createContact"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "authorizedUsers": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "../types.json#/components/schemas/authorizedUser"
+                                    "$ref": "../types.json#/components/schemas/AuthorizedUser"
                                 }
                             }
                         },
@@ -165,24 +167,26 @@
                         ]
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/createCustomerRelationships"
+                        "$ref": "#/components/schemas/CreateCustomerRelationships"
                     }
                 },
                 "additionalProperties": false,
                 "required": ["type", "attributes", "relationships"]
             }
         },
-        "type": "object",
-        "properties": {
-            "data": {
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/CreateBusinessCustomer"
-                    },
-                    {
-                        "$ref": "#/components/schemas/CreateIndividualCustomer"
-                    }
-                ]
+        "CreateCustomerRequest": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/components/schemas/CreateBusinessCustomer"
+                        },
+                        {
+                            "$ref": "#/components/schemas/CreateIndividualCustomer"
+                        }
+                    ]
+                }
             }
         }
     }

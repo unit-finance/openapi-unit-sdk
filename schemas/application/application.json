@@ -1,21 +1,32 @@
 {
     "components": {
         "schemas": {
-            "powerOfAttorneyAgent": {
-                "title": "PowerOfAttorneyAgent",
+            "ApplicationStatus": {
+                "type": "string",
+                "enum": [
+                    "AwaitingDocuments",
+                    "PendingReview",
+                    "Approved",
+                    "Denied",
+                    "Pending",
+                    "Canceled"
+                ]
+            },
+            "PowerOfAttorneyAgent": {
+                "title": "Power of Attorney Agent",
                 "type": "object",
                 "properties": {
                     "status": {
                         "type": "string"
                     },
                     "fullName": {
-                        "$ref": "../types.json#/components/schemas/fullName"
+                        "$ref": "../types.json#/components/schemas/FullName"
                     },
                     "email": {
-                        "$ref": "../types.json#/components/schemas/email"
+                        "$ref": "../types.json#/components/schemas/Email"
                     },
                     "phone": {
-                        "$ref": "../types.json#/components/schemas/phone"
+                        "$ref": "../types.json#/components/schemas/Phone"
                     },
                     "ssn": {
                         "type": "string",
@@ -25,13 +36,13 @@
                         "type": "string"
                     },
                     "nationality": {
-                        "$ref": "../types.json#/components/schemas/country"
+                        "$ref": "../types.json#/components/schemas/Country"
                     },
                     "matriculaConsular": {
                         "type": "string"
                     },
                     "address": {
-                        "$ref": "../types.json#/components/schemas/address"
+                        "$ref": "../types.json#/components/schemas/Address"
                     },
                     "dateOfBirth": {
                         "type": "string",
@@ -63,7 +74,7 @@
                 "additionalProperties": false,
                 "required": ["status", "fullName"]
             },
-            "officer": {
+            "Officer": {
                 "title": "Officer",
                 "type": "object",
                 "properties": {
@@ -71,13 +82,13 @@
                         "type": "string"
                     },
                     "fullName": {
-                        "$ref": "../types.json#/components/schemas/fullName"
+                        "$ref": "../types.json#/components/schemas/FullName"
                     },
                     "email": {
-                        "$ref": "../types.json#/components/schemas/email"
+                        "$ref": "../types.json#/components/schemas/Email"
                     },
                     "phone": {
-                        "$ref": "../types.json#/components/schemas/phone"
+                        "$ref": "../types.json#/components/schemas/Phone"
                     },
                     "ssn": {
                         "type": "string",
@@ -87,13 +98,13 @@
                         "type": "string"
                     },
                     "nationality": {
-                        "$ref": "../types.json#/components/schemas/country"
+                        "$ref": "../types.json#/components/schemas/Country"
                     },
                     "matriculaConsular": {
                         "type": "string"
                     },
                     "address": {
-                        "$ref": "../types.json#/components/schemas/address"
+                        "$ref": "../types.json#/components/schemas/Address"
                     },
                     "dateOfBirth": {
                         "type": "string",
@@ -141,17 +152,17 @@
                         "type": "integer"
                     },
                     "occupation": {
-                        "$ref": "../types.json#/components/schemas/occupation"
+                        "$ref": "../types.json#/components/schemas/Occupation"
                     },
                     "annualIncome": {
-                        "$ref": "../types.json#/components/schemas/annualIncome"
+                        "$ref": "../types.json#/components/schemas/AnnualIncome"
                     },
                     "sourceOfIncome": {
-                        "$ref": "../types.json#/components/schemas/sourceOfIncome"
+                        "$ref": "../types.json#/components/schemas/SourceOfIncome"
                     }
                 }
             },
-            "beneficialOwner": {
+            "BeneficialOwner": {
                 "title": "Beneficial Owner",
                 "type": "object",
                 "properties": {
@@ -159,13 +170,13 @@
                         "type": "string"
                     },
                     "fullName": {
-                        "$ref": "../types.json#/components/schemas/fullName"
+                        "$ref": "../types.json#/components/schemas/FullName"
                     },
                     "email": {
-                        "$ref": "../types.json#/components/schemas/email"
+                        "$ref": "../types.json#/components/schemas/Email"
                     },
                     "phone": {
-                        "$ref": "../types.json#/components/schemas/phone"
+                        "$ref": "../types.json#/components/schemas/Phone"
                     },
                     "ssn": {
                         "type": "string",
@@ -175,13 +186,13 @@
                         "type": "string"
                     },
                     "nationality": {
-                        "$ref": "../types.json#/components/schemas/country"
+                        "$ref": "../types.json#/components/schemas/Country"
                     },
                     "matriculaConsular": {
                         "type": "string"
                     },
                     "address": {
-                        "$ref": "../types.json#/components/schemas/address"
+                        "$ref": "../types.json#/components/schemas/Address"
                     },
                     "dateOfBirth": {
                         "type": "string",
@@ -219,125 +230,54 @@
                         "items": { "type": "string" }
                     },
                     "occupation": {
-                        "$ref": "../types.json#/components/schemas/occupation"
+                        "$ref": "../types.json#/components/schemas/Occupation"
                     },
                     "annualIncome": {
-                        "$ref": "../types.json#/components/schemas/annualIncome"
+                        "$ref": "../types.json#/components/schemas/AnnualIncome"
                     },
                     "sourceOfIncome": {
-                        "$ref": "../types.json#/components/schemas/sourceOfIncome"
+                        "$ref": "../types.json#/components/schemas/SourceOfIncome"
                     }
                 }
             },
-            "applicationRelationships": {
-                "type": "object",
-                "title": "applicationRelationships",
-                "properties": {
-                    "org": {
-                        "$ref": "../types.json#/components/schemas/orgRelationship"
-                    },
-                    "customer": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "documents": {
+            "ApplicationRelationships": {
+                "allOf": [
+                    {
                         "type": "object",
-                        "title": "documentsRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "document"
-                                        },
-                                        "id": {
-                                            "$ref": "../types.json#/components/schemas/identifier"
-                                        }
-                                    },
-                                    "additionalProperties": false
-                                }
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": ["data"]
+                        "title": "Application Relationships",
+                        "additionalProperties": false
                     },
-                    "applicationForm": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     },
-                    "trustees": {
+                    {
+                        "$ref": "../relationships.json#/components/schemas/DocumentsRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TrusteesRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/BeneficiariesRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/BeneficialOwnersRelationship"
+                    },
+                    {
                         "type": "object",
                         "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "trustee"
-                                        },
-                                        "id": {
-                                            "$ref": "../types.json#/components/schemas/identifier"
-                                        }
-                                    },
-                                    "additionalProperties": false
-                                }
-                            }
-                        }
-                    },
-                    "beneficiaries": {
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "beneficiary"
-                                        },
-                                        "id": {
-                                            "$ref": "../types.json#/components/schemas/identifier"
-                                        }
-                                    },
-                                    "additionalProperties": false
-                                }
-                            }
-                        }
-                    },
-                    "beneficialOwners": {
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "beneficialOwner"
-                                        },
-                                        "id": {
-                                            "$ref": "../types.json#/components/schemas/identifier"
-                                        }
-                                    },
-                                    "additionalProperties": false
-                                }
+                            "applicationForm": {
+                                "$ref": "../relationships.json#/components/schemas/Relationship"
                             }
                         }
                     }
-                },
-                "additionalProperties": false
+                ]
             },
             "BusinessApplication": {
-                "title": "BusinessApplication",
+                "title": "Business Application",
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/application"
+                        "$ref": "#/components/schemas/Application"
                     },
                     {
                         "type": "object",
@@ -354,7 +294,7 @@
                                         "format": "date-time"
                                     },
                                     "status": {
-                                        "$ref": "../types.json#/components/schemas/applicationStatus"
+                                        "$ref": "#/components/schemas/ApplicationStatus"
                                     },
                                     "message": {
                                         "type": "string"
@@ -380,29 +320,29 @@
                                         "pattern": "^\\d{9}$"
                                     },
                                     "entityType": {
-                                        "$ref": "../types.json#/components/schemas/entityType"
+                                        "$ref": "../types.json#/components/schemas/EntityType"
                                     },
                                     "dateOfIncorporation": {
                                         "type": "string",
                                         "format": "date"
                                     },
                                     "stateOfIncorporation": {
-                                        "$ref": "../types.json#/components/schemas/state"
+                                        "$ref": "../types.json#/components/schemas/State"
                                     },
                                     "purpose": {
                                         "type": "string"
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/phone"
+                                        "$ref": "../types.json#/components/schemas/Phone"
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/address"
+                                        "$ref": "../types.json#/components/schemas/Address"
                                     },
                                     "contact": {
-                                        "$ref": "../types.json#/components/schemas/contact"
+                                        "$ref": "../types.json#/components/schemas/Contact"
                                     },
                                     "officer": {
-                                        "$ref": "#/components/schemas/officer"
+                                        "$ref": "#/components/schemas/Officer"
                                     },
                                     "ip": {
                                         "type": "string"
@@ -413,7 +353,7 @@
                                     "beneficialOwners": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "#/components/schemas/beneficialOwner"
+                                            "$ref": "#/components/schemas/BeneficialOwner"
                                         }
                                     },
                                     "decisionMethod": {
@@ -431,7 +371,7 @@
                                         "format": "date-time"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "riskRate": {
                                         "type": "string",
@@ -453,24 +393,24 @@
                                         "type": "boolean"
                                     },
                                     "industry": {
-                                        "$ref": "../types.json#/components/schemas/industry"
+                                        "$ref": "../types.json#/components/schemas/Industry"
                                     },
                                     "annualRevenue": {
-                                        "$ref": "../types.json#/components/schemas/businessAnnualRevenue"
+                                        "$ref": "../types.json#/components/schemas/BusinessAnnualRevenue"
                                     },
                                     "numberOfEmployees": {
-                                        "$ref": "../types.json#/components/schemas/businessNumberOfEmployees"
+                                        "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees"
                                     },
                                     "cashFlow": {
-                                        "$ref": "../types.json#/components/schemas/cashFlow"
+                                        "$ref": "../types.json#/components/schemas/CashFlow"
                                     },
                                     "yearOfIncorporation": {
-                                        "$ref": "../types.json#/components/schemas/year"
+                                        "$ref": "../types.json#/components/schemas/Year"
                                     },
                                     "countriesOfOperation": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "../types.json#/components/schemas/country"
+                                            "$ref": "../types.json#/components/schemas/Country"
                                         },
                                         "minItems": 1
                                     },
@@ -478,7 +418,7 @@
                                         "type": "string"
                                     },
                                     "businessVertical": {
-                                        "$ref": "../types.json#/components/schemas/businessVertical"
+                                        "$ref": "../types.json#/components/schemas/BusinessVertical"
                                     }
                                 },
                                 "additionalProperties": false,
@@ -494,7 +434,7 @@
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/applicationRelationships"
+                                "$ref": "#/components/schemas/ApplicationRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -503,11 +443,11 @@
                 ]
             },
             "IndividualApplication": {
-                "title": "IndividualApplication",
+                "title": "Individual Application",
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/application"
+                        "$ref": "#/components/schemas/Application"
                     },
                     {
                         "type": "object",
@@ -524,7 +464,7 @@
                                         "format": "date-time"
                                     },
                                     "status": {
-                                        "$ref": "../types.json#/components/schemas/applicationStatus"
+                                        "$ref": "#/components/schemas/ApplicationStatus"
                                     },
                                     "message": {
                                         "type": "string"
@@ -539,13 +479,13 @@
                                         "type": "string"
                                     },
                                     "fullName": {
-                                        "$ref": "../types.json#/components/schemas/fullName"
+                                        "$ref": "../types.json#/components/schemas/FullName"
                                     },
                                     "email": {
-                                        "$ref": "../types.json#/components/schemas/email"
+                                        "$ref": "../types.json#/components/schemas/Email"
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/phone"
+                                        "$ref": "../types.json#/components/schemas/Phone"
                                     },
                                     "ssn": {
                                         "type": "string",
@@ -555,13 +495,13 @@
                                         "type": "string"
                                     },
                                     "nationality": {
-                                        "$ref": "../types.json#/components/schemas/country"
+                                        "$ref": "../types.json#/components/schemas/Country"
                                     },
                                     "matriculaConsular": {
                                         "type": "string"
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/address"
+                                        "$ref": "../types.json#/components/schemas/Address"
                                     },
                                     "dateOfBirth": {
                                         "type": "string",
@@ -595,7 +535,7 @@
                                         "format": "date-time"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "riskRate": {
                                         "type": "string",
@@ -627,37 +567,37 @@
                                         "type": "string"
                                     },
                                     "jwtSubject": {
-                                        "$ref": "../types.json#/components/schemas/jwtSubject"
+                                        "$ref": "../types.json#/components/schemas/JwtSubject"
                                     },
                                     "archived": {
                                         "type": "boolean"
                                     },
                                     "powerOfAttorneyAgent": {
-                                        "$ref": "#/components/schemas/powerOfAttorneyAgent"
+                                        "$ref": "#/components/schemas/PowerOfAttorneyAgent"
                                     },
                                     "industry": {
-                                        "$ref": "../types.json#/components/schemas/industry"
+                                        "$ref": "../types.json#/components/schemas/Industry"
                                     },
                                     "idTheftScore": {
                                         "type": "integer"
                                     },
                                     "occupation": {
-                                        "$ref": "../types.json#/components/schemas/occupation"
+                                        "$ref": "../types.json#/components/schemas/Occupation"
                                     },
                                     "annualIncome": {
-                                        "$ref": "../types.json#/components/schemas/annualIncome"
+                                        "$ref": "../types.json#/components/schemas/AnnualIncome"
                                     },
                                     "sourceOfIncome": {
-                                        "$ref": "../types.json#/components/schemas/sourceOfIncome"
+                                        "$ref": "../types.json#/components/schemas/SourceOfIncome"
                                     },
                                     "annualRevenue": {
-                                        "$ref": "../types.json#/components/schemas/soleProprietorshipAnnualRevenue"
+                                        "$ref": "../types.json#/components/schemas/SoleProprietorshipAnnualRevenue"
                                     },
                                     "numberOfEmployees": {
-                                        "$ref": "../types.json#/components/schemas/soleProprietorshipNumberOfEmployees"
+                                        "$ref": "../types.json#/components/schemas/SoleProprietorshipNumberOfEmployees"
                                     },
                                     "businessVertical": {
-                                        "$ref": "../types.json#/components/schemas/businessVertical"
+                                        "$ref": "../types.json#/components/schemas/BusinessVertical"
                                     },
                                     "website": { "type": "string" }
                                 },
@@ -665,7 +605,7 @@
                                 "required": ["createdAt", "status", "fullName"]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/applicationRelationships"
+                                "$ref": "#/components/schemas/ApplicationRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -674,11 +614,11 @@
                 ]
             },
             "TrustApplication": {
-                "title": "TrustApplication",
+                "title": "Trust Application",
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/application"
+                        "$ref": "#/components/schemas/Application"
                     },
                     {
                         "type": "object",
@@ -695,7 +635,7 @@
                                         "format": "date-time"
                                     },
                                     "status": {
-                                        "$ref": "../types.json#/components/schemas/applicationStatus"
+                                        "$ref": "#/components/schemas/ApplicationStatus"
                                     },
                                     "message": {
                                         "type": "string"
@@ -717,28 +657,28 @@
                                         "format": "date"
                                     },
                                     "stateOfIncorporation": {
-                                        "$ref": "../types.json#/components/schemas/state"
+                                        "$ref": "../types.json#/components/schemas/State"
                                     },
                                     "revocability": {
-                                        "$ref": "../types.json#/components/schemas/revocability"
+                                        "$ref": "../types.json#/components/schemas/Revocability"
                                     },
                                     "sourceOfFunds": {
-                                        "$ref": "../types.json#/components/schemas/sourceOfFunds"
+                                        "$ref": "../types.json#/components/schemas/SourceOfFunds"
                                     },
                                     "taxId": {
                                         "type": "string"
                                     },
                                     "contact": {
-                                        "$ref": "../types.json#/components/schemas/trustContact"
+                                        "$ref": "../types.json#/components/schemas/TrustContact"
                                     },
                                     "trustees": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "../types.json#/components/schemas/trustee"
+                                            "$ref": "../types.json#/components/schemas/Trustee"
                                         }
                                     },
                                     "grantor": {
-                                        "$ref": "../types.json#/components/schemas/grantor"
+                                        "$ref": "../types.json#/components/schemas/Grantor"
                                     },
                                     "ip": {
                                         "type": "string"
@@ -758,7 +698,7 @@
                                         "format": "date-time"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "riskRate": {
                                         "type": "string",
@@ -790,7 +730,7 @@
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/applicationRelationships"
+                                "$ref": "#/components/schemas/ApplicationRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -798,12 +738,12 @@
                     }
                 ]
             },
-            "application": {
+            "Application": {
                 "title": "Application",
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "type": {
                         "type": "string"

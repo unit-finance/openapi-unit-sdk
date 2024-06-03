@@ -1,0 +1,53 @@
+{
+    "components": {
+        "schemas": {
+            "CounterpartyBalanceRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Counterparty Balance Relationships",
+                        "required": ["customer", "counterparty"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    }
+                ]
+            },
+            "CounterpartyBalance": {
+                "title": "Counterparty Balance",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "counterpartyBalance"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "balance": {
+                                "type": "number"
+                            },
+                            "available": {
+                                "type": "number"
+                            }
+                        },
+                        "required": ["balance"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CounterpartyBalanceRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "relationships"]
+            }
+        }
+    }
+}

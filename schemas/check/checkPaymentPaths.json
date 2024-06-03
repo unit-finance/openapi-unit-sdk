@@ -1,0 +1,398 @@
+{
+    "components": {
+        "schemas": {
+            "UnitCheckPaymentResponse": {
+                "type": "object",
+                "title": "Unit Check Payment Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./checkPayment.json#/components/schemas/CheckPayment"
+                    }
+                }
+            }
+        }
+    },
+    "checkPayments": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPaymentsList",
+            "summary": "Get List Check Payments",
+            "description": "Get List Check Payments from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "New",
+                                        "Pending",
+                                        "Canceled",
+                                        "Rejected",
+                                        "InDelivery",
+                                        "InProduction",
+                                        "Delivered",
+                                        "ReturnedToSender",
+                                        "Pending",
+                                        "Processed",
+                                        "PendingReview",
+                                        "MarkedForReturn",
+                                        "Returned"
+                                    ]
+                                }
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "fromAmount": {
+                                "type": "integer"
+                            },
+                            "toAmount": {
+                                "type": "integer"
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit List Check Payments Response",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./checkPayment.json#/components/schemas/CheckPayment"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createCheckPayment",
+
+            "summary": "Create Check Payment",
+            "description": "Create Check Payment via API ",
+            "requestBody": {
+                "description": "Create Check Payment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCheckPayment.json#/components/schemas/CreateCheckPaymentRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "checkPayment": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to get"
+                }
+            ],
+            "summary": "Get Check Payment by Id",
+            "description": "Get a Check Payment from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "checkPaymentApprove": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "approveCheckPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to approve"
+                }
+            ],
+            "requestBody": {
+                "description": "Approve Check Payment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "Approve Check Payment Request",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "additionalVerification"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "summary": "Approve Check Payment by Id",
+            "description": "Approve a Check Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "checkPaymentReturn": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "returnCheckPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to return"
+                }
+            ],
+            "requestBody": {
+                "description": "Return Check Payment Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "Return Check Payment Request",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "checkPaymentReturn"
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "reason": {
+                                                    "$ref": "./checkPayment.json#/components/schemas/ReturnReason"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "summary": "Return Check Payment by Id",
+            "description": "Return a Check Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "checkPaymentCancel": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "cancelCheckPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment to cancel"
+                }
+            ],
+            "summary": "Cancel Check Payment by Id",
+            "description": "Cancel a Check Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "getCheckPaymentFront": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPaymentFront",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment"
+                }
+            ],
+            "summary": "Get front image",
+            "description": "Get front image via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "image/png": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "getCheckPaymentBack": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCheckPaymentBack",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkPaymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check payment"
+                }
+            ],
+            "summary": "Get back image",
+            "description": "Get back image via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "image/png": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

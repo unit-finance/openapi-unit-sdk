@@ -1,11 +1,32 @@
 {
     "components": {
         "schemas": {
-            "authorizationRelationships": {
-                "type": "object",
-                "title": "authorizationRelationships"
+            "AuthorizationRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Authorization Relationships",
+                        "required": ["account", "card"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRequestRelationship"
+                    }
+                ]
             },
-            "authorization": {
+            "Authorization": {
                 "title": "Authorization Document",
                 "type": "object",
                 "properties": {
@@ -14,7 +35,7 @@
                         "default": "authorization"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -30,7 +51,7 @@
                                 "type": "string"
                             },
                             "merchant": {
-                                "$ref": "../types.json#/components/schemas/merchant"
+                                "$ref": "../types.json#/components/schemas/Merchant"
                             },
                             "recurring": {
                                 "type": "boolean"
@@ -42,7 +63,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "paymentMethod": {
                                 "type": "string"
@@ -54,7 +75,7 @@
                                 "type": "string"
                             },
                             "cardVerificationData": {
-                                "$ref": "../types.json#/components/schemas/cardVerificationData"
+                                "$ref": "../types.json#/components/schemas/CardVerificationData"
                             },
                             "cardNetwork": {
                                 "type": "string"
@@ -74,7 +95,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/authorizationRelationships"
+                        "$ref": "#/components/schemas/AuthorizationRelationships"
                     }
                 },
                 "additionalProperties": false,

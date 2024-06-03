@@ -1,7 +1,7 @@
 {
     "components": {
         "schemas": {
-            "createRecurringCreditAchPayment": {
+            "CreateRecurringCreditAchPayment": {
                 "title": "Create Recurring Credit ACH Payment",
                 "type": "object",
                 "properties": {
@@ -32,33 +32,23 @@
                                 "maxLength": 255
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "schedule": {
-                                "$ref": "#/components/schemas/schedule"
+                                "$ref": "../types.json#/components/schemas/CreateSchedule"
                             }
                         },
                         "required": ["amount", "description", "schedule"],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "./createPayment.json#/components/schemas/accountRelationship"
-                            },
-                            "counterparty": {
-                                "$ref": "./createPayment.json#/components/schemas/counterpartyRelationship"
-                            }
-                        },
-                        "required": ["account", "counterparty"],
-                        "additionalProperties": false
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
                     }
                 },
                 "additionalProperties": false,
                 "required": ["type", "attributes", "relationships"]
             },
-            "createRecurringDebitAchPayment": {
+            "CreateRecurringDebitAchPayment": {
                 "title": "Create Recurring Debit ACH Payment",
                 "type": "object",
                 "properties": {
@@ -97,10 +87,10 @@
                                 "default": false
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "schedule": {
-                                "$ref": "#/components/schemas/schedule"
+                                "$ref": "../types.json#/components/schemas/CreateSchedule"
                             },
                             "clearingDaysOverride": {
                                 "type": "integer",
@@ -111,23 +101,13 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "./createPayment.json#/components/schemas/accountRelationship"
-                            },
-                            "counterparty": {
-                                "$ref": "./createPayment.json#/components/schemas/counterpartyRelationship"
-                            }
-                        },
-                        "required": ["account", "counterparty"],
-                        "additionalProperties": false
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
                     }
                 },
                 "additionalProperties": false,
                 "required": ["type", "attributes", "relationships"]
             },
-            "createRecurringCreditBookPayment": {
+            "CreateRecurringCreditBookPayment": {
                 "title": "Create Recurring Credit Book Payment",
                 "type": "object",
                 "properties": {
@@ -153,7 +133,7 @@
                                 "maxLength": 255
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "transactionSummaryOverride": {
                                 "type": "string",
@@ -161,91 +141,32 @@
                                 "maxLength": 100
                             },
                             "schedule": {
-                                "$ref": "#/components/schemas/schedule"
+                                "$ref": "../types.json#/components/schemas/CreateSchedule"
                             }
                         },
                         "required": ["amount", "description", "schedule"],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "$ref": "./createPayment.json#/components/schemas/accountRelationship"
-                            },
-                            "counterpartyAccount": {
-                                "$ref": "./createPayment.json#/components/schemas/counterpartyAccountRelationship"
-                            }
-                        },
-                        "required": ["account", "counterpartyAccount"],
-                        "additionalProperties": false
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
                     }
                 },
                 "additionalProperties": false,
                 "required": ["type", "attributes", "relationships"]
             },
-            "schedule": {
-                "title": "schedule",
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/monthlySchedule"
-                    }
-                ]
-            },
-            "monthlySchedule": {
-                "title": "Create Monthly Schedule",
-                "type": "object",
-                "properties": {
-                    "startTime": {
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "endTime": {
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "dayOfMonth": {
-                        "type": "integer",
-                        "minimum": -5,
-                        "maximum": 28
-                    },
-                    "dayOfWeek": {
-                        "type": "string",
-                        "enum": [
-                            "Sunday",
-                            "Monday",
-                            "Tuesday",
-                            "Wednesday",
-                            "Thursday",
-                            "Friday",
-                            "Saturday"
-                        ]
-                    },
-                    "interval": {
-                        "type": "string",
-                        "enum": ["Monthly", "Weekly"]
-                    },
-                    "totalNumberOfPayments": {
-                        "type": "integer",
-                        "minimum": 1
-                    }
-                },
-                "required": ["interval"],
-                "additionalProperties": false
-            },
-            "createRecurringPayment": {
+            "CreateRecurringPaymentRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
                         "oneOf": [
                             {
-                                "$ref": "#/components/schemas/createRecurringCreditAchPayment"
+                                "$ref": "#/components/schemas/CreateRecurringCreditAchPayment"
                             },
                             {
-                                "$ref": "#/components/schemas/createRecurringDebitAchPayment"
+                                "$ref": "#/components/schemas/CreateRecurringDebitAchPayment"
                             },
                             {
-                                "$ref": "#/components/schemas/createRecurringCreditBookPayment"
+                                "$ref": "#/components/schemas/CreateRecurringCreditBookPayment"
                             }
                         ]
                     }

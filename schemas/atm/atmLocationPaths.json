@@ -1,0 +1,51 @@
+{
+    "listAtmLocations": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getAtmLocationsList",
+            "summary": "Get List of ATM Locations",
+            "description": "Get List ATM Locations from API ",
+            "parameters": [
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "coordinates": {
+                                "type": "object"
+                            },
+                            "searchRadius": {
+                                "type": "integer"
+                            },
+                            "postalCode": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "array",
+                                "title": "Unit Atm Locations List Response",
+                                "items": {
+                                    "$ref": "./atmLocation.json#/components/schemas/AtmLocation"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

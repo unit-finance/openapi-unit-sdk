@@ -32,12 +32,7 @@
                         "required": ["creditTerms", "creditLimit"]
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "customer": {
-                                "$ref": "../customer/customer.json#/components/schemas/customerLinkage"
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
                 }
             },
@@ -69,20 +64,19 @@
                         "required": ["depositProduct"]
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "customer": {
-                                "$ref": "../customer/customer.json#/components/schemas/customerLinkage"
+                        "allOf": [
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                             },
-                            "customers": {
-                                "$ref": "../types.json#/components/schemas/customersRelationship"
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
                             }
-                        }
+                        ]
                     }
                 },
                 "additionalProperties": false
             },
-            "createAccount": {
+            "CreateAccountRequest": {
                 "type": "object",
                 "properties": {
                     "data": {

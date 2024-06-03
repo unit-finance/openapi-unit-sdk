@@ -6,7 +6,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/account"
+                        "$ref": "#/components/schemas/Account"
                     },
                     {
                         "type": "object",
@@ -67,14 +67,22 @@
                                         "type": "integer"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "status": {
                                         "enum": ["Open", "Closed", "Frozen"]
                                     },
                                     "closeReason": {
                                         "type": "string",
-                                        "enum": ["ByCustomer", "Fraud"]
+                                        "enum": [
+                                            "ByCustomer",
+                                            "Fraud",
+                                            "NegativeBalance",
+                                            "ByBank",
+                                            "BreachOfTermsAndConditions",
+                                            "NoAccountActivity",
+                                            "ProgramChange"
+                                        ]
                                     },
                                     "fraudReason": {
                                         "type": "string",
@@ -126,14 +134,16 @@
                                 ]
                             },
                             "relationships": {
-                                "type": "object",
-                                "title": "depositAccountRelationships",
-                                "properties": {
-                                    "customer": {
-                                        "$ref": "../customer/customer.json#/components/schemas/customerLinkage"
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Deposit Account Relationships",
+                                        "additionalProperties": true
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                                     }
-                                },
-                                "additionalProperties": true
+                                ]
                             }
                         },
                         "additionalProperties": false,
@@ -146,7 +156,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/account"
+                        "$ref": "#/components/schemas/Account"
                     },
                     {
                         "type": "object",
@@ -178,7 +188,7 @@
                                         "type": "integer"
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "status": {
                                         "enum": ["Open", "Closed", "Frozen"]
@@ -188,7 +198,12 @@
                                         "enum": [
                                             "ByCustomer",
                                             "Fraud",
-                                            "Overdue"
+                                            "Overdue",
+                                            "NegativeBalance",
+                                            "ByBank",
+                                            "BreachOfTermsAndConditions",
+                                            "NoAccountActivity",
+                                            "ProgramChange"
                                         ]
                                     },
                                     "fraudReason": {
@@ -235,15 +250,17 @@
                                 ]
                             },
                             "relationships": {
-                                "type": "object",
-                                "title": "creditAccountRelationships",
-                                "properties": {
-                                    "customer": {
-                                        "$ref": "../customer/customer.json#/components/schemas/customerLinkage"
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Credit Account Relationships",
+                                        "additionalProperties": true,
+                                        "required": ["customer"]
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                                     }
-                                },
-                                "additionalProperties": true,
-                                "required": ["customer"]
+                                ]
                             }
                         },
                         "additionalProperties": false,
@@ -251,16 +268,16 @@
                     }
                 ]
             },
-            "orgGeneralLedgerAccount": {
+            "OrgGeneralLedgerAccount": {
                 "title": "Org General Ledger Account",
                 "type": "object",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "default": "orgGeneralLedgerAccount"
+                        "default": "OrgGeneralLedgerAccount"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -300,7 +317,7 @@
                                 "enum": ["Open", "Closed"]
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "additionalProperties": false,
@@ -316,16 +333,16 @@
                     }
                 }
             },
-            "glAccount": {
+            "GlAccount": {
                 "title": "General Ledger Account",
                 "type": "object",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "default": "glAccount"
+                        "default": "GlAccount"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -391,16 +408,16 @@
                     }
                 }
             },
-            "batchAccount": {
+            "BatchAccount": {
                 "title": "Batch Account",
                 "type": "object",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "default": "batchAccount"
+                        "default": "BatchAccount"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -473,22 +490,24 @@
                         ]
                     },
                     "relationships": {
-                        "type": "object",
-                        "properties": {
-                            "org": {
-                                "$ref": "../types.json#/components/schemas/orgRelationship"
+                        "allOf": [
+                            {
+                                "type": "object",
+                                "required": ["org"]
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/OrgRelationship"
                             }
-                        },
-                        "required": ["org"]
+                        ]
                     }
                 }
             },
-            "account": {
+            "Account": {
                 "title": "Account Document",
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "type": {
                         "type": "string"

@@ -1,7 +1,7 @@
 {
     "components": {
         "schemas": {
-            "requireIdVerification": {
+            "RequireIdVerification": {
                 "type": "object",
                 "properties": {
                     "individual": {
@@ -19,7 +19,7 @@
                 },
                 "additionalProperties": false
             },
-            "createApplicationForm": {
+            "CreateApplicationFormRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -33,16 +33,16 @@
                                 "type": "object",
                                 "properties": {
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     },
                                     "applicantDetails": {
-                                        "$ref": "./application_form.json#/components/schemas/ApplicationFormPrefill"
+                                        "$ref": "./applicationForm.json#/components/schemas/ApplicationFormPrefill"
                                     },
                                     "settingsOverride": {
-                                        "$ref": "./application_form.json#/components/schemas/ApplicationFormSettingsOverride"
+                                        "$ref": "./applicationForm.json#/components/schemas/ApplicationFormSettingsOverride"
                                     },
                                     "requireIdVerification": {
-                                        "$ref": "#/components/schemas/requireIdVerification"
+                                        "$ref": "#/components/schemas/RequireIdVerification"
                                     },
                                     "allowedApplicationTypes": {
                                         "type": "array",
@@ -66,15 +66,17 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "type": "object",
-                                "title": "createApplicationFormRelationships",
-                                "properties": {
-                                    "application": {
-                                        "$ref": "../types.json#/components/schemas/Relationship"
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Create Application Form Relationships",
+                                        "required": ["application"],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
                                     }
-                                },
-                                "required": ["application"],
-                                "additionalProperties": false
+                                ]
                             }
                         },
                         "additionalProperties": false,

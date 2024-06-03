@@ -1,15 +1,17 @@
 {
     "components": {
         "schemas": {
-            "createCounterpartyRelationships": {
-                "type": "object",
-                "properties": {
-                    "customer": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+            "CreateCounterpartyRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["customer"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
-                },
-                "required": ["customer"],
-                "additionalProperties": false
+                ]
             },
             "CreateAchCounterparty": {
                 "title": "Create Ach Counterparty",
@@ -47,7 +49,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
                                 "type": "string"
@@ -63,7 +65,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/createCounterpartyRelationships"
+                        "$ref": "#/components/schemas/CreateCounterpartyRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -91,7 +93,7 @@
                                 "default": false
                             },
                             "plaidProcessorToken": {
-                                "$ref": "../types.json#/components/schemas/plaidProcessorToken"
+                                "$ref": "../types.json#/components/schemas/PlaidProcessorToken"
                             },
                             "permissions": {
                                 "type": "string",
@@ -102,7 +104,7 @@
                                 ]
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
                                 "type": "string"
@@ -112,13 +114,13 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/createCounterpartyRelationships"
+                        "$ref": "#/components/schemas/CreateCounterpartyRelationships"
                     }
                 },
                 "additionalProperties": false,
                 "required": ["type", "attributes", "relationships"]
             },
-            "createCounterparty": {
+            "CreateCounterpartyRequest": {
                 "type": "object",
                 "properties": {
                     "data": {

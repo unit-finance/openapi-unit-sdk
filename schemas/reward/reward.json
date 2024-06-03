@@ -1,70 +1,41 @@
 {
     "components": {
         "schemas": {
-            "rewardRelationships": {
-                "type": "object",
-                "properties": {
-                    "receivingAccount": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "fundingAccount": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "customer": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "rewardedTransaction": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
-                    },
-                    "transaction": {
+            "RewardRelationships": {
+                "allOf": [
+                    {
                         "type": "object",
-                        "title": "transactionRelationship",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "transaction"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
+                        "required": [
+                            "receivingAccount",
+                            "fundingAccount",
+                            "customer"
+                        ],
                         "additionalProperties": false
                     },
-                    "card": {
-                        "title": "cardRelationship",
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "card"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/FundingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RewardedTransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
                     }
-                },
-                "required": ["receivingAccount", "fundingAccount", "customer"],
-                "additionalProperties": false
+                ]
             },
-            "reward": {
+            "Reward": {
                 "title": "Reward",
                 "type": "object",
                 "properties": {
@@ -73,7 +44,7 @@
                         "default": "reward"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -98,7 +69,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "required": [
@@ -111,7 +82,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/rewardRelationships"
+                        "$ref": "#/components/schemas/RewardRelationships"
                     }
                 },
                 "required": ["type", "id", "relationships", "attributes"],

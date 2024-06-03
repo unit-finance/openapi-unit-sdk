@@ -1,18 +1,20 @@
 {
     "components": {
         "schemas": {
-            "feeRelationships": {
-                "type": "object",
-                "title": "feeRelationships",
-                "properties": {
-                    "account": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+            "FeeRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Fee Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                     }
-                },
-                "required": ["account"],
-                "additionalProperties": false
+                ]
             },
-            "fee": {
+            "Fee": {
                 "title": "Fee",
                 "type": "object",
                 "properties": {
@@ -21,7 +23,7 @@
                         "default": "fee"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -35,14 +37,14 @@
                                 "maxLength": 50
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
                         "required": ["amount", "description"],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/feeRelationships"
+                        "$ref": "#/components/schemas/FeeRelationships"
                     }
                 }
             }

@@ -1,0 +1,803 @@
+{
+    "components": {
+        "schemas": {
+            "UnitApplicationResponse": {
+                "type": "object",
+                "title": "Unit Application Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./application.json#/components/schemas/Application"
+                    }
+                }
+            },
+            "UnitDocumentResponse": {
+                "type": "object",
+                "title": "Unit Document Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./document.json#/components/schemas/ApplicationDocument"
+                    }
+                }
+            },
+            "UnitApplicationResponseWithIncluded": {
+                "type": "object",
+                "title": "Unit Application Response With Included",
+                "properties": {
+                    "data": {
+                        "$ref": "./application.json#/components/schemas/Application"
+                    },
+                    "included": {
+                        "$ref": "../types.json#/components/schemas/IncludedResource"
+                    }
+                }
+            }
+        }
+    },
+    "application": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getApplication",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to get"
+                },
+                {
+                    "name": "included",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "summary": "Get Application by Id",
+            "description": "Get an Application from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitApplicationResponseWithIncluded"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "tags": ["unit"],
+            "operationId": "updateApplication",
+            "summary": "Update Application",
+            "description": "Update an Application via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Application Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./updateApplication.json#/components/schemas/UpdateApplicationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitApplicationResponseWithIncluded"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "cancelApplication": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "cancelApplication",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to get"
+                }
+            ],
+            "summary": "Cancel Application by Id",
+            "description": "Cancel a Application via API ",
+            "requestBody": {
+                "description": "Cancel Application Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "Cancel Application Request",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": ["cancelApplication"]
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "reason": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Cancel Application Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./application.json#/components/schemas/Application"
+                                    },
+                                    "included": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./document.json#/components/schemas/ApplicationDocument"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "applications": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getApplicationsList",
+            "summary": "Get List Application",
+            "description": "Get List Applications from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "AwaitingDocuments",
+                                        "PendingReview",
+                                        "Pending",
+                                        "Approved",
+                                        "Denied",
+                                        "Canceled"
+                                    ]
+                                }
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit List Applications Response",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./application.json#/components/schemas/Application"
+                                        }
+                                    },
+                                    "meta": {
+                                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createApplication",
+            "summary": "Create Application",
+            "description": "Create an Application via API ",
+            "requestBody": {
+                "description": "Create Application Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createApplication.json#/components/schemas/CreateApplicationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Create Application Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./application.json#/components/schemas/Application"
+                                    },
+                                    "included": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./document.json#/components/schemas/ApplicationDocument"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "applicationForms": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getApplicationForms",
+            "summary": "Get List Application Forms",
+            "description": "Get List Application Forms from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "query": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["Pending", "Approved"]
+                                }
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Application Forms List Response",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./applicationForm.json#/components/schemas/ApplicationForm"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createApplicationForm",
+            "summary": "Create Application Form",
+            "description": "Create an Application Form via API ",
+            "requestBody": {
+                "description": "Create Application Form Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createApplicationForm.json#/components/schemas/CreateApplicationFormRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Application Form Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./applicationForm.json#/components/schemas/ApplicationForm"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "applicationForm": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getApplicationForm",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationFormId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application form to get"
+                },
+                {
+                    "name": "included",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "summary": "Get ApplicationForm by Id",
+            "description": "Get an Application Form from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Application Form Response With Included",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./applicationForm.json#/components/schemas/ApplicationForm"
+                                    },
+                                    "included": {
+                                        "$ref": "./application.json#/components/schemas/Application"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "uploadApplicationDocumentFile": {
+        "put": {
+            "tags": ["unit"],
+            "operationId": "uploadApplicationDocumentFile",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to upload a file to"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "documentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the document to upload a file for"
+                }
+            ],
+            "summary": "Upload an application document file. Supports PDF, PNG and JPG files",
+            "requestBody": {
+                "description": "An application document file. Supports PDF, PNG and JPG files",
+                "required": true,
+                "content": {
+                    "application/pdf": {
+                        "schema": {
+                            "type": "object",
+                            "description": "PDF file"
+                        }
+                    },
+                    "image/png": {
+                        "schema": {
+                            "type": "object",
+                            "description": "PNG file"
+                        }
+                    },
+                    "image/jpeg": {
+                        "schema": {
+                            "type": "object",
+                            "description": "JPG file"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "applicationPaths.json#/components/schemas/UnitDocumentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "uploadApplicationDocumentFileBack": {
+        "put": {
+            "tags": ["unit"],
+            "operationId": "uploadApplicationDocumentFileBackSide",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to upload a file to"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "documentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the document to upload a file for"
+                }
+            ],
+            "summary": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
+            "description": "Upload an application file via API - Back Side. Supports PDF, PNG and JPG files",
+            "requestBody": {
+                "description": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
+                "required": true,
+                "content": {
+                    "application/pdf": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "image/png": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "image/jpeg": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "applicationPaths.json#/components/schemas/UnitDocumentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "documents": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getApplicationDocuments",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to get documents for"
+                }
+            ],
+            "summary": "Get List of Documents",
+            "description": "Get List of Documents via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit List Documents Response",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./document.json#/components/schemas/ApplicationDocument"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createApplicationDocument",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to create a file for"
+                }
+            ],
+            "summary": "Create a document",
+            "description": "Create a document via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "applicationPaths.json#/components/schemas/UnitDocumentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "verifyDocument": {
+        "put": {
+            "tags": ["unit"],
+            "operationId": "verifyApplicationDocument",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to verify a file for"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "documentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the document to verify"
+                }
+            ],
+            "summary": "Verify a document",
+            "description": "Verify a document via API ",
+            "requestBody": {
+                "description": "Verify Document",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "title": "Verify Document",
+                            "properties": {
+                                "jobId": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "applicationPaths.json#/components/schemas/UnitDocumentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "downloadDocument": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "downloadApplicationDocument",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "documentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the document to download"
+                }
+            ],
+            "summary": "Download a Document",
+            "description": "Download a Document via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "downloadBackSideDocument": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "downloadApplicationBackSideDocument",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "documentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the document to download"
+                }
+            ],
+            "summary": "Download a Document - Back Side",
+            "description": "Download a Document - Back Side via API",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

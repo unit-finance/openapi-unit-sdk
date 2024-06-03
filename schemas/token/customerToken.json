@@ -1,0 +1,29 @@
+{
+    "components": {
+        "schemas": {
+            "CustomerToken": {
+                "title": "CustomerToken",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "customerToken"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "token": {
+                                "type": "string"
+                            },
+                            "expiresIn": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

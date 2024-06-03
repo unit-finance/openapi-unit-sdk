@@ -1,17 +1,19 @@
 {
     "components": {
         "schemas": {
-            "createCheckDepositRelationships": {
-                "type": "object",
-                "properties": {
-                    "account": {
-                        "$ref": "../types.json#/components/schemas/Relationship"
+            "CreateCheckDepositRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
                     }
-                },
-                "required": ["account"],
-                "additionalProperties": false
+                ]
             },
-            "createCheckDeposit": {
+            "CreateCheckDepositRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -40,14 +42,14 @@
                                         "maxLength": 255
                                     },
                                     "tags": {
-                                        "$ref": "../tags.json#/components/schemas/tags"
+                                        "$ref": "../types.json#/components/schemas/Tags"
                                     }
                                 },
                                 "required": ["amount", "description"],
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/createCheckDepositRelationships"
+                                "$ref": "#/components/schemas/CreateCheckDepositRelationships"
                             }
                         },
                         "required": ["type", "attributes", "relationships"]

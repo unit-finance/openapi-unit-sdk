@@ -1,0 +1,275 @@
+{
+    "components": {
+        "schemas": {
+            "OrgRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["org"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
+            },
+            "ApplicationFormAdditionalDisclosures": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "$ref": "../types.json#/components/schemas/Url"
+                        }
+                    }
+                }
+            },
+            "ApplicationFormValidatePhoneNumber": {
+                "type": "boolean",
+                "default": true
+            },
+            "ApplicationFormSettings": {
+                "type": "object",
+                "properties": {
+                    "applicationFormCustomCss": {
+                        "type": "string"
+                    },
+                    "applicationFormLogo": {
+                        "type": "string"
+                    },
+                    "applicationFormFavicon": {
+                        "type": "string"
+                    },
+                    "applicationFormBrandName": {
+                        "type": "string"
+                    },
+                    "applicationFormRedirectUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormRedirectButtonText": {
+                        "type": "string"
+                    },
+                    "applicationFormPrivacyPolicyUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormElectronicDisclosuresUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormDepositTermsUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormClientTermsUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormCardholderTermsUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormCashAdvancedTermsUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormDebitCardDisclosureUrl": {
+                        "type": "string"
+                    },
+                    "applicationFormContactUsEmail": {
+                        "type": "string"
+                    },
+                    "applicationFormAdditionalDisclosures": {
+                        "$ref": "#/components/schemas/ApplicationFormAdditionalDisclosures"
+                    },
+                    "applicationFormValidatePhoneNumber": {
+                        "$ref": "#/components/schemas/ApplicationFormValidatePhoneNumber"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ApplicationFormDomainSettings": {
+                "type": "object",
+                "properties": {
+                    "applicationFormDomain": {
+                        "type": "string"
+                    },
+                    "applicationFormCertificateStatus": {
+                        "type": "string",
+                        "enum": ["Verified", "Unverified"],
+                        "nullable": true
+                    }
+                }
+            },
+            "OrgSettings": {
+                "title": "Org Settings",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "orgSettings"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "samlSettings": {
+                                "type": "object",
+                                "properties": {
+                                    "orgWorkspace": {
+                                        "type": "string"
+                                    },
+                                    "entryPoint": {
+                                        "type": "string"
+                                    },
+                                    "cert": {
+                                        "type": "string"
+                                    },
+                                    "signatureAlgorithm": {
+                                        "type": "string"
+                                    },
+                                    "enforceSSOLogin": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "orgWorkspace",
+                                    "entryPoint",
+                                    "cert",
+                                    "signatureAlgorithm"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "jwtSettings": {
+                                "type": "object",
+                                "properties": {
+                                    "provider": {
+                                        "enum": ["Auth0", "Cognito", "Stytch"]
+                                    },
+                                    "jwksPath": {
+                                        "type": "string"
+                                    },
+                                    "issuer": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["provider", "jwksPath"],
+                                "additionalProperties": false
+                            },
+                            "plaidSecretsSet": {
+                                "type": "boolean"
+                            },
+                            "orgApiVersion": {
+                                "type": "string"
+                            },
+                            "dashboardSettings": {
+                                "title": "Dashboard Settings",
+                                "type": "object",
+                                "properties": {
+                                    "whitelistSourceIps": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "statementsSettings": {
+                                "type": "object",
+                                "properties": {
+                                    "statementFont": {
+                                        "type": "string",
+                                        "pattern": "([^)]+?.(woff|eot|woff2|ttf|svg)[^\"]*)"
+                                    },
+                                    "statementLogo": {
+                                        "type": "string"
+                                    },
+                                    "statementHeaderBackground": {
+                                        "type": "string",
+                                        "pattern": "^[0-9a-fA-f]{6,8}$"
+                                    },
+                                    "statementHeaderColor": {
+                                        "type": "string",
+                                        "pattern": "^[0-9a-fA-f]{6,8}$"
+                                    },
+                                    "statementPhone": {
+                                        "type": "string",
+                                        "pattern": "^[0-9]{10}$"
+                                    },
+                                    "statementEmail": {
+                                        "$ref": "../types.json#/components/schemas/Email"
+                                    },
+                                    "statementRepresentativeName": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": ["statementPhone", "statementEmail"]
+                            },
+                            "applicationFormSettings": {
+                                "$ref": "#/components/schemas/ApplicationFormSettings"
+                            },
+                            "applicationFormDomainSettings": {
+                                "$ref": "#/components/schemas/ApplicationFormDomainSettings"
+                            },
+                            "generalSettings": {
+                                "title": "General Settings",
+                                "type": "object",
+                                "properties": {
+                                    "preventDuplicateIndividualApplications": {
+                                        "type": "boolean"
+                                    },
+                                    "showSensitiveDataForPhysicalCards": {
+                                        "type": "boolean"
+                                    },
+                                    "enableTagInheritanceForCards": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "pushToCardSettings": {
+                                "title": "Push To Card Settings",
+                                "type": "object",
+                                "properties": {
+                                    "astraPushToCardEnabled": {
+                                        "type": "boolean"
+                                    },
+                                    "astraOperationalAccountId": {
+                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "required": ["generalSettings", "createdAt"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/OrgRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "relationships", "attributes"]
+            }
+        },
+        "title": "Org Settings Document",
+        "type": "object",
+        "properties": {
+            "data": {
+                "$ref": "#/components/schemas/OrgSettings"
+            },
+            "meta": {
+                "$ref": "../types.json#/components/schemas/PaginationMeta"
+            }
+        },
+        "additionalProperties": false,
+        "required": ["data"]
+    }
+}

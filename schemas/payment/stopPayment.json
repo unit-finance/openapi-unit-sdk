@@ -1,0 +1,79 @@
+{
+    "components": {
+        "schemas": {
+            "StopPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "customer"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CheckPaymentsRelationship"
+                    }
+                ]
+            },
+            "StopPayment": {
+                "title": "Stop Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "stopPayment"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": ["Active", "Disabled"]
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "amount",
+                            "checkNumber"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/StopPaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "attributes", "relationships"]
+            }
+        }
+    }
+}

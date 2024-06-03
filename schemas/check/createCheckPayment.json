@@ -1,127 +1,89 @@
 {
     "components": {
         "schemas": {
-            "relationships": {
-                "type": "object",
-                "properties": {
-                    "account": {
+            "CreateCheckPaymentRelationships": {
+                "allOf": [
+                    {
                         "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": ["account", "depositAccount"]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"]
-                            }
-                        }
+                        "required": ["account", "customer"]
                     },
-                    "customer": {
-                        "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "businessCustomer",
-                                            "individualCustomer"
-                                        ]
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
-                        "additionalProperties": false
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
-                },
-                "required": ["account", "customer"]
+                ]
             },
-            "checkPayment": {
-                "title": "Check Payment",
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "checkPayment"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "counterparty": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "maxLength": 40
-                                    },
-                                    "address": {
-                                        "$ref": "../types.json#/components/schemas/address"
-                                    },
-                                    "counterpartyMoved": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": ["name", "address"],
-                                "additionalProperties": false
-                            },
-                            "amount": {
-                                "type": "integer",
-                                "minimum": 1
-                            },
-                            "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
-                            },
-                            "sendDate": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "memo": {
-                                "type": "string"
-                            },
-                            "description": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 50
-                            },
-                            "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
-                            }
-                        },
-                        "required": [
-                            "counterparty",
-                            "amount",
-                            "idempotencyKey",
-                            "description"
-                        ],
-                        "additionalProperties": false
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/relationships"
-                    }
-                },
-                "required": ["type", "attributes", "relationships"],
-                "additionalProperties": false
-            },
-            "createCheckPayment": {
+            "CreateCheckPaymentRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
-                        "$ref": "#/components/schemas/checkPayment"
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "default": "checkPayment"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "counterparty": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "maxLength": 40
+                                            },
+                                            "address": {
+                                                "$ref": "../types.json#/components/schemas/Address"
+                                            },
+                                            "counterpartyMoved": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "required": ["name", "address"],
+                                        "additionalProperties": false
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "idempotencyKey": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 255
+                                    },
+                                    "sendDate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "memo": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 50
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "required": [
+                                    "counterparty",
+                                    "amount",
+                                    "idempotencyKey",
+                                    "description"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CreateCheckPaymentRelationships"
+                            }
+                        },
+                        "required": ["type", "attributes", "relationships"],
+                        "additionalProperties": false
                     }
                 },
                 "additionalProperties": false,

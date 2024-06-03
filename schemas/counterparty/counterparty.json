@@ -1,36 +1,20 @@
 {
     "components": {
         "schemas": {
-            "counterpartyRelationships": {
-                "type": "object",
-                "title": "counterpartyRelationships",
-                "properties": {
-                    "customer": {
+            "CounterpartyRelationships": {
+                "allOf": [
+                    {
                         "type": "object",
-                        "properties": {
-                            "data": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "default": "customer"
-                                    },
-                                    "id": {
-                                        "$ref": "../types.json#/components/schemas/identifier"
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["data"],
+                        "title": "Counterparty Relationships",
+                        "required": ["customer"],
                         "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     }
-                },
-                "required": ["customer"],
-                "additionalProperties": false
+                ]
             },
-            "counterparty": {
+            "Counterparty": {
                 "title": "Counterparty Document",
                 "type": "object",
                 "properties": {
@@ -38,7 +22,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
                         "type": "object",
@@ -76,7 +60,7 @@
                                 ]
                             },
                             "tags": {
-                                "$ref": "../tags.json#/components/schemas/tags"
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -95,7 +79,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/counterpartyRelationships"
+                        "$ref": "#/components/schemas/CounterpartyRelationships"
                     }
                 },
                 "additionalProperties": false

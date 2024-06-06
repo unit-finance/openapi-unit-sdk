@@ -1,564 +1,715 @@
 {
     "components": {
         "schemas": {
-            "RelatedTransaction": {
-                "type": "object",
-                "title": "Related Transaction Relationship",
-                "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "default": "transaction"
-                            },
-                            "id": {
-                                "$ref": "../types.json#/components/schemas/Identifier"
-                            }
-                        },
-                        "required": ["type", "id"],
-                        "additionalProperties": false
-                    }
-                },
-                "required": ["data"],
-                "additionalProperties": false
-            },
-            "TransactionRelationships": {
+            "TempIncludeAllTransactionRelationships": {
                 "allOf": [
                     {
                         "type": "object",
-                        "title": "Transaction Relationships",
+                        "title": "Temp Transaction Relationships",
                         "required": ["account"],
                         "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivingAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "account": {
-                                "type": "object",
-                                "title": "Account Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "depositAccount",
-                                                    "GlAccount",
-                                                    "account"
-                                                ]
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "receivingAccount": {
-                                "type": "object",
-                                "title": "Receiving Account Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "depositAccount",
-                                                    "account"
-                                                ]
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyCustomerRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "customer": {
-                                "type": "object",
-                                "title": "Customer Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "businessCustomer",
-                                                    "individualCustomer",
-                                                    "customer"
-                                                ]
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/RelatedTransactionRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "counterpartyAccount": {
-                                "type": "object",
-                                "title": "Counterparty Account Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "account"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/DisputedTransactionRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "counterpartyCustomer": {
-                                "type": "object",
-                                "title": "Counterparty Customer Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "customer"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "relatedTransaction": {
-                                "$ref": "#/components/schemas/RelatedTransaction"
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/ReturnedRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "disputedTransaction": {
-                                "$ref": "#/components/schemas/RelatedTransaction"
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "authorization": {
-                                "type": "object",
-                                "title": "Authorization Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "authorization"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/CheckPaymentRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "returned": {
-                                "type": "object",
-                                "title": "Returned Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "transaction"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/RepaymentRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "payment": {
-                                "type": "object",
-                                "title": "Payment Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "payment"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "checkPayment": {
-                                "type": "object",
-                                "title": "Check Payment Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "payment"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "repayment": {
-                                "type": "object",
-                                "title": "Repayment Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "repayment"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "recurringPayment": {
-                                "type": "object",
-                                "title": "Recurring Payment Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "recurringPayment"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/OrgRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "card": {
-                                "type": "object",
-                                "title": "Card Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "card"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "incomingAch": {
-                                "type": "object",
-                                "title": "Incoming Ach Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "incomingAch"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/IncomingAchRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "checkDeposit": {
-                                "type": "object",
-                                "title": "Check Deposit Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "checkDeposit"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/CheckDepositRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "authorizationRequest": {
-                                "type": "object",
-                                "title": "Authorization Request Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "authorizationRequest"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRequestRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "paymentAdvanceTransaction": {
-                                "$ref": "#/components/schemas/RelatedTransaction"
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/PaymentAdvanceTransactionRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "receivedPayment": {
-                                "type": "object",
-                                "title": "Received Payment Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "receivedPayment"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/ReceivedPaymentRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "chargeback": {
-                                "type": "object",
-                                "title": "Chargeback Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "chargeback"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["data"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/ChargebackRelationship"
                     },
                     {
-                        "type": "object",
-                        "properties": {
-                            "reward": {
-                                "type": "object",
-                                "title": "Reward Relationship",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "type": {
-                                                "type": "string",
-                                                "default": "reward"
-                                            },
-                                            "id": {
-                                                "$ref": "../types.json#/components/schemas/Identifier"
-                                            }
-                                        },
-                                        "required": ["type", "id"],
-                                        "additionalProperties": false
-                                    }
-                                },
-                                "required": ["type", "id"],
-                                "additionalProperties": false
-                            }
-                        }
+                        "$ref": "../relationships.json#/components/schemas/RewardRelationship"
                     }
                 ]
+            },
+            "DefaultTransactionRelationships": {
+                "allOf": [
+                    { "type": "object", "required": ["account"] },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    }
+                ]
+            },
+            "OriginatedAchTransactionRelationships": {
+                "allOf": [
+                    { "type": "object", "required": ["account", "payment"] },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                    }
+                ]
+            },
+            "ReceivedAchTransactionRelationships": {
+                "$ref": "#/components/schemas/DefaultTransactionRelationships"
+            },
+            "ReturnedAchTransactionRelationships": {
+                "allOf": [
+                    { "type": "object", "required": ["account", "payment"] },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    }
+                ]
+            },
+            "ReturnedReceivedAchTransactionRelationships": {
+                "allOf": [
+                    { "type": "object", "required": ["account", "returned"] },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReturnedRelationship"
+                    }
+                ]
+            },
+            "DishonoredAchTransactionRelationships": {
+                "$ref": "#/components/schemas/DefaultTransactionRelationships"
+            },
+            "WireTransactionRelationships": {
+                "$ref": "#/components/schemas/DefaultTransactionRelationships"
+            },
+            "ReturnedWireTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "payment"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    }
+                ]
+            },
+            "BookTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "counterpartyAccount",
+                            "counterpartyCustomer"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyCustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
+                    }
+                ]
+            },
+            "PurchaseTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "card", "authorization"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRequestRelationship"
+                    }
+                ]
+            },
+            "AtmTransactionRelationship": {
+                "allOf": [
+                    { "type": "object", "required": ["account", "card"] },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    }
+                ]
+            },
+            "FeeTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "relatedTransaction"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RelatedTransactionRelationship"
+                    }
+                ]
+            },
+            "FeeReversalTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "relatedTransaction"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RelatedTransactionRelationship"
+                    }
+                ]
+            },
+            "InterestTransactionRelationships": {
+                "$ref": "#/components/schemas/DefaultTransactionRelationships"
+            },
+            "InterestShareTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "org"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
+            },
+            "CardReversalTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "card", "relatedTransaction"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RelatedTransactionRelationship"
+                    }
+                ]
+            },
+            "CardTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "card", "authorization"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    }
+                ]
+            },
+            "ReleaseTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "AdjustmentTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "DisputeTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "disputedTransaction"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/DisputedTransactionRelationship"
+                    }
+                ]
+            },
+            "CheckDepositTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "checkDeposit"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CheckDepositRelationship"
+                    }
+                ]
+            },
+            "ReturnedCheckDepositTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "checkDeposit"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CheckDepositRelationship"
+                    }
+                ]
+            },
+            "PaymentCanceledTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "org", "relatedTransaction"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RelatedTransactionRelationship"
+                    }
+                ]
+            },
+            "PaymentAdvanceTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "receivedPayment"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivedPaymentRelationship"
+                    }
+                ]
+            },
+            "RepaidPaymentAdvanceTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "receivedPayment",
+                            "paymentAdvanceTransaction"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivedPaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentAdvanceTransactionRelationship"
+                    }
+                ]
+            },
+            "ChargebackTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "counterpartyAccount",
+                            "chargeback"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ChargebackRelationship"
+                    }
+                ]
+            },
+            "RewardTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "reward", "receiverAccount"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RewardRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceiverAccountRelationship"
+                    }
+                ]
+            },
+            "AccountLowBalanceClosureTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "receiverAccount"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceiverAccountRelationship"
+                    }
+                ]
+            },
+            "NegativeBalanceCoverageTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "receiverAccount"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceiverAccountRelationship"
+                    }
+                ]
+            },
+            "CheckPaymentTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "checkPayment"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CheckPaymentRelationship"
+                    }
+                ]
+            },
+            "ReturnedCheckPaymentTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "checkPayment"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CheckPaymentRelationship"
+                    }
+                ]
+            },
+            "PustToCardTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "org"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
+            },
+            "PushToCardReversalTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account", "org", "originalTransaction"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OriginalTransactionRelationship"
+                    }
+                ]
+            },
+            "CashDepositTransactionRelationships": {
+                "$ref": "#/components/schemas/DefaultTransactionRelationships"
+            },
+            "InterchangeTransactionRelationships": {
+                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
+            },
+            "BankRepaymentTransactionRelationships": {
+                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
+            },
+            "CustomerRepaymentTransactionRelationships": {
+                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
+            },
+            "CustomerRepaymentReturnedTransactionRelationships": {
+                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
+            },
+            "DisputeSettlementTransactionRelationships": {
+                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
+            },
+            "SettlementTransactionRelationships": {
+                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
+            },
+            "SponsoredInterestTransactionRelationships": {
+                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
             },
             "OriginatedAchTransaction": {
                 "title": "Originated ACH",
@@ -621,7 +772,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/OriginatedAchTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -699,7 +850,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/ReceivedAchTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -770,7 +921,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/ReturnedAchTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -830,7 +981,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/ReturnedReceivedAchTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -908,7 +1059,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/DishonoredAchTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -964,7 +1115,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/BookTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1062,7 +1213,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/PurchaseTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1143,7 +1294,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/AtmTransactionRelationship"
                             }
                         },
                         "additionalProperties": false,
@@ -1195,7 +1346,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/FeeTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1203,8 +1354,60 @@
                     }
                 ]
             },
-            "ReversalTransaction": {
-                "title": "Reversal",
+            "PushToCardReversalTransaction": {
+                "title": "Card Reversal Transaction",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Transaction"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": ["Credit", "Debit"]
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "balance": {
+                                        "type": "integer"
+                                    },
+                                    "summary": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "balance",
+                                    "summary"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/PushToCardReversalTransactionRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "CardReversalTransaction": {
+                "title": "Card Reversal Transaction",
                 "type": "object",
                 "allOf": [
                     {
@@ -1238,13 +1441,6 @@
                                     },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
-                                    },
-                                    "networkTransactionId": {
-                                        "type": "string"
-                                    },
-                                    "internationalServiceFee": {
-                                        "type": "integer",
-                                        "nullable": true
                                     }
                                 },
                                 "required": [
@@ -1258,7 +1454,59 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/CardReversalTransactionRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "FeeReversalTransaction": {
+                "title": "FeeReversal",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Transaction"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": ["Credit", "Debit"]
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "balance": {
+                                        "type": "integer"
+                                    },
+                                    "summary": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "balance",
+                                    "summary"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/FeeReversalTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1345,7 +1593,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/CardReversalTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1430,7 +1678,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/WireTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1485,7 +1733,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/AdjustmentTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1537,7 +1785,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/InterchangeTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1589,7 +1837,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/InterestShareTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1641,7 +1889,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/InterestTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1697,7 +1945,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/BankRepaymentTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1749,7 +1997,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/CustomerRepaymentReturnedTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1801,7 +2049,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/CustomerRepaymentTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1870,7 +2118,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/ReleaseTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1922,7 +2170,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/DisputeSettlementTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -1982,7 +2230,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/DisputeTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2034,7 +2282,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/CheckDepositTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2089,7 +2337,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/ReturnedCheckDepositTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2144,59 +2392,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": ["attributes", "relationships"]
-                    }
-                ]
-            },
-            "BillPayTransaction": {
-                "title": "Bill Pay Transaction",
-                "type": "object",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Transaction"
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "amount": {
-                                        "type": "integer"
-                                    },
-                                    "direction": {
-                                        "type": "string",
-                                        "enum": ["Credit", "Debit"]
-                                    },
-                                    "balance": {
-                                        "type": "integer"
-                                    },
-                                    "summary": {
-                                        "type": "string"
-                                    },
-                                    "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
-                                    }
-                                },
-                                "required": [
-                                    "createdAt",
-                                    "amount",
-                                    "direction",
-                                    "balance",
-                                    "summary"
-                                ],
-                                "additionalProperties": false
-                            },
-                            "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/PaymentCanceledTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2248,7 +2444,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/SettlementTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2300,7 +2496,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/SponsoredInterestTransaction"
                             }
                         },
                         "additionalProperties": false,
@@ -2352,7 +2548,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/PaymentAdvanceTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2404,7 +2600,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/RepaidPaymentAdvanceTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2459,7 +2655,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/ChargebackTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2511,7 +2707,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/CheckPaymentTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2567,7 +2763,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/ReturnedCheckPaymentTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2623,7 +2819,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/RewardTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2675,7 +2871,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/NegativeBalanceCoverageTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2726,7 +2922,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/AccountLowBalanceClosureTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2784,7 +2980,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/TransactionRelationships"
+                                "$ref": "#/components/schemas/CashDepositTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2815,7 +3011,6 @@
                         "bookTransaction": "#/components/schemas/BookTransaction",
                         "atmTransaction": "#/components/schemas/AtmTransaction",
                         "feeTransaction": "#/components/schemas/FeeTransaction",
-                        "reversalTransaction": "#/components/schemas/ReversalTransaction",
                         "cardTransaction": "#/components/schemas/CardTransaction",
                         "releaseTransaction": "#/components/schemas/ReleaseTransaction",
                         "wireTransaction": "#/components/schemas/WireTransaction",
@@ -2827,7 +3022,6 @@
                         "disputeTransaction": "#/components/schemas/DisputeTransaction",
                         "checkDepositTransaction": "#/components/schemas/CheckDepositTransaction",
                         "returnedCheckDepositTransaction": "#/components/schemas/ReturnedCheckDepositTransaction",
-                        "billPayTransaction": "#/components/schemas/BillPayTransaction",
                         "settlementTransaction": "#/components/schemas/SettlementTransaction",
                         "sponsoredInterestTransaction": "#/components/schemas/SponsoredInterestTransaction",
                         "paymentAdvanceTransaction": "#/components/schemas/PaymentAdvanceTransaction",
@@ -2841,7 +3035,10 @@
                         "customerRepaymentTransaction": "#/components/schemas/CustomerRepaymentTransaction",
                         "customerRepaymentReturnedTransaction": "#/components/schemas/CustomerRepaymentReturnedTransaction",
                         "checkPaymentTransaction": "#/components/schemas/CheckPaymentTransaction",
-                        "returnedCheckPaymentTransaction": "#/components/schemas/ReturnedCheckPaymentTransaction"
+                        "returnedCheckPaymentTransaction": "#/components/schemas/ReturnedCheckPaymentTransaction",
+                        "cardReversalTransaction": "#/components/schemas/CardReversalTransaction",
+                        "feeReversalTransaction": "#/components/schemas/FeeReversalTransaction",
+                        "pushToCardReversalTransaction": "#/components/schemas/PushToCardReversalTransaction"
                     }
                 }
             }

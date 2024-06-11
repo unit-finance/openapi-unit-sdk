@@ -2,7 +2,7 @@
     "components": {
         "schemas": {
             "PaymentCounterparty": {
-                "title": "Counterparty",
+                "title": "Payment Counterparty",
                 "type": "object",
                 "properties": {
                     "routingNumber": {

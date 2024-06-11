@@ -90,7 +90,7 @@
             "$ref": "./schemas/payment/paymentsPaths.json#/getAndCreatePayments"
         },
         "/payments/{paymentId}": {
-            "$ref": "./schemas/payment/paymentsPaths.json#/getAndPatchPayment"
+            "$ref": "./schemas/payment/paymentsPaths.json#/getAndUpdatePayment"
         },
         "/payments/{paymentId}/cancel": {
             "$ref": "./schemas/payment/paymentsPaths.json#/cancelPayment"

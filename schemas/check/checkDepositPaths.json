@@ -198,7 +198,7 @@
                         "application/vnd.api+json": {
                             "schema": {
                                 "type": "object",
-                                "title": "Unit Patch Check Deposit Response",
+                                "title": "Unit Update Check Deposit Response",
                                 "properties": {
                                     "data": {
                                         "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"

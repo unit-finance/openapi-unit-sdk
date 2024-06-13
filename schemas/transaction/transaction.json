@@ -525,7 +525,18 @@
                 ]
             },
             "CustomerRepaymentReturnedTransactionRelationships": {
-                "$ref": "#/components/schemas/TempIncludeAllTransactionRelationships"
+                "allOf": [
+                    { "required": ["account", "repayment"] },
+                    {
+                        "$ref": "#/components/schemas/DefaultTransactionRelationships"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RepaymentRelationship"
+                    }
+                ]
             },
             "SponsoredInterestTransactionRelationships": {
                 "allOf": [
@@ -1570,58 +1581,6 @@
                     }
                 ]
             },
-            "InterchangeTransaction": {
-                "title": "Interchange Share Transaction",
-                "type": "object",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Transaction"
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "direction": {
-                                        "type": "string",
-                                        "enum": ["Credit", "Debit"]
-                                    },
-                                    "amount": {
-                                        "type": "integer"
-                                    },
-                                    "balance": {
-                                        "type": "integer"
-                                    },
-                                    "summary": {
-                                        "type": "string"
-                                    },
-                                    "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
-                                    }
-                                },
-                                "required": [
-                                    "createdAt",
-                                    "amount",
-                                    "direction",
-                                    "balance",
-                                    "summary"
-                                ],
-                                "additionalProperties": false
-                            },
-                            "relationships": {
-                                "$ref": "#/components/schemas/InterchangeTransactionRelationships"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": ["attributes", "relationships"]
-                    }
-                ]
-            },
             "InterestShareTransaction": {
                 "title": "Interest Share Transaction",
                 "type": "object",
@@ -1955,58 +1914,6 @@
                     }
                 ]
             },
-            "DisputeSettlementTransaction": {
-                "title": "Dispute Settlement Transaction",
-                "type": "object",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Transaction"
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "direction": {
-                                        "type": "string",
-                                        "enum": ["Credit", "Debit"]
-                                    },
-                                    "amount": {
-                                        "type": "integer"
-                                    },
-                                    "balance": {
-                                        "type": "integer"
-                                    },
-                                    "summary": {
-                                        "type": "string"
-                                    },
-                                    "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
-                                    }
-                                },
-                                "required": [
-                                    "createdAt",
-                                    "amount",
-                                    "direction",
-                                    "balance",
-                                    "summary"
-                                ],
-                                "additionalProperties": false
-                            },
-                            "relationships": {
-                                "$ref": "#/components/schemas/DisputeSettlementTransactionRelationships"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": ["attributes", "relationships"]
-                    }
-                ]
-            },
             "DisputeTransaction": {
                 "title": "Dispute Transaction",
                 "type": "object",
@@ -2222,58 +2129,6 @@
                             },
                             "relationships": {
                                 "$ref": "#/components/schemas/PaymentCanceledTransactionRelationships"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": ["attributes", "relationships"]
-                    }
-                ]
-            },
-            "SettlementTransaction": {
-                "title": "Settlement Transaction",
-                "type": "object",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Transaction"
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "amount": {
-                                        "type": "integer"
-                                    },
-                                    "direction": {
-                                        "type": "string",
-                                        "enum": ["Credit", "Debit"]
-                                    },
-                                    "balance": {
-                                        "type": "integer"
-                                    },
-                                    "summary": {
-                                        "type": "string"
-                                    },
-                                    "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
-                                    }
-                                },
-                                "required": [
-                                    "createdAt",
-                                    "amount",
-                                    "direction",
-                                    "balance",
-                                    "summary"
-                                ],
-                                "additionalProperties": false
-                            },
-                            "relationships": {
-                                "$ref": "#/components/schemas/SettlementTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -2843,15 +2698,12 @@
                         "cardTransaction": "#/components/schemas/CardTransaction",
                         "releaseTransaction": "#/components/schemas/ReleaseTransaction",
                         "wireTransaction": "#/components/schemas/WireTransaction",
-                        "interchangeTransaction": "#/components/schemas/InterchangeTransaction",
                         "interestShareTransaction": "#/components/schemas/InterestShareTransaction",
                         "interestTransaction": "#/components/schemas/InterestTransaction",
                         "adjustmentTransaction": "#/components/schemas/AdjustmentTransaction",
-                        "disputeSettlementTransaction": "#/components/schemas/DisputeSettlementTransaction",
                         "disputeTransaction": "#/components/schemas/DisputeTransaction",
                         "checkDepositTransaction": "#/components/schemas/CheckDepositTransaction",
                         "returnedCheckDepositTransaction": "#/components/schemas/ReturnedCheckDepositTransaction",
-                        "settlementTransaction": "#/components/schemas/SettlementTransaction",
                         "sponsoredInterestTransaction": "#/components/schemas/SponsoredInterestTransaction",
                         "paymentAdvanceTransaction": "#/components/schemas/PaymentAdvanceTransaction",
                         "repaidPaymentAdvanceTransaction": "#/components/schemas/RepaidPaymentAdvanceTransaction",

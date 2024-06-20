@@ -1,0 +1,98 @@
+{
+  "updateBeneficialOwnerRequest": {
+    "title": "Update Beneficial Owner",
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "default": "beneficialOwner"
+      },
+      "attributes": {
+        "type": "object",
+        "properties": {
+          "occupation": {
+            "$ref": "types.json#/definitions/occupation"
+          },
+          "annualIncome": {
+            "$ref": "types.json#/definitions/annualIncome"
+          },
+          "sourceOfIncome": {
+            "$ref": "types.json#/definitions/sourceOfIncome"
+          }
+        },
+        "relationships": {
+          "type": "object",
+          "properties": {
+            "application": {
+              "$ref": "types.json#/definitions/Relationship"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "type",
+      "attributes"
+    ]
+  },
+  "UnitBeneficialOwnerResponse": {
+    "type": "object",
+    "title": "UnitBeneficialOwnerResponse",
+    "properties": {
+      "data": {
+        "$ref": "beneficial_owner.json"
+      }
+    }
+  },
+  "patch_beneficial_owners": {
+    "patch": {
+      "tags": [
+        "Update Beneficial Owner"
+      ],
+      "operationId": "execute",
+      "summary": "Update Beneficial Owner",
+      "description": "Update an Beneficial Owner via API ",
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "beneficialOwnerId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the Beneficial Owner to update"
+        }
+      ],
+      "requestBody": {
+        "description": "Update Beneficial Owner Request",
+        "required": true,
+        "content": {
+          "application/vnd.api+json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/updateBeneficialOwnerRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/vnd.api+json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/UnitBeneficialOwnerResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

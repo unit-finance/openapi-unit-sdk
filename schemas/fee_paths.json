@@ -37,5 +37,44 @@
                 }
             }
         }
+    },
+    "reverse_fee": {
+        "post": {
+            "tags": [
+                "Reverse Fee"
+            ],
+            "operationId": "reverse",
+            "summary": "Reverse Fee",
+            "description": "Reverse a Fee via API",
+            "requestBody": {
+                "description": "Reverse Fee Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "reverseFee.json"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "UnitFeeReversalResponse",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "fee_reversal.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -212,6 +212,9 @@
         "/fees": {
             "$ref": "./schemas/fee_paths.json#/create_fee"
         },
+        "/fees/reverse": {
+            "$ref": "./schemas/fee_paths.json#/reverse_fee"
+        },
         "/check-deposits": {
             "$ref": "./schemas/check_deposit_paths.json#/check_deposits"
         },

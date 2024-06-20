@@ -1,0 +1,63 @@
+{
+  "definitions": {
+    "createFeeRelationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "transaction": {
+          "$ref": "types.json#/definitions/Relationship"
+        }
+      },
+      "required": [
+        "account",
+        "transaction"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "data": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": [
+          "feeReversal"
+        ],
+        "default": "feeReversal"
+      },
+      "attributes": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "tags": {
+            "$ref": "tags.json#/definitions/tags"
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "description"
+        ],
+        "additionalProperties": false
+      },
+      "relationships": {
+        "$ref": "#/definitions/createFeeRelationships"
+      }
+    },
+    "required": [
+      "type",
+      "attributes",
+      "relationships"
+    ],
+    "additionalProperties": false
+  }
+}

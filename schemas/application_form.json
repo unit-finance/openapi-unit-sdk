@@ -108,6 +108,12 @@
                 },
                 "industry": {
                     "$ref": "types.json#/definitions/industry"
+                },
+                "businessVertical": {
+                    "$ref": "types.json#/definitions/businessVertical"
+                },
+                "occupation": {
+                    "$ref": "types.json#/definitions/occupation"
                 }
             },
             "additionalProperties": false

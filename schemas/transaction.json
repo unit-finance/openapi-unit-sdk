@@ -5,35 +5,7 @@
             "title": "transactionRelationships",
             "properties": {
                 "account": {
-                    "type": "object",
-                    "title": "accountRelationship",
-                    "properties": {
-                        "data": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "enum": [
-                                        "depositAccount",
-                                        "glAccount",
-                                        "account"
-                                    ]
-                                },
-                                "id": {
-                                    "$ref": "types.json#/definitions/identifier"
-                                }
-                            },
-                            "required": [
-                                "type",
-                                "id"
-                            ],
-                            "additionalProperties": false
-                        }
-                    },
-                    "required": [
-                        "data"
-                    ],
-                    "additionalProperties": false
+                    "$ref": "./createPayment.json#/definitions/accountRelationship"
                 },
                 "receivingAccount": {
                     "type": "object",

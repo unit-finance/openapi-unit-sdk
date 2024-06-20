@@ -27,19 +27,12 @@ public class ApplicationTests {
     @Test
     public void GetApplicationListApiTest() throws ApiException {
         GetListApplicationsApi api = new GetListApplicationsApi();
-
-        ExecuteFilterParameter filter = new ExecuteFilterParameter();
+        
         ListPageParametersObject page = new  ListPageParametersObject();
         page.setLimit(20);
         page.setOffset(3);
 
-        ArrayList statuses = new ArrayList();
-        statuses.add(ExecuteFilterParameter.StatusEnum.APPROVED);
-        statuses.add(ExecuteFilterParameter.StatusEnum.AWAITINGDOCUMENTS);
-        filter.setQuery("John");
-        filter.setStatus(statuses);
-
-        UnitListApplicationsResponse response = api.execute(page, filter, null);
+        UnitListApplicationsResponse response = api.execute(page, null, null);
         assert response.getData().size() <= 20;
     }
 

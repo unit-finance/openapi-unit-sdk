@@ -89,6 +89,9 @@
         "/account-end-of-day": {
             "$ref": "./schemas/account_paths.json#/get_account_end_of_day"
         },
+        "/accounts/{accountId}/repayment-information": {
+            "$ref": "./schemas/account_paths.json#/repayment_info"
+        },
         "/customers/{customerId}": {
             "$ref": "./schemas/customer_paths.json#/customer"
         },

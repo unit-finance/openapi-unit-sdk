@@ -48,10 +48,10 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * CreditAccountRepaymentInformationResponseDataAttributes
+ * RepaymentInformationResponseDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-21T15:27:39.020654+02:00[Europe/Zurich]")
-public class CreditAccountRepaymentInformationResponseDataAttributes {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-21T11:43:58.624951+02:00[Europe/Zurich]")
+public class RepaymentInformationResponseDataAttributes {
   public static final String SERIALIZED_NAME_REMAINING_AMOUNT_DUE = "remainingAmountDue";
   @SerializedName(SERIALIZED_NAME_REMAINING_AMOUNT_DUE)
   private Integer remainingAmountDue;
@@ -76,10 +76,10 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   @SerializedName(SERIALIZED_NAME_NEXT_REPAYMENT_DUE_DATE)
   private LocalDate nextRepaymentDueDate;
 
-  public CreditAccountRepaymentInformationResponseDataAttributes() {
+  public RepaymentInformationResponseDataAttributes() {
   }
 
-  public CreditAccountRepaymentInformationResponseDataAttributes remainingAmountDue(Integer remainingAmountDue) {
+  public RepaymentInformationResponseDataAttributes remainingAmountDue(Integer remainingAmountDue) {
     
     this.remainingAmountDue = remainingAmountDue;
     return this;
@@ -100,7 +100,7 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   }
 
 
-  public CreditAccountRepaymentInformationResponseDataAttributes remainingAmountOverdue(Integer remainingAmountOverdue) {
+  public RepaymentInformationResponseDataAttributes remainingAmountOverdue(Integer remainingAmountOverdue) {
     
     this.remainingAmountOverdue = remainingAmountOverdue;
     return this;
@@ -121,7 +121,7 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   }
 
 
-  public CreditAccountRepaymentInformationResponseDataAttributes initiatedRepayments(Integer initiatedRepayments) {
+  public RepaymentInformationResponseDataAttributes initiatedRepayments(Integer initiatedRepayments) {
     
     this.initiatedRepayments = initiatedRepayments;
     return this;
@@ -142,7 +142,7 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   }
 
 
-  public CreditAccountRepaymentInformationResponseDataAttributes statementPeriodStart(LocalDate statementPeriodStart) {
+  public RepaymentInformationResponseDataAttributes statementPeriodStart(LocalDate statementPeriodStart) {
     
     this.statementPeriodStart = statementPeriodStart;
     return this;
@@ -163,7 +163,7 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   }
 
 
-  public CreditAccountRepaymentInformationResponseDataAttributes statementPeriodEnd(LocalDate statementPeriodEnd) {
+  public RepaymentInformationResponseDataAttributes statementPeriodEnd(LocalDate statementPeriodEnd) {
     
     this.statementPeriodEnd = statementPeriodEnd;
     return this;
@@ -184,7 +184,7 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   }
 
 
-  public CreditAccountRepaymentInformationResponseDataAttributes nextRepaymentDueDate(LocalDate nextRepaymentDueDate) {
+  public RepaymentInformationResponseDataAttributes nextRepaymentDueDate(LocalDate nextRepaymentDueDate) {
     
     this.nextRepaymentDueDate = nextRepaymentDueDate;
     return this;
@@ -214,13 +214,13 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreditAccountRepaymentInformationResponseDataAttributes creditAccountRepaymentInformationResponseDataAttributes = (CreditAccountRepaymentInformationResponseDataAttributes) o;
-    return Objects.equals(this.remainingAmountDue, creditAccountRepaymentInformationResponseDataAttributes.remainingAmountDue) &&
-        Objects.equals(this.remainingAmountOverdue, creditAccountRepaymentInformationResponseDataAttributes.remainingAmountOverdue) &&
-        Objects.equals(this.initiatedRepayments, creditAccountRepaymentInformationResponseDataAttributes.initiatedRepayments) &&
-        Objects.equals(this.statementPeriodStart, creditAccountRepaymentInformationResponseDataAttributes.statementPeriodStart) &&
-        Objects.equals(this.statementPeriodEnd, creditAccountRepaymentInformationResponseDataAttributes.statementPeriodEnd) &&
-        Objects.equals(this.nextRepaymentDueDate, creditAccountRepaymentInformationResponseDataAttributes.nextRepaymentDueDate);
+    RepaymentInformationResponseDataAttributes repaymentInformationResponseDataAttributes = (RepaymentInformationResponseDataAttributes) o;
+    return Objects.equals(this.remainingAmountDue, repaymentInformationResponseDataAttributes.remainingAmountDue) &&
+        Objects.equals(this.remainingAmountOverdue, repaymentInformationResponseDataAttributes.remainingAmountOverdue) &&
+        Objects.equals(this.initiatedRepayments, repaymentInformationResponseDataAttributes.initiatedRepayments) &&
+        Objects.equals(this.statementPeriodStart, repaymentInformationResponseDataAttributes.statementPeriodStart) &&
+        Objects.equals(this.statementPeriodEnd, repaymentInformationResponseDataAttributes.statementPeriodEnd) &&
+        Objects.equals(this.nextRepaymentDueDate, repaymentInformationResponseDataAttributes.nextRepaymentDueDate);
   }
 
   @Override
@@ -231,7 +231,7 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreditAccountRepaymentInformationResponseDataAttributes {\n");
+    sb.append("class RepaymentInformationResponseDataAttributes {\n");
     sb.append("    remainingAmountDue: ").append(toIndentedString(remainingAmountDue)).append("\n");
     sb.append("    remainingAmountOverdue: ").append(toIndentedString(remainingAmountOverdue)).append("\n");
     sb.append("    initiatedRepayments: ").append(toIndentedString(initiatedRepayments)).append("\n");
@@ -281,25 +281,25 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   * Validates the JSON Element and throws an exception if issues found
   *
   * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreditAccountRepaymentInformationResponseDataAttributes
+  * @throws IOException if the JSON Element is invalid with respect to RepaymentInformationResponseDataAttributes
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!CreditAccountRepaymentInformationResponseDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreditAccountRepaymentInformationResponseDataAttributes is not found in the empty JSON string", CreditAccountRepaymentInformationResponseDataAttributes.openapiRequiredFields.toString()));
+        if (!RepaymentInformationResponseDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in RepaymentInformationResponseDataAttributes is not found in the empty JSON string", RepaymentInformationResponseDataAttributes.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreditAccountRepaymentInformationResponseDataAttributes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditAccountRepaymentInformationResponseDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!RepaymentInformationResponseDataAttributes.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RepaymentInformationResponseDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreditAccountRepaymentInformationResponseDataAttributes.openapiRequiredFields) {
+      for (String requiredField : RepaymentInformationResponseDataAttributes.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -311,22 +311,22 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreditAccountRepaymentInformationResponseDataAttributes.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreditAccountRepaymentInformationResponseDataAttributes' and its subtypes
+       if (!RepaymentInformationResponseDataAttributes.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'RepaymentInformationResponseDataAttributes' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreditAccountRepaymentInformationResponseDataAttributes> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreditAccountRepaymentInformationResponseDataAttributes.class));
+       final TypeAdapter<RepaymentInformationResponseDataAttributes> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(RepaymentInformationResponseDataAttributes.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CreditAccountRepaymentInformationResponseDataAttributes>() {
+       return (TypeAdapter<T>) new TypeAdapter<RepaymentInformationResponseDataAttributes>() {
            @Override
-           public void write(JsonWriter out, CreditAccountRepaymentInformationResponseDataAttributes value) throws IOException {
+           public void write(JsonWriter out, RepaymentInformationResponseDataAttributes value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public CreditAccountRepaymentInformationResponseDataAttributes read(JsonReader in) throws IOException {
+           public RepaymentInformationResponseDataAttributes read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -337,18 +337,18 @@ public class CreditAccountRepaymentInformationResponseDataAttributes {
   }
 
  /**
-  * Create an instance of CreditAccountRepaymentInformationResponseDataAttributes given an JSON string
+  * Create an instance of RepaymentInformationResponseDataAttributes given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of CreditAccountRepaymentInformationResponseDataAttributes
-  * @throws IOException if the JSON string is invalid with respect to CreditAccountRepaymentInformationResponseDataAttributes
+  * @return An instance of RepaymentInformationResponseDataAttributes
+  * @throws IOException if the JSON string is invalid with respect to RepaymentInformationResponseDataAttributes
   */
-  public static CreditAccountRepaymentInformationResponseDataAttributes fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CreditAccountRepaymentInformationResponseDataAttributes.class);
+  public static RepaymentInformationResponseDataAttributes fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, RepaymentInformationResponseDataAttributes.class);
   }
 
  /**
-  * Convert an instance of CreditAccountRepaymentInformationResponseDataAttributes to an JSON string
+  * Convert an instance of RepaymentInformationResponseDataAttributes to an JSON string
   *
   * @return JSON string
   */

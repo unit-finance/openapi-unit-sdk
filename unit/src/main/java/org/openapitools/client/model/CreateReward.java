@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.CreditAccountRepaymentInformationResponseData;
+import org.openapitools.client.model.CreateRewardData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,18 +48,18 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * CreditAccountRepaymentInformationResponse
+ * CreateReward
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-21T15:27:39.020654+02:00[Europe/Zurich]")
-public class CreditAccountRepaymentInformationResponse {
+public class CreateReward {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private CreditAccountRepaymentInformationResponseData data;
+  private CreateRewardData data;
 
-  public CreditAccountRepaymentInformationResponse() {
+  public CreateReward() {
   }
 
-  public CreditAccountRepaymentInformationResponse data(CreditAccountRepaymentInformationResponseData data) {
+  public CreateReward data(CreateRewardData data) {
     
     this.data = data;
     return this;
@@ -70,12 +70,12 @@ public class CreditAccountRepaymentInformationResponse {
    * @return data
   **/
   @javax.annotation.Nullable
-  public CreditAccountRepaymentInformationResponseData getData() {
+  public CreateRewardData getData() {
     return data;
   }
 
 
-  public void setData(CreditAccountRepaymentInformationResponseData data) {
+  public void setData(CreateRewardData data) {
     this.data = data;
   }
 
@@ -89,8 +89,8 @@ public class CreditAccountRepaymentInformationResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreditAccountRepaymentInformationResponse creditAccountRepaymentInformationResponse = (CreditAccountRepaymentInformationResponse) o;
-    return Objects.equals(this.data, creditAccountRepaymentInformationResponse.data);
+    CreateReward createReward = (CreateReward) o;
+    return Objects.equals(this.data, createReward.data);
   }
 
   @Override
@@ -101,7 +101,7 @@ public class CreditAccountRepaymentInformationResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreditAccountRepaymentInformationResponse {\n");
+    sb.append("class CreateReward {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -135,26 +135,26 @@ public class CreditAccountRepaymentInformationResponse {
   * Validates the JSON Element and throws an exception if issues found
   *
   * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreditAccountRepaymentInformationResponse
+  * @throws IOException if the JSON Element is invalid with respect to CreateReward
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!CreditAccountRepaymentInformationResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreditAccountRepaymentInformationResponse is not found in the empty JSON string", CreditAccountRepaymentInformationResponse.openapiRequiredFields.toString()));
+        if (!CreateReward.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateReward is not found in the empty JSON string", CreateReward.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreditAccountRepaymentInformationResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditAccountRepaymentInformationResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!CreateReward.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateReward` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `data`
       if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-        CreditAccountRepaymentInformationResponseData.validateJsonElement(jsonObj.get("data"));
+        CreateRewardData.validateJsonElement(jsonObj.get("data"));
       }
   }
 
@@ -162,22 +162,22 @@ public class CreditAccountRepaymentInformationResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreditAccountRepaymentInformationResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreditAccountRepaymentInformationResponse' and its subtypes
+       if (!CreateReward.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CreateReward' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreditAccountRepaymentInformationResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreditAccountRepaymentInformationResponse.class));
+       final TypeAdapter<CreateReward> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CreateReward.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CreditAccountRepaymentInformationResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<CreateReward>() {
            @Override
-           public void write(JsonWriter out, CreditAccountRepaymentInformationResponse value) throws IOException {
+           public void write(JsonWriter out, CreateReward value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public CreditAccountRepaymentInformationResponse read(JsonReader in) throws IOException {
+           public CreateReward read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -188,18 +188,18 @@ public class CreditAccountRepaymentInformationResponse {
   }
 
  /**
-  * Create an instance of CreditAccountRepaymentInformationResponse given an JSON string
+  * Create an instance of CreateReward given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of CreditAccountRepaymentInformationResponse
-  * @throws IOException if the JSON string is invalid with respect to CreditAccountRepaymentInformationResponse
+  * @return An instance of CreateReward
+  * @throws IOException if the JSON string is invalid with respect to CreateReward
   */
-  public static CreditAccountRepaymentInformationResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CreditAccountRepaymentInformationResponse.class);
+  public static CreateReward fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CreateReward.class);
   }
 
  /**
-  * Convert an instance of CreditAccountRepaymentInformationResponse to an JSON string
+  * Convert an instance of CreateReward to an JSON string
   *
   * @return JSON string
   */

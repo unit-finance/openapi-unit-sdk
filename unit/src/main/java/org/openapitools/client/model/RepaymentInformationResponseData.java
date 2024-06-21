@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.CreditAccountRepaymentInformationResponseDataAttributes;
+import org.openapitools.client.model.RepaymentInformationResponseDataAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,10 +48,10 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * CreditAccountRepaymentInformationResponseData
+ * RepaymentInformationResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-21T15:27:39.020654+02:00[Europe/Zurich]")
-public class CreditAccountRepaymentInformationResponseData {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-06-21T11:43:58.624951+02:00[Europe/Zurich]")
+public class RepaymentInformationResponseData {
   /**
    * Gets or Sets type
    */
@@ -103,12 +103,12 @@ public class CreditAccountRepaymentInformationResponseData {
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private CreditAccountRepaymentInformationResponseDataAttributes attributes;
+  private RepaymentInformationResponseDataAttributes attributes;
 
-  public CreditAccountRepaymentInformationResponseData() {
+  public RepaymentInformationResponseData() {
   }
 
-  public CreditAccountRepaymentInformationResponseData type(TypeEnum type) {
+  public RepaymentInformationResponseData type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -129,7 +129,7 @@ public class CreditAccountRepaymentInformationResponseData {
   }
 
 
-  public CreditAccountRepaymentInformationResponseData attributes(CreditAccountRepaymentInformationResponseDataAttributes attributes) {
+  public RepaymentInformationResponseData attributes(RepaymentInformationResponseDataAttributes attributes) {
     
     this.attributes = attributes;
     return this;
@@ -140,12 +140,12 @@ public class CreditAccountRepaymentInformationResponseData {
    * @return attributes
   **/
   @javax.annotation.Nonnull
-  public CreditAccountRepaymentInformationResponseDataAttributes getAttributes() {
+  public RepaymentInformationResponseDataAttributes getAttributes() {
     return attributes;
   }
 
 
-  public void setAttributes(CreditAccountRepaymentInformationResponseDataAttributes attributes) {
+  public void setAttributes(RepaymentInformationResponseDataAttributes attributes) {
     this.attributes = attributes;
   }
 
@@ -159,9 +159,9 @@ public class CreditAccountRepaymentInformationResponseData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreditAccountRepaymentInformationResponseData creditAccountRepaymentInformationResponseData = (CreditAccountRepaymentInformationResponseData) o;
-    return Objects.equals(this.type, creditAccountRepaymentInformationResponseData.type) &&
-        Objects.equals(this.attributes, creditAccountRepaymentInformationResponseData.attributes);
+    RepaymentInformationResponseData repaymentInformationResponseData = (RepaymentInformationResponseData) o;
+    return Objects.equals(this.type, repaymentInformationResponseData.type) &&
+        Objects.equals(this.attributes, repaymentInformationResponseData.attributes);
   }
 
   @Override
@@ -172,7 +172,7 @@ public class CreditAccountRepaymentInformationResponseData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreditAccountRepaymentInformationResponseData {\n");
+    sb.append("class RepaymentInformationResponseData {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("}");
@@ -210,25 +210,25 @@ public class CreditAccountRepaymentInformationResponseData {
   * Validates the JSON Element and throws an exception if issues found
   *
   * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreditAccountRepaymentInformationResponseData
+  * @throws IOException if the JSON Element is invalid with respect to RepaymentInformationResponseData
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!CreditAccountRepaymentInformationResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreditAccountRepaymentInformationResponseData is not found in the empty JSON string", CreditAccountRepaymentInformationResponseData.openapiRequiredFields.toString()));
+        if (!RepaymentInformationResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in RepaymentInformationResponseData is not found in the empty JSON string", RepaymentInformationResponseData.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreditAccountRepaymentInformationResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreditAccountRepaymentInformationResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!RepaymentInformationResponseData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RepaymentInformationResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreditAccountRepaymentInformationResponseData.openapiRequiredFields) {
+      for (String requiredField : RepaymentInformationResponseData.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -238,29 +238,29 @@ public class CreditAccountRepaymentInformationResponseData {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
       // validate the required field `attributes`
-      CreditAccountRepaymentInformationResponseDataAttributes.validateJsonElement(jsonObj.get("attributes"));
+      RepaymentInformationResponseDataAttributes.validateJsonElement(jsonObj.get("attributes"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreditAccountRepaymentInformationResponseData.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreditAccountRepaymentInformationResponseData' and its subtypes
+       if (!RepaymentInformationResponseData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'RepaymentInformationResponseData' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreditAccountRepaymentInformationResponseData> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreditAccountRepaymentInformationResponseData.class));
+       final TypeAdapter<RepaymentInformationResponseData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(RepaymentInformationResponseData.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CreditAccountRepaymentInformationResponseData>() {
+       return (TypeAdapter<T>) new TypeAdapter<RepaymentInformationResponseData>() {
            @Override
-           public void write(JsonWriter out, CreditAccountRepaymentInformationResponseData value) throws IOException {
+           public void write(JsonWriter out, RepaymentInformationResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public CreditAccountRepaymentInformationResponseData read(JsonReader in) throws IOException {
+           public RepaymentInformationResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -271,18 +271,18 @@ public class CreditAccountRepaymentInformationResponseData {
   }
 
  /**
-  * Create an instance of CreditAccountRepaymentInformationResponseData given an JSON string
+  * Create an instance of RepaymentInformationResponseData given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of CreditAccountRepaymentInformationResponseData
-  * @throws IOException if the JSON string is invalid with respect to CreditAccountRepaymentInformationResponseData
+  * @return An instance of RepaymentInformationResponseData
+  * @throws IOException if the JSON string is invalid with respect to RepaymentInformationResponseData
   */
-  public static CreditAccountRepaymentInformationResponseData fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CreditAccountRepaymentInformationResponseData.class);
+  public static RepaymentInformationResponseData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, RepaymentInformationResponseData.class);
   }
 
  /**
-  * Convert an instance of CreditAccountRepaymentInformationResponseData to an JSON string
+  * Convert an instance of RepaymentInformationResponseData to an JSON string
   *
   * @return JSON string
   */

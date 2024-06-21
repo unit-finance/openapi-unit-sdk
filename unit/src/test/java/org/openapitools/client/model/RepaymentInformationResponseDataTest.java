@@ -20,22 +20,22 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.CreditAccountRepaymentInformationResponseDataAttributes;
+import org.openapitools.client.model.RepaymentInformationResponseDataAttributes;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for CreditAccountRepaymentInformationResponseData
+ * Model tests for RepaymentInformationResponseData
  */
-public class CreditAccountRepaymentInformationResponseDataTest {
-    private final CreditAccountRepaymentInformationResponseData model = new CreditAccountRepaymentInformationResponseData();
+public class RepaymentInformationResponseDataTest {
+    private final RepaymentInformationResponseData model = new RepaymentInformationResponseData();
 
     /**
-     * Model tests for CreditAccountRepaymentInformationResponseData
+     * Model tests for RepaymentInformationResponseData
      */
     @Test
-    public void testCreditAccountRepaymentInformationResponseData() {
-        // TODO: test CreditAccountRepaymentInformationResponseData
+    public void testRepaymentInformationResponseData() {
+        // TODO: test RepaymentInformationResponseData
     }
 
     /**

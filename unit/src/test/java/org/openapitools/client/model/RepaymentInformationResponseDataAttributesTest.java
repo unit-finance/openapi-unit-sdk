@@ -25,17 +25,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for CreditAccountRepaymentInformationResponseDataAttributes
+ * Model tests for RepaymentInformationResponseDataAttributes
  */
-public class CreditAccountRepaymentInformationResponseDataAttributesTest {
-    private final CreditAccountRepaymentInformationResponseDataAttributes model = new CreditAccountRepaymentInformationResponseDataAttributes();
+public class RepaymentInformationResponseDataAttributesTest {
+    private final RepaymentInformationResponseDataAttributes model = new RepaymentInformationResponseDataAttributes();
 
     /**
-     * Model tests for CreditAccountRepaymentInformationResponseDataAttributes
+     * Model tests for RepaymentInformationResponseDataAttributes
      */
     @Test
-    public void testCreditAccountRepaymentInformationResponseDataAttributes() {
-        // TODO: test CreditAccountRepaymentInformationResponseDataAttributes
+    public void testRepaymentInformationResponseDataAttributes() {
+        // TODO: test RepaymentInformationResponseDataAttributes
     }
 
     /**

@@ -13,12 +13,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "data": {
-                                    "$ref": "createReward.json"
-                                }
-                            }
+                            "$ref": "createReward.json"
                         }
                     }
                 }
@@ -90,7 +85,10 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }

@@ -240,7 +240,7 @@
                             }
                         }
                     },
-                    "additionalProperties": false,
+                    "additionalProperties": true,
                     "required": [
                         "data"
                     ]

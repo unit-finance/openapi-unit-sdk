@@ -1,41 +1,76 @@
 {
-    "create_fee": {
-        "post": {
-            "tags": [
-                "Create Fee"
-            ],
-            "operationId": "execute",
-            "summary": "Create Fee",
-            "description": "Create a Fee via API ",
-            "requestBody": {
-                "description": "Create Fee Request",
-                "required": true,
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "$ref": "createFee.json"
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "201": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json": {
-                            "schema": {
-                                "type": "object",
-                                "title": "UnitFeeResponse",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "fee.json"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+  "create_fee": {
+    "post": {
+      "tags": ["Create Fee"],
+      "operationId": "execute",
+      "summary": "Create Fee",
+      "description": "Create a Fee via API ",
+      "requestBody": {
+        "description": "Create Fee Request",
+        "required": true,
+        "content": {
+          "application/vnd.api+json": {
+            "schema": {
+              "$ref": "./createFee.json#/components/schemas/CreateFeeRequest"
             }
+          }
         }
+      },
+      "responses": {
+        "201": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "type": "object",
+                "title": "UnitFeeResponse",
+                "properties": {
+                  "data": {
+                    "$ref": "fee.json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  },
+  "reverse_fee": {
+    "post": {
+      "tags": ["Reverse Fee"],
+      "operationId": "execute",
+      "summary": "Reverse Fee",
+      "description": "Reverse a Fee via API",
+      "requestBody": {
+        "description": "Reverse Fee Request",
+        "required": true,
+        "content": {
+          "application/vnd.api+json": {
+            "schema": {
+              "$ref": "./reverseFee.json#/components/schemas/ReverseFeeRequest"
+            }
+          }
+        }
+      },
+      "responses": {
+        "201": {
+          "description": "Successful Response",
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "type": "object",
+                "title": "UnitFeeReversalResponse",
+                "properties": {
+                  "data": {
+                    "$ref": "fee_reversal.json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

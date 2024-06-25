@@ -3,7 +3,7 @@
     "info": {
         "title": "Unit OpenAPI specifications",
         "description": "An OpenAPI specifications for unit-sdk clients",
-        "version": "0.0.4"
+        "version": "0.0.5"
     },
     "servers": [
         {
@@ -88,6 +88,9 @@
         },
         "/account-end-of-day": {
             "$ref": "./schemas/account_paths.json#/get_account_end_of_day"
+        },
+        "/accounts/{accountId}/repayment-information": {
+            "$ref": "./schemas/account_paths.json#/repayment_info"
         },
         "/customers/{customerId}": {
             "$ref": "./schemas/customer_paths.json#/customer"
@@ -211,6 +214,9 @@
         },
         "/fees": {
             "$ref": "./schemas/fee_paths.json#/create_fee"
+        },
+        "/fees/reverse": {
+            "$ref": "./schemas/fee_paths.json#/reverse_fee"
         },
         "/check-deposits": {
             "$ref": "./schemas/check_deposit_paths.json#/check_deposits"

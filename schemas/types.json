@@ -856,6 +856,10 @@
                         "Monthly": "#/components/schemas/MontlySchedule"
                     }
                 }
+            },
+            "DefaultContentType": {
+                "type": "string",
+                "enum": ["application/vnd.api+json"]
             }
         }
     }

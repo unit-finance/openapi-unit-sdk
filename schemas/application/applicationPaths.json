@@ -489,25 +489,22 @@
             ],
             "summary": "Upload an application document file. Supports PDF, PNG and JPG files",
             "requestBody": {
-                "description": "An application document file. Supports PDF, PNG and JPG files",
+                "description": "An application document file. SDK only temporarily supports only ... files",
                 "required": true,
                 "content": {
                     "application/pdf": {
                         "schema": {
-                            "type": "object",
-                            "description": "PDF file"
+                            "$ref": "./uploadApplicaitonDocument.json#/components/schemas/UploadPdfDocument"
                         }
                     },
                     "image/png": {
                         "schema": {
-                            "type": "object",
-                            "description": "PNG file"
+                            "$ref": "./uploadApplicaitonDocument.json#/components/schemas/UploadPngDocument"
                         }
                     },
                     "image/jpeg": {
                         "schema": {
-                            "type": "object",
-                            "description": "JPG file"
+                            "$ref": "./uploadApplicaitonDocument.json#/components/schemas/UploadJpegDocument"
                         }
                     }
                 }
@@ -640,10 +637,19 @@
                     "in": "path",
                     "required": true,
                     "description": "ID of the application to create a file for"
+                },
+                {
+                    "in": "header",
+                    "name": "Content-Type",
+                    "required": true,
+                    "description": "A workaround to properly assign the content type for the request body while providing no body, just set the one possible enum value",
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/DefaultContentType"
+                    }
                 }
             ],
-            "summary": "Create a document",
-            "description": "Create a document via API ",
+            "summary": "Create an application document",
+            "description": "Create an application document via API",
             "responses": {
                 "200": {
                     "description": "Successful Response",

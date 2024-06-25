@@ -1,32 +1,25 @@
-package org.openapitools.client;
+package unit.java.sdk;
 
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.CreateCustomerTokenApi;
-import org.openapitools.client.api.GetListOrgApiTokensApi;
-import org.openapitools.client.api.UnitApi;
-import org.openapitools.client.model.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
-public class TokenTests {
-    UnitApi unitApi = null;
+import org.junit.Test;
 
-    @BeforeAll
-    void init() {
-        String access_token = System.getenv("access_token");
-        ApiClient cl = new ApiClient();
-        cl.setBearerToken(access_token);
-        unitApi = new UnitApi(cl);
-    }
+import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.ApiToken;
+import unit.java.sdk.model.CreateApiTokenRequestDataAttributesResourcesInner;
+import unit.java.sdk.model.CreateCustomerTokenRequest;
+import unit.java.sdk.model.CreateCustomerTokenRequestData;
+import unit.java.sdk.model.CreateCustomerTokenRequestDataAttributes;
+import unit.java.sdk.model.UnitCustomerTokenResponse;
+
+public class TokenTests {
+    UnitApi unitApi = TestHelpers.GenerateUnitApiClient();
 
     @Test
     public void GetOrgTokensTest() throws ApiException {
-        GetListOrgApiTokensApi listApi = new GetListOrgApiTokensApi();
-
         // TODO: Is it alright that userId is hardcoded in the test?
-        List<ApiToken> response = unitApi.getApiTokens("252").getData();
+        List<ApiToken> response = unitApi.getApiTokensList("252").getData();
 
         for (ApiToken t: response) {
             assert t.getType().equals("apiToken");
@@ -35,11 +28,21 @@ public class TokenTests {
 
     @Test
     public void CreateCustomerToken() throws ApiException {
-        
-        CreateCustomerToken request = new CreateCustomerToken();
-        CreateCustomerToken cct = new CreateCustomerToken();
-        CreateCustomerTokenAttributes attributes = new CreateCustomerTokenAttributes();
+        CreateCustomerTokenRequest request = new CreateCustomerTokenRequest();
+        CreateCustomerTokenRequestData cct = new CreateCustomerTokenRequestData();
+        CreateCustomerTokenRequestDataAttributes attributes = new CreateCustomerTokenRequestDataAttributes();
         attributes.setScope("customers accounts");
+
+        CreateApiTokenRequestDataAttributesResourcesInner resource = new CreateApiTokenRequestDataAttributesResourcesInner();
+        resource.setType(CreateApiTokenRequestDataAttributesResourcesInner.TypeEnum.ACCOUNT);
+        List<String> Ids = new ArrayList<String>();
+        Ids.add("1527981");
+        resource.setIds(Ids);
+        
+        List<CreateApiTokenRequestDataAttributesResourcesInner> resources = new ArrayList<CreateApiTokenRequestDataAttributesResourcesInner>();
+        resources.add(resource);
+        attributes.setResources(resources);
+        
         cct.setAttributes(attributes);
         request.setData(cct);
 

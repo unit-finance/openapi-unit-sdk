@@ -1,38 +1,35 @@
-package org.openapitools.client;
+package unit.java.sdk;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.GetReceivedPaymentApi;
-import org.openapitools.client.api.GetReceivedPaymentsListApi;
-import org.openapitools.client.api.UnitApi;
-import org.openapitools.client.model.UnitReceivedPaymentListResponse;
-import org.openapitools.client.model.UnitReceivedPaymentResponseWithIncluded;
+import org.junit.Test;
+
+import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
+import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.UnitReceivedPaymentListResponse;
+import unit.java.sdk.model.UnitReceivedPaymentResponseWithIncluded;
 
 public class ReceivedPaymentTests {
-    UnitApi unitApi = null;
-
-    @BeforeAll
-    void init() {
-        String access_token = System.getenv("access_token");
-        ApiClient cl = new ApiClient();
-        cl.setBearerToken(access_token);
-        unitApi = new UnitApi(cl);
+    UnitApi unitApi = GenerateUnitApiClient();
+    
+    @Test
+    public void GetReceivedPaymentListApiTest() throws ApiException {
+        UnitReceivedPaymentListResponse response = unitApi.getReceivedPaymentsList(null);
+        assert !response.getData().isEmpty();
     }
 
     @Test
-    public void GetReceivedPaymentListApiTest() throws ApiException {
-        UnitReceivedPaymentListResponse response = unitApi.getReceivedPayments(null);
-        assert response.getData().size() != 0;
+    public void GetReceivedPaymentListWithIncludedApiTest() throws ApiException {
+        UnitReceivedPaymentListResponse response = unitApi.getReceivedPaymentsList("customer");
+        assert !response.getData().isEmpty();
     }
 
     @Test
     public void GetReceivedPaymentApiTest() throws ApiException {
-        UnitReceivedPaymentListResponse response = unitApi.getReceivedPayments(null);
-        assert response.getData().size() != 0;
+        UnitReceivedPaymentListResponse response = unitApi.getReceivedPaymentsList(null);
+        assert !response.getData().isEmpty();
 
         response.getData().forEach(x -> {
             try {
-                UnitReceivedPaymentResponseWithIncluded payment = unitApi.getReceivedPaymentById(x.getId(), null);
+                UnitReceivedPaymentResponseWithIncluded payment = unitApi.getReceivedPayment(x.getId(), null);
                 assert payment.getData().getId().equals(x.getId());
                 assert payment.getData().getAttributes().getAmount().equals(x.getAttributes().getAmount());
             } catch (ApiException e) {

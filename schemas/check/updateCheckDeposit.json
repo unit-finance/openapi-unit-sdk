@@ -1,8 +1,8 @@
 {
     "components": {
         "schemas": {
-            "PatchCheckDeposit": {
-                "title": "Patch Check Deposit",
+            "UpdateCheckDeposit": {
+                "title": "Update Check Deposit",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -24,11 +24,11 @@
                 "required": ["type", "attributes"]
             },
             "UpdateCheckDepositRequest": {
-                "title": "Patch Check Deposit",
+                "title": "Update Check Deposit",
                 "type": "object",
                 "properties": {
                     "data": {
-                        "$ref": "#/components/schemas/PatchCheckDeposit"
+                        "$ref": "#/components/schemas/UpdateCheckDeposit"
                     }
                 },
                 "additionalProperties": false,

@@ -1,8 +1,8 @@
 {
     "components": {
         "schemas": {
-            "PatchCounterparty": {
-                "title": "Patch Counterparty",
+            "UpdateCounterparty": {
+                "title": "Update Counterparty",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -43,13 +43,13 @@
                 "required": ["type", "attributes"]
             },
             "UpdateCounterpartyRequest": {
-                "title": "Patch Counterparty",
+                "title": "Update Counterparty",
                 "type": "object",
                 "properties": {
                     "data": {
                         "oneOf": [
                             {
-                                "$ref": "#/components/schemas/PatchCounterparty"
+                                "$ref": "#/components/schemas/UpdateCounterparty"
                             }
                         ]
                     }

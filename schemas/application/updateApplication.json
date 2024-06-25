@@ -1,8 +1,8 @@
 {
     "components": {
         "schemas": {
-            "PatchIndividualApplication": {
-                "title": "Patch Individual Application",
+            "UpdateIndividualApplication": {
+                "title": "Update Individual Application",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -31,8 +31,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBusinessApplication": {
-                "title": "Patch Business Application",
+            "UpdateBusinessApplication": {
+                "title": "Update Business Application",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -76,8 +76,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBusinessApplicationOfficer": {
-                "title": "Patch Business Application",
+            "UpdateBusinessApplicationOfficer": {
+                "title": "Update Business Application",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -108,8 +108,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBusinessApplicationBeneficialOwner": {
-                "title": "Patch Business Application",
+            "UpdateBusinessApplicationBeneficialOwner": {
+                "title": "Update Business Application",
                 "type": "object",
                 "properties": {
                     "type": { "type": "string", "default": "beneficialOwner" },
@@ -135,8 +135,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchTrustApplication": {
-                "title": "Patch Trust Application",
+            "UpdateTrustApplication": {
+                "title": "Update Trust Application",
                 "type": "object",
                 "properties": {
                     "type": { "type": "string", "default": "trustApplication" },
@@ -153,8 +153,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchSoleProprietorApplication": {
-                "title": "Patch Individual Application",
+            "UpdateSoleProprietorApplication": {
+                "title": "Update Individual Application",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -187,28 +187,28 @@
                 "required": ["type", "attributes"]
             },
             "UpdateApplicationRequest": {
-                "title": "Patch Application",
+                "title": "Update Application",
                 "type": "object",
                 "properties": {
                     "data": {
                         "oneOf": [
                             {
-                                "$ref": "#/components/schemas/PatchBusinessApplication"
+                                "$ref": "#/components/schemas/UpdateBusinessApplication"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchBusinessApplicationOfficer"
+                                "$ref": "#/components/schemas/UpdateBusinessApplicationOfficer"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchBusinessApplicationBeneficialOwner"
+                                "$ref": "#/components/schemas/UpdateBusinessApplicationBeneficialOwner"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchSoleProprietorApplication"
+                                "$ref": "#/components/schemas/UpdateSoleProprietorApplication"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchIndividualApplication"
+                                "$ref": "#/components/schemas/UpdateIndividualApplication"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchTrustApplication"
+                                "$ref": "#/components/schemas/UpdateTrustApplication"
                             }
                         ]
                     }

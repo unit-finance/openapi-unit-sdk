@@ -13,8 +13,8 @@
                     }
                 ]
             },
-            "PatchTransactionTags": {
-                "title": "Patch Transaction",
+            "UpdateTransactionTags": {
+                "title": "Update Transaction",
                 "type": "object",
                 "properties": {
                     "type": { "type": "string", "default": "transaction" },
@@ -32,8 +32,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBookTransaction": {
-                "title": "Patch Book Transaction",
+            "UpdateBookTransaction": {
+                "title": "Update Book Transaction",
                 "type": "object",
                 "properties": {
                     "type": { "type": "string", "default": "bookTransaction" },
@@ -56,8 +56,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchChargebackTransaction": {
-                "title": "Patch Chargeback Transaction",
+            "UpdateChargebackTransaction": {
+                "title": "Update Chargeback Transaction",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -83,21 +83,20 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-
             "UpdateTransactionRequest": {
-                "title": "Patch Transaction",
+                "title": "Update Transaction",
                 "type": "object",
                 "properties": {
                     "data": {
                         "oneOf": [
                             {
-                                "$ref": "#/components/schemas/PatchTransactionTags"
+                                "$ref": "#/components/schemas/UpdateTransactionTags"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchBookTransaction"
+                                "$ref": "#/components/schemas/UpdateBookTransaction"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchChargebackTransaction"
+                                "$ref": "#/components/schemas/UpdateChargebackTransaction"
                             }
                         ]
                     }

@@ -1,8 +1,8 @@
 {
     "components": {
         "schemas": {
-            "PatchIndividualDebitCard": {
-                "title": "Patch Individual Debit Card",
+            "UpdateIndividualDebitCard": {
+                "title": "Update Individual Debit Card",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -34,8 +34,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchIndividualVirtualDebitCard": {
-                "title": "Patch Individual Virtual Debit Card",
+            "UpdateIndividualVirtualDebitCard": {
+                "title": "Update Individual Virtual Debit Card",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -62,8 +62,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBusinessDebitCard": {
-                "title": "Patch Business Debit Card",
+            "UpdateBusinessDebitCard": {
+                "title": "Update Business Debit Card",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -104,8 +104,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBusinessVirtualDebitCard": {
-                "title": "Patch Business Virtual Debit Card",
+            "UpdateBusinessVirtualDebitCard": {
+                "title": "Update Business Virtual Debit Card",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -141,8 +141,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBusinessCreditCard": {
-                "title": "Patch Business Credit Card",
+            "UpdateBusinessCreditCard": {
+                "title": "Update Business Credit Card",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -183,8 +183,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBusinessVirtualCreditCard": {
-                "title": "Patch Business Virtual Credit Card",
+            "UpdateBusinessVirtualCreditCard": {
+                "title": "Update Business Virtual Credit Card",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -221,28 +221,28 @@
                 "required": ["type", "attributes"]
             },
             "UpdateCardRequest": {
-                "title": "Patch Card",
+                "title": "Update Card",
                 "type": "object",
                 "properties": {
                     "data": {
                         "oneOf": [
                             {
-                                "$ref": "#/components/schemas/PatchIndividualDebitCard"
+                                "$ref": "#/components/schemas/UpdateIndividualDebitCard"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchIndividualVirtualDebitCard"
+                                "$ref": "#/components/schemas/UpdateIndividualVirtualDebitCard"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchBusinessDebitCard"
+                                "$ref": "#/components/schemas/UpdateBusinessDebitCard"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchBusinessVirtualDebitCard"
+                                "$ref": "#/components/schemas/UpdateBusinessVirtualDebitCard"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchBusinessCreditCard"
+                                "$ref": "#/components/schemas/UpdateBusinessCreditCard"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchBusinessVirtualCreditCard"
+                                "$ref": "#/components/schemas/UpdateBusinessVirtualCreditCard"
                             }
                         ]
                     }

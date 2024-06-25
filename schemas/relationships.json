@@ -1009,7 +1009,7 @@
                 "properties": {
                     "incomingAch": {
                         "type": "object",
-                        "title": "Incoming ACH Relationship",
+                        "title": "Incoming Ach Relationship",
                         "properties": {
                             "data": {
                                 "type": "object",

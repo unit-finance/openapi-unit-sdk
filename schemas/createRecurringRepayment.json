@@ -1,6 +1,6 @@
 {
   "definitions": {
-    "CreateBookRepaymentRelationships": {
+    "CreateRecurringBookRepaymentRelationships": {
       "type": "object",
       "properties": {
         "account": {
@@ -16,7 +16,7 @@
       "required": ["account", "creditAccount", "counterpartyAccount"],
       "additionalProperties": false
     },
-    "CreateAchRepaymentRelationships": {
+    "CreateRecurringAchRepaymentRelationships": {
       "type": "object",
       "properties": {
         "account": {
@@ -32,7 +32,7 @@
       "required": ["account", "creditAccount", "counterparty"],
       "additionalProperties": false
     },
-    "CreateCapitalPartnerAchRepaymentRelationships": {
+    "CreateRecurringCapitalPartnerAchRepaymentRelationships": {
       "type": "object",
       "properties": {
         "creditAccount": {
@@ -45,7 +45,7 @@
       "required": ["account", "counterparty"],
       "additionalProperties": false
     },
-    "CreateCapitalPartnerBookRepaymentRelationships": {
+    "CreateRecurringCapitalPartnerBookRepaymentRelationships": {
       "type": "object",
       "properties": {
         "creditAccount": {
@@ -58,21 +58,17 @@
       "required": ["account", "counterpartyAccount"],
       "additionalProperties": false
     },
-    "CreateBookRepayment": {
-      "title": "Create Book Repayment",
+    "CreateRecurringBookRepayment": {
+      "title": "Create Recurring Book Repayment",
       "type": "object",
       "properties": {
         "type": {
           "type": "string",
-          "default": "bookRepayment"
+          "default": "recurringBookRepayment"
         },
         "attributes": {
           "type": "object",
           "properties": {
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
             "description": {
               "type": "string",
               "minLength": 1,
@@ -92,31 +88,27 @@
               "$ref": "tags.json#/definitions/tags"
             }
           },
-          "required": ["amount", "description"],
+          "required": ["description"],
           "additionalProperties": false
         },
         "relationships": {
-          "$ref": "#/definitions/CreateBookRepaymentRelationships"
+          "$ref": "#/definitions/CreateRecurringBookRepaymentRelationships"
         }
       },
       "additionalProperties": false,
       "required": ["type", "attributes", "relationships"]
     },
-    "CreateAchRepayment": {
-      "title": "Create ACH Repayment",
+    "CreateRecurringAchRepayment": {
+      "title": "Create Recurring ACH Repayment",
       "type": "object",
       "properties": {
         "type": {
           "type": "string",
-          "default": "achRepayment"
+          "default": "recurringAchRepayment"
         },
         "attributes": {
           "type": "object",
           "properties": {
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
             "description": {
               "type": "string",
               "minLength": 1,
@@ -142,30 +134,26 @@
               "$ref": "tags.json#/definitions/tags"
             }
           },
-          "required": ["amount", "description"],
+          "required": ["description"],
           "additionalProperties": false
         },
         "relationships": {
-          "$ref": "#/definitions/CreateAchRepaymentRelationships"
+          "$ref": "#/definitions/CreateRecurringAchRepaymentRelationships"
         }
       },
       "additionalProperties": false,
       "required": ["type", "attributes", "relationships"]
     },
-    "CreateCapitalPartnerAchRepayment": {
+    "CreateRecurringCapitalPartnerAchRepayment": {
       "type": "object",
       "properties": {
         "type": {
           "type": "string",
-          "default": "capitalPartnerAchRepayment"
+          "default": "recurringCapitalPartnerAchRepayment"
         },
         "attributes": {
           "type": "object",
           "properties": {
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
             "description": {
               "type": "string",
               "minLength": 1,
@@ -191,29 +179,25 @@
               "$ref": "tags.json#/definitions/tags"
             }
           },
-          "required": ["amount", "description"],
+          "required": ["description"],
           "additionalProperties": false
         },
         "relationships": {
-          "$ref": "#/definitions/CreateCapitalPartnerAchRepaymentRelationships"
+          "$ref": "#/definitions/CreateRecurringCapitalPartnerAchRepaymentRelationships"
         }
       },
       "additionalProperties": false,
       "required": ["type", "attributes", "relationships"]
     },
-    "CreateCapitalPartnerBookRepayment": {
+    "CreateRecurringCapitalPartnerBookRepayment": {
       "properties": {
         "type": {
           "type": "string",
-          "default": "capitalPartnerBookRepayment"
+          "default": "recurringCapitalPartnerBookRepayment"
         },
         "attributes": {
           "type": "object",
           "properties": {
-            "amount": {
-              "type": "integer",
-              "minimum": 1
-            },
             "description": {
               "type": "string",
               "minLength": 1,
@@ -233,34 +217,36 @@
               "$ref": "tags.json#/definitions/tags"
             }
           },
-          "required": ["amount", "description"],
+          "required": ["description"],
           "additionalProperties": false
         },
         "relationships": {
-          "$ref": "#/definitions/CreateCapitalPartnerBookRepaymentRelationships"
+          "$ref": "#/definitions/CreateRecurringCapitalPartnerBookRepaymentRelationships"
         }
       },
       "additionalProperties": false,
       "required": ["type", "attributes", "relationships"]
-    }
-  },
-  "type": "object",
-  "properties": {
-    "data": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/CreateAchRepayment"
-        },
-        {
-          "$ref": "#/definitions/CreateBookRepayment"
-        },
-        {
-          "$ref": "#/definitions/CreateCapitalPartnerAchRepayment"
-        },
-        {
-          "$ref": "#/definitions/CreateCapitalPartnerBookRepayment"
+    },
+    "CreateRecurringRepaymentRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateRecurringAchRepayment"
+            },
+            {
+              "$ref": "#/definitions/CreateRecurringBookRepayment"
+            },
+            {
+              "$ref": "#/definitions/CreateRecurringCapitalPartnerAchRepayment"
+            },
+            {
+              "$ref": "#/definitions/CreateRecurringCapitalPartnerBookRepayment"
+            }
+          ]
         }
-      ]
+      }
     }
   }
 }

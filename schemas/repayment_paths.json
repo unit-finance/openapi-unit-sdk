@@ -4,7 +4,7 @@
         "title": "UnitRepaymentResponse",
         "properties": {
             "data": {
-                "$ref": "repayment.json"
+                "$ref": "repayment.json#/definitions/Repayment"
             }
         }
     },
@@ -81,7 +81,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "repayment.json"
+                                            "$ref": "repayment.json#/definitions/Repayment"
                                         }
                                     },
                                     "meta": {
@@ -99,7 +99,7 @@
         },
         "post": {
             "tags": [
-                "Create a Repayment"
+                "Create Repayment"
             ],
             "operationId": "execute",
             "summary": "Create a Repayment",

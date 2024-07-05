@@ -52,7 +52,7 @@
                                 "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             }
                         },
                         "required": [
@@ -107,7 +107,7 @@
                                 "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             }
                         },
                         "required": ["type", "plaidProcessorToken"],

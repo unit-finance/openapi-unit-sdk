@@ -1,8 +1,8 @@
 {
     "components": {
         "schemas": {
-            "PatchAchReceivedPayment": {
-                "title": "Patch ACH Received Payment",
+            "UpdateAchReceivedPayment": {
+                "title": "Update ACH Received Payment",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -23,13 +23,13 @@
                 "required": ["type", "attributes"]
             },
             "UpdateReceivedPaymentRequest": {
-                "title": "Patch Received Payment",
+                "title": "Update Received Payment",
                 "type": "object",
                 "properties": {
                     "data": {
                         "oneOf": [
                             {
-                                "$ref": "#/components/schemas/PatchAchReceivedPayment"
+                                "$ref": "#/components/schemas/UpdateAchReceivedPayment"
                             }
                         ]
                     }

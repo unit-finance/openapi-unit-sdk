@@ -27,9 +27,7 @@
                                 "maxLength": 80
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -74,9 +72,7 @@
                                 "maxLength": 80
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "sameDay": {
                                 "type": "boolean",
@@ -128,9 +124,7 @@
                                 "maxLength": 80
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"

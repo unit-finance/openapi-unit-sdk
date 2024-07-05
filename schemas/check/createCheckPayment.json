@@ -50,9 +50,7 @@
                                         "minimum": 1
                                     },
                                     "idempotencyKey": {
-                                        "type": "string",
-                                        "minLength": 1,
-                                        "maxLength": 255
+                                        "$ref": "../types.json#/components/schemas/IdempotencyKey"
                                     },
                                     "sendDate": {
                                         "type": "string",

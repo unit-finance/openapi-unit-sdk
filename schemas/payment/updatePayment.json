@@ -1,8 +1,8 @@
 {
     "components": {
         "schemas": {
-            "PatchAchPayment": {
-                "title": "Patch ACH Payment",
+            "UpdateAchPayment": {
+                "title": "Update ACH Payment",
                 "type": "object",
                 "properties": {
                     "type": { "type": "string", "default": "achPayment" },
@@ -19,8 +19,8 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchBookPayment": {
-                "title": "Patch Book Payment",
+            "UpdateBookPayment": {
+                "title": "Update Book Payment",
                 "type": "object",
                 "properties": {
                     "type": { "type": "string", "default": "bookPayment" },
@@ -38,13 +38,13 @@
                 "required": ["type", "attributes"]
             },
             "UpdatePaymentRequest": {
-                "title": "Patch Payment",
+                "title": "Update Payment",
                 "type": "object",
                 "properties": {
                     "data": {
                         "oneOf": [
-                            { "$ref": "#/components/schemas/PatchAchPayment" },
-                            { "$ref": "#/components/schemas/PatchBookPayment" }
+                            { "$ref": "#/components/schemas/UpdateAchPayment" },
+                            { "$ref": "#/components/schemas/UpdateBookPayment" }
                         ]
                     }
                 },

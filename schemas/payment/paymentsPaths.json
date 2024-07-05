@@ -15,7 +15,7 @@
                 "title": "Unit Received Payment Response",
                 "properties": {
                     "data": {
-                        "$ref": "./updatePayment.json#/components/schemas/UpdatePaymentRequest"
+                        "$ref": "./receivedPayment.json#/components/schemas/ReceivedPayment"
                     }
                 }
             },
@@ -196,7 +196,7 @@
             }
         }
     },
-    "getAndPatchPayment": {
+    "getAndUpdatePayment": {
         "get": {
             "tags": ["unit"],
             "operationId": "getPayment",
@@ -345,7 +345,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "./updatePayment.json#/components/schemas/UpdatePaymentRequest"
+                                            "$ref": "./receivedPayment.json#/components/schemas/ReceivedPayment"
                                         }
                                     },
                                     "included": {
@@ -397,7 +397,7 @@
                                 "title": "Unit Received Payment Response With Included",
                                 "properties": {
                                     "data": {
-                                        "$ref": "./updatePayment.json#/components/schemas/UpdatePaymentRequest"
+                                        "$ref": "./receivedPayment.json#/components/schemas/ReceivedPayment"
                                     },
                                     "included": {
                                         "$ref": "../types.json#/components/schemas/IncludedResource"

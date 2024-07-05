@@ -140,7 +140,7 @@
                 "additionalProperties": false
             },
             "UpdateCustomerRequest": {
-                "title": "Patch Customer",
+                "title": "Update Customer",
                 "type": "object",
                 "properties": {
                     "data": {

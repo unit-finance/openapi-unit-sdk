@@ -24,8 +24,7 @@
                                 "nullable": true
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "nullable": true
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             }
                         },
                         "additionalProperties": false,
@@ -56,8 +55,7 @@
                                 "nullable": true
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "nullable": true
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             }
                         },
                         "additionalProperties": false,

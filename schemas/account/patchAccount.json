@@ -1,7 +1,7 @@
 {
     "components": {
         "schemas": {
-            "PatchDepositAccount": {
+            "UpdateDepositAccount": {
                 "title": "Update Deposit Account",
                 "type": "object",
                 "properties": {
@@ -24,7 +24,7 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "PatchCreditAccount": {
+            "UpdateCreditAccount": {
                 "title": "Update Credit Account",
                 "type": "object",
                 "properties": {
@@ -54,10 +54,10 @@
                     "data": {
                         "oneOf": [
                             {
-                                "$ref": "#/components/schemas/PatchDepositAccount"
+                                "$ref": "#/components/schemas/UpdateDepositAccount"
                             },
                             {
-                                "$ref": "#/components/schemas/PatchCreditAccount"
+                                "$ref": "#/components/schemas/UpdateCreditAccount"
                             }
                         ]
                     }

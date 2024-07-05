@@ -29,6 +29,80 @@
                     }
                 ]
             },
+            "CreatePaymentRelationshipsWithCounterpartyAccount": {
+                "allOf": [
+                    {
+                        "type": "object",
+
+                        "required": ["account", "counterpartyAccount"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    }
+                ]
+            },
+            "CreateAchPaymentRelationships": {
+                "allOf": [
+                    { "title": "Create Ach Payment Relationships" },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
+            "CreateAchPaymentCounterpartyRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Ach Payment Counterparty Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                    }
+                ]
+            },
+            "CreateAchPaymentPlaidRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Ach Payment Plaid Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
+            "CreateBookPaymentRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Book Payment Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterpartyAccount"
+                    }
+                ]
+            },
+            "CreateWirePaymentRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Wire Payment Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
+            "CreatePushToCardPaymentRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Push To Card Payment Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
             "CreateAchPayment": {
                 "title": "Create ACH Payment to inline Counterparty",
                 "type": "object",
@@ -57,7 +131,7 @@
                                 "$ref": "./payment.json#/components/schemas/PaymentCounterparty"
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "sameDay": {
                                 "type": "boolean"
@@ -79,7 +153,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                        "$ref": "#/components/schemas/CreateAchPaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -113,7 +187,7 @@
                                 "type": "boolean"
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -131,7 +205,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                        "$ref": "#/components/schemas/CreateAchPaymentCounterpartyRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -162,7 +236,7 @@
                                 "enum": ["Debit", "Credit"]
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -195,7 +269,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                        "$ref": "#/components/schemas/CreateAchPaymentPlaidRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -219,7 +293,7 @@
                                 "type": "string"
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -232,7 +306,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                        "$ref": "#/components/schemas/CreateBookPaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -263,7 +337,7 @@
                                 "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty"
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -273,59 +347,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CreatePaymentRelationships"
-                    }
-                },
-                "additionalProperties": false,
-                "required": ["attributes", "relationships"]
-            },
-            "CreateBillPayment": {
-                "title": "Create Bill Payment",
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "billPayment"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "billerId": {
-                                "type": "string"
-                            },
-                            "accountNumber": {
-                                "type": "string"
-                            },
-                            "amount": {
-                                "type": "integer"
-                            },
-                            "description": {
-                                "type": "string"
-                            },
-                            "idempotencyKey": {
-                                "type": "string"
-                            },
-                            "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
-                            },
-                            "fullName": {
-                                "$ref": "../types.json#/components/schemas/FullName"
-                            },
-                            "dateOfBirth": {
-                                "type": "string",
-                                "format": "date"
-                            }
-                        },
-                        "required": [
-                            "billerId",
-                            "accountNumber",
-                            "amount",
-                            "description"
-                        ],
-                        "additionalProperties": false
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                        "$ref": "#/components/schemas/CreateWirePaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -346,7 +368,7 @@
                                 "type": "integer"
                             },
                             "idempotencyKey": {
-                                "type": "string"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -367,7 +389,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                        "$ref": "#/components/schemas/CreatePushToCardPaymentRelationships"
                     }
                 },
                 "additionalProperties": false,
@@ -393,9 +415,6 @@
                             },
                             {
                                 "$ref": "#/components/schemas/CreateWirePayment"
-                            },
-                            {
-                                "$ref": "#/components/schemas/CreateBillPayment"
                             },
                             {
                                 "$ref": "#/components/schemas/CreatePushToCardPayment"

@@ -1,48 +1,39 @@
-package org.openapitools.client;
+package unit.java.sdk;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.CreateApplicationApi;
-import org.openapitools.client.api.GetCustomerApi;
-import org.openapitools.client.api.GetListCustomersApi;
-import org.openapitools.client.api.UnitApi;
-import org.openapitools.client.model.IndividualApplication;
-import org.openapitools.client.model.IndividualCustomer;
-import org.openapitools.client.model.UnitCreateApplicationResponse;
-import org.openapitools.client.model.UnitCustomersListResponse;
+import org.junit.Test;
 
-import static org.openapitools.client.TestHelpers.CreateApplicationRequest;
+import static unit.java.sdk.TestHelpers.GenerateCreateApplicationRequest;
+import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
+import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.IndividualApplication;
+import unit.java.sdk.model.IndividualCustomer;
+import unit.java.sdk.model.UnitCreateApplicationResponse;
+import unit.java.sdk.model.UnitCustomersListResponse;
 
 public class CustomerTests {
-    UnitApi unitApi = null;
+    UnitApi unitApi = GenerateUnitApiClient();
 
-    @BeforeAll
-    void init() {
-        String access_token = System.getenv("access_token");
-        ApiClient cl = new ApiClient();
-        cl.setBearerToken(access_token);
-        unitApi = new UnitApi(cl);
-    }
-
-    @Test
-    public void GetCustomersListApiTest() throws ApiException {
-        UnitCustomersListResponse response = unitApi.getCustomers(null, null, null);
-        assert response.getData().size() > 0;
-    }
-
-    public IndividualCustomer CreateIndividualCustomer() throws ApiException {
-        UnitCreateApplicationResponse res = unitApi.createApplication(CreateApplicationRequest());
+    public static IndividualCustomer CreateIndividualCustomer(UnitApi unitApi) throws ApiException {
+        UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateApplicationRequest());
         assert res.getData().getType().equals("individualApplication");
 
         IndividualApplication app = (IndividualApplication) res.getData();
         String customerId = app.getRelationships().getCustomer().getData().getId();
 
-        return (IndividualCustomer) unitApi.getCustomerById(customerId).getData();
+        return (IndividualCustomer) unitApi.getCustomer(customerId).getData();
     }
 
     @Test
+    public void GetCustomersListApiTest() throws ApiException {
+        UnitCustomersListResponse response = unitApi.getCustomersList(null, null, null);
+        assert !response.getData().isEmpty();
+    }
+
+    
+
+    @Test
     public void CreateIndividualCustomerTest() throws ApiException {
-        IndividualCustomer customer = CreateIndividualCustomer();
+        IndividualCustomer customer = CreateIndividualCustomer(unitApi);
         assert customer.getType().equals("individualCustomer");
     }
 }

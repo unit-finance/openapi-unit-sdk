@@ -65,9 +65,7 @@
                                 "$ref": "../types.json#/components/schemas/CardLevelLimits"
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "bin": {
                                 "$ref": "#/components/schemas/Bin"
@@ -159,9 +157,7 @@
                                 "$ref": "../types.json#/components/schemas/CardLevelLimits"
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "activeForOnlineUse": {
                                 "type": "boolean"
@@ -245,9 +241,7 @@
                                 "$ref": "../types.json#/components/schemas/CardLevelLimits"
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "activeForOnlineUse": {
                                 "type": "boolean"
@@ -295,9 +289,7 @@
                                 "$ref": "../types.json#/components/schemas/CardLevelLimits"
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "bin": {
                                 "$ref": "#/components/schemas/Bin"
@@ -365,9 +357,7 @@
                                 "$ref": "../types.json#/components/schemas/CardLevelLimits"
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "expiryDate": {
                                 "type": "string",
@@ -435,9 +425,7 @@
                                 "$ref": "../types.json#/components/schemas/CardLevelLimits"
                             },
                             "idempotencyKey": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
                             },
                             "expiryDate": {
                                 "type": "string",

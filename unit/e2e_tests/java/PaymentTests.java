@@ -1,40 +1,49 @@
-package org.openapitools.client;
+package unit.java.sdk;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.CreateAPaymentApi;
-import org.openapitools.client.api.GetListPaymentsApi;
-import org.openapitools.client.api.GetPaymentApi;
-import org.openapitools.client.api.UnitApi;
-import org.openapitools.client.model.*;
-import static org.openapitools.client.AccountTests.CreateDepositAccount;
-import static org.openapitools.client.TestHelpers.CreateWireCounterparty;
-import static org.openapitools.client.TestHelpers.CreateCounterparty;
+import org.junit.Test;
+
+import static unit.java.sdk.AccountTests.CreateDepositAccount;
+import static unit.java.sdk.TestHelpers.CreatePaymentCounterparty;
+import static unit.java.sdk.TestHelpers.CreateWirePaymentCounterparty;
+import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
+import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.AccountRelationship;
+import unit.java.sdk.model.AccountRelationshipData;
+import unit.java.sdk.model.CounterpartyAccountRelationship;
+import unit.java.sdk.model.CounterpartyAccountRelationshipData;
+import unit.java.sdk.model.CreateAchPayment;
+import unit.java.sdk.model.CreateAchPaymentAttributes;
+import unit.java.sdk.model.CreateAchPaymentRelationships;
+import unit.java.sdk.model.CreateBookPayment;
+import unit.java.sdk.model.CreateBookPaymentAttributes;
+import unit.java.sdk.model.CreateBookPaymentRelationships;
+import unit.java.sdk.model.CreatePaymentRequest;
+import unit.java.sdk.model.CreatePaymentRequestData;
+import unit.java.sdk.model.CreateWirePayment;
+import unit.java.sdk.model.CreateWirePaymentAttributes;
+import unit.java.sdk.model.CreateWirePaymentRelationships;
+import unit.java.sdk.model.DepositAccount;
+import unit.java.sdk.model.Payment;
+import unit.java.sdk.model.UnitPaymentResponse;
+import unit.java.sdk.model.UnitPaymentResponseWithIncluded;
+import unit.java.sdk.model.UnitPaymentsListResponse;
 
 public class PaymentTests {
-    UnitApi unitApi = null;
-
-    @BeforeAll
-    void init() {
-        String access_token = System.getenv("access_token");
-        ApiClient cl = new ApiClient();
-        cl.setBearerToken(access_token);
-        unitApi = new UnitApi(cl);
-    }
+    UnitApi unitApi = GenerateUnitApiClient();
 
     @Test
     public void GetPaymentsListApiTest() throws ApiException {
-        UnitPaymentsListResponse response = unitApi.getPayments(null, null, null, null);
-        assert response.getData().size() > 0;
+        UnitPaymentsListResponse response = unitApi.getPaymentsList(null, null, null, null);
+        assert !response.getData().isEmpty();
     }
 
     @Test
     public void GetPaymentsApiTest() throws ApiException {
-        UnitPaymentsListResponse response = unitApi.getPayments(null, null, null, null);
-        assert response.getData().size() > 0;
+        UnitPaymentsListResponse response = unitApi.getPaymentsList(null, null, null, null);
+        assert !response.getData().isEmpty();
 
         for (Payment p: response.getData()) {
-            UnitPaymentResponseWithIncluded paymentResponse = unitApi.getPaymentById(p.getId(), null);
+            UnitPaymentResponseWithIncluded paymentResponse = unitApi.getPayment(p.getId(), null);
             assert paymentResponse.getData().getType().contains("Payment");
         }
     }
@@ -47,8 +56,8 @@ public class PaymentTests {
         attributes.setDescription("Funding");
         createBookPayment.setAttributes(attributes);
 
-        DepositAccount account1 = (DepositAccount) CreateDepositAccount();
-        DepositAccount account2 = (DepositAccount) CreateDepositAccount();
+        DepositAccount account1 = (DepositAccount) CreateDepositAccount(unitApi);
+        DepositAccount account2 = (DepositAccount) CreateDepositAccount(unitApi);
 
         CreateBookPaymentRelationships relationships = new CreateBookPaymentRelationships();
 
@@ -71,7 +80,7 @@ public class PaymentTests {
     
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createBookPayment));
-        UnitPaymentResponse response = unitApi.createPayment();
+        UnitPaymentResponse response = unitApi.createPayment(request);
         assert response.getData().getType().equals("bookPayment");
     }
     @Test
@@ -79,12 +88,12 @@ public class PaymentTests {
         CreateAchPayment createAchPayment = new CreateAchPayment();
         CreateAchPaymentAttributes attributes = new CreateAchPaymentAttributes();
         attributes.setAmount(1000);
-        attributes.setCounterparty(CreateCounterparty());
+        attributes.setCounterparty(CreatePaymentCounterparty());
         attributes.setDirection(CreateAchPaymentAttributes.DirectionEnum.CREDIT);
         attributes.setDescription("Funding");
         createAchPayment.setAttributes(attributes);
 
-        DepositAccount account = (DepositAccount) CreateDepositAccount();
+        DepositAccount account = (DepositAccount) CreateDepositAccount(unitApi);
 
         CreateAchPaymentRelationships relationships = new CreateAchPaymentRelationships();
         AccountRelationship accountRelationship = new AccountRelationship();
@@ -97,7 +106,7 @@ public class PaymentTests {
 
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createAchPayment));
-        UnitPaymentResponse response = unitApi.createPayment();
+        UnitPaymentResponse response = unitApi.createPayment(request);
         assert response.getData().getType().equals("achPayment");
     }
 
@@ -108,13 +117,13 @@ public class PaymentTests {
         createWirePayment.setType("wirePayment");
         attributes.setAmount(100);
         attributes.setDirection(CreateWirePaymentAttributes.DirectionEnum.CREDIT);
-        attributes.setCounterparty(CreateWireCounterparty());
+        attributes.setCounterparty(CreateWirePaymentCounterparty());
         attributes.setDescription("Wire payment");
         createWirePayment.setAttributes(attributes);
 
-        DepositAccount account = (DepositAccount) CreateDepositAccount();
+        DepositAccount account = CreateDepositAccount(unitApi);
 
-        CreateAchPaymentRelationships relationships = new CreateAchPaymentRelationships();
+        CreateWirePaymentRelationships relationships = new CreateWirePaymentRelationships();
         AccountRelationship accountRelationship = new AccountRelationship();
         AccountRelationshipData accountRelationshipData = new AccountRelationshipData();
         accountRelationshipData.setId(account.getId());
@@ -125,7 +134,7 @@ public class PaymentTests {
 
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createWirePayment));
-        UnitPaymentResponse response = unitApi.createPayment();
+        UnitPaymentResponse response = unitApi.createPayment(request);
         assert response.getData().getType().equals("wirePayment");
     }
 }

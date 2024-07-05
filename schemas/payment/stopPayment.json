@@ -1,11 +1,11 @@
 {
     "components": {
         "schemas": {
-            "StopPaymentRelationships": {
+            "CheckStopPaymentRelationships": {
                 "allOf": [
                     {
                         "type": "object",
-                        "required": ["account", "customer"],
+                        "required": ["account"],
                         "additionalProperties": false
                     },
                     {
@@ -18,17 +18,56 @@
                         "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/CheckPaymentsRelationship"
+                        "type": "object",
+                        "properties": {
+                            "stoppedPayments": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "../check/checkPayment.json#/components/schemas/CheckPayment"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 ]
             },
-            "StopPayment": {
-                "title": "Stop Payment",
+            "AchStopPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    }
+                ]
+            },
+            "CheckStopPaymentStatus": {
+                "type": "string",
+                "enum": ["Active", "Disabled"]
+            },
+            "AchStopPaymentDisableReason": {
+                "type": "string",
+                "enum": ["Expired", "Requested", "PaymentStopped"]
+            },
+            "CheckStopPayment": {
+                "title": "Check Stop Payment",
                 "type": "object",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "default": "stopPayment"
+                        "default": "checkStopPayment"
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"
@@ -45,12 +84,10 @@
                                 "format": "date-time"
                             },
                             "amount": {
-                                "type": "integer",
-                                "minimum": 1
+                                "type": "integer"
                             },
                             "status": {
-                                "type": "string",
-                                "enum": ["Active", "Disabled"]
+                                "$ref": "#/components/schemas/CheckStopPaymentStatus"
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -62,17 +99,97 @@
                         "required": [
                             "createdAt",
                             "updatedAt",
-                            "amount",
-                            "checkNumber"
+                            "status",
+                            "checkNumber",
+                            "tags"
                         ],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/StopPaymentRelationships"
+                        "$ref": "#/components/schemas/CheckStopPaymentRelationships"
                     }
-                },
-                "additionalProperties": false,
-                "required": ["type", "id", "attributes", "relationships"]
+                }
+            },
+            "AchStopPayment": {
+                "title": "ACH Stop Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "achStopPayment"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "minAmount": {
+                                "type": "integer"
+                            },
+                            "originatorName": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "direction": {
+                                "type": "string",
+                                "default": "debit"
+                            },
+                            "expiration": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "isMultiUse": {
+                                "type": "boolean"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "disableReason": {
+                                "$ref": "#/components/schemas/AchStopPaymentDisableReason"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "direction",
+                            "expiration",
+                            "isMultiUse",
+                            "description",
+                            "tags"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/AchStopPaymentRelationships"
+                    }
+                }
+            },
+            "StopPayment": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/CheckStopPayment"
+                    },
+                    {
+                        "$ref": "#/components/schemas/AchStopPayment"
+                    }
+                ]
             }
         }
     }

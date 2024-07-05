@@ -27,7 +27,6 @@
             "summary": "Create Stop Payment",
             "tags": ["unit"],
             "operationId": "createStopPayment",
-
             "requestBody": {
                 "required": true,
                 "content": {
@@ -156,10 +155,10 @@
                 }
             }
         },
-        "delete": {
-            "summary": "Cancel a stop payment",
+        "post": {
+            "summary": "Update a stop payment",
             "tags": ["unit"],
-
+            "operationId": "updateStopPayment",
             "parameters": [
                 {
                     "name": "stopPaymentId",
@@ -171,9 +170,26 @@
                     }
                 }
             ],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "./updateStopPayment.json#/components/schemas/UpdateStopPaymentRequest"
+                        }
+                    }
+                }
+            },
             "responses": {
-                "204": {
-                    "description": "Stop payment successfully canceled"
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StopPaymentResponse"
+                            }
+                        }
+                    }
                 },
                 "404": {
                     "description": "Stop payment not found"

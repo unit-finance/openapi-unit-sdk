@@ -1,7 +1,7 @@
 {
     "components": {
         "schemas": {
-            "PatchApplicationFormChooseBusinessOrIndividual": {
+            "UpdateApplicationFormChooseBusinessOrIndividual": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -26,7 +26,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormIndividualInformation": {
+            "UpdateApplicationFormIndividualInformation": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -96,7 +96,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormSoleProprietorshipBusinessInformation": {
+            "UpdateApplicationFormSoleProprietorshipBusinessInformation": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -136,7 +136,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormBusinessInformation": {
+            "UpdateApplicationFormBusinessInformation": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -182,7 +182,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormBusinessAdditionalInformation": {
+            "UpdateApplicationFormBusinessAdditionalInformation": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -233,7 +233,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormOfficerInformation": {
+            "UpdateApplicationFormOfficerInformation": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -266,7 +266,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormBeneficialOwnersInformation": {
+            "UpdateApplicationFormBeneficialOwnersInformation": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -296,7 +296,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormPhoneVerification": {
+            "UpdateApplicationFormPhoneVerification": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -322,7 +322,7 @@
                 },
                 "additionalProperties": false
             },
-            "PatchApplicationFormUpdateStage": {
+            "UpdateApplicationFormUpdateStage": {
                 "type": "object",
                 "properties": {
                     "type": {
@@ -349,37 +349,37 @@
             }
         },
         "UpdateApplicationFormRequest": {
-            "title": "Patch Application Form",
+            "title": "Update Application Form",
             "type": "object",
             "properties": {
                 "data": {
                     "oneOf": [
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormChooseBusinessOrIndividual"
+                            "$ref": "#/components/schemas/UpdateApplicationFormChooseBusinessOrIndividual"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormIndividualInformation"
+                            "$ref": "#/components/schemas/UpdateApplicationFormIndividualInformation"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormSoleProprietorshipBusinessInformation"
+                            "$ref": "#/components/schemas/UpdateApplicationFormSoleProprietorshipBusinessInformation"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormBusinessInformation"
+                            "$ref": "#/components/schemas/UpdateApplicationFormBusinessInformation"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormBusinessAdditionalInformation"
+                            "$ref": "#/components/schemas/UpdateApplicationFormBusinessAdditionalInformation"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormOfficerInformation"
+                            "$ref": "#/components/schemas/UpdateApplicationFormOfficerInformation"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormBeneficialOwnersInformation"
+                            "$ref": "#/components/schemas/UpdateApplicationFormBeneficialOwnersInformation"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormPhoneVerification"
+                            "$ref": "#/components/schemas/UpdateApplicationFormPhoneVerification"
                         },
                         {
-                            "$ref": "#/components/schemas/PatchApplicationFormUpdateStage"
+                            "$ref": "#/components/schemas/UpdateApplicationFormUpdateStage"
                         }
                     ]
                 }

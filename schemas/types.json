@@ -770,7 +770,7 @@
                 }
             },
             "WeeklySchedule": {
-                "title": "Schedule",
+                "title": "Weekly Schedule",
                 "type": "object",
                 "properties": {
                     "startTime": {
@@ -803,7 +803,7 @@
                 "required": ["interval", "nextScheduledAction"]
             },
             "MontlySchedule": {
-                "title": "Create Monthly Schedule",
+                "title": "Monthly Schedule",
                 "type": "object",
                 "properties": {
                     "startTime": {
@@ -843,8 +843,8 @@
                 "required": ["interval"],
                 "additionalProperties": false
             },
-            "CreateSchedule": {
-                "title": "Create Schedule",
+            "Schedule": {
+                "title": "Schedule",
                 "oneOf": [
                     { "$ref": "#/components/schemas/WeeklySchedule" },
                     { "$ref": "#/components/schemas/MontlySchedule" }

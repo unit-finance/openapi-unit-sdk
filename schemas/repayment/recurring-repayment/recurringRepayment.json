@@ -1,0 +1,472 @@
+{
+    "components": {
+        "schemas": {
+            "RecurringRepaymentStatus": {
+                "type": "string",
+                "enum": ["Active", "Disabled"]
+            },
+            "RecurringRepaymentRelationshipsBase": {
+                "type": "object",
+                "properties": {
+                    "creditAccount": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "creditAccount"
+                                    },
+                                    "id": {
+                                        "$ref": "../../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    },
+                    "counterparty": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["counterparty"]
+                                    },
+                                    "id": {
+                                        "$ref": "../../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    },
+                    "customer": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "businessCustomer",
+                                            "individualCustomer",
+                                            "customer"
+                                        ]
+                                    },
+                                    "id": {
+                                        "$ref": "../../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    },
+                    "org": {
+                        "type": "object",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "org"
+                                    },
+                                    "id": {
+                                        "$ref": "../../types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "required": ["type", "id"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["creditAccount", "counterparty", "org"]
+            },
+            "RecurringAchRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepaymentRelationshipsBase"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "account": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "depositAccount",
+                                                    "account"
+                                                ]
+                                            },
+                                            "id": {
+                                                "$ref": "../../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["account"]
+                    }
+                ]
+            },
+            "RecurringBookRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepaymentRelationshipsBase"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "account": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "depositAccount",
+                                                    "account"
+                                                ]
+                                            },
+                                            "id": {
+                                                "$ref": "../../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["account"]
+                    }
+                ]
+            },
+            "RecurringCapitalPartnerBookRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepaymentRelationshipsBase"
+                    },
+                    {
+                        "title": "Recurring Capital Partner Book Repayment Relationships"
+                    }
+                ]
+            },
+            "RecurringCapitalPartnerAchRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepaymentRelationshipsBase"
+                    },
+                    {
+                        "title": "Recurring Capital Partner Ach Repayment Relationships"
+                    }
+                ]
+            },
+            "RecurringAchRepayment": {
+                "title": "Recurring ACH Repayment",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "default": "recurringAchRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "schedule": {
+                                "$ref": "../../types.json#/components/schemas/Schedule"
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 50
+                            },
+                            "addenda": {
+                                "type": "string",
+                                "maxLength": 80
+                            },
+                            "sameDay": {
+                                "type": "boolean",
+                                "default": "false"
+                            },
+                            "secCode": { "type": "string" },
+                            "numberOfRepayments": {
+                                "type": "integer"
+                            },
+                            "tags": {
+                                "$ref": "../../types.json#/components/schemas/Tags"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "schedule",
+                            "description",
+                            "numberOfRepayments",
+                            "status"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RecurringAchRepaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "RecurringBookRepayment": {
+                "title": "Recurring Book Repayment",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "default": "recurringBookRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "schedule": {
+                                "$ref": "../../types.json#/components/schemas/Schedule"
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 50
+                            },
+                            "transactionSummaryOverride": {
+                                "type": "string",
+                                "maxLength": 100
+                            },
+                            "tags": {
+                                "$ref": "../../types.json#/components/schemas/Tags"
+                            },
+                            "numberOfRepayments": {
+                                "type": "integer"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "schedule",
+                            "description",
+                            "numberOfRepayments",
+                            "status"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RecurringBookRepaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "RecurringCapitalPartnerAchRepayment": {
+                "title": "Recurring Capital Partner ACH Repayment",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "default": "recurrinCapitalPartnerAchRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "schedule": {
+                                "$ref": "../../types.json#/components/schemas/Schedule"
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 50
+                            },
+                            "addenda": {
+                                "type": "string",
+                                "maxLength": 80
+                            },
+                            "sameDay": {
+                                "type": "boolean",
+                                "default": "false"
+                            },
+                            "secCode": { "type": "string" },
+                            "tags": {
+                                "$ref": "../../types.json#/components/schemas/Tags"
+                            },
+                            "numberOfRepayments": {
+                                "type": "integer"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "schedule",
+                            "description",
+                            "numberOfRepayments",
+                            "status"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RecurringCapitalPartnerAchRepaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "RecurringCapitalPartnerBookRepayment": {
+                "title": "Recurring Capital Partner Book Repayment",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "default": "recurringBookRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "schedule": {
+                                "$ref": "../../types.json#/components/schemas/Schedule"
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 50
+                            },
+                            "transactionSummaryOverride": {
+                                "type": "string",
+                                "maxLength": 100
+                            },
+                            "tags": {
+                                "$ref": "../../types.json#/components/schemas/Tags"
+                            },
+                            "numberOfRepayments": {
+                                "type": "integer"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "schedule",
+                            "description",
+                            "numberOfRepayments",
+                            "status"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/RecurringCapitalPartnerBookRepaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["id", "type", "attributes", "relationships"]
+            },
+            "RecurringRepayment": {
+                "oneOf": [
+                    { "$ref": "#/components/schemas/RecurringAchRepayment" },
+                    { "$ref": "#/components/schemas/RecurringBookRepayment" },
+                    {
+                        "$ref": "#/components/schemas/RecurringCapitalPartnerAchRepayment"
+                    },
+                    {
+                        "$ref": "#/components/schemas/RecurringCapitalPartnerBookRepayment"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "RecurringAchRepayment": "#/components/schemas/RecurringAchRepayment",
+                        "RecurringBookRepayment": "#/components/schemas/RecurringBookRepayment",
+                        "RecurringCapitalPartnerAchRepayment": "#/components/schemas/RecurringCapitalPartnerAchRepayment",
+                        "RecurringCapitalPartnerBookRepayment": "#/components/schemas/RecurringCapitalPartnerBookRepayment"
+                    }
+                }
+            }
+        }
+    }
+}

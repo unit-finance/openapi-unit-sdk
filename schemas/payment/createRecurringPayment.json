@@ -33,7 +33,7 @@
                                 "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "schedule": {
-                                "$ref": "../types.json#/components/schemas/CreateSchedule"
+                                "$ref": "../types.json#/components/schemas/Schedule"
                             }
                         },
                         "required": ["amount", "description", "schedule"],
@@ -86,7 +86,7 @@
                                 "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "schedule": {
-                                "$ref": "../types.json#/components/schemas/CreateSchedule"
+                                "$ref": "../types.json#/components/schemas/Schedule"
                             },
                             "clearingDaysOverride": {
                                 "type": "integer",
@@ -135,7 +135,7 @@
                                 "maxLength": 100
                             },
                             "schedule": {
-                                "$ref": "../types.json#/components/schemas/CreateSchedule"
+                                "$ref": "../types.json#/components/schemas/Schedule"
                             }
                         },
                         "required": ["amount", "description", "schedule"],

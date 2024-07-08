@@ -260,6 +260,18 @@
         "/repayments/{repaymentId}": {
             "$ref": "./schemas/repayment/repaymentPaths.json#/repayment"
         },
+        "/recurring-repayments": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/recurringRepayments"
+        },
+        "/recurring-repayments/{recurringRepaymentId}": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/recurringRepayment"
+        },
+        "/recurring-repayments/{recurringRepaymentId}/disable": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/disableRecurringRepayment"
+        },
+        "/recurring-repayments/{recurringRepaymentId}/enable": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/enableRecurringRepayment"
+        },
         "/check-payments": {
             "$ref": "./schemas/check/checkPaymentPaths.json#/checkPayments"
         },

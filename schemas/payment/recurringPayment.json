@@ -109,7 +109,7 @@
                                         ]
                                     },
                                     "schedule": {
-                                        "$ref": "../types.json#/components/schemas/CreateSchedule"
+                                        "$ref": "../types.json#/components/schemas/Schedule"
                                     },
                                     "numberOfPayments": {
                                         "type": "integer"
@@ -182,7 +182,7 @@
                                         ]
                                     },
                                     "schedule": {
-                                        "$ref": "../types.json#/components/schemas/CreateSchedule"
+                                        "$ref": "../types.json#/components/schemas/Schedule"
                                     },
                                     "numberOfPayments": {
                                         "type": "integer"
@@ -255,7 +255,7 @@
                                         ]
                                     },
                                     "schedule": {
-                                        "$ref": "../types.json#/components/schemas/CreateSchedule"
+                                        "$ref": "../types.json#/components/schemas/Schedule"
                                     },
                                     "numberOfPayments": {
                                         "type": "integer"

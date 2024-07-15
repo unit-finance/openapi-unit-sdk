@@ -398,7 +398,7 @@
         "content": {
           "application/vnd.api+json": {
             "schema": {
-              "$ref": "createCheckPayment.json"
+              "$ref": "createCheckPayment.json#/definitions/CreateCheckPaymentRequest"
             }
           }
         }

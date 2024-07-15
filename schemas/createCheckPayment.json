@@ -11,19 +11,13 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": [
-                    "account",
-                    "depositAccount"
-                  ]
+                  "enum": ["account", "depositAccount"]
                 },
                 "id": {
                   "$ref": "types.json#/definitions/identifier"
                 }
               },
-              "required": [
-                "type",
-                "id"
-              ]
+              "required": ["type", "id"]
             }
           }
         },
@@ -35,34 +29,23 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": [
-                    "businessCustomer",
-                    "individualCustomer"
-                  ]
+                  "enum": ["businessCustomer", "individualCustomer"]
                 },
                 "id": {
                   "$ref": "types.json#/definitions/identifier"
                 }
               },
-              "required": [
-                "type",
-                "id"
-              ],
+              "required": ["type", "id"],
               "additionalProperties": false
             }
           },
-          "required": [
-            "data"
-          ],
+          "required": ["data"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "account",
-        "customer"
-      ]
+      "required": ["account", "customer"]
     },
-    "checkPayment": {
+    "createCheckPayment": {
       "title": "Check Payment",
       "type": "object",
       "properties": {
@@ -87,10 +70,7 @@
                   "type": "boolean"
                 }
               },
-              "required": [
-                "name",
-                "address"
-              ],
+              "required": ["name", "address"],
               "additionalProperties": false
             },
             "amount": {
@@ -130,22 +110,18 @@
           "$ref": "#/definitions/relationships"
         }
       },
-      "required": [
-        "type",
-        "attributes",
-        "relationships"
-      ],
+      "required": ["type", "attributes", "relationships"],
       "additionalProperties": false
+    },
+    "CreateCheckPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/createCheckPayment"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["data"]
     }
-  },
-  "type": "object",
-  "properties": {
-    "data": {
-      "$ref": "#/definitions/checkPayment"
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "data"
-  ]
+  }
 }

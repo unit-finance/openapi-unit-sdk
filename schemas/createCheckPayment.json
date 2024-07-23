@@ -1,6 +1,6 @@
 {
   "definitions": {
-    "relationships": {
+    "createCheckPaymentRelationships": {
       "type": "object",
       "properties": {
         "account": {
@@ -59,16 +59,8 @@
             "counterparty": {
               "type": "object",
               "properties": {
-                "name": {
-                  "type": "string",
-                  "maxLength": 40
-                },
-                "address": {
-                  "$ref": "types.json#/definitions/address"
-                },
-                "counterpartyMoved": {
-                  "type": "boolean"
-                }
+                "name": { "type": "string", "maxLength": 40 },
+                "address": { "$ref": "types.json#/definitions/usAddress" }
               },
               "required": ["name", "address"],
               "additionalProperties": false
@@ -82,21 +74,14 @@
               "minLength": 1,
               "maxLength": 255
             },
-            "sendDate": {
-              "type": "string",
-              "format": "date"
-            },
-            "memo": {
-              "type": "string"
-            },
+            "sendDate": { "type": "string", "format": "date" },
+            "memo": { "type": "string" },
             "description": {
               "type": "string",
               "minLength": 1,
               "maxLength": 50
             },
-            "tags": {
-              "$ref": "tags.json#/definitions/tags"
-            }
+            "tags": { "$ref": "tags.json#/definitions/tags" }
           },
           "required": [
             "counterparty",
@@ -107,7 +92,7 @@
           "additionalProperties": false
         },
         "relationships": {
-          "$ref": "#/definitions/relationships"
+          "$ref": "#/definitions/createCheckPaymentRelationships"
         }
       },
       "required": ["type", "attributes", "relationships"],

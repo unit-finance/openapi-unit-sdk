@@ -1,6 +1,6 @@
 {
   "definitions": {
-    "relationships": {
+    "createCheckPaymentRelationships": {
       "type": "object",
       "properties": {
         "account": {
@@ -11,19 +11,13 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": [
-                    "account",
-                    "depositAccount"
-                  ]
+                  "enum": ["account", "depositAccount"]
                 },
                 "id": {
                   "$ref": "types.json#/definitions/identifier"
                 }
               },
-              "required": [
-                "type",
-                "id"
-              ]
+              "required": ["type", "id"]
             }
           }
         },
@@ -35,34 +29,23 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": [
-                    "businessCustomer",
-                    "individualCustomer"
-                  ]
+                  "enum": ["businessCustomer", "individualCustomer"]
                 },
                 "id": {
                   "$ref": "types.json#/definitions/identifier"
                 }
               },
-              "required": [
-                "type",
-                "id"
-              ],
+              "required": ["type", "id"],
               "additionalProperties": false
             }
           },
-          "required": [
-            "data"
-          ],
+          "required": ["data"],
           "additionalProperties": false
         }
       },
-      "required": [
-        "account",
-        "customer"
-      ]
+      "required": ["account", "customer"]
     },
-    "checkPayment": {
+    "createCheckPayment": {
       "title": "Check Payment",
       "type": "object",
       "properties": {
@@ -76,21 +59,10 @@
             "counterparty": {
               "type": "object",
               "properties": {
-                "name": {
-                  "type": "string",
-                  "maxLength": 40
-                },
-                "address": {
-                  "$ref": "types.json#/definitions/address"
-                },
-                "counterpartyMoved": {
-                  "type": "boolean"
-                }
+                "name": { "type": "string", "maxLength": 40 },
+                "address": { "$ref": "types.json#/definitions/usAddress" }
               },
-              "required": [
-                "name",
-                "address"
-              ],
+              "required": ["name", "address"],
               "additionalProperties": false
             },
             "amount": {
@@ -102,21 +74,14 @@
               "minLength": 1,
               "maxLength": 255
             },
-            "sendDate": {
-              "type": "string",
-              "format": "date"
-            },
-            "memo": {
-              "type": "string"
-            },
+            "sendDate": { "type": "string", "format": "date" },
+            "memo": { "type": "string" },
             "description": {
               "type": "string",
               "minLength": 1,
               "maxLength": 50
             },
-            "tags": {
-              "$ref": "tags.json#/definitions/tags"
-            }
+            "tags": { "$ref": "tags.json#/definitions/tags" }
           },
           "required": [
             "counterparty",
@@ -127,25 +92,21 @@
           "additionalProperties": false
         },
         "relationships": {
-          "$ref": "#/definitions/relationships"
+          "$ref": "#/definitions/createCheckPaymentRelationships"
         }
       },
-      "required": [
-        "type",
-        "attributes",
-        "relationships"
-      ],
+      "required": ["type", "attributes", "relationships"],
       "additionalProperties": false
+    },
+    "CreateCheckPaymentRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/createCheckPayment"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["data"]
     }
-  },
-  "type": "object",
-  "properties": {
-    "data": {
-      "$ref": "#/definitions/checkPayment"
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "data"
-  ]
+  }
 }

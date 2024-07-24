@@ -957,6 +957,42 @@
 		"responseContact": {
       "allOf": [{ "$ref": "#/definitions/contact" }],
       "required": [ "fullName" ]
-    }
+    },
+	"usAddress": {
+		"title": "Address",
+		"type": "object",
+		"properties": {
+		  "street": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 255,
+			"pattern": "^.*$"
+		  },
+		  "street2": {
+			"type": [
+			  "string",
+			  "null"
+			],
+			"pattern": "^.*$"
+		  },
+		  "city": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 255,
+			"pattern": "^.*$"
+		  },
+		  "state": {
+			"$ref": "#/definitions/state"
+		  },
+		  "postalCode": {
+			"type": "string",
+			"pattern": "^[0-9]{5}(?:-[0-9]{4})?$"
+		  },
+		  "country": {
+			"type": "string",
+			"const": "US"
+		  }
+		}
 	}
+}
 }

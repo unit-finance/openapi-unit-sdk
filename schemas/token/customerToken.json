@@ -1,0 +1,30 @@
+{
+    "components": {
+        "schemas": {
+            "CustomerToken": {
+                "title": "Customer Token Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["customerBearerToken"],
+                        "default": "customerBearerToken"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "token": {
+                                "type": "string"
+                            },
+                            "expiresIn": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

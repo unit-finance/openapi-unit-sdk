@@ -1,0 +1,54 @@
+{
+    "components": {
+        "schemas": {
+            "Webhook": {
+                "title": "Webhook",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["webhook"],
+                        "default": "webhook"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "label": {
+                                "type": "string"
+                            },
+                            "url": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "contentType": {
+                                "type": "string",
+                                "enum": ["Json", "JsonAPI"]
+                            },
+                            "deliveryMode": {
+                                "type": "string",
+                                "enum": ["AtMostOnce", "AtLeastOnce"]
+                            },
+                            "token": {
+                                "type": "string"
+                            },
+                            "subscriptionType": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": ["type", "id", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateAchStopPayment": {
+                "title": "Update Ach Stop Payment",
+                "type": "object",
+                "properties": {
+                    "tags": {
+                        "$ref": "../types.json#/components/schemas/Tags"
+                    },
+                    "expiration": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateStopPaymentRequest": {
+                "title": "Update Stop Payment",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/UpdateAchStopPayment"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

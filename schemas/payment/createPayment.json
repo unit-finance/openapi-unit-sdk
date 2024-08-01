@@ -1,0 +1,434 @@
+{
+    "components": {
+        "schemas": {
+            "CreatePaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "CreatePaymentRelationshipsWithCounterparty": {
+                "allOf": [
+                    {
+                        "type": "object",
+
+                        "required": ["account", "counterparty"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    }
+                ]
+            },
+            "CreatePaymentRelationshipsWithCounterpartyAccount": {
+                "allOf": [
+                    {
+                        "type": "object",
+
+                        "required": ["account", "counterpartyAccount"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    }
+                ]
+            },
+            "CreateAchPaymentRelationships": {
+                "allOf": [
+                    { "title": "Create Ach Payment Relationships" },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
+            "CreateAchPaymentCounterpartyRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Ach Payment Counterparty Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                    }
+                ]
+            },
+            "CreateAchPaymentPlaidRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Ach Payment Plaid Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
+            "CreateBookPaymentRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Book Payment Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterpartyAccount"
+                    }
+                ]
+            },
+            "CreateWirePaymentRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Wire Payment Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
+            "CreatePushToCardPaymentRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Push To Card Payment Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreatePaymentRelationships"
+                    }
+                ]
+            },
+            "CreateAchPayment": {
+                "title": "Create ACH Payment to inline Counterparty",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achPayment"],
+                        "default": "achPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "addenda": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string",
+                                "enum": ["Debit", "Credit"]
+                            },
+                            "counterparty": {
+                                "$ref": "./payment.json#/components/schemas/PaymentCounterparty"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "sameDay": {
+                                "type": "boolean"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "secCode": {
+                                "type": "string",
+                                "enum": ["WEB", "CCD", "PPD"]
+                            }
+                        },
+                        "required": [
+                            "amount",
+                            "description",
+                            "direction",
+                            "counterparty"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateAchPaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["attributes", "relationships"]
+            },
+            "CreateAchPaymentCounterparty": {
+                "title": "Create ACH Payment to linked Counterparty",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achPayment"],
+                        "default": "achPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "addenda": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string",
+                                "enum": ["Debit", "Credit"]
+                            },
+                            "sameDay": {
+                                "type": "boolean"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "verifyCounterpartyBalance": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "secCode": {
+                                "type": "string",
+                                "enum": ["WEB", "CCD", "PPD"]
+                            }
+                        },
+                        "required": ["amount", "description", "direction"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateAchPaymentCounterpartyRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["attributes", "relationships"]
+            },
+            "CreateAchPaymentPlaid": {
+                "title": "Create ACH Payment with Plaid token",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achPayment"],
+                        "default": "achPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "addenda": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string",
+                                "enum": ["Debit", "Credit"]
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "plaidProcessorToken": {
+                                "type": "string",
+                                "pattern": "^processor-.*$"
+                            },
+                            "counterpartyName": {
+                                "type": "string"
+                            },
+                            "sameDay": {
+                                "type": "boolean"
+                            },
+                            "verifyCounterpartyBalance": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "secCode": {
+                                "type": "string",
+                                "enum": ["WEB", "CCD", "PPD"]
+                            }
+                        },
+                        "required": [
+                            "amount",
+                            "description",
+                            "direction",
+                            "plaidProcessorToken"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateAchPaymentPlaidRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["attributes", "relationships"]
+            },
+            "CreateBookPayment": {
+                "title": "Create Book Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["bookPayment"],
+                        "default": "bookPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "transactionSummaryOverride": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["amount", "description"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateBookPaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["attributes", "relationships"]
+            },
+            "CreateWirePayment": {
+                "title": "Create Wire Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["wirePayment"],
+                        "default": "wirePayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "direction": {
+                                "type": "string",
+                                "enum": ["Credit"]
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "counterparty": {
+                                "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "required": ["amount", "description", "counterparty"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateWirePaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["attributes", "relationships"]
+            },
+            "CreatePushToCardPayment": {
+                "title": "Create Push To Card Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["pushToCardPayment"],
+                        "default": "pushToCardPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "configuration": {
+                                "type": "object",
+                                "properties": {
+                                    "astra": {
+                                        "$ref": "./payment.json#/components/schemas/Astra"
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["amount", "description", "configuration"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreatePushToCardPaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["attributes", "relationships"]
+            },
+            "CreatePaymentRequest": {
+                "additionalProperties": false,
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateAchPayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateAchPaymentCounterparty"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateAchPaymentPlaid"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateBookPayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateWirePayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreatePushToCardPayment"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

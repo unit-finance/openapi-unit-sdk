@@ -1,0 +1,480 @@
+{
+    "components": {
+        "schemas": {
+            "CreateCardRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Create Card Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "defaultFundingAccount": {
+                                "$ref": "../relationships.json#/components/schemas/Relationship"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Bin": {
+                "type": "object",
+                "properties": {
+                    "bin": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "institutionId": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["bin", "institutionId"]
+            },
+            "CreateIndividualDebitCardRequest": {
+                "title": "Create Individual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "individualDebitCard",
+                        "enum": ["individualDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "design": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "bin": {
+                                "$ref": "#/components/schemas/Bin"
+                            },
+                            "cardQualifier": {
+                                "type": "string",
+                                "pattern": "^(\\d{3})|([ ]{3})$"
+                            },
+                            "cardDesignId": {
+                                "type": "string",
+                                "maxLength": 16
+                            },
+                            "additionalEmbossedText": {
+                                "type": "string",
+                                "maxLength": 26
+                            },
+                            "activeForOnlineUse": {
+                                "type": "boolean"
+                            },
+                            "printOnlyBusinessName": {
+                                "type": "boolean"
+                            },
+                            "expiryDate": {
+                                "type": "string",
+                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCardRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateBusinessDebitCardRequest": {
+                "title": "Create Business Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "businessDebitCard",
+                        "enum": ["businessDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "ssn": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "design": {
+                                "type": "string"
+                            },
+                            "additionalEmbossedText": {
+                                "type": "string",
+                                "maxLength": 26
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "activeForOnlineUse": {
+                                "type": "boolean"
+                            },
+                            "printOnlyBusinessName": {
+                                "type": "boolean"
+                            },
+                            "expiryDate": {
+                                "type": "string",
+                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "address",
+                            "fullName",
+                            "phone",
+                            "email",
+                            "dateOfBirth"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCardRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateBusinessCreditCardRequest": {
+                "title": "Create Business Credit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "businessCreditCard",
+                        "enum": ["businessCreditCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "ssn": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "design": {
+                                "type": "string"
+                            },
+                            "additionalEmbossedText": {
+                                "type": "string",
+                                "maxLength": 26
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "activeForOnlineUse": {
+                                "type": "boolean"
+                            },
+                            "printOnlyBusinessName": {
+                                "type": "boolean"
+                            },
+                            "expiryDate": {
+                                "type": "string",
+                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "address",
+                            "fullName",
+                            "phone",
+                            "email",
+                            "dateOfBirth"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCardRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateIndividualVirtualDebitCardRequest": {
+                "title": "Create Individual Virtual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "individualVirtualDebitCard",
+                        "enum": ["individualVirtualDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "bin": {
+                                "$ref": "#/components/schemas/Bin"
+                            },
+                            "cardQualifier": {
+                                "type": "string",
+                                "pattern": "^\\d{3}$"
+                            },
+                            "expiryDate": {
+                                "type": "string",
+                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCardRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateBusinessVirtualDebitCardRequest": {
+                "title": "Create Business Virtual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "businessVirtualDebitCard",
+                        "enum": ["businessVirtualDebitCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "ssn": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "expiryDate": {
+                                "type": "string",
+                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "address",
+                            "fullName",
+                            "phone",
+                            "email",
+                            "dateOfBirth"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCardRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateBusinessVirtualCreditCardRequest": {
+                "title": "Create Business Virtual Credit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "businessVirtualCreditCard",
+                        "enum": ["businessVirtualCreditCard"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "ssn": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "expiryDate": {
+                                "type": "string",
+                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "address",
+                            "fullName",
+                            "phone",
+                            "email",
+                            "dateOfBirth"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCardRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateCardRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateIndividualDebitCardRequest"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateBusinessDebitCardRequest"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateBusinessCreditCardRequest"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateIndividualVirtualDebitCardRequest"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateBusinessVirtualDebitCardRequest"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateBusinessVirtualCreditCardRequest"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "components": {
+        "schemas": {
+            "CustomerTokenVerification": {
+                "title": "Customer Token Verification",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["customerTokenVerification"],
+                        "default": "customerTokenVerification"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "verificationToken": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": ["type", "id", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

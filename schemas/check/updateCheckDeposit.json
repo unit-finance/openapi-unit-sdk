@@ -1,0 +1,40 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateCheckDeposit": {
+                "title": "Update Check Deposit",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["checkDeposit"],
+                        "default": "checkDeposit"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": { "type": "integer", "minimum": 1 },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateCheckDepositRequest": {
+                "title": "Update Check Deposit",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/UpdateCheckDeposit"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

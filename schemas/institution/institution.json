@@ -1,0 +1,46 @@
+{
+    "components": {
+        "schemas": {
+            "Institution": {
+                "title": "Institution Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["institution"],
+                        "default": "institution"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "routingNumber": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "string"
+                            },
+                            "isWireSupported": {
+                                "type": "boolean"
+                            },
+                            "isACHSupported": {
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "routingNumber",
+                            "name",
+                            "isWireSupported",
+                            "isACHSupported"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            }
+        }
+    }
+}

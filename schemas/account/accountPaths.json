@@ -6,7 +6,7 @@
                 "title": "Unit Account Response",
                 "properties": {
                     "data": {
-                        "$ref": "./Account.json#/components/schemas/Account"
+                        "$ref": "./account.json#/components/schemas/Account"
                     }
                 }
             },
@@ -15,7 +15,7 @@
                 "title": "Unit Account Response With Included",
                 "properties": {
                     "data": {
-                        "$ref": "./Account.json#/components/schemas/Account"
+                        "$ref": "./account.json#/components/schemas/Account"
                     },
                     "included": {
                         "type": "array",
@@ -97,7 +97,7 @@
                                     "data": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "./Account.json#/components/schemas/Account"
+                                            "$ref": "./account.json#/components/schemas/Account"
                                         }
                                     },
                                     "included": {

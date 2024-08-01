@@ -276,7 +276,8 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["limits", "creditLimits"]
                     }
                 },
                 "discriminator": {

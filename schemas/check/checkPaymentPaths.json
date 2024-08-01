@@ -209,6 +209,7 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
+                                            "enum": ["additionalVerification"],
                                             "default": "additionalVerification"
                                         }
                                     }
@@ -264,6 +265,7 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
+                                            "enum": ["checkPaymentReturn"],
                                             "default": "checkPaymentReturn"
                                         },
                                         "attributes": {

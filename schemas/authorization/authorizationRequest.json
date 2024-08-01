@@ -7,6 +7,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["approveAuthorizationRequest"],
                         "default": "approveAuthorizationRequest"
                     },
                     "attributes": {
@@ -33,6 +34,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["declineAuthorizationRequest"],
                         "default": "declineAuthorizationRequest"
                     },
                     "attributes": {
@@ -317,7 +319,12 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "purchaseAuthorizationRequest",
+                            "cardTransactionAuthorizationRequest",
+                            "atmAuthorizationRequest"
+                        ]
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"

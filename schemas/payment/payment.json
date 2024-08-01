@@ -190,33 +190,6 @@
                     }
                 ]
             },
-            "BillPaymentRelationships": {
-                "allOf": [
-                    {
-                        "type": "object",
-                        "required": ["account", "counterparty", "transaction"],
-                        "additionalProperties": true
-                    },
-                    {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
-                    },
-                    {
-                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                    },
-                    {
-                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                    },
-                    {
-                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
-                    },
-                    {
-                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
-                    },
-                    {
-                        "$ref": "../relationships.json#/components/schemas/RecurringPaymentRelationship"
-                    }
-                ]
-            },
             "PushToCardPaymentRelationships": {
                 "allOf": [
                     {
@@ -502,75 +475,7 @@
                     }
                 ]
             },
-            "BillPayment": {
-                "title": "Bill Payment",
-                "type": "object",
-                "allOf": [
-                    {
-                        "$ref": "./payment.json#/components/schemas/Payment"
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "amount": {
-                                        "type": "integer",
-                                        "minimum": 1
-                                    },
-                                    "direction": {
-                                        "type": "string",
-                                        "enum": ["Credit", "Debit"]
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "minLength": 1,
-                                        "maxLength": 50
-                                    },
-                                    "status": {
-                                        "type": "string",
-                                        "enum": [
-                                            "Initialized",
-                                            "Pending",
-                                            "Rejected",
-                                            "Clearing",
-                                            "Sent",
-                                            "Canceled",
-                                            "Returned"
-                                        ]
-                                    },
-                                    "reason": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "createdAt",
-                                    "amount",
-                                    "direction",
-                                    "description",
-                                    "status"
-                                ],
-                                "additionalProperties": false
-                            },
-                            "relationships": {
-                                "$ref": "#/components/schemas/BillPaymentRelationships"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": [
-                            "type",
-                            "id",
-                            "attributes",
-                            "relationships"
-                        ]
-                    }
-                ]
-            },
+
             "PushToCardPayment": {
                 "title": "Push To Card Payment Response",
                 "type": "object",
@@ -642,7 +547,8 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["achPayment", "bookPayment", "wirePayment"]
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"
@@ -653,8 +559,7 @@
                     "mapping": {
                         "achPayment": "#/components/schemas/AchPayment",
                         "bookPayment": "#/components/schemas/BookPayment",
-                        "wirePayment": "#/components/schemas/WirePayment",
-                        "billPayment": "#/components/schemas/BillPayment"
+                        "wirePayment": "#/components/schemas/WirePayment"
                     }
                 },
                 "additionalProperties": false

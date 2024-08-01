@@ -27,6 +27,7 @@
                         "properties": {
                             "type": {
                                 "type": "string",
+                                "enum": ["reward"],
                                 "default": "reward"
                             },
                             "attributes": {

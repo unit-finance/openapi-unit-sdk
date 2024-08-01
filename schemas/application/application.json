@@ -613,131 +613,6 @@
                     }
                 ]
             },
-            "TrustApplication": {
-                "title": "Trust Application",
-                "type": "object",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Application"
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "updatedAt": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "status": {
-                                        "$ref": "#/components/schemas/ApplicationStatus"
-                                    },
-                                    "message": {
-                                        "type": "string"
-                                    },
-                                    "evaluationOutcome": {
-                                        "type": "string"
-                                    },
-                                    "evaluationId": {
-                                        "type": "string"
-                                    },
-                                    "evaluationEntityId": {
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "dateOfIncorporation": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "stateOfIncorporation": {
-                                        "$ref": "../types.json#/components/schemas/State"
-                                    },
-                                    "revocability": {
-                                        "$ref": "../types.json#/components/schemas/Revocability"
-                                    },
-                                    "sourceOfFunds": {
-                                        "$ref": "../types.json#/components/schemas/SourceOfFunds"
-                                    },
-                                    "taxId": {
-                                        "type": "string"
-                                    },
-                                    "contact": {
-                                        "$ref": "../types.json#/components/schemas/TrustContact"
-                                    },
-                                    "trustees": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "../types.json#/components/schemas/Trustee"
-                                        }
-                                    },
-                                    "grantor": {
-                                        "$ref": "../types.json#/components/schemas/Grantor"
-                                    },
-                                    "ip": {
-                                        "type": "string"
-                                    },
-                                    "decisionMethod": {
-                                        "type": "string",
-                                        "enum": ["Manually", "Automatically"]
-                                    },
-                                    "decisionUserId": {
-                                        "type": "string"
-                                    },
-                                    "decisionReason": {
-                                        "type": "string"
-                                    },
-                                    "decisionDateTime": {
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
-                                    },
-                                    "riskRate": {
-                                        "type": "string",
-                                        "enum": ["low", "medium", "high"]
-                                    },
-                                    "evaluationFlags": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "ipLocationDetails": {
-                                        "type": "object"
-                                    },
-                                    "phoneLocationDetails": {
-                                        "type": "object"
-                                    },
-                                    "archived": {
-                                        "type": "boolean"
-                                    }
-                                },
-                                "additionalProperties": false,
-                                "required": [
-                                    "createdAt",
-                                    "status",
-                                    "name",
-                                    "stateOfIncorporation",
-                                    "contact"
-                                ]
-                            },
-                            "relationships": {
-                                "$ref": "#/components/schemas/ApplicationRelationships"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": ["id", "type", "attributes"]
-                    }
-                ]
-            },
             "Application": {
                 "title": "Application",
                 "type": "object",
@@ -746,15 +621,15 @@
                         "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["individualApplication", "businessApplication"]
                     }
                 },
                 "discriminator": {
                     "propertyName": "type",
                     "mapping": {
                         "individualApplication": "#/components/schemas/IndividualApplication",
-                        "businessApplication": "#/components/schemas/BusinessApplication",
-                        "trustApplication": "#/components/schemas/TrustApplication"
+                        "businessApplication": "#/components/schemas/BusinessApplication"
                     }
                 }
             }

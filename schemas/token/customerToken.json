@@ -2,12 +2,13 @@
     "components": {
         "schemas": {
             "CustomerToken": {
-                "title": "CustomerToken",
+                "title": "Customer Token Resource",
                 "type": "object",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "default": "customerToken"
+                        "enum": ["customerBearerToken"],
+                        "default": "customerBearerToken"
                     },
                     "attributes": {
                         "type": "object",

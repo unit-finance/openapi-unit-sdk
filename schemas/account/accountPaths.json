@@ -570,5 +570,39 @@
                 }
             }
         }
+    },
+    "repaymentInfo": {
+        "get": {
+            "tags": ["Repayment Information"],
+            "operationId": "execute",
+            "summary": "Get Repayment Information",
+            "description": "Retrieve the repayment information for a specific account via API",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to get repayment information for"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "./repaymentInformation.json#/components/schemas/UnitRepaymentInformationResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
     }
 }

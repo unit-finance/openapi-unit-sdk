@@ -86,7 +86,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["checkDeposit"]
+                        "enum": ["checkDeposit"],
+                        "default": "checkDeposit"
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"

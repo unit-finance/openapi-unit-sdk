@@ -25,7 +25,7 @@ public class RecurringPaymentTests {
             try {
                 UnitRecurringPaymentResponse payment = unitApi.getRecurringPayment(x.getId());
                 assert payment.getData().getId().equals(x.getId());
-                assert payment.getData().getType().toLowerCase()
+                assert payment.getData().getType().toString().toLowerCase()
                         .equals(payment.getData().getClass().getSimpleName().toLowerCase());
             } catch (ApiException e) {
                 throw new RuntimeException(e);

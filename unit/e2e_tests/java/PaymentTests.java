@@ -9,6 +9,7 @@ import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
 import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.AccountRelationship;
 import unit.java.sdk.model.AccountRelationshipData;
+import unit.java.sdk.model.BookPayment;
 import unit.java.sdk.model.CounterpartyAccountRelationship;
 import unit.java.sdk.model.CounterpartyAccountRelationshipData;
 import unit.java.sdk.model.CreateAchPayment;
@@ -44,7 +45,7 @@ public class PaymentTests {
 
         for (Payment p: response.getData()) {
             UnitPaymentResponseWithIncluded paymentResponse = unitApi.getPayment(p.getId(), null);
-            assert paymentResponse.getData().getType().contains("Payment");
+            assert paymentResponse.getData().getType().toString().contains("Payment");
         }
     }
 
@@ -81,7 +82,7 @@ public class PaymentTests {
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createBookPayment));
         UnitPaymentResponse response = unitApi.createPayment(request);
-        assert response.getData().getType().equals("bookPayment");
+        assert response.getData().getType().equals(BookPayment.TypeEnum.BOOKPAYMENT);
     }
     @Test
     public void CreateAchPaymentTest() throws ApiException {
@@ -107,14 +108,14 @@ public class PaymentTests {
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createAchPayment));
         UnitPaymentResponse response = unitApi.createPayment(request);
-        assert response.getData().getType().equals("achPayment");
+        assert response.getData().getType().equals(Payment.TypeEnum.ACHPAYMENT);
     }
 
     @Test
     public void CreateWirePaymentTest() throws ApiException {
         CreateWirePayment createWirePayment = new CreateWirePayment();
         CreateWirePaymentAttributes attributes = new CreateWirePaymentAttributes();
-        createWirePayment.setType("wirePayment");
+        createWirePayment.setType(CreateWirePayment.TypeEnum.WIREPAYMENT);
         attributes.setAmount(100);
         attributes.setDirection(CreateWirePaymentAttributes.DirectionEnum.CREDIT);
         attributes.setCounterparty(CreateWirePaymentCounterparty());
@@ -135,6 +136,6 @@ public class PaymentTests {
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createWirePayment));
         UnitPaymentResponse response = unitApi.createPayment(request);
-        assert response.getData().getType().equals("wirePayment");
+        assert response.getData().getType().equals(Payment.TypeEnum.WIREPAYMENT);
     }
 }

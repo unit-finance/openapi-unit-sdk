@@ -84,6 +84,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["recurringBookRepayment"],
                         "default": "recurringBookRepayment"
                     },
                     "attributes": {
@@ -124,6 +125,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["recurringAchRepayment"],
                         "default": "recurringAchRepayment"
                     },
                     "attributes": {
@@ -169,6 +171,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["recurringCapitalPartnerAchRepayment"],
                         "default": "recurringCapitalPartnerAchRepayment"
                     },
                     "attributes": {
@@ -213,6 +216,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["recurringCapitalPartnerBookRepayment"],
                         "default": "recurringCapitalPartnerBookRepayment"
                     },
                     "attributes": {

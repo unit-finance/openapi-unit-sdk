@@ -7,6 +7,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["recurringCreditAchPayment"],
                         "default": "recurringCreditAchPayment"
                     },
                     "attributes": {
@@ -52,6 +53,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["recurringDebitAchPayment"],
                         "default": "recurringDebitAchPayment"
                     },
                     "attributes": {
@@ -109,6 +111,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["recurringCreditBookPayment"],
                         "default": "recurringCreditBookPayment"
                     },
                     "attributes": {

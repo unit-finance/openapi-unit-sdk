@@ -206,6 +206,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["individualApplication"],
                         "default": "individualApplication"
                     },
                     "attributes": {
@@ -297,6 +298,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["individualApplication"],
                         "default": "individualApplication"
                     },
                     "attributes": {
@@ -417,6 +419,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["businessApplication"],
                         "default": "businessApplication"
                     },
                     "attributes": {
@@ -538,96 +541,6 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
-            "CreateTrustApplication": {
-                "title": "Create Trust Application",
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "trustApplication"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 255
-                            },
-                            "stateOfIncorporation": {
-                                "type": "string",
-                                "minLength": 2,
-                                "maxLength": 2
-                            },
-                            "revocability": {
-                                "type": "string",
-                                "enum": ["Revocable", "Irrevocable"]
-                            },
-                            "sourceOfFunds": {
-                                "type": "string",
-                                "enum": [
-                                    "Inheritance",
-                                    "Salary",
-                                    "Savings",
-                                    "InvestmentReturns",
-                                    "Gifts"
-                                ]
-                            },
-                            "taxId": {
-                                "type": "string"
-                            },
-                            "grantor": {
-                                "$ref": "../types.json#/components/schemas/Grantor"
-                            },
-                            "trustees": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "../types.json#/components/schemas/Trustee"
-                                }
-                            },
-                            "beneficiaries": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "../types.json#/components/schemas/Beneficiary"
-                                }
-                            },
-                            "contact": {
-                                "$ref": "../types.json#/components/schemas/TrustContact"
-                            },
-                            "ip": {
-                                "type": "string"
-                            },
-                            "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
-                            },
-                            "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
-                            },
-                            "deviceFingerprints": {
-                                "type": "array",
-                                "maxItems": 1,
-                                "items": {
-                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
-                                }
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": [
-                            "name",
-                            "stateOfIncorporation",
-                            "revocability",
-                            "sourceOfFunds",
-                            "taxId",
-                            "grantor",
-                            "trustees",
-                            "beneficiaries",
-                            "contact"
-                        ]
-                    }
-                },
-                "additionalProperties": false,
-                "required": ["type", "attributes"]
-            },
             "CreateApplicationRequest": {
                 "type": "object",
                 "properties": {
@@ -641,9 +554,6 @@
                             },
                             {
                                 "$ref": "#/components/schemas/CreateBusinessApplication"
-                            },
-                            {
-                                "$ref": "#/components/schemas/CreateTrustApplication"
                             }
                         ]
                     }

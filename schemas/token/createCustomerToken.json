@@ -9,6 +9,7 @@
                         "properties": {
                             "type": {
                                 "type": "string",
+                                "enum": ["customerToken"],
                                 "default": "customerToken"
                             },
                             "attributes": {

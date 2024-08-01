@@ -571,7 +571,15 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "businessDebitCard",
+                            "individualDebitCard",
+                            "businessVirtualDebitCard",
+                            "individualVirtualDebitCard",
+                            "businessCreditCard",
+                            "businessVirtualCreditCard"
+                        ]
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"

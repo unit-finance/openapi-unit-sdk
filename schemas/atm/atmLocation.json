@@ -7,6 +7,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["atmLocation"],
                         "default": "atmLocation"
                     },
                     "attributes": {

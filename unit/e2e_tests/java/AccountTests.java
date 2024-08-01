@@ -7,6 +7,7 @@ import org.junit.Test;
 import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
 import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.Account;
 import unit.java.sdk.model.CreateAccountRequest;
 import unit.java.sdk.model.CreateAccountRequestData;
 import unit.java.sdk.model.CreateDepositAccount;
@@ -41,13 +42,14 @@ public class AccountTests {
             try {
                 UnitAccountResponseWithIncluded account = unitApi.getAccount(x.getId(), null);
                 assert account.getData().getId().equals(x.getId());
-                assert account.getData().getType().toLowerCase()
+                assert account.getData().getType().toString().toLowerCase()
                         .equals(account.getData().getClass().getSimpleName().toLowerCase());
             } catch (ApiException e) {
                 throw new RuntimeException(e);
             }
         });
     }
+    
     @Test
     public void UpdateAccountApiTest() throws ApiException {
         UnitAccountsListResponse response = unitApi.getAccountsList(null, null, null);
@@ -56,7 +58,7 @@ public class AccountTests {
             try {
                 UnitAccountResponseWithIncluded account = unitApi.getAccount(x.getId(), null);
                 assert account.getData().getId().equals(x.getId());
-                assert account.getData().getType().toLowerCase()
+                assert account.getData().getType().toString().toLowerCase()
                         .equals(account.getData().getClass().getSimpleName().toLowerCase());
 
                 UpdateDepositAccountAttributes attributes = new UpdateDepositAccountAttributes();
@@ -103,6 +105,6 @@ public class AccountTests {
 
     @Test
     public void CreateDepositAccountTest() throws ApiException {
-        assert CreateDepositAccount(unitApi).getType().equals("depositAccount");
+        assert CreateDepositAccount(unitApi).getType().equals(Account.TypeEnum.DEPOSITACCOUNT);
     }
 }

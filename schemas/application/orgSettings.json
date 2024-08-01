@@ -104,6 +104,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["orgSettings"],
                         "default": "orgSettings"
                     },
                     "id": {

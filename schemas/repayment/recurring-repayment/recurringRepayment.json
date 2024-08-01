@@ -16,6 +16,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
+                                        "enum": ["creditAccount"],
                                         "default": "creditAccount"
                                     },
                                     "id": {
@@ -83,6 +84,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
+                                        "enum": ["org"],
                                         "default": "org"
                                     },
                                     "id": {
@@ -198,196 +200,256 @@
             },
             "RecurringAchRepayment": {
                 "title": "Recurring ACH Repayment",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "$ref": "../../types.json#/components/schemas/Identifier"
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepayment"
                     },
-                    "type": {
-                        "type": "string",
-                        "default": "recurringAchRepayment"
-                    },
-                    "attributes": {
+                    {
                         "type": "object",
                         "properties": {
-                            "createdAt": {
-                                "type": "string",
-                                "format": "date"
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "schedule": {
+                                        "$ref": "../../types.json#/components/schemas/ResponseSchedule"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "addenda": {
+                                        "type": "string",
+                                        "maxLength": 80
+                                    },
+                                    "sameDay": {
+                                        "type": "boolean",
+                                        "default": "false"
+                                    },
+                                    "secCode": { "type": "string" },
+                                    "numberOfRepayments": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "$ref": "../../types.json#/components/schemas/Tags"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "updatedAt",
+                                    "schedule",
+                                    "description",
+                                    "numberOfRepayments",
+                                    "status"
+                                ],
+                                "additionalProperties": false
                             },
-                            "updatedAt": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "schedule": {
-                                "$ref": "../../types.json#/components/schemas/Schedule"
-                            },
-                            "description": {
-                                "type": "string",
-                                "maxLength": 50
-                            },
-                            "addenda": {
-                                "type": "string",
-                                "maxLength": 80
-                            },
-                            "sameDay": {
-                                "type": "boolean",
-                                "default": "false"
-                            },
-                            "secCode": { "type": "string" },
-                            "numberOfRepayments": {
-                                "type": "integer"
-                            },
-                            "tags": {
-                                "$ref": "../../types.json#/components/schemas/Tags"
-                            },
-                            "status": {
-                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                            "relationships": {
+                                "$ref": "#/components/schemas/RecurringAchRepaymentRelationships"
                             }
                         },
-                        "required": [
-                            "createdAt",
-                            "updatedAt",
-                            "schedule",
-                            "description",
-                            "numberOfRepayments",
-                            "status"
-                        ],
-                        "additionalProperties": false
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/RecurringAchRepaymentRelationships"
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
                     }
-                },
-                "additionalProperties": false,
-                "required": ["id", "type", "attributes", "relationships"]
+                ]
             },
             "RecurringBookRepayment": {
                 "title": "Recurring Book Repayment",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "$ref": "../../types.json#/components/schemas/Identifier"
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepayment"
                     },
-                    "type": {
-                        "type": "string",
-                        "default": "recurringBookRepayment"
-                    },
-                    "attributes": {
+                    {
                         "type": "object",
                         "properties": {
-                            "createdAt": {
-                                "type": "string",
-                                "format": "date"
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "schedule": {
+                                        "$ref": "../../types.json#/components/schemas/ResponseSchedule"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "transactionSummaryOverride": {
+                                        "type": "string",
+                                        "maxLength": 100
+                                    },
+                                    "tags": {
+                                        "$ref": "../../types.json#/components/schemas/Tags"
+                                    },
+                                    "numberOfRepayments": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "updatedAt",
+                                    "schedule",
+                                    "description",
+                                    "numberOfRepayments",
+                                    "status"
+                                ],
+                                "additionalProperties": false
                             },
-                            "updatedAt": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "schedule": {
-                                "$ref": "../../types.json#/components/schemas/Schedule"
-                            },
-                            "description": {
-                                "type": "string",
-                                "maxLength": 50
-                            },
-                            "transactionSummaryOverride": {
-                                "type": "string",
-                                "maxLength": 100
-                            },
-                            "tags": {
-                                "$ref": "../../types.json#/components/schemas/Tags"
-                            },
-                            "numberOfRepayments": {
-                                "type": "integer"
-                            },
-                            "status": {
-                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                            "relationships": {
+                                "$ref": "#/components/schemas/RecurringBookRepaymentRelationships"
                             }
                         },
-                        "required": [
-                            "createdAt",
-                            "updatedAt",
-                            "schedule",
-                            "description",
-                            "numberOfRepayments",
-                            "status"
-                        ],
-                        "additionalProperties": false
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/RecurringBookRepaymentRelationships"
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
                     }
-                },
-                "additionalProperties": false,
-                "required": ["id", "type", "attributes", "relationships"]
+                ]
             },
             "RecurringCapitalPartnerAchRepayment": {
                 "title": "Recurring Capital Partner ACH Repayment",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "$ref": "../../types.json#/components/schemas/Identifier"
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepayment"
                     },
-                    "type": {
-                        "type": "string",
-                        "default": "recurrinCapitalPartnerAchRepayment"
-                    },
-                    "attributes": {
+                    {
                         "type": "object",
                         "properties": {
-                            "createdAt": {
-                                "type": "string",
-                                "format": "date"
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "schedule": {
+                                        "$ref": "../../types.json#/components/schemas/ResponseSchedule"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "addenda": {
+                                        "type": "string",
+                                        "maxLength": 80
+                                    },
+                                    "sameDay": {
+                                        "type": "boolean",
+                                        "default": "false"
+                                    },
+                                    "secCode": { "type": "string" },
+                                    "tags": {
+                                        "$ref": "../../types.json#/components/schemas/Tags"
+                                    },
+                                    "numberOfRepayments": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "updatedAt",
+                                    "schedule",
+                                    "description",
+                                    "numberOfRepayments",
+                                    "status"
+                                ],
+                                "additionalProperties": false
                             },
-                            "updatedAt": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "schedule": {
-                                "$ref": "../../types.json#/components/schemas/Schedule"
-                            },
-                            "description": {
-                                "type": "string",
-                                "maxLength": 50
-                            },
-                            "addenda": {
-                                "type": "string",
-                                "maxLength": 80
-                            },
-                            "sameDay": {
-                                "type": "boolean",
-                                "default": "false"
-                            },
-                            "secCode": { "type": "string" },
-                            "tags": {
-                                "$ref": "../../types.json#/components/schemas/Tags"
-                            },
-                            "numberOfRepayments": {
-                                "type": "integer"
-                            },
-                            "status": {
-                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                            "relationships": {
+                                "$ref": "#/components/schemas/RecurringCapitalPartnerAchRepaymentRelationships"
                             }
                         },
-                        "required": [
-                            "createdAt",
-                            "updatedAt",
-                            "schedule",
-                            "description",
-                            "numberOfRepayments",
-                            "status"
-                        ],
-                        "additionalProperties": false
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/RecurringCapitalPartnerAchRepaymentRelationships"
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
                     }
-                },
-                "additionalProperties": false,
-                "required": ["id", "type", "attributes", "relationships"]
+                ]
             },
             "RecurringCapitalPartnerBookRepayment": {
                 "title": "Recurring Capital Partner Book Repayment",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RecurringRepayment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "schedule": {
+                                        "$ref": "../../types.json#/components/schemas/ResponseSchedule"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "maxLength": 50
+                                    },
+                                    "transactionSummaryOverride": {
+                                        "type": "string",
+                                        "maxLength": 100
+                                    },
+                                    "tags": {
+                                        "$ref": "../../types.json#/components/schemas/Tags"
+                                    },
+                                    "numberOfRepayments": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/RecurringRepaymentStatus"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "updatedAt",
+                                    "schedule",
+                                    "description",
+                                    "numberOfRepayments",
+                                    "status"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/RecurringCapitalPartnerBookRepaymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "RecurringRepayment": {
+                "title": "Recurring Repayment",
                 "type": "object",
                 "properties": {
                     "id": {
@@ -395,68 +457,14 @@
                     },
                     "type": {
                         "type": "string",
-                        "default": "recurringBookRepayment"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "createdAt": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "updatedAt": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "schedule": {
-                                "$ref": "../../types.json#/components/schemas/Schedule"
-                            },
-                            "description": {
-                                "type": "string",
-                                "maxLength": 50
-                            },
-                            "transactionSummaryOverride": {
-                                "type": "string",
-                                "maxLength": 100
-                            },
-                            "tags": {
-                                "$ref": "../../types.json#/components/schemas/Tags"
-                            },
-                            "numberOfRepayments": {
-                                "type": "integer"
-                            },
-                            "status": {
-                                "$ref": "#/components/schemas/RecurringRepaymentStatus"
-                            }
-                        },
-                        "required": [
-                            "createdAt",
-                            "updatedAt",
-                            "schedule",
-                            "description",
-                            "numberOfRepayments",
-                            "status"
-                        ],
-                        "additionalProperties": false
-                    },
-                    "relationships": {
-                        "$ref": "#/components/schemas/RecurringCapitalPartnerBookRepaymentRelationships"
+                        "enum": [
+                            "recurringAchRepayment",
+                            "recurringBookRepayment",
+                            "recurringCapitalPartnerAchRepayment",
+                            "recurrinCapitalPartnerBookRepayment"
+                        ]
                     }
                 },
-                "additionalProperties": false,
-                "required": ["id", "type", "attributes", "relationships"]
-            },
-            "RecurringRepayment": {
-                "oneOf": [
-                    { "$ref": "#/components/schemas/RecurringAchRepayment" },
-                    { "$ref": "#/components/schemas/RecurringBookRepayment" },
-                    {
-                        "$ref": "#/components/schemas/RecurringCapitalPartnerAchRepayment"
-                    },
-                    {
-                        "$ref": "#/components/schemas/RecurringCapitalPartnerBookRepayment"
-                    }
-                ],
                 "discriminator": {
                     "propertyName": "type",
                     "mapping": {

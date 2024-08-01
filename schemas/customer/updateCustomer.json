@@ -20,7 +20,9 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["individualCustomer"],
+                        "default": "individualCustomer"
                     },
                     "attributes": {
                         "type": "object",
@@ -66,7 +68,9 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["businessCustomer"],
+                        "default": "businessCustomer"
                     },
                     "attributes": {
                         "type": "object",
@@ -108,37 +112,6 @@
                 },
                 "additionalProperties": false
             },
-            "UpdateTrustCustomer": {
-                "title": "Update Trust Customer",
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "contact": {
-                                "$ref": "../types.json#/components/schemas/TrustContact",
-                                "nullable": true
-                            },
-                            "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags",
-                                "nullable": true
-                            },
-                            "authorizedUsers": {
-                                "type": "array",
-                                "nullable": true,
-                                "items": {
-                                    "$ref": "../types.json#/components/schemas/AuthorizedUser"
-                                }
-                            }
-                        },
-                        "additionalProperties": false
-                    }
-                },
-                "additionalProperties": false
-            },
             "UpdateCustomerRequest": {
                 "title": "Update Customer",
                 "type": "object",
@@ -150,9 +123,6 @@
                             },
                             {
                                 "$ref": "#/components/schemas/UpdateBusinessCustomer"
-                            },
-                            {
-                                "$ref": "#/components/schemas/UpdateTrustCustomer"
                             }
                         ]
                     }
@@ -162,29 +132,36 @@
                 "type": "object",
                 "title": "Archive Customer Request",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["archiveCustomer"]
-                    },
-                    "attributes": {
+                    "data": {
                         "type": "object",
                         "properties": {
-                            "reason": {
+                            "type": {
                                 "type": "string",
-                                "enum": [
-                                    "Inactive",
-                                    "FraudACHActivity",
-                                    "FraudCardActivity",
-                                    "FraudCheckActivity",
-                                    "FraudApplicationHistory",
-                                    "FraudAccountActivity",
-                                    "FraudClientIdentified",
-                                    "FraudLinkedToFraudulentCustomer"
-                                ]
+                                "enum": ["archiveCustomer"],
+                                "default": "archiveCustomer"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "reason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Inactive",
+                                            "FraudACHActivity",
+                                            "FraudCardActivity",
+                                            "FraudCheckActivity",
+                                            "FraudApplicationHistory",
+                                            "FraudAccountActivity",
+                                            "FraudClientIdentified",
+                                            "FraudLinkedToFraudulentCustomer"
+                                        ]
+                                    }
+                                }
                             }
                         }
                     }
-                }
+                },
+                "required": ["type", "attributes"]
             }
         }
     }

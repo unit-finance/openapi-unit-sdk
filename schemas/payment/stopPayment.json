@@ -65,13 +65,6 @@
                 "title": "Check Stop Payment",
                 "type": "object",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "checkStopPayment"
-                    },
-                    "id": {
-                        "$ref": "../types.json#/components/schemas/Identifier"
-                    },
                     "attributes": {
                         "type": "object",
                         "properties": {
@@ -114,13 +107,6 @@
                 "title": "ACH Stop Payment",
                 "type": "object",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "default": "achStopPayment"
-                    },
-                    "id": {
-                        "$ref": "../types.json#/components/schemas/Identifier"
-                    },
                     "attributes": {
                         "type": "object",
                         "properties": {
@@ -182,14 +168,25 @@
                 }
             },
             "StopPayment": {
-                "oneOf": [
-                    {
-                        "$ref": "#/components/schemas/CheckStopPayment"
+                "title": "Stop Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["checkStopPayment", "achStopPayment"]
                     },
-                    {
-                        "$ref": "#/components/schemas/AchStopPayment"
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
                     }
-                ]
+                },
+                "required": ["type", "id"],
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "checkStopPayment": "#/components/schemas/CheckStopPayment",
+                        "achStopPayment": "#/components/schemas/AchStopPayment"
+                    }
+                }
             }
         }
     }

@@ -23,6 +23,7 @@
                         "properties": {
                             "type": {
                                 "type": "string",
+                                "enum": ["checkPayment"],
                                 "default": "checkPayment"
                             },
                             "attributes": {

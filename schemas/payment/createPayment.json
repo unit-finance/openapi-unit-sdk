@@ -109,6 +109,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["achPayment"],
                         "default": "achPayment"
                     },
                     "attributes": {
@@ -165,6 +166,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["achPayment"],
                         "default": "achPayment"
                     },
                     "attributes": {
@@ -217,6 +219,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["achPayment"],
                         "default": "achPayment"
                     },
                     "attributes": {
@@ -281,6 +284,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["bookPayment"],
                         "default": "bookPayment"
                     },
                     "attributes": {
@@ -318,6 +322,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["wirePayment"],
                         "default": "wirePayment"
                     },
                     "attributes": {
@@ -359,6 +364,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["pushToCardPayment"],
                         "default": "pushToCardPayment"
                     },
                     "attributes": {

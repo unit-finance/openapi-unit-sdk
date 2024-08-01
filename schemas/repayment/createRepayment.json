@@ -72,7 +72,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["bookRepayment"]
+                        "enum": ["bookRepayment"],
+                        "default": "bookRepayment"
                     },
                     "attributes": {
                         "type": "object",
@@ -102,7 +103,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["capitalPartnerBookRepayment"]
+                        "enum": ["capitalPartnerBookRepayment"],
+                        "default": "capitalPartnerBookRepayment"
                     },
                     "attributes": {
                         "type": "object",
@@ -132,7 +134,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["achRepayment"]
+                        "enum": ["achRepayment"],
+                        "default": "achRepayment"
                     },
                     "attributes": {
                         "type": "object",
@@ -168,7 +171,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["capitalPartnerAchRepayment"]
+                        "enum": ["capitalPartnerAchRepayment"],
+                        "default": "capitalPartnerAchRepayment"
                     },
                     "attributes": {
                         "type": "object",

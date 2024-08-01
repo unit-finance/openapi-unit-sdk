@@ -19,6 +19,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["individualCustomer"],
                         "default": "individualCustomer"
                     },
                     "attributes": {
@@ -99,6 +100,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["businessCustomer"],
                         "default": "businessCustomer"
                     },
                     "attributes": {

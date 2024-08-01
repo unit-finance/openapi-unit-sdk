@@ -2672,6 +2672,7 @@
                     }
                 ]
             },
+
             "Transaction": {
                 "title": "Transaction Resource",
                 "type": "object",
@@ -2680,7 +2681,43 @@
                         "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "originatedAchTransaction",
+                            "receivedAchTransaction",
+                            "returnedAchTransaction",
+                            "returnedReceivedAchTransaction",
+                            "dishonoredAchTransaction",
+                            "purchaseTransaction",
+                            "bookTransaction",
+                            "atmTransaction",
+                            "feeTransaction",
+                            "cardTransaction",
+                            "releaseTransaction",
+                            "wireTransaction",
+                            "interestShareTransaction",
+                            "interestTransaction",
+                            "adjustmentTransaction",
+                            "disputeTransaction",
+                            "checkDepositTransaction",
+                            "returnedCheckDepositTransaction",
+                            "sponsoredInterestTransaction",
+                            "paymentAdvanceTransaction",
+                            "repaidPaymentAdvanceTransaction",
+                            "chargebackTransaction",
+                            "rewardTransaction",
+                            "negativeBalanceCoverageTransaction",
+                            "accountLowBalanceClosureTransaction",
+                            "bankRepaymentTransaction",
+                            "cashDepositTransaction",
+                            "customerRepaymentTransaction",
+                            "customerRepaymentReturnedTransaction",
+                            "checkPaymentTransaction",
+                            "returnedCheckPaymentTransaction",
+                            "cardReversalTransaction",
+                            "feeReversalTransaction",
+                            "pushToCardReversalTransaction"
+                        ]
                     }
                 },
                 "discriminator": {

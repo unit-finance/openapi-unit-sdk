@@ -29,6 +29,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["checkStopPayment"],
                         "default": "checkStopPayment"
                     },
                     "attributes": {
@@ -65,6 +66,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["achStopPayment"],
                         "default": "achStopPayment"
                     },
                     "attributes": {

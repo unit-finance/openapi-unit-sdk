@@ -60,6 +60,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["checkPayment"],
                         "default": "checkPayment"
                     },
                     "id": {

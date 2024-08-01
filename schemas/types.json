@@ -769,7 +769,7 @@
                     }
                 }
             },
-            "WeeklySchedule": {
+            "BaseWeeklySchedule": {
                 "title": "Weekly Schedule",
                 "type": "object",
                 "properties": {
@@ -780,10 +780,6 @@
                     "endTime": {
                         "type": "string",
                         "format": "date"
-                    },
-                    "interval": {
-                        "type": "string",
-                        "enum": ["Weekly"]
                     },
                     "dayOfMonth": {
                         "type": "integer",
@@ -800,10 +796,9 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": ["interval", "nextScheduledAction"]
+                "required": ["nextScheduledAction"]
             },
-            "MontlySchedule": {
-                "title": "Monthly Schedule",
+            "BaseMonthlySchedule": {
                 "type": "object",
                 "properties": {
                     "startTime": {
@@ -831,31 +826,101 @@
                             "Saturday"
                         ]
                     },
-                    "interval": {
-                        "type": "string",
-                        "enum": ["Monthly"]
-                    },
                     "totalNumberOfPayments": {
                         "type": "integer",
                         "minimum": 1
                     }
                 },
-                "required": ["interval"],
                 "additionalProperties": false
+            },
+            "WeeklySchedule": {
+                "title": "Weekly Schedule",
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseWeeklySchedule" },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "interval": {
+                                "type": "string",
+                                "enum": ["Weekly"],
+                                "default": "Weekly"
+                            }
+                        },
+                        "required": ["interval"]
+                    }
+                ]
+            },
+            "MonthlySchedule": {
+                "title": "Monthly Schedule",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseMonthlySchedule"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "interval": {
+                                "type": "string",
+                                "enum": ["Montly"],
+                                "default": "Montly"
+                            }
+                        },
+                        "required": ["interval"]
+                    }
+                ]
             },
             "Schedule": {
                 "title": "Schedule",
                 "oneOf": [
                     { "$ref": "#/components/schemas/WeeklySchedule" },
-                    { "$ref": "#/components/schemas/MontlySchedule" }
+                    { "$ref": "#/components/schemas/MonthlySchedule" }
                 ],
                 "discriminator": {
                     "propertyName": "interval",
                     "mapping": {
                         "Weekly": "#/components/schemas/WeeklySchedule",
-                        "Monthly": "#/components/schemas/MontlySchedule"
+                        "Monthly": "#/components/schemas/MonthlySchedule"
                     }
                 }
+            },
+            "ResponseMonthlySchedule": {
+                "title": "Response Monthly Schedule",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ResponseSchedule"
+                    },
+                    {
+                        "$ref": "#/components/schemas/BaseMonthlySchedule"
+                    }
+                ]
+            },
+            "ResponseWeeklySchedule": {
+                "title": "Response Weekly Schedule",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ResponseSchedule"
+                    },
+                    {
+                        "$ref": "#/components/schemas/BaseWeeklySchedule"
+                    }
+                ]
+            },
+            "ResponseSchedule": {
+                "type": "object",
+                "properties": {
+                    "interval": {
+                        "type": "string",
+                        "enum": ["Weekly", "Monthly"]
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "interval",
+                    "mapping": {
+                        "Weekly": "#/components/schemas/ResponseWeeklySchedule",
+                        "Monthly": "#/components/schemas/ResponseMonthlySchedule"
+                    }
+                },
+                "required": ["interval"]
             },
             "DefaultContentType": {
                 "type": "string",

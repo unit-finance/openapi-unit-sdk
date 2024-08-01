@@ -11,6 +11,7 @@ import unit.java.sdk.model.CreateApiTokenRequestDataAttributesResourcesInner;
 import unit.java.sdk.model.CreateCustomerTokenRequest;
 import unit.java.sdk.model.CreateCustomerTokenRequestData;
 import unit.java.sdk.model.CreateCustomerTokenRequestDataAttributes;
+import unit.java.sdk.model.CustomerToken;
 import unit.java.sdk.model.UnitCustomerTokenResponse;
 
 public class TokenTests {
@@ -22,7 +23,7 @@ public class TokenTests {
         List<ApiToken> response = unitApi.getApiTokensList("252").getData();
 
         for (ApiToken t: response) {
-            assert t.getType().equals("apiToken");
+            assert t.getType().equals(ApiToken.TypeEnum.APITOKEN);
         }
     }
 
@@ -47,6 +48,6 @@ public class TokenTests {
         request.setData(cct);
 
         UnitCustomerTokenResponse res = unitApi.createCustomerToken("1527981", request);
-        assert res.getData().getType().equals("customerBearerToken");
+        assert res.getData().getType().equals(CustomerToken.TypeEnum.CUSTOMERBEARERTOKEN);
     }
 }

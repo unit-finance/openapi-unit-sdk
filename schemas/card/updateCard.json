@@ -7,7 +7,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["individualDebitCard"]
+                        "enum": ["individualDebitCard"],
+                        "default": "individualDebitCard"
                     },
                     "attributes": {
                         "type": "object",
@@ -40,7 +41,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["individualVirtualDebitCard"]
+                        "enum": ["individualVirtualDebitCard"],
+                        "default": "individualVirtualDebitCard"
                     },
                     "attributes": {
                         "type": "object",
@@ -68,7 +70,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["businessDebitCard"]
+                        "enum": ["businessDebitCard"],
+                        "default": "businessDebitCard"
                     },
                     "attributes": {
                         "type": "object",
@@ -110,7 +113,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["businessVirtualDebitCard"]
+                        "enum": ["businessVirtualDebitCard"],
+                        "default": "businessVirtualDebitCard"
                     },
                     "attributes": {
                         "type": "object",
@@ -147,7 +151,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["businessCreditCard"]
+                        "enum": ["businessCreditCard"],
+                        "default": "businessCreditCard"
                     },
                     "attributes": {
                         "type": "object",
@@ -189,7 +194,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["businessVirtualCreditCard"]
+                        "enum": ["businessVirtualCreditCard"],
+                        "default": "businessVirtualCreditCard"
                     },
                     "attributes": {
                         "type": "object",

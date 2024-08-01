@@ -17,7 +17,11 @@
                 "title": "Update Transaction",
                 "type": "object",
                 "properties": {
-                    "type": { "type": "string", "default": "transaction" },
+                    "type": {
+                        "type": "string",
+                        "enum": ["transaction"],
+                        "default": "transaction"
+                    },
                     "attributes": {
                         "type": "object",
                         "properties": {
@@ -36,7 +40,11 @@
                 "title": "Update Book Transaction",
                 "type": "object",
                 "properties": {
-                    "type": { "type": "string", "default": "bookTransaction" },
+                    "type": {
+                        "type": "string",
+                        "enum": ["bookTransaction"],
+                        "default": "bookTransaction"
+                    },
                     "attributes": {
                         "type": "object",
                         "properties": {
@@ -62,6 +70,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["chargebackTransaction"],
                         "default": "chargebackTransaction"
                     },
                     "attributes": {

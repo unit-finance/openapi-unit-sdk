@@ -6,7 +6,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormChooseBusinessOrIndividual"
+                        "enum": ["applicationFormChooseBusinessOrIndividual"],
+                        "default": "applicationFormChooseBusinessOrIndividual"
                     },
                     "attributes": {
                         "type": "object",
@@ -31,7 +32,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormIndividualInformation"
+                        "enum": ["applicationFormIndividualInformation"],
+                        "default": "applicationFormIndividualInformation"
                     },
                     "attributes": {
                         "type": "object",
@@ -101,7 +103,10 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormSoleProprietorshipBusinessInformation"
+                        "enum": [
+                            "applicationFormSoleProprietorshipBusinessInformation"
+                        ],
+                        "default": "applicationFormSoleProprietorshipBusinessInformation"
                     },
                     "attributes": {
                         "type": "object",
@@ -141,7 +146,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormBusinessInformation"
+                        "enum": ["applicationFormBusinessInformation"],
+                        "default": "applicationFormBusinessInformation"
                     },
                     "attributes": {
                         "type": "object",
@@ -187,7 +193,10 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormBusinessAdditionalInformation"
+                        "enum": [
+                            "applicationFormBusinessAdditionalInformation"
+                        ],
+                        "default": "applicationFormBusinessAdditionalInformation"
                     },
                     "attributes": {
                         "type": "object",
@@ -238,7 +247,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormOfficerInformation"
+                        "enum": ["applicationFormOfficerInformation"],
+                        "default": "applicationFormOfficerInformation"
                     },
                     "attributes": {
                         "type": "object",
@@ -271,7 +281,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormBeneficialOwnersInformation"
+                        "enum": ["applicationFormBeneficialOwnersInformation"],
+                        "default": "applicationFormBeneficialOwnersInformation"
                     },
                     "attributes": {
                         "type": "object",
@@ -301,7 +312,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormPhoneVerification"
+                        "enum": ["applicationFormPhoneVerification"],
+                        "default": "applicationFormPhoneVerification"
                     },
                     "attributes": {
                         "type": "object",
@@ -327,7 +339,8 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "applicationFormUpdateStage"
+                        "enum": ["applicationFormUpdateStage"],
+                        "default": "applicationFormUpdateStage"
                     },
                     "attributes": {
                         "type": "object",

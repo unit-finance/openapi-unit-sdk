@@ -27,6 +27,7 @@
                         "properties": {
                             "type": {
                                 "type": "string",
+                                "enum": ["applicationForm"],
                                 "default": "applicationForm"
                             },
                             "attributes": {

@@ -7,6 +7,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["depositAccount"],
                         "default": "depositAccount"
                     },
                     "attributes": {
@@ -30,6 +31,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["creditAccount"],
                         "default": "creditAccount"
                     },
                     "attributes": {

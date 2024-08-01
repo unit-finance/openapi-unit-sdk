@@ -26,6 +26,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
+                        "enum": ["dispute"],
                         "default": "dispute"
                     },
                     "id": {

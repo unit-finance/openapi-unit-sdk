@@ -1,0 +1,252 @@
+{
+  "definitions": {
+    "CreateRecurringBookRepaymentRelationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "creditAccount": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "counterpartyAccount": {
+          "$ref": "types.json#/definitions/Relationship"
+        }
+      },
+      "required": ["account", "creditAccount", "counterpartyAccount"],
+      "additionalProperties": false
+    },
+    "CreateRecurringAchRepaymentRelationships": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "creditAccount": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "counterparty": {
+          "$ref": "types.json#/definitions/Relationship"
+        }
+      },
+      "required": ["account", "creditAccount", "counterparty"],
+      "additionalProperties": false
+    },
+    "CreateRecurringCapitalPartnerAchRepaymentRelationships": {
+      "type": "object",
+      "properties": {
+        "creditAccount": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "counterparty": {
+          "$ref": "types.json#/definitions/Relationship"
+        }
+      },
+      "required": ["account", "counterparty"],
+      "additionalProperties": false
+    },
+    "CreateRecurringCapitalPartnerBookRepaymentRelationships": {
+      "type": "object",
+      "properties": {
+        "creditAccount": {
+          "$ref": "types.json#/definitions/Relationship"
+        },
+        "counterpartyAccount": {
+          "$ref": "types.json#/definitions/Relationship"
+        }
+      },
+      "required": ["account", "counterpartyAccount"],
+      "additionalProperties": false
+    },
+    "CreateRecurringBookRepayment": {
+      "title": "Create Recurring Book Repayment",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "recurringBookRepayment"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "transactionSummaryOverride": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "tags": {
+              "$ref": "tags.json#/definitions/tags"
+            }
+          },
+          "required": ["description"],
+          "additionalProperties": false
+        },
+        "relationships": {
+          "$ref": "#/definitions/CreateRecurringBookRepaymentRelationships"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["type", "attributes", "relationships"]
+    },
+    "CreateRecurringAchRepayment": {
+      "title": "Create Recurring ACH Repayment",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "recurringAchRepayment"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 10
+            },
+            "addenda": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "sameDay": {
+              "type": "boolean"
+            },
+            "secCode": {
+              "type": "string"
+            },
+            "tags": {
+              "$ref": "tags.json#/definitions/tags"
+            }
+          },
+          "required": ["description"],
+          "additionalProperties": false
+        },
+        "relationships": {
+          "$ref": "#/definitions/CreateRecurringAchRepaymentRelationships"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["type", "attributes", "relationships"]
+    },
+    "CreateRecurringCapitalPartnerAchRepayment": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "recurringCapitalPartnerAchRepayment"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 10
+            },
+            "addenda": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "sameDay": {
+              "type": "boolean"
+            },
+            "secCode": {
+              "type": "string"
+            },
+            "tags": {
+              "$ref": "tags.json#/definitions/tags"
+            }
+          },
+          "required": ["description"],
+          "additionalProperties": false
+        },
+        "relationships": {
+          "$ref": "#/definitions/CreateRecurringCapitalPartnerAchRepaymentRelationships"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["type", "attributes", "relationships"]
+    },
+    "CreateRecurringCapitalPartnerBookRepayment": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "recurringCapitalPartnerBookRepayment"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "transactionSummaryOverride": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "tags": {
+              "$ref": "tags.json#/definitions/tags"
+            }
+          },
+          "required": ["description"],
+          "additionalProperties": false
+        },
+        "relationships": {
+          "$ref": "#/definitions/CreateRecurringCapitalPartnerBookRepaymentRelationships"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["type", "attributes", "relationships"]
+    },
+    "CreateRecurringRepaymentRequest": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CreateRecurringAchRepayment"
+            },
+            {
+              "$ref": "#/definitions/CreateRecurringBookRepayment"
+            },
+            {
+              "$ref": "#/definitions/CreateRecurringCapitalPartnerAchRepayment"
+            },
+            {
+              "$ref": "#/definitions/CreateRecurringCapitalPartnerBookRepayment"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

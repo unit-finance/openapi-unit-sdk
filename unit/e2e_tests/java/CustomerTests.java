@@ -3,16 +3,25 @@ package unit.java.sdk;
 import org.junit.Test;
 
 import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.AddAuthorizedUsersRequest;
+import unit.java.sdk.model.AddAuthorizedUsersRequestData;
+import unit.java.sdk.model.AddAuthorizedUsersRequestDataAttributes;
 import unit.java.sdk.model.Application;
 import unit.java.sdk.model.ArchiveCustomerRequest;
 import unit.java.sdk.model.ArchiveCustomerRequestData;
 import unit.java.sdk.model.ArchiveCustomerRequestDataAttributes;
+import unit.java.sdk.model.AuthorizedUser;
 import unit.java.sdk.model.BusinessApplication;
 import unit.java.sdk.model.BusinessCustomer;
 import unit.java.sdk.model.Contact;
 import unit.java.sdk.model.Customer;
+import unit.java.sdk.model.FullName;
 import unit.java.sdk.model.IndividualApplication;
 import unit.java.sdk.model.IndividualCustomer;
+import unit.java.sdk.model.Phone;
+import unit.java.sdk.model.RemoveAuthorizedUsersRequest;
+import unit.java.sdk.model.RemoveAuthorizedUsersRequestData;
+import unit.java.sdk.model.RemoveAuthorizedUsersRequestDataAttributes;
 import unit.java.sdk.model.ResponseContact;
 import unit.java.sdk.model.UnitCreateApplicationResponse;
 import unit.java.sdk.model.UnitCustomerResponse;
@@ -24,7 +33,7 @@ import unit.java.sdk.model.UpdateCustomerRequestData;
 import unit.java.sdk.model.UpdateIndividualCustomer;
 import unit.java.sdk.model.UpdateIndividualCustomerAttributes;
 
-import static unit.java.sdk.TestHelpers.GenerateCreateApplicationRequest;
+import static unit.java.sdk.TestHelpers.GenerateCreateIndividualApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateCreateBusinessApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
 
@@ -33,7 +42,7 @@ public class CustomerTests {
     UnitApi unitApi = GenerateUnitApiClient();
 
     public static IndividualCustomer CreateIndividualCustomer(UnitApi unitApi) throws ApiException {
-        UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateApplicationRequest());
+        UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null));
         assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUALAPPLICATION);
 
         IndividualApplication app = (IndividualApplication) res.getData();
@@ -126,5 +135,60 @@ public class CustomerTests {
         request.setData(requestData);
         UnitCustomerResponse res = unitApi.archiveCustomer(customer.getId(), request);
         assert res.getData().getType().equals(Customer.TypeEnum.BUSINESSCUSTOMER);
+    }
+
+    Customer CreateCustomerAndAddAuthorizedUser(String email) throws ApiException {
+        Customer customer = CreateBusinessCustomer(unitApi);
+        assert customer.getType().equals(IndividualCustomer.TypeEnum.BUSINESSCUSTOMER);
+
+        AddAuthorizedUsersRequest request = new AddAuthorizedUsersRequest();
+        AddAuthorizedUsersRequestData data = new AddAuthorizedUsersRequestData();
+        AddAuthorizedUsersRequestDataAttributes attributes = new AddAuthorizedUsersRequestDataAttributes();
+        AuthorizedUser user = new AuthorizedUser();
+
+        Phone p = new Phone();
+        p.setNumber("5555555555");
+        p.setCountryCode("1");
+
+        FullName fn = new FullName();
+        fn.setFirst("Peter");
+        fn.setLast("Parker");
+
+        user.setEmail(email);
+        user.setFullName(fn);
+        user.setPhone(p);
+
+        attributes.addAuthorizedUsersItem(user);
+        data.setAttributes(attributes);
+        data.setType(AddAuthorizedUsersRequestData.TypeEnum.ADDAUTHORIZEDUSERS);
+        request.setData(data);
+
+        UnitCustomerResponse res = unitApi.addAuthorizedUsers(customer.getId(), request);
+        return res.getData(); 
+    }
+
+    @Test 
+    public void AddAuthorizedUsersApiTest() throws ApiException {
+        Customer customer = CreateCustomerAndAddAuthorizedUser("test@test.test");
+        assert customer.getType().equals(Customer.TypeEnum.BUSINESSCUSTOMER);
+    }
+
+    @Test 
+    public void RemoveAuthorizedUsersApiTest() throws ApiException {
+        String email = "test@test.test";
+        Customer customer = CreateCustomerAndAddAuthorizedUser(email);
+        assert customer.getType().equals(Customer.TypeEnum.BUSINESSCUSTOMER);
+
+        RemoveAuthorizedUsersRequest req = new RemoveAuthorizedUsersRequest();
+        RemoveAuthorizedUsersRequestData data = new RemoveAuthorizedUsersRequestData();
+        RemoveAuthorizedUsersRequestDataAttributes attributes = new RemoveAuthorizedUsersRequestDataAttributes();
+
+        attributes.addAuthorizedUsersEmailsItem(email);
+        data.setAttributes(attributes);
+        data.setType(RemoveAuthorizedUsersRequestData.TypeEnum.REMOVEAUTHORIZEDUSERS);
+        req.setData(data);
+
+        UnitCustomerResponse res = unitApi.removeAuthorizedUsers(customer.getId(), req);
+        assert res.getData().getType().equals(customer.getType());
     }
  }

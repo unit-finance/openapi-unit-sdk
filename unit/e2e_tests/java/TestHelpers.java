@@ -14,14 +14,21 @@ import unit.java.sdk.model.CashFlow;
 import unit.java.sdk.model.Contact;
 import unit.java.sdk.model.CreateApplicationRequest;
 import unit.java.sdk.model.CreateApplicationRequestData;
+import unit.java.sdk.model.CreateBeneficialOwner;
 import unit.java.sdk.model.CreateBusinessApplication;
 import unit.java.sdk.model.CreateBusinessApplicationAttributes;
+import unit.java.sdk.model.CreateIndividualApplication;
+import unit.java.sdk.model.CreateIndividualApplicationAttributes;
 import unit.java.sdk.model.CreateOfficer;
+import unit.java.sdk.model.CreateSoleProprietorApplication;
+import unit.java.sdk.model.CreateSoleProprietorApplicationAttributes;
 import unit.java.sdk.model.EntityType;
 import unit.java.sdk.model.FullName;
 import unit.java.sdk.model.Occupation;
 import unit.java.sdk.model.PaymentCounterparty;
 import unit.java.sdk.model.Phone;
+import unit.java.sdk.model.SoleProprietorshipAnnualRevenue;
+import unit.java.sdk.model.SoleProprietorshipNumberOfEmployees;
 import unit.java.sdk.model.SourceOfIncome;
 import unit.java.sdk.model.WirePaymentCounterparty;
 
@@ -38,16 +45,51 @@ public class TestHelpers {
         return unitApi;
     }
 
-    public static CreateApplicationRequest GenerateCreateApplicationRequest() {
-        unit.java.sdk.model.CreateIndividualApplication createIndividualApplication = new unit.java.sdk.model.CreateIndividualApplication();
-        unit.java.sdk.model.CreateIndividualApplicationAttributes attr = new unit.java.sdk.model.CreateIndividualApplicationAttributes();
+    public static CreateApplicationRequest GenerateCreateIndividualApplicationRequest(String ssn) {
+        if (ssn == null) ssn = "721074426";
+        CreateIndividualApplication createIndividualApplication = new CreateIndividualApplication();
+        CreateIndividualApplicationAttributes attr = new CreateIndividualApplicationAttributes();
 
-        unit.java.sdk.model.FullName fn = new unit.java.sdk.model.FullName();
+        FullName fn = new FullName();
         fn.setFirst("Peter");
         fn.setLast("Parker");
         attr.setFullName(fn);
 
-        unit.java.sdk.model.Address address = new unit.java.sdk.model.Address();
+        Address address = new Address();
+        address.setStreet("20 Ingram St");
+        address.setCity("Forest Hills");
+        address.setPostalCode("11375");
+        address.setCountry("US");
+        address.setState("NY");
+        attr.setAddress(address);
+
+        attr.setSsn(ssn);
+        attr.setDateOfBirth(LocalDate.parse("2001-08-10"));
+        attr.setEmail("peter@oscorp.com");
+        Phone p = new Phone();
+        p.setNumber("5555555555");
+        p.setCountryCode("1");
+        attr.setPhone(p);
+        attr.setOccupation(Occupation.ARCHITECTORENGINEER);
+
+        createIndividualApplication.setAttributes(attr);
+
+        CreateApplicationRequest ca = new CreateApplicationRequest();
+        ca.data(new CreateApplicationRequestData(createIndividualApplication));
+
+        return ca;
+    }
+
+    public static CreateApplicationRequest GenerateCreateSoleProprietorApplicationRequest() {
+        CreateSoleProprietorApplication createSoleProprietorApplication = new CreateSoleProprietorApplication();
+        CreateSoleProprietorApplicationAttributes attr = new CreateSoleProprietorApplicationAttributes();
+
+        FullName fn = new FullName();
+        fn.setFirst("Peter");
+        fn.setLast("Parker");
+        attr.setFullName(fn);
+
+        Address address = new Address();
         address.setStreet("20 Ingram St");
         address.setCity("Forest Hills");
         address.setPostalCode("11375");
@@ -58,17 +100,19 @@ public class TestHelpers {
         attr.setSsn("721074426");
         attr.setDateOfBirth(LocalDate.parse("2001-08-10"));
         attr.setEmail("peter@oscorp.com");
-        unit.java.sdk.model.Phone p = new unit.java.sdk.model.Phone();
+        Phone p = new Phone();
         p.setNumber("5555555555");
         p.setCountryCode("1");
         attr.setPhone(p);
-        attr.setIdempotencyKey("3a1a33be-4e12-4603-9ed0-820922389fb8");
-        attr.setOccupation(unit.java.sdk.model.Occupation.ARCHITECTORENGINEER);
+        attr.setSoleProprietorship(true);
+        attr.setBusinessVertical(BusinessVertical.BUSINESSSUPPORTORBUILDINGSERVICES);
+        attr.setAnnualRevenue(SoleProprietorshipAnnualRevenue.BETWEEN100KAND200K);
+        attr.setNumberOfEmployees(SoleProprietorshipNumberOfEmployees.BETWEEN5AND10);
 
-        createIndividualApplication.setAttributes(attr);
+        createSoleProprietorApplication.setAttributes(attr);
 
         CreateApplicationRequest ca = new CreateApplicationRequest();
-        ca.data(new CreateApplicationRequestData(createIndividualApplication));
+        ca.data(new CreateApplicationRequestData(createSoleProprietorApplication));
 
         return ca;
     }
@@ -135,6 +179,20 @@ public class TestHelpers {
 
         attr.setOfficer(officer);
         attr.setBusinessVertical(BusinessVertical.ARTSENTERTAINMENTANDRECREATION);
+
+        List<CreateBeneficialOwner> beneficialOwners = new ArrayList<CreateBeneficialOwner>();
+        CreateBeneficialOwner beneficialOwner = new CreateBeneficialOwner();
+        beneficialOwner.setAddress(address);
+        beneficialOwner.setFullName(fn);
+        beneficialOwner.setDateOfBirth(dateOfBirh);
+        beneficialOwner.setSsn("721074426");
+        beneficialOwner.setEmail(email);
+        beneficialOwner.setPhone(p);
+        beneficialOwner.setOccupation(Occupation.ARCHITECTORENGINEER);
+        beneficialOwner.setAnnualIncome(AnnualIncome.BETWEEN100KAND250K);
+        beneficialOwner.setSourceOfIncome(SourceOfIncome.BUSINESSOWNERSHIPINTERESTS);
+        beneficialOwners.add(beneficialOwner);
+        attr.setBeneficialOwners(beneficialOwners);
 
         createBusinessApplication.setAttributes(attr);
 

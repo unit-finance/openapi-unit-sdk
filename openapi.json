@@ -44,6 +44,9 @@
         "/application-forms/{applicationFormId}": {
             "$ref": "./schemas/application/applicationPaths.json#/applicationForm"
         },
+        "/beneficial-owner/{beneficialOwnerId}": {
+            "$ref": "./schemas/application/applicationPaths.json#/updateBusinessBeneficialOwner"
+        },
         "/accounts": {
             "$ref": "./schemas/account/accountPaths.json#/accounts"
         },
@@ -88,6 +91,9 @@
         },
         "/customers/{customerId}/archive": {
             "$ref": "./schemas/customer/customerPaths.json#/archiveCustomer"
+        },
+        "/customers/{customerId}/authorized-users": {
+            "$ref": "./schemas/customer/customerPaths.json#/authorizedUsers"
         },
         "/payments": {
             "$ref": "./schemas/payment/paymentsPaths.json#/getAndCreatePayments"

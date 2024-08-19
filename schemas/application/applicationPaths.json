@@ -30,6 +30,29 @@
                         "$ref": "../types.json#/components/schemas/IncludedResource"
                     }
                 }
+            },
+            "UnitBeneficialOwnerResponse": {
+                "type": "object",
+                "title": "Unit Beneficial Owner Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "$ref": "../types.json#/components/schemas/Identifier"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": ["beneficialOwner"],
+                                "default": "beneficialOwner"
+                            },
+                            "attributes": {
+                                "$ref": "./application.json#/components/schemas/BeneficialOwner"
+                            }
+                        }
+                    }
+                },
+                "required": ["data"]
             }
         }
     },
@@ -142,7 +165,7 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
-                                            "enum": ["cancelApplication"]
+                                            "enum": ["applicationCancel"]
                                         },
                                         "attributes": {
                                             "type": "object",
@@ -313,7 +336,7 @@
     "applicationForms": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getApplicationForms",
+            "operationId": "getApplicationFormsList",
             "summary": "Get List Application Forms",
             "description": "Get List Application Forms from API ",
             "parameters": [
@@ -494,17 +517,7 @@
                 "content": {
                     "application/pdf": {
                         "schema": {
-                            "$ref": "./uploadApplicaitonDocument.json#/components/schemas/UploadPdfDocument"
-                        }
-                    },
-                    "image/png": {
-                        "schema": {
-                            "$ref": "./uploadApplicaitonDocument.json#/components/schemas/UploadPngDocument"
-                        }
-                    },
-                    "image/jpeg": {
-                        "schema": {
-                            "$ref": "./uploadApplicaitonDocument.json#/components/schemas/UploadJpegDocument"
+                            "$ref": "./uploadApplicationDocument.json#/components/schemas/UploadPdfDocument"
                         }
                     }
                 }
@@ -799,6 +812,48 @@
                             "schema": {
                                 "type": "string",
                                 "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "updateBusinessBeneficialOwner": {
+        "patch": {
+            "tags": ["unit"],
+            "operationId": "updateBusinessBeneficialOwner",
+            "description": "Update a Business Beneficial Owner",
+            "summary": "Update a Business Beneficial Owner via API",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "beneficialOwnerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the beneficial owner to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Business Beneficial Owner Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./updateBusinessBeneficialOwner.json#/components/schemas/UpdateBusinessBeneficialOwnerRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitBeneficialOwnerResponse"
                             }
                         }
                     }

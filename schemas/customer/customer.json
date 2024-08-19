@@ -225,6 +225,69 @@
                 ],
                 "additionalProperties": false
             },
+            "BusinessWalletCustomer": {
+                "title": "Business Wallet Customer",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./customer.json#/components/schemas/Customer"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "bankName": {
+                                        "type": "string"
+                                    },
+                                    "businessName": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "ein": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "businessVertical": {
+                                        "$ref": "../types.json#/components/schemas/BusinessVertical"
+                                    },
+                                    "numberOfEmployees": {
+                                        "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "bankName",
+                                    "businessName",
+                                    "name",
+                                    "address",
+                                    "ein",
+                                    "businessVertical",
+                                    "numberOfEmployees"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                            }
+                        }
+                    }
+                ],
+                "additionalProperties": false
+            },
             "Customer": {
                 "title": "Customer",
                 "type": "object",
@@ -241,7 +304,8 @@
                     "propertyName": "type",
                     "mapping": {
                         "individualCustomer": "#/components/schemas/IndividualCustomer",
-                        "businessCustomer": "#/components/schemas/BusinessCustomer"
+                        "businessCustomer": "#/components/schemas/BusinessCustomer",
+                        "businessWalletCustomer": "#/components/schemas/BusinessWalletCustomer"
                     }
                 }
             }

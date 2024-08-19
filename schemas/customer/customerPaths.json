@@ -200,5 +200,87 @@
                 }
             }
         }
+    },
+    "authorizedUsers": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "addAuthorizedUsers",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer to add authorized users to"
+                }
+            ],
+            "requestBody": {
+                "description": "Add Authorized Users Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./addAuthorizedUser.json#/components/schemas/AddAuthorizedUsersRequest"
+                        }
+                    }
+                }
+            },
+            "summary": "Add Authorized Users by Id",
+            "description": "Add Authorized Users via API",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCustomerResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "delete": {
+            "tags": ["unit"],
+            "operationId": "removeAuthorizedUsers",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer to remove authorized users from"
+                }
+            ],
+            "requestBody": {
+                "description": "Add Authorized Users Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./addAuthorizedUser.json#/components/schemas/RemoveAuthorizedUsersRequest"
+                        }
+                    }
+                }
+            },
+            "summary": "Remove Authorized Users by Id",
+            "description": "Remove Authorized Users via API",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCustomerResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

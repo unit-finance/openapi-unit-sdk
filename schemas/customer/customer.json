@@ -281,7 +281,7 @@
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/OrgRelationship"
+                                "$ref": "../relationships.json#/components/schemas/OrgRelationship"
                             }
                         }
                     }

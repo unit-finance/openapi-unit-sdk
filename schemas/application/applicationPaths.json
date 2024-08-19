@@ -823,7 +823,8 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateBusinessBeneficialOwner",
-            "description": "Update a Business Beneficial Owner via API",
+            "description": "Update a Business Beneficial Owner",
+            "summary": "Update a Business Beneficial Owner via API",
             "parameters": [
                 {
                     "schema": {

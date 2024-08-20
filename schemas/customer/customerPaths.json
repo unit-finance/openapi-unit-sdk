@@ -16,7 +16,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCustomer",
-
             "parameters": [
                 {
                     "schema": {
@@ -162,7 +161,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "archiveCustomer",
-
             "parameters": [
                 {
                     "schema": {

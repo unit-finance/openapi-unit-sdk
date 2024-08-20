@@ -240,7 +240,7 @@
                     }
                 }
             },
-            "ApplicationRelationships": {
+            "IndividualApplicationRelationships": {
                 "allOf": [
                     {
                         "type": "object",
@@ -254,13 +254,36 @@
                         "$ref": "../relationships.json#/components/schemas/DocumentsRelationship"
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/TrusteesRelationship"
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/BeneficiariesRelationship"
+                        "type": "object",
+                        "properties": {
+                            "applicationForm": {
+                                "$ref": "../relationships.json#/components/schemas/Relationship"
+                            }
+                        }
+                    }
+                ]
+            },
+            "BusinessApplicationRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Application Relationships",
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/DocumentsRelationship"
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/BeneficialOwnersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
                     },
                     {
                         "type": "object",
@@ -434,7 +457,7 @@
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/ApplicationRelationships"
+                                "$ref": "#/components/schemas/BusinessApplicationRelationships"
                             }
                         },
                         "additionalProperties": false,
@@ -605,7 +628,7 @@
                                 "required": ["createdAt", "status", "fullName"]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/ApplicationRelationships"
+                                "$ref": "#/components/schemas/IndividualApplicationRelationships"
                             }
                         },
                         "additionalProperties": false,

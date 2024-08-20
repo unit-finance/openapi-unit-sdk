@@ -17,6 +17,8 @@ module SpecHelper
     stub_const('SSN', '123456789')
     stub_const('PASSPORT', '123456789')
     stub_const('LIMITS', OpenapiClient::CardLevelLimits.new(daily_withdrawal: 100, monthly_withdrawal: 1000))
+    stub_const("RELATIONSHIPS_BUSINESS", OpenapiClient::CreateDepositAccountRelationships.new(customers: [ { "data": { "type": 'customer',
+                                                                                                                       "id": '798787' }  }]).to_hash)
     stub_const('UNIT_TOKEN', ENV['UNIT_TOKEN'])
 
     @configuration = OpenapiClient::Configuration.new.tap do |config|

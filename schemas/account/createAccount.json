@@ -1,6 +1,28 @@
 {
     "components": {
         "schemas": {
+            "CreateCustomerRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["customer"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    }
+                ]
+            },
+            "CreateCreditAccountRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Push To Card Payment Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreateCustomerRelationships"
+                    }
+                ]
+            },
             "CreateCreditAccount": {
                 "title": "Create Credit Account",
                 "type": "object",
@@ -31,14 +53,7 @@
                         "required": ["creditTerms", "creditLimit"]
                     },
                     "relationships": {
-                        "allOf": [
-                            {
-                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
-                            },
-                            {
-                                "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
-                            }
-                        ]
+                        "$ref": "#/components/schemas/CreateCreditAccountRelationships"
                     }
                 }
             },

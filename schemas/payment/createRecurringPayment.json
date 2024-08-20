@@ -1,0 +1,176 @@
+{
+    "components": {
+        "schemas": {
+            "CreateRecurringCreditAchPayment": {
+                "title": "Create Recurring Credit ACH Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["recurringCreditAchPayment"],
+                        "default": "recurringCreditAchPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 10
+                            },
+                            "addenda": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 80
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "schedule": {
+                                "$ref": "../types.json#/components/schemas/Schedule"
+                            }
+                        },
+                        "required": ["amount", "description", "schedule"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateRecurringDebitAchPayment": {
+                "title": "Create Recurring Debit ACH Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["recurringDebitAchPayment"],
+                        "default": "recurringDebitAchPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 10
+                            },
+                            "addenda": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 80
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "sameDay": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "verifyCounterpartyBalance": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "schedule": {
+                                "$ref": "../types.json#/components/schemas/Schedule"
+                            },
+                            "clearingDaysOverride": {
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        },
+                        "required": ["amount", "description", "schedule"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateRecurringCreditBookPayment": {
+                "title": "Create Recurring Credit Book Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["recurringCreditBookPayment"],
+                        "default": "recurringCreditBookPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 80
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "transactionSummaryOverride": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 100
+                            },
+                            "schedule": {
+                                "$ref": "../types.json#/components/schemas/Schedule"
+                            }
+                        },
+                        "required": ["amount", "description", "schedule"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateRecurringPaymentRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateRecurringCreditAchPayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateRecurringDebitAchPayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateRecurringCreditBookPayment"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

@@ -1,0 +1,134 @@
+{
+    "components": {
+        "schemas": {
+            "CreateCheckStopPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "CreateAchStopPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "CreateCheckStopPayment": {
+                "title": "Create Check Stop Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["checkStopPayment"],
+                        "default": "checkStopPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "checkNumber": {
+                                "type": "string",
+                                "maxLength": 12
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            }
+                        },
+                        "required": ["checkNumber"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCheckStopPaymentRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateAchStopPayment": {
+                "title": "Create ACH Stop Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achStopPayment"],
+                        "default": "achStopPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "minAmount": {
+                                "type": "integer"
+                            },
+                            "originatorName": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "direction": {
+                                "type": "string",
+                                "default": "debit"
+                            },
+                            "expiration": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "isMultiUse": {
+                                "type": "boolean"
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 255
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            }
+                        },
+                        "required": ["direction", "description"]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateAchStopPaymentRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateStopPaymentRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateCheckStopPayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateAchStopPayment"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

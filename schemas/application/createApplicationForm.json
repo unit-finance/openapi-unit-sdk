@@ -1,0 +1,90 @@
+{
+    "components": {
+        "schemas": {
+            "RequireIdVerification": {
+                "type": "object",
+                "properties": {
+                    "individual": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "officer": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "beneficialOwners": {
+                        "type": "boolean",
+                        "default": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateApplicationFormRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["applicationForm"],
+                                "default": "applicationForm"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "applicantDetails": {
+                                        "$ref": "./applicationForm.json#/components/schemas/ApplicationFormPrefill"
+                                    },
+                                    "settingsOverride": {
+                                        "$ref": "./applicationForm.json#/components/schemas/ApplicationFormSettingsOverride"
+                                    },
+                                    "requireIdVerification": {
+                                        "$ref": "#/components/schemas/RequireIdVerification"
+                                    },
+                                    "allowedApplicationTypes": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "Individual",
+                                                "Business",
+                                                "SoleProprietorship"
+                                            ]
+                                        }
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "enum": ["en", "es"]
+                                    },
+                                    "hideApplicationProgressTracker": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Create Application Form Relationships",
+                                        "required": ["application"],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["type"]
+                    }
+                }
+            }
+        }
+    }
+}

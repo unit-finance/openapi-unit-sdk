@@ -1,962 +1,936 @@
 {
-	"definitions":{
-		"identifier":{
-			"type":"string",
-			"pattern":"^[1-9]\\d*$"
-		},
-		"email":{
-			"type":"string",
-			"format":"email"
-		},
-		"address":{
-			"title":"Address",
-			"type":"object",
-			"properties":{
-				"street":{
-					"type":"string",
-					"minLength":1,
-					"maxLength":255,
-					"pattern":"^.*$"
-				},
-				"street2":{
-					"type":"string",
-					"nullable":true,
-					"pattern":"^.*$"
-				},
-				"city":{
-					"type":"string",
-					"minLength":1,
-					"maxLength":255,
-					"pattern":"^.*$"
-				},
-				"state":{
-					"type":"string"
-				},
-				"postalCode":{
-					"type":"string",
-					"pattern":"^[0-9]{5}(?:-[0-9]{4})?$"
-				},
-				"country":{
-					"type":"string",
-					"default":"US"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"street",
-				"city",
-				"postalCode",
-				"country",
-				"state"
-			]
-		},
-		"year": {
-      "type": "string",
-      "pattern": "^\\d{4}$"
-    },
-		"state": {
-      "type": "string",
-      "pattern": "^((A[LKSZR])|(C[AOT])|(D[EC])|(F[ML])|(G[AU])|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EHDAINSOT])|(N[EVHJMYCD])|(MP)|(O[HKR])|(P[WAR])|(RI)|(S[CD])|(T[NX])|(UT)|(V[TIA])|(W[AVIY]))$"
-    },
-		"ssn":{
-					"type":"string",
-					"pattern":"^\\d{9}$"
-				},
-		"jwtSubject":{
-			"type":"string",
-			"nullable":true
-		},
-		"contact":{
-			"title":"Contact",
-			"type":"object",
-			"properties":{
-				"fullName":{
-					"$ref":"#/definitions/fullName"
-				},
-				"email":{
-					"$ref":"types.json#/definitions/email"
-				},
-				"phone":{
-					"$ref":"#/definitions/phone"
-				},
-				"jwtSubject":{
-					"$ref":"#/definitions/jwtSubject"
-				}
-			},
-			"additionalProperties":false
-		},
-		"trustContact":{
-			"title":"TrustContact",
-			"type":"object",
-			"properties":{
-				"fullName":{
-					"$ref":"#/definitions/fullName"
-				},
-				"email":{
-					"$ref":"types.json#/definitions/email"
-				},
-				"phone":{
-					"$ref":"#/definitions/phone"
-				},
-				"address":{
-					"$ref":"#/definitions/address"
-				},
-				"jwtSubject":{
-					"$ref":"#/definitions/jwtSubject"
-				}
-			},
-			"additionalProperties":false
-		},
-		"trustee":{
-			"title":"Trustee",
-			"type":"object",
-			"properties":{
-				"fullName":{
-					"$ref":"types.json#/definitions/fullName"
-				},
-				"email":{
-					"$ref":"types.json#/definitions/email"
-				},
-				"phone":{
-					"$ref":"types.json#/definitions/phone"
-				},
-				"ssn":{
-					"type":"string",
-					"pattern":"^\\d{9}$"
-				},
-				"passport":{
-					"type":"string"
-				},
-				"nationality":{
-					"$ref":"types.json#/definitions/country"
-				},
-				"matriculaConsular":{
-					"type":"string"
-				},
-				"address":{
-					"$ref":"types.json#/definitions/address"
-				},
-				"dateOfBirth":{
-					"type":"string",
-					"format":"date"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"fullName",
-				"email",
-				"phone",
-				"address",
-				"dateOfBirth"
-			]
-		},
-		"grantor":{
-			"title":"Grantor",
-			"type":"object",
-			"properties":{
-				"fullName":{
-					"$ref":"types.json#/definitions/fullName"
-				},
-				"email":{
-					"$ref":"types.json#/definitions/email"
-				},
-				"phone":{
-					"$ref":"types.json#/definitions/phone"
-				},
-				"ssn":{
-					"type":"string",
-					"pattern":"^\\d{9}$"
-				},
-				"passport":{
-					"type":"string"
-				},
-				"matriculaConsular":{
-					"type":"string"
-				},
-				"nationality":{
-					"$ref":"types.json#/definitions/country"
-				},
-				"address":{
-					"$ref":"types.json#/definitions/address"
-				},
-				"dateOfBirth":{
-					"type":"string",
-					"format":"date"
-				},
-				"evaluationId":{
-					"type":"string"
-				},
-				"evaluationFlags":{
-					"type":"array",
-					"items":{
-						"type":"string"
-					}
-				},
-				"status":{
-					"type":"string"
-				},
-				"maskedSSN":{
-					"type":"string",
-					"pattern":"^\\*{5}\\d{4}$"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"fullName",
-				"email",
-				"phone",
-				"address",
-				"dateOfBirth"
-			]
-		},
-		"beneficiary":{
-			"title":"Beneficiary",
-			"type":"object",
-			"properties":{
-				"fullName":{
-					"$ref":"types.json#/definitions/fullName"
-				},
-				"dateOfBirth":{
-					"type":"string",
-					"format":"date"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"fullName",
-				"dateOfBirth"
-			]
-		},
-		"revocability":{
-			"type":"string",
-			"enum":[
-				"Revocable",
-				"Irrevocable"
-			]
-		},
-		"sourceOfFunds":{
-			"type":"string",
-			"enum":[
-				"Inheritance",
-				"Salary",
-				"Savings",
-				"InvestmentReturns",
-				"Gifts"
-			]
-		},
-		"country":{
-			"type":"string",
-			"pattern":"^(A(D|E|F|G|I|L|M|N|O|R|S|T|Q|U|W|X|Z)|B(A|B|D|E|F|G|H|I|J|L|M|N|O|Q|R|S|T|V|W|Y|Z)|C(A|C|D|F|G|H|I|K|L|M|N|O|R|U|V|W|X|Y|Z)|D(E|J|K|M|O|Z)|E(C|E|G|H|R|S|T)|F(I|J|K|M|O|R)|G(A|B|D|E|F|G|H|I|L|M|N|P|Q|R|S|T|U|W|Y)|H(K|M|N|R|T|U)|I(D|E|Q|L|M|N|O|R|S|T)|J(E|M|O|P)|K(E|G|H|I|M|N|P|R|W|Y|Z)|L(A|B|C|I|K|R|S|T|U|V|Y)|M(A|C|D|E|F|G|H|K|L|M|N|O|Q|P|R|S|T|U|V|W|X|Y|Z)|N(A|C|E|F|G|I|L|O|P|R|U|Z)|OM|P(A|E|F|G|H|K|L|M|N|R|S|T|W|Y)|QA|R(E|O|S|U|W)|S(A|B|C|D|E|G|H|I|J|K|L|M|N|O|R|T|V|X|Y|Z)|T(C|D|F|G|H|J|K|L|M|N|O|R|T|V|W|Z)|U(A|G|M|S|Y|Z)|V(A|C|E|G|I|N|U)|W(F|S)|XK|Y(E|T)|Z(A|M|W))$"
-		},
-		"countryNoUSCA":{
-			"type":"string",
-			"pattern":"^(A(D|E|F|G|I|L|M|N|O|R|S|T|Q|U|W|X|Z)|B(A|B|D|E|F|G|H|I|J|L|M|N|O|Q|R|S|T|V|W|Y|Z)|C(C|D|F|G|H|I|K|L|M|N|O|R|U|V|W|X|Y|Z)|D(E|J|K|M|O|Z)|E(C|E|G|H|R|S|T)|F(I|J|K|M|O|R)|G(A|B|D|E|F|G|H|I|L|M|N|P|Q|R|S|T|U|W|Y)|H(K|M|N|R|T|U)|I(D|E|Q|L|M|N|O|R|S|T)|J(E|M|O|P)|K(E|G|H|I|M|N|P|R|W|Y|Z)|L(A|B|C|I|K|R|S|T|U|V|Y)|M(A|C|D|E|F|G|H|K|L|M|N|O|Q|P|R|S|T|U|V|W|X|Y|Z)|N(A|C|E|F|G|I|L|O|P|R|U|Z)|OM|P(A|E|F|G|H|K|L|M|N|R|S|T|W|Y)|QA|R(E|O|S|U|W)|S(A|B|C|D|E|G|H|I|J|K|L|M|N|O|R|T|V|X|Y|Z)|T(C|D|F|G|H|J|K|L|M|N|O|R|T|V|W|Z)|U(A|G|M|Y|Z)|V(A|C|E|G|I|N|U)|W(F|S)|XK|Y(E|T)|Z(A|M|W))$"
-		},
-		"fullName":{
-			"title":"Full Name",
-			"type":"object",
-			"properties":{
-				"first":{
-					"type":"string",
-					"minLength":1,
-					"maxLength":255
-				},
-				"last":{
-					"type":"string",
-					"minLength":1,
-					"maxLength":255
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"first",
-				"last"
-			]
-		},
-		"phone":{
-			"title":"Phone",
-			"type":"object",
-			"properties":{
-				"countryCode":{
-					"type":"string"
-				},
-				"number":{
-					"type":"string"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"countryCode",
-				"number"
-			]
-		},
-		"orgRelationship":{
-			"type":"object",
-			"properties":{
-				"data":{
-					"type":"object",
-					"properties":{
-						"id":{
-							"$ref":"types.json#/definitions/identifier"
-						},
-						"type":{
-							"type":"string",
-							"default":"org"
-						}
-					},
-					"additionalProperties":false,
-					"required":[
-						"id",
-						"type"
-					]
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"data"
-			]
-		},
-		"Relationship":{
-			"type":"object",
-			"properties":{
-				"data":{
-					"type":"object",
-					"properties":{
-						"id":{
-							"$ref":"types.json#/definitions/identifier"
-						},
-						"type":{
-							"type":"string"
-						}
-					},
-					"additionalProperties":false,
-					"required":[
-						"id",
-						"type"
-					]
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"data"
-			]
-		},
-		"bankRelationship":{
-			"type":"object",
-			"properties":{
-				"data":{
-					"type":"object",
-					"properties":{
-						"id":{
-							"$ref":"types.json#/definitions/identifier"
-						},
-						"type":{
-							"type":"string",
-							"default":"bank"
-						}
-					},
-					"additionalProperties":false,
-					"required":[
-						"id",
-						"type"
-					]
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"data"
-			]
-		},
-		"tags":{
-			"type":"object",
-			"maxProperties":15,
-			"additionalProperties":{
-				"type":"string",
-				"maxLength":255,
-				"minLength":1
-			},
-			"patternProperties":{
-				"^[a-zA-Z0-9_]{1,128}$":{
-					"type":"string"
-				}
-			}
-		},
-		"coordinates":{
-			"type":"object",
-			"properties":{
-				"longitude":{
-					"type":"number"
-				},
-				"latitude":{
-					"type":"number"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"longitude",
-				"latitude"
-			]
-		},
-		"description":{
-			"type":"string",
-			"maxLength":1024
-		},
-		"url":{
-			"type":"string",
-			"pattern":"(http(s)?:\\/\\/.)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
-		},
-		"merchant":{
-			"title":"Merchant",
-			"type":"object",
-			"properties":{
-				"name":{
-					"type":"string"
-				},
-				"type":{
-					"type":"integer"
-				},
-				"category":{
-					"type":"string"
-				},
-				"location":{
-					"type":"string"
-				},
-				"id":{
-					"type":"string"
-				}
-			},
-			"required":[
-				"name",
-				"type",
-				"category"
-			],
-			"additionalProperties":false
-		},
-		"plaidProcessorToken":{
-			"type":"string",
-			"pattern":"^processor-.*$",
-			"minLength":40,
-			"maxLength":60
-		},
-		"authorizedUser":{
-			"title":"Authorized User",
-			"type":"object",
-			"properties":{
-				"fullName":{
-					"$ref":"types.json#/definitions/fullName"
-				},
-				"email":{
-					"$ref":"types.json#/definitions/email"
-				},
-				"phone":{
-					"$ref":"types.json#/definitions/phone"
-				},
-				"jwtSubject":{
-					"$ref":"#/definitions/jwtSubject"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"fullName",
-				"email",
-				"phone"
-			]
-		},
-		"deviceFingerprint":{
-			"type":"object",
-			"properties":{
-				"provider":{
-					"type":"string",
-					"enum":[
-						"iovation"
-					]
-				},
-				"value":{
-					"type":"string"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"provider",
-				"value"
-			]
-		},
-		"customersRelationship":{
-			"title":"Customers Relationship",
-			"type":"object",
-			"properties":{
-				"data":{
-					"type":"array",
-					"items":{
-						"type":"object",
-						"properties":{
-							"id":{
-								"$ref":"types.json#/definitions/identifier"
-							},
-							"type":{
-								"type":"string",
-								"default":"customer"
-							}
-						}
-					}
-				}
-			}
-		},
-		"paginationMeta":{
-			"type":"object",
-			"properties":{
-				"pagination":{
-					"type":"object",
-					"properties":{
-						"limit":{
-							"type":"integer"
-						},
-						"offset":{
-							"type":"integer"
-						},
-						"total":{
-							"type":"integer"
-						}
-					}
-				}
-			}
-		},
-		"cardLevelLimits":{
-			"type":"object",
-			"properties":{
-				"dailyWithdrawal":{
-					"type":"integer"
-				},
-				"dailyPurchase":{
-					"type":"integer"
-				},
-				"monthlyWithdrawal":{
-					"type":"integer"
-				},
-				"monthlyPurchase":{
-					"type":"integer"
-				}
-			},
-			"additionalProperties":false
-		},
-		"cardTotals":{
-			"type":"object",
-			"properties":{
-				"withdrawals":{
-					"type":"integer"
-				},
-				"deposits":{
-					"type":"integer"
-				},
-				"purchases":{
-					"type":"integer"
-				},
-				"cardTransactions":{
-					"type":"integer"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"withdrawals",
-				"deposits",
-				"purchases",
-				"cardTransactions"
-			]
-		},
-		"healthcareAmounts":{
-			"title":"Healthcare Amounts",
-			"type":"object",
-			"properties":{
-				"transitAmount":{
-					"type":"integer"
-				},
-				"prescriptionRXAmount":{
-					"type":"integer"
-				},
-				"visionOpticalAmount":{
-					"type":"integer"
-				},
-				"clinicOtherQualifiedMedicalAmount":{
-					"type":"integer"
-				},
-				"dentalAmount":{
-					"type":"integer"
-				},
-				"totalHealthcareAmount":{
-					"type":"integer"
-				}
-			},
-			"required":[
-				"transitAmount",
-				"prescriptionRXAmount",
-				"visionOpticalAmount",
-				"clinicOtherQualifiedMedicalAmount",
-				"dentalAmount",
-				"totalHealthcareAmount"
-			],
-			"additionalProperties":false
-		},
-		"cardVerificationData":{
-			"title":"Card Verification Data",
-			"type":"object",
-			"properties":{
-				"verificationMethod":{
-					"type":"string"
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"verificationMethod"
-			]
-		},
-		"patchBeneficialOwnerData":{
-			"title":"Beneficial Owner",
-			"type":"object",
-			"properties":{
-				"fullName":{
-					"$ref":"types.json#/definitions/fullName"
-				},
-				"email":{
-					"$ref":"types.json#/definitions/email"
-				},
-				"phone":{
-					"$ref":"types.json#/definitions/phone"
-				},
-				"ssn":{
-					"type":"string",
-					"pattern":"^\\d{9}$"
-				},
-				"passport":{
-					"type":"string"
-				},
-				"nationality":{
-					"$ref":"types.json#/definitions/country"
-				},
-				"matriculaConsular":{
-					"type":"string"
-				},
-				"address":{
-					"$ref":"types.json#/definitions/address"
-				},
-				"dateOfBirth":{
-					"type":"string",
-					"format":"date"
-				},
-				"percentage":{
-					"type":"integer",
-					"minimum":0,
-					"maximum":100
-				}
-			},
-			"additionalProperties":false,
-			"required":[
-				"fullName",
-				"email",
-				"phone",
-				"address",
-				"dateOfBirth"
-			]
-		},
-		"industry":{
-			"type":"string",
-			"enum":[
-				"Retail",
-				"Wholesale",
-				"Restaurants",
-				"Hospitals",
-				"Construction",
-				"Insurance",
-				"Unions",
-				"RealEstate",
-				"FreelanceProfessional",
-				"OtherProfessionalServices",
-				"OnlineRetailer",
-				"OtherEducationServices"
-			]
-		},
-		"applicationStatus":{
-			"type":"string",
-			"enum":[
-				"AwaitingDocuments",
-				"PendingReview",
-				"Approved",
-				"Denied",
-				"Pending",
-				"Canceled"
-			]
-		},
-		"updateUnitRequest":{
-			"type":"object",
-			"properties":{
-				"data":{
-					"type":"object",
-					"properties":{
-						"type":{
-							"type":"string"
-						},
-						"attributes":{
-							"type":"object",
-							"properties":{
-								"tags":{
-									"type":"object"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"listPageParametersObject":{
-			"type":"object",
-			"properties":{
-				"limit":{
-					"type":"integer",
-					"default":100,
-					"maximum":1000
-				},
-				"offset":{
-					"type":"integer",
-					"default":0
-				}
-			}
-		},
-		"limits":{
-			"type":"object",
-			"properties":{
-				"type":{
-					"type":"string"
-				},
-				"id":{
-					"type":"string"
-				},
-				"attributes":{
-					"type":"object",
-					"properties":{
-						"card":{
-							"type":"object",
-							"properties":{
-								"limits":{
-									"type":"object",
-									"properties":{
-										"dailyWithdrawal":{
-											"type":"number"
-										},
-										"dailyDeposit":{
-											"type":"number"
-										},
-										"dailyPurchase":{
-											"type":"number"
-										},
-										"dailyCardTransaction":{
-											"type":"number"
-										}
-									}
-								},
-								"totalsDaily":{
-									"type":"object",
-									"properties":{
-										"withdrawal":{
-											"type":"number"
-										},
-										"deposit":{
-											"type":"number"
-										},
-										"purchase":{
-											"type":"number"
-										},
-										"cardTransaction":{
-											"type":"number"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"freezeAccountRequest":{
-			"type":"object",
-			"properties":{
-				"type":{
-					"type":"string",
-					"enum":[
-						"creditAccountFreeze",
-						"accountFreeze"
-					]
-				},
-				"attributes":{
-					"type":"object",
-					"properties":{
-						"reason":{
-							"type":"string",
-							"enum":[
-								"Fraud",
-								"Other"
-							]
-						},
-						"reasonText":{
-							"type":"string",
-							"nullable":true
-						}
-					}
-				}
-			}
-		},
-		"closeAccountRequest":{
-			"type":"object",
-			"title": "CloseAccountRequest",
-			"properties":{
-				"type":{
-					"type":"string",
-					"enum":[
-						"creditAccountClose",
-						"depositAccountClose"
-					]
-				},
-				"attributes":{
-					"type":"object",
-					"properties":{
-						"reason":{
-							"type":"string",
-							"enum":[
-								"ByCustomer",
-								"Fraud"
-							],
-							"default":"ByCustomer"
-						},
-						"fraudReason":{
-							"type":"string",
-							"enum":[
-								"ACHActivity",
-								"CardActivity",
-								"CheckActivity",
-								"ApplicationHistory",
-								"AccountActivity",
-								"ClientIdentified",
-								"IdentityTheft",
-								"LinkedToFraudulentCustomer"
-							],
-							"nullable":true
-						}
-					}
-				}
-			}
-		},
-		"unitError":{
-			"description": "UnitError",
-			"type":"array",
-			"items":{
-				"type":"object",
-				"properties":{
-					"status":{
-						"type":"string"
-					},
-					"title":{
-						"type":"string"
-					},
-					"code":{
-						"type":"string"
-					},
-					"detail":{
-						"type":"string"
-					},
-					"details":{
-						"type":"string"
-					},
-					"source":{
-						"type":"object",
-						"properties":{
-							"pointer":{
-								"type":"string"
-							}
-						}
-					},
-					"meta":{
-						"type":"object"
-					}
-				}
-			}
-		},
+    "components": {
+        "schemas": {
+            "Identifier": {
+                "type": "string",
+                "pattern": "^[1-9]\\d*$"
+            },
+            "Email": {
+                "type": "string",
+                "format": "email"
+            },
+            "Address": {
+                "title": "Address",
+                "type": "object",
+                "properties": {
+                    "street": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255,
+                        "pattern": "^.*$"
+                    },
+                    "street2": {
+                        "type": "string",
+                        "nullable": true,
+                        "pattern": "^.*$"
+                    },
+                    "city": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255,
+                        "pattern": "^.*$"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "type": "string",
+                        "pattern": "^[0-9]{5}(?:-[0-9]{4})?$"
+                    },
+                    "country": {
+                        "type": "string",
+                        "default": "US"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["street", "city", "postalCode", "country", "state"]
+            },
+            "Year": {
+                "type": "string",
+                "pattern": "^\\d{4}$"
+            },
+            "State": {
+                "type": "string",
+                "pattern": "^((A[LKSZR])|(C[AOT])|(D[EC])|(F[ML])|(G[AU])|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EHDAINSOT])|(N[EVHJMYCD])|(MP)|(O[HKR])|(P[WAR])|(RI)|(S[CD])|(T[NX])|(UT)|(V[TIA])|(W[AVIY]))$"
+            },
+            "Ssn": {
+                "type": "string",
+                "pattern": "^\\d{9}$"
+            },
+            "JwtSubject": {
+                "type": "string",
+                "nullable": true
+            },
+            "Contact": {
+                "title": "Contact",
+                "type": "object",
+                "properties": {
+                    "fullName": {
+                        "$ref": "#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "#/components/schemas/Phone"
+                    },
+                    "jwtSubject": {
+                        "$ref": "#/components/schemas/JwtSubject"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["fullName", "email", "phone"]
+            },
+            "TrustContact": {
+                "title": "TrustContact",
+                "type": "object",
+                "properties": {
+                    "fullName": {
+                        "$ref": "#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "#/components/schemas/Phone"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "jwtSubject": {
+                        "$ref": "#/components/schemas/JwtSubject"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Trustee": {
+                "title": "Trustee",
+                "type": "object",
+                "properties": {
+                    "fullName": {
+                        "$ref": "#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "#/components/schemas/Phone"
+                    },
+                    "ssn": {
+                        "$ref": "#/components/schemas/Ssn"
+                    },
+                    "passport": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "$ref": "#/components/schemas/Country"
+                    },
+                    "matriculaConsular": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "fullName",
+                    "email",
+                    "phone",
+                    "address",
+                    "dateOfBirth"
+                ]
+            },
+            "Grantor": {
+                "title": "Grantor",
+                "type": "object",
+                "properties": {
+                    "fullName": {
+                        "$ref": "#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "#/components/schemas/Phone"
+                    },
+                    "ssn": {
+                        "$ref": "#/components/schemas/Ssn"
+                    },
+                    "passport": {
+                        "type": "string"
+                    },
+                    "matriculaConsular": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "$ref": "#/components/schemas/Country"
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "evaluationId": {
+                        "type": "string"
+                    },
+                    "evaluationFlags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "maskedSSN": {
+                        "type": "string",
+                        "pattern": "^\\*{5}\\d{4}$"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "fullName",
+                    "email",
+                    "phone",
+                    "address",
+                    "dateOfBirth"
+                ]
+            },
+            "Beneficiary": {
+                "title": "Beneficiary",
+                "type": "object",
+                "properties": {
+                    "fullName": {
+                        "$ref": "#/components/schemas/FullName"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["fullName", "dateOfBirth"]
+            },
+            "Revocability": {
+                "type": "string",
+                "enum": ["Revocable", "Irrevocable"]
+            },
+            "SourceOfFunds": {
+                "type": "string",
+                "enum": [
+                    "Inheritance",
+                    "Salary",
+                    "Savings",
+                    "InvestmentReturns",
+                    "Gifts"
+                ]
+            },
+            "Country": {
+                "type": "string",
+                "pattern": "^(A(D|E|F|G|I|L|M|N|O|R|S|T|Q|U|W|X|Z)|B(A|B|D|E|F|G|H|I|J|L|M|N|O|Q|R|S|T|V|W|Y|Z)|C(A|C|D|F|G|H|I|K|L|M|N|O|R|U|V|W|X|Y|Z)|D(E|J|K|M|O|Z)|E(C|E|G|H|R|S|T)|F(I|J|K|M|O|R)|G(A|B|D|E|F|G|H|I|L|M|N|P|Q|R|S|T|U|W|Y)|H(K|M|N|R|T|U)|I(D|E|Q|L|M|N|O|R|S|T)|J(E|M|O|P)|K(E|G|H|I|M|N|P|R|W|Y|Z)|L(A|B|C|I|K|R|S|T|U|V|Y)|M(A|C|D|E|F|G|H|K|L|M|N|O|Q|P|R|S|T|U|V|W|X|Y|Z)|N(A|C|E|F|G|I|L|O|P|R|U|Z)|OM|P(A|E|F|G|H|K|L|M|N|R|S|T|W|Y)|QA|R(E|O|S|U|W)|S(A|B|C|D|E|G|H|I|J|K|L|M|N|O|R|T|V|X|Y|Z)|T(C|D|F|G|H|J|K|L|M|N|O|R|T|V|W|Z)|U(A|G|M|S|Y|Z)|V(A|C|E|G|I|N|U)|W(F|S)|XK|Y(E|T)|Z(A|M|W))$"
+            },
+            "CountryNoUSCA": {
+                "type": "string",
+                "pattern": "^(A(D|E|F|G|I|L|M|N|O|R|S|T|Q|U|W|X|Z)|B(A|B|D|E|F|G|H|I|J|L|M|N|O|Q|R|S|T|V|W|Y|Z)|C(C|D|F|G|H|I|K|L|M|N|O|R|U|V|W|X|Y|Z)|D(E|J|K|M|O|Z)|E(C|E|G|H|R|S|T)|F(I|J|K|M|O|R)|G(A|B|D|E|F|G|H|I|L|M|N|P|Q|R|S|T|U|W|Y)|H(K|M|N|R|T|U)|I(D|E|Q|L|M|N|O|R|S|T)|J(E|M|O|P)|K(E|G|H|I|M|N|P|R|W|Y|Z)|L(A|B|C|I|K|R|S|T|U|V|Y)|M(A|C|D|E|F|G|H|K|L|M|N|O|Q|P|R|S|T|U|V|W|X|Y|Z)|N(A|C|E|F|G|I|L|O|P|R|U|Z)|OM|P(A|E|F|G|H|K|L|M|N|R|S|T|W|Y)|QA|R(E|O|S|U|W)|S(A|B|C|D|E|G|H|I|J|K|L|M|N|O|R|T|V|X|Y|Z)|T(C|D|F|G|H|J|K|L|M|N|O|R|T|V|W|Z)|U(A|G|M|Y|Z)|V(A|C|E|G|I|N|U)|W(F|S)|XK|Y(E|T)|Z(A|M|W))$"
+            },
+            "FullName": {
+                "title": "Full Name",
+                "type": "object",
+                "properties": {
+                    "first": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                    },
+                    "last": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 255
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["first", "last"]
+            },
+            "Phone": {
+                "title": "Phone",
+                "type": "object",
+                "properties": {
+                    "countryCode": {
+                        "type": "string"
+                    },
+                    "number": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["countryCode", "number"]
+            },
+            "Tags": {
+                "type": "object",
+                "maxProperties": 15,
+                "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                }
+            },
+            "Coordinates": {
+                "type": "object",
+                "properties": {
+                    "longitude": {
+                        "type": "number"
+                    },
+                    "latitude": {
+                        "type": "number"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["longitude", "latitude"]
+            },
+            "Description": {
+                "type": "string",
+                "maxLength": 1024
+            },
+            "Url": {
+                "type": "string",
+                "pattern": "(http(s)?:\\/\\/.)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
+            },
+            "Merchant": {
+                "title": "Merchant",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "integer"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "required": ["name", "type", "category"],
+                "additionalProperties": false
+            },
+            "PlaidProcessorToken": {
+                "type": "string",
+                "pattern": "^processor-.*$",
+                "minLength": 40,
+                "maxLength": 60
+            },
+            "AuthorizedUser": {
+                "title": "Authorized User",
+                "type": "object",
+                "properties": {
+                    "fullName": {
+                        "$ref": "#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "#/components/schemas/Phone"
+                    },
+                    "jwtSubject": {
+                        "$ref": "#/components/schemas/JwtSubject"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["fullName", "email", "phone"]
+            },
+            "DeviceFingerprint": {
+                "type": "object",
+                "properties": {
+                    "provider": {
+                        "type": "string",
+                        "enum": ["iovation"]
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["provider", "value"]
+            },
+            "PaginationMeta": {
+                "type": "object",
+                "properties": {
+                    "pagination": {
+                        "type": "object",
+                        "properties": {
+                            "limit": {
+                                "type": "integer"
+                            },
+                            "offset": {
+                                "type": "integer"
+                            },
+                            "total": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            },
+            "CardLevelLimits": {
+                "type": "object",
+                "properties": {
+                    "dailyWithdrawal": {
+                        "type": "integer"
+                    },
+                    "dailyPurchase": {
+                        "type": "integer"
+                    },
+                    "monthlyWithdrawal": {
+                        "type": "integer"
+                    },
+                    "monthlyPurchase": {
+                        "type": "integer"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CardTotals": {
+                "type": "object",
+                "properties": {
+                    "withdrawals": {
+                        "type": "integer"
+                    },
+                    "deposits": {
+                        "type": "integer"
+                    },
+                    "purchases": {
+                        "type": "integer"
+                    },
+                    "cardTransactions": {
+                        "type": "integer"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "withdrawals",
+                    "deposits",
+                    "purchases",
+                    "cardTransactions"
+                ]
+            },
+            "HealthcareAmounts": {
+                "title": "Healthcare Amounts",
+                "type": "object",
+                "properties": {
+                    "transitAmount": {
+                        "type": "integer"
+                    },
+                    "prescriptionRXAmount": {
+                        "type": "integer"
+                    },
+                    "visionOpticalAmount": {
+                        "type": "integer"
+                    },
+                    "clinicOtherQualifiedMedicalAmount": {
+                        "type": "integer"
+                    },
+                    "dentalAmount": {
+                        "type": "integer"
+                    },
+                    "totalHealthcareAmount": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "transitAmount",
+                    "prescriptionRXAmount",
+                    "visionOpticalAmount",
+                    "clinicOtherQualifiedMedicalAmount",
+                    "dentalAmount",
+                    "totalHealthcareAmount"
+                ],
+                "additionalProperties": false
+            },
+            "CardVerificationData": {
+                "title": "Card Verification Data",
+                "type": "object",
+                "properties": {
+                    "verificationMethod": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["verificationMethod"]
+            },
+            "Industry": {
+                "type": "string",
+                "enum": [
+                    "Retail",
+                    "Wholesale",
+                    "Restaurants",
+                    "Hospitals",
+                    "Construction",
+                    "Insurance",
+                    "Unions",
+                    "RealEstate",
+                    "FreelanceProfessional",
+                    "OtherProfessionalServices",
+                    "OnlineRetailer",
+                    "OtherEducationServices"
+                ]
+            },
+            "ListPageParameters": {
+                "type": "object",
+                "description": "Parameters for paginated list requests",
+                "properties": {
+                    "limit": {
+                        "type": "integer",
+                        "default": 100,
+                        "maximum": 1000
+                    },
+                    "offset": {
+                        "type": "integer",
+                        "default": 0
+                    }
+                }
+            },
+            "PageQuery": {
+                "name": "page",
+                "in": "query",
+                "style": "deepObject",
+                "schema": {
+                    "$ref": "#/components/schemas/ListPageParameters"
+                }
+            },
+            "Limits": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "card": {
+                                "type": "object",
+                                "properties": {
+                                    "limits": {
+                                        "type": "object",
+                                        "properties": {
+                                            "dailyWithdrawal": {
+                                                "type": "number"
+                                            },
+                                            "dailyDeposit": {
+                                                "type": "number"
+                                            },
+                                            "dailyPurchase": {
+                                                "type": "number"
+                                            },
+                                            "dailyCardTransaction": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    "totalsDaily": {
+                                        "type": "object",
+                                        "properties": {
+                                            "withdrawal": {
+                                                "type": "number"
+                                            },
+                                            "deposit": {
+                                                "type": "number"
+                                            },
+                                            "purchase": {
+                                                "type": "number"
+                                            },
+                                            "cardTransaction": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "UnitError": {
+                "type": "array",
+                "title": "Unit Error",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "code": {
+                            "type": "string"
+                        },
+                        "detail": {
+                            "type": "string"
+                        },
+                        "details": {
+                            "type": "string"
+                        },
+                        "source": {
+                            "type": "object",
+                            "properties": {
+                                "pointer": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "meta": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
 
-    "userType": {
-      "type": "string", "enum": [
-        "orgUser", "unitUser", "bankUser", "partnerUser"]
-    },
-    "richMerchantCategory":{
-      "title": "Rich Merchant Category",
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "icon": { "type": "string" }
-      },
-      "required": [ "name" ],
-      "additionalProperties": false
-    },
-    "richMerchantAddress":{
-      "title": "Rich Merchant Address",
-      "type": "object",
-      "properties": {
-        "street": { "type": "string" },
-        "city": { "type": "string" },
-        "state": { "type": "string" },
-        "country": { "type": "string" }
-      },
-      "required": [ "city", "state", "country" ],
-      "additionalProperties": false
-    },
-    "richMerchantFacilitator": {
-      "title": "Rich Merchant Facilitator",
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "type": { "type": "string", "enum": ["BuyNowPayLater", "DeliveryService", "Marketplace", "PaymentProcessor", "Platform", "PointOfSale"]},
-        "logo": { "type": "string" }
-      },
-      "required": [ "name" ],
-      "additionalProperties": false
-    },
-    "richMerchantData": {
-      "title": "Rich Merchant Data",
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "website": { "type": "string" },
-        "logo": { "type": "string" },
-        "phone": { "type": "string" },
-        "categories": { "type": "array", "items": { "$ref": "types.json#/definitions/richMerchantCategory" } },
-        "address": { "$ref": "types.json#/definitions/richMerchantAddress" },
-        "coordinates": { "$ref": "types.json#/definitions/coordinates" },
-        "facilitators": { "type": "array", "items": { "$ref": "types.json#/definitions/richMerchantFacilitator" } }
-      },
-      "required": [ "name" ],
-      "additionalProperties": false
-    },
-    "currencyConversion":{
-      "title": "Foreign Exchange Currency Information",
-      "type": "object",
-      "properties": {
-        "originalCurrency": { "type": "string" },
-        "amountInOriginalCurrency": { "type": "number" },
-        "fxRate": { "type": "string" }
-      },
-      "required": [ "originalCurrency", "amountInOriginalCurrency" ],
-      "additionalProperties": false
-    },
-    "occupation": { "type": "string", "enum": ["ArchitectOrEngineer", "BusinessAnalystAccountantOrFinancialAdvisor", "CommunityAndSocialServicesWorker", "ConstructionMechanicOrMaintenanceWorker", "Doctor", "Educator", "EntertainmentSportsArtsOrMedia", "ExecutiveOrManager", "FarmerFishermanForester", "FoodServiceWorker", "GigWorker", "HospitalityOfficeOrAdministrativeSupportWorker", "HouseholdManager", "JanitorHousekeeperLandscaper", "Lawyer", "ManufacturingOrProductionWorker", "MilitaryOrPublicSafety", "NurseHealthcareTechnicianOrHealthcareSupport", "PersonalCareOrServiceWorker", "PilotDriverOperator", "SalesRepresentativeBrokerAgent", "ScientistOrTechnologist", "Student"] },
-    "annualIncome": { "type": "string", "enum": ["UpTo10k", "Between10kAnd25k", "Between25kAnd50k", "Between50kAnd100k", "Between100kAnd250k", "Over250k"] },
-    "sourceOfIncome": { "type": "string", "enum": ["EmploymentOrPayrollIncome", "PartTimeOrContractorIncome", "InheritancesAndGifts", "PersonalInvestments", "BusinessOwnershipInterests", "GovernmentBenefits"] },
-    "businessVertical": {"type": "string", "enum": ["AdultEntertainmentDatingOrEscortServices", "AgricultureForestryFishingOrHunting", "ArtsEntertainmentAndRecreation", "BusinessSupportOrBuildingServices", "Cannabis", "Construction", "DirectMarketingOrTelemarketing", "EducationalServices", "FinancialServicesCryptocurrency", "FinancialServicesDebitCollectionOrConsolidation", "FinancialServicesMoneyServicesBusinessOrCurrencyExchange", "FinancialServicesOther", "FinancialServicesPaydayLending", "GamingOrGambling", "HealthCareAndSocialAssistance", "HospitalityAccommodationOrFoodServices", "LegalAccountingConsultingOrComputerProgramming", "Manufacturing", "Mining", "Nutraceuticals", "PersonalCareServices", "PublicAdministration", "RealEstate", "ReligiousCivicAndSocialOrganizations", "RepairAndMaintenance", "RetailTrade", "TechnologyMediaOrTelecom", "TransportationOrWarehousing", "Utilities", "WholesaleTrade"]},
-    "soleProprietorshipAnnualRevenue": { "type": "string", "enum": ["UpTo50k", "Between50kAnd100k", "Between100kAnd200k", "Between200kAnd500k", "Over500k"] },
-    "businessAnnualRevenue": { "type": "string", "enum": ["UpTo250k", "Between250kAnd500k", "Between500kAnd1m", "Between1mAnd5m", "Over5m"] },
-    "cashFlow": { "type": "string", "enum": ["Unpredictable", "Predictable"] },
-    "soleProprietorshipNumberOfEmployees": { "type": "string", "enum": ["One", "Between2And5", "Between5And10", "Over10"] },
-    "businessNumberOfEmployees": { "type": "string", "enum": ["UpTo10", "Between10And50", "Between50And100", "Between100And500", "Over500"] },
-    "entityType": { "type": "string", "enum": [ "Corporation", "LLC", "Partnership", "PubliclyTradedCorporation", "PrivatelyHeldCorporation", "NotForProfitOrganization" ]},
-    "disputeType": {"type": "string", "enum": [ "Issuer", "Fraud", "NonFraud" ]},
-		"responseContact": {
-      "allOf": [{ "$ref": "#/definitions/contact" }],
-      "required": [ "fullName" ]
+            "DefaultError": {
+                "description": "Unexpected error",
+                "content": {
+                    "application/vnd.api+json; charset=utf-8": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UnitError"
+                        }
+                    }
+                }
+            },
+            "Occupation": {
+                "type": "string",
+                "enum": [
+                    "ArchitectOrEngineer",
+                    "BusinessAnalystAccountantOrFinancialAdvisor",
+                    "CommunityAndSocialServicesWorker",
+                    "ConstructionMechanicOrMaintenanceWorker",
+                    "Doctor",
+                    "Educator",
+                    "EntertainmentSportsArtsOrMedia",
+                    "ExecutiveOrManager",
+                    "FarmerFishermanForester",
+                    "FoodServiceWorker",
+                    "GigWorker",
+                    "HospitalityOfficeOrAdministrativeSupportWorker",
+                    "HouseholdManager",
+                    "JanitorHousekeeperLandscaper",
+                    "Lawyer",
+                    "ManufacturingOrProductionWorker",
+                    "MilitaryOrPublicSafety",
+                    "NurseHealthcareTechnicianOrHealthcareSupport",
+                    "PersonalCareOrServiceWorker",
+                    "PilotDriverOperator",
+                    "SalesRepresentativeBrokerAgent",
+                    "ScientistOrTechnologist",
+                    "Student"
+                ]
+            },
+            "AnnualIncome": {
+                "type": "string",
+                "enum": [
+                    "UpTo10k",
+                    "Between10kAnd25k",
+                    "Between25kAnd50k",
+                    "Between50kAnd100k",
+                    "Between100kAnd250k",
+                    "Over250k"
+                ]
+            },
+            "SourceOfIncome": {
+                "type": "string",
+                "enum": [
+                    "EmploymentOrPayrollIncome",
+                    "PartTimeOrContractorIncome",
+                    "InheritancesAndGifts",
+                    "PersonalInvestments",
+                    "BusinessOwnershipInterests",
+                    "GovernmentBenefits"
+                ]
+            },
+            "BusinessVertical": {
+                "type": "string",
+                "enum": [
+                    "AdultEntertainmentDatingOrEscortServices",
+                    "AgricultureForestryFishingOrHunting",
+                    "ArtsEntertainmentAndRecreation",
+                    "BusinessSupportOrBuildingServices",
+                    "Cannabis",
+                    "Construction",
+                    "DirectMarketingOrTelemarketing",
+                    "EducationalServices",
+                    "FinancialServicesCryptocurrency",
+                    "FinancialServicesDebitCollectionOrConsolidation",
+                    "FinancialServicesMoneyServicesBusinessOrCurrencyExchange",
+                    "FinancialServicesOther",
+                    "FinancialServicesPaydayLending",
+                    "GamingOrGambling",
+                    "HealthCareAndSocialAssistance",
+                    "HospitalityAccommodationOrFoodServices",
+                    "LegalAccountingConsultingOrComputerProgramming",
+                    "Manufacturing",
+                    "Mining",
+                    "Nutraceuticals",
+                    "PersonalCareServices",
+                    "PublicAdministration",
+                    "RealEstate",
+                    "ReligiousCivicAndSocialOrganizations",
+                    "RepairAndMaintenance",
+                    "RetailTrade",
+                    "TechnologyMediaOrTelecom",
+                    "TransportationOrWarehousing",
+                    "Utilities",
+                    "WholesaleTrade"
+                ]
+            },
+            "SoleProprietorshipAnnualRevenue": {
+                "type": "string",
+                "enum": [
+                    "UpTo50k",
+                    "Between50kAnd100k",
+                    "Between100kAnd200k",
+                    "Between200kAnd500k",
+                    "Over500k"
+                ]
+            },
+            "BusinessAnnualRevenue": {
+                "type": "string",
+                "enum": [
+                    "UpTo250k",
+                    "Between250kAnd500k",
+                    "Between500kAnd1m",
+                    "Between1mAnd5m",
+                    "Over5m"
+                ]
+            },
+            "CashFlow": {
+                "type": "string",
+                "enum": ["Unpredictable", "Predictable"]
+            },
+            "SoleProprietorshipNumberOfEmployees": {
+                "type": "string",
+                "enum": ["One", "Between2And5", "Between5And10", "Over10"]
+            },
+            "BusinessNumberOfEmployees": {
+                "type": "string",
+                "enum": [
+                    "UpTo10",
+                    "Between10And50",
+                    "Between50And100",
+                    "Between100And500",
+                    "Over500"
+                ]
+            },
+            "EntityType": {
+                "type": "string",
+                "enum": [
+                    "Corporation",
+                    "LLC",
+                    "Partnership",
+                    "PubliclyTradedCorporation",
+                    "PrivatelyHeldCorporation",
+                    "NotForProfitOrganization"
+                ]
+            },
+            "ResponseContact": {
+                "allOf": [{ "$ref": "#/components/schemas/Contact" }],
+                "required": ["fullName"]
+            },
+            "IncludedResource": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        },
+                        "attributes": {
+                            "type": "object"
+                        },
+                        "relationships": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "BaseWeeklySchedule": {
+                "title": "Weekly Schedule",
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dayOfMonth": {
+                        "type": "integer",
+                        "minimum": -5,
+                        "maximum": 28
+                    },
+                    "nextScheduledAction": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "totalNumberOfPayments": {
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["nextScheduledAction"]
+            },
+            "BaseMonthlySchedule": {
+                "type": "object",
+                "properties": {
+                    "startTime": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dayOfMonth": {
+                        "type": "integer",
+                        "minimum": -5,
+                        "maximum": 28
+                    },
+                    "dayOfWeek": {
+                        "type": "string",
+                        "enum": [
+                            "Sunday",
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday"
+                        ]
+                    },
+                    "totalNumberOfPayments": {
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                },
+                "additionalProperties": false
+            },
+            "WeeklySchedule": {
+                "title": "Weekly Schedule",
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseWeeklySchedule" },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "interval": {
+                                "type": "string",
+                                "enum": ["Weekly"],
+                                "default": "Weekly"
+                            }
+                        },
+                        "required": ["interval"]
+                    }
+                ]
+            },
+            "MonthlySchedule": {
+                "title": "Monthly Schedule",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseMonthlySchedule"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "interval": {
+                                "type": "string",
+                                "enum": ["Montly"],
+                                "default": "Montly"
+                            }
+                        },
+                        "required": ["interval"]
+                    }
+                ]
+            },
+            "Schedule": {
+                "title": "Schedule",
+                "oneOf": [
+                    { "$ref": "#/components/schemas/WeeklySchedule" },
+                    { "$ref": "#/components/schemas/MonthlySchedule" }
+                ],
+                "discriminator": {
+                    "propertyName": "interval",
+                    "mapping": {
+                        "Weekly": "#/components/schemas/WeeklySchedule",
+                        "Monthly": "#/components/schemas/MonthlySchedule"
+                    }
+                }
+            },
+            "ResponseMonthlySchedule": {
+                "title": "Response Monthly Schedule",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ResponseSchedule"
+                    },
+                    {
+                        "$ref": "#/components/schemas/BaseMonthlySchedule"
+                    }
+                ]
+            },
+            "ResponseWeeklySchedule": {
+                "title": "Response Weekly Schedule",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ResponseSchedule"
+                    },
+                    {
+                        "$ref": "#/components/schemas/BaseWeeklySchedule"
+                    }
+                ]
+            },
+            "ResponseSchedule": {
+                "type": "object",
+                "properties": {
+                    "interval": {
+                        "type": "string",
+                        "enum": ["Weekly", "Monthly"]
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "interval",
+                    "mapping": {
+                        "Weekly": "#/components/schemas/ResponseWeeklySchedule",
+                        "Monthly": "#/components/schemas/ResponseMonthlySchedule"
+                    }
+                },
+                "required": ["interval"]
+            },
+            "DefaultContentType": {
+                "type": "string",
+                "enum": ["application/vnd.api+json"]
+            },
+            "IdempotencyKey": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+            }
+        }
     }
-	}
 }

@@ -1,0 +1,62 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateCounterparty": {
+                "title": "Update Counterparty",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "counterparty"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "plaidProcessorToken": {
+                                "$ref": "../types.json#/components/schemas/PlaidProcessorToken"
+                            },
+                            "name": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "permissions": {
+                                "type": "string",
+                                "enum": [
+                                    "CreditOnly",
+                                    "DebitOnly",
+                                    "CreditAndDebit"
+                                ]
+                            },
+                            "verifyName": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateCounterpartyRequest": {
+                "title": "Update Counterparty",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/UpdateCounterparty"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

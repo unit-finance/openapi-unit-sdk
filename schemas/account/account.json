@@ -1,0 +1,527 @@
+{
+    "components": {
+        "schemas": {
+            "DepositAccount": {
+                "title": "Deposit Account",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Account"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "depositProduct": {
+                                        "type": "string"
+                                    },
+                                    "routingNumber": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "accountNumber": {
+                                        "type": "string",
+                                        "pattern": "^\\d{10,12}$"
+                                    },
+                                    "secondaryAccountNumber": {
+                                        "type": "object",
+                                        "properties": {
+                                            "routingNumber": {
+                                                "type": "string",
+                                                "pattern": "^\\d{9}$"
+                                            },
+                                            "accountNumber": {
+                                                "type": "string",
+                                                "pattern": "^\\d{10,12}$"
+                                            }
+                                        },
+                                        "required": [
+                                            "routingNumber",
+                                            "accountNumber"
+                                        ]
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "default": "USD"
+                                    },
+                                    "balance": {
+                                        "type": "integer"
+                                    },
+                                    "overdraftLimit": {
+                                        "type": "integer",
+                                        "minimum": 0
+                                    },
+                                    "hold": {
+                                        "type": "integer"
+                                    },
+                                    "available": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "status": {
+                                        "enum": ["Open", "Closed", "Frozen"]
+                                    },
+                                    "closeReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ByCustomer",
+                                            "Fraud",
+                                            "NegativeBalance",
+                                            "ByBank",
+                                            "BreachOfTermsAndConditions",
+                                            "NoAccountActivity",
+                                            "ProgramChange"
+                                        ]
+                                    },
+                                    "fraudReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ACHActivity",
+                                            "CardActivity",
+                                            "CheckActivity",
+                                            "ApplicationHistory",
+                                            "AccountActivity",
+                                            "ClientIdentified",
+                                            "IdentityTheft",
+                                            "LinkedToFraudulentCustomer"
+                                        ]
+                                    },
+                                    "closeReasonText": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    },
+                                    "maskedAccountNumber": {
+                                        "type": "string",
+                                        "pattern": "^\\*{6,8}\\d{4}$"
+                                    },
+                                    "isOverdrawnWithinLimit": {
+                                        "type": "boolean"
+                                    },
+                                    "dacaStatus": {
+                                        "enum": ["Activated", "Entered"]
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "name",
+                                    "depositProduct",
+                                    "routingNumber",
+                                    "currency",
+                                    "balance",
+                                    "hold",
+                                    "available",
+                                    "tags",
+                                    "status"
+                                ]
+                            },
+                            "relationships": {
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Deposit Account Relationships",
+                                        "additionalProperties": true
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "CreditAccount": {
+                "title": "Credit Account",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Account"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "creditTerms": {
+                                        "type": "string"
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "default": "USD"
+                                    },
+                                    "balance": {
+                                        "type": "integer"
+                                    },
+                                    "hold": {
+                                        "type": "integer"
+                                    },
+                                    "available": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "status": {
+                                        "enum": ["Open", "Closed", "Frozen"]
+                                    },
+                                    "closeReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ByCustomer",
+                                            "Fraud",
+                                            "Overdue",
+                                            "NegativeBalance",
+                                            "ByBank",
+                                            "BreachOfTermsAndConditions",
+                                            "NoAccountActivity",
+                                            "ProgramChange"
+                                        ]
+                                    },
+                                    "fraudReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ACHActivity",
+                                            "CardActivity",
+                                            "CheckActivity",
+                                            "ApplicationHistory",
+                                            "AccountActivity",
+                                            "ClientIdentified",
+                                            "IdentityTheft",
+                                            "LinkedToFraudulentCustomer"
+                                        ]
+                                    },
+                                    "closeReasonText": {
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    },
+                                    "creditLimit": {
+                                        "type": "integer",
+                                        "minimum": 0
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "name",
+                                    "creditTerms",
+                                    "currency",
+                                    "balance",
+                                    "hold",
+                                    "available",
+                                    "tags",
+                                    "status",
+                                    "creditLimit"
+                                ]
+                            },
+                            "relationships": {
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Credit Account Relationships",
+                                        "additionalProperties": true,
+                                        "required": ["customer"]
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "OrgGeneralLedgerAccount": {
+                "title": "Org General Ledger Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "OrgGeneralLedgerAccount"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "orgId": {
+                                "type": "string"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "default": "USD"
+                            },
+                            "balance": {
+                                "type": "integer"
+                            },
+                            "hold": {
+                                "type": "integer"
+                            },
+                            "available": {
+                                "type": "integer"
+                            },
+                            "category": {
+                                "type": "string",
+                                "enum": ["Asset", "Liability"]
+                            },
+                            "status": {
+                                "enum": ["Open", "Closed"]
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "createdAt",
+                            "name",
+                            "balance",
+                            "hold",
+                            "available",
+                            "category",
+                            "currency"
+                        ]
+                    }
+                }
+            },
+            "GlAccount": {
+                "title": "General Ledger Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "GlAccount"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "default": "USD"
+                            },
+                            "balance": {
+                                "type": "integer"
+                            },
+                            "hold": {
+                                "type": "integer"
+                            },
+                            "available": {
+                                "type": "integer"
+                            },
+                            "category": {
+                                "type": "string",
+                                "enum": ["Asset", "Liability"]
+                            },
+                            "status": {
+                                "enum": ["Open", "Closed"]
+                            },
+                            "closeReason": {
+                                "enum": ["ByCustomer", "Fraud"]
+                            },
+                            "fraudReason": {
+                                "type": "string",
+                                "enum": [
+                                    "ACHActivity",
+                                    "CardActivity",
+                                    "CheckActivity",
+                                    "ApplicationHistory",
+                                    "AccountActivity",
+                                    "ClientIdentified",
+                                    "IdentityTheft",
+                                    "LinkedToFraudulentCustomer"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "createdAt",
+                            "name",
+                            "balance",
+                            "hold",
+                            "available",
+                            "category",
+                            "currency"
+                        ]
+                    }
+                }
+            },
+            "BatchAccount": {
+                "title": "Batch Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "BatchAccount"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "depositProduct": {
+                                "type": "string"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "default": "USD"
+                            },
+                            "routingNumber": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "accountNumber": {
+                                "type": "string",
+                                "pattern": "^\\d{10,12}$"
+                            },
+                            "balance": {
+                                "type": "integer"
+                            },
+                            "hold": {
+                                "type": "integer"
+                            },
+                            "available": {
+                                "type": "integer"
+                            },
+                            "status": {
+                                "enum": ["Open", "Closed"]
+                            },
+                            "closeReason": {
+                                "enum": ["ByCustomer", "Fraud"]
+                            },
+                            "fraudReason": {
+                                "type": "string",
+                                "enum": [
+                                    "ACHActivity",
+                                    "CardActivity",
+                                    "CheckActivity",
+                                    "ApplicationHistory",
+                                    "AccountActivity",
+                                    "ClientIdentified",
+                                    "IdentityTheft",
+                                    "LinkedToFraudulentCustomer"
+                                ]
+                            },
+                            "maskedAccountNumber": {
+                                "type": "string",
+                                "pattern": "^\\*{6,8}\\d{4}$"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "createdAt",
+                            "name",
+                            "depositProduct",
+                            "currency",
+                            "routingNumber",
+                            "balance",
+                            "hold",
+                            "available"
+                        ]
+                    },
+                    "relationships": {
+                        "allOf": [
+                            {
+                                "type": "object",
+                                "required": ["org"]
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                            }
+                        ]
+                    }
+                }
+            },
+            "Account": {
+                "title": "Account Document",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["depositAccount", "creditAccount"]
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "depositAccount": "#/components/schemas/DepositAccount",
+                        "creditAccount": "#/components/schemas/CreditAccount"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,602 @@
+{
+    "components": {
+        "schemas": {
+            "PhysicalCardStatus": {
+                "type": "string",
+                "enum": [
+                    "Active",
+                    "Inactive",
+                    "Stolen",
+                    "Lost",
+                    "Frozen",
+                    "ClosedByCustomer",
+                    "Unknown",
+                    "SuspectedFraud",
+                    "ActiveForOnlineUse"
+                ]
+            },
+            "VirtualCardStatus": {
+                "type": "string",
+                "enum": [
+                    "Active",
+                    "Inactive",
+                    "Stolen",
+                    "Lost",
+                    "Frozen",
+                    "ClosedByCustomer",
+                    "Unknown",
+                    "SuspectedFraud"
+                ]
+            },
+            "CardRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Card Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    }
+                ]
+            },
+            "IndividualDebitCard": {
+                "title": "Individual Debit Card",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Card"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "last4Digits": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}$"
+                                    },
+                                    "expirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "nextExpirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "shippingAddress": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "bin": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/PhysicalCardStatus"
+                                    },
+                                    "design": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "last4Digits",
+                                    "expirationDate",
+                                    "status"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CardRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "BusinessDebitCard": {
+                "title": "Business Debit Card",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Card"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "last4Digits": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}$"
+                                    },
+                                    "expirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "nextExpirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "shippingAddress": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "fullName": {
+                                        "$ref": "../types.json#/components/schemas/FullName"
+                                    },
+                                    "phone": {
+                                        "$ref": "../types.json#/components/schemas/Phone"
+                                    },
+                                    "email": {
+                                        "$ref": "../types.json#/components/schemas/Email"
+                                    },
+                                    "dateOfBirth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "nationality": {
+                                        "$ref": "../types.json#/components/schemas/Country"
+                                    },
+                                    "ssn": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "passport": {
+                                        "type": "string"
+                                    },
+                                    "bin": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/PhysicalCardStatus"
+                                    },
+                                    "design": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "last4Digits",
+                                    "expirationDate",
+                                    "address",
+                                    "fullName",
+                                    "phone",
+                                    "email",
+                                    "dateOfBirth"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CardRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "IndividualVirtualDebitCard": {
+                "title": "Individual Virtual Debit Card",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Card"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "last4Digits": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}$"
+                                    },
+                                    "expirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "nextExpirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "bin": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/VirtualCardStatus"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "last4Digits",
+                                    "expirationDate",
+                                    "status"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CardRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "BusinessVirtualDebitCard": {
+                "title": "Business Virtual Debit Card",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Card"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "last4Digits": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}$"
+                                    },
+                                    "expirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "nextExpirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "fullName": {
+                                        "$ref": "../types.json#/components/schemas/FullName"
+                                    },
+                                    "phone": {
+                                        "$ref": "../types.json#/components/schemas/Phone"
+                                    },
+                                    "email": {
+                                        "$ref": "../types.json#/components/schemas/Email"
+                                    },
+                                    "dateOfBirth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "nationality": {
+                                        "$ref": "../types.json#/components/schemas/Country"
+                                    },
+                                    "ssn": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "passport": {
+                                        "type": "string"
+                                    },
+                                    "bin": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/VirtualCardStatus"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "last4Digits",
+                                    "expirationDate",
+                                    "address",
+                                    "fullName",
+                                    "phone",
+                                    "email",
+                                    "dateOfBirth"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CardRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "BusinessCreditCard": {
+                "title": "Business Credit Card",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Card"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "last4Digits": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}$"
+                                    },
+                                    "expirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "nextExpirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "shippingAddress": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "fullName": {
+                                        "$ref": "../types.json#/components/schemas/FullName"
+                                    },
+                                    "phone": {
+                                        "$ref": "../types.json#/components/schemas/Phone"
+                                    },
+                                    "email": {
+                                        "$ref": "../types.json#/components/schemas/Email"
+                                    },
+                                    "dateOfBirth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "nationality": {
+                                        "$ref": "../types.json#/components/schemas/Country"
+                                    },
+                                    "ssn": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "passport": {
+                                        "type": "string"
+                                    },
+                                    "bin": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/PhysicalCardStatus"
+                                    },
+                                    "design": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "last4Digits",
+                                    "expirationDate",
+                                    "address",
+                                    "fullName",
+                                    "phone",
+                                    "email",
+                                    "dateOfBirth"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CardRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "BusinessVirtualCreditCard": {
+                "title": "Business Virtual Credit Card",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Card"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "last4Digits": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}$"
+                                    },
+                                    "expirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "nextExpirationDate": {
+                                        "type": "string",
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "fullName": {
+                                        "$ref": "../types.json#/components/schemas/FullName"
+                                    },
+                                    "phone": {
+                                        "$ref": "../types.json#/components/schemas/Phone"
+                                    },
+                                    "email": {
+                                        "$ref": "../types.json#/components/schemas/Email"
+                                    },
+                                    "dateOfBirth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "nationality": {
+                                        "$ref": "../types.json#/components/schemas/Country"
+                                    },
+                                    "ssn": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "passport": {
+                                        "type": "string"
+                                    },
+                                    "bin": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/VirtualCardStatus"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "last4Digits",
+                                    "expirationDate",
+                                    "address",
+                                    "fullName",
+                                    "phone",
+                                    "email",
+                                    "dateOfBirth"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CardRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "Card": {
+                "title": "Card Document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "businessDebitCard",
+                            "individualDebitCard",
+                            "businessVirtualDebitCard",
+                            "individualVirtualDebitCard",
+                            "businessCreditCard",
+                            "businessVirtualCreditCard"
+                        ]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "businessDebitCard": "#/components/schemas/BusinessDebitCard",
+                        "individualDebitCard": "#/components/schemas/IndividualDebitCard",
+                        "businessVirtualDebitCard": "#/components/schemas/BusinessVirtualDebitCard",
+                        "individualVirtualDebitCard": "#/components/schemas/IndividualVirtualDebitCard",
+                        "businessCreditCard": "#/components/schemas/BusinessCreditCard",
+                        "businessVirtualCreditCard": "#/components/schemas/BusinessVirtualCreditCard"
+                    }
+                }
+            }
+        }
+    }
+}

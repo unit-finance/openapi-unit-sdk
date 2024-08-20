@@ -1,0 +1,107 @@
+{
+    "components": {
+        "schemas": {
+            "AuthorizationRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Authorization Relationships",
+                        "required": ["account", "card"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CardRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AuthorizationRequestRelationship"
+                    }
+                ]
+            },
+            "Authorization": {
+                "title": "Authorization Document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["authorization"],
+                        "default": "authorization"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "cardLast4Digits": {
+                                "type": "string"
+                            },
+                            "merchant": {
+                                "$ref": "../types.json#/components/schemas/Merchant"
+                            },
+                            "recurring": {
+                                "type": "boolean"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "declineReason": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "paymentMethod": {
+                                "type": "string"
+                            },
+                            "digitalWallet": {
+                                "type": "string"
+                            },
+                            "summary": {
+                                "type": "string"
+                            },
+                            "cardVerificationData": {
+                                "$ref": "../types.json#/components/schemas/CardVerificationData"
+                            },
+                            "cardNetwork": {
+                                "type": "string"
+                            },
+                            "cashWithdrawalAmount": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "amount",
+                            "cardLast4Digits",
+                            "merchant",
+                            "recurring",
+                            "status"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/AuthorizationRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "relationships"]
+            }
+        }
+    }
+}

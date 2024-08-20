@@ -1,0 +1,101 @@
+{
+    "components": {
+        "schemas": {
+            "DisputeRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Dispute Relationships",
+                        "required": ["customer", "account", "transaction"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    }
+                ]
+            },
+            "Dispute": {
+                "title": "Dispute Document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["dispute"],
+                        "default": "dispute"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "source": {
+                                "type": "string",
+                                "enum": ["DebitCard", "ACH"]
+                            },
+                            "externalId": {
+                                "type": "string",
+                                "maxLength": 255
+                            },
+                            "link": {
+                                "$ref": "../types.json#/components/schemas/Url"
+                            },
+                            "description": {
+                                "$ref": "../types.json#/components/schemas/Description"
+                            },
+                            "amount": {
+                                "type": "integer"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "statusHistory": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "decisionReason": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "externalId",
+                            "source",
+                            "description",
+                            "status",
+                            "createdAt",
+                            "amount"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/DisputeRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "relationships"]
+            }
+        }
+    }
+}

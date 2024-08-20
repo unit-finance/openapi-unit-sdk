@@ -1,0 +1,22 @@
+{
+    "components": {
+        "schemas": {
+            "UploadApplicationDocumentContentType": {
+                "type": "string",
+                "enum": ["application/pdf", "image/png", "image/json"]
+            },
+            "UploadPngDocument": {
+                "type": "string",
+                "format": "binary"
+            },
+            "UploadPdfDocument": {
+                "type": "string",
+                "format": "binary"
+            },
+            "UploadJpegDocument": {
+                "type": "string",
+                "format": "binary"
+            }
+        }
+    }
+}

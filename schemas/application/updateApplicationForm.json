@@ -1,0 +1,404 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateApplicationFormChooseBusinessOrIndividual": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["applicationFormChooseBusinessOrIndividual"],
+                        "default": "applicationFormChooseBusinessOrIndividual"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "applicationFormType": { "type": "string" },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormIndividualInformation": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["applicationFormIndividualInformation"],
+                        "default": "applicationFormIndividualInformation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "stage": { "type": "string" },
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "ssn": {
+                                "$ref": "../types.json#/components/schemas/Ssn"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "passport": { "type": "string" },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/usAddress"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "ein": {
+                                "type": "string",
+                                "nullable": true,
+                                "pattern": "^\\d{9}$"
+                            },
+                            "dba": { "type": "string", "nullable": true },
+                            "industry": {
+                                "$ref": "../types.json#/components/schemas/Industry"
+                            },
+                            "soleProprietorship": {
+                                "type": "boolean",
+                                "default": "false"
+                            },
+                            "occupation": {
+                                "$ref": "../types.json#/components/schemas/Occupation"
+                            },
+                            "annualIncome": {
+                                "$ref": "../types.json#/components/schemas/AnnualIncome"
+                            },
+                            "sourceOfIncome": {
+                                "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormSoleProprietorshipBusinessInformation": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "applicationFormSoleProprietorshipBusinessInformation"
+                        ],
+                        "default": "applicationFormSoleProprietorshipBusinessInformation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "businessVertical": {
+                                "$ref": "../types.json#/components/schemas/BusinessVertical"
+                            },
+                            "annualRevenue": {
+                                "$ref": "../types.json#/components/schemas/SoleProprietorshipAnnualRevenue"
+                            },
+                            "numberOfEmployees": {
+                                "$ref": "../types.json#/components/schemas/SoleProprietorshipNumberOfEmployees"
+                            },
+                            "dba": { "type": "string", "nullable": true },
+                            "ein": {
+                                "type": "string",
+                                "nullable": true,
+                                "pattern": "^\\d{9}$"
+                            },
+                            "website": { "type": "string" },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormBusinessInformation": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["applicationFormBusinessInformation"],
+                        "default": "applicationFormBusinessInformation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "businessName": { "type": "string" },
+                            "dba": { "type": "string", "nullable": true },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/usAddress"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "stateOfIncorporation": {
+                                "$ref": "../types.json#/components/schemas/State"
+                            },
+                            "entityType": {
+                                "$ref": "../types.json#/components/schemas/EntityType"
+                            },
+                            "industry": {
+                                "$ref": "../types.json#/components/schemas/Industry"
+                            },
+                            "ein": { "type": "string", "pattern": "^\\d{9}$" },
+                            "website": { "type": "string" },
+                            "businessVertical": {
+                                "$ref": "../types.json#/components/schemas/BusinessVertical"
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormBusinessAdditionalInformation": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "applicationFormBusinessAdditionalInformation"
+                        ],
+                        "default": "applicationFormBusinessAdditionalInformation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "entityType": {
+                                "$ref": "../types.json#/components/schemas/EntityType"
+                            },
+                            "hasNonUsEntities": { "type": "boolean" },
+                            "annualRevenue": {
+                                "$ref": "../types.json#/components/schemas/BusinessAnnualRevenue"
+                            },
+                            "numberOfEmployees": {
+                                "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees"
+                            },
+                            "cashFlow": {
+                                "$ref": "../types.json#/components/schemas/CashFlow"
+                            },
+                            "yearOfIncorporation": {
+                                "$ref": "../types.json#/components/schemas/Year"
+                            },
+                            "countriesOfOperation": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/Country"
+                                },
+                                "minItems": 1
+                            },
+                            "stockSymbol": { "type": "string" },
+                            "stateOfIncorporation": {
+                                "$ref": "../types.json#/components/schemas/State"
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormOfficerInformation": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["applicationFormOfficerInformation"],
+                        "default": "applicationFormOfficerInformation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "officer": {
+                                "$ref": "createApplication.json#/components/schemas/Officer"
+                            },
+                            "businessContact": {
+                                "$ref": "../types.json#/components/schemas/createContact"
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            },
+                            "officerIsBeneficialOwner": {
+                                "$ref": "applicationForm.json#/components/schemas/ApplicationForm/properties/officerIsBeneficialOwner"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormBeneficialOwnersInformation": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["applicationFormBeneficialOwnersInformation"],
+                        "default": "applicationFormBeneficialOwnersInformation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "beneficialOwners": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "./application.json#/components/schemas/BeneficialOwner"
+                                }
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormPhoneVerification": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["applicationFormPhoneVerification"],
+                        "default": "applicationFormPhoneVerification"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "verificationCode": { "type": "string" },
+                            "verificationToken": { "type": "string" },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateApplicationFormUpdateStage": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["applicationFormUpdateStage"],
+                        "default": "applicationFormUpdateStage"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "stage": { "type": "string" },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "UpdateApplicationFormRequest": {
+            "title": "Update Application Form",
+            "type": "object",
+            "properties": {
+                "data": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormChooseBusinessOrIndividual"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormIndividualInformation"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormSoleProprietorshipBusinessInformation"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormBusinessInformation"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormBusinessAdditionalInformation"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormOfficerInformation"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormBeneficialOwnersInformation"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormPhoneVerification"
+                        },
+                        {
+                            "$ref": "#/components/schemas/UpdateApplicationFormUpdateStage"
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": ["data"]
+        }
+    }
+}

@@ -1,0 +1,127 @@
+{
+    "components": {
+        "schemas": {
+            "ReceivedPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+
+                        "required": ["account", "customer"],
+                        "additionalProperties": true
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ReceivePaymentTransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/PaymentAdvanceTransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/RepayPaymentAdvanceTransactionRelationship"
+                    }
+                ]
+            },
+            "ReceivedPayment": {
+                "title": "Received Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "Pending",
+                                    "Advanced",
+                                    "Completed",
+                                    "Returned"
+                                ]
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "completionDate": {
+                                "type": "string"
+                            },
+                            "direction": {
+                                "type": "string",
+                                "enum": ["Debit", "Credit"]
+                            },
+                            "wasAdvanced": {
+                                "type": "boolean"
+                            },
+                            "isAdvanceable": {
+                                "type": "boolean"
+                            },
+                            "isAdvaceable": {
+                                "type": "boolean"
+                            },
+                            "companyName": {
+                                "type": "string"
+                            },
+                            "counterpartyRoutingNumber": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "addenda": {
+                                "type": "string"
+                            },
+                            "traceNumber": {
+                                "type": "string"
+                            },
+                            "secCode": {
+                                "type": "string",
+                                "minLength": 3,
+                                "maxLength": 3
+                            },
+                            "returnReason": {
+                                "type": "string"
+                            },
+                            "receivingEntityName": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "amount",
+                            "description",
+                            "status",
+                            "completionDate",
+                            "companyName",
+                            "counterpartyRoutingNumber",
+                            "traceNumber",
+                            "wasAdvanced",
+                            "direction",
+                            "secCode"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/ReceivedPaymentRelationships"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+}

@@ -1,0 +1,261 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateIndividualDebitCard": {
+                "title": "Update Individual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualDebitCard"],
+                        "default": "individualDebitCard"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address",
+                                "nullable": true
+                            },
+                            "design": { "type": "string" },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "$ref": "../types.json#/components/schemas/Identifier",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateIndividualVirtualDebitCard": {
+                "title": "Update Individual Virtual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualVirtualDebitCard"],
+                        "default": "individualVirtualDebitCard"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "$ref": "../types.json#/components/schemas/Identifier",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBusinessDebitCard": {
+                "title": "Update Business Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessDebitCard"],
+                        "default": "businessDebitCard"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address",
+                                "nullable": true
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "design": { "type": "string" },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "$ref": "../types.json#/components/schemas/Identifier",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBusinessVirtualDebitCard": {
+                "title": "Update Business Virtual Debit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessVirtualDebitCard"],
+                        "default": "businessVirtualDebitCard"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "$ref": "../types.json#/components/schemas/Identifier",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBusinessCreditCard": {
+                "title": "Update Business Credit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessCreditCard"],
+                        "default": "businessCreditCard"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "shippingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address",
+                                "nullable": true
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "design": { "type": "string" },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "$ref": "../types.json#/components/schemas/Identifier",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBusinessVirtualCreditCard": {
+                "title": "Update Business Virtual Credit Card",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessVirtualCreditCard"],
+                        "default": "businessVirtualCreditCard"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "limits": {
+                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                            },
+                            "defaultFundingAccountId": {
+                                "$ref": "../types.json#/components/schemas/Identifier",
+                                "nullable": true
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateCardRequest": {
+                "title": "Update Card",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/UpdateIndividualDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateIndividualVirtualDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateBusinessDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateBusinessVirtualDebitCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateBusinessCreditCard"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateBusinessVirtualCreditCard"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

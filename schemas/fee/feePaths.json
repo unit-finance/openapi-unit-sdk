@@ -1,0 +1,39 @@
+{
+    "createFee": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createFee",
+            "summary": "Create Fee",
+            "description": "Create a Fee via API ",
+            "requestBody": {
+                "description": "Create Fee Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createFee.json#/components/schemas/CreateFeeRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Fee Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./fee.json#/components/schemas/Fee"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

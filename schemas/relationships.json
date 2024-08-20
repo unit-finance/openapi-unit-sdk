@@ -229,34 +229,6 @@
                 "additionalProperties": true,
                 "required": ["data"]
             },
-            "TrusteesRelationship": {
-                "type": "object",
-                "properties": {
-                    "trustees": {
-                        "type": "object",
-                        "title": "Trustees Relationship",
-                        "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "trustee"
-                                        },
-                                        "id": {
-                                            "$ref": "./types.json#/components/schemas/Identifier"
-                                        }
-                                    },
-                                    "additionalProperties": false
-                                }
-                            }
-                        },
-                        "additionalProperties": false
-                    }
-                }
-            },
             "BeneficiariesRelationship": {
                 "type": "object",
                 "properties": {

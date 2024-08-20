@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'spec_helper'
 
 RSpec.describe 'Account' do
@@ -8,24 +6,27 @@ RSpec.describe 'Account' do
   end
 
   describe 'test an instance of Account' do
-    let(:api_instance) { OpenapiClient::CreateAnAccountApi.new(OpenapiClient::ApiClient.new(configuration)) }
+
+    let(:api_instance) { OpenapiClient::UnitApi.new(OpenapiClient::ApiClient.new(configuration)) }
 
     it 'Should create deposit account' do
-      request = { data: OpenapiClient::CreateDepositAccount.new(type: 'depositAccount', attributes:
-        OpenapiClient::CreateDepositAccountAttributes.new(
-          { deposit_product: 'checking',
+      request = {
+        data: {
+          type: 'depositAccount',
+          attributes: OpenapiClient::CreateDepositAccountAttributes.new(
+            deposit_product: 'checking',
             tags: { "purpose": 'checking' },
-            idempotency_key: '1234567890' }
-        ), relationships: OpenapiClient::CreateDepositAccountRelationships.new(
-          customer:
-            { "data":
-                { "type": 'customer',
-                  "id": '751009' } }
-        ).to_hash).to_hash }
-
-      response = api_instance.execute(request)
+            idempotency_key: '1234567890'
+          ).to_hash,
+          relationships: OpenapiClient::CreateDepositAccountRelationships.new(
+            customer: { "data": { "type": 'customer', "id": '751009' } }
+          ).to_hash
+        }}
+      response = api_instance.create_account(request)
       expect(response.data.type).to eq('depositAccount')
     end
+
+
 
     it 'Should create a credit account' do
       request = { data: OpenapiClient::CreateCreditAccount.new(type: 'creditAccount',
@@ -39,7 +40,7 @@ RSpec.describe 'Account' do
                                                                  customer: { "data": { "type": 'customer',
                                                                                        "id": '851228' } }
                                                                ).to_hash).to_hash }
-      response = api_instance.execute(request)
+      response = api_instance.create_account(request)
       expect(response.data.type).to eq('creditAccount')
     end
   end

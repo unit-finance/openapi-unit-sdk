@@ -31,7 +31,16 @@
                         "required": ["creditTerms", "creditLimit"]
                     },
                     "relationships": {
-                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                        "allOf": [
+                            {
+                                "type": "object",
+                                "required": ["customer"],
+                                "additionalProperties": false
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                            }
+                        ]
                     }
                 }
             },

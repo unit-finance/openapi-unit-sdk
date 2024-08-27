@@ -1,0 +1,231 @@
+{
+    "apiTokens": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getApiTokensList",
+            "summary": "Get List Org API Tokens",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the user to revoke token"
+                }
+            ],
+            "description": "Get List Org API Tokens from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "title": "Unit Org Api Tokens List Response",
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./apiToken.json#/components/schemas/ApiToken"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createApiToken",
+            "summary": "Create Org API Token",
+            "description": "Create an Org API Token via API ",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the user to create token for"
+                }
+            ],
+            "requestBody": {
+                "description": "Create Org API Token Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createApiToken.json#/components/schemas/CreateApiTokenRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Api Token Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./apiToken.json#/components/schemas/ApiToken"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "deleteToken": {
+        "delete": {
+            "tags": ["unit"],
+            "operationId": "deleteToken",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the user to revoke token"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "tokenId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the token to revoke"
+                }
+            ],
+            "summary": "Get Reward by Id",
+            "description": "Get a Reward from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Api Token Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./apiToken.json#/components/schemas/ApiToken"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "createCustomerToken": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createCustomerToken",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer to create token for"
+                }
+            ],
+            "summary": "Create Customer Token",
+            "description": "Create a Customer Token via API ",
+            "requestBody": {
+                "description": "Create Customer Token Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCustomerToken.json#/components/schemas/CreateCustomerTokenRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Customer Token Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./customerToken.json#/components/schemas/CustomerToken"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "createCustomerTokenVerification": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createCustomerTokenVerification",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer to create token for"
+                }
+            ],
+            "summary": "Create Customer Token Verification",
+            "description": "Create a Customer Token Verification via API ",
+            "requestBody": {
+                "description": "Create Customer Token Verification Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCustomerTokenVerification.json#/components/schemas/CreateCustomerTokenVerificationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Customer Token Verification Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./customerTokenVerification.json#/components/schemas/CustomerTokenVerification"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateAchPayment": {
+                "title": "Update ACH Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achPayment"],
+                        "default": "achPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBookPayment": {
+                "title": "Update Book Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["bookPayment"],
+                        "default": "bookPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdatePaymentRequest": {
+                "title": "Update Payment",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            { "$ref": "#/components/schemas/UpdateAchPayment" },
+                            { "$ref": "#/components/schemas/UpdateBookPayment" }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

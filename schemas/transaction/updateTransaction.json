@@ -1,0 +1,118 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateTransactionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "UpdateTransactionTags": {
+                "title": "Update Transaction",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["transaction"],
+                        "default": "transaction"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["tags"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBookTransaction": {
+                "title": "Update Book Transaction",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["bookTransaction"],
+                        "default": "bookTransaction"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "summary": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/UpdateTransactionRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateChargebackTransaction": {
+                "title": "Update Chargeback Transaction",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["chargebackTransaction"],
+                        "default": "chargebackTransaction"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "summary": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/UpdateTransactionRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateTransactionRequest": {
+                "title": "Update Transaction",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/UpdateTransactionTags"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateBookTransaction"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateChargebackTransaction"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

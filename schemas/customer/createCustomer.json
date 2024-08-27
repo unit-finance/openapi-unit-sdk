@@ -1,0 +1,248 @@
+{
+    "components": {
+        "schemas": {
+            "CreateCustomerRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["org"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
+            },
+            "CreateIndividualCustomer": {
+                "title": "Create Individual Customer",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualCustomer"],
+                        "default": "individualCustomer"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "ssn": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "matriculaConsular": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "dba": {
+                                "type": "string"
+                            },
+                            "ein": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "soleProprietorship": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "authorizedUsers": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/AuthorizedUser"
+                                }
+                            },
+                            "jwtSubject": {
+                                "$ref": "../types.json#/components/schemas/JwtSubject"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "fullName",
+                            "email",
+                            "phone",
+                            "address",
+                            "dateOfBirth"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCustomerRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateBusinessCustomer": {
+                "title": "Create Business Customer",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessCustomer"],
+                        "default": "businessCustomer"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 255
+                            },
+                            "dba": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 255
+                            },
+                            "ein": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "entityType": {
+                                "type": "string",
+                                "enum": ["Corporation", "LLC", "Partnership"]
+                            },
+                            "dateOfIncorporation": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "stateOfIncorporation": {
+                                "type": "string",
+                                "minLength": 2,
+                                "maxLength": 2
+                            },
+                            "purpose": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 1024
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "contact": {
+                                "$ref": "../types.json#/components/schemas/createContact"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "authorizedUsers": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/AuthorizedUser"
+                                }
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "name",
+                            "ein",
+                            "entityType",
+                            "stateOfIncorporation",
+                            "phone",
+                            "address",
+                            "contact"
+                        ]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCustomerRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes", "relationships"]
+            }
+        },
+        "CreateBusinessWalletCustomer": {
+            "title": "Create Business Customer",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["businessWalletCustomer"],
+                    "default": "businessWalletCustomer"
+                },
+                "attributes": {
+                    "type": "object",
+                    "properties": {
+                        "bankName": {
+                            "type": "string"
+                        },
+                        "businessName": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "$ref": "../types.json#/components/schemas/Address"
+                        },
+                        "ein": {
+                            "type": "string",
+                            "pattern": "^\\d{9}$"
+                        },
+                        "businessVertical": {
+                            "$ref": "../types.json#/components/schemas/BusinessVertical"
+                        },
+                        "numberOfEmployees": {
+                            "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees"
+                        },
+                        "tags": {
+                            "$ref": "../types.json#/components/schemas/Tags"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "bankName",
+                        "businessName",
+                        "name",
+                        "address",
+                        "ein",
+                        "businessVertical",
+                        "numberOfEmployees"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": ["type", "attributes", "relationships"]
+        },
+        "CreateCustomerRequest": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/components/schemas/CreateBusinessCustomer"
+                        },
+                        {
+                            "$ref": "#/components/schemas/CreateIndividualCustomer"
+                        },
+                        {
+                            "$ref": "#/components/schemas/CreateBusinessWalletCustomer"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

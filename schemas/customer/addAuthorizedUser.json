@@ -1,0 +1,59 @@
+{
+    "components": {
+        "schemas": {
+            "AddAuthorizedUsersRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["addAuthorizedUsers"],
+                                "default": "addAuthorizedUsers"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "authorizedUsers": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "../types.json#/components/schemas/AuthorizedUser"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "RemoveAuthorizedUsersRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["removeAuthorizedUsers"],
+                                "default": "removeAuthorizedUsers"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "authorizedUsersEmails": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "email"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

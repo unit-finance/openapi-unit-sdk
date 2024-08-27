@@ -1,0 +1,314 @@
+{
+    "components": {
+        "schemas": {
+            "RecurringAchPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "creditAccount",
+                            "counterparty",
+                            "customer",
+                            "org"
+                        ],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
+            },
+            "RecurringBookPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "account",
+                            "creditAccount",
+                            "counterparty",
+                            "customer",
+                            "org"
+                        ],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
+            },
+            "RecurringCreditAchPayment": {
+                "title": "Recurring Credit ACH Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./recurringPayment.json#/components/schemas/RecurringPayment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 10
+                                    },
+                                    "addenda": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Active",
+                                            "Completed",
+                                            "Disabled"
+                                        ]
+                                    },
+                                    "schedule": {
+                                        "$ref": "../types.json#/components/schemas/ResponseSchedule"
+                                    },
+                                    "numberOfPayments": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "status",
+                                    "description",
+                                    "amount",
+                                    "schedule",
+                                    "numberOfPayments"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/RecurringAchPaymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "RecurringDebitAchPayment": {
+                "title": "Recurring Debit ACH Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./recurringPayment.json#/components/schemas/RecurringPayment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 10
+                                    },
+                                    "addenda": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Active",
+                                            "Completed",
+                                            "Disabled"
+                                        ]
+                                    },
+                                    "schedule": {
+                                        "$ref": "../types.json#/components/schemas/ResponseSchedule"
+                                    },
+                                    "numberOfPayments": {
+                                        "type": "integer"
+                                    },
+                                    "verifyCounterpartyBalance": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "sameDay": {
+                                        "type": "boolean",
+                                        "default": false
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "status",
+                                    "description",
+                                    "amount",
+                                    "schedule",
+                                    "numberOfPayments"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/RecurringAchPaymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "RecurringCreditBookPayment": {
+                "title": "Recurring Credit Book Payment",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./recurringPayment.json#/components/schemas/RecurringPayment"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 80
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Pending",
+                                            "Active",
+                                            "Completed",
+                                            "Disabled"
+                                        ]
+                                    },
+                                    "schedule": {
+                                        "$ref": "../types.json#/components/schemas/ResponseSchedule"
+                                    },
+                                    "numberOfPayments": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "updatedAt",
+                                    "amount",
+                                    "description",
+                                    "status",
+                                    "schedule",
+                                    "numberOfPayments"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/RecurringBookPaymentRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "RecurringPayment": {
+                "title": "Recurring Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "recurringCreditAchPayment",
+                            "recurringDebitAchPayment",
+                            "recurringCreditBookPayment"
+                        ]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "recurringCreditAchPayment": "#/components/schemas/RecurringCreditAchPayment",
+                        "recurringDebitAchPayment": "#/components/schemas/RecurringDebitAchPayment",
+                        "recurringCreditBookPayment": "#/components/schemas/RecurringCreditBookPayment"
+                    }
+                }
+            }
+        }
+    }
+}

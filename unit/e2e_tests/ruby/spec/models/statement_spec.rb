@@ -11,11 +11,8 @@ RSpec.describe 'Statement' do
   end
 
   describe 'test an instance of Statement' do
-    let(:html_statement) { OpenapiClient::GetStatementHTMLApi.new(OpenapiClient::ApiClient.new(configuration)) }
-    let(:pdf_statement) { OpenapiClient::GetStatementPDFApi.new(OpenapiClient::ApiClient.new(configuration)) }
-    let(:verification_statement) do
-      OpenapiClient::GetBankVerificationPDFApi.new(OpenapiClient::ApiClient.new(configuration))
-    end
+    let(:api_instance) { OpenapiClient::UnitApi.new(OpenapiClient::ApiClient.new(configuration)) }
+
 
     it 'should get an instance of html statement' do
       opts = {
@@ -24,7 +21,7 @@ RSpec.describe 'Statement' do
           language: 'en'
         }
       }
-      response_data, status_code, headers = html_statement.execute_with_http_info('9755166', opts)
+      response_data, status_code, headers = api_instance.get_statement_html('146206', opts)
 
       expect(status_code).to eq(200)
 
@@ -32,10 +29,10 @@ RSpec.describe 'Statement' do
 
       # Read the content from the IO stream, if it's an IO object
       content = if response_data.is_a?(Tempfile) || response_data.is_a?(File)
-        File.read(response_data.path)
-      else
-        response_data
-      end
+                  File.read(response_data.path)
+                else
+                  response_data
+                end
 
       # Check for common HTML tags in the content
       expect(content).to match(/<html[^>]*>/)
@@ -44,7 +41,7 @@ RSpec.describe 'Statement' do
 
     it 'should get an instance of pdf statement' do
       opts = { query_params: { customer_id: '22603' } }
-      response_data, status_code, headers = pdf_statement.execute_with_http_info('15554784', opts)
+      response_data, status_code, headers = api_instance.get_statement_pdf('146206', opts)
 
       expect(status_code).to eq(200)
       expect(headers['Content-Type']).to include('application/pdf')
@@ -58,7 +55,7 @@ RSpec.describe 'Statement' do
     end
 
     it 'should get an instance of bank verification pdf statement' do
-      response_data, status_code, headers = verification_statement.execute_with_http_info('27573')
+      response_data, status_code, headers = api_instance.get_statement_bank_pdf('36981')
       expect(status_code).to eq(200)
 
       # If the response_data is a string:

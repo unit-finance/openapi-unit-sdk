@@ -1,0 +1,54 @@
+{
+    "components": {
+        "schemas": {
+            "FeeRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Fee Relationships",
+                        "required": ["account"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "Fee": {
+                "title": "Fee",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["fee"],
+                        "default": "fee"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "description": {
+                                "type": "string",
+                                "maxLength": 50
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "required": ["amount", "description"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/FeeRelationships"
+                    }
+                }
+            }
+        }
+    }
+}

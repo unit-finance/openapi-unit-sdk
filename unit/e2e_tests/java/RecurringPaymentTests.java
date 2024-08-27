@@ -1,44 +1,31 @@
-package org.openapitools.client;
+package unit.java.sdk;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.GetListRecurringPaymentsApi;
-import org.openapitools.client.api.GetRecurringPaymentApi;
-import org.openapitools.client.model.UnitRecurringPaymentListResponse;
-import org.openapitools.client.model.UnitRecurringPaymentResponse;
+import org.junit.Test;
+
+import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.UnitRecurringPaymentListResponse;
+import unit.java.sdk.model.UnitRecurringPaymentResponse;
 
 
 public class RecurringPaymentTests {
-    @BeforeAll
-    static void init() {
-        String access_token = System.getenv("access_token");
-        ApiClient cl = new ApiClient();
-        cl.setBearerToken(access_token);
-        Configuration.setDefaultApiClient(cl);
-    }
+    UnitApi unitApi = TestHelpers.GenerateUnitApiClient();
 
     @Test
     public void GetRecurringPaymentListApiTest() throws ApiException {
-        GetListRecurringPaymentsApi api = new GetListRecurringPaymentsApi();
-
-        UnitRecurringPaymentListResponse response = api.execute();
-        assert response.getData().size() != 0;
+        UnitRecurringPaymentListResponse response = unitApi.getRecurringPaymentsList(null, null, null);
+        assert !response.getData().isEmpty();
     }
 
     @Test
     public void GetRecurringPaymentApiTest() throws ApiException {
-        GetListRecurringPaymentsApi api = new GetListRecurringPaymentsApi();
-
-        UnitRecurringPaymentListResponse response = api.execute();
-        assert response.getData().size() != 0;
-
-        GetRecurringPaymentApi getApi = new GetRecurringPaymentApi();
+        UnitRecurringPaymentListResponse response = unitApi.getRecurringPaymentsList(null, null, null);
+        assert !response.getData().isEmpty();
 
         response.getData().forEach(x -> {
             try {
-                UnitRecurringPaymentResponse payment = getApi.execute(x.getId());
+                UnitRecurringPaymentResponse payment = unitApi.getRecurringPayment(x.getId());
                 assert payment.getData().getId().equals(x.getId());
-                assert payment.getData().getType().toLowerCase()
+                assert payment.getData().getType().toString().toLowerCase()
                         .equals(payment.getData().getClass().getSimpleName().toLowerCase());
             } catch (ApiException e) {
                 throw new RuntimeException(e);

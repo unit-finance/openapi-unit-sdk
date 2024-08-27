@@ -1,0 +1,231 @@
+{
+    "components": {
+        "schemas": {
+            "CreateBookRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "creditAccount",
+                            "account",
+                            "counterpartyAccount"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    }
+                ]
+            },
+            "CreateCapitalPartnerBookRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["creditAccount", "counterpartyAccount"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                    }
+                ]
+            },
+            "CreateAchRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["creditAccount", "account", "counterparty"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    }
+                ]
+            },
+            "CreateCapitalPartnerAchRepaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["creditAccount", "counterparty"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditAccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
+                    }
+                ]
+            },
+            "CreateBookRepayment": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["bookRepayment"],
+                        "default": "bookRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "transactionSummaryOverride": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["description", "amount"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateBookRepaymentRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateCapitalPartnerBookRepayment": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["capitalPartnerBookRepayment"],
+                        "default": "capitalPartnerBookRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "transactionSummaryOverride": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["description", "amount"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCapitalPartnerBookRepaymentRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateAchRepayment": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achRepayment"],
+                        "default": "achRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "addenda": {
+                                "type": "string"
+                            },
+                            "sameDay": {
+                                "type": "boolean"
+                            },
+                            "secCode": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["description", "amount"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateAchRepaymentRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateCapitalPartnerAchRepayment": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["capitalPartnerAchRepayment"],
+                        "default": "capitalPartnerAchRepayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "addenda": {
+                                "type": "string"
+                            },
+                            "sameDay": {
+                                "type": "boolean"
+                            },
+                            "secCode": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["description", "amount"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCapitalPartnerAchRepaymentRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateRepaymentRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateBookRepayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateCapitalPartnerBookRepayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateAchRepayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateCapitalPartnerAchRepayment"
+                            }
+                        ]
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

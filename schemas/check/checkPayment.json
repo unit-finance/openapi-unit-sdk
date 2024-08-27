@@ -1,0 +1,189 @@
+{
+    "components": {
+        "schemas": {
+            "ReturnReason": {
+                "type": "string",
+                "enum": [
+                    "InsufficientFunds",
+                    "AccountClosed",
+                    "AlteredCheck",
+                    "ForgedSignature",
+                    "PostdatedCheck",
+                    "StopPaymentOrder",
+                    "UnauthorizedDebit",
+                    "WrongAmount",
+                    "DuplicatePayment",
+                    "MissingSignature",
+                    "IrregularEndorsement",
+                    "Other"
+                ]
+            },
+            "CheckPaymentRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    }
+                ]
+            },
+            "CheckPaymentCounterparty": {
+                "type": "object",
+                "title": "Check Payment Counterparty",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    },
+                    "counterpartyMoved": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CheckPayment": {
+                "title": "Check Payment Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["checkPayment"],
+                        "default": "checkPayment"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "returnCutoffTime": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": [
+                                    "MarkedForReturn",
+                                    "Returned",
+                                    "Processed",
+                                    "PendingReview"
+                                ]
+                            },
+                            "memo": {
+                                "type": "string"
+                            },
+                            "deliveryStatus": {
+                                "type": "string",
+                                "enum": [
+                                    "Mailed",
+                                    "InLocalArea",
+                                    "Delivered",
+                                    "Rerouted",
+                                    "ReturnedToSender"
+                                ]
+                            },
+                            "sendAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "counterparty": {
+                                "$ref": "#/components/schemas/CheckPaymentCounterparty"
+                            },
+                            "trackedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "postalCode": {
+                                "type": "string"
+                            },
+                            "expectedDelivery": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "originated": {
+                                "type": "boolean"
+                            },
+                            "expirationDate": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "rejectReason": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "returnReason": {
+                                "$ref": "#/components/schemas/ReturnReason"
+                            },
+                            "pendingReviewReasons": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["NameMissMatch", "SoftLimit"]
+                                }
+                            },
+                            "checkNumber": {
+                                "type": "string"
+                            },
+                            "onUsAuxiliary": {
+                                "type": "string"
+                            },
+                            "onUs": {
+                                "type": "string"
+                            },
+                            "counterpartyRoutingNumber": {
+                                "type": "string"
+                            },
+                            "additionalVerificationStatus": {
+                                "type": "string",
+                                "enum": ["Required", "NotRequired", "Approved"]
+                            }
+                        },
+                        "required": [
+                            "createdAt",
+                            "updatedAt",
+                            "amount",
+                            "status",
+                            "originated"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CheckPaymentRelationships"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "attributes", "relationships"]
+            }
+        }
+    }
+}

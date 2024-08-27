@@ -1,0 +1,661 @@
+{
+    "components": {
+        "schemas": {
+            "ApplicationStatus": {
+                "type": "string",
+                "enum": [
+                    "AwaitingDocuments",
+                    "PendingReview",
+                    "Approved",
+                    "Denied",
+                    "Pending",
+                    "Canceled"
+                ]
+            },
+            "PowerOfAttorneyAgent": {
+                "title": "Power of Attorney Agent",
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "$ref": "../types.json#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "../types.json#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "../types.json#/components/schemas/Phone"
+                    },
+                    "ssn": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "passport": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "$ref": "../types.json#/components/schemas/Country"
+                    },
+                    "matriculaConsular": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "evaluationId": {
+                        "type": "string"
+                    },
+                    "evaluationFlags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "maskedSSN": {
+                        "type": "string",
+                        "pattern": "^\\*{5}\\d{4}$"
+                    },
+                    "maskedPassport": {
+                        "type": "string"
+                    },
+                    "maskedMatriculaConsular": {
+                        "type": "string"
+                    },
+                    "idTheftScore": {
+                        "type": "integer"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["status", "fullName"]
+            },
+            "Officer": {
+                "title": "Officer",
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "$ref": "../types.json#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "../types.json#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "../types.json#/components/schemas/Phone"
+                    },
+                    "ssn": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "passport": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "$ref": "../types.json#/components/schemas/Country"
+                    },
+                    "matriculaConsular": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "evaluationId": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string",
+                        "enum": [
+                            "President",
+                            "CEO",
+                            "COO",
+                            "CFO",
+                            "BenefitsAdministrationOfficer",
+                            "CIO",
+                            "VP",
+                            "AVP",
+                            "Treasurer",
+                            "Secretary",
+                            "Controller",
+                            "Manager",
+                            "Partner",
+                            "Member"
+                        ]
+                    },
+                    "evaluationFlags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "maskedSSN": {
+                        "type": "string",
+                        "pattern": "^\\*{5}\\d{4}$"
+                    },
+                    "maskedPassport": {
+                        "type": "string"
+                    },
+                    "maskedMatriculaConsular": {
+                        "type": "string"
+                    },
+                    "idTheftScore": {
+                        "type": "integer"
+                    },
+                    "occupation": {
+                        "$ref": "../types.json#/components/schemas/Occupation"
+                    },
+                    "annualIncome": {
+                        "$ref": "../types.json#/components/schemas/AnnualIncome"
+                    },
+                    "sourceOfIncome": {
+                        "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                    }
+                }
+            },
+            "BeneficialOwner": {
+                "title": "Beneficial Owner",
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "$ref": "../types.json#/components/schemas/FullName"
+                    },
+                    "email": {
+                        "$ref": "../types.json#/components/schemas/Email"
+                    },
+                    "phone": {
+                        "$ref": "../types.json#/components/schemas/Phone"
+                    },
+                    "ssn": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "passport": {
+                        "type": "string"
+                    },
+                    "nationality": {
+                        "$ref": "../types.json#/components/schemas/Country"
+                    },
+                    "matriculaConsular": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "evaluationId": {
+                        "type": "string"
+                    },
+                    "percentage": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100
+                    },
+                    "evaluationFlags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "maskedSSN": {
+                        "type": "string",
+                        "pattern": "^\\*{5}\\d{4}$"
+                    },
+                    "maskedPassport": {
+                        "type": "string"
+                    },
+                    "maskedMatriculaConsular": {
+                        "type": "string"
+                    },
+                    "idTheftScore": {
+                        "type": "integer"
+                    },
+                    "evaluationCodes": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "occupation": {
+                        "$ref": "../types.json#/components/schemas/Occupation"
+                    },
+                    "annualIncome": {
+                        "$ref": "../types.json#/components/schemas/AnnualIncome"
+                    },
+                    "sourceOfIncome": {
+                        "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                    }
+                }
+            },
+            "IndividualApplicationRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Application Relationships",
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/DocumentsRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "applicationForm": {
+                                "$ref": "../relationships.json#/components/schemas/Relationship"
+                            }
+                        }
+                    }
+                ]
+            },
+            "BusinessApplicationRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Application Relationships",
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/DocumentsRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/BeneficialOwnersRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "applicationForm": {
+                                "$ref": "../relationships.json#/components/schemas/Relationship"
+                            }
+                        }
+                    }
+                ]
+            },
+            "BusinessApplication": {
+                "title": "Business Application",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Application"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/ApplicationStatus"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "evaluationOutcome": {
+                                        "type": "string"
+                                    },
+                                    "evaluationId": {
+                                        "type": "string"
+                                    },
+                                    "evaluationEntityId": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "dba": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "ein": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "entityType": {
+                                        "$ref": "../types.json#/components/schemas/EntityType"
+                                    },
+                                    "dateOfIncorporation": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "stateOfIncorporation": {
+                                        "$ref": "../types.json#/components/schemas/State"
+                                    },
+                                    "purpose": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "$ref": "../types.json#/components/schemas/Phone"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "contact": {
+                                        "$ref": "../types.json#/components/schemas/Contact"
+                                    },
+                                    "officer": {
+                                        "$ref": "#/components/schemas/Officer"
+                                    },
+                                    "ip": {
+                                        "type": "string"
+                                    },
+                                    "website": {
+                                        "type": "string"
+                                    },
+                                    "beneficialOwners": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/BeneficialOwner"
+                                        }
+                                    },
+                                    "decisionMethod": {
+                                        "type": "string",
+                                        "enum": ["Manually", "Automatically"]
+                                    },
+                                    "decisionUserId": {
+                                        "type": "string"
+                                    },
+                                    "decisionReason": {
+                                        "type": "string"
+                                    },
+                                    "decisionDateTime": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "riskRate": {
+                                        "type": "string",
+                                        "enum": ["low", "medium", "high"]
+                                    },
+                                    "evaluationFlags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "ipLocationDetails": {
+                                        "type": "object"
+                                    },
+                                    "phoneLocationDetails": {
+                                        "type": "object"
+                                    },
+                                    "archived": {
+                                        "type": "boolean"
+                                    },
+                                    "industry": {
+                                        "$ref": "../types.json#/components/schemas/Industry"
+                                    },
+                                    "annualRevenue": {
+                                        "$ref": "../types.json#/components/schemas/BusinessAnnualRevenue"
+                                    },
+                                    "numberOfEmployees": {
+                                        "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees"
+                                    },
+                                    "cashFlow": {
+                                        "$ref": "../types.json#/components/schemas/CashFlow"
+                                    },
+                                    "yearOfIncorporation": {
+                                        "$ref": "../types.json#/components/schemas/Year"
+                                    },
+                                    "countriesOfOperation": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "../types.json#/components/schemas/Country"
+                                        },
+                                        "minItems": 1
+                                    },
+                                    "stockSymbol": {
+                                        "type": "string"
+                                    },
+                                    "businessVertical": {
+                                        "$ref": "../types.json#/components/schemas/BusinessVertical"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "status",
+                                    "name",
+                                    "entityType",
+                                    "stateOfIncorporation",
+                                    "contact",
+                                    "officer",
+                                    "beneficialOwners"
+                                ]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/BusinessApplicationRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["id", "type", "attributes"]
+                    }
+                ]
+            },
+            "IndividualApplication": {
+                "title": "Individual Application",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Application"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "status": {
+                                        "$ref": "#/components/schemas/ApplicationStatus"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "evaluationOutcome": {
+                                        "type": "string"
+                                    },
+                                    "evaluationId": {
+                                        "type": "string"
+                                    },
+                                    "evaluationEntityId": {
+                                        "type": "string"
+                                    },
+                                    "fullName": {
+                                        "$ref": "../types.json#/components/schemas/FullName"
+                                    },
+                                    "email": {
+                                        "$ref": "../types.json#/components/schemas/Email"
+                                    },
+                                    "phone": {
+                                        "$ref": "../types.json#/components/schemas/Phone"
+                                    },
+                                    "ssn": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "passport": {
+                                        "type": "string"
+                                    },
+                                    "nationality": {
+                                        "$ref": "../types.json#/components/schemas/Country"
+                                    },
+                                    "matriculaConsular": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "dateOfBirth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "dba": {
+                                        "type": "string"
+                                    },
+                                    "ein": {
+                                        "type": "string",
+                                        "pattern": "^\\d{9}$"
+                                    },
+                                    "ip": {
+                                        "type": "string"
+                                    },
+                                    "soleProprietorship": {
+                                        "type": "boolean"
+                                    },
+                                    "decisionMethod": {
+                                        "type": "string",
+                                        "enum": ["Manually", "Automatically"]
+                                    },
+                                    "decisionUserId": {
+                                        "type": "string"
+                                    },
+                                    "decisionReason": {
+                                        "type": "string"
+                                    },
+                                    "decisionDateTime": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "riskRate": {
+                                        "type": "string",
+                                        "enum": ["low", "medium", "high"]
+                                    },
+                                    "evaluationFlags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "evaluationScores": {
+                                        "type": "object"
+                                    },
+                                    "ipLocationDetails": {
+                                        "type": "object"
+                                    },
+                                    "phoneLocationDetails": {
+                                        "type": "object"
+                                    },
+                                    "maskedSSN": {
+                                        "type": "string",
+                                        "pattern": "^\\*{5}\\d{4}$"
+                                    },
+                                    "maskedPassport": {
+                                        "type": "string"
+                                    },
+                                    "maskedMatriculaConsular": {
+                                        "type": "string"
+                                    },
+                                    "jwtSubject": {
+                                        "$ref": "../types.json#/components/schemas/JwtSubject"
+                                    },
+                                    "archived": {
+                                        "type": "boolean"
+                                    },
+                                    "powerOfAttorneyAgent": {
+                                        "$ref": "#/components/schemas/PowerOfAttorneyAgent"
+                                    },
+                                    "industry": {
+                                        "$ref": "../types.json#/components/schemas/Industry"
+                                    },
+                                    "idTheftScore": {
+                                        "type": "integer"
+                                    },
+                                    "occupation": {
+                                        "$ref": "../types.json#/components/schemas/Occupation"
+                                    },
+                                    "annualIncome": {
+                                        "$ref": "../types.json#/components/schemas/AnnualIncome"
+                                    },
+                                    "sourceOfIncome": {
+                                        "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                                    },
+                                    "annualRevenue": {
+                                        "$ref": "../types.json#/components/schemas/SoleProprietorshipAnnualRevenue"
+                                    },
+                                    "numberOfEmployees": {
+                                        "$ref": "../types.json#/components/schemas/SoleProprietorshipNumberOfEmployees"
+                                    },
+                                    "businessVertical": {
+                                        "$ref": "../types.json#/components/schemas/BusinessVertical"
+                                    },
+                                    "website": { "type": "string" }
+                                },
+                                "additionalProperties": false,
+                                "required": ["createdAt", "status", "fullName"]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/IndividualApplicationRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["id", "type", "attributes"]
+                    }
+                ]
+            },
+            "Application": {
+                "title": "Application",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualApplication", "businessApplication"]
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "individualApplication": "#/components/schemas/IndividualApplication",
+                        "businessApplication": "#/components/schemas/BusinessApplication"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "components": {
+        "schemas": {
+            "AtmLocation": {
+                "title": "Atm Location",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["atmLocation"],
+                        "default": "atmLocation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "network": {
+                                "type": "string"
+                            },
+                            "locationName": {
+                                "type": "string"
+                            },
+                            "coordinates": {
+                                "$ref": "../types.json#/components/schemas/Coordinates"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "distance": {
+                                "type": "integer"
+                            },
+                            "surchargeFree": {
+                                "type": "boolean"
+                            },
+                            "acceptDeposits": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+}

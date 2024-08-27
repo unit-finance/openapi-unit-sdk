@@ -3,7 +3,7 @@
     "info": {
         "title": "Unit OpenAPI specifications",
         "description": "An OpenAPI specifications for unit-sdk clients",
-        "version": "0.0.2"
+        "version": "0.1.0"
     },
     "servers": [
         {
@@ -12,295 +12,304 @@
     ],
     "paths": {
         "/applications/{applicationId}": {
-            "$ref": "./schemas/application_paths.json#/application"
+            "$ref": "./schemas/application/applicationPaths.json#/application"
         },
         "/applications/{applicationId}/cancel": {
-            "$ref": "./schemas/application_paths.json#/cancel_application"
+            "$ref": "./schemas/application/applicationPaths.json#/cancelApplication"
         },
         "/applications": {
-            "$ref": "./schemas/application_paths.json#/applications"
+            "$ref": "./schemas/application/applicationPaths.json#/applications"
         },
         "/application-forms": {
-            "$ref": "./schemas/application_paths.json#/application_forms"
+            "$ref": "./schemas/application/applicationPaths.json#/applicationForms"
         },
         "/applications/{applicationId}/documents/{documentId}": {
-            "$ref": "./schemas/application_paths.json#/upload_pdf_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/": {
-            "$ref": "./schemas/application_paths.json#/upload_png_file"
-        },
-        "/applications/{applicationId}/documents/{documentId}/?": {
-            "$ref": "./schemas/application_paths.json#/upload_jpg_file"
+            "$ref": "./schemas/application/applicationPaths.json#/uploadApplicationDocumentFile"
         },
         "/applications/{applicationId}/documents/{documentId}/back": {
-            "$ref": "./schemas/application_paths.json#/upload_pdf_file_back"
-        },
-        "/applications/{applicationId}/documents/{documentId}/back/": {
-            "$ref": "./schemas/application_paths.json#/upload_png_file_back"
-        },
-        "/applications/{applicationId}/documents/{documentId}/back/?": {
-            "$ref": "./schemas/application_paths.json#/upload_jpg_file_back"
+            "$ref": "./schemas/application/applicationPaths.json#/uploadApplicationDocumentFileBack"
         },
         "/applications/{applicationId}/documents": {
-            "$ref": "./schemas/application_paths.json#/documents"
+            "$ref": "./schemas/application/applicationPaths.json#/documents"
         },
         "/applications/{applicationId}/documents/{documentId}/verify": {
-            "$ref": "./schemas/application_paths.json#/verify_document"
+            "$ref": "./schemas/application/applicationPaths.json#/verifyDocument"
         },
         "/applications/{applicationId}/documents/{documentId}/download": {
-            "$ref": "./schemas/application_paths.json#/download_document"
+            "$ref": "./schemas/application/applicationPaths.json#/downloadDocument"
         },
         "/applications/{applicationId}/documents/{documentId}/download/back": {
-            "$ref": "./schemas/application_paths.json#/download_back_side_document"
+            "$ref": "./schemas/application/applicationPaths.json#/downloadBackSideDocument"
         },
         "/application-forms/{applicationFormId}": {
-            "$ref": "./schemas/application_paths.json#/application_form"
+            "$ref": "./schemas/application/applicationPaths.json#/applicationForm"
+        },
+        "/beneficial-owner/{beneficialOwnerId}": {
+            "$ref": "./schemas/application/applicationPaths.json#/updateBusinessBeneficialOwner"
         },
         "/accounts": {
-            "$ref": "./schemas/account_paths.json#/accounts"
+            "$ref": "./schemas/account/accountPaths.json#/accounts"
         },
         "/accounts/{accountId}": {
-            "$ref": "./schemas/account_paths.json#/account"
+            "$ref": "./schemas/account/accountPaths.json#/account"
         },
         "/accounts/{accountId}/limits": {
-            "$ref": "./schemas/account_paths.json#/get_account_limits"
+            "$ref": "./schemas/account/accountPaths.json#/getAccountLimits"
         },
         "/accounts/{accountId}/unfreeze": {
-            "$ref": "./schemas/account_paths.json#/unfreeze_account"
+            "$ref": "./schemas/account/accountPaths.json#/unfreezeAccount"
         },
         "/accounts/{accountId}/freeze": {
-            "$ref": "./schemas/account_paths.json#/freeze_account"
+            "$ref": "./schemas/account/accountPaths.json#/freezeAccount"
         },
         "/accounts/{accountId}/close": {
-            "$ref": "./schemas/account_paths.json#/close_account"
+            "$ref": "./schemas/account/accountPaths.json#/closeAccount"
         },
         "/accounts/{accountId}/reopen": {
-            "$ref": "./schemas/account_paths.json#/reopen_account"
+            "$ref": "./schemas/account/accountPaths.json#/reopenAccount"
         },
         "/accounts/{accountId}/enter-daca": {
-            "$ref": "./schemas/account_paths.json#/enter_daca"
+            "$ref": "./schemas/account/accountPaths.json#/enterDaca"
         },
         "/accounts/{accountId}/activate-daca": {
-            "$ref": "./schemas/account_paths.json#/activate_daca"
+            "$ref": "./schemas/account/accountPaths.json#/activateDaca"
         },
         "/accounts/{accountId}/deactivate-daca": {
-            "$ref": "./schemas/account_paths.json#/deactivate_daca"
+            "$ref": "./schemas/account/accountPaths.json#/deactivateDaca"
         },
         "/account-end-of-day": {
-            "$ref": "./schemas/account_paths.json#/get_account_end_of_day"
+            "$ref": "./schemas/account/accountPaths.json#/getAccountEndOfDay"
+        },
+        "/accounts/{accountId}/repayment-information": {
+            "$ref": "./schemas/account/accountPaths.json#/repaymentInfo"
         },
         "/customers/{customerId}": {
-            "$ref": "./schemas/customer_paths.json#/customer"
+            "$ref": "./schemas/customer/customerPaths.json#/customer"
         },
         "/customers": {
-            "$ref": "./schemas/customer_paths.json#/list_customers"
+            "$ref": "./schemas/customer/customerPaths.json#/listCustomers"
         },
         "/customers/{customerId}/archive": {
-            "$ref": "./schemas/customer_paths.json#/archive_customer"
+            "$ref": "./schemas/customer/customerPaths.json#/archiveCustomer"
+        },
+        "/customers/{customerId}/authorized-users": {
+            "$ref": "./schemas/customer/customerPaths.json#/authorizedUsers"
         },
         "/payments": {
-            "$ref": "./schemas/payments_paths.json#/get_and_create_payments"
+            "$ref": "./schemas/payment/paymentsPaths.json#/getAndCreatePayments"
         },
         "/payments/{paymentId}": {
-            "$ref": "./schemas/payments_paths.json#/get_and_patch_payment"
+            "$ref": "./schemas/payment/paymentsPaths.json#/getAndUpdatePayment"
         },
         "/payments/{paymentId}/cancel": {
-            "$ref": "./schemas/payments_paths.json#/cancel_payment"
+            "$ref": "./schemas/payment/paymentsPaths.json#/cancelPayment"
         },
         "/received-payments": {
-            "$ref": "./schemas/payments_paths.json#/list_received_payments"
+            "$ref": "./schemas/payment/paymentsPaths.json#/listReceivedPayments"
         },
         "/received-payments/{paymentId}": {
-            "$ref": "./schemas/payments_paths.json#/received_payments"
+            "$ref": "./schemas/payment/paymentsPaths.json#/receivedPayments"
         },
         "/received-payments/{paymentId}/advance": {
-            "$ref": "./schemas/payments_paths.json#/advance_received_payment"
+            "$ref": "./schemas/payment/paymentsPaths.json#/advanceReceivedPayment"
         },
         "/counterparties": {
-            "$ref": "./schemas/counterparty_paths.json#/counterparties"
+            "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterparties"
         },
         "/counterparties/{counterpartyId}": {
-            "$ref": "./schemas/counterparty_paths.json#/counterparty"
+            "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterparty"
         },
         "/counterparties/{counterpartyId}/balance": {
-            "$ref": "./schemas/counterparty_paths.json#/counterparty_balance"
+            "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterpartyBalance"
         },
         "/recurring-payments": {
-            "$ref": "./schemas/payments_paths.json#/recurring_payments"
+            "$ref": "./schemas/payment/paymentsPaths.json#/recurringPayments"
         },
         "/recurring-payments/{paymentId}": {
-            "$ref": "./schemas/payments_paths.json#/get_recurring_payment"
+            "$ref": "./schemas/payment/paymentsPaths.json#/getRecurringPayment"
         },
         "/recurring-payments/{paymentId}/disable": {
-            "$ref": "./schemas/payments_paths.json#/disable_recurring_payment"
+            "$ref": "./schemas/payment/paymentsPaths.json#/disableRecurringPayment"
         },
         "/recurring-payments/{paymentId}/enable": {
-            "$ref": "./schemas/payments_paths.json#/enable_recurring_payment"
+            "$ref": "./schemas/payment/paymentsPaths.json#/enableRecurringPayment"
         },
         "/cards": {
-            "$ref": "./schemas/card_paths.json#/cards"
+            "$ref": "./schemas/card/cardPaths.json#/cards"
         },
         "/cards/{cardId}": {
-            "$ref": "./schemas/card_paths.json#/card"
+            "$ref": "./schemas/card/cardPaths.json#/card"
         },
         "/cards/{cardId}/secure-data/pin/status": {
-            "$ref": "./schemas/card_paths.json#/card_pin_status"
+            "$ref": "./schemas/card/cardPaths.json#/cardPinStatus"
         },
         "/cards/{cardId}/report-stolen": {
-            "$ref": "./schemas/card_paths.json#/report_stolen_card"
+            "$ref": "./schemas/card/cardPaths.json#/reportStolenCard"
         },
         "/cards/{cardId}/report-lost": {
-            "$ref": "./schemas/card_paths.json#/report_lost_card"
+            "$ref": "./schemas/card/cardPaths.json#/reportLostCard"
         },
         "/cards/{cardId}/close": {
-            "$ref": "./schemas/card_paths.json#/close_card"
+            "$ref": "./schemas/card/cardPaths.json#/closeCard"
         },
         "/cards/{cardId}/freeze": {
-            "$ref": "./schemas/card_paths.json#/freeze_card"
+            "$ref": "./schemas/card/cardPaths.json#/freezeCard"
         },
         "/cards/{cardId}/unfreeze": {
-            "$ref": "./schemas/card_paths.json#/unfreeze_card"
+            "$ref": "./schemas/card/cardPaths.json#/unfreezeCard"
         },
         "/cards/{cardId}/limits": {
-            "$ref": "./schemas/card_paths.json#/card_limits"
+            "$ref": "./schemas/card/cardPaths.json#/cardLimits"
         },
         "/authorizations": {
-            "$ref": "./schemas/authorization_paths.json#/authorizations"
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorizations"
         },
         "/authorizations/{authorizationId}": {
-            "$ref": "./schemas/authorization_paths.json#/get_authorization"
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorization"
         },
         "/authorization-requests": {
-            "$ref": "./schemas/authorization_paths.json#/get_authorizations_requests"
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorizationsRequests"
         },
         "/authorization-requests/{authorizationId}": {
-            "$ref": "./schemas/authorization_paths.json#/get_authorization_requests"
+            "$ref": "./schemas/authorization/authorizationPaths.json#/authorizationRequest"
         },
         "/authorization-requests/{authorizationId}/approve": {
-            "$ref": "./schemas/authorization_paths.json#/approve_authorization_requests"
+            "$ref": "./schemas/authorization/authorizationPaths.json#/approveAuthorizationRequests"
         },
         "/authorization-requests/{authorizationId}/decline": {
-            "$ref": "./schemas/authorization_paths.json#/decline_authorization_requests"
+            "$ref": "./schemas/authorization/authorizationPaths.json#/declineAuthorizationRequests"
         },
         "/statements": {
-            "$ref": "./schemas/statement_paths.json#/get_statements"
+            "$ref": "./schemas/statement/statementPaths.json#/getStatements"
         },
         "/statements/{statementId}/html": {
-            "$ref": "./schemas/statement_paths.json#/get_statement_html"
+            "$ref": "./schemas/statement/statementPaths.json#/getStatementHtml"
         },
         "/statements/{statementId}/pdf": {
-            "$ref": "./schemas/statement_paths.json#/get_statement_pdf"
+            "$ref": "./schemas/statement/statementPaths.json#/getStatementPdf"
         },
         "/statements/{accountId}/bank/pdf": {
-            "$ref": "./schemas/statement_paths.json#/get_statement_bank_pdf"
+            "$ref": "./schemas/statement/statementPaths.json#/getStatementBankPdf"
         },
         "/rewards": {
-            "$ref": "./schemas/reward_paths.json#/rewards"
+            "$ref": "./schemas/reward/rewardPaths.json#/rewards"
         },
         "/rewards/{rewardId}": {
-            "$ref": "./schemas/reward_paths.json#/get_reward"
+            "$ref": "./schemas/reward/rewardPaths.json#/getReward"
         },
         "/events": {
-            "$ref": "./schemas/event_paths.json#/list_events"
+            "$ref": "./schemas/event/eventPaths.json#/listEvents"
         },
         "/events/{eventId}": {
-            "$ref": "./schemas/event_paths.json#/event"
+            "$ref": "./schemas/event/eventPaths.json#/event"
         },
         "/institutions/{routingNumber}": {
-            "$ref": "./schemas/institution_paths.json#/get_institution"
+            "$ref": "./schemas/institution/institutionPaths.json#/getInstitution"
         },
         "/fees": {
-            "$ref": "./schemas/fee_paths.json#/create_fee"
+            "$ref": "./schemas/fee/feePaths.json#/createFee"
         },
         "/check-deposits": {
-            "$ref": "./schemas/check_deposit_paths.json#/check_deposits"
+            "$ref": "./schemas/check/checkDepositPaths.json#/checkDeposits"
         },
         "/check-deposits/{checkDepositId}": {
-            "$ref": "./schemas/check_deposit_paths.json#/check_deposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/checkDeposit"
         },
         "/check-deposits/{checkDepositId}/confirm": {
-            "$ref": "./schemas/check_deposit_paths.json#/confirm_check_deposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/confirmCheckDeposit"
         },
         "/check-deposits/{checkDepositId}/front": {
-            "$ref": "./schemas/check_deposit_paths.json#/get_front_check_deposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/getFrontCheckDeposit"
         },
         "/check-deposits/{checkDepositId}/back": {
-            "$ref": "./schemas/check_deposit_paths.json#/get_back_check_deposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/getBackCheckDeposit"
         },
         "/users/{userId}/api-tokens": {
-            "$ref": "./schemas/token_paths.json#/api_tokens"
+            "$ref": "./schemas/token/tokenPaths.json#/apiTokens"
         },
         "/users/{userId}/api-tokens/{tokenId}": {
-            "$ref": "./schemas/token_paths.json#/delete_token"
+            "$ref": "./schemas/token/tokenPaths.json#/deleteToken"
         },
         "/customers/{customerId}/token": {
-            "$ref": "./schemas/token_paths.json#/create_customer_token"
+            "$ref": "./schemas/token/tokenPaths.json#/createCustomerToken"
         },
         "/customers/{customerId}/token/verification": {
-            "$ref": "./schemas/token_paths.json#/create_customer_token_verification"
+            "$ref": "./schemas/token/tokenPaths.json#/createCustomerTokenVerification"
         },
         "/webhooks": {
-            "$ref": "./schemas/webhook_paths.json#/webhooks"
+            "$ref": "./schemas/webhook/webhookPaths.json#/webhooks"
         },
         "/webhooks/{webhookId}": {
-            "$ref": "./schemas/webhook_paths.json#/webhook"
+            "$ref": "./schemas/webhook/webhookPaths.json#/webhook"
         },
         "/webhooks/{webhookId}/enable": {
-            "$ref": "./schemas/webhook_paths.json#/enable_webhook"
+            "$ref": "./schemas/webhook/webhookPaths.json#/enableWebhook"
         },
         "/webhooks/{webhookId}/disable": {
-            "$ref": "./schemas/webhook_paths.json#/disable_webhook"
+            "$ref": "./schemas/webhook/webhookPaths.json#/disableWebhook"
         },
         "/atm-locations": {
-            "$ref": "./schemas/atm_location_paths.json#/list_atm_locations"
+            "$ref": "./schemas/atm/atmLocationPaths.json#/listAtmLocations"
         },
         "/accounts/{accountId}/transactions/{transactionId}": {
-            "$ref": "./schemas/transaction_paths.json#/transaction"
+            "$ref": "./schemas/transaction/transactionPaths.json#/transaction"
         },
         "/transactions": {
-            "$ref": "./schemas/transaction_paths.json#/list_transactions"
+            "$ref": "./schemas/transaction/transactionPaths.json#/listTransactions"
         },
         "/disputes": {
-            "$ref": "./schemas/dispute_paths.json#/list_disputes"
+            "$ref": "./schemas/dispute/disputePaths.json#/listDisputes"
         },
         "/disputes/{disputeId}": {
-            "$ref": "./schemas/dispute_paths.json#/get_dispute"
+            "$ref": "./schemas/dispute/disputePaths.json#/getDispute"
         },
         "/repayments": {
-            "$ref": "./schemas/repayment_paths.json#/repayments"
+            "$ref": "./schemas/repayment/repaymentPaths.json#/repayments"
         },
         "/repayments/{repaymentId}": {
-            "$ref": "./schemas/repayment_paths.json#/repayment"
+            "$ref": "./schemas/repayment/repaymentPaths.json#/repayment"
+        },
+        "/recurring-repayments": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/recurringRepayments"
+        },
+        "/recurring-repayments/{recurringRepaymentId}": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/recurringRepayment"
+        },
+        "/recurring-repayments/{recurringRepaymentId}/disable": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/disableRecurringRepayment"
+        },
+        "/recurring-repayments/{recurringRepaymentId}/enable": {
+            "$ref": "./schemas/repayment/recurring-repayment/recurringRepaymentPaths.json#/enableRecurringRepayment"
         },
         "/check-payments": {
-            "$ref": "./schemas/check_payment_paths.json#/check_payments"
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPayments"
         },
         "/check-payments/{checkPaymentId}": {
-            "$ref": "./schemas/check_payment_paths.json#/check_payment"
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPayment"
         },
         "/check-payments/{checkPaymentId}/approve": {
-            "$ref": "./schemas/check_payment_paths.json#/check_payment_approve"
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPaymentApprove"
         },
         "/check-payments/{checkPaymentId}/cancel": {
-            "$ref": "./schemas/check_payment_paths.json#/check_payment_cancel"
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPaymentCancel"
         },
         "/check-payments/{checkPaymentId}/return": {
-            "$ref": "./schemas/check_payment_paths.json#/check_payment_return"
+            "$ref": "./schemas/check/checkPaymentPaths.json#/checkPaymentReturn"
         },
         "/check-payments/{checkPaymentId}/front": {
-            "$ref": "./schemas/check_payment_paths.json#/get_check_payment_front"
+            "$ref": "./schemas/check/checkPaymentPaths.json#/getCheckPaymentFront"
         },
         "/check-payments/{checkPaymentId}/back": {
-            "$ref": "./schemas/check_payment_paths.json#/get_check_payment_back"
+            "$ref": "./schemas/check/checkPaymentPaths.json#/getCheckPaymentBack"
         },
         "/stop-payments": {
-            "$ref": "./schemas/stop_payment_paths.json#/stop_payments"
+            "$ref": "./schemas/payment/stopPaymentPaths.json#/stopPayments"
         },
-        "/stop-payments/{stop_payment_id}": {
-            "$ref": "./schemas/stop_payment_paths.json#/stop_payment"
+        "/stop-payments/{stopPaymentId}": {
+            "$ref": "./schemas/payment/stopPaymentPaths.json#/stopPayment"
         },
-        "/stop-payments/{stop_payment_id}/disable": {
-            "$ref": "./schemas/stop_payment_paths.json#/disable_stop_payment"
+        "/stop-payments/{stopPaymentId}/disable": {
+            "$ref": "./schemas/payment/stopPaymentPaths.json#/disableStopPayment"
         }
     },
     "components": {

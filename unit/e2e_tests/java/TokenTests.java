@@ -1,45 +1,53 @@
-package org.openapitools.client;
+package unit.java.sdk;
 
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.openapitools.client.api.CreateCustomerTokenApi;
-import org.openapitools.client.api.GetListOrgApiTokensApi;
-import org.openapitools.client.model.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
+import unit.java.sdk.api.UnitApi;
+import unit.java.sdk.model.ApiToken;
+import unit.java.sdk.model.CreateApiTokenRequestDataAttributesResourcesInner;
+import unit.java.sdk.model.CreateCustomerTokenRequest;
+import unit.java.sdk.model.CreateCustomerTokenRequestData;
+import unit.java.sdk.model.CreateCustomerTokenRequestDataAttributes;
+import unit.java.sdk.model.CustomerToken;
+import unit.java.sdk.model.UnitCustomerTokenResponse;
+
 public class TokenTests {
-    @BeforeAll
-    static void init() {
-        String access_token = System.getenv("access_token");
-        ApiClient cl = new ApiClient();
-        cl.setBearerToken(access_token);
-        Configuration.setDefaultApiClient(cl);
-    }
+    UnitApi unitApi = TestHelpers.GenerateUnitApiClient();
 
     @Test
     public void GetOrgTokensTest() throws ApiException {
-        GetListOrgApiTokensApi listApi = new GetListOrgApiTokensApi();
-        List<ApiToken> response = listApi.execute("252").getData();
+        // TODO: Is it alright that userId is hardcoded in the test?
+        List<ApiToken> response = unitApi.getApiTokensList("252").getData();
 
         for (ApiToken t: response) {
-            assert t.getType().equals("apiToken");
+            assert t.getType().equals(ApiToken.TypeEnum.APITOKEN);
         }
     }
 
     @Test
     public void CreateCustomerToken() throws ApiException {
-        CreateCustomerTokenApi createApi = new CreateCustomerTokenApi();
-        ExecuteRequest16 request = new ExecuteRequest16();
-
-        CreateCustomerToken cct = new CreateCustomerToken();
-        CreateCustomerTokenAttributes attributes = new CreateCustomerTokenAttributes();
+        CreateCustomerTokenRequest request = new CreateCustomerTokenRequest();
+        CreateCustomerTokenRequestData cct = new CreateCustomerTokenRequestData();
+        CreateCustomerTokenRequestDataAttributes attributes = new CreateCustomerTokenRequestDataAttributes();
         attributes.setScope("customers accounts");
+
+        CreateApiTokenRequestDataAttributesResourcesInner resource = new CreateApiTokenRequestDataAttributesResourcesInner();
+        resource.setType(CreateApiTokenRequestDataAttributesResourcesInner.TypeEnum.ACCOUNT);
+        List<String> Ids = new ArrayList<String>();
+        Ids.add("1527981");
+        resource.setIds(Ids);
+        
+        List<CreateApiTokenRequestDataAttributesResourcesInner> resources = new ArrayList<CreateApiTokenRequestDataAttributesResourcesInner>();
+        resources.add(resource);
+        attributes.setResources(resources);
+        
         cct.setAttributes(attributes);
         request.setData(cct);
 
-        UnitCustomerTokenResponse res = createApi.execute("1527981", request);
-        assert res.getData().getType().equals("customerBearerToken");
+        UnitCustomerTokenResponse res = unitApi.createCustomerToken("1527981", request);
+        assert res.getData().getType().equals(CustomerToken.TypeEnum.CUSTOMERBEARERTOKEN);
     }
 }

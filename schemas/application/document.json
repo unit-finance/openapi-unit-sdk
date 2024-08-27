@@ -1,0 +1,92 @@
+{
+    "components": {
+        "schemas": {
+            "ApplicationDocument": {
+                "title": "Application Document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["document"],
+                        "default": "document"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "documentType": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "ssn": {
+                                "$ref": "../types.json#/components/schemas/Ssn"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "matriculaConsular": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "dateOfIncorporation": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "stateOfIncorporation": {
+                                "type": "string"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "ein": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "reasonCode": {
+                                "type": "string"
+                            },
+                            "reason": {
+                                "type": "string"
+                            },
+                            "evaluationId": {
+                                "type": "string"
+                            },
+                            "frontDocumentId": {
+                                "type": "string"
+                            },
+                            "backDocumentId": {
+                                "type": "string"
+                            },
+                            "frontDocumentStoreId": {
+                                "type": "string"
+                            },
+                            "backDocumentStoreId": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["status"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id", "attributes"]
+            }
+        }
+    }
+}

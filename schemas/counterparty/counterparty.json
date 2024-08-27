@@ -1,0 +1,89 @@
+{
+    "components": {
+        "schemas": {
+            "CounterpartyRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Counterparty Relationships",
+                        "required": ["customer"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    }
+                ]
+            },
+            "Counterparty": {
+                "title": "Counterparty Document",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "routingNumber": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "accountNumber": {
+                                "type": "string",
+                                "pattern": "^\\d{1,17}$"
+                            },
+                            "accountType": {
+                                "type": "string",
+                                "enum": ["Checking", "Savings", "Loan"]
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": ["Business", "Person", "Unknown"]
+                            },
+                            "name": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50
+                            },
+                            "bank": {
+                                "type": "string"
+                            },
+                            "permissions": {
+                                "type": "string",
+                                "enum": [
+                                    "CreditOnly",
+                                    "DebitOnly",
+                                    "CreditAndDebit"
+                                ]
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "required": [
+                            "routingNumber",
+                            "accountNumber",
+                            "accountType",
+                            "type",
+                            "name",
+                            "createdAt",
+                            "permissions"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CounterpartyRelationships"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+}

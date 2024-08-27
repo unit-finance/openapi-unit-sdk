@@ -1,0 +1,43 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateAchReceivedPayment": {
+                "title": "Update ACH Received Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achReceivedPayment"],
+                        "default": "achReceivedPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateReceivedPaymentRequest": {
+                "title": "Update Received Payment",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/UpdateAchReceivedPayment"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+}

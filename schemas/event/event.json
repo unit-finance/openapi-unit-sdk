@@ -1,0 +1,29 @@
+{
+    "components": {
+        "schemas": {
+            "Event": {
+                "title": "Event Resource",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {}
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "title": "Event Relationships",
+                        "properties": {}
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "id"]
+            }
+        }
+    }
+}

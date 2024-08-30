@@ -3,10 +3,9 @@ import unittest
 
 from helpers.helpers import create_api_client, create_individual_application_request, \
     create_business_application_request
-from swagger_client import CreateApplicationApi, CreateAnAccountApi, \
-    CreateDepositAccountAttributes, CreateDepositAccountRelationships, CreateDepositAccount, GetListAccountsApi, \
-    GetAccountApi, CloseAnAccountApi, ReopenAnAccountApi, FreezeAnAccountApi, UnfreezeAccountApi, \
-    CreateCreditAccountAttributes, CreateCreditAccount
+from dist.pythonsdk.openapi_client.api.unit_api import UnitApi
+from dist.pythonsdk.openapi_client.models import CreateDepositAccountAttributes, CreateDepositAccountRelationships, CreateCreditAccountAttributes, \
+    CreateCreditAccount, CreateDepositAccount
 
 
 class TestAccountApi(unittest.TestCase):
@@ -20,11 +19,16 @@ class TestAccountApi(unittest.TestCase):
         pass
 
     def create_individual_customer(self):
-        app = CreateApplicationApi(self.api_client).execute(create_individual_application_request()).data
+        # Ensure that create_individual_application_request() returns the correct type
+        application_request = create_individual_application_request()
+
+        # Pass the application_request directly to create_application
+        app = UnitApi.create_application(self.api_client).execute(application_request).data
+
         return app.relationships.customer.data.id
 
     def create_business_customer(self):
-        app = CreateApplicationApi(self.api_client).execute(create_business_application_request()).data
+        app = UnitApi.create_application(self.api_client).execute(create_business_application_request()).data
         return app.relationships.customer.data.id
 
     def create_deposit_account(self):
@@ -35,7 +39,7 @@ class TestAccountApi(unittest.TestCase):
                                                                     "id": customer_id}})
         req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-        response = CreateAnAccountApi(self.api_client).execute({"data": req})
+        response = UnitApi.create_account(self.api_client).execute({"data": req})
         return response.data
 
     def create_credit_account_for_business(self):
@@ -45,7 +49,7 @@ class TestAccountApi(unittest.TestCase):
                                                                              "id": customer_id}})
 
         req = CreateCreditAccount("creditAccount", attributes, relationships)
-        response = CreateAnAccountApi(self.api_client).execute({"data": req})
+        response = UnitApi.create_account(self.api_client).execute({"data": req})
 
         return response.data
 
@@ -61,7 +65,7 @@ class TestAccountApi(unittest.TestCase):
                                                                              "id": customer_id}})
         req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-        response = CreateAnAccountApi(self.api_client).execute({"data": req})
+        response = UnitApi.create_account(self.api_client).execute({"data": req})
         return response.data
 
     def test_create_deposit_account(self):
@@ -75,22 +79,22 @@ class TestAccountApi(unittest.TestCase):
         assert account.type == "depositAccount"
 
     def test_list_accounts(self):
-        res = GetListAccountsApi(self.api_client).execute() #no unit response type
+        res = UnitApi.get_accounts_list(self.api_client).execute() #no unit response type
         for acc in res.data:
             assert acc.type == "depositAccount"
 
     def test_list_accounts(self):
-        res = GetListAccountsApi(self.api_client).execute() #no unit response type
+        res = UnitApi.get_accounts_list(self.api_client).execute() #no unit response type
         for acc in res.data:
             assert acc.type == "depositAccount"
-            response_account = GetAccountApi(self.api_client).execute(acc.id).data
+            response_account = UnitApi.get_account(self.api_client).execute(acc.id).data
             assert acc.type == response_account.type
             assert acc.id == response_account.id
 
     def close_account(self, close_reason="Fraud"):
         account_id = self.create_deposit_account().id
 
-        account = CloseAnAccountApi(self.api_client).execute({"data": {
+        account = UnitApi.close_account(self.api_client).execute({"data": {
             "type": "depositAccountClose",
             "attributes": {
                 "reason": close_reason
@@ -111,7 +115,7 @@ class TestAccountApi(unittest.TestCase):
         account = self.close_account("ByCustomer")
         assert account.type == "depositAccount"
 
-        reopen_account = ReopenAnAccountApi(self.api_client).execute(account.id).data
+        reopen_account = UnitApi.reopen_account(self.api_client).execute(account.id).data
         assert reopen_account.id == account.id
         assert reopen_account.type == "depositAccount"
         assert reopen_account.attributes.status == "Open"
@@ -121,7 +125,7 @@ class TestAccountApi(unittest.TestCase):
 
         freeze_reason_text = "This is a test - SDK"
 
-        account = FreezeAnAccountApi(self.api_client).execute({"data": {
+        account = UnitApi.freeze_account(self.api_client).execute({"data": {
             "type": "accountFreeze",
             "attributes": {
                 "reason": "Other",
@@ -143,7 +147,7 @@ class TestAccountApi(unittest.TestCase):
         account = self.freeze_account()
         assert account.type == "depositAccount"
 
-        reopen_account = UnfreezeAccountApi(self.api_client).execute(account.id).data
+        reopen_account = UnitApi.unfreeze_account(self.api_client).execute(account.id).data
         assert reopen_account.id == account.id
         assert reopen_account.type == "depositAccount"
         assert reopen_account.attributes.status == "Open"

@@ -1,7 +1,8 @@
 import os
 import unittest
-from e2e_tests.python.helpers.helpers import *
-from swagger_client import *
+from helpers.helpers import *
+from dist.pythonsdk.openapi_client.api.unit_api import UnitApi
+from dist.pythonsdk.openapi_client.models import *
 
 CustomerTypes = ["individualCustomer", "businessCustomer"]
 
@@ -30,12 +31,12 @@ class TestCustomerApi(unittest.TestCase):
         pass
 
     def list_customers(self):
-        return GetListCustomersApi(self.api_client).execute()
+        return UnitApi.get_customers_list(self.api_client).execute()
 
     def test_get_customer(self):
         customers = self.list_customers()
         for customer in customers.data:
-            GetCustomerApi(self.api_client).execute(customer.id)
+            UnitApi.get_customer(self.api_client).execute(customer.id)
             assert customer.type in CustomerTypes
 
     def test_list_customers(self):
@@ -48,7 +49,7 @@ class TestCustomerApi(unittest.TestCase):
 
         for customer in customers.data:
             if customer.type == customer_type:
-                return GetCustomerApi(self.api_client).execute(customer.id)
+                return UnitApi.get_customer(self.api_client).execute(customer.id)
 
         return None
 
@@ -57,7 +58,7 @@ class TestCustomerApi(unittest.TestCase):
         _attributes = UpdateIndividualCustomerAttributes(address=_address, tags={"test": "updated"})
         request = UpdateIndividualCustomer(type="individualCustomer", attributes=_attributes)
 
-        response = UpdateCustomerApi(self.api_client).execute(customer_id=self.get_customer().data.id, body={"data": request})
+        response = UnitApi.update_customer(self.api_client).execute(customer_id=self.get_customer().data.id, body={"data": request})
         assert response.data.type == "individualCustomer"
 
     if __name__ == '__main__':

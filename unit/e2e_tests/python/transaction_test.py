@@ -1,8 +1,8 @@
 import unittest
 
-from e2e_tests.python.helpers.helpers import create_api_client
-from swagger_client import GetListTransactionsApi
-
+from helpers.helpers import *
+from dist.pythonsdk.openapi_client.api.unit_api import UnitApi
+from dist.pythonsdk.openapi_client.models import *
 
 class TestTransactionApi(unittest.TestCase):
     """TransactionApi unit test stubs"""
@@ -14,7 +14,7 @@ class TestTransactionApi(unittest.TestCase):
         pass
 
     def test_get_list_transactions(self):
-        response = GetListTransactionsApi(self.api_client).execute()
+        response = UnitApi.get_transactions_list(self.api_client).execute()
         for t in response.data:
             assert "Transaction" in t.type
             # res = GetPaymentApi(self.api_client).execute(p.id).data

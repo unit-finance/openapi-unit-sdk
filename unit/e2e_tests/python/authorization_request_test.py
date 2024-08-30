@@ -2,8 +2,8 @@ from __future__ import absolute_import
 
 import unittest
 
-from e2e_tests.python.helpers.helpers import create_api_client
-from swagger_client import GetAuthorizationRequestApi, GetListAuthorizationRequestsApi
+from helpers.helpers import create_api_client
+from dist.pythonsdk.openapi_client.api.unit_api import UnitApi
 
 
 class TestAuthorizationRequestsApi(unittest.TestCase):
@@ -16,13 +16,13 @@ class TestAuthorizationRequestsApi(unittest.TestCase):
         pass
 
     def test_list_authorization_requests(self):
-        res = GetListAuthorizationRequestsApi(self.api_client).execute()
+        res = UnitApi.get_authorizations_list(self.api_client).execute()
         for app in res.data:
             assert "AuthorizationRequest" in app.type
 
     def test_list_and_get_authorization_requests(self):
-        res = GetListAuthorizationRequestsApi(self.api_client).execute()
-        get_application_request_api = GetAuthorizationRequestApi(self.api_client)
+        res = UnitApi.get_authorizations_list(self.api_client).execute()
+        get_application_request_api = UnitApi.get_authorization_request(self.api_client)
 
         for app in res.data:
             assert "AuthorizationRequest" in app.type

@@ -1,12 +1,8 @@
 import unittest
 
-from e2e_tests.helpers import create_api_client, create_individual_application_request, create_relationship, \
-    create_counterparty_dto, create_wire_counterparty_dto
-from swagger_client import CreateBookPayment, CreateBookPaymentAttributes, \
-    CreateBookPaymentRelationships, CreateDepositAccountAttributes, CreateDepositAccountRelationships, \
-    CreateDepositAccount, CreateAnAccountApi, CreateAPaymentApi, CreateApplicationApi, CreateAchPayment, \
-    CreateAchPaymentAttributes, CreateAchPaymentRelationships, Address, CreateWirePayment, CreateWirePaymentAttributes, \
-    CreateAchPaymentPlaid, CreateAchPaymentPlaidAttributes
+from helpers.helpers import *
+from dist.pythonsdk.openapi_client.models import *
+from dist.pythonsdk.openapi_client.api.unit_api import UnitApi
 
 
 class TestPaymentApi(unittest.TestCase):
@@ -19,7 +15,7 @@ class TestPaymentApi(unittest.TestCase):
         pass
 
     def create_individual_customer(self):
-        app = CreateApplicationApi(self.api_client).create_application(create_individual_application_request()).data
+        app = UnitApi.create_application(self.api_client).create_application(create_individual_application_request()).data
         return app.relationships.customer.data.id
 
     def create_deposit_account(self):
@@ -30,7 +26,7 @@ class TestPaymentApi(unittest.TestCase):
                                                                     "id": customer_id}})
         req = CreateDepositAccount("depositAccount", attributes, relationships)
 
-        response = CreateAnAccountApi(self.api_client).create_account({"data": req})
+        response = UnitApi.create_account(self.api_client).create_account({"data": req})
         return response.data.id
 
     # def test_get_payments_list(self):
@@ -55,7 +51,7 @@ class TestPaymentApi(unittest.TestCase):
         relationships = CreateBookPaymentRelationships(create_relationship("depositAccount", id1),
                                                        create_relationship("depositAccount", id2))
         req = CreateBookPayment("bookPayment", attributes, relationships)
-        res = CreateAPaymentApi(self.api_client).execute({"data": req})
+        res = UnitApi.create_payment(self.api_client).execute({"data": req})
 
         assert res.data.type == "bookPayment"
 
@@ -67,7 +63,7 @@ class TestPaymentApi(unittest.TestCase):
         relationships = CreateAchPaymentRelationships(create_relationship("depositAccount", account_id))
         req = CreateAchPayment("achPayment", attributes, relationships)
 
-        res = CreateAPaymentApi(self.api_client).execute({"data": req})
+        res = UnitApi.create_payment(self.api_client).execute({"data": req})
 
         assert res.data.type == "achPayment"
 
@@ -82,7 +78,7 @@ class TestPaymentApi(unittest.TestCase):
 
         req = CreateWirePayment("wirePayment", attributes, relationships)
 
-        res = CreateAPaymentApi(self.api_client).execute({"data": req})
+        res = UnitApi.create_payment(self.api_client).execute({"data": req})
 
         assert res.data.type == "wirePayment"
 
@@ -95,7 +91,7 @@ class TestPaymentApi(unittest.TestCase):
         relationships = CreateAchPaymentRelationships(create_relationship("depositAccount", account_id))
 
         req = CreateAchPaymentPlaid("achPayment", attributes, relationships)
-        res = CreateAPaymentApi(self.api_client).execute({"data": req})
+        res = UnitApi.create_payment(self.api_client).execute({"data": req})
 
         assert res.data.type == "achPayment"
 

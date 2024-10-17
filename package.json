@@ -1,14 +1,15 @@
 {
     "scripts": {
         "bundle": "redocly bundle openapi.json -o dist/bundledSchema.json",
-        "generate-java": "rm -rf ./dist/java-sdk && npm run bundle && npx mkdirp dist/java-sdk/src/test/java/unit/java/sdk && cp -a ./unit/e2e_tests/java/. ./dist/java-sdk/src/test/java/unit/java/sdk && openapi-generator-cli generate -g java -i ./dist/bundledSchema.json -o ./dist/java-sdk -p hideGenerationTimestamp=true -p packageName=unit.java.sdk -p modelPackage=unit.java.sdk.model -p apiPackage=unit.java.sdk.api --library native -p useJakartaEe=true --openapi-normalizer REFACTOR_ALLOF_WITH_PROPERTIES_ONLY=true",
+        "fix-java-file-get-requests": "ts-node ./scripts/java/fixFileRelatedGetRequests.ts",
+        "generate-java": "rm -rf ./dist/java-sdk && npm run bundle && npx mkdirp dist/java-sdk/src/test/java/unit/java/sdk && cp -a ./unit/e2e_tests/java/. ./dist/java-sdk/src/test/java/unit/java/sdk && openapi-generator-cli generate -g java -i ./dist/bundledSchema.json -o ./dist/java-sdk -p hideGenerationTimestamp=true -p packageName=unit.java.sdk -p modelPackage=unit.java.sdk.model -p apiPackage=unit.java.sdk.api --library native -p useJakartaEe=true --openapi-normalizer REFACTOR_ALLOF_WITH_PROPERTIES_ONLY=true && npm run fix-java-file-get-requests -- --path=./dist/java-sdk/src/main/java/unit/java/sdk/api/UnitApi.java",
         "generate-ruby": "rm -rf ./dist/ruby-sdk && npm run bundle && cp -r unit ./dist/ruby-sdk && openapi-generator-cli generate -g ruby -i ./dist/bundledSchema.json -o ./dist/ruby-sdk",
         "generate-node": "rm -rf ./dist/node-sdk && npm run bundle && openapi-generator-cli generate -g typescript-axios -i ./dist/bundledSchema.json -o ./dist/node-sdk",
         "lint": "redocly lint --config .redocly.yaml openapi.json",
         "format": "prettier ./schemas --write"
     },
     "dependencies": {
-        "@openapitools/openapi-generator-cli": "^2.13.4",
+        "@openapitools/openapi-generator-cli": "^2.14.0",
         "@redocly/cli": "^1.13.0",
         "prettier": "^3.2.5",
         "ts-node": "^10.9.2"

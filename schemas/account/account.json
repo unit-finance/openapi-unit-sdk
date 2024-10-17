@@ -268,6 +268,117 @@
                     }
                 ]
             },
+            "WalletAccount": {
+                "title": "Wallet Account",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Account"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "enum": ["Open", "Closed", "Frozen"]
+                                    },
+                                    "walletTerms": {
+                                        "type": "string"
+                                    },
+                                    "routingNumber": {
+                                        "type": "string"
+                                    },
+                                    "accountNumber": {
+                                        "type": "string"
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "default": "USD"
+                                    },
+                                    "balance": {
+                                        "type": "integer"
+                                    },
+                                    "hold": {
+                                        "type": "integer"
+                                    },
+                                    "available": {
+                                        "type": "integer"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    "closeReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ByCustomer",
+                                            "Fraud",
+                                            "Overdue",
+                                            "NegativeBalance",
+                                            "ByBank",
+                                            "BreachOfTermsAndConditions",
+                                            "NoAccountActivity",
+                                            "ProgramChange"
+                                        ]
+                                    },
+                                    "fraudReason": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ACHActivity",
+                                            "CardActivity",
+                                            "CheckActivity",
+                                            "ApplicationHistory",
+                                            "AccountActivity",
+                                            "ClientIdentified",
+                                            "IdentityTheft",
+                                            "LinkedToFraudulentCustomer"
+                                        ]
+                                    },
+                                    "freezeReason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": [
+                                    "createdAt",
+                                    "name",
+                                    "creditTerms",
+                                    "currency",
+                                    "balance",
+                                    "hold",
+                                    "available",
+                                    "tags",
+                                    "status",
+                                    "creditLimit"
+                                ]
+                            },
+                            "relationships": {
+                                "allOf": [
+                                    {
+                                        "type": "object",
+                                        "title": "Wallet Account Relationships",
+                                        "additionalProperties": true,
+                                        "required": ["customer"]
+                                    },
+                                    {
+                                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                                    }
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
             "OrgGeneralLedgerAccount": {
                 "title": "Org General Ledger Account",
                 "type": "object",
@@ -511,14 +622,19 @@
                     },
                     "type": {
                         "type": "string",
-                        "enum": ["depositAccount", "creditAccount"]
+                        "enum": [
+                            "depositAccount",
+                            "creditAccount",
+                            "walletAccount"
+                        ]
                     }
                 },
                 "discriminator": {
                     "propertyName": "type",
                     "mapping": {
                         "depositAccount": "#/components/schemas/DepositAccount",
-                        "creditAccount": "#/components/schemas/CreditAccount"
+                        "creditAccount": "#/components/schemas/CreditAccount",
+                        "walletAccount": "#/components/schemas/WalletAccount"
                     }
                 }
             }

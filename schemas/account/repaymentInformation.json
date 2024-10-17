@@ -1,56 +1,59 @@
 {
     "components": {
         "schemas": {
+            "RepaymentInformation": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["creditAccountRepaymentInformation"],
+                        "default": "creditAccountRepaymentInformation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "remainingAmountDue": {
+                                "type": "integer"
+                            },
+                            "remainingAmountOverdue": {
+                                "type": "integer"
+                            },
+                            "initiatedRepayments": {
+                                "type": "integer"
+                            },
+                            "statementPeriodStart": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "statementPeriodEnd": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "nextRepaymentDueDate": {
+                                "type": "string",
+                                "format": "date"
+                            }
+                        },
+                        "required": [
+                            "remainingAmountDue",
+                            "remainingAmountOverdue",
+                            "initiatedRepayments",
+                            "statementPeriodStart",
+                            "statementPeriodEnd",
+                            "nextRepaymentDueDate"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            },
             "UnitRepaymentInformationResponse": {
                 "type": "object",
                 "title": "Credit Account Repayment Information Response",
                 "properties": {
                     "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": ["creditAccountRepaymentInformation"],
-                                "default": "creditAccountRepaymentInformation"
-                            },
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "remainingAmountDue": {
-                                        "type": "integer"
-                                    },
-                                    "remainingAmountOverdue": {
-                                        "type": "integer"
-                                    },
-                                    "initiatedRepayments": {
-                                        "type": "integer"
-                                    },
-                                    "statementPeriodStart": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "statementPeriodEnd": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "nextRepaymentDueDate": {
-                                        "type": "string",
-                                        "format": "date"
-                                    }
-                                },
-                                "required": [
-                                    "remainingAmountDue",
-                                    "remainingAmountOverdue",
-                                    "initiatedRepayments",
-                                    "statementPeriodStart",
-                                    "statementPeriodEnd",
-                                    "nextRepaymentDueDate"
-                                ],
-                                "additionalProperties": false
-                            }
-                        },
-                        "required": ["type", "attributes"],
-                        "additionalProperties": false
+                        "$ref": "#/components/schemas/RepaymentInformation"
                     }
                 }
             }

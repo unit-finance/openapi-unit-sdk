@@ -1,4 +1,29 @@
 {
+    "componenets": {
+        "schemas": {
+            "UnitCheckDepositResponse": {
+                "type": "object",
+                "title": "Unit Check Deposit Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
+                    }
+                }
+            },
+            "UnitListCheckDepositResponse": {
+                "type": "object",
+                "title": "Unit List Check Deposits Response",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
+                        }
+                    }
+                }
+            }
+        }
+    },
     "checkDeposits": {
         "get": {
             "tags": ["unit"],
@@ -73,16 +98,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit List Check Deposits Response",
-                                "properties": {
-                                    "data": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
-                                        }
-                                    }
-                                }
+                                "$ref": "#/componenets/schemas/UnitListCheckDepositResponse"
                             }
                         }
                     }
@@ -112,13 +128,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit List Check Deposits Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
-                                    }
-                                }
+                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -150,13 +160,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Check Deposit Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
-                                    }
-                                }
+                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -197,13 +201,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Update Check Deposit Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
-                                    }
-                                }
+                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -215,7 +213,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "confirmCheckDeposit",
-
             "parameters": [
                 {
                     "schema": {
@@ -229,19 +226,23 @@
             ],
             "summary": "Confirm by Id",
             "description": "Confirm a Check Deposit from API ",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./confirmCheckDeposit.json#/componenets/schemas/ConfirmCheckDepositRequest"
+                        }
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "Successful Response",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Confirm Check Deposit Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./checkDeposit.json#/components/schemas/CheckDeposit"
-                                    }
-                                }
+                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }

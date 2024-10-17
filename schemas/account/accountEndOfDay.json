@@ -15,29 +15,6 @@
                     }
                 ]
             },
-            "Attributes": {
-                "type": "object",
-                "properties": {
-                    "date": {
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "balance": {
-                        "type": "integer"
-                    },
-                    "hold": {
-                        "type": "integer"
-                    },
-                    "available": {
-                        "type": "integer"
-                    },
-                    "overdraftLimit": {
-                        "type": "integer"
-                    }
-                },
-                "required": ["date", "balance", "hold", "available"],
-                "additionalProperties": false
-            },
             "AccountEndOfDay": {
                 "title": "Account End Of Day Resource",
                 "type": "object",
@@ -50,7 +27,27 @@
                         "$ref": "../types.json#/components/schemas/Identifier"
                     },
                     "attributes": {
-                        "$ref": "#/components/schemas/Attributes"
+                        "type": "object",
+                        "properties": {
+                            "date": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "balance": {
+                                "type": "integer"
+                            },
+                            "hold": {
+                                "type": "integer"
+                            },
+                            "available": {
+                                "type": "integer"
+                            },
+                            "overdraftLimit": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": ["date", "balance", "hold", "available"],
+                        "additionalProperties": false
                     },
                     "relationships": {
                         "$ref": "#/components/schemas/AccountEndOfDayRelationships"

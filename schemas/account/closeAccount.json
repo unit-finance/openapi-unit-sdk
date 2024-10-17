@@ -5,31 +5,50 @@
                 "type": "object",
                 "title": "Close Account Request",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["creditAccountClose", "depositAccountClose"]
-                    },
-                    "attributes": {
+                    "data": {
                         "type": "object",
                         "properties": {
-                            "reason": {
+                            "type": {
                                 "type": "string",
-                                "enum": ["ByCustomer", "Fraud"],
-                                "default": "ByCustomer"
-                            },
-                            "fraudReason": {
-                                "type": "string",
-                                "nullable": true,
                                 "enum": [
-                                    "ACHActivity",
-                                    "CardActivity",
-                                    "CheckActivity",
-                                    "ApplicationHistory",
-                                    "AccountActivity",
-                                    "ClientIdentified",
-                                    "IdentityTheft",
-                                    "LinkedToFraudulentCustomer"
+                                    "creditAccountClose",
+                                    "depositAccountClose",
+                                    "walletAccountClose"
                                 ]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "reason": {
+                                        "type": "string",
+                                        "enum": ["ByCustomer", "Fraud"],
+                                        "default": "ByCustomer"
+                                    },
+                                    "fraudReason": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "enum": [
+                                            "ACHActivity",
+                                            "CardActivity",
+                                            "CheckActivity",
+                                            "ApplicationHistory",
+                                            "AccountActivity",
+                                            "ClientIdentified",
+                                            "IdentityTheft",
+                                            "LinkedToFraudulentCustomer"
+                                        ]
+                                    },
+                                    "bankReason": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "enum": [
+                                            "ProhibitedBusiness",
+                                            "MissingCddEdd",
+                                            "NonUsOperation",
+                                            "SuspectedFraud"
+                                        ]
+                                    }
+                                }
                             }
                         }
                     }
@@ -38,20 +57,29 @@
             "FreezeAccountRequest": {
                 "type": "object",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["creditAccountFreeze", "accountFreeze"]
-                    },
-                    "attributes": {
+                    "data": {
                         "type": "object",
                         "properties": {
-                            "reason": {
+                            "type": {
                                 "type": "string",
-                                "enum": ["Fraud", "Other"]
+                                "enum": [
+                                    "creditAccountFreeze",
+                                    "accountFreeze",
+                                    "walletAccountFreeze"
+                                ]
                             },
-                            "reasonText": {
-                                "type": "string",
-                                "nullable": true
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "reason": {
+                                        "type": "string",
+                                        "enum": ["Fraud", "Other"]
+                                    },
+                                    "reasonText": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                }
                             }
                         }
                     }

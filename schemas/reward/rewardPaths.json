@@ -38,7 +38,7 @@
         },
         "get": {
             "tags": ["unit"],
-            "operationId": "getListRewards",
+            "operationId": "getRewardsList",
 
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",

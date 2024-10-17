@@ -1,7 +1,7 @@
 {
     "components": {
         "schemas": {
-            "WebhookResponse": {
+            "UnitWebhookResponse": {
                 "type": "object",
                 "title": "Unit Webhook Response",
                 "properties": {
@@ -82,13 +82,13 @@
             "summary": "Create Webhook",
             "description": "Create a Webhook via API ",
             "requestBody": {
-                "description": "Create Webhook Request",
+                "description": "Create Webhook Request Body",
                 "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "Create Webhook",
+                            "title": "Create Webhook Request",
                             "properties": {
                                 "data": {
                                     "type": "object",
@@ -149,7 +149,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/WebhookResponse"
+                                "$ref": "#/components/schemas/UnitWebhookResponse"
                             }
                         }
                     }
@@ -181,7 +181,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/WebhookResponse"
+                                "$ref": "#/components/schemas/UnitWebhookResponse"
                             }
                         }
                     }
@@ -221,7 +221,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/WebhookResponse"
+                                "$ref": "#/components/schemas/UnitWebhookResponse"
                             }
                         }
                     }
@@ -253,7 +253,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/WebhookResponse"
+                                "$ref": "#/components/schemas/UnitWebhookResponse"
                             }
                         }
                     }
@@ -285,7 +285,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/WebhookResponse"
+                                "$ref": "#/components/schemas/UnitWebhookResponse"
                             }
                         }
                     }

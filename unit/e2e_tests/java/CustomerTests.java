@@ -43,7 +43,7 @@ public class CustomerTests {
 
     public static IndividualCustomer CreateIndividualCustomer(UnitApi unitApi) throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null));
-        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUALAPPLICATION);
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
 
         IndividualApplication app = (IndividualApplication) res.getData();
         String customerId = app.getRelationships().getCustomer().getData().getId();
@@ -53,7 +53,7 @@ public class CustomerTests {
 
     public static BusinessCustomer CreateBusinessCustomer(UnitApi unitApi) throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateBusinessApplicationRequest());
-        assert res.getData().getType().equals(Application.TypeEnum.BUSINESSAPPLICATION);
+        assert res.getData().getType().equals(Application.TypeEnum.BUSINESS_APPLICATION);
 
         BusinessApplication app = (BusinessApplication) res.getData();
         String customerId = app.getRelationships().getCustomer().getData().getId();
@@ -70,34 +70,34 @@ public class CustomerTests {
     @Test
     public void CreateIndividualCustomerTest() throws ApiException {
         IndividualCustomer customer = CreateIndividualCustomer(unitApi);
-        assert customer.getType().equals(IndividualCustomer.TypeEnum.INDIVIDUALCUSTOMER);
+        assert customer.getType().equals(IndividualCustomer.TypeEnum.INDIVIDUAL_CUSTOMER);
     }
 
     @Test
     public void UpdateIndividualCustomerTest() throws ApiException {
         IndividualCustomer customer = CreateIndividualCustomer(unitApi);
-        assert customer.getType().equals(IndividualCustomer.TypeEnum.INDIVIDUALCUSTOMER);
+        assert customer.getType().equals(IndividualCustomer.TypeEnum.INDIVIDUAL_CUSTOMER);
 
         String email = "test@mail.test";
         UpdateIndividualCustomer updateIndividualCustomer = new UpdateIndividualCustomer();
         UpdateIndividualCustomerAttributes updateIndividualCustomerAttributes = new UpdateIndividualCustomerAttributes();
         updateIndividualCustomerAttributes.email(email);
         updateIndividualCustomer.setAttributes(updateIndividualCustomerAttributes);
-        updateIndividualCustomer.setType(UpdateIndividualCustomer.TypeEnum.INDIVIDUALCUSTOMER);
+        updateIndividualCustomer.setType(UpdateIndividualCustomer.TypeEnum.INDIVIDUAL_CUSTOMER);
         UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest();
         UpdateCustomerRequestData updateCustomerRequestData = new UpdateCustomerRequestData(updateIndividualCustomer);
         updateCustomerRequest.setData(updateCustomerRequestData);
 
         UnitCustomerResponse updateCutomerResponse = unitApi.updateCustomer(customer.getId(), updateCustomerRequest);
         IndividualCustomer individualCustomer =  (IndividualCustomer) updateCutomerResponse.getData();
-        assert individualCustomer.getType().equals(IndividualCustomer.TypeEnum.INDIVIDUALCUSTOMER);
+        assert individualCustomer.getType().equals(IndividualCustomer.TypeEnum.INDIVIDUAL_CUSTOMER);
         assert individualCustomer.getAttributes().getEmail().equals(email);
     }
 
     @Test 
     public void UpdateBusinessCustomerTest() throws ApiException {
         BusinessCustomer customer = CreateBusinessCustomer(unitApi);
-        assert customer.getType().equals(IndividualCustomer.TypeEnum.BUSINESSCUSTOMER);
+        assert customer.getType().equals(IndividualCustomer.TypeEnum.BUSINESS_CUSTOMER);
 
         String email = "test@mail.test";
         UpdateBusinessCustomer updateBusinessCustomer = new UpdateBusinessCustomer();
@@ -110,36 +110,36 @@ public class CustomerTests {
         responseContact.setJwtSubject(contact.getJwtSubject());
         updateBusinessCustomerAttributes.contact(responseContact);
         updateBusinessCustomer.setAttributes(updateBusinessCustomerAttributes);
-        updateBusinessCustomer.setType(UpdateBusinessCustomer.TypeEnum.BUSINESSCUSTOMER);
+        updateBusinessCustomer.setType(UpdateBusinessCustomer.TypeEnum.BUSINESS_CUSTOMER);
         UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest();
         UpdateCustomerRequestData updateCustomerRequestData = new UpdateCustomerRequestData(updateBusinessCustomer);
         updateCustomerRequest.setData(updateCustomerRequestData);
 
         UnitCustomerResponse updateCutomerResponse = unitApi.updateCustomer(customer.getId(), updateCustomerRequest);
         BusinessCustomer individualCustomer =  (BusinessCustomer) updateCutomerResponse.getData();
-        assert individualCustomer.getType().equals(BusinessCustomer.TypeEnum.BUSINESSCUSTOMER);
+        assert individualCustomer.getType().equals(BusinessCustomer.TypeEnum.BUSINESS_CUSTOMER);
         assert individualCustomer.getAttributes().getContact().getEmail().equals(email);
     }
 
     @Test 
     public void ArchiveCustomerTest() throws ApiException {
         Customer customer = CreateBusinessCustomer(unitApi);
-        assert customer.getType().equals(IndividualCustomer.TypeEnum.BUSINESSCUSTOMER);
+        assert customer.getType().equals(IndividualCustomer.TypeEnum.BUSINESS_CUSTOMER);
 
         ArchiveCustomerRequest request = new ArchiveCustomerRequest();
         ArchiveCustomerRequestData requestData = new ArchiveCustomerRequestData();
         ArchiveCustomerRequestDataAttributes requestDataAttributes = new ArchiveCustomerRequestDataAttributes();
         requestDataAttributes.setReason(unit.java.sdk.model.ArchiveCustomerRequestDataAttributes.ReasonEnum.INACTIVE);
         requestData.setAttributes(requestDataAttributes);
-        requestData.setType(ArchiveCustomerRequestData.TypeEnum.ARCHIVECUSTOMER);
+        requestData.setType(ArchiveCustomerRequestData.TypeEnum.ARCHIVE_CUSTOMER);
         request.setData(requestData);
         UnitCustomerResponse res = unitApi.archiveCustomer(customer.getId(), request);
-        assert res.getData().getType().equals(Customer.TypeEnum.BUSINESSCUSTOMER);
+        assert res.getData().getType().equals(Customer.TypeEnum.BUSINESS_CUSTOMER);
     }
 
     Customer CreateCustomerAndAddAuthorizedUser(String email) throws ApiException {
         Customer customer = CreateBusinessCustomer(unitApi);
-        assert customer.getType().equals(IndividualCustomer.TypeEnum.BUSINESSCUSTOMER);
+        assert customer.getType().equals(IndividualCustomer.TypeEnum.BUSINESS_CUSTOMER);
 
         AddAuthorizedUsersRequest request = new AddAuthorizedUsersRequest();
         AddAuthorizedUsersRequestData data = new AddAuthorizedUsersRequestData();
@@ -160,7 +160,7 @@ public class CustomerTests {
 
         attributes.addAuthorizedUsersItem(user);
         data.setAttributes(attributes);
-        data.setType(AddAuthorizedUsersRequestData.TypeEnum.ADDAUTHORIZEDUSERS);
+        data.setType(AddAuthorizedUsersRequestData.TypeEnum.ADD_AUTHORIZED_USERS);
         request.setData(data);
 
         UnitCustomerResponse res = unitApi.addAuthorizedUsers(customer.getId(), request);
@@ -170,14 +170,14 @@ public class CustomerTests {
     @Test 
     public void AddAuthorizedUsersApiTest() throws ApiException {
         Customer customer = CreateCustomerAndAddAuthorizedUser("test@test.test");
-        assert customer.getType().equals(Customer.TypeEnum.BUSINESSCUSTOMER);
+        assert customer.getType().equals(Customer.TypeEnum.BUSINESS_CUSTOMER);
     }
 
     @Test 
     public void RemoveAuthorizedUsersApiTest() throws ApiException {
         String email = "test@test.test";
         Customer customer = CreateCustomerAndAddAuthorizedUser(email);
-        assert customer.getType().equals(Customer.TypeEnum.BUSINESSCUSTOMER);
+        assert customer.getType().equals(Customer.TypeEnum.BUSINESS_CUSTOMER);
 
         RemoveAuthorizedUsersRequest req = new RemoveAuthorizedUsersRequest();
         RemoveAuthorizedUsersRequestData data = new RemoveAuthorizedUsersRequestData();
@@ -185,7 +185,7 @@ public class CustomerTests {
 
         attributes.addAuthorizedUsersEmailsItem(email);
         data.setAttributes(attributes);
-        data.setType(RemoveAuthorizedUsersRequestData.TypeEnum.REMOVEAUTHORIZEDUSERS);
+        data.setType(RemoveAuthorizedUsersRequestData.TypeEnum.REMOVE_AUTHORIZED_USERS);
         req.setData(data);
 
         UnitCustomerResponse res = unitApi.removeAuthorizedUsers(customer.getId(), req);

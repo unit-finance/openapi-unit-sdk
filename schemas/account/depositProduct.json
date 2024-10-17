@@ -1,0 +1,33 @@
+{
+    "components": {
+        "schemas": {
+            "DepositProduct": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["accountDepositProduct"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": { "name": { "type": "string" } },
+                        "required": ["name"]
+                    }
+                },
+                "required": ["type", "attributes"]
+            },
+            "UnitDepositProductsResponse": {
+                "type": "object",
+                "title": "Credit Account Repayment Information Response",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DepositProduct"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

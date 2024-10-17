@@ -1,0 +1,45 @@
+{
+    "components": {
+        "schemas": {
+            "TaxForm": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["taxForm"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "formType": {
+                                "type": "string"
+                            },
+                            "taxYear": {
+                                "$ref": "../types.json#/components/schemas/Year"
+                            }
+                        },
+                        "required": ["formType", "taxYear"]
+                    },
+                    "relationships": {
+                        "allOf": [
+                            {
+                                "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/AccountsRelationship"
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                            }
+                        ],
+                        "required": ["customer"]
+                    }
+                },
+                "required": ["type", "id", "attributes"]
+            }
+        }
+    }
+}

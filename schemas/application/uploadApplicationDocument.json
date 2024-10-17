@@ -3,19 +3,20 @@
         "schemas": {
             "UploadApplicationDocumentContentType": {
                 "type": "string",
-                "enum": ["application/pdf", "image/png", "image/json"]
+                "enum": ["application/pdf", "image/png", "image/jpeg"]
             },
-            "UploadPngDocument": {
-                "type": "string",
-                "format": "binary"
-            },
-            "UploadPdfDocument": {
-                "type": "string",
-                "format": "binary"
-            },
-            "UploadJpegDocument": {
-                "type": "string",
-                "format": "binary"
+            "UploadApplicationDocumentRequest": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "fileType": {
+                        "$ref": "#/components/schemas/UploadApplicationDocumentContentType"
+                    }
+                },
+                "required": ["file", "fileType"]
             }
         }
     }

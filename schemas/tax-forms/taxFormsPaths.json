@@ -1,0 +1,136 @@
+{
+    "taxForms": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getTaxFormsList",
+            "summary": "Get Tax Forms List ",
+            "description": "Get Tax Forms List from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "taxYear": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/Year"
+                                }
+                            },
+                            "taxFormTypes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Tax Forms List Response",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./taxForm.json#/components/schemas/TaxForm"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "getTaxForm": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getTaxForm",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "taxFormId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the reward to get"
+                }
+            ],
+            "summary": "Get Tax Form by Id",
+            "description": "Get a Tax Form from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Tax Form Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./taxForm.json#/components/schemas/TaxForm"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "getTaxFormPdf": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getTaxFormPdf",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "taxFormId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the reward to get"
+                }
+            ],
+            "summary": "Get Tax Form pdf by Id",
+            "description": "Get a Tax Form pdf from API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/pdf": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -54,6 +54,41 @@
                     }
                 }
             },
+            "AccountsRelationship": {
+                "type": "object",
+                "properties": {
+                    "accounts": {
+                        "type": "object",
+                        "title": "Account Relationship",
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "account",
+                                                "depositAccount",
+                                                "creditAccount",
+                                                "batchAccount"
+                                            ]
+                                        },
+                                        "id": {
+                                            "$ref": "./types.json#/components/schemas/Identifier"
+                                        }
+                                    },
+                                    "required": ["type", "id"],
+                                    "additionalProperties": false
+                                }
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
+            },
             "CreditAccountRelationship": {
                 "type": "object",
                 "properties": {

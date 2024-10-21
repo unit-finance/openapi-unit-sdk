@@ -24,6 +24,15 @@
                         }
                     }
                 }
+            },
+            "UnitDepositAccountResponse": {
+                "type": "object",
+                "title": "Unit Deposit Account Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./account.json#/components/schemas/DepositAccount"
+                    }
+                }
             }
         }
     },
@@ -260,7 +269,7 @@
                                 "title": "Unit Get Account Limits Response",
                                 "properties": {
                                     "data": {
-                                        "$ref": "../types.json#/components/schemas/Limits"
+                                        "$ref": "./limits.json#/components/schemas/Limits"
                                     }
                                 }
                             }
@@ -327,13 +336,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "title": "Freeze Account Request",
-                            "properties": {
-                                "data": {
-                                    "$ref": "./closeAccount.json#/components/schemas/FreezeAccountRequest"
-                                }
-                            }
+                            "$ref": "./closeAccount.json#/components/schemas/FreezeAccountRequest"
                         }
                     }
                 }
@@ -378,13 +381,7 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "type": "object",
-                            "title": "Close Account Request",
-                            "properties": {
-                                "data": {
-                                    "$ref": "./closeAccount.json#/components/schemas/CloseAccountRequest"
-                                }
-                            }
+                            "$ref": "./closeAccount.json#/components/schemas/CloseAccountRequest"
                         }
                     }
                 }
@@ -542,12 +539,42 @@
             }
         }
     },
-    "getAccountEndOfDay": {
+    "getAccountBalanceHistory": {
         "get": {
             "tags": ["unit"],
-            "operationId": "getAccountEndOfDay",
-            "summary": "Get AccountEndOfDay List",
-            "description": "Get AccountEndOfDay List from API ",
+            "operationId": "getAccountBalanceHistory",
+            "summary": "Get Account Balance History",
+            "description": "Get Account Balance History List from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "since": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "until": {
+                                "type": "string",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            ],
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -555,10 +582,13 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "Unit Get Account End Of Day List Response",
+                                "title": "Unit Account Balance History Response",
                                 "properties": {
                                     "data": {
-                                        "$ref": "./accountEndOfDay.json#/components/schemas/AccountEndOfDay"
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./accountEndOfDay.json#/components/schemas/AccountEndOfDay"
+                                        }
                                     }
                                 }
                             }
@@ -573,8 +603,8 @@
     },
     "repaymentInfo": {
         "get": {
-            "tags": ["Repayment Information"],
-            "operationId": "execute",
+            "tags": ["unit"],
+            "operationId": "getRepaymentInformation",
             "summary": "Get Repayment Information",
             "description": "Retrieve the repayment information for a specific account via API",
             "parameters": [
@@ -595,6 +625,128 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "./repaymentInformation.json#/components/schemas/UnitRepaymentInformationResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "depositProducts": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getDepositProductsList",
+            "summary": "Get Deposit Products",
+            "description": "Retrieve the list of available deposit products compatible to the account.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to get deposit products for"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "./depositProduct.json#/components/schemas/UnitDepositProductsResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "customers": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "addAccountOwners",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to add owners to"
+                }
+            ],
+            "summary": "Add Owners to Account by Id",
+            "description": "Add Owners to Account via API ",
+            "requestBody": {
+                "description": "Add Account Owners Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./owners.json#/components/schemas/AddAccountOwnersRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitDepositAccountResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "delete": {
+            "tags": ["unit"],
+            "operationId": "removeAccountOwners",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "accountId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the account to add owners to"
+                }
+            ],
+            "summary": "Remove Owners from Account by Id",
+            "description": "Remove Owners from Account via API ",
+            "requestBody": {
+                "description": "Remove Account Owners Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./owners.json#/components/schemas/RemoveAccountOwnersRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitDepositAccountResponse"
                             }
                         }
                     }

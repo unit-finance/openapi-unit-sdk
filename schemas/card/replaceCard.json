@@ -1,0 +1,33 @@
+{
+    "components": {
+        "schemas": {
+            "ReplaceCardRequest": {
+                "title": "Replace Card Request",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["replaceCard"],
+                                "default": "replaceCard"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "shippingAddress": {
+                                        "$ref": "../types.json#/components/schemas/Address"
+                                    }
+                                },
+                                "required": ["shippingAddress"]
+                            }
+                        },
+                        "required": ["type", "attributes"]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

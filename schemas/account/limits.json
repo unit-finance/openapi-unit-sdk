@@ -6,7 +6,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./limits.json#/components/schemas/limits"
+                        "$ref": "./limits.json#/components/schemas/Limits"
                     },
                     {
                         "type": "object",
@@ -198,7 +198,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "./limits.json#/components/schemas/limits"
+                        "$ref": "./limits.json#/components/schemas/Limits"
                     },
                     {
                         "type": "object",
@@ -271,20 +271,317 @@
                     }
                 ]
             },
+            "WalletLimits": {
+                "title": "Wallet Account Limits",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./limits.json#/components/schemas/Limits"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "ach": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dailyDebit": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyCredit": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlyDebit": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlyDebitSoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyDebitSoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlyCredit": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "dailyDebit",
+                                                    "dailyCredit",
+                                                    "monthlyDebit",
+                                                    "monthlyCredit"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsDaily": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "debits": {
+                                                        "type": "number"
+                                                    },
+                                                    "credits": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "debits",
+                                                    "credits"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsMonthly": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "debits": {
+                                                        "type": "number"
+                                                    },
+                                                    "credits": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "debits",
+                                                    "credits"
+                                                ],
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "required": [
+                                            "limits",
+                                            "totalsDaily",
+                                            "totalsMonthly"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    "card": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dailyWithdrawal": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyDeposit": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyPurchase": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyCardTransaction": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "dailyWithdrawal",
+                                                    "dailyDeposit",
+                                                    "dailyPurchase",
+                                                    "dailyCardTransaction"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsDaily": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "withdrawals": {
+                                                        "type": "number"
+                                                    },
+                                                    "deposits": {
+                                                        "type": "number"
+                                                    },
+                                                    "purchases": {
+                                                        "type": "number"
+                                                    },
+                                                    "cardTransactions": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "withdrawals",
+                                                    "deposits",
+                                                    "purchases",
+                                                    "cardTransactions"
+                                                ],
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "required": ["limits", "totalsDaily"],
+                                        "additionalProperties": false
+                                    },
+                                    "checkDeposit": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "daily": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthly": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailySoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlySoft": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "daily",
+                                                    "monthly",
+                                                    "dailySoft",
+                                                    "monthlySoft"
+                                                ],
+                                                "additionalProperties": false
+                                            },
+                                            "totalsDaily": {
+                                                "type": "number"
+                                            },
+                                            "totalsMonthly": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "limits",
+                                            "totalsDaily",
+                                            "totalsMonthly"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    "wire": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dailyTransfer": {
+                                                        "type": "number"
+                                                    },
+                                                    "montlyTransfer": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailyTransferSoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "montlyTransferSoft": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "dailyTransfer",
+                                                    "montlyTransfer"
+                                                ]
+                                            },
+                                            "totalsDaily": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "transfers": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": ["transfers"]
+                                            },
+                                            "totalsMontly": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "transfers": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": ["transfers"]
+                                            }
+                                        },
+                                        "required": [
+                                            "limits",
+                                            "totalsDaily",
+                                            "totalsMontly"
+                                        ]
+                                    },
+                                    "checkPayment": {
+                                        "type": "object",
+                                        "properties": {
+                                            "limits": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "dailySent": {
+                                                        "type": "number"
+                                                    },
+                                                    "montlySent": {
+                                                        "type": "number"
+                                                    },
+                                                    "dailySentSoft": {
+                                                        "type": "number"
+                                                    },
+                                                    "monthlySentSoft": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "dailySent",
+                                                    "monthlySent"
+                                                ]
+                                            },
+                                            "totalsDaily": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "sent": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": ["sent"]
+                                            },
+                                            "totalsMontly": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "sent": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": ["sent"]
+                                            }
+                                        },
+                                        "required": [
+                                            "limits",
+                                            "totalsDaily",
+                                            "totalsMontly"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "ach",
+                                    "card",
+                                    "checkDeposit",
+                                    "wire",
+                                    "checkPayment"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes"]
+                    }
+                ]
+            },
             "Limits": {
                 "title": "Account Limits Resource",
                 "type": "object",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["limits", "creditLimits"]
+                        "enum": ["limits", "creditLimits", "walletLimits"]
                     }
                 },
                 "discriminator": {
                     "propertyName": "type",
                     "mapping": {
                         "limits": "#/components/schemas/DepositLimits",
-                        "creditLimits": "#/components/schemas/CreditLimits"
+                        "creditLimits": "#/components/schemas/CreditLimits",
+                        "walletLimits": "#/components/schemas/WalletLimits"
                     }
                 }
             }

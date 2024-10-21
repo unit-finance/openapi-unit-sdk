@@ -1,0 +1,41 @@
+{
+    "components": {
+        "schemas": {
+            "DepositAccountOwner": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["customer"],
+                        "default": "customer"
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    }
+                }
+            },
+            "DepositAccountOwners": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/DepositAccountOwner" }
+            },
+            "AddAccountOwnersRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/DepositAccountOwners"
+                    }
+                },
+                "required": ["data"]
+            },
+            "RemoveAccountOwnersRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/DepositAccountOwners"
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

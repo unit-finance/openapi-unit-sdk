@@ -1,5 +1,7 @@
 package unit.java.sdk;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +61,7 @@ import unit.java.sdk.model.UpdateIndividualApplication;
 import unit.java.sdk.model.UpdateIndividualApplicationAttributes;
 import unit.java.sdk.model.UpdateSoleProprietorApplication;
 import unit.java.sdk.model.UpdateSoleProprietorApplicationAttributes;
+import unit.java.sdk.model.UploadApplicationDocumentContentType;
 import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.AllowedApplicationTypesEnum;
 import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.LangEnum;
 
@@ -108,7 +111,7 @@ public class ApplicationTests {
     @Test
     public void UpdateIndividualApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null));
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUALAPPLICATION);
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUAL_APPLICATION);
 
         IndividualApplication individualApp = (IndividualApplication) res.getData();
         ApplicationStatus status = individualApp.getAttributes().getStatus();
@@ -116,7 +119,7 @@ public class ApplicationTests {
 
         UpdateIndividualApplication body = new UpdateIndividualApplication();
         UpdateIndividualApplicationAttributes attributes = new UpdateIndividualApplicationAttributes();
-        attributes.setOccupation(Occupation.ARCHITECTORENGINEER);
+        attributes.setOccupation(Occupation.ARCHITECT_OR_ENGINEER);
         body.setAttributes(attributes);
 
         UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
@@ -128,13 +131,13 @@ public class ApplicationTests {
         assert app.getData().getType().toString().toLowerCase()
                 .equals(app.getData().getClass().getSimpleName().toLowerCase());   
         IndividualApplication resApplication = (IndividualApplication) app.getData();        
-        assert resApplication.getAttributes().getOccupation().equals(Occupation.ARCHITECTORENGINEER);
+        assert resApplication.getAttributes().getOccupation().equals(Occupation.ARCHITECT_OR_ENGINEER);
     }
 
     @Test
     public void UpdateSoleProprietorApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateSoleProprietorApplicationRequest());
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUALAPPLICATION);
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUAL_APPLICATION);
 
         IndividualApplication individualApp = (IndividualApplication) res.getData();
         ApplicationStatus status = individualApp.getAttributes().getStatus();
@@ -142,7 +145,7 @@ public class ApplicationTests {
 
         UpdateSoleProprietorApplication body = new UpdateSoleProprietorApplication();
         UpdateSoleProprietorApplicationAttributes attributes = new UpdateSoleProprietorApplicationAttributes();
-        attributes.setAnnualRevenue(SoleProprietorshipAnnualRevenue.UPTO50K);
+        attributes.setAnnualRevenue(SoleProprietorshipAnnualRevenue.UP_TO50K);
         body.setAttributes(attributes);
 
         UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
@@ -155,13 +158,13 @@ public class ApplicationTests {
                 .equals(app.getData().getClass().getSimpleName().toLowerCase());   
         IndividualApplication resApplication = (IndividualApplication) app.getData(); 
 
-        assert resApplication.getAttributes().getAnnualRevenue().equals(SoleProprietorshipAnnualRevenue.UPTO50K);
+        assert resApplication.getAttributes().getAnnualRevenue().equals(SoleProprietorshipAnnualRevenue.UP_TO50K);
     } 
 
     @Test
     public void UpdateBusinessApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateBusinessApplicationRequest());
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESSAPPLICATION);
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESS_APPLICATION);
 
         BusinessApplication businessApp = (BusinessApplication) res.getData();
         ApplicationStatus status = businessApp.getAttributes().getStatus();
@@ -188,7 +191,7 @@ public class ApplicationTests {
     @Test
     public void UpdateBusinessOfficerApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateBusinessApplicationRequest());
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESSAPPLICATION);
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESS_APPLICATION);
 
         BusinessApplication businessApp = (BusinessApplication) res.getData();
         ApplicationStatus status = businessApp.getAttributes().getStatus();
@@ -197,11 +200,11 @@ public class ApplicationTests {
         UpdateBusinessOfficer body = new UpdateBusinessOfficer();
         UpdateBusinessOfficerAttributes attributes = new UpdateBusinessOfficerAttributes();
         BusinessOfficer officer = new BusinessOfficer();
-        AnnualIncome income = AnnualIncome.BETWEEN100KAND250K;
+        AnnualIncome income = AnnualIncome.BETWEEN100K_AND250K;
         officer.setAnnualIncome(income);
         
         attributes.setOfficer(officer);
-        body.setType(UpdateBusinessOfficer.TypeEnum.BUSINESSAPPLICATION);
+        body.setType(UpdateBusinessOfficer.TypeEnum.BUSINESS_APPLICATION);
         body.setAttributes(attributes);
 
         UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
@@ -219,7 +222,7 @@ public class ApplicationTests {
     @Test 
     public void UpdateBusinessBeneficialOwnerApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateBusinessApplicationRequest());
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESSAPPLICATION);
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESS_APPLICATION);
 
         BusinessApplication businessApp = (BusinessApplication) res.getData();
         ApplicationStatus status = businessApp.getAttributes().getStatus();
@@ -227,15 +230,15 @@ public class ApplicationTests {
 
         UpdateBusinessBeneficialOwner body = new UpdateBusinessBeneficialOwner();
         UpdateBusinessBeneficialOwnerAttributes attributes = new UpdateBusinessBeneficialOwnerAttributes();
-        AnnualIncome income = AnnualIncome.BETWEEN100KAND250K;
+        AnnualIncome income = AnnualIncome.BETWEEN100K_AND250K;
         attributes.setAnnualIncome(income);
         
-        body.setType(UpdateBusinessBeneficialOwner.TypeEnum.BENEFICIALOWNER);
+        body.setType(UpdateBusinessBeneficialOwner.TypeEnum.BENEFICIAL_OWNER);
         UpdateBusinessBeneficialOwnerRelationships relationships = new UpdateBusinessBeneficialOwnerRelationships();
         ApplicationRelationship applicationRelationship = new ApplicationRelationship();
         ApplicationRelationshipData applicationRelationshipData = new ApplicationRelationshipData();
         applicationRelationshipData.setId(res.getData().getId());
-        applicationRelationshipData.setType(ApplicationRelationshipData.TypeEnum.BUSINESSAPPLICATION);
+        applicationRelationshipData.setType(ApplicationRelationshipData.TypeEnum.BUSINESS_APPLICATION);
         applicationRelationship.setData(applicationRelationshipData);
         relationships.setApplication(applicationRelationship);
         body.setRelationships(relationships);
@@ -260,50 +263,127 @@ public class ApplicationTests {
     @Test
     public void CreateIndividualApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null));
-        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUALAPPLICATION);
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
     }
 
     @Test
     public void CreateSoleProprietorApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateSoleProprietorApplicationRequest());
-        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUALAPPLICATION);
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
     }
 
     @Test
     public void CreateBusinessApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateBusinessApplicationRequest());
-        assert res.getData().getType().equals(Application.TypeEnum.BUSINESSAPPLICATION);
+        assert res.getData().getType().equals(Application.TypeEnum.BUSINESS_APPLICATION);
     }
 
     @Test 
     public void CancelApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000004"));
         Application application = res.getData();
-        assert application.getType().equals(Application.TypeEnum.INDIVIDUALAPPLICATION);
+        assert application.getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
 
         CancelApplicationRequest cancelApplicationRequest = new CancelApplicationRequest();
         CancelApplicationRequestData cancelApplicationRequestData = new CancelApplicationRequestData();
         CancelApplicationRequestDataAttributes cancelApplicationRequestDataAttributes = new CancelApplicationRequestDataAttributes();
         cancelApplicationRequestDataAttributes.setReason("By Org");
         cancelApplicationRequestData.setAttributes(cancelApplicationRequestDataAttributes);
-        cancelApplicationRequestData.setType(CancelApplicationRequestData.TypeEnum.APPLICATIONCANCEL);
+        cancelApplicationRequestData.setType(CancelApplicationRequestData.TypeEnum.APPLICATION_CANCEL);
         cancelApplicationRequest.setData(cancelApplicationRequestData);
         
         
         UnitCancelApplicationResponse cancelRes = unitApi.cancelApplication(application.getId(), cancelApplicationRequest);
-        assert cancelRes.getData().getType().equals(Application.TypeEnum.INDIVIDUALAPPLICATION);
+        assert cancelRes.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
+    }
+
+    ApplicationDocument CreateApplicationDocument(IndividualApplication application) throws ApiException {
+        if(application == null) {
+            UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null));
+            assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
+
+            application = (IndividualApplication) res.getData();
+        }
+
+        UnitDocumentResponse document = unitApi.createApplicationDocument(application.getId(), DefaultContentType.APPLICATION_VND_API_JSON);
+        assert document.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
+
+        return document.getData();
     }
 
     @Test
-    public void CreateAndGetDocumentForApplicationApiTest() throws ApiException {
-        UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null));
-        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUALAPPLICATION);
-
-        UnitDocumentResponse document = unitApi.createApplicationDocument(res.getData().getId(), DefaultContentType.APPLICATION_VND_API_JSON);
-        assert document.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
-
-        UnitListDocumentsResponse response = unitApi.getApplicationDocuments(res.getData().getId());
+    public void CreateApplicationDocumentAndGetApiTest() throws ApiException {
+        ApplicationDocument document = CreateApplicationDocument(null);
+        UnitListDocumentsResponse response = unitApi.getApplicationDocuments(document.getId());
         assert !response.getData().isEmpty();
+    }
+
+    @Test
+    public void UploadPngApplicationDocumentApiTest() throws ApiException {
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
+        ApplicationDocument document = CreateApplicationDocument(application);
+        File file = new File("./src/test/java/unit/java/sdk/unit_photo.png");
+        UnitDocumentResponse res = unitApi.uploadApplicationDocumentFile(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_PNG);
+        assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
+        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        assert streamRes != null;
+    }
+
+    @Test
+    public void UploadJpegApplicationDocumentApiTest() throws ApiException {
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
+        ApplicationDocument document = CreateApplicationDocument(application);
+        File file = new File("./src/test/java/unit/java/sdk/unit_photo.jpeg");
+        UnitDocumentResponse res = unitApi.uploadApplicationDocumentFile(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
+        assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
+        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        assert streamRes != null;
+    }
+
+    @Test
+    public void UploadPdfApplicationDocumentApiTest() throws ApiException {
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
+        ApplicationDocument document = CreateApplicationDocument(application);
+        File file = new File("./src/test/java/unit/java/sdk/unit_pdf.pdf");
+        UnitDocumentResponse res = unitApi.uploadApplicationDocumentFile(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
+        assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
+        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        assert streamRes != null;
+    }
+
+    @Test
+    public void UploadPngApplicationDocumentBacksideApiTest() throws ApiException {
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
+        ApplicationDocument document = CreateApplicationDocument(application);
+        File file = new File("./src/test/java/unit/java/sdk/unit_photo.png");
+        UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
+        assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
+        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        assert streamRes != null;
+    }
+
+    @Test
+    public void UploadJpegApplicationDocumentBacksideApiTest() throws ApiException {
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
+        ApplicationDocument document = CreateApplicationDocument(application);
+        File file = new File("./src/test/java/unit/java/sdk/unit_photo.jpeg");
+        UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
+        assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
+
+        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        assert streamRes != null;
+    }
+
+    @Test
+    public void UploadPdfApplicationDocumentBacksideApiTest() throws ApiException {
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
+        ApplicationDocument document = CreateApplicationDocument(application);
+        File file = new File("./src/test/java/unit/java/sdk/unit_pdf.pdf");
+        UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
+        assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
+
+        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        assert streamRes != null;
     }
 
     @Test
@@ -338,7 +418,7 @@ public class ApplicationTests {
         req.setData(data);
 
         UnitApplicationFormResponse res = unitApi.createApplicationForm(req);
-        assert res.getData().getType().equals(ApplicationForm.TypeEnum.APPLICATIONFORM);
+        assert res.getData().getType().equals(ApplicationForm.TypeEnum.APPLICATION_FORM);
     }
 
     @Test 

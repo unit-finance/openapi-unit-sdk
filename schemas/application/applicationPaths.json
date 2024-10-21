@@ -512,12 +512,12 @@
             ],
             "summary": "Upload an application document file. Supports PDF, PNG and JPG files",
             "requestBody": {
-                "description": "An application document file. SDK only temporarily supports only ... files",
+                "description": "An application document file",
                 "required": true,
                 "content": {
-                    "application/pdf": {
+                    "multipart/form-data": {
                         "schema": {
-                            "$ref": "./uploadApplicationDocument.json#/components/schemas/UploadPdfDocument"
+                            "$ref": "./uploadApplicationDocument.json#/components/schemas/UploadApplicationDocumentRequest"
                         }
                     }
                 }
@@ -566,19 +566,9 @@
                 "description": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
                 "required": true,
                 "content": {
-                    "application/pdf": {
+                    "multipart/form-data": {
                         "schema": {
-                            "type": "object"
-                        }
-                    },
-                    "image/png": {
-                        "schema": {
-                            "type": "object"
-                        }
-                    },
-                    "image/jpeg": {
-                        "schema": {
-                            "type": "object"
+                            "$ref": "./uploadApplicationDocument.json#/components/schemas/UploadApplicationDocumentRequest"
                         }
                     }
                 }

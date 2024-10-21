@@ -23,10 +23,10 @@
         "/application-forms": {
             "$ref": "./schemas/application/applicationPaths.json#/applicationForms"
         },
-        "/applications/{applicationId}/documents/{documentId}": {
+        "/applications/{applicationId}/documents/{documentId}/multipart": {
             "$ref": "./schemas/application/applicationPaths.json#/uploadApplicationDocumentFile"
         },
-        "/applications/{applicationId}/documents/{documentId}/back": {
+        "/applications/{applicationId}/documents/{documentId}/back/multipart": {
             "$ref": "./schemas/application/applicationPaths.json#/uploadApplicationDocumentFileBack"
         },
         "/applications/{applicationId}/documents": {
@@ -78,10 +78,16 @@
             "$ref": "./schemas/account/accountPaths.json#/deactivateDaca"
         },
         "/account-end-of-day": {
-            "$ref": "./schemas/account/accountPaths.json#/getAccountEndOfDay"
+            "$ref": "./schemas/account/accountPaths.json#/getAccountBalanceHistory"
         },
         "/accounts/{accountId}/repayment-information": {
             "$ref": "./schemas/account/accountPaths.json#/repaymentInfo"
+        },
+        "/accounts/{accountId}/deposit-products": {
+            "$ref": "./schemas/account/accountPaths.json#/depositProducts"
+        },
+        "/accounts/{accountId}/relationships/customers": {
+            "$ref": "./schemas/account/accountPaths.json#/customers"
         },
         "/customers/{customerId}": {
             "$ref": "./schemas/customer/customerPaths.json#/customer"
@@ -160,6 +166,9 @@
         },
         "/cards/{cardId}/limits": {
             "$ref": "./schemas/card/cardPaths.json#/cardLimits"
+        },
+        "/cards/{cardId}/replace": {
+            "$ref": "./schemas/card/cardPaths.json#/replaceCard"
         },
         "/authorizations": {
             "$ref": "./schemas/authorization/authorizationPaths.json#/authorizations"
@@ -310,6 +319,15 @@
         },
         "/stop-payments/{stopPaymentId}/disable": {
             "$ref": "./schemas/payment/stopPaymentPaths.json#/disableStopPayment"
+        },
+        "/tax-forms": {
+            "$ref": "./schemas/tax-forms/taxFormsPaths.json#/taxForms"
+        },
+        "/tax-forms/{taxFormId}": {
+            "$ref": "./schemas/tax-forms/taxFormsPaths.json#/getTaxForm"
+        },
+        "/tax-forms/{taxFormId}/pdf": {
+            "$ref": "./schemas/tax-forms/taxFormsPaths.json#/getTaxFormPdf"
         }
     },
     "components": {

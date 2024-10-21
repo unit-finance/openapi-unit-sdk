@@ -23,6 +23,7 @@ import unit.java.sdk.model.CreatePaymentRequestData;
 import unit.java.sdk.model.CreateWirePayment;
 import unit.java.sdk.model.CreateWirePaymentAttributes;
 import unit.java.sdk.model.CreateWirePaymentRelationships;
+import unit.java.sdk.model.Customer;
 import unit.java.sdk.model.DepositAccount;
 import unit.java.sdk.model.Payment;
 import unit.java.sdk.model.UnitPaymentResponse;
@@ -57,21 +58,21 @@ public class PaymentTests {
         attributes.setDescription("Funding");
         createBookPayment.setAttributes(attributes);
 
-        DepositAccount account1 = (DepositAccount) CreateDepositAccount(unitApi);
-        DepositAccount account2 = (DepositAccount) CreateDepositAccount(unitApi);
+        DepositAccount account1 = (DepositAccount) CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account2 = (DepositAccount) CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
 
         CreateBookPaymentRelationships relationships = new CreateBookPaymentRelationships();
 
         AccountRelationship accountRelationship = new AccountRelationship();
         AccountRelationshipData accountRelationshipData = new AccountRelationshipData();
         accountRelationshipData.setId(account1.getId());
-        accountRelationshipData.setType(AccountRelationshipData.TypeEnum.DEPOSITACCOUNT);
+        accountRelationshipData.setType(AccountRelationshipData.TypeEnum.DEPOSIT_ACCOUNT);
         accountRelationship.setData(accountRelationshipData);
 
         CounterpartyAccountRelationship counterpartyAccountRelationship = new CounterpartyAccountRelationship();
         CounterpartyAccountRelationshipData counterpartyAccountRelationshipData = new CounterpartyAccountRelationshipData();
         counterpartyAccountRelationshipData.setId(account2.getId());
-        counterpartyAccountRelationshipData.setType(CounterpartyAccountRelationshipData.TypeEnum.DEPOSITACCOUNT);
+        counterpartyAccountRelationshipData.setType(CounterpartyAccountRelationshipData.TypeEnum.DEPOSIT_ACCOUNT);
         counterpartyAccountRelationship.setData(counterpartyAccountRelationshipData);
 
         relationships.setAccount(accountRelationship);
@@ -82,7 +83,7 @@ public class PaymentTests {
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createBookPayment));
         UnitPaymentResponse response = unitApi.createPayment(request);
-        assert response.getData().getType().equals(BookPayment.TypeEnum.BOOKPAYMENT);
+        assert response.getData().getType().equals(BookPayment.TypeEnum.BOOK_PAYMENT);
     }
     
     @Test
@@ -95,7 +96,7 @@ public class PaymentTests {
         attributes.setDescription("Funding");
         createAchPayment.setAttributes(attributes);
 
-        DepositAccount account = (DepositAccount) CreateDepositAccount(unitApi);
+        DepositAccount account = (DepositAccount) CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
 
         CreateAchPaymentRelationships relationships = new CreateAchPaymentRelationships();
         AccountRelationship accountRelationship = new AccountRelationship();
@@ -109,21 +110,21 @@ public class PaymentTests {
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createAchPayment));
         UnitPaymentResponse response = unitApi.createPayment(request);
-        assert response.getData().getType().equals(Payment.TypeEnum.ACHPAYMENT);
+        assert response.getData().getType().equals(Payment.TypeEnum.ACH_PAYMENT);
     }
 
     @Test
     public void CreateWirePaymentTest() throws ApiException {
         CreateWirePayment createWirePayment = new CreateWirePayment();
         CreateWirePaymentAttributes attributes = new CreateWirePaymentAttributes();
-        createWirePayment.setType(CreateWirePayment.TypeEnum.WIREPAYMENT);
+        createWirePayment.setType(CreateWirePayment.TypeEnum.WIRE_PAYMENT);
         attributes.setAmount(100);
         attributes.setDirection(CreateWirePaymentAttributes.DirectionEnum.CREDIT);
         attributes.setCounterparty(CreateWirePaymentCounterparty());
         attributes.setDescription("Wire payment");
         createWirePayment.setAttributes(attributes);
 
-        DepositAccount account = CreateDepositAccount(unitApi);
+        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
 
         CreateWirePaymentRelationships relationships = new CreateWirePaymentRelationships();
         AccountRelationship accountRelationship = new AccountRelationship();
@@ -137,6 +138,6 @@ public class PaymentTests {
         CreatePaymentRequest request = new CreatePaymentRequest();
         request.data(new CreatePaymentRequestData(createWirePayment));
         UnitPaymentResponse response = unitApi.createPayment(request);
-        assert response.getData().getType().equals(Payment.TypeEnum.WIREPAYMENT);
+        assert response.getData().getType().equals(Payment.TypeEnum.WIRE_PAYMENT);
     }
 }

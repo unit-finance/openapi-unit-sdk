@@ -134,8 +134,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["achRepayment"],
-                        "default": "achRepayment"
+                        "enum": ["achRepayment"]
                     },
                     "attributes": {
                         "type": "object",

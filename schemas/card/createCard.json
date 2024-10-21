@@ -102,6 +102,74 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes", "relationships"]
             },
+            "CreateBusinessCardAttributes": {
+                "type": "object",
+                "properties": {
+                    "shippingAddress": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    },
+                    "address": {
+                        "$ref": "../types.json#/components/schemas/Address"
+                    },
+                    "fullName": {
+                        "$ref": "../types.json#/components/schemas/FullName"
+                    },
+                    "phone": {
+                        "$ref": "../types.json#/components/schemas/Phone"
+                    },
+                    "email": {
+                        "$ref": "../types.json#/components/schemas/Email"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "nationality": {
+                        "$ref": "../types.json#/components/schemas/Country"
+                    },
+                    "ssn": {
+                        "type": "string",
+                        "pattern": "^\\d{9}$"
+                    },
+                    "passport": {
+                        "type": "string"
+                    },
+                    "design": {
+                        "type": "string"
+                    },
+                    "additionalEmbossedText": {
+                        "type": "string",
+                        "maxLength": 26
+                    },
+                    "tags": {
+                        "$ref": "../types.json#/components/schemas/Tags"
+                    },
+                    "limits": {
+                        "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                    },
+                    "idempotencyKey": {
+                        "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                    },
+                    "activeForOnlineUse": {
+                        "type": "boolean"
+                    },
+                    "printOnlyBusinessName": {
+                        "type": "boolean"
+                    },
+                    "expiryDate": {
+                        "type": "string",
+                        "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "address",
+                    "fullName",
+                    "phone",
+                    "email",
+                    "dateOfBirth"
+                ]
+            },
             "CreateBusinessDebitCardRequest": {
                 "title": "Create Business Debit Card",
                 "type": "object",
@@ -112,72 +180,7 @@
                         "enum": ["businessDebitCard"]
                     },
                     "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "shippingAddress": {
-                                "$ref": "../types.json#/components/schemas/Address"
-                            },
-                            "address": {
-                                "$ref": "../types.json#/components/schemas/Address"
-                            },
-                            "fullName": {
-                                "$ref": "../types.json#/components/schemas/FullName"
-                            },
-                            "phone": {
-                                "$ref": "../types.json#/components/schemas/Phone"
-                            },
-                            "email": {
-                                "$ref": "../types.json#/components/schemas/Email"
-                            },
-                            "dateOfBirth": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "nationality": {
-                                "$ref": "../types.json#/components/schemas/Country"
-                            },
-                            "ssn": {
-                                "type": "string",
-                                "pattern": "^\\d{9}$"
-                            },
-                            "passport": {
-                                "type": "string"
-                            },
-                            "design": {
-                                "type": "string"
-                            },
-                            "additionalEmbossedText": {
-                                "type": "string",
-                                "maxLength": 26
-                            },
-                            "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
-                            },
-                            "limits": {
-                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
-                            },
-                            "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
-                            },
-                            "activeForOnlineUse": {
-                                "type": "boolean"
-                            },
-                            "printOnlyBusinessName": {
-                                "type": "boolean"
-                            },
-                            "expiryDate": {
-                                "type": "string",
-                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": [
-                            "address",
-                            "fullName",
-                            "phone",
-                            "email",
-                            "dateOfBirth"
-                        ]
+                        "$ref": "#/components/schemas/CreateBusinessCardAttributes"
                     },
                     "relationships": {
                         "$ref": "#/components/schemas/CreateCardRelationships"
@@ -196,72 +199,7 @@
                         "enum": ["businessCreditCard"]
                     },
                     "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "shippingAddress": {
-                                "$ref": "../types.json#/components/schemas/Address"
-                            },
-                            "address": {
-                                "$ref": "../types.json#/components/schemas/Address"
-                            },
-                            "fullName": {
-                                "$ref": "../types.json#/components/schemas/FullName"
-                            },
-                            "phone": {
-                                "$ref": "../types.json#/components/schemas/Phone"
-                            },
-                            "email": {
-                                "$ref": "../types.json#/components/schemas/Email"
-                            },
-                            "dateOfBirth": {
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "nationality": {
-                                "$ref": "../types.json#/components/schemas/Country"
-                            },
-                            "ssn": {
-                                "type": "string",
-                                "pattern": "^\\d{9}$"
-                            },
-                            "passport": {
-                                "type": "string"
-                            },
-                            "design": {
-                                "type": "string"
-                            },
-                            "additionalEmbossedText": {
-                                "type": "string",
-                                "maxLength": 26
-                            },
-                            "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
-                            },
-                            "limits": {
-                                "$ref": "../types.json#/components/schemas/CardLevelLimits"
-                            },
-                            "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
-                            },
-                            "activeForOnlineUse": {
-                                "type": "boolean"
-                            },
-                            "printOnlyBusinessName": {
-                                "type": "boolean"
-                            },
-                            "expiryDate": {
-                                "type": "string",
-                                "pattern": "^(1[0-2]|0[1-9])/(\\d{2})$|^(\\d{4})-(1[0-2]|0[1-9])$|^(\\d{2})-(1[0-2]|0[1-9])$"
-                            }
-                        },
-                        "additionalProperties": false,
-                        "required": [
-                            "address",
-                            "fullName",
-                            "phone",
-                            "email",
-                            "dateOfBirth"
-                        ]
+                        "$ref": "#/components/schemas/CreateBusinessCardAttributes"
                     },
                     "relationships": {
                         "$ref": "#/components/schemas/CreateCardRelationships"

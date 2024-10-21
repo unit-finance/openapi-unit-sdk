@@ -20,8 +20,7 @@
                                 "type": "integer"
                             },
                             "tags": {
-                                "type": "object",
-                                "nullable": true
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
                                 "$ref": "../types.json#/components/schemas/IdempotencyKey"
@@ -33,6 +32,7 @@
                     "relationships": {
                         "allOf": [
                             {
+                                "title": "Create Credit Account Relationships",
                                 "type": "object",
                                 "required": ["customer"],
                                 "additionalProperties": false
@@ -60,8 +60,7 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "type": "object",
-                                "nullable": true
+                                "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "idempotencyKey": {
                                 "$ref": "../types.json#/components/schemas/IdempotencyKey"
@@ -83,6 +82,45 @@
                 },
                 "additionalProperties": false
             },
+            "CreateWalletAccount": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "default": "walletAccount",
+                        "enum": ["walletAccount"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "walletTerms": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            }
+                        },
+                        "required": ["walletTerms"]
+                    },
+                    "relationships": {
+                        "allOf": [
+                            {
+                                "title": "Create Wallet Account Relationships",
+                                "type": "object",
+                                "required": ["customer"],
+                                "additionalProperties": false
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            },
             "CreateAccountRequest": {
                 "type": "object",
                 "properties": {
@@ -93,6 +131,9 @@
                             },
                             {
                                 "$ref": "#/components/schemas/CreateDepositAccount"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateWalletAccount"
                             }
                         ]
                     }

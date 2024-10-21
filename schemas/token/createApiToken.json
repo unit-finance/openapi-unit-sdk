@@ -46,7 +46,8 @@
                                                     }
                                                 }
                                             }
-                                        }
+                                        },
+                                        "nullable": true
                                     }
                                 },
                                 "additionalProperties": false,

@@ -1,22 +1,105 @@
 {
     "components": {
         "schemas": {
+            "UnitCardLimitsResponse": {
+                "title": "Unit Card Limits Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["limits"],
+                                "default": "limits"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "limits": {
+                                        "$ref": "../types.json#/components/schemas/CardLevelLimits"
+                                    },
+                                    "dailyTotals": {
+                                        "$ref": "../types.json#/components/schemas/CardTotals"
+                                    },
+                                    "monthlyTotals": {
+                                        "$ref": "../types.json#/components/schemas/CardTotals"
+                                    }
+                                },
+                                "required": ["dailyTotals", "monthlyTotals"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["type", "attributes"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            },
             "UnitPinStatusResponse": {
                 "title": "Unit Pin Status Response",
                 "type": "object",
                 "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["pinStatus"],
-                        "default": "pinStatus"
-                    },
-                    "attributes": {
+                    "data": {
                         "type": "object",
                         "properties": {
-                            "status": {
+                            "type": {
                                 "type": "string",
-                                "enum": ["Set", "NotSet"]
+                                "enum": ["pinStatus"],
+                                "default": "pinStatus"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "enum": ["Set", "NotSet"]
+                                    }
+                                }
                             }
+                        }
+                    }
+                }
+            },
+            "UnitCardResponse": {
+                "type": "object",
+                "title": "Unit Card Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./card.json#/components/schemas/Card"
+                    }
+                }
+            },
+            "UnitCardResponseWithIncluded": {
+                "type": "object",
+                "title": "Unit Card Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./card.json#/components/schemas/Card"
+                    },
+                    "included": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "../types.json#/components/schemas/IncludedResource"
+                        }
+                    }
+                }
+            },
+            "UnitCardsListReponse": {
+                "title": "Unit Cards List Reponse",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./card.json#/components/schemas/Card"
+                        }
+                    },
+                    "included": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "../types.json#/components/schemas/IncludedResource"
                         }
                     }
                 }
@@ -92,22 +175,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "title": "Unit Card Response Cards List",
-                                "type": "object",
-                                "properties": {
-                                    "data": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "./card.json#/components/schemas/Card"
-                                        }
-                                    },
-                                    "included": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "../types.json#/components/schemas/IncludedResource"
-                                        }
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardsListReponse"
                             }
                         }
                     }
@@ -136,13 +204,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Cards List Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }
@@ -180,19 +242,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Card Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    },
-                                    "included": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "../types.json#/components/schemas/IncludedResource"
-                                        }
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponseWithIncluded"
                             }
                         }
                     }
@@ -232,13 +282,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Update Card Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }
@@ -269,13 +313,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Report Lost Card Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }
@@ -306,13 +344,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Report Stolen Card Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }
@@ -343,13 +375,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Close Card Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }
@@ -411,13 +437,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit  Freeze Card Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }
@@ -448,13 +468,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit  Unfreeze Card Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./card.json#/components/schemas/Card"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }
@@ -485,13 +499,48 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Card Limits Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./cardLevelLimits.json#/components/schemas/Limits"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCardLimitsResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "replaceCard": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "replaceCard",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to replace"
+                }
+            ],
+            "summary": "Replace a Card",
+            "description": "Replace a Card via API ",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./replaceCard.json#/components/schemas/ReplaceCardRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardResponse"
                             }
                         }
                     }

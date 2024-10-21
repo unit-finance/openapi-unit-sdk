@@ -13,7 +13,10 @@
                     "attributes": {
                         "type": "object",
                         "properties": {
-                            "amount": { "type": "integer", "minimum": 1 },
+                            "clearingDaysOverride": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
                             }

@@ -373,61 +373,6 @@
                     "$ref": "#/components/schemas/ListPageParameters"
                 }
             },
-            "Limits": {
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string"
-                    },
-                    "id": {
-                        "type": "string"
-                    },
-                    "attributes": {
-                        "type": "object",
-                        "properties": {
-                            "card": {
-                                "type": "object",
-                                "properties": {
-                                    "limits": {
-                                        "type": "object",
-                                        "properties": {
-                                            "dailyWithdrawal": {
-                                                "type": "number"
-                                            },
-                                            "dailyDeposit": {
-                                                "type": "number"
-                                            },
-                                            "dailyPurchase": {
-                                                "type": "number"
-                                            },
-                                            "dailyCardTransaction": {
-                                                "type": "number"
-                                            }
-                                        }
-                                    },
-                                    "totalsDaily": {
-                                        "type": "object",
-                                        "properties": {
-                                            "withdrawal": {
-                                                "type": "number"
-                                            },
-                                            "deposit": {
-                                                "type": "number"
-                                            },
-                                            "purchase": {
-                                                "type": "number"
-                                            },
-                                            "cardTransaction": {
-                                                "type": "number"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "UnitError": {
                 "type": "array",
                 "title": "Unit Error",

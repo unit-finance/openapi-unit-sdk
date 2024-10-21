@@ -19,7 +19,8 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["statement", "accountStatementDTO"]
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"

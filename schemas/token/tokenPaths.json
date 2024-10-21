@@ -1,4 +1,17 @@
 {
+    "components": {
+        "schemas": {
+            "UnitApiTokenResponse": {
+                "type": "object",
+                "title": "Unit Api Token Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./apiToken.json#/components/schemas/ApiToken"
+                    }
+                }
+            }
+        }
+    },
     "apiTokens": {
         "get": {
             "tags": ["unit"],
@@ -71,13 +84,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Api Token Response",
-                                "properties": {
-                                    "data": {
-                                        "$ref": "./apiToken.json#/components/schemas/ApiToken"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitApiTokenResponse"
                             }
                         }
                     }

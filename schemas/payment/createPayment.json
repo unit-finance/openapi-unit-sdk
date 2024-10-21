@@ -17,7 +17,6 @@
                 "allOf": [
                     {
                         "type": "object",
-
                         "required": ["account", "counterparty"],
                         "additionalProperties": false
                     },

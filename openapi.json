@@ -218,6 +218,9 @@
         "/fees": {
             "$ref": "./schemas/fee/feePaths.json#/createFee"
         },
+        "/fees/reverse": {
+            "$ref": "./schemas/fee/feePaths.json#/reverseFee"
+        },
         "/check-deposits": {
             "$ref": "./schemas/check/checkDepositPaths.json#/checkDeposits"
         },

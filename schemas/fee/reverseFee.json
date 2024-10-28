@@ -1,19 +1,22 @@
 {
     "components": {
         "schemas": {
-            "CreateFeeRelationships": {
+            "ReverseFeeRequestRelationships": {
                 "allOf": [
                     {
-                        "type": "object",
-                        "required": ["account"],
+                        "title": "Reverse Fee Request Relationships",
+                        "required": ["account", "transaction"],
                         "additionalProperties": false
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
                     }
                 ]
             },
-            "CreateFeeRequest": {
+            "ReverseFeeRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -21,16 +24,12 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["fee"],
-                                "default": "fee"
+                                "enum": ["feeReversal"],
+                                "default": "feeReversal"
                             },
                             "attributes": {
                                 "type": "object",
                                 "properties": {
-                                    "amount": {
-                                        "type": "integer",
-                                        "minimum": 1
-                                    },
                                     "description": {
                                         "type": "string",
                                         "maxLength": 50
@@ -42,19 +41,16 @@
                                         "$ref": "../types.json#/components/schemas/IdempotencyKey"
                                     }
                                 },
-                                "required": ["amount", "description"],
-                                "additionalProperties": false
+                                "required": ["description"]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/CreateFeeRelationships"
+                                "$ref": "#/components/schemas/ReverseFeeRequestRelationships"
                             }
                         },
-                        "required": ["type", "attributes", "relationships"],
-                        "additionalProperties": false
+                        "required": ["type", "attributes", "relationships"]
                     }
                 },
-                "required": ["data"],
-                "additionalProperties": false
+                "required": ["data"]
             }
         }
     }

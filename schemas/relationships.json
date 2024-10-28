@@ -442,6 +442,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
+                                        "enum": ["transaction"],
                                         "default": "transaction"
                                     },
                                     "id": {

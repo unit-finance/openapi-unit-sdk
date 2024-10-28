@@ -1,0 +1,46 @@
+{
+    "components": {
+        "schemas": {
+            "FeeReversalRelationships": {
+                "allOf": [
+                    {
+                        "title": "Fee Reversal Relationships",
+                        "required": ["account", "transaction"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "FeeReversal": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["feeReversal"],
+                        "default": "feeReversal"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "required": ["description"]
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/FeeReversalRelationships"
+                    }
+                },
+                "required": []
+            }
+        }
+    }
+}

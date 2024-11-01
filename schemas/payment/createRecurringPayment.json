@@ -145,7 +145,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterparty"
+                        "$ref": "./createPayment.json#/components/schemas/CreatePaymentRelationshipsWithCounterpartyAccount"
                     }
                 },
                 "additionalProperties": false,
@@ -165,7 +165,15 @@
                             {
                                 "$ref": "#/components/schemas/CreateRecurringCreditBookPayment"
                             }
-                        ]
+                        ],
+                        "discriminator": {
+                            "propertyName": "type",
+                            "mapping": {
+                                "$recurringCreditAchPayment": "#/components/schemas/CreateRecurringCreditAchPayment",
+                                "recurringDebitAchPayment": "#/components/schemas/CreateRecurringDebitAchPayment",
+                                "recurringCreditBookPayment": "#/components/schemas/CreateRecurringCreditBookPayment"
+                            }
+                        }
                     }
                 },
                 "additionalProperties": false,

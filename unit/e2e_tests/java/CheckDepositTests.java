@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static unit.java.sdk.AccountTests.CreateDepositAccount;
+import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 
 import org.junit.Test;
 
@@ -13,13 +14,10 @@ import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.AccountRelationship;
 import unit.java.sdk.model.AccountRelationshipData;
 import unit.java.sdk.model.CheckDeposit;
-import unit.java.sdk.model.ConfirmCheckDepositRequest;
-import unit.java.sdk.model.ConfirmCheckDepositRequestData;
 import unit.java.sdk.model.CreateCheckDepositRelationships;
 import unit.java.sdk.model.CreateCheckDepositRequest;
 import unit.java.sdk.model.CreateCheckDepositRequestData;
 import unit.java.sdk.model.CreateCheckDepositRequestDataAttributes;
-import unit.java.sdk.model.Customer;
 import unit.java.sdk.model.DepositAccount;
 import unit.java.sdk.model.ListPageParameters;
 import unit.java.sdk.model.UnitCheckDepositResponse;
@@ -38,7 +36,7 @@ public class CheckDepositTests {
         attributes.setAmount(2000);
         attributes.setDescription("Test");
 
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         CreateCheckDepositRelationships relationships = new CreateCheckDepositRelationships();
         AccountRelationship accountRelationship = new AccountRelationship();
         AccountRelationshipData accountRelationshipData = new AccountRelationshipData();

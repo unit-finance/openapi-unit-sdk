@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.Address;
 import unit.java.sdk.model.AnnualIncome;
@@ -38,6 +41,9 @@ public class TestHelpers {
         if(unitApi == null){
             String access_token = System.getenv("access_token");
         ApiClient cl = new ApiClient();
+        ObjectMapper mapper = cl.getObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        cl.setObjectMapper(mapper);
         cl.setRequestInterceptor(r -> r.header("Authorization", "Bearer " + access_token));
         unitApi = new UnitApi(cl);
         }

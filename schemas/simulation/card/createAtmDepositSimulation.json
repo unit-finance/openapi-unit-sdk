@@ -1,0 +1,70 @@
+{
+    "components": {
+        "schemas": {
+            "CreateAtmDepositSimulationRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Atm Deposit Simulation Relationships",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../../relationships.json#/components/schemas/DepositAccountRelationship"
+                    }
+                ]
+            },
+            "CreateAtmDepositSimulationRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["atmTransaction"],
+                                "default": "atmTransaction"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "number"
+                                    },
+                                    "atmName": {
+                                        "type": "string"
+                                    },
+                                    "atmLocation": {
+                                        "type": "string"
+                                    },
+                                    "last4Digits": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "maxLength": 4
+                                    },
+                                    "cardNetwork": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Visa",
+                                            "Interlink",
+                                            "Accel",
+                                            "Allpoint",
+                                            "Other"
+                                        ]
+                                    },
+                                    "surcharge": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": ["amount", "atmName", "last4Digits"]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/CreateAtmDepositSimulationRelationships"
+                            }
+                        },
+                        "required": ["type", "attributes", "relationships"]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

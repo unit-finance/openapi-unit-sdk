@@ -1,0 +1,34 @@
+{
+    "createAtmDeposit": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createAtmDepositSimulation",
+
+            "summary": "Create Atm Deposit Simulation",
+            "description": "Create Atm Deposit Simulation via API ",
+            "requestBody": {
+                "description": "Create Atm Deposit Simulation Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./card/createAtmDepositSimulation.json#/components/schemas/CreateAtmDepositSimulationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "../account/accountPaths.json#/components/schemas/UnitDepositAccountResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

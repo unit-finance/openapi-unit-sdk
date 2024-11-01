@@ -6,6 +6,7 @@ import static unit.java.sdk.AccountTests.CreateDepositAccount;
 import static unit.java.sdk.TestHelpers.CreatePaymentCounterparty;
 import static unit.java.sdk.TestHelpers.CreateWirePaymentCounterparty;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
+import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.AccountRelationship;
 import unit.java.sdk.model.AccountRelationshipData;
@@ -23,7 +24,6 @@ import unit.java.sdk.model.CreatePaymentRequestData;
 import unit.java.sdk.model.CreateWirePayment;
 import unit.java.sdk.model.CreateWirePaymentAttributes;
 import unit.java.sdk.model.CreateWirePaymentRelationships;
-import unit.java.sdk.model.Customer;
 import unit.java.sdk.model.DepositAccount;
 import unit.java.sdk.model.Payment;
 import unit.java.sdk.model.UnitPaymentResponse;
@@ -51,15 +51,15 @@ public class PaymentTests {
     }
 
     @Test
-    public void CreateBookPaymentTest() throws ApiException {
+    public void CreateBookPaymentApiTest() throws ApiException {
         CreateBookPayment createBookPayment = new CreateBookPayment();
         CreateBookPaymentAttributes attributes = new CreateBookPaymentAttributes();
         attributes.setAmount(1000);
         attributes.setDescription("Funding");
         createBookPayment.setAttributes(attributes);
 
-        DepositAccount account1 = (DepositAccount) CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
-        DepositAccount account2 = (DepositAccount) CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account1 = (DepositAccount) CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
+        DepositAccount account2 = (DepositAccount) CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
 
         CreateBookPaymentRelationships relationships = new CreateBookPaymentRelationships();
 
@@ -87,7 +87,7 @@ public class PaymentTests {
     }
     
     @Test
-    public void CreateAchPaymentTest() throws ApiException {
+    public void CreateAchPaymentApiTest() throws ApiException {
         CreateAchPayment createAchPayment = new CreateAchPayment();
         CreateAchPaymentAttributes attributes = new CreateAchPaymentAttributes();
         attributes.setAmount(1000);
@@ -96,7 +96,7 @@ public class PaymentTests {
         attributes.setDescription("Funding");
         createAchPayment.setAttributes(attributes);
 
-        DepositAccount account = (DepositAccount) CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account = (DepositAccount) CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
 
         CreateAchPaymentRelationships relationships = new CreateAchPaymentRelationships();
         AccountRelationship accountRelationship = new AccountRelationship();
@@ -114,7 +114,7 @@ public class PaymentTests {
     }
 
     @Test
-    public void CreateWirePaymentTest() throws ApiException {
+    public void CreateWirePaymentApiTest() throws ApiException {
         CreateWirePayment createWirePayment = new CreateWirePayment();
         CreateWirePaymentAttributes attributes = new CreateWirePaymentAttributes();
         createWirePayment.setType(CreateWirePayment.TypeEnum.WIRE_PAYMENT);
@@ -124,7 +124,7 @@ public class PaymentTests {
         attributes.setDescription("Wire payment");
         createWirePayment.setAttributes(attributes);
 
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
 
         CreateWirePaymentRelationships relationships = new CreateWirePaymentRelationships();
         AccountRelationship accountRelationship = new AccountRelationship();

@@ -470,6 +470,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
+                                        "enum": ["counterparty"],
                                         "default": "counterparty"
                                     },
                                     "id": {

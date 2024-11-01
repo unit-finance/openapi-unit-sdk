@@ -2,6 +2,7 @@ package unit.java.sdk;
 
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
 import static unit.java.sdk.AccountTests.CreateDepositAccount;
+import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 
 import org.junit.Test;
 
@@ -10,7 +11,6 @@ import unit.java.sdk.model.CreateRewardRelationships;
 import unit.java.sdk.model.CreateRewardRequest;
 import unit.java.sdk.model.CreateRewardRequestData;
 import unit.java.sdk.model.CreateRewardRequestDataAttributes;
-import unit.java.sdk.model.Customer;
 import unit.java.sdk.model.DepositAccount;
 import unit.java.sdk.model.ListPageParameters;
 import unit.java.sdk.model.ReceivingAccountRelationship;
@@ -34,7 +34,7 @@ public class RewardTests {
 
         ReceivingAccountRelationship relationship = new ReceivingAccountRelationship();
         ReceivingAccountRelationshipData relationshipData = new ReceivingAccountRelationshipData();
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
 
         relationshipData.setId(account.getId());
         relationshipData.setType(ReceivingAccountRelationshipData.TypeEnum.DEPOSIT_ACCOUNT);

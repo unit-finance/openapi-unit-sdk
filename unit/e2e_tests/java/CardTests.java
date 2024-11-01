@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 import static unit.java.sdk.AccountTests.CreateDepositAccount;
 import static unit.java.sdk.AccountTests.CreateCreditAccount;
+import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
+import static unit.java.sdk.CustomerTests.CreateBusinessCustomer;
 
 import org.junit.Test;
 import unit.java.sdk.api.UnitApi;
@@ -28,7 +30,6 @@ import unit.java.sdk.model.CreateIndividualDebitCardRequestAttributes;
 import unit.java.sdk.model.CreateIndividualVirtualDebitCardRequest;
 import unit.java.sdk.model.CreateIndividualVirtualDebitCardRequestAttributes;
 import unit.java.sdk.model.CreditAccount;
-import unit.java.sdk.model.Customer;
 import unit.java.sdk.model.DepositAccount;
 import unit.java.sdk.model.FullName;
 import unit.java.sdk.model.IndividualDebitCard;
@@ -49,7 +50,7 @@ public class CardTests {
     UnitApi unitApi = GenerateUnitApiClient();
 
     IndividualDebitCard CreateIndividualDebitCard() throws ApiException {
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         CreateCardRequest req = new CreateCardRequest();
         CreateIndividualDebitCardRequest specificData = new CreateIndividualDebitCardRequest();
         
@@ -98,7 +99,7 @@ public class CardTests {
 
     @Test
     public void CreateBusinessDebitCardApiTest() throws ApiException {
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.BUSINESS_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateBusinessCustomer(unitApi));
         CreateCardRequest req = new CreateCardRequest();
         CreateBusinessDebitCardRequest specificData = new CreateBusinessDebitCardRequest();
         
@@ -212,7 +213,7 @@ public class CardTests {
 
     @Test
     public void CreateIndividualVirtualDebitCardApiTest() throws ApiException {
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         CreateCardRequest req = new CreateCardRequest();
         CreateIndividualVirtualDebitCardRequest specificData = new CreateIndividualVirtualDebitCardRequest();
         
@@ -247,7 +248,7 @@ public class CardTests {
 
     @Test
     public void CreateBusinessVirtualDebitCard() throws ApiException {
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.BUSINESS_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateBusinessCustomer(unitApi));
         CreateCardRequest req = new CreateCardRequest();
         CreateBusinessVirtualDebitCardRequest specificData = new CreateBusinessVirtualDebitCardRequest();
         

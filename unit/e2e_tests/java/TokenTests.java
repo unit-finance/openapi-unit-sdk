@@ -51,7 +51,7 @@ public class TokenTests {
     //     attributes.setExpiration(instant.atOffset(ZoneOffset.UTC));
     //     List<CreateApiTokenRequestDataAttributesResourcesInner> resources = new ArrayList<CreateApiTokenRequestDataAttributesResourcesInner>();
     //     CreateApiTokenRequestDataAttributesResourcesInner resource = new CreateApiTokenRequestDataAttributesResourcesInner();
-    //     DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+    //     DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
 
     //     resource.setType(CreateApiTokenRequestDataAttributesResourcesInner.TypeEnum.ACCOUNT);
     //     List<String> ids = new ArrayList<String>();
@@ -73,6 +73,7 @@ public class TokenTests {
     @Test
     public void GetOrgTokensApiTest() throws ApiException {
         List<ApiToken> response = unitApi.getApiTokensList(testUserId).getData();
+
 
         for (ApiToken t: response) {
             assert t.getType().equals(ApiToken.TypeEnum.API_TOKEN);

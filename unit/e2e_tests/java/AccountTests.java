@@ -110,11 +110,7 @@ public class AccountTests {
         });
     }
 
-    public static DepositAccount CreateDepositAccount(UnitApi unitApi, Customer.TypeEnum customerType) throws ApiException {
-        Customer customer;
-        if(customerType == Customer.TypeEnum.INDIVIDUAL_CUSTOMER) { customer = CreateIndividualCustomer(unitApi); }
-        else { customer = CreateBusinessCustomer(unitApi); }
-
+    public static DepositAccount CreateDepositAccount(UnitApi unitApi, Customer customer) throws ApiException {
         CreateDepositAccount cda = new CreateDepositAccount();
         CreateDepositAccountAttributes attributes = new CreateDepositAccountAttributes();
         attributes.setDepositProduct("checking");
@@ -142,11 +138,11 @@ public class AccountTests {
 
     @Test
     public void CreateDepositAccountApiTest() throws ApiException {
-        CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
     }
 
     DepositAccount CreateAndCloseDepositAccount() throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         CloseAccountRequest closeAccountRequest = new CloseAccountRequest();
         CloseAccountRequestData closeAccountRequestData = new CloseAccountRequestData();
         CloseAccountRequestDataAttributes closeAccountRequestAttributes = new CloseAccountRequestDataAttributes();
@@ -174,7 +170,7 @@ public class AccountTests {
     }
 
     private DepositAccount CreateAndFreezeDepositAccount() throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         FreezeAccountRequest freezeAccountRequest = new FreezeAccountRequest();
         FreezeAccountRequestData freezeAccountRequestData = new FreezeAccountRequestData();
         FreezeAccountRequestDataAttributes freezeAccountRequestDataAttributes = new FreezeAccountRequestDataAttributes();
@@ -202,14 +198,14 @@ public class AccountTests {
 
     @Test
     public void GetDepositAccountLimitsApiTest() throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         UnitGetAccountLimitsResponse res = unitApi.getAccountLimits(depositAccount.getId());
         assert res.getData().getType().equals(Limits.TypeEnum.LIMITS);
     }
     
     @Test
     public void GetDepositAccountAvailableProducts() throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         UnitDepositProductsResponse res = unitApi.getDepositProductsList(depositAccount.getId());
         res.getData().forEach(product -> {
             assert product.getType().equals(DepositProduct.TypeEnum.ACCOUNT_DEPOSIT_PRODUCT);
@@ -218,7 +214,7 @@ public class AccountTests {
 
     @Test
     public void GetDepositAccountBalanceHistory() throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         ListPageParameters pageParams = new ListPageParameters();
         pageParams.setLimit(20);
         GetAccountBalanceHistoryFilterParameter mainFilters = new GetAccountBalanceHistoryFilterParameter();
@@ -230,7 +226,7 @@ public class AccountTests {
     }
 
     DepositAccount CreateDepositAccountAndAddOwnersToIt (List<DepositAccountOwner> owners) throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         AddAccountOwnersRequest addAccountOwnersRequest = new AddAccountOwnersRequest();
         addAccountOwnersRequest.setData(owners);
         UnitDepositAccountResponse res = unitApi.addAccountOwners(depositAccount.getId(), addAccountOwnersRequest);
@@ -241,8 +237,8 @@ public class AccountTests {
     @Test   
     public void AddDepositAccountOwnersApiTest() throws ApiException {
         List<DepositAccountOwner> owners = new ArrayList<DepositAccountOwner>();
-        DepositAccount depositAccountOne = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
-        DepositAccount depositAccountTwo = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccountOne = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
+        DepositAccount depositAccountTwo = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         DepositAccountOwner ownerOne = new DepositAccountOwner();
         ownerOne.setId(depositAccountOne.getId());
         ownerOne.setType(DepositAccountOwner.TypeEnum.CUSTOMER);
@@ -257,8 +253,8 @@ public class AccountTests {
     @Test
     public void RemoveDepositAccountOwnersApiTest() throws ApiException {
         List<DepositAccountOwner> owners = new ArrayList<DepositAccountOwner>();
-        DepositAccount depositAccountOne = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
-        DepositAccount depositAccountTwo = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccountOne = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
+        DepositAccount depositAccountTwo = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         DepositAccountOwner ownerOne = new DepositAccountOwner();
         ownerOne.setId(depositAccountOne.getId());
         ownerOne.setType(DepositAccountOwner.TypeEnum.CUSTOMER);
@@ -438,7 +434,7 @@ public class AccountTests {
     }
 
     WalletAccount CreateAndFreezeWalletAccount() throws ApiException {
-        DepositAccount walletAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount walletAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         FreezeAccountRequest freezeAccountRequest = new FreezeAccountRequest();
         FreezeAccountRequestData freezeAccountRequestData = new FreezeAccountRequestData();
         FreezeAccountRequestDataAttributes freezeAccountRequestDataAttributes = new FreezeAccountRequestDataAttributes();
@@ -466,7 +462,7 @@ public class AccountTests {
 
     @Test
     public void GetWalletAccountLimitsApiTest() throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         UnitGetAccountLimitsResponse res = unitApi.getAccountLimits(depositAccount.getId());
         assert res.getData().getType().equals(Limits.TypeEnum.WALLET_LIMITS);
     }

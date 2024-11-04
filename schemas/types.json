@@ -669,8 +669,8 @@
                         "properties": {
                             "interval": {
                                 "type": "string",
-                                "enum": ["Montly"],
-                                "default": "Montly"
+                                "enum": ["Monthly"],
+                                "default": "Monthly"
                             }
                         },
                         "required": ["interval"]

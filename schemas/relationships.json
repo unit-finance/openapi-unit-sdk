@@ -442,6 +442,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
+                                        "enum": ["transaction"],
                                         "default": "transaction"
                                     },
                                     "id": {
@@ -469,6 +470,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
+                                        "enum": ["counterparty"],
                                         "default": "counterparty"
                                     },
                                     "id": {

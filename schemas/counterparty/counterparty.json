@@ -19,7 +19,9 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["achCounterparty"],
+                        "default": "achCounterparty"
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"

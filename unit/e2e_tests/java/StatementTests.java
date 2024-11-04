@@ -2,13 +2,13 @@ package unit.java.sdk;
 
 import static unit.java.sdk.AccountTests.CreateDepositAccount;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
+import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 
 import java.io.InputStream;
 
 import org.junit.Test;
 
 import unit.java.sdk.api.UnitApi;
-import unit.java.sdk.model.Customer;
 import unit.java.sdk.model.DepositAccount;
 import unit.java.sdk.model.ListPageParameters;
 import unit.java.sdk.model.Statement;
@@ -47,7 +47,7 @@ public class StatementTests {
 
     @Test
     public void GetBankVerificationPdfApiTest() throws ApiException {
-        DepositAccount account = CreateDepositAccount(unitApi, Customer.TypeEnum.INDIVIDUAL_CUSTOMER);
+        DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         InputStream res = unitApi.getStatementBankPdf(account.getId());
         assert res != null;
     }

@@ -652,6 +652,18 @@
                     "description": "ID of the payment to disable"
                 }
             ],
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
             "description": "Disable Recurring Payment via API ",
             "responses": {
                 "200": {
@@ -684,6 +696,18 @@
                     "description": "ID of the payment to enable"
                 }
             ],
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
             "description": "Enable Recurring Payment via API ",
             "responses": {
                 "200": {

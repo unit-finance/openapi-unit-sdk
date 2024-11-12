@@ -1,0 +1,92 @@
+{
+    "components": {
+        "schemas": {
+            "AchReturnReason": {
+                "type": "string",
+                "enum": [
+                    "InsufficientFunds",
+                    "AccountClosed",
+                    "NoAccount",
+                    "InvalidAccountNumberStructure",
+                    "UnauthorizedDebitToConsumer",
+                    "ReturnedPerOdfiRequest",
+                    "AuthorizationRevokedByCustomer",
+                    "PaymentStopped",
+                    "UncollectedFunds",
+                    "CustomerAdvisesNotAuthorized",
+                    "CheckTruncationEntryReturned",
+                    "BranchSoldToAnotherDfi",
+                    "RdfiNotQualifiedToParticipate",
+                    "RepresentativePayeeDeceasedOrUnableToContinue",
+                    "BeneficiaryOrBankAccountHolderDeceased",
+                    "AccountFrozen",
+                    "FileRecordEditCriteria",
+                    "ImproperEffectiveEntryDate",
+                    "AmountFieldError",
+                    "NonTransactionAccount",
+                    "InvalidCompanyIdentification",
+                    "InvalidIndividualIdNumber",
+                    "CreditEntryRefusedByReceiver",
+                    "DuplicateEntry",
+                    "AddendaError",
+                    "MandatoryFieldError",
+                    "TraceNumberError",
+                    "RoutingNumberCheckDigitError",
+                    "CorporateCustomerAdvisesNotAuthorized",
+                    "RdfiNotParticipantInCheckTruncationProgram",
+                    "PermissibleReturnEntry",
+                    "RdfiNonSettlement",
+                    "ReturnOfXckEntry",
+                    "LimitedParticipationDfi",
+                    "ReturnOfImproperDebitEntry",
+                    "ReturnOfImproperCreditEntry",
+                    "SourceDocumentPresentedForPayment",
+                    "StopPaymentOnSourceDocument",
+                    "ImproperSourceDocument",
+                    "InvalidIndividualOrCompanyName",
+                    "IncorrectlyCodedOutboundInternationalPayment"
+                ]
+            },
+            "ReturnReceivedACHTransactionRelationships": {
+                "allOf": [
+                    {
+                        "title": "Create Atm Deposit Simulation Relationships",
+                        "required": ["account"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "ReturnReceivedACHTransactionRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["atmTransaction"],
+                                "default": "atmTransaction"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "reason": {
+                                        "$ref": "#/components/schemas/AchReturnReason"
+                                    }
+                                },
+                                "required": ["reason"]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/ReturnReceivedACHTransactionRelationships"
+                            }
+                        },
+                        "required": ["type", "attributes", "relationships"]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

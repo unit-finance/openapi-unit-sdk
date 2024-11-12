@@ -49,8 +49,8 @@ import unit.java.sdk.model.UnitPinStatusResponseData;
 public class CardTests {
     UnitApi unitApi = GenerateUnitApiClient();
 
-    IndividualDebitCard CreateIndividualDebitCard() throws ApiException {
-        DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
+    static IndividualDebitCard CreateIndividualDebitCard(UnitApi unitApi, DepositAccount account) throws ApiException {
+        if(account == null) account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
         CreateCardRequest req = new CreateCardRequest();
         CreateIndividualDebitCardRequest specificData = new CreateIndividualDebitCardRequest();
         
@@ -92,9 +92,15 @@ public class CardTests {
         return (IndividualDebitCard) res.getData();
     }
 
+    static IndividualDebitCard CreateAndActivateIndividualDebitCard(UnitApi unitApi, DepositAccount account) throws ApiException {
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, account);
+        unitApi.activateCardSimulation(card.getId());
+        return card;
+    }
+
     @Test
     public void CreateIndividualDebitCardApiTest() throws ApiException {
-        CreateIndividualDebitCard();
+        CreateIndividualDebitCard(unitApi, null);
     }
 
     @Test
@@ -362,28 +368,28 @@ public class CardTests {
 
     @Test
     public void GetPinStatusApiTest() throws ApiException {
-        IndividualDebitCard card = CreateIndividualDebitCard();
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
         UnitPinStatusResponse res = unitApi.getCardPinStatus(card.getId());
         assert res.getData().getType().equals(UnitPinStatusResponseData.TypeEnum.PIN_STATUS);
     }
 
     @Test
     public void CloseCardApiTest() throws ApiException { 
-        IndividualDebitCard card = CreateIndividualDebitCard();
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
         UnitCardResponse res = unitApi.closeCard(card.getId());
         assert res.getData().getType().equals(Card.TypeEnum.INDIVIDUAL_DEBIT_CARD);
     }
 
     @Test
     public void FreezeCardApiTest() throws ApiException { 
-        IndividualDebitCard card = CreateIndividualDebitCard();
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
         UnitCardResponse res = unitApi.freezeCard(card.getId());
         assert res.getData().getType().equals(Card.TypeEnum.INDIVIDUAL_DEBIT_CARD);
     }
 
     @Test
     public void UnfreezeCardApiTest() throws ApiException { 
-        IndividualDebitCard card = CreateIndividualDebitCard();
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
         UnitCardResponse freezeRes = unitApi.freezeCard(card.getId());
         assert freezeRes.getData().getType().equals(Card.TypeEnum.INDIVIDUAL_DEBIT_CARD);
         UnitCardResponse unfreezeRes = unitApi.unfreezeCard(card.getId());
@@ -392,7 +398,7 @@ public class CardTests {
 
     @Test
     public void ReplaceCardApiTest() throws ApiException { 
-        IndividualDebitCard card = CreateIndividualDebitCard();
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
         ReplaceCardRequest req = new ReplaceCardRequest();
         ReplaceCardRequestData data = new ReplaceCardRequestData();
         ReplaceCardRequestDataAttributes attributes = new ReplaceCardRequestDataAttributes();
@@ -421,14 +427,21 @@ public class CardTests {
 
     @Test 
     public void GetCardByIdApiTest() throws ApiException {
-        IndividualDebitCard card = CreateIndividualDebitCard();
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
         UnitCardResponseWithIncluded res = unitApi.getCard(card.getId(), null);
         assert res.getData().getType().equals(Card.TypeEnum.INDIVIDUAL_DEBIT_CARD);
     }
 
     @Test
     public void GetCardLimitsApiTest() throws ApiException {
-        IndividualDebitCard card = CreateIndividualDebitCard();
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
+        UnitCardLimitsResponse res = unitApi.getCardLimits(card.getId());
+        assert res.getData().getType().equals(UnitCardLimitsResponseData.TypeEnum.LIMITS);
+    }
+
+    @Test
+    public void ActivateCardApiTest() throws ApiException {
+        IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
         UnitCardLimitsResponse res = unitApi.getCardLimits(card.getId());
         assert res.getData().getType().equals(UnitCardLimitsResponseData.TypeEnum.LIMITS);
     }

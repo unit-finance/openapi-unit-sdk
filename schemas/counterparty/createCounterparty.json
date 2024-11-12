@@ -78,7 +78,9 @@
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["achCounterparty"],
+                        "default": "achCounterparty"
                     },
                     "attributes": {
                         "type": "object",

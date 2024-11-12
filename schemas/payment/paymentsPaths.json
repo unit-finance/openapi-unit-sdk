@@ -19,6 +19,15 @@
                     }
                 }
             },
+            "UnitReturnedReceivedAchTransactionResponse": {
+                "type": "object",
+                "title": "Unit Returned Received ACH Transaction Response",
+                "properties": {
+                    "data": {
+                        "$ref": "../transaction/transaction.json#/components/schemas/ReturnedReceivedAchTransaction"
+                    }
+                }
+            },
             "UnitRecurringPaymentResponse": {
                 "type": "object",
                 "title": "Unit Recurring Payment Response",
@@ -303,6 +312,18 @@
             ],
             "summary": "Cancel a Payment by Id",
             "description": "Cancel a Payment via API ",
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -324,7 +345,72 @@
 
             "parameters": [
                 {
-                    "name": "included",
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string"
+                            },
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Pending",
+                                        "Advanced",
+                                        "PendingReview",
+                                        "MarkedForReturn",
+                                        "Returned",
+                                        "Completed"
+                                    ]
+                                }
+                            },
+                            "since": {
+                                "type": "string"
+                            },
+                            "until": {
+                                "type": "string"
+                            },
+                            "fromAmount": {
+                                "type": "integer"
+                            },
+                            "toAmount": {
+                                "type": "integer"
+                            },
+                            "includeCompleted": {
+                                "type": "boolean"
+                            },
+                            "canBeReprocessed": {
+                                "type": "boolean"
+                            },
+                            "tags": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "sort",
                     "in": "query",
                     "schema": {
                         "type": "string"
@@ -468,6 +554,70 @@
             ],
             "summary": "Advance Received Payment by Id",
             "description": "Advance a Received Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitReceivedPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "reprocessReceivedPayment": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "reprocessReceivedPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "paymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the payment to advance"
+                }
+            ],
+            "summary": "Reprocess Received Payment by Id",
+            "description": "Reprocess a Received Payment via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitReceivedPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "returnReceivedAchTransaction": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "reprocessReceivedPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "paymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the payment to advance"
+                }
+            ],
+            "summary": "Reprocess Received Payment by Id",
+            "description": "Reprocess a Received Payment via API ",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -716,6 +866,49 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "returnReceivedACHTransaction": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "returnReceivedACHTransaction",
+
+            "summary": "Return Received ACH Transaction",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "transactionId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the transaction to return"
+                }
+            ],
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./returnReceivedACHTransaction.json#/components/schemas/ReturnReceivedACHTransactionRequest"
+                        }
+                    }
+                }
+            },
+            "description": "Return Received ACH Transaction via API ",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitReturnedReceivedAchTransactionResponse"
                             }
                         }
                     }

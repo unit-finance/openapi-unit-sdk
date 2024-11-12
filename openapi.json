@@ -113,11 +113,17 @@
         "/received-payments": {
             "$ref": "./schemas/payment/paymentsPaths.json#/listReceivedPayments"
         },
+        "/returns/{transactionId}": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/returnReceivedACHTransaction"
+        },
         "/received-payments/{paymentId}": {
             "$ref": "./schemas/payment/paymentsPaths.json#/receivedPayments"
         },
         "/received-payments/{paymentId}/advance": {
             "$ref": "./schemas/payment/paymentsPaths.json#/advanceReceivedPayment"
+        },
+        "/received-payments/{paymentId}/reprocess": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/reprocessReceivedPayment"
         },
         "/counterparties": {
             "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterparties"
@@ -331,6 +337,15 @@
         },
         "/tax-forms/{taxFormId}/pdf": {
             "$ref": "./schemas/tax-forms/taxFormsPaths.json#/getTaxFormPdf"
+        },
+        "/sandbox/atm-deposits": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/createAtmDeposit"
+        },
+        "/sandbox/cards/{cardId}/activate": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/activateCard"
+        },
+        "/sandbox/received-payments": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/receivedPaymentTransaction"
         }
     },
     "components": {

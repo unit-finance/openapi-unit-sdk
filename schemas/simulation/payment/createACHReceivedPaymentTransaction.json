@@ -1,10 +1,10 @@
 {
     "components": {
         "schemas": {
-            "CreateAtmDepositSimulationRelationships": {
+            "CreateACHReceivedPaymentTransactionRelationships": {
                 "allOf": [
                     {
-                        "title": "Create Atm Deposit Simulation Relationships",
+                        "title": "Create ACH Received Payment Transaction Relationships",
                         "required": ["account"]
                     },
                     {
@@ -12,7 +12,7 @@
                     }
                 ]
             },
-            "CreateAtmDepositSimulationRequest": {
+            "CreateACHReceivedPaymentTransactionRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -20,8 +20,8 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["atmTransaction"],
-                                "default": "atmTransaction"
+                                "enum": ["achReceivedPayment"],
+                                "default": "achReceivedPayment"
                             },
                             "attributes": {
                                 "type": "object",
@@ -29,35 +29,31 @@
                                     "amount": {
                                         "type": "integer"
                                     },
-                                    "atmName": {
-                                        "type": "string"
+                                    "completionDate": {
+                                        "type": "date"
                                     },
-                                    "atmLocation": {
-                                        "type": "string"
-                                    },
-                                    "last4Digits": {
+                                    "description": {
                                         "type": "string",
-                                        "minLength": 4,
-                                        "maxLength": 4
+                                        "maxLength": 10
                                     },
-                                    "cardNetwork": {
+                                    "companyName": {
                                         "type": "string",
-                                        "enum": [
-                                            "Visa",
-                                            "Interlink",
-                                            "Accel",
-                                            "Allpoint",
-                                            "Other"
-                                        ]
+                                        "maxLength": 16
                                     },
-                                    "surcharge": {
-                                        "type": "integer"
+                                    "secCode": {
+                                        "type": "string",
+                                        "maxLength": 3
                                     }
                                 },
-                                "required": ["amount", "atmName", "last4Digits"]
+                                "required": [
+                                    "amount",
+                                    "completionDate",
+                                    "description",
+                                    "companyName"
+                                ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/CreateAtmDepositSimulationRelationships"
+                                "$ref": "#/components/schemas/CreateACHReceivedPaymentTransactionRelationships"
                             }
                         },
                         "required": ["type", "attributes", "relationships"]

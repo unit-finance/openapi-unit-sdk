@@ -1,0 +1,54 @@
+{
+    "components": {
+        "schemas": {
+            "CashDepositBarcodeRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "title": "Cash Deposit Barcode",
+                        "required": ["account", "customer"],
+                        "additionalProperties": false
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    }
+                ]
+            },
+            "CashDepositBarcode": {
+                "title": "Cash Deposit Barcode",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["cashDepositBarcode"],
+                        "default": "cashDepositBarcode"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "barcodeNumber": {
+                                "type": "string"
+                            },
+                            "expiration": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "required": ["amount", "description"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/FeeRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"]
+            }
+        }
+    }
+}

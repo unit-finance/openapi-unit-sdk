@@ -1,0 +1,180 @@
+{
+    "components": {
+        "schemas": {
+            "UnitStoreLocationsListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./storeLocation.json#/schemas/components/StoreLocation"
+                        }
+                    },
+                    "meta": {
+                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                    }
+                }
+            }
+        }
+    },
+    "generateBarcode": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createFee",
+            "summary": "Generate Cash Deposit Barcode",
+            "description": "Generate Cash Deposit Barcode via API ",
+            "requestBody": {
+                "description": "Generate Cash Deposit Barcode Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./generateBarcode.json#/components/schemas/GenerateBarcodeRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Cash Deposit Barcode Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./cashDepositBarcode.json#/components/schemas/CashDepositBarcode"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "listByCoordinates": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCashDepositStoreLocationsListByCoordinates",
+
+            "summary": "Get Cash Deposit Store Locations List By Coordinates",
+            "description": "Get Cash Deposit Store Locations List By Coordinates from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "coordinates": {
+                                "$ref": "../types.json#/components/schemas/Coordinates"
+                            },
+                            "serviceType": {
+                                "type": "string",
+                                "enum": ["Swipe", "Barcode"]
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitStoreLocationsListResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "listByPostalCode": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getCashDepositStoreLocationsListByPostalCode",
+
+            "summary": "Get Cash Deposit Store Locations List By Postal Code",
+            "description": "Get Cash Deposit Store Locations List By Postal Code from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "postalCode": {
+                                "type": "string"
+                            },
+                            "serviceType": {
+                                "type": "string",
+                                "enum": ["Swipe", "Barcode"]
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitStoreLocationsListResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "getBarcodeImage": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getBarcodeImage",
+
+            "summary": "Get Barcode Image By Barcode Number",
+            "description": "Get Barcode Image By Barcode Number from API ",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "barcodeNumber",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "image/png": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

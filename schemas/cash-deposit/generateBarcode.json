@@ -1,0 +1,49 @@
+{
+    "components": {
+        "schemas": {
+            "GenerateBarcodeRequestRelationships": {
+                "allOf": [
+                    {
+                        "title": "Generate Barcode Relationships",
+                        "required": ["account", "customer"]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    }
+                ]
+            },
+            "GenerateBarcodeRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["cashDepositBarcode"],
+                                "default": "cashDepositBarcode"
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "storeId": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": ["storeId"]
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/GenerateBarcodeRequestRelationships"
+                            }
+                        },
+                        "required": ["type", "attributes", "relationships"]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "components": {
+        "schemas": {
+            "StoreLocation": {
+                "title": "Store Location",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["storeLocation"],
+                        "default": "storeLocation"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "storeId": {
+                                "type": "string"
+                            },
+                            "retailerName": {
+                                "type": "string"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "coordinates": {
+                                "$ref": "../types.json#/components/schemas/Coordinates"
+                            },
+                            "distance": {
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "storeId",
+                            "retailerName",
+                            "phone",
+                            "address",
+                            "coordinates",
+                            "distance"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"]
+            }
+        }
+    }
+}

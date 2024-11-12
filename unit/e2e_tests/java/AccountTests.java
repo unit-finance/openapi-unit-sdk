@@ -111,6 +111,7 @@ public class AccountTests {
     }
 
     public static DepositAccount CreateDepositAccount(UnitApi unitApi, Customer customer) throws ApiException {
+        if(customer == null) customer = CreateIndividualCustomer(unitApi);
         CreateDepositAccount cda = new CreateDepositAccount();
         CreateDepositAccountAttributes attributes = new CreateDepositAccountAttributes();
         attributes.setDepositProduct("checking");

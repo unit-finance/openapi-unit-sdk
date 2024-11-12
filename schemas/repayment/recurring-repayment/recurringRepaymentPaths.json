@@ -184,6 +184,18 @@
                     }
                 }
             ],
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
             "summary": "Disable Recurring Repayment by Id",
             "description": "Disable a Recurring Repayment",
             "responses": {
@@ -222,6 +234,18 @@
                     }
                 }
             ],
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
             "summary": "Enable Recurring Repayment by Id",
             "description": "Enable a Recurring Repayment",
             "responses": {

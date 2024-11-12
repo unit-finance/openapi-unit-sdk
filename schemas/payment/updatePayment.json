@@ -12,6 +12,33 @@
                     },
                     "attributes": {
                         "type": "object",
+                        "title": "Update Ach Payment Attributes",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "clearingDaysOverride": {
+                                "type": "integer"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateAchReceivedPayment": {
+                "title": "Update ACH Received Payment",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["achReceivedPayment"],
+                        "default": "achReceivedPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "title": "Update Ach Received Payment Attributes",
                         "properties": {
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -34,6 +61,7 @@
                     },
                     "attributes": {
                         "type": "object",
+                        "title": "Update Book Payment Attributes",
                         "properties": {
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
@@ -52,7 +80,12 @@
                     "data": {
                         "oneOf": [
                             { "$ref": "#/components/schemas/UpdateAchPayment" },
-                            { "$ref": "#/components/schemas/UpdateBookPayment" }
+                            {
+                                "$ref": "#/components/schemas/UpdateBookPayment"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateAchReceivedPayment"
+                            }
                         ]
                     }
                 },

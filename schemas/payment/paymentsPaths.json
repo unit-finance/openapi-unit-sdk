@@ -21,7 +21,7 @@
             },
             "UnitReturnedReceivedAchTransactionResponse": {
                 "type": "object",
-                "title": "Unit Received Payment Response",
+                "title": "Unit Returned Received ACH Transaction Response",
                 "properties": {
                     "data": {
                         "$ref": "../transaction/transaction.json#/components/schemas/ReturnedReceivedAchTransaction"

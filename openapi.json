@@ -110,6 +110,15 @@
         "/payments/{paymentId}/cancel": {
             "$ref": "./schemas/payment/paymentsPaths.json#/cancelPayment"
         },
+        "/store-locations": {
+            "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/listCashDepositStoreLocations"
+        },
+        "/cash-deposits/barcodes": {
+            "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/generateBarcode"
+        },
+        "/cash-deposits/barcodes/{barcodeNumber}/image": {
+            "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/getBarcodeImage"
+        },
         "/received-payments": {
             "$ref": "./schemas/payment/paymentsPaths.json#/listReceivedPayments"
         },
@@ -346,6 +355,9 @@
         },
         "/sandbox/received-payments": {
             "$ref": "./schemas/simulation/simulationPaths.json#/receivedPaymentTransaction"
+        },
+        "/sandbox/received-ach-payment": {
+            "$ref": "./schemas/simulation/simulationPaths.json#/createIncomingAchPayment"
         }
     },
     "components": {

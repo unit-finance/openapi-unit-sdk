@@ -44,7 +44,7 @@
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/FeeRelationships"
+                        "$ref": "#/components/schemas/CashDepositBarcodeRelationships"
                     }
                 },
                 "required": ["type", "attributes", "relationships"]

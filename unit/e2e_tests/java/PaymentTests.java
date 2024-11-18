@@ -6,6 +6,10 @@ import static unit.java.sdk.AccountTests.CreateDepositAccount;
 import static unit.java.sdk.TestHelpers.CreatePaymentCounterparty;
 import static unit.java.sdk.TestHelpers.CreateWirePaymentCounterparty;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
+
+import java.math.BigDecimal;
+import java.util.List;
+
 import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 import static unit.java.sdk.CounterpartyTests.CreateCounterparty;
 import static unit.java.sdk.CardTests.CreateAndActivateIndividualDebitCard;
@@ -14,6 +18,8 @@ import unit.java.sdk.model.AccountRelationship;
 import unit.java.sdk.model.AccountRelationshipData;
 import unit.java.sdk.model.AchPayment;
 import unit.java.sdk.model.BookPayment;
+import unit.java.sdk.model.CashDepositBarcode;
+import unit.java.sdk.model.Coordinates;
 import unit.java.sdk.model.Counterparty;
 import unit.java.sdk.model.CounterpartyAccountRelationship;
 import unit.java.sdk.model.CounterpartyAccountRelationshipData;
@@ -40,18 +46,32 @@ import unit.java.sdk.model.CreatePaymentRequestData;
 import unit.java.sdk.model.CreateWirePayment;
 import unit.java.sdk.model.CreateWirePaymentAttributes;
 import unit.java.sdk.model.CreateWirePaymentRelationships;
+import unit.java.sdk.model.CustomerRelationship;
+import unit.java.sdk.model.CustomerRelationshipData;
 import unit.java.sdk.model.DepositAccount;
+import unit.java.sdk.model.GenerateBarcodeRequest;
+import unit.java.sdk.model.GenerateBarcodeRequestData;
+import unit.java.sdk.model.GenerateBarcodeRequestDataAttributes;
+import unit.java.sdk.model.GenerateBarcodeRequestRelationships;
+import unit.java.sdk.model.GetCashDepositStoreLocationsListFilterParameter;
+import unit.java.sdk.model.GetCheckDepositsListFilterParameter;
+import unit.java.sdk.model.IndividualCustomer;
 import unit.java.sdk.model.IndividualDebitCard;
+import unit.java.sdk.model.ListPageParameters;
 import unit.java.sdk.model.Payment;
+import unit.java.sdk.model.StoreLocation;
+import unit.java.sdk.model.UnitCashDepositBarcodeResponse;
 import unit.java.sdk.model.UnitPaymentResponse;
 import unit.java.sdk.model.UnitPaymentResponseWithIncluded;
 import unit.java.sdk.model.UnitPaymentsListResponse;
+import unit.java.sdk.model.UnitStoreLocationsListResponse;
 import unit.java.sdk.model.UpdateAchPayment;
 import unit.java.sdk.model.UpdateAchPaymentAttributes;
 import unit.java.sdk.model.UpdateBookPayment;
 import unit.java.sdk.model.UpdateBookPaymentAttributes;
 import unit.java.sdk.model.UpdatePaymentRequest;
 import unit.java.sdk.model.UpdatePaymentRequestData;
+import unit.java.sdk.model.GetCashDepositStoreLocationsListFilterParameter.ServiceTypeEnum;
 
 public class PaymentTests {
     UnitApi unitApi = GenerateUnitApiClient();
@@ -312,5 +332,66 @@ public class PaymentTests {
         request.data(new CreatePaymentRequestData(createWirePayment));
         UnitPaymentResponse response = unitApi.createPayment(request);
         assert response.getData().getType().equals(Payment.TypeEnum.WIRE_PAYMENT);
+    }
+    
+    public List<StoreLocation> GetCashDepositStoresList() throws ApiException {
+        ListPageParameters params = new ListPageParameters();
+        params.setLimit(20);
+        GetCashDepositStoreLocationsListFilterParameter filter = new GetCashDepositStoreLocationsListFilterParameter();
+        filter.setPostalCode("10001");
+        filter.setServiceType(ServiceTypeEnum.BARCODE);
+        UnitStoreLocationsListResponse res = unitApi.getCashDepositStoreLocationsList(params, filter);
+        assert !res.getData().isEmpty();
+        return res.getData();
+    }
+
+    @Test
+    public void GetCashDepositStoresListApiTest() throws ApiException {
+        GetCashDepositStoresList();
+    }
+
+    public CashDepositBarcode GenerateBarcode() throws ApiException {
+        StoreLocation store = GetCashDepositStoresList().get(0);
+
+        IndividualCustomer customer = CreateIndividualCustomer(unitApi);
+        DepositAccount account = CreateDepositAccount(unitApi, customer);
+
+        GenerateBarcodeRequest req = new GenerateBarcodeRequest();
+        GenerateBarcodeRequestData data = new GenerateBarcodeRequestData();
+        GenerateBarcodeRequestDataAttributes attributes = new GenerateBarcodeRequestDataAttributes();
+        GenerateBarcodeRequestRelationships relationships = new GenerateBarcodeRequestRelationships();
+        AccountRelationship accountRelationship = new AccountRelationship();
+        AccountRelationshipData accountRelationshipData = new AccountRelationshipData();
+        accountRelationshipData.setId(account.getId());
+        accountRelationshipData.setType(AccountRelationshipData.TypeEnum.ACCOUNT);
+        accountRelationship.setData(accountRelationshipData);
+        relationships.setAccount(accountRelationship);
+        CustomerRelationship customerRelationship = new CustomerRelationship();
+        CustomerRelationshipData customerRelationshipData = new CustomerRelationshipData();
+        customerRelationshipData.setId(customer.getId());
+        customerRelationshipData.setType(CustomerRelationshipData.TypeEnum.CUSTOMER);
+        customerRelationship.setData(customerRelationshipData);
+        relationships.setCustomer(customerRelationship);
+
+        attributes.setStoreId(store.getAttributes().getStoreId());
+
+        data.setAttributes(attributes);
+        data.setRelationships(relationships);
+        req.setData(data);
+
+        UnitCashDepositBarcodeResponse res = unitApi.generateBarcode(req);
+        assert res.getData().getType().equals(CashDepositBarcode.TypeEnum.CASH_DEPOSIT_BARCODE);
+        return res.getData();
+    }
+
+    @Test
+    public void GenerateBarcodeApiTest() throws ApiException {
+        GenerateBarcode();
+    }
+
+    @Test
+    public void GetBarcodeImageApiTest() throws ApiException {
+        CashDepositBarcode barcode = GenerateBarcode();
+        unitApi.getBarcodeImage(barcode.getAttributes().getBarcodeNumber());
     }
 }

@@ -36,7 +36,7 @@ import unit.java.sdk.model.CreateCustomerTokenVerificationRequestDataAttributes.
 
 public class TokenTests {
     UnitApi unitApi = GenerateUnitApiClient();
-    String testUserId = System.getenv("test_user_id");
+    String testUserId = System.getenv("token_tests_user_id");
 
     // Uncomment once createApiToken resource starts accepting different types of RFC3339
     // @Test
@@ -73,7 +73,6 @@ public class TokenTests {
     @Test
     public void GetOrgTokensApiTest() throws ApiException {
         List<ApiToken> response = unitApi.getApiTokensList(testUserId).getData();
-
 
         for (ApiToken t: response) {
             assert t.getType().equals(ApiToken.TypeEnum.API_TOKEN);

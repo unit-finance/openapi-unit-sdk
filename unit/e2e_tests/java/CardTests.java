@@ -369,6 +369,7 @@ public class CardTests {
     @Test
     public void GetPinStatusApiTest() throws ApiException {
         IndividualDebitCard card = CreateIndividualDebitCard(unitApi, null);
+        unitApi.activateCardSimulation(card.getId());
         UnitPinStatusResponse res = unitApi.getCardPinStatus(card.getId());
         assert res.getData().getType().equals(UnitPinStatusResponseData.TypeEnum.PIN_STATUS);
     }

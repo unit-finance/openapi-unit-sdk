@@ -313,8 +313,9 @@ public class ApplicationTests {
 
     @Test
     public void CreateApplicationDocumentAndGetApiTest() throws ApiException {
-        ApplicationDocument document = CreateApplicationDocument(null);
-        UnitListDocumentsResponse response = unitApi.getApplicationDocuments(document.getId());
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
+        CreateApplicationDocument(application);
+        UnitListDocumentsResponse response = unitApi.getApplicationDocuments(application.getId());
         assert !response.getData().isEmpty();
     }
 

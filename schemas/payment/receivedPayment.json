@@ -50,8 +50,10 @@
                                 "enum": [
                                     "Pending",
                                     "Advanced",
-                                    "Completed",
-                                    "Returned"
+                                    "PendingReview",
+                                    "MarkedForReturn",
+                                    "Returned",
+                                    "Completed"
                                 ]
                             },
                             "amount": {

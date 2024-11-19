@@ -86,5 +86,37 @@
                 }
             }
         }
+    },
+    "createIncomingAchPayment": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createIncomingAchPaymentSimulation",
+
+            "summary": "Create Incoming ACH Payment Simulation",
+            "description": "Create Incoming ACH Payment Simulation via API ",
+            "requestBody": {
+                "description": "Create Incoming ACH Payment Simulation Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./payment/createIncomingAchPayment.json#/components/schemas/CreateIncomingAchPaymentRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "../payment/paymentsPaths.json#/components/schemas/UnitReceivedPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

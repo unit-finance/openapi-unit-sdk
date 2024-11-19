@@ -30,7 +30,7 @@
                                 "type": "object",
                                 "properties": {
                                     "storeId": {
-                                        "type": "integer"
+                                        "type": "string"
                                     }
                                 },
                                 "required": ["storeId"]

@@ -59,6 +59,7 @@ import unit.java.sdk.model.WalletAccount;
 
 public class AccountTests {
     UnitApi unitApi = GenerateUnitApiClient();
+    String walletTerms = System.getenv("wallet_terms");
 
     @Test
     public void GetAccountListApiTest() throws ApiException {
@@ -379,7 +380,7 @@ public class AccountTests {
 
         CreateWalletAccount req = new CreateWalletAccount();
         CreateWalletAccountAttributes attributes = new CreateWalletAccountAttributes();
-        attributes.setWalletTerms("walletDefault");
+        attributes.setWalletTerms(walletTerms);
 
         CreateWalletAccountRelationships relationships = new CreateWalletAccountRelationships();
         CustomerRelationshipData customerRelationshipData = new CustomerRelationshipData();

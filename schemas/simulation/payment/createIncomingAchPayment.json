@@ -1,7 +1,7 @@
 {
     "components": {
         "schemas": {
-            "CreateACHReceivedPaymentTransactionRelationships": {
+            "CreateIncomingAchPaymentTransactionRelationships": {
                 "allOf": [
                     {
                         "title": "Create ACH Received Payment Transaction Relationships",
@@ -12,7 +12,7 @@
                     }
                 ]
             },
-            "CreateACHReceivedPaymentTransactionRequest": {
+            "CreateIncomingAchPaymentRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -29,32 +29,35 @@
                                     "amount": {
                                         "type": "integer"
                                     },
-                                    "completionDate": {
+                                    "settlementDate": {
                                         "type": "string",
                                         "format": "date"
                                     },
-                                    "description": {
-                                        "type": "string",
-                                        "maxLength": 10
-                                    },
                                     "companyName": {
+                                        "type": "string",
+                                        "maxLength": 16
+                                    },
+                                    "receivingEntityName": {
                                         "type": "string",
                                         "maxLength": 16
                                     },
                                     "secCode": {
                                         "type": "string",
                                         "maxLength": 3
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": ["Debit", "Credit"]
                                     }
                                 },
                                 "required": [
                                     "amount",
-                                    "completionDate",
-                                    "description",
+                                    "settlementDate",
                                     "companyName"
                                 ]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/CreateACHReceivedPaymentTransactionRelationships"
+                                "$ref": "#/components/schemas/CreateIncomingAchPaymentTransactionRelationships"
                             }
                         },
                         "required": ["type", "attributes", "relationships"]

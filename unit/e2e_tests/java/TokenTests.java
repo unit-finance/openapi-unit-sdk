@@ -64,7 +64,6 @@ public class TokenTests {
     //     data.setAttributes(attributes);
     //     data.setType(CreateApiTokenRequestData.TypeEnum.APITOKEN);
     //     req.setData(data);
-    //     System.err.println(data.toString());
 
     //     UnitApiTokenResponse res = unitApi.createApiToken(testUserId, req);
     //     assert res.getData().getType().equals(ApiToken.TypeEnum.APITOKEN);

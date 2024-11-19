@@ -414,7 +414,7 @@ public class AccountTests {
         CloseAccountRequestDataAttributes closeAccountRequestAttributes = new CloseAccountRequestDataAttributes();
         closeAccountRequestAttributes.setReason(CloseAccountRequestDataAttributes.ReasonEnum.BY_CUSTOMER);
         closeAccountRequestData.setAttributes(closeAccountRequestAttributes);
-        closeAccountRequestData.setType(CloseAccountRequestData.TypeEnum.DEPOSIT_ACCOUNT_CLOSE);
+        closeAccountRequestData.setType(CloseAccountRequestData.TypeEnum.WALLET_ACCOUNT_CLOSE);
         closeAccountRequest.setData(closeAccountRequestData);
 
         UnitAccountResponse res = unitApi.closeAccount(walletAccount.getId(), closeAccountRequest);
@@ -436,7 +436,7 @@ public class AccountTests {
     }
 
     WalletAccount CreateAndFreezeWalletAccount() throws ApiException {
-        DepositAccount walletAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
+        WalletAccount walletAccount = CreateWalletAccount();
         FreezeAccountRequest freezeAccountRequest = new FreezeAccountRequest();
         FreezeAccountRequestData freezeAccountRequestData = new FreezeAccountRequestData();
         FreezeAccountRequestDataAttributes freezeAccountRequestDataAttributes = new FreezeAccountRequestDataAttributes();
@@ -464,8 +464,8 @@ public class AccountTests {
 
     @Test
     public void GetWalletAccountLimitsApiTest() throws ApiException {
-        DepositAccount depositAccount = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));
-        UnitGetAccountLimitsResponse res = unitApi.getAccountLimits(depositAccount.getId());
+        WalletAccount walletAccount = CreateWalletAccount();
+        UnitGetAccountLimitsResponse res = unitApi.getAccountLimits(walletAccount.getId());
         assert res.getData().getType().equals(Limits.TypeEnum.WALLET_LIMITS);
     }
 

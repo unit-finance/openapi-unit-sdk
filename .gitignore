@@ -77,3 +77,6 @@ node_modules
 
 #macOS
 .DS_Store
+
+#local env
+.env

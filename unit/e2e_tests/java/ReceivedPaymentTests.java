@@ -135,7 +135,7 @@ public class ReceivedPaymentTests {
         UnitReceivedPaymentResponse res = unitApi.createIncomingAchPaymentSimulation(req);
         ReceivedPayment payment = res.getData();
         assert payment.getType().equals(ReceivedPayment.TypeEnum.ACH_RECEIVED_PAYMENT);
-        System.err.println(payment.toString());
+        
         UnitReceivedPaymentResponse reprocessRes = unitApi.reprocessReceivedPayment(payment.getId());
         assert reprocessRes.getData().getType().equals(ReceivedPayment.TypeEnum.ACH_RECEIVED_PAYMENT);
     }

@@ -7,7 +7,6 @@ import static unit.java.sdk.TestHelpers.CreatePaymentCounterparty;
 import static unit.java.sdk.TestHelpers.CreateWirePaymentCounterparty;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
@@ -19,7 +18,6 @@ import unit.java.sdk.model.AccountRelationshipData;
 import unit.java.sdk.model.AchPayment;
 import unit.java.sdk.model.BookPayment;
 import unit.java.sdk.model.CashDepositBarcode;
-import unit.java.sdk.model.Coordinates;
 import unit.java.sdk.model.Counterparty;
 import unit.java.sdk.model.CounterpartyAccountRelationship;
 import unit.java.sdk.model.CounterpartyAccountRelationshipData;
@@ -54,7 +52,6 @@ import unit.java.sdk.model.GenerateBarcodeRequestData;
 import unit.java.sdk.model.GenerateBarcodeRequestDataAttributes;
 import unit.java.sdk.model.GenerateBarcodeRequestRelationships;
 import unit.java.sdk.model.GetCashDepositStoreLocationsListFilterParameter;
-import unit.java.sdk.model.GetCheckDepositsListFilterParameter;
 import unit.java.sdk.model.IndividualCustomer;
 import unit.java.sdk.model.IndividualDebitCard;
 import unit.java.sdk.model.ListPageParameters;
@@ -301,7 +298,7 @@ public class PaymentTests {
     @Test
     public void CancelAchPaymentTest() throws ApiException {
         AchPayment payment = CreateAchPayment();
-        System.err.println(payment.getAttributes().getStatus());
+
         UnitPaymentResponse res = unitApi.cancelPayment(payment.getId(), new Object());
         assert res.getData().getType().equals(Payment.TypeEnum.ACH_PAYMENT);
     }

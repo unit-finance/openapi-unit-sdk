@@ -4,12 +4,12 @@ import fs from "fs";
 function addVersionHeadersToApiClient(data: string): string {
     const interceptorRegex = /interceptor = null;/gm;
     const interceptorWithVersionHeader = `interceptor = (req) -> {
-      req.setHeader("X-UNIT-SDK", "unit-node-sdk@v${process.env.API_VERSION}");
+      req.setHeader("X-UNIT-SDK", "unit-openapi-java-sdk@v${process.env.JAVA_SDK_VERSION}");
     };`;
 
     const setInterceptorRegex = /this\.interceptor = interceptor;/gm;
     const setInterceptorWithVersionHeader = `this.interceptor = (req) -> {
-      req.setHeader("X-UNIT-SDK", "unit-node-sdk@v${process.env.API_VERSION}");
+      req.setHeader("X-UNIT-SDK", "unit-openapi-java-sdk@v${process.env.JAVA_SDK_VERSION}");
       interceptor.accept(req);
     };`;
 

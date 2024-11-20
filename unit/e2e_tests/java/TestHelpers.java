@@ -1,8 +1,10 @@
 package unit.java.sdk;
 
+import java.net.http.HttpRequest;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -44,7 +46,12 @@ public class TestHelpers {
         ObjectMapper mapper = cl.getObjectMapper();
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         cl.setObjectMapper(mapper);
-        cl.setRequestInterceptor(r -> r.header("Authorization", "Bearer " + access_token));
+        Consumer<HttpRequest.Builder> defaultInterceptor = cl.getRequestInterceptor();
+        cl.setRequestInterceptor(r -> {
+            r.header("Authorization", "Bearer " + access_token);
+            System.err.println(r.build().headers().toString());
+            System.err.println("println test");
+        });
         unitApi = new UnitApi(cl);
         }
 

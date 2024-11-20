@@ -1,6 +1,7 @@
 import fs from "fs";
+import { getPathCmdParameter, openJavaFile } from "./utils";
 
-function processData(data: string): string {
+function fixFileRelatedGetRequests(data: string): string {
     const mainFunctionNameRegex = /(File )(get|download)/gm;
     const mainFunctionHttpInfoReturnRegex =
         /(ApiResponse<)(File)(> localVarResponse)/gm;
@@ -73,26 +74,14 @@ import java.net.URI;`
 }
 
 function execute() {
-    const pathArg = process.argv.find((val) => val.includes("--path="));
-    if (pathArg == null) {
-        console.error(
-            `Undefined path! Don't forget to specify the path, e.g. "...fixFileRelatedGetRequests.ts ./TargetFile.java"`
-        );
-        return;
-    }
-
-    const path = pathArg?.replace("--path=", "");
-    if (!path.includes(".java")) {
-        console.error("Path must lead to a java file!");
-        return;
-    }
-
     try {
         console.log("Fixing file related get requests...");
-        const data = fs.readFileSync(path, "utf-8");
-        const processedData = processData(data);
-        fs.writeFileSync(path, processedData);
+        const path = getPathCmdParameter();
+        const data = openJavaFile(path);
+        const processedData = fixFileRelatedGetRequests(data);
         console.log("Fixed file related get requests!");
+
+        fs.writeFileSync(path, processedData);
     } catch (e) {
         console.error(e);
     }

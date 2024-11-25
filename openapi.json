@@ -360,6 +360,15 @@
             "$ref": "./schemas/simulation/simulationPaths.json#/createIncomingAchPayment"
         }
     },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
     "security": [
         {
             "bearerAuth": []

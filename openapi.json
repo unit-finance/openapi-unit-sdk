@@ -359,5 +359,10 @@
         "/sandbox/received-ach-payment": {
             "$ref": "./schemas/simulation/simulationPaths.json#/createIncomingAchPayment"
         }
-    }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
 }

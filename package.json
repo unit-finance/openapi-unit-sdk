@@ -5,6 +5,7 @@
         "add-version-header-to-java": "ts-node ./scripts/java/addVersionHeaderToApiClient.ts",
         "generate-java": "rm -rf ./dist/java-sdk && npm run bundle && npx mkdirp dist/java-sdk/src/test/java/unit/java/sdk && cp -a ./unit/e2e_tests/java/. ./dist/java-sdk/src/test/java/unit/java/sdk && openapi-generator-cli generate -g java -i ./dist/bundledSchema.json -o ./dist/java-sdk -p hideGenerationTimestamp=true -p packageName=unit.java.sdk -p modelPackage=unit.java.sdk.model -p apiPackage=unit.java.sdk.api --library native -p useJakartaEe=true --openapi-normalizer REFACTOR_ALLOF_WITH_PROPERTIES_ONLY=true && npm run fix-java-file-get-requests -- --path=./dist/java-sdk/src/main/java/unit/java/sdk/api/UnitApi.java && npm run add-version-header-to-java -- --path=./dist/java-sdk/src/main/java/unit/java/sdk/ApiClient.java",
         "generate-ruby": "rm -rf ./dist/ruby-sdk && npm run bundle && cp -r unit ./dist/ruby-sdk && openapi-generator-cli generate -g ruby -i ./dist/bundledSchema.json -o ./dist/ruby-sdk",
+        "generate-python": "rm -rf dist/pythonsdk && npm run bundle && cp -r unit dist/pythonsdk && openapi-generator-cli generate -g python -i ./dist/bundledSchema.json -o dist/pythonsdk",
         "generate-node": "rm -rf ./dist/node-sdk && npm run bundle && openapi-generator-cli generate -g typescript-axios -i ./dist/bundledSchema.json -o ./dist/node-sdk",
         "lint": "redocly lint --config .redocly.yaml openapi.json",
         "format": "prettier ./schemas --write"

@@ -36,7 +36,7 @@ RSpec.describe 'Account' do
                                                                      credit_limit: 20_000,
                                                                      tags: { "purpose": 'tax' } }
                                                                  ),
-                                                               relationships: OpenapiClient::CreateCreditAccountRelationships.new(
+                                                               relationships: OpenapiClient::CreateDepositAccountRelationships.new(
                                                                  customer: { "data": { "type": 'customer',
                                                                                        "id": '851228' } }
                                                                ).to_hash).to_hash }

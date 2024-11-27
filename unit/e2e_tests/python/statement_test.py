@@ -1,8 +1,8 @@
 import unittest
 
-from e2e_tests.python.helpers.helpers import create_api_client
-from swagger_client import GetListStatementsApi, GetStatementPDFApi, GetStatementHTMLApi
-
+from helpers.helpers import *
+from dist.pythonsdk.openapi_client.api.unit_api import UnitApi
+from dist.pythonsdk.openapi_client.models import *
 
 class TestStatementApi(unittest.TestCase):
     """StatementAPI unit test stubs"""
@@ -14,18 +14,18 @@ class TestStatementApi(unittest.TestCase):
         pass
 
     def test_list_and_get_statements(self):
-        statements = GetListStatementsApi(self.api_client).execute().data
+        statements = UnitApi.get_statements_list(self.api_client).execute().data
 
         for s in statements:
             assert s.type == "accountStatementDTO"
 
-            pdf_statement = GetStatementPDFApi(self.api_client).execute(s.id)
+            pdf_statement = UnitApi.get_statement_pdf(self.api_client).execute(s.id)
             assert "PDF" in pdf_statement
 
             # account_id = s.relationships["account"].id
             # pdf_response = client.statements.get_bank_verification(account_id).data
 
-            html_statement = GetStatementHTMLApi(self.api_client).execute(s.id)
+            html_statement = UnitApi.get_statement_html(self.api_client).execute(s.id)
             assert "<!DOCTYPE html>" in html_statement
 
     if __name__ == '__main__':

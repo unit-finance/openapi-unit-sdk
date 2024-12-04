@@ -7,18 +7,18 @@ RSpec.describe 'Account' do
 
   describe 'test an instance of Account' do
 
-    let(:api_instance) { OpenapiClient::UnitApi.new(OpenapiClient::ApiClient.new(configuration)) }
+    let(:api_instance) { UnitOpenapiRubySdk::UnitApi.new(UnitOpenapiRubySdk::ApiClient.new(configuration)) }
 
     it 'Should create deposit account' do
       request = {
         data: {
           type: 'depositAccount',
-          attributes: OpenapiClient::CreateDepositAccountAttributes.new(
+          attributes: UnitOpenapiRubySdk::CreateDepositAccountAttributes.new(
             deposit_product: 'checking',
             tags: { "purpose": 'checking' },
             idempotency_key: '1234567890'
           ).to_hash,
-          relationships: OpenapiClient::CreateDepositAccountRelationships.new(
+          relationships: UnitOpenapiRubySdk::CreateDepositAccountRelationships.new(
             customer: { "data": { "type": 'customer', "id": '751009' } }
           ).to_hash
         }}
@@ -29,14 +29,14 @@ RSpec.describe 'Account' do
 
 
     it 'Should create a credit account' do
-      request = { data: OpenapiClient::CreateCreditAccount.new(type: 'creditAccount',
+      request = { data: UnitOpenapiRubySdk::CreateCreditAccount.new(type: 'creditAccount',
                                                                attributes:
-                                                                 OpenapiClient::CreateCreditAccountAttributes.new(
+                                                                 UnitOpenapiRubySdk::CreateCreditAccountAttributes.new(
                                                                    { credit_terms: 'credit_terms_test',
                                                                      credit_limit: 20_000,
                                                                      tags: { "purpose": 'tax' } }
                                                                  ),
-                                                               relationships: OpenapiClient::CreateCreditAccountRelationships.new(
+                                                               relationships: UnitOpenapiRubySdk::CreateCreditAccountRelationships.new(
                                                                  customer: { "data": { "type": 'customer',
                                                                                        "id": '851228' } }
                                                                ).to_hash).to_hash }

@@ -11,7 +11,7 @@ RSpec.describe 'Statement' do
   end
 
   describe 'test an instance of Statement' do
-    let(:api_instance) { OpenapiClient::UnitApi.new(OpenapiClient::ApiClient.new(configuration)) }
+    let(:api_instance) { UnitOpenapiRubySdk::UnitApi.new(UnitOpenapiRubySdk::ApiClient.new(configuration)) }
 
 
     it 'should get an instance of html statement' do
@@ -21,11 +21,7 @@ RSpec.describe 'Statement' do
           language: 'en'
         }
       }
-      response_data, status_code, headers = api_instance.get_statement_html('146206', opts)
-
-      expect(status_code).to eq(200)
-
-      expect(headers['Content-Type']).to include('text/html')
+      response_data = api_instance.get_statement_html('146206', opts)
 
       # Read the content from the IO stream, if it's an IO object
       content = if response_data.is_a?(Tempfile) || response_data.is_a?(File)
@@ -41,10 +37,7 @@ RSpec.describe 'Statement' do
 
     it 'should get an instance of pdf statement' do
       opts = { query_params: { customer_id: '22603' } }
-      response_data, status_code, headers = api_instance.get_statement_pdf('146206', opts)
-
-      expect(status_code).to eq(200)
-      expect(headers['Content-Type']).to include('application/pdf')
+      response_data = api_instance.get_statement_pdf('146206', opts)
 
       # Read the first few bytes of the Tempfile
       response_data.open
@@ -55,8 +48,7 @@ RSpec.describe 'Statement' do
     end
 
     it 'should get an instance of bank verification pdf statement' do
-      response_data, status_code, headers = api_instance.get_statement_bank_pdf('36981')
-      expect(status_code).to eq(200)
+      response_data = api_instance.get_statement_bank_pdf('36981')
 
       # If the response_data is a string:
       if response_data.is_a?(String)

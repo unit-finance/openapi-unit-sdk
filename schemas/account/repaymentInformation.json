@@ -13,13 +13,16 @@
                         "type": "object",
                         "properties": {
                             "remainingAmountDue": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "remainingAmountOverdue": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "initiatedRepayments": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "statementPeriodStart": {
                                 "type": "string",

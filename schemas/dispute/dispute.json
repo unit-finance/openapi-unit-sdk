@@ -50,7 +50,8 @@
                                 "$ref": "../types.json#/components/schemas/Description"
                             },
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "status": {
                                 "type": "string"

@@ -58,10 +58,12 @@
                                 }
                             },
                             "fromAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "toAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "accountType": {
                                 "type": "string"

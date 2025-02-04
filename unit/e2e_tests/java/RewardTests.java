@@ -29,7 +29,7 @@ public class RewardTests {
         CreateRewardRequestDataAttributes attributes = new CreateRewardRequestDataAttributes();
         CreateRewardRelationships relationships = new CreateRewardRelationships();
 
-        attributes.setAmount(10);
+        attributes.setAmount(10L);
         attributes.setDescription("Test reward");
 
         ReceivingAccountRelationship relationship = new ReceivingAccountRelationship();

@@ -115,7 +115,8 @@
                         "type": "object",
                         "properties": {
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "description": {
                                 "type": "string"
@@ -172,7 +173,8 @@
                         "type": "object",
                         "properties": {
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "description": {
                                 "type": "string"
@@ -225,7 +227,8 @@
                         "type": "object",
                         "properties": {
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "description": {
                                 "type": "string"
@@ -290,7 +293,8 @@
                         "type": "object",
                         "properties": {
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "description": {
                                 "type": "string"
@@ -328,7 +332,8 @@
                         "type": "object",
                         "properties": {
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "direction": {
                                 "type": "string",
@@ -370,7 +375,8 @@
                         "type": "object",
                         "properties": {
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "idempotencyKey": {
                                 "$ref": "../types.json#/components/schemas/IdempotencyKey"

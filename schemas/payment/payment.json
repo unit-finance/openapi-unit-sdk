@@ -233,7 +233,8 @@
                                     },
                                     "amount": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
@@ -334,7 +335,8 @@
                                     },
                                     "amount": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
@@ -408,7 +410,8 @@
                                     },
                                     "amount": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
@@ -495,7 +498,8 @@
                                     },
                                     "amount": {
                                         "type": "integer",
-                                        "minimum": 1
+                                        "minimum": 1,
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",

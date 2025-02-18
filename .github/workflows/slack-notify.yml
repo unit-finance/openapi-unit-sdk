@@ -1,0 +1,37 @@
+on:
+  pull_request:
+    types:
+      - opened
+    paths:
+      - 'schemas/**'
+
+name: Slack Notification Demo
+
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get all changed files
+        id: all_changed_files
+        run: |
+          all_files=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} )
+          echo "ALL_FILES=$all_files" >> $GITHUB_ENV
+
+      - name: Set PR URL
+        run: echo "PR_URL=https://github.com/${{ github.repository }}/pull/${{ github.event.number }}" >> $GITHUB_ENV
+
+      - name: Set up Slack Notification
+        id: slack_notification
+        run: |
+          echo "SLACK_MESSAGE=All changed files:\n$ALL_FILES \n\nPull Request: $PR_URL" >> $GITHUB_ENV
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: ${{ env.SLACK_MESSAGE }}

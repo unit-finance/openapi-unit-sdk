@@ -2,13 +2,9 @@ from __future__ import absolute_import
 
 import unittest
 
-from e2e_tests.python.helpers.helpers import create_api_client
-from swagger_client import GetListRepaymentsApi, GetRepaymentApi, CreateBookRepaymentRelationships, Relationship, \
-    RelationshipData
-from swagger_client.api import CreateARepaymentApi
-from swagger_client.models.create_book_repayment import CreateBookRepayment
-from swagger_client.models.create_book_repayment_attributes import CreateBookRepaymentAttributes
-from swagger_client.models.repayments_body import RepaymentsBody
+from helpers.helpers import *
+from dist.pythonsdk.openapi_client.api.unit_api import UnitApi
+from dist.pythonsdk.openapi_client.models import *
 
 
 class TestRepaymentsApi(unittest.TestCase):
@@ -21,13 +17,13 @@ class TestRepaymentsApi(unittest.TestCase):
         pass
 
     def test_list_repayments(self):
-        res = GetListRepaymentsApi(self.api_client).execute()
+        res = UnitApi.get_repayments_list(self.api_client).execute()
         for app in res.data:
             assert "Repayment" in app.type
 
     def test_list_and_get_repayments(self):
-        res = GetListRepaymentsApi(self.api_client).execute()
-        get_repayment_api = GetRepaymentApi(self.api_client)
+        res = UnitApi.get_repayments_list(self.api_client).execute()
+        get_repayment_api = UnitApi.get_repayment(self.api_client)
 
         for app in res.data:
             assert "Repayment" in app.type
@@ -42,8 +38,8 @@ class TestRepaymentsApi(unittest.TestCase):
                                                          Relationship(RelationshipData("1538445", "creditAccount")),
                                                          Relationship(RelationshipData("447232", "account")))
         data = CreateBookRepayment(attributes=attr, relationships=relationships)
-        body = RepaymentsBody(data)
-        res = CreateARepaymentApi(self.api_client).execute(body)
+        # body = RepaymentsBody(data)
+        res = UnitApi.create_repayment(self.api_client).execute(data)
 
         assert res.data.type == "bookRepayment"
 

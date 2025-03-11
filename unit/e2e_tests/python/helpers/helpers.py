@@ -2,7 +2,8 @@ import uuid
 import os
 from dotenv import load_dotenv
 from datetime import date, timedelta
-from swagger_client import configuration, api_client, Address, CreateIndividualApplicationAttributes, FullName, Phone \
+from dist.pythonsdk.openapi_client import (configuration, api_client)
+from dist.pythonsdk.openapi_client.models import Address, CreateIndividualApplicationAttributes, FullName, Phone \
     , CreateIndividualApplication, CreateBusinessApplication, CreateBusinessApplicationAttributes, BeneficialOwner, \
     Contact, Officer, CreateBeneficialOwner
 
@@ -32,14 +33,18 @@ def create_individual_application_request(ssn="721074426"):
     address = Address(street="1600 Pennsylvania Avenue Northwest", city="Washington", state="CA",
                       postal_code="20500",
                       country="US")
-    attr = CreateIndividualApplicationAttributes(FullName("Peter", "Parker"), "jone.doe1@unit-finance.com",
-                                                 Phone("1", "2025550108"), ssn,
+    attr = CreateIndividualApplicationAttributes(full_name = FullName(first="Peter", last="Parker"),email = "jone.doe1@unit-finance.com",
+                                                 phone =Phone(country_code = "1", number = "2025550108"), ssn = ssn,
                                                  address=address, date_of_birth="2001-08-10",
                                                  idempotency_key=str(uuid.uuid1()),
                                                  jwt_subject="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9fQ",
                                                  occupation="ArchitectOrEngineer")
 
-    return {"data": CreateIndividualApplication(attributes=attr)}
+    individual_application = CreateIndividualApplication(
+        type='individualApplication',  # This must exactly match the expected enum value
+        attributes=attr  # This should be an instance of CreateIndividualApplicationAttributes
+    )
+    return {"data": individual_application}
 
 
 def create_business_application_request():

@@ -279,7 +279,7 @@ public class AccountTests {
         CreateCreditAccount cca = new CreateCreditAccount();
         CreateCreditAccountAttributes attributes = new CreateCreditAccountAttributes();
         attributes.setCreditTerms("credit_terms_test");
-        attributes.setCreditLimit(20000);
+        attributes.setCreditLimit(20000L);
 
         CreateCreditAccountRelationships relationships = new CreateCreditAccountRelationships();
         CustomerRelationshipData customerRelationshipData = new CustomerRelationshipData();

@@ -27,7 +27,8 @@
                                 "type": "object",
                                 "properties": {
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "settlementDate": {
                                         "type": "string",

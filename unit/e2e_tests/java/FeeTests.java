@@ -41,7 +41,7 @@ public class FeeTests {
         CreateFeeRequestData data = new CreateFeeRequestData();
         CreateFeeRequestDataAttributes attributes = new CreateFeeRequestDataAttributes();
     
-        attributes.setAmount(100);
+        attributes.setAmount(100L);
         attributes.setDescription("Test");
         
         CreateFeeRelationships relationships = new CreateFeeRelationships();
@@ -75,7 +75,7 @@ public class FeeTests {
         
         GetTransactionsListFilterParameter filter = new GetTransactionsListFilterParameter();
         filter.setAccountId(account.getId());
-        filter.setFromAmount(100);
+        filter.setFromAmount(100L);
         List<GetTransactionsListFilterParameter.DirectionEnum> directions = new ArrayList<GetTransactionsListFilterParameter.DirectionEnum>();
         directions.add(GetTransactionsListFilterParameter.DirectionEnum.CREDIT);
         filter.setDirection(null);

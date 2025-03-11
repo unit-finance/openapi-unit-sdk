@@ -33,7 +33,7 @@ public class CheckDepositTests {
         CreateCheckDepositRequest req = new CreateCheckDepositRequest();
         CreateCheckDepositRequestData data = new CreateCheckDepositRequestData();
         CreateCheckDepositRequestDataAttributes attributes = new CreateCheckDepositRequestDataAttributes();
-        attributes.setAmount(2000);
+        attributes.setAmount(2000L);
         attributes.setDescription("Test");
 
         DepositAccount account = CreateDepositAccount(unitApi, CreateIndividualCustomer(unitApi));

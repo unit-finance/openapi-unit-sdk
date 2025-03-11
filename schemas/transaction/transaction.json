@@ -573,10 +573,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -642,10 +644,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -720,10 +724,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -791,10 +797,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -851,10 +859,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -929,10 +939,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -985,10 +997,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1023,7 +1037,8 @@
                                     },
                                     "internationalServiceFee": {
                                         "type": "integer",
-                                        "nullable": true
+                                        "nullable": true,
+                                        "format": "int64"
                                     },
                                     "paymentMethod": {
                                         "type": "string"
@@ -1083,10 +1098,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1101,7 +1118,8 @@
                                         "type": "string"
                                     },
                                     "surcharge": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
@@ -1164,10 +1182,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1216,10 +1236,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1268,10 +1290,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1324,10 +1348,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1376,10 +1402,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1399,7 +1427,8 @@
                                     },
                                     "internationalServiceFee": {
                                         "type": "integer",
-                                        "nullable": true
+                                        "nullable": true,
+                                        "format": "int64"
                                     },
                                     "merchant": {
                                         "$ref": "../types.json#/components/schemas/Merchant"
@@ -1463,10 +1492,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1548,10 +1579,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1603,10 +1636,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1655,10 +1690,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1707,10 +1744,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1763,10 +1802,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1815,10 +1856,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1867,10 +1910,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1936,10 +1981,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -1992,14 +2039,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2044,14 +2093,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2099,14 +2150,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2154,14 +2207,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2206,14 +2261,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2258,14 +2315,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2317,10 +2376,12 @@
                                         "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2365,14 +2426,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2417,14 +2480,16 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "direction": {
                                         "type": "string",
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2480,10 +2545,12 @@
                                         "$ref": "../payment/payment.json#/components/schemas/PaymentCounterparty"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2533,10 +2600,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2585,10 +2654,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"
@@ -2636,10 +2707,12 @@
                                         "enum": ["Credit", "Debit"]
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "summary": {
                                         "type": "string"

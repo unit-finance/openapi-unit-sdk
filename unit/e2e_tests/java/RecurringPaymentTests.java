@@ -70,7 +70,7 @@ public class RecurringPaymentTests {
         CreateRecurringCreditAchPayment createRecurringPayment = new CreateRecurringCreditAchPayment();
         CreateRecurringCreditAchPaymentAttributes attributes = new CreateRecurringCreditAchPaymentAttributes();
 
-        attributes.amount(10);
+        attributes.amount(10L);
         attributes.setDescription("Test");
         Schedule schedule = new Schedule();
         MonthlySchedule monthlySchedule = new MonthlySchedule();
@@ -123,7 +123,7 @@ public class RecurringPaymentTests {
         CreateRecurringDebitAchPayment createRecurringPayment = new CreateRecurringDebitAchPayment();
         CreateRecurringDebitAchPaymentAttributes attributes = new CreateRecurringDebitAchPaymentAttributes();
 
-        attributes.amount(10);
+        attributes.amount(10L);
         attributes.setDescription("Test");
         Schedule schedule = new Schedule();
         MonthlySchedule monthlySchedule = new MonthlySchedule();
@@ -171,7 +171,7 @@ public class RecurringPaymentTests {
         CreateRecurringCreditBookPayment createRecurringPayment = new CreateRecurringCreditBookPayment();
         CreateRecurringCreditBookPaymentAttributes attributes = new CreateRecurringCreditBookPaymentAttributes();
 
-        attributes.amount(10);
+        attributes.amount(10L);
         attributes.setDescription("Test");
         Schedule schedule = new Schedule();
         MonthlySchedule monthlySchedule = new MonthlySchedule();

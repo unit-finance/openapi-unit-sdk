@@ -31,7 +31,7 @@ import unit.java.sdk.model.UnitReceivedPaymentResponseWithIncluded;
 public class ReceivedPaymentTests {
     UnitApi unitApi = GenerateUnitApiClient();
 
-    ReceivedPayment CreateReceivedTransaction(Integer amount) throws ApiException {
+    ReceivedPayment CreateReceivedTransaction(Long amount) throws ApiException {
         DepositAccount account = CreateDepositAccount(unitApi, null);
         CreateACHReceivedPaymentTransactionRequest req = new CreateACHReceivedPaymentTransactionRequest();
         CreateACHReceivedPaymentTransactionRequestData data = new CreateACHReceivedPaymentTransactionRequestData();
@@ -101,7 +101,7 @@ public class ReceivedPaymentTests {
 
     @Test
     public void AdvanceReceivedPaymentApiTest() throws ApiException {
-        ReceivedPayment payment = CreateReceivedTransaction(1000);
+        ReceivedPayment payment = CreateReceivedTransaction(1000L);
         UnitReceivedPaymentResponse res = unitApi.advanceReceivedPayment(payment.getId());
         assert res.getData().getType().equals(ReceivedPayment.TypeEnum.ACH_RECEIVED_PAYMENT);
     }
@@ -112,7 +112,7 @@ public class ReceivedPaymentTests {
         CreateIncomingAchPaymentRequest req = new CreateIncomingAchPaymentRequest();
         CreateIncomingAchPaymentRequestData data = new CreateIncomingAchPaymentRequestData();
         CreateIncomingAchPaymentRequestDataAttributes attributes = new CreateIncomingAchPaymentRequestDataAttributes();
-        attributes.setAmount(40000000);
+        attributes.setAmount(40000000L);
         attributes.setCompanyName("Easy");
         attributes.setSettlementDate(LocalDate.now());
         attributes.setDirection(CreateIncomingAchPaymentRequestDataAttributes.DirectionEnum.DEBIT);

@@ -41,7 +41,8 @@
                                 "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "creditLimit": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             }
                         }
                     }

@@ -46,10 +46,12 @@
                                 "type": "string"
                             },
                             "fromAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "toAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "status": {
                                 "type": "array",
@@ -174,10 +176,12 @@
                                 }
                             },
                             "fromAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "toAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             }
                         }
                     }

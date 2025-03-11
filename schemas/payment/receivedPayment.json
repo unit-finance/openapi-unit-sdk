@@ -58,7 +58,8 @@
                             },
                             "amount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "format": "int64"
                             },
                             "completionDate": {
                                 "type": "string"

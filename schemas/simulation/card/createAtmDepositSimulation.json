@@ -27,7 +27,8 @@
                                 "type": "object",
                                 "properties": {
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "atmName": {
                                         "type": "string"
@@ -51,7 +52,8 @@
                                         ]
                                     },
                                     "surcharge": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     }
                                 },
                                 "required": ["amount", "atmName", "last4Digits"]

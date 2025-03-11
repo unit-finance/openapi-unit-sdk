@@ -94,7 +94,7 @@ public class PaymentTests {
     BookPayment CreateBookPayment() throws ApiException {
         CreateBookPayment createBookPayment = new CreateBookPayment();
         CreateBookPaymentAttributes attributes = new CreateBookPaymentAttributes();
-        attributes.setAmount(1000);
+        attributes.setAmount(1000L);
         attributes.setDescription("Funding");
         createBookPayment.setAttributes(attributes);
 
@@ -156,7 +156,7 @@ public class PaymentTests {
     AchPayment CreateAchPayment() throws ApiException {
         CreateAchPayment createAchPayment = new CreateAchPayment();
         CreateAchPaymentAttributes attributes = new CreateAchPaymentAttributes();
-        attributes.setAmount(1000);
+        attributes.setAmount(1000L);
         attributes.setCounterparty(CreatePaymentCounterparty());
         attributes.setDirection(CreateAchPaymentAttributes.DirectionEnum.CREDIT);
         attributes.setDescription("Funding");
@@ -167,7 +167,7 @@ public class PaymentTests {
         CreateAtmDepositSimulationRequest atmDepositSimulationRequest = new CreateAtmDepositSimulationRequest();
         CreateAtmDepositSimulationRequestData atmDepositSimulationRequestData = new CreateAtmDepositSimulationRequestData();
         CreateAtmDepositSimulationRequestDataAttributes atmDepositSimulationRequestDataAttributes = new CreateAtmDepositSimulationRequestDataAttributes();
-        atmDepositSimulationRequestDataAttributes.setAmount(2000);
+        atmDepositSimulationRequestDataAttributes.setAmount(2000L);
         atmDepositSimulationRequestDataAttributes.setAtmLocation("Cupertino, CA, US");
         atmDepositSimulationRequestDataAttributes.setAtmName("HOME FED SAV BK");
         atmDepositSimulationRequestDataAttributes.setLast4Digits(card.getAttributes().getLast4Digits());
@@ -211,7 +211,7 @@ public class PaymentTests {
     public void CreateAchPaymentCounterpartyApiTest() throws ApiException {
         CreateAchPaymentCounterparty createAchPayment = new CreateAchPaymentCounterparty();
         CreateAchPaymentCounterpartyAttributes attributes = new CreateAchPaymentCounterpartyAttributes();
-        attributes.setAmount(1000);
+        attributes.setAmount(1000L);
         attributes.setDirection(CreateAchPaymentCounterpartyAttributes.DirectionEnum.CREDIT);
         attributes.setDescription("Funding");
         createAchPayment.setAttributes(attributes);
@@ -245,7 +245,7 @@ public class PaymentTests {
     AchPayment CreateAchPaymentPlaid() throws ApiException {
         CreateAchPaymentPlaid createAchPayment = new CreateAchPaymentPlaid();
         CreateAchPaymentPlaidAttributes attributes = new CreateAchPaymentPlaidAttributes();
-        attributes.setAmount(1000);
+        attributes.setAmount(1000L);
         attributes.setDirection(CreateAchPaymentPlaidAttributes.DirectionEnum.DEBIT);
         attributes.setPlaidProcessorToken(plaidToken);
         attributes.setDescription("Funding");
@@ -308,7 +308,7 @@ public class PaymentTests {
         CreateWirePayment createWirePayment = new CreateWirePayment();
         CreateWirePaymentAttributes attributes = new CreateWirePaymentAttributes();
         createWirePayment.setType(CreateWirePayment.TypeEnum.WIRE_PAYMENT);
-        attributes.setAmount(100);
+        attributes.setAmount(100L);
         attributes.setDirection(CreateWirePaymentAttributes.DirectionEnum.CREDIT);
         attributes.setCounterparty(CreateWirePaymentCounterparty());
         attributes.setDescription("Wire payment");

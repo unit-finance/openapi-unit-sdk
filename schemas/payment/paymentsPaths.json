@@ -107,10 +107,12 @@
                                 "type": "string"
                             },
                             "fromAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "toAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "recurringPaymentId": {
                                 "type": "integer"
@@ -382,10 +384,12 @@
                                 "type": "string"
                             },
                             "fromAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "toAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "includeCompleted": {
                                 "type": "boolean"

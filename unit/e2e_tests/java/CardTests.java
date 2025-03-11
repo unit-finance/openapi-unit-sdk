@@ -73,10 +73,10 @@ public class CardTests {
         attributes.setShippingAddress(shippingAddress);
         
         CardLevelLimits limits = new CardLevelLimits();
-        limits.setDailyPurchase(1000);
-        limits.setDailyWithdrawal(500);
-        limits.setMonthlyPurchase(20000);
-        limits.setMonthlyWithdrawal(10000);
+        limits.setDailyPurchase(1000L);
+        limits.setDailyWithdrawal(500L);
+        limits.setMonthlyPurchase(20000L);
+        limits.setMonthlyWithdrawal(10000L);
         attributes.setLimits(limits);
 
         specificData.setType(CreateIndividualDebitCardRequest.TypeEnum.INDIVIDUAL_DEBIT_CARD);
@@ -128,10 +128,10 @@ public class CardTests {
         attributes.setShippingAddress(shippingAddress);
         
         CardLevelLimits limits = new CardLevelLimits();
-        limits.setDailyPurchase(1000);
-        limits.setDailyWithdrawal(500);
-        limits.setMonthlyPurchase(20000);
-        limits.setMonthlyWithdrawal(10000);
+        limits.setDailyPurchase(1000L);
+        limits.setDailyWithdrawal(500L);
+        limits.setMonthlyPurchase(20000L);
+        limits.setMonthlyWithdrawal(10000L);
         attributes.setLimits(limits);
 
         attributes.setAddress(shippingAddress);
@@ -185,10 +185,10 @@ public class CardTests {
         attributes.setShippingAddress(shippingAddress);
         
         CardLevelLimits limits = new CardLevelLimits();
-        limits.setDailyPurchase(0);
-        limits.setDailyWithdrawal(0);
-        limits.setMonthlyPurchase(0);
-        limits.setMonthlyWithdrawal(0);
+        limits.setDailyPurchase(0L);
+        limits.setDailyWithdrawal(0L);
+        limits.setMonthlyPurchase(0L);
+        limits.setMonthlyWithdrawal(0L);
         attributes.setLimits(limits);
 
         attributes.setAddress(shippingAddress);
@@ -235,10 +235,10 @@ public class CardTests {
         CreateIndividualVirtualDebitCardRequestAttributes attributes = new CreateIndividualVirtualDebitCardRequestAttributes();
         
         CardLevelLimits limits = new CardLevelLimits();
-        limits.setDailyPurchase(1000);
-        limits.setDailyWithdrawal(500);
-        limits.setMonthlyPurchase(20000);
-        limits.setMonthlyWithdrawal(10000);
+        limits.setDailyPurchase(1000L);
+        limits.setDailyWithdrawal(500L);
+        limits.setMonthlyPurchase(20000L);
+        limits.setMonthlyWithdrawal(10000L);
         attributes.setLimits(limits);
 
         specificData.setType(CreateIndividualVirtualDebitCardRequest.TypeEnum.INDIVIDUAL_VIRTUAL_DEBIT_CARD);
@@ -270,10 +270,10 @@ public class CardTests {
         CreateBusinessVirtualDebitCardRequestAttributes attributes = new CreateBusinessVirtualDebitCardRequestAttributes();
         
         CardLevelLimits limits = new CardLevelLimits();
-        limits.setDailyPurchase(1000);
-        limits.setDailyWithdrawal(500);
-        limits.setMonthlyPurchase(20000);
-        limits.setMonthlyWithdrawal(10000);
+        limits.setDailyPurchase(1000L);
+        limits.setDailyWithdrawal(500L);
+        limits.setMonthlyPurchase(20000L);
+        limits.setMonthlyWithdrawal(10000L);
         attributes.setLimits(limits);
 
         attributes.email("test@mail.com");
@@ -326,10 +326,10 @@ public class CardTests {
         CreateBusinessVirtualDebitCardRequestAttributes attributes = new CreateBusinessVirtualDebitCardRequestAttributes();
         
         CardLevelLimits limits = new CardLevelLimits();
-        limits.setDailyPurchase(0);
-        limits.setDailyWithdrawal(0);
-        limits.setMonthlyPurchase(0);
-        limits.setMonthlyWithdrawal(0);
+        limits.setDailyPurchase(0L);
+        limits.setDailyWithdrawal(0L);
+        limits.setMonthlyPurchase(0L);
+        limits.setMonthlyWithdrawal(0L);
         attributes.setLimits(limits);
 
         attributes.email("test@mail.com");

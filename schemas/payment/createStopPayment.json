@@ -37,7 +37,8 @@
                         "properties": {
                             "amount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "format": "int64"
                             },
                             "checkNumber": {
                                 "type": "string",
@@ -73,7 +74,8 @@
                         "type": "object",
                         "properties": {
                             "minAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "originatorName": {
                                 "type": "array",

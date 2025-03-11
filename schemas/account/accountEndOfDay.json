@@ -34,16 +34,20 @@
                                 "format": "date"
                             },
                             "balance": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "hold": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "available": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "overdraftLimit": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             }
                         },
                         "required": ["date", "balance", "hold", "available"],

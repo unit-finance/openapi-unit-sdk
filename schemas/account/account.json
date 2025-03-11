@@ -54,17 +54,21 @@
                                         "default": "USD"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "overdraftLimit": {
                                         "type": "integer",
-                                        "minimum": 0
+                                        "minimum": 0,
+                                        "format": "int64"
                                     },
                                     "hold": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "available": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
@@ -179,13 +183,16 @@
                                         "default": "USD"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "hold": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "available": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
@@ -228,7 +235,8 @@
                                     },
                                     "creditLimit": {
                                         "type": "integer",
-                                        "minimum": 0
+                                        "minimum": 0,
+                                        "format": "int64"
                                     },
                                     "updatedAt": {
                                         "type": "string",
@@ -305,13 +313,16 @@
                                         "default": "USD"
                                     },
                                     "balance": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "hold": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "available": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
@@ -412,13 +423,16 @@
                                 "default": "USD"
                             },
                             "balance": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "hold": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "available": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "category": {
                                 "type": "string",
@@ -474,13 +488,16 @@
                                 "default": "USD"
                             },
                             "balance": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "hold": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "available": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "category": {
                                 "type": "string",
@@ -556,13 +573,16 @@
                                 "pattern": "^\\d{10,12}$"
                             },
                             "balance": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "hold": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "available": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "status": {
                                 "enum": ["Open", "Closed"]

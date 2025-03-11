@@ -15,7 +15,8 @@
                         "properties": {
                             "amount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "format": "int64"
                             },
                             "description": {
                                 "type": "string",
@@ -61,7 +62,8 @@
                         "properties": {
                             "amount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "format": "int64"
                             },
                             "description": {
                                 "type": "string",
@@ -119,7 +121,8 @@
                         "properties": {
                             "amount": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "format": "int64"
                             },
                             "description": {
                                 "type": "string",

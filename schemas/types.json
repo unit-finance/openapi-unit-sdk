@@ -251,16 +251,20 @@
                 "type": "object",
                 "properties": {
                     "dailyWithdrawal": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "dailyPurchase": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "monthlyWithdrawal": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "monthlyPurchase": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     }
                 },
                 "additionalProperties": false
@@ -269,16 +273,20 @@
                 "type": "object",
                 "properties": {
                     "withdrawals": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "deposits": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "purchases": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "cardTransactions": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     }
                 },
                 "additionalProperties": false,
@@ -294,22 +302,28 @@
                 "type": "object",
                 "properties": {
                     "transitAmount": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "prescriptionRXAmount": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "visionOpticalAmount": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "clinicOtherQualifiedMedicalAmount": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "dentalAmount": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "totalHealthcareAmount": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     }
                 },
                 "required": [

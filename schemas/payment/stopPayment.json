@@ -77,7 +77,8 @@
                                 "format": "date-time"
                             },
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "status": {
                                 "$ref": "#/components/schemas/CheckStopPaymentStatus"
@@ -119,7 +120,8 @@
                                 "format": "date"
                             },
                             "minAmount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "originatorName": {
                                 "type": "array",

@@ -14,7 +14,8 @@
                         "type": "object",
                         "properties": {
                             "amount": {
-                                "type": "integer"
+                                "type": "integer",
+                                "format": "int64"
                             },
                             "fundingAccount": {
                                 "type": "string"
@@ -99,7 +100,8 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "status": {
                                         "type": "string"
@@ -108,7 +110,8 @@
                                         "type": "boolean"
                                     },
                                     "approvedAmount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "declineReason": {
                                         "type": "string"
@@ -144,7 +147,8 @@
                                         "type": "string"
                                     },
                                     "cashWithdrawalAmount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     }
                                 },
                                 "required": [
@@ -184,7 +188,8 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "status": {
                                         "type": "string"
@@ -193,7 +198,8 @@
                                         "type": "boolean"
                                     },
                                     "approvedAmount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "declineReason": {
                                         "type": "string"
@@ -257,7 +263,8 @@
                                         "format": "date-time"
                                     },
                                     "amount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "status": {
                                         "type": "string"
@@ -266,7 +273,8 @@
                                         "type": "boolean"
                                     },
                                     "approvedAmount": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "declineReason": {
                                         "type": "string"
@@ -281,7 +289,8 @@
                                         "type": "string"
                                     },
                                     "surcharge": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "format": "int64"
                                     },
                                     "internationalServiceFee": {
                                         "type": "number",

@@ -1,4 +1,5 @@
-import { getPathCmdParameter, loadDotenv, openJavaFile } from "./utils";
+import { loadDotenv } from "../utils";
+import { getJavaPathCmdParameter, openJavaFile } from "./javaUtils";
 import fs from "fs";
 
 function addVersionHeadersToApiClient(data: string): string {
@@ -32,7 +33,7 @@ function execute() {
 
     try {
         console.log("Adding version header to ApiClient...");
-        const path = getPathCmdParameter();
+        const path = getJavaPathCmdParameter();
         const data = openJavaFile(path);
         const processedData = addVersionHeadersToApiClient(data);
         console.log("Added version header to ApiClient!");

@@ -18,7 +18,7 @@
                                 "properties": {
                                     "scope": {
                                         "type": "string",
-                                        "description": "List of Scopes separated by spaces."
+                                        "description": "list of Scopes separated by spaces."
                                     },
                                     "description": {
                                         "type": "string",

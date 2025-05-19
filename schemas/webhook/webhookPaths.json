@@ -86,7 +86,7 @@
             "tags": ["unit"],
             "operationId": "createWebhook",
             "summary": "Create Webhook",
-            "description": "Creates a webhook. A new webhook will not be created if there are already 100 webhooks with the status 'Enabled' in the Sandbox environment.",
+            "description": "Creates a webhook. A new webhook will not be created if there are already 100 webhooks with the status 'Enabled'. Please disable existing webhooks to proceed. Occurs only in the Sandbox environment.",
             "requestBody": {
                 "description": "Create Webhook Request Body",
                 "required": true,
@@ -141,7 +141,7 @@
                                                         "NotAuthorizationRequest"
                                                     ],
                                                     "default": "All",
-                                                    "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'."
+                                                    "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'(see Subscription types)."
                                                 }
                                             },
                                             "additionalProperties": false,
@@ -260,7 +260,7 @@
                     "description": "ID of the webhook to enable"
                 }
             ],
-            "description": "Enable a webhook.",
+            "description": "Enable a webhook. A webhook cannot be enabled if there are already 100 webhooks with the status 'Enabled'. Please disable an existing webhook before enabling a new one. Occurs only in the Sandbox environment.",
             "responses": {
                 "200": {
                     "description": "Successful Response",

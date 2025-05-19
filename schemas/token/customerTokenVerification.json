@@ -15,12 +15,12 @@
                         "properties": {
                             "verificationToken": {
                                 "type": "string",
-                                "description": "The generated verification token. It should be passed back to Create Customer Bearer Token along with the verification code the customer received on the specified channel."
+                                "description": "The generated verification token . It should be passed back to Create Customer Token along with the verification code the customer received on the specified channel"
                             }
                         }
                     }
                 },
-                "required": ["type", "id", "attributes"],
+                "required": ["type", "attributes"],
                 "additionalProperties": false
             }
         }

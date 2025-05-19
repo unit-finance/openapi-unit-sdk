@@ -130,6 +130,8 @@
             "operationId": "getEventsList",
             "summary": "Get Events List",
             "description": "List event resources, going back up to 90 days. Paging can be applied.",
+            "x-scope": "events",
+            "x-timeout": 5,
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -152,7 +154,7 @@
                                 "format": "date-time",
                                 "description": "Optional. Filters the events that occurred before the specified date. e.g. 2022-01-15T20:06:23.486Z"
                             },
-                            "type": {
+                            "type[]": {
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/EventType"
@@ -190,6 +192,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getEvent",
+            "x-scope": "events",
+            "x-timeout": 5,
             "parameters": [
                 {
                     "schema": {
@@ -225,6 +229,8 @@
         "post": {
             "tags": ["unit"],
             "operationId": "fireEvent",
+            "x-scope": "events-write",
+            "x-timeout": 5,
             "parameters": [
                 {
                     "schema": {

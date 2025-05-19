@@ -55,7 +55,7 @@
                                 "type": "string",
                                 "enum": ["All", "OnlyAuthorizationRequest", "NotAuthorizationRequest"],
                                 "default": "All",
-                                "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'."
+                                "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'(see Subscription types)."
                             }
                         }
                     }

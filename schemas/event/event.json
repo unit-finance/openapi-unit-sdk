@@ -4,7 +4,7 @@
             "BaseEvent": {
                 "title": "Base Event Resource",
                 "type": "object",
-                "description": "Unit uses Events to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.",
+                "description": "Unit uses `Events` to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -36,6 +36,7 @@
                     { "$ref": "#/components/schemas/BaseEvent" },
                     {
                         "type": "object",
+                        "description": "Occurs when an Account is created successfully.",
                         "properties": {
                             "type": {
                                 "type": "string",
@@ -89,6 +90,7 @@
                     { "$ref": "#/components/schemas/BaseEvent" },
                     {
                         "type": "object",
+                        "description": "Occurs when an Account is closed.",
                         "properties": {
                             "type": {
                                 "type": "string",
@@ -151,6 +153,7 @@
                     { "$ref": "#/components/schemas/BaseEvent" },
                     {
                         "type": "object",
+                        "description": "Occurs when an Account is frozen.",
                         "properties": {
                             "type": {
                                 "type": "string",
@@ -208,11 +211,120 @@
                     }
                 ]
             },
+            "AccountReopenedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when a closed Account is reopened.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.reopened"]
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccountUnfrozenEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when a frozen Account is unfrozen.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.unfrozen"]
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
             "AccountUpdatedEvent": {
                 "allOf": [
                     { "$ref": "#/components/schemas/BaseEvent" },
                     {
                         "type": "object",
+                        "description": "Occurs when an Account is updated. The list of changes is provided in the `changes` attribute.",
                         "properties": {
                             "type": {
                                 "type": "string",
@@ -534,6 +646,8 @@
                     { "$ref": "#/components/schemas/AccountCreatedEvent" },
                     { "$ref": "#/components/schemas/AccountClosedEvent" },
                     { "$ref": "#/components/schemas/AccountFrozenEvent" },
+                    { "$ref": "#/components/schemas/AccountUnfrozenEvent" },
+                    { "$ref": "#/components/schemas/AccountReopenedEvent" },
                     { "$ref": "#/components/schemas/AccountUpdatedEvent" },
                     { "$ref": "#/components/schemas/AuthorizationCreatedEvent" },
                     { "$ref": "#/components/schemas/TransactionCreatedEvent" },

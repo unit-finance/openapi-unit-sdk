@@ -8,19 +8,52 @@
                         "type": "object",
                         "properties": {
                             "type": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": ["webhook"],
+                                "default": "webhook"
                             },
                             "attributes": {
                                 "type": "object",
                                 "properties": {
+                                    "label": {
+                                        "type": "string",
+                                        "description": "A label describing the webhook."
+                                    },
+                                    "url": {
+                                        "type": "string",
+                                        "description": "The URL of the webhook endpoint."
+                                    },
+                                    "contentType": {
+                                        "type": "string",
+                                        "enum": ["Json", "JsonAPI"],
+                                        "description": "The type of content you wish to receive."
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "description": "The secret token for securing the webhook."
+                                    },
+                                    "includeResources": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether to include full resource in events payload.",
+                                        "default": false
+                                    },
+                                    "subscriptionType": {
+                                        "type": "string",
+                                        "enum": ["All", "OnlyAuthorizationRequest", "NotAuthorizationRequest"],
+                                        "description": "The subscription type of the webhook.",
+                                        "default": "All"
+                                    },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
                                     }
-                                }
+                                },
+                                "additionalProperties": false
                             }
-                        }
+                        },
+                        "required": ["type", "attributes"]
                     }
-                }
+                },
+                "required": ["data"]
             }
         }
     }

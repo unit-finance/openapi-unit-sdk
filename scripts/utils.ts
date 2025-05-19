@@ -13,8 +13,8 @@ export function openFile(path: string, fileType: string): string {
     return fs.readFileSync(path, "utf-8");
 }
 
-export function getPathCmdParameter(fileType: string): string {
-    const pathArg = process.argv.find((val) => val.includes("--path="));
+export function getPathCmdParameter(fileType: string, pathArgName = "path"): string {
+    const pathArg = process.argv.find((val) => val.includes(`--${pathArgName}=`));
 
     if (pathArg == null) {
         throw new Error(
@@ -22,10 +22,15 @@ export function getPathCmdParameter(fileType: string): string {
         );
     }
 
-    const path = pathArg?.replace("--path=", "");
+    const path = pathArg?.replace(`--${pathArgName}=`, "");
+    console.log(pathArgName, path);
     if (!path.includes(`.${fileType}`)) {
         throw new Error(`Path must lead to a ${fileType} file!`);
     }
 
     return path;
+}
+
+export function openJsonFile(path: string): string {
+    return openFile(path, "json");
 }

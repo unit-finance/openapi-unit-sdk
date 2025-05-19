@@ -18,25 +18,50 @@
                         "properties": {
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "Date and time when the Org API token was created."
                             },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "A description of the Org API token."
                             },
                             "expiration": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "Expiration date of the Org API token."
                             },
                             "token": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The token value returned only when creating a new token."
                             },
                             "sourceIp": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "A comma separated list of IP addresses that are allowed to use the Org API token (no spaces allowed)."
                             }
                         },
                         "required": ["createdAt"]
                     }
                 }
+            },
+            "RestrictedResource": {
+                "type": "object",
+                "title": "Restricted Resource",
+                "description": "Restrict token to one or more specific resources. To one or many cards and/or to one or many accounts (cards under it, payments, transactions).",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["card", "account"],
+                        "description": "The type of resource to restrict access to."
+                    },
+                    "ids": {
+                        "type": "array",
+                        "description": "The identifiers of the resources to restrict access to.",
+                        "items": {
+                            "$ref": "../types.json#/components/schemas/Identifier"
+                        }
+                    }
+                },
+                "required": ["type", "ids"]
             }
         }
     }

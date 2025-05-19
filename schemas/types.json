@@ -219,14 +219,17 @@
                 "properties": {
                     "provider": {
                         "type": "string",
-                        "enum": ["iovation"]
+                        "enum": ["iovation"],
+                        "description": "The name of the device fingerprint provider."
                     },
                     "value": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The device fingerprint string value (e.g. Iovation blackbox)."
                     }
                 },
                 "additionalProperties": false,
-                "required": ["provider", "value"]
+                "required": ["provider", "value"],
+                "description": "A Device fingerprint is a way to combine certain attributes of a device (operating system, IP address, device language settings etc.) in order to identify unique devices."
             },
             "PaginationMeta": {
                 "type": "object",

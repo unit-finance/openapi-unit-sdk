@@ -10,7 +10,16 @@
                     "Denied",
                     "Pending",
                     "Canceled"
-                ]
+                ],
+                "enumDescriptions": {
+                    "AwaitingDocuments": "Certain documents are required for the process to continue. You may upload them via Upload Document.",
+                    "PendingReview": "The application is pending review by Unit (with an SLA of 2 business hours).",
+                    "Pending": "The application is being evaluated asynchronously and a result should be available shortly. Listen for webhooks (application.denied, customer.created) and application.awaitingdocuments) for the final result, or periodically query the application with Get by Id).",
+                    "Approved": "The application was approved. A Customer resource was created.",
+                    "Denied": "The application was denied. A Customer resource will not be created.",
+                    "Canceled": "The application was canceled. A Customer resource will not be created."
+                },
+                "description": "Status of the application. The final statuses for an application are Approved, Denied or Canceled. Once an application is approved, a Customer resource will be created and associated with the application resource."
             },
             "PowerOfAttorneyAgent": {
                 "title": "Power of Attorney Agent",

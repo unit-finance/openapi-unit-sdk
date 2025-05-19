@@ -14,7 +14,8 @@
                         "type": "object",
                         "properties": {
                             "verificationToken": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The generated verification token. It should be passed back to Create Customer Bearer Token along with the verification code the customer received on the specified channel."
                             }
                         }
                     }

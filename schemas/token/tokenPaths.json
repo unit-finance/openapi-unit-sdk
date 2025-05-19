@@ -154,7 +154,7 @@
                 }
             ],
             "summary": "Create Customer Token",
-            "description": "Create a Customer Token via API ",
+            "description": "Create a bearer token for a particular customer. The returned token can be used in the `Authorization` header as a secure alternative to the broader API token. A Customer Token can only interact with resources under a particular customer. As an example, calling List Transactions with a customer bearer token will return only transactions within accounts under that particular customer.",
             "requestBody": {
                 "description": "Create Customer Token Request",
                 "required": true,
@@ -190,7 +190,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createCustomerTokenVerification",
-
             "parameters": [
                 {
                     "schema": {
@@ -203,7 +202,7 @@
                 }
             ],
             "summary": "Create Customer Token Verification",
-            "description": "Create a Customer Token Verification via API ",
+            "description": "In order to increase security and prevent token theft, Unit supports two-factor authentication when creating a customer token. When creating a customer token that contains a scope which requires two-factor authentication, it is required to first create a verification challenge that will be sent to the customer. The challenge is a six digits code and is valid for 10 minutes after its creation.",
             "requestBody": {
                 "description": "Create Customer Token Verification Request",
                 "required": true,

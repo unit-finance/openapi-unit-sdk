@@ -9,6 +9,118 @@
                         "$ref": "./event.json#/components/schemas/Event"
                     }
                 }
+            },
+            "EventType": {
+                "type": "string",
+                "description": "The type of the event instance",
+                "enum": [
+                    "account.created",
+                    "account.closed",
+                    "account.reopened",
+                    "account.frozen",
+                    "account.unfrozen",
+                    "account.updated",
+                    "application.created",
+                    "application.denied",
+                    "application.canceled",
+                    "application.pendingReview",
+                    "application.awaitingDocuments",
+                    "authorization.created",
+                    "authorization.canceled",
+                    "authorization.amountChanged",
+                    "authorization.declined",
+                    "authorization.updated",
+                    "authorizationRequest.approved",
+                    "authorizationRequest.declined",
+                    "authorizationRequest.pending",
+                    "bulkPayments.failed",
+                    "bulkPayments.finished",
+                    "card.created",
+                    "card.activated",
+                    "card.statusChanged",
+                    "card.pinChanged",
+                    "card.reissuing",
+                    "checkDeposit.created",
+                    "checkDeposit.pendingReview",
+                    "checkDeposit.pending",
+                    "checkDeposit.rejected",
+                    "checkDeposit.clearing",
+                    "checkDeposit.sent",
+                    "checkDeposit.returned",
+                    "checkPayment.created",
+                    "checkPayment.markedForReturn",
+                    "checkPayment.processed",
+                    "checkPayment.returned",
+                    "checkPayment.pending",
+                    "checkPayment.rejected",
+                    "checkPayment.inProduction",
+                    "checkPayment.inDelivery",
+                    "checkPayment.delivered",
+                    "checkPayment.returnToSender",
+                    "checkPayment.canceled",
+                    "checkPayment.deliveryStatusChanged",
+                    "checkPayment.additionalVerificationRequired",
+                    "checkPayment.additionalVerificationApproved",
+                    "stopPayment.created",
+                    "stopPayment.paymentStopped",
+                    "stopPayment.disabled",
+                    "stopPayment.updated",
+                    "creditDecision.approved",
+                    "creditDecision.manualReview",
+                    "creditDecision.denied",
+                    "customer.created",
+                    "customer.updated",
+                    "customer.archived",
+                    "declinedIncomingPayment.created",
+                    "dispute.created",
+                    "dispute.statusChanged",
+                    "document.approved",
+                    "document.rejected",
+                    "payment.created",
+                    "payment.clearing",
+                    "payment.sent",
+                    "payment.rejected",
+                    "payment.returned",
+                    "payment.canceled",
+                    "payment.pendingReview",
+                    "recurringPayment.created",
+                    "recurringPayment.statusChanged",
+                    "recurringPayment.failed",
+                    "recurringRepayment.created",
+                    "recurringRepayment.failed",
+                    "recurringRepayment.skipped",
+                    "recurringRepayment.statusChanged",
+                    "statements.created",
+                    "statement.created",
+                    "taxForm.created",
+                    "taxForm.updated",
+                    "transaction.created",
+                    "transaction.updated",
+                    "receivedPayment.created",
+                    "receivedPayment.advanced",
+                    "receivedPayment.pendingReview",
+                    "receivedPayment.pending",
+                    "receivedPayment.markedForReturn",
+                    "receivedPayment.completed",
+                    "receivedPayment.returned",
+                    "chargeback.created",
+                    "reward.sent",
+                    "reward.rejected",
+                    "repayment.created",
+                    "repayment.statusChanged",
+                    "creditApplication.created",
+                    "creditApplication.pending",
+                    "creditApplication.approved",
+                    "creditApplication.manualReview",
+                    "creditApplication.denied",
+                    "creditApplication.canceled",
+                    "cardFraudCase.created",
+                    "cardFraudCase.activated",
+                    "cardFraudCase.expired",
+                    "cardFraudCase.fraud",
+                    "cardFraudCase.noFraud",
+                    "wireDrawdown.created"
+                ]
             }
         }
     },
@@ -16,9 +128,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getEventsList",
-
             "summary": "Get Events List",
-            "description": "Get Events List from API ",
+            "description": "List event resources, going back up to 90 days. Paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -32,16 +143,21 @@
                         "type": "object",
                         "properties": {
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the events that occurred after the specified date. e.g. 2022-01-13T16:01:19.346Z"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the events that occurred before the specified date. e.g. 2022-01-15T20:06:23.486Z"
                             },
                             "type": {
                                 "type": "array",
                                 "items": {
-                                    "type": "string"
-                                }
+                                    "$ref": "#/components/schemas/EventType"
+                                },
+                                "description": "Optional. Filter Events by Event type."
                             }
                         }
                     }
@@ -74,7 +190,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getEvent",
-
             "parameters": [
                 {
                     "schema": {
@@ -87,7 +202,7 @@
                 }
             ],
             "summary": "Get Event by Id",
-            "description": "Get an Event from API ",
+            "description": "Get an event resource by id. This API is available only for events that were created within the last 90 days.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -110,7 +225,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "fireEvent",
-
             "parameters": [
                 {
                     "schema": {
@@ -123,7 +237,19 @@
                 }
             ],
             "summary": "Fire Event by Id",
-            "description": "Fire an Event via API ",
+            "description": "Resend a previously published webhook event. This API is available only for events that were created within the last 90 days.",
+            "requestBody": {
+                "description": "Fire Event Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    }
+                }
+            },
             "responses": {
                 "200": {
                     "description": "Successful Response",

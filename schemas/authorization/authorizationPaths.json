@@ -3,9 +3,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorizationsList",
-
             "summary": "Get List authorizations",
-            "description": "Get List Authorizations from API ",
+            "description": "List authorizations. Filtering and sorting can be applied. Paging is available only when filtering by customer id or account id.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -19,39 +18,53 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "accountType": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": ["deposit", "credit"],
+                                "description": "Optional. Filter the results by account type (deposit, credit)."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "cardId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified card id."
                             },
                             "includeNonAuthorized": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Optional. Include authorizations from all statuses."
                             },
                             "merchantCategoryCode": {
                                 "type": "array",
                                 "items": {
-                                    "type": "string"
-                                }
+                                    "type": "integer"
+                                },
+                                "description": "Optional. Filter authorizations by their 4-digit ISO 18245 merchant category code (MCC)."
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the Authorizations that occurred _after_ the specified date. e.g. 2020-01-13T16:01:19.346Z"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the Authorizations that occurred _before_ the specified date. e.g. 2020-01-02T20:06:23.486Z"
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Authorizations that have an amount that is _higher or equal to_ the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Authorizations that have an amount that is _lower or equal to_ the specified amount (in cents). e.g. 7000"
                             },
                             "status": {
                                 "type": "array",
@@ -63,7 +76,9 @@
                                         "Canceled",
                                         "Declined"
                                     ]
-                                }
+                                },
+                                "default": "Authorized",
+                                "description": "Optional. Filter authorizations by Authorization Status."
                             }
                         }
                     }
@@ -72,8 +87,10 @@
                     "name": "sort",
                     "in": "query",
                     "schema": {
-                        "type": "string"
-                    }
+                        "type": "string",
+                        "default": "-createdAt"
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -90,6 +107,12 @@
                                         "items": {
                                             "$ref": "./authorization.json#/components/schemas/Authorization"
                                         }
+                                    },
+                                    "meta": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/PaginationMeta" },
+                                            { "description": "Pagination metadata. Will be defined only when filtered by customer or account id." }
+                                        ]
                                     }
                                 }
                             }
@@ -103,7 +126,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorization",
-
             "parameters": [
                 {
                     "schema": {
@@ -115,15 +137,16 @@
                     "description": "ID of the authorization to get"
                 },
                 {
-                    "name": "includeNoneAuthorized",
+                    "name": "filter[includeNonAuthorized]",
                     "in": "query",
                     "schema": {
                         "type": "boolean"
-                    }
+                    },
+                    "description": "Optional. Include authorizations from all statuses."
                 }
             ],
             "summary": "Get Authorization by Id",
-            "description": "Get a Authorization from API ",
+            "description": "Get an authorization resource by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -148,7 +171,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorizationRequestsList",
-
             "summary": "Get List Authorization Requests",
             "description": "Get List Authorization Requests from API ",
             "parameters": [
@@ -164,24 +186,29 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "merchantCategoryCode": {
                                 "type": "array",
                                 "items": {
-                                    "type": "string"
-                                }
+                                    "type": "integer"
+                                },
+                                "description": "Optional. Filter authorizations by their 4-digit ISO 18245 merchant category code (MCC)."
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Authorizations that have an amount that is _higher or equal to_ the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Authorizations that have an amount that is _lower or equal to_ the specified amount (in cents). e.g. 7000"
                             }
                         }
                     }
@@ -214,7 +241,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAuthorizationRequest",
-
             "parameters": [
                 {
                     "schema": {
@@ -252,7 +278,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "approveAuthorizationRequest",
-
             "parameters": [
                 {
                     "schema": {
@@ -307,7 +332,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "declineAuthorizationRequest",
-
             "parameters": [
                 {
                     "schema": {

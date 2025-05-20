@@ -97,7 +97,7 @@
             "tags": ["unit"],
             "operationId": "updateApplication",
             "summary": "Update Application",
-            "description": "Update an Application via API ",
+            "description": "Update an Application via API. Can be used to update individual applications, sole proprietorships, business applications, and business officers.",
             "parameters": [
                 {
                     "schema": {
@@ -149,8 +149,8 @@
                     "description": "ID of the application to get"
                 }
             ],
-            "summary": "Cancel Application by Id",
-            "description": "Cancel a Application via API ",
+            "summary": "Cancel Application",
+            "description": "Cancel an Application at any point that is not Pending, Approved or Denied. The status of the application will change to Canceled, and the relevant webhook event will be fired.",
             "requestBody": {
                 "description": "Cancel Application Request",
                 "required": true,
@@ -212,7 +212,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getApplicationsList",
-            "summary": "Get List Application",
+            "summary": "List",
             "description": "Get List Applications from API ",
             "parameters": [
                 {
@@ -813,8 +813,8 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateBusinessBeneficialOwner",
-            "description": "Update a Business Beneficial Owner",
-            "summary": "Update a Business Beneficial Owner via API",
+            "summary": "Update Business Beneficial Owner",
+            "description": "Update a business application's beneficial owner. The application id associated with the beneficial owner must be passed as a relationship in the request body.",
             "parameters": [
                 {
                     "schema": {

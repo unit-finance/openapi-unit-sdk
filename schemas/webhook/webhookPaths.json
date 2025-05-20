@@ -116,7 +116,7 @@
                                                 },
                                                 "token": {
                                                     "type": "string",
-                                                    "description": "The secret token (see Securing your webhooks)."
+                                                    "description": "The secret token (see https://www.unit.co/docs/api/webhooks/#securing-your-webhooks)."
                                                 },
                                                 "contentType": {
                                                     "type": "string",
@@ -141,7 +141,7 @@
                                                         "NotAuthorizationRequest"
                                                     ],
                                                     "default": "All",
-                                                    "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'(see Subscription types)."
+                                                    "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'(see https://www.unit.co/docs/api/webhooks/#subscription-types)."
                                                 }
                                             },
                                             "additionalProperties": false,

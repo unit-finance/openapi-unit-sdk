@@ -12,14 +12,14 @@
                     "Canceled"
                 ],
                 "enumDescriptions": {
-                    "AwaitingDocuments": "Certain documents are required for the process to continue. You may upload them via Upload Document.",
+                    "AwaitingDocuments": "Certain documents are required for the process to continue. You may upload them via [Upload Document](https://www.unit.co/docs/api/application-documents/#upload-document).",
                     "PendingReview": "The application is pending review by Unit (with an SLA of 2 business hours).",
-                    "Pending": "The application is being evaluated asynchronously and a result should be available shortly. Listen for webhooks (application.denied, customer.created) and application.awaitingdocuments) for the final result, or periodically query the application with Get by Id).",
+                    "Pending": "The application is being evaluated asynchronously and a result should be available shortly. Listen for webhooks ([application.denied](https://www.unit.co/docs/api/events/#applicationdenied), [customer.created](https://www.unit.co/docs/api/events/#customercreated)) and [application.awaitingdocuments](https://www.unit.co/docs/api/events/#applicationawaitingdocuments)) for the final result, or periodically query the application with [Get by Id](https://www.unit.co/docs/api/applications/#get-application-by-id\")).",
                     "Approved": "The application was approved. A Customer resource was created.",
-                    "Denied": "The application was denied. A Customer resource will not be created.",
-                    "Canceled": "The application was canceled. A Customer resource will not be created."
+                    "Denied": "The application was denied. A Customer resource will _not_ be created.",
+                    "Canceled": "The application was canceled. A Customer resource will _not_ be created."
                 },
-                "description": "Status of the application. The final statuses for an application are Approved, Denied or Canceled. Once an application is approved, a Customer resource will be created and associated with the application resource."
+                "description": "Status of the application. The final statuses for an application are `Approved`, `Denied` or `Canceled`. Once an application is approved, a Customer resource will be created and associated with the application resource."
             },
             "PowerOfAttorneyAgent": {
                 "title": "Power of Attorney Agent",

@@ -46,7 +46,7 @@
             "RestrictedResource": {
                 "type": "object",
                 "title": "Restricted Resource",
-                "description": "Restrict token to one or more specific resources. To one or many cards and/or to one or many accounts (cards under it, payments, transactions).",
+                "description": "Restrict token to one or more specific resources. To one or many cards and/or to one or many accounts (cards under it, payments, transactions). See [Restricted Resources](https://www.unit.co/docs/api/resources/#restricted-resources).",
                 "properties": {
                     "type": {
                         "type": "string",

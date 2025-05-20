@@ -42,7 +42,7 @@
                                         "items": {
                                             "$ref": "../token/apiToken.json#/components/schemas/RestrictedResource"
                                         },
-                                        "description": "Optional. Restrict token to one or more specific resources. To one or many cards and/or to one or many accounts (cards under it, payments, transactions)."
+                                        "description": "Optional. Restrict token to one or more specific resources. To one or many cards and/or to one or many accounts (cards under it, payments, transactions). See [Restricted Resources](https://www.unit.co/docs/api/resources/#restricted-resources)."
                                     },
                                     "upgradableScope": {
                                         "type": "string",

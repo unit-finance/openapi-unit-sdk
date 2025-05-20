@@ -4,7 +4,7 @@
             "BaseEvent": {
                 "title": "Base Event Resource",
                 "type": "object",
-                "description": "Unit uses `Events` to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.",
+                "description": "Unit uses `Events` to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.\n\nOur event types follow a specific structure: `resource.event`.\n\nEach event includes an `id` field, which uniquely identifies the event instance, and a `type` field that identifies the type of the event instance.\n\nEach event type includes a different set of attributes and relationships, relevant to that specific event.\n\nEvent attributes may contain a set of custom tags inherited from a related resource request.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -335,7 +335,26 @@
                                 "properties": {
                                     "changes": {
                                         "type": "object",
-                                        "description": "List of changes to the resource"
+                                        "description": "List of changes to the resource",
+                                        "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                                "previous": {
+                                                    "type": "string",
+                                                    "description": "The previous value"
+                                                },
+                                                "current": {
+                                                    "type": "string",
+                                                    "description": "The current value"
+                                                }
+                                            }
+                                        },
+                                        "example": {
+                                            "depositProduct": {
+                                                "previous": "934",
+                                                "current": "120009"
+                                            }
+                                        }
                                     }
                                 }
                             },
@@ -546,6 +565,7 @@
                     { "$ref": "#/components/schemas/BaseEvent" },
                     {
                         "type": "object",
+                        "description": "Occurs when a Wire Drawdown request is created.",
                         "properties": {
                             "type": {
                                 "type": "string",
@@ -641,7 +661,7 @@
             },
             "Event": {
                 "title": "Event Resource",
-                "description": "Unit uses Events to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.",
+                "description": "Unit uses `Events` to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.\n\nOur event types follow a specific structure: `resource.event`.\n\nEach event includes an `id` field, which uniquely identifies the event instance, and a `type` field that identifies the type of the event instance.\n\nEach event type includes a different set of attributes and relationships, relevant to that specific event.\n\nEvent attributes may contain a set of custom tags inherited from a related resource request.",
                 "oneOf": [
                     { "$ref": "#/components/schemas/AccountCreatedEvent" },
                     { "$ref": "#/components/schemas/AccountClosedEvent" },

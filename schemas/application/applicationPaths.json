@@ -510,7 +510,8 @@
                     "description": "ID of the document to upload a file for"
                 }
             ],
-            "summary": "Upload an application document file. Supports PDF, PNG and JPG files",
+            "summary": "Upload Document",
+            "description": "Uploads a document file. Supported file types are `pdf`, `jpeg` or `png`. For a driver's license, this operation uploads the front-side only. Upload the back-side of a driver's licence using Upload Document Back-Side API. Maximum size for a document is 20mb.",
             "requestBody": {
                 "description": "An application document file",
                 "required": true,
@@ -560,8 +561,8 @@
                     "description": "ID of the document to upload a file for"
                 }
             ],
-            "summary": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
-            "description": "Upload an application file via API - Back Side. Supports PDF, PNG and JPG files",
+            "summary": "Upload Document Back-Side",
+            "description": "Uploads the back-side of a document. Supported file types are `pdf`, `jpeg` or `png`. This operation is only relevant to driver's licenses. Maximum size for a document is 20mb.",
             "requestBody": {
                 "description": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
                 "required": true,
@@ -603,8 +604,8 @@
                     "description": "ID of the application to get documents for"
                 }
             ],
-            "summary": "Get List of Documents",
-            "description": "Get List of Documents via API ",
+            "summary": "List",
+            "description": "List application documents. You can also list the application documents via Get Application by Id, the documents will be included in the response `included` top-level field.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -651,8 +652,8 @@
                     }
                 }
             ],
-            "summary": "Create an application document",
-            "description": "Create an application document via API",
+            "summary": "Create Document",
+            "description": "Unit allows you to create (and store) **custom documents**. This feature allows you to run additional document verifications on your side - these are documents that are not required by Unit for the evaluation of the application. Once you create a custom document resource, you can upload and store the document by using the relevant endpoints.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -668,7 +669,7 @@
         }
     },
     "verifyDocument": {
-        "put": {
+        "post": {
             "tags": ["unit"],
             "operationId": "verifyApplicationDocument",
 
@@ -692,21 +693,39 @@
                     "description": "ID of the document to verify"
                 }
             ],
-            "summary": "Verify a document",
-            "description": "Verify a document via API ",
+            "summary": "Verify Document",
+            "description": "Verify Selfie Verification document",
             "requestBody": {
                 "description": "Verify Document",
                 "required": true,
                 "content": {
-                    "application/json": {
+                    "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "Verify Document",
+                            "title": "Verify Document Request",
                             "properties": {
-                                "jobId": {
-                                    "type": "string"
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": ["selfieVerification"]
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "jobId": {
+                                                    "type": "string",
+                                                    "description": "Verification job identifier"
+                                                }
+                                            },
+                                            "required": ["jobId"]
+                                        }
+                                    },
+                                    "required": ["type", "attributes"]
                                 }
-                            }
+                            },
+                            "required": ["data"]
                         }
                     }
                 }
@@ -750,8 +769,8 @@
                     "description": "ID of the document to download"
                 }
             ],
-            "summary": "Download a Document",
-            "description": "Download a Document via API ",
+            "summary": "Download Document",
+            "description": "Download the application document file.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -792,8 +811,8 @@
                     "description": "ID of the document to download"
                 }
             ],
-            "summary": "Download a Document - Back Side",
-            "description": "Download a Document - Back Side via API",
+            "summary": "Download Document Back-Side",
+            "description": "Download the application document back-side file.",
             "responses": {
                 "200": {
                     "description": "Successful Response",

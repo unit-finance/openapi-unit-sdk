@@ -399,10 +399,12 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "status": {
                                 "type": "array",
@@ -416,33 +418,43 @@
                                         "Returned",
                                         "Completed"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter Received Payments by ReceivedPayment Status. Usage example: filter[status][0]=Pending&filter[status][1]=Advanced. Cannot be stated with includeCompleted."
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters before the specified date. e.g. 2021-06-01"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters after the specified date. e.g. 2021-07-01"
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Received Payment that have an amount that is higher or equal to the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Received Payment that have an amount that is lower or equal to the specified amount (in cents). e.g. 7000"
                             },
                             "includeCompleted": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Optional. Filter to include ReceivedPayment with Status 'Completed', default False. Cannot be stated with filter[status][]"
                             },
                             "canBeReprocessed": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Optional. If set to true, returns only Received Payments that can be reprocessed. If set to false only returns Received Payments that can't be reprocessed."
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Filter received payments by Tags."
                             }
                         }
                     }
@@ -452,18 +464,20 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account. See https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 },
                 {
                     "name": "sort",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
-            "summary": "Get Received Payments List",
-            "description": "Get Received Payments from API ",
+            "summary": "List Received Payments",
+            "description": "List received payments. Filtering, paging and sorting can be applied.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -509,15 +523,16 @@
                     "description": "ID of the payment to get"
                 },
                 {
-                    "name": "included",
+                    "name": "include",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account. See https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 }
             ],
             "summary": "Get Received Payment by Id",
-            "description": "Get a Received Payment from API ",
+            "description": "Get a received payment by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -542,9 +557,10 @@
         },
         "patch": {
             "tags": ["unit"],
-
+            "operationId": "updateReceivedPayment",
             "summary": "Update Received Payment",
-            "description": "Update a Received Payment via API ",
+            "description": "Update a Received Payment.",
+
             "parameters": [
                 {
                     "schema": {
@@ -597,8 +613,8 @@
                     "description": "ID of the payment to advance"
                 }
             ],
-            "summary": "Advance Received Payment by Id",
-            "description": "Advance a Received Payment via API ",
+            "summary": "Advance Received Payment",
+            "description": "Advance a Received Payment. In order to use this API, you must implement the Advance Received Payment capability. Only received payments that are in status `Pending` can be advanced.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -626,11 +642,11 @@
                     "name": "paymentId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the payment to advance"
+                    "description": "ID of the payment to reprocess"
                 }
             ],
-            "summary": "Reprocess Received Payment by Id",
-            "description": "Reprocess a Received Payment via API ",
+            "summary": "Reprocess Received Payment",
+            "description": "Reprocess a Received ACH Debit Payment in case it was `MarkedForReturn` due to `InsufficientFunds`. The reprocess functionality is disabled by default. If you would like to enable it, please contact Unit. Only received payments that are in status `MarkedForReturn` can be reprocessed.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -648,28 +664,39 @@
     "returnReceivedAchTransaction": {
         "post": {
             "tags": ["unit"],
-            "operationId": "reprocessReceivedPayment",
+            "operationId": "returnReceivedAchTransaction",
 
+            "summary": "Return Received ACH Transaction",
             "parameters": [
                 {
                     "schema": {
                         "type": "string"
                     },
-                    "name": "paymentId",
+                    "name": "transactionId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the payment to advance"
+                    "description": "ID of the transaction to return"
                 }
             ],
-            "summary": "Reprocess Received Payment by Id",
-            "description": "Reprocess a Received Payment via API ",
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./returnReceivedAchTransaction.json#/components/schemas/ReturnReceivedAchTransactionRequest"
+                        }
+                    }
+                }
+            },
+            "description": "Return Received ACH Transaction via API ",
             "responses": {
                 "200": {
                     "description": "Successful Response",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/UnitReceivedPaymentResponse"
+                                "$ref": "#/components/schemas/UnitReturnedReceivedAchTransactionResponse"
                             }
                         }
                     }
@@ -911,49 +938,6 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "returnReceivedACHTransaction": {
-        "post": {
-            "tags": ["unit"],
-            "operationId": "returnReceivedACHTransaction",
-
-            "summary": "Return Received ACH Transaction",
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "transactionId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the transaction to return"
-                }
-            ],
-            "requestBody": {
-                "description": "Pass empty object in order for content-type to be aquired correctly",
-                "required": true,
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "$ref": "./returnReceivedACHTransaction.json#/components/schemas/ReturnReceivedACHTransactionRequest"
-                        }
-                    }
-                }
-            },
-            "description": "Return Received ACH Transaction via API ",
-            "responses": {
-                "200": {
-                    "description": "Successful Response",
-                    "content": {
-                        "application/vnd.api+json; charset=utf-8": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UnitReturnedReceivedAchTransactionResponse"
                             }
                         }
                     }

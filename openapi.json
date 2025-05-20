@@ -132,7 +132,7 @@
             "$ref": "./schemas/payment/paymentsPaths.json#/listReceivedPayments"
         },
         "/returns/{transactionId}": {
-            "$ref": "./schemas/payment/paymentsPaths.json#/returnReceivedACHTransaction"
+            "$ref": "./schemas/payment/paymentsPaths.json#/returnReceivedAchTransaction"
         },
         "/received-payments/{paymentId}": {
             "$ref": "./schemas/payment/paymentsPaths.json#/receivedPayments"

@@ -25,10 +25,18 @@
                     "in": "path",
                     "required": true,
                     "description": "ID of the customer to get"
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resource include: authorizedUser. See [Getting Related Resources](https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources)"
                 }
             ],
-            "summary": "Get Customer by Id",
-            "description": "Get a Customer from API ",
+            "summary": "Get by Id",
+            "description": "Get a customer resource by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -46,7 +54,7 @@
             "tags": ["unit"],
             "operationId": "updateCustomer",
             "summary": "Update Customer",
-            "description": "Update an Customer via API ",
+            "description": "Update an Customer via API. The Customer Updated webhook event will be fired.",
             "parameters": [
                 {
                     "schema": {
@@ -87,8 +95,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCustomersList",
-            "summary": "Get Customers List",
-            "description": "Get Customers List from API ",
+            "summary": "List",
+            "description": "List customer resources. Paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -102,23 +110,27 @@
                         "type": "object",
                         "properties": {
                             "query": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Search term according to the [Full-Text Search Rules](https://www.unit.co/docs/api/#full-text-search)."
                             },
                             "status": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
                                     "enum": ["Active", "Archived"]
-                                }
+                                },
+                                "description": "Optional. Filter customers by status (Active, Archived). Usage example: *filter[status][0]=Active"
                             },
                             "email": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filter customers by email address (case sensitive)."
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Filter Customers by [Tags](https://www.unit.co/docs/api/#tags)."
                             }
                         }
                     }
@@ -128,7 +140,8 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. sort=createdAt for ascending order or sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -148,6 +161,47 @@
                                     },
                                     "meta": {
                                         "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createBusinessWalletCustomer",
+            "summary": "Create Business Wallet Customer",
+            "description": "Create a business wallet customer.",
+            "requestBody": {
+                "description": "Create Business Wallet Customer Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "./createCustomer.json#/components/CreateBusinessWalletCustomer"
+                                }
+                            },
+                            "required": ["data"]
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Business Wallet Customer Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./customer.json#/components/schemas/BusinessWalletCustomer"
                                     }
                                 }
                             }
@@ -183,8 +237,8 @@
                     }
                 }
             },
-            "summary": "Archive Customer by Id",
-            "description": "Archive a Customer via API ",
+            "summary": "Archive Customer",
+            "description": "Archive a customer. The Customer Archived webhook event will be fired.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -254,17 +308,6 @@
                     "description": "ID of the customer to remove authorized users from"
                 }
             ],
-            "requestBody": {
-                "description": "Add Authorized Users Request",
-                "required": true,
-                "content": {
-                    "application/vnd.api+json": {
-                        "schema": {
-                            "$ref": "./addAuthorizedUser.json#/components/schemas/RemoveAuthorizedUsersRequest"
-                        }
-                    }
-                }
-            },
             "summary": "Remove Authorized Users by Id",
             "description": "Remove Authorized Users via API",
             "responses": {

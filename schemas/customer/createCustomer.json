@@ -177,7 +177,7 @@
             }
         },
         "CreateBusinessWalletCustomer": {
-            "title": "Create Business Customer",
+            "title": "Create Business Wallet Customer",
             "type": "object",
             "properties": {
                 "type": {
@@ -189,26 +189,49 @@
                     "type": "object",
                     "properties": {
                         "bankName": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "The name of the bank partner this customer is about to create a wallet under."
                         },
                         "businessName": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "The name of the business this customer represents."
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the business."
                         },
                         "address": {
-                            "$ref": "../types.json#/components/schemas/Address"
+                            "allOf": [
+                                { "$ref": "../types.json#/components/schemas/Address" },
+                                { "description": "Address of the business." }
+                            ]
                         },
                         "ein": {
                             "type": "string",
-                            "pattern": "^\\d{9}$"
+                            "pattern": "^\\d{9}$",
+                            "description": "Business EIN (numbers only)."
                         },
                         "businessVertical": {
-                            "$ref": "../types.json#/components/schemas/BusinessVertical"
+                            "allOf": [
+                                { "$ref": "../types.json#/components/schemas/BusinessVertical" },
+                                { "description": "The business vertical of the business." }
+                            ]
                         },
                         "numberOfEmployees": {
-                            "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees"
+                            "allOf": [
+                                { "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees" },
+                                { "description": "The number of employees working for this business." }
+                            ]
                         },
                         "tags": {
-                            "$ref": "../types.json#/components/schemas/Tags"
+                            "allOf": [
+                                { "$ref": "../types.json#/components/schemas/Tags" },
+                                { "description": "Optional. See [Updating Tags](https://www.unit.co/docs/api/#updating-tags)." }
+                            ]
+                        },
+                        "idempotencyKey": {
+                            "type": "string",
+                            "description": "Optional. Idempotency key for the request."
                         }
                     },
                     "additionalProperties": false,
@@ -221,6 +244,9 @@
                         "businessVertical",
                         "numberOfEmployees"
                     ]
+                },
+                "relationships": {
+                    "$ref": "#/components/schemas/CreateCustomerRelationships"
                 }
             },
             "additionalProperties": false,

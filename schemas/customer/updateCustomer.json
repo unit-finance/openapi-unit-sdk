@@ -153,8 +153,10 @@
                                             "FraudApplicationHistory",
                                             "FraudAccountActivity",
                                             "FraudClientIdentified",
-                                            "FraudLinkedToFraudulentCustomer"
-                                        ]
+                                            "FraudLinkedToFraudulentCustomer",
+                                            "ByBank"
+                                        ],
+                                        "description": "The reason for archiving the customer. One of Inactive, FraudACHActivity, FraudCardActivity, FraudCheckActivity, FraudApplicationHistory, FraudAccountActivity, FraudClientIdentified, FraudLinkedToFraudulentCustomer, ByBank. This list is subject to change."
                                     }
                                 }
                             }

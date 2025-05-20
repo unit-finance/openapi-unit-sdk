@@ -152,6 +152,9 @@
         "/counterparties/{counterpartyId}/balance": {
             "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterpartyBalance"
         },
+        "/batch-releases": {
+            "$ref": "./schemas/payment/batchReleasesPaths.json#/createBatchReleases"
+        },
         "/recurring-payments": {
             "$ref": "./schemas/payment/paymentsPaths.json#/recurringPayments"
         },

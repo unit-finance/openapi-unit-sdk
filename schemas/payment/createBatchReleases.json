@@ -1,0 +1,89 @@
+{
+    "components": {
+        "schemas": {
+            "CreateBatchRelease": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["batchRelease"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "description": "The amount (in cents) to move from the batch account to the receiver account."
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "Description of the payment (maximum of 50 characters)."
+                            },
+                            "senderName": {
+                                "type": "string",
+                                "description": "Sender name for the payment (maximum of 255 characters)."
+                            },
+                            "senderAddress": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Address" },
+                                    { "description": "Sender address for the payment." }
+                                ]
+                            },
+                            "senderAccountNumber": {
+                                "type": "string",
+                                "description": "A unique identifier for the sender of the payment (maximum of 17 characters). As an example, when the payment comes from a card processor, this identifier may be set to the BIN followed by the last four digits of the card used."
+                            },
+                            "tags": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Tags at https://www.unit.co/docs/api/#tags will be passed to the related Release Transaction." }
+                                ]
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "description": "Optional, but strongly recommended. See Idempotency at https://www.unit.co/docs/api/#intro-idempotency."
+                            }
+                        },
+                        "required": [
+                            "amount",
+                            "description",
+                            "senderName",
+                            "senderAddress",
+                            "senderAccountNumber"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "batchAccount": {
+                                "$ref": "../relationships.json#/components/schemas/BatchAccountRelationship"
+                            },
+                            "receiver": {
+                                "$ref": "../relationships.json#/components/schemas/CustomerDepositAccountRelationship"
+                            }
+                        },
+                        "required": ["batchAccount", "receiver"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateBatchReleasesRequest": {
+                "title": "Create Batch Releases Request",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CreateBatchRelease"
+                        }
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

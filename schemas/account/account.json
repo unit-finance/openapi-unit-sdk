@@ -312,41 +312,58 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the wallet was created."
                                     },
                                     "name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the wallet."
                                     },
                                     "status": {
-                                        "enum": ["Open", "Closed", "Frozen"]
+                                        "enum": ["Open", "Closed", "Frozen"],
+                                        "description": "The status of the wallet."
                                     },
                                     "walletTerms": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the wallet terms."
                                     },
                                     "routingNumber": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The routing number for the wallet."
                                     },
                                     "accountNumber": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The account number."
                                     },
                                     "currency": {
                                         "type": "string",
-                                        "default": "USD"
+                                        "default": "USD",
+                                        "description": "The currency of the wallet."
                                     },
                                     "balance": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The current balance of the wallet in cents."
                                     },
                                     "hold": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount currently on hold in the wallet in cents."
                                     },
                                     "available": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The available balance in the wallet in cents."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {
+                                                "$ref": "../types.json#/components/schemas/Tags"
+                                            },
+                                            {
+                                                "description": "Optional. See [Tags](https://www.unit.co/docs/api/#tags)."
+                                            }
+                                        ]
                                     },
                                     "closeReason": {
                                         "type": "string",
@@ -359,7 +376,8 @@
                                             "BreachOfTermsAndConditions",
                                             "NoAccountActivity",
                                             "ProgramChange"
-                                        ]
+                                        ],
+                                        "description": "The reason for closing the wallet."
                                     },
                                     "fraudReason": {
                                         "type": "string",
@@ -372,24 +390,27 @@
                                             "ClientIdentified",
                                             "IdentityTheft",
                                             "LinkedToFraudulentCustomer"
-                                        ]
+                                        ],
+                                        "description": "The expanded fraud reason for closing the wallet when Fraud is specified as the reason."
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The reason for freezing the wallet."
                                     }
                                 },
                                 "additionalProperties": false,
                                 "required": [
                                     "createdAt",
                                     "name",
-                                    "creditTerms",
+                                    "status",
+                                    "walletTerms",
+                                    "routingNumber",
+                                    "accountNumber",
                                     "currency",
                                     "balance",
                                     "hold",
                                     "available",
-                                    "tags",
-                                    "status",
-                                    "creditLimit"
+                                    "tags"
                                 ]
                             },
                             "relationships": {

@@ -113,18 +113,22 @@
                 "additionalProperties": false
             },
             "CreateWalletAccount": {
+                "title": "Create Wallet Account",
                 "type": "object",
+                "description": "Creates a wallet account for a BusinessCustomer or BusinessWalletCustomer.",
                 "properties": {
                     "type": {
                         "type": "string",
                         "default": "walletAccount",
-                        "enum": ["walletAccount"]
+                        "enum": ["walletAccount"],
+                        "description": "The type of account to create."
                     },
                     "attributes": {
                         "type": "object",
                         "properties": {
                             "walletTerms": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the wallet terms."
                             },
                             "tags": {
                                 "allOf": [
@@ -155,7 +159,8 @@
                                 "title": "Create Wallet Account Relationships",
                                 "type": "object",
                                 "required": ["customer"],
-                                "additionalProperties": false
+                                "additionalProperties": false,
+                                "description": "The customer the wallet belongs to. The customer is either a BusinessCustomer or BusinessWalletCustomer."
                             },
                             {
                                 "$ref": "../relationships.json#/components/schemas/CustomerRelationship"

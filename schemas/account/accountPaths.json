@@ -33,6 +33,15 @@
                         "$ref": "./account.json#/components/schemas/DepositAccount"
                     }
                 }
+            },
+            "UnitWalletAccountResponse": {
+                "type": "object",
+                "title": "Unit Wallet Account Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./account.json#/components/schemas/WalletAccount"
+                    }
+                }
             }
         }
     },
@@ -68,7 +77,7 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["deposit", "credit"]
+                                    "enum": ["deposit", "credit", "wallet"]
                                 }
                             },
                             "fromBalance": {

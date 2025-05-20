@@ -50,6 +50,42 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
+            "UpdateWalletAccount": {
+                "title": "Update Wallet Account",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["walletAccount"],
+                        "default": "walletAccount"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Optional. The name of the wallet."
+                            },
+                            "tags": {
+                                "allOf": [
+                                    {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    },
+                                    {
+                                        "description": "Optional. See [Tags](https://www.unit.co/docs/api/#tags)."
+                                    }
+                                ]
+                            },
+                            "walletTerms": {
+                                "type": "string",
+                                "description": "Optional. The name of the selected wallet terms."
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
             "UpdateAccountRequest": {
                 "title": "Update Account",
                 "type": "object",
@@ -61,6 +97,9 @@
                             },
                             {
                                 "$ref": "#/components/schemas/UpdateCreditAccount"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateWalletAccount"
                             }
                         ]
                     }

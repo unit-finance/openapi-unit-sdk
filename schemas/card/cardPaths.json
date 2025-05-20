@@ -54,7 +54,8 @@
                                 "properties": {
                                     "status": {
                                         "type": "string",
-                                        "enum": ["Set", "NotSet"]
+                                        "enum": ["Set", "NotSet"],
+                                        "description": "Card PIN status, either 'Set' or 'NotSet'"
                                     }
                                 }
                             }
@@ -290,6 +291,121 @@
             }
         }
     },
+    "activateCard": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "activateCard",
+            "summary": "Activate Card",
+            "description": "Cards can be activated using this endpoint or by calling the toll-free number printed on the card. Virtual cards do not require activation.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to activate"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "setPIN": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "setCardPIN",
+            "summary": "Set Card PIN",
+            "description": "Set the PIN for a card. The PIN is set via a third-party service and requires a customer token.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to set PIN for"
+                }
+            ],
+            "requestBody": {
+                "description": "Set Card PIN Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./setCardPin.json#/components/schemas/SetCardPinRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "changePIN": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "changeCardPIN",
+            "summary": "Change Card PIN",
+            "description": "Change the PIN for a card. The PIN is changed via a third-party service and requires a customer token.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to change PIN for"
+                }
+            ],
+            "requestBody": {
+                "description": "Change Card PIN Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./changeCardPin.json#/components/schemas/ChangeCardPinRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
     "reportLostCard": {
         "post": {
             "tags": ["unit"],
@@ -306,7 +422,7 @@
                     "description": "ID of the card"
                 }
             ],
-            "description": "Report lost as stolen via API ",
+            "description": "Report card as lost. A lost card cannot be reopened.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -337,7 +453,7 @@
                     "description": "ID of the card"
                 }
             ],
-            "description": "Report card as stolen via API ",
+            "description": "Report card as stolen. A stolen card cannot be reopened.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -357,7 +473,7 @@
             "tags": ["unit"],
             "operationId": "closeCard",
             "summary": "Close a Card",
-            "description": "Close a Card via API ",
+            "description": "Close a Card. A closed card cannot be reopened.",
             "parameters": [
                 {
                     "schema": {
@@ -388,7 +504,7 @@
             "tags": ["unit"],
             "operationId": "getCardPinStatus",
             "summary": "Get Card PIN Status",
-            "description": "Get Card PIN Status via API ",
+            "description": "Get the status of a card's PIN, whether it has been set or not.",
             "parameters": [
                 {
                     "schema": {
@@ -430,7 +546,7 @@
                 }
             ],
             "summary": "Freeze a Card",
-            "description": "Freeze a Card via API ",
+            "description": "Freeze a Card via API",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -461,7 +577,7 @@
                 }
             ],
             "summary": "Unfreeze a Card",
-            "description": "Unfreeze a Card via API ",
+            "description": "Unfreeze a Card via API",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -492,7 +608,7 @@
                 }
             ],
             "summary": "Get Card Limit by Id",
-            "description": "Get a Card Limits from API ",
+            "description": "Card purchases and withdrawals can be subjected to daily and monthly amount limits. Limits are optional (by default there are no card-specific limits), and can be set when the card is created or updated. The limits are enforced by Unit, and once the limit is reached, the transaction will be rejected.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -523,7 +639,7 @@
                 }
             ],
             "summary": "Replace a Card",
-            "description": "Replace a Card via API ",
+            "description": "Replace a Card via API",
             "requestBody": {
                 "required": true,
                 "content": {

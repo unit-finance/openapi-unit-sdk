@@ -58,9 +58,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCashDepositStoreLocationsList",
-
             "summary": "List Cash Deposit Store Locations",
-            "description": "List Cash Deposit store locations by coordinates or postal code. This endpoint supports searching by either coordinates (longitude and latitude) or postal code.",
+            "description": "Unit provides an API for searching nearby Cash Deposit store locations by coordinates or postal code. Cash deposits can be made by either swiping a customer card, or by scanning a barcode. The API supports searching by coordinates and postal code.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -111,7 +110,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getBarcodeImage",
-
             "summary": "Get Barcode Image by Barcode Number",
             "description": "Get a cash deposit barcode image by barcode number.",
             "parameters": [

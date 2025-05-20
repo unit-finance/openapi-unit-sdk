@@ -20,6 +20,7 @@
             "CashDepositBarcode": {
                 "title": "Cash Deposit Barcode",
                 "type": "object",
+                "description": "Cash Deposit Barcode resource.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -47,14 +48,19 @@
                                 "description": "The name of the retailer."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" }
+                                ]
                             }
                         },
                         "required": ["barcodeNumber", "expiration", "storeId", "retailerName"],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CashDepositBarcodeRelationships"
+                        "allOf": [
+                            { "$ref": "#/components/schemas/CashDepositBarcodeRelationships" },
+                            { "description": "The relationships of the cash deposit barcode. account: The Deposit Account receiving the payment. customer: The Customer receiving the payment." }
+                        ]
                     }
                 },
                 "required": ["type", "attributes", "relationships"]

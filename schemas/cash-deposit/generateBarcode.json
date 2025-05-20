@@ -37,7 +37,14 @@
                                 "required": ["storeId"]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/GenerateBarcodeRequestRelationships"
+                                "allOf": [
+                                    { 
+                                        "$ref": "#/components/schemas/GenerateBarcodeRequestRelationships" 
+                                    },
+                                    {
+                                        "description": "The relationships for the cash deposit barcode. account: The Deposit Account receiving the payment. customer: The Customer receiving the payment."
+                                    }
+                                ]
                             }
                         },
                         "required": ["type", "attributes", "relationships"]

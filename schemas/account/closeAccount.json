@@ -21,8 +21,8 @@
                                 "properties": {
                                     "reason": {
                                         "type": "string",
-                                        "enum": ["ByCustomer", "Fraud"],
-                                        "default": "ByCustomer"
+                                        "enum": ["ByCustomer", "Fraud", "ByBank", "NegativeBalance"],
+                                        "description": "The reason for closing the account. Either ByCustomer, Fraud, ByBank, or NegativeBalance."
                                     },
                                     "fraudReason": {
                                         "type": "string",
@@ -36,23 +36,31 @@
                                             "ClientIdentified",
                                             "IdentityTheft",
                                             "LinkedToFraudulentCustomer"
-                                        ]
+                                        ],
+                                        "description": "Optional. The expanded fraud reason for closing the account when Fraud is specified as the reason. Can be one of: (ACHActivity, CardActivity, CheckActivity, ApplicationHistory, AccountActivity, ClientIdentified, IdentityTheft, LinkedToFraudulentCustomer)."
                                     },
                                     "bankReason": {
                                         "type": "string",
                                         "nullable": true,
                                         "enum": [
-                                            "ProhibitedBusiness",
-                                            "MissingCddEdd",
-                                            "NonUsOperation",
+                                            "ProhibitedBusiness", 
+                                            "MissingCddEdd", 
+                                            "NonUsOperations", 
                                             "SuspectedFraud"
-                                        ]
+                                        ],
+                                        "description": "Optional. The expanded bank reason for closing the account when ByBank is specified as the reason. Can be one of: (ProhibitedBusiness, MissingCddEdd, NonUsOperations, SuspectedFraud). This list is subject to change."
                                     }
-                                }
+                                },
+                                "required": ["reason"],
+                                "additionalProperties": false
                             }
-                        }
+                        },
+                        "required": ["type", "attributes"],
+                        "additionalProperties": false
                     }
-                }
+                },
+                "required": ["data"],
+                "additionalProperties": false
             },
             "FreezeAccountRequest": {
                 "type": "object",
@@ -79,11 +87,17 @@
                                         "type": "string",
                                         "nullable": true
                                     }
-                                }
+                                },
+                                "required": ["reason"],
+                                "additionalProperties": false
                             }
-                        }
+                        },
+                        "required": ["type", "attributes"],
+                        "additionalProperties": false
                     }
-                }
+                },
+                "required": ["data"],
+                "additionalProperties": false
             }
         }
     }

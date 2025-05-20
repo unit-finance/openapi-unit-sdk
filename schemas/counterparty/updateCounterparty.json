@@ -3,6 +3,7 @@
         "schemas": {
             "UpdateCounterparty": {
                 "title": "Update Counterparty",
+                "description": "Update a Counterparty. Relink existing counterparty with a new Plaid processor token.",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -14,12 +15,14 @@
                         "type": "object",
                         "properties": {
                             "plaidProcessorToken": {
-                                "$ref": "../types.json#/components/schemas/PlaidProcessorToken"
+                                "$ref": "../types.json#/components/schemas/PlaidProcessorToken",
+                                "description": "Optional, unless updating a Plaid counterparty. Plaid integration token. See Plaid processor token."
                             },
                             "name": {
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 50
+                                "maxLength": 50,
+                                "description": "The account holder's name (whether an individual or a business, maximum of 50 characters)."
                             },
                             "permissions": {
                                 "type": "string",
@@ -27,14 +30,17 @@
                                     "CreditOnly",
                                     "DebitOnly",
                                     "CreditAndDebit"
-                                ]
+                                ],
+                                "description": "Optional, custom counterparty permissions. Either CreditOnly, DebitOnly, CreditAndDebit."
                             },
                             "verifyName": {
                                 "type": "boolean",
-                                "default": false
+                                "default": false,
+                                "description": "Optional, default to false. Verify the name of the counterparty, if the name verification fails the request will fail with code field set to NameVerificationFailed."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "Optional. See Tags."
                             }
                         },
                         "additionalProperties": false

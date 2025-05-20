@@ -6,6 +6,7 @@
                     {
                         "type": "object",
                         "title": "Counterparty Balance Relationships",
+                        "description": "The relationships for a counterparty balance resource.",
                         "required": ["customer", "counterparty"],
                         "additionalProperties": false
                     },
@@ -19,6 +20,7 @@
             },
             "CounterpartyBalance": {
                 "title": "Counterparty Balance",
+                "description": "The counterparty balance resource.",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -33,10 +35,12 @@
                         "type": "object",
                         "properties": {
                             "balance": {
-                                "type": "number"
+                                "type": "number",
+                                "description": "The current balance of the counterparty account."
                             },
                             "available": {
-                                "type": "number"
+                                "type": "number",
+                                "description": "The available balance of the counterparty account."
                             }
                         },
                         "required": ["balance"],

@@ -4,6 +4,7 @@
             "UnitCounterpartyResponse": {
                 "type": "object",
                 "title": "Unit Counterparty Response",
+                "description": "The target counterparty resource after the operation was completed.",
                 "properties": {
                     "data": {
                         "$ref": "./counterparty.json#/components/schemas/Counterparty"
@@ -12,10 +13,43 @@
             },
             "UnitCounterpartyBalanceResponse": {
                 "type": "object",
-                "title": "Unit Counterparty Response",
+                "title": "Unit Counterparty Balance Response",
+                "description": "Counterparty Balance resource.",
                 "properties": {
                     "data": {
                         "$ref": "./counterpartyBalance.json#/components/schemas/CounterpartyBalance"
+                    }
+                }
+            },
+            "UnitCounterpartiesListResponse": {
+                "type": "object",
+                "title": "Unit Counterparties List Response",
+                "description": "Array of counterparty resources.",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./counterparty.json#/components/schemas/Counterparty"
+                        }
+                    },
+                    "meta": {
+                        "type": "object",
+                        "properties": {
+                            "pagination": {
+                                "type": "object",
+                                "properties": {
+                                    "total": {
+                                        "type": "integer"
+                                    },
+                                    "limit": {
+                                        "type": "integer"
+                                    },
+                                    "offset": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -25,9 +59,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCounterpartiesList",
-
-            "summary": "Get Counterparties List",
-            "description": "Get Counterparties List from API ",
+            "summary": "List Counterparties",
+            "description": "List counterparties. Filtering and paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -41,16 +74,20 @@
                         "type": "object",
                         "properties": {
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "accountNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account number."
                             },
                             "routingNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified routing number."
                             },
                             "permissions": {
                                 "type": "array",
+                                "description": "Optional. Filters the results by the specified counterparty permissions either CreditOnly, DebitOnly, CreditAndDebit.",
                                 "items": {
                                     "type": "string",
                                     "enum": [
@@ -62,6 +99,7 @@
                             },
                             "tags": {
                                 "type": "object",
+                                "description": "Optional. Filter Counterparties by Tags.",
                                 "additionalProperties": {
                                     "type": "string"
                                 }
@@ -72,6 +110,7 @@
                 {
                     "name": "sort",
                     "in": "query",
+                    "description": "Optional. sort=createdAt for ascending order or sort=-createdAt (leading minus sign) for descending order.",
                     "schema": {
                         "type": "string"
                     }
@@ -83,16 +122,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Counterparties List Response",
-                                "properties": {
-                                    "data": {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "./counterparty.json#/components/schemas/Counterparty"
-                                        }
-                                    }
-                                }
+                                "$ref": "#/components/schemas/UnitCounterpartiesListResponse"
                             }
                         }
                     }
@@ -102,9 +132,8 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createCounterparty",
-
             "summary": "Create Counterparty",
-            "description": "Create a counterparty via API ",
+            "description": "Creates an ACH counterparty for a specific customer.",
             "requestBody": {
                 "description": "Create Counterparty Request",
                 "required": true,
@@ -134,7 +163,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCounterparty",
-
             "parameters": [
                 {
                     "schema": {
@@ -147,7 +175,7 @@
                 }
             ],
             "summary": "Get Counterparty by Id",
-            "description": "Get a Counterparty from API ",
+            "description": "Get a counterparty resource by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -164,9 +192,8 @@
         "patch": {
             "tags": ["unit"],
             "operationId": "updateCounterparty",
-
             "summary": "Update Counterparty",
-            "description": "Update a Counterparty via API ",
+            "description": "Update a Counterparty. Relink existing counterparty with a new Plaid processor token.",
             "parameters": [
                 {
                     "schema": {
@@ -205,7 +232,6 @@
         "delete": {
             "tags": ["unit"],
             "operationId": "deleteCounterparty",
-
             "parameters": [
                 {
                     "schema": {
@@ -218,10 +244,10 @@
                 }
             ],
             "summary": "Delete Counterparty by Id",
-            "description": "Delete Counterparty via API ",
+            "description": "Delete a counterparty resource by id.",
             "responses": {
                 "204": {
-                    "description": "Successful Response"
+                    "description": "No content. The operation was completed successfully."
                 }
             }
         }
@@ -230,8 +256,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCounterpartyBalance",
-
-            "summary": "Get Counterparty Balance",
+            "summary": "Get Counterparty Balance By Id",
             "parameters": [
                 {
                     "schema": {
@@ -240,10 +265,10 @@
                     "name": "counterpartyId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the counterparty to get"
+                    "description": "ID of the counterparty to get the balance for"
                 }
             ],
-            "description": "Get Recurring Payment from API ",
+            "description": "Get a counterparty balance by id. Counterparty must be created with Plaid Processor token in order to run this request. The external account balance will only be returned if customer is the owner of the counterparty account.",
             "responses": {
                 "200": {
                     "description": "Successful Response",

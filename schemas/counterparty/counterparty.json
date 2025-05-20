@@ -6,6 +6,7 @@
                     {
                         "type": "object",
                         "title": "Counterparty Relationships",
+                        "description": "Relationships for a counterparty resource.",
                         "required": ["customer"],
                         "additionalProperties": false
                     },
@@ -16,6 +17,7 @@
             },
             "Counterparty": {
                 "title": "Counterparty Document",
+                "description": "The `counterparty` resource represents the other party that participates in a financial transaction.",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -31,27 +33,33 @@
                         "properties": {
                             "routingNumber": {
                                 "type": "string",
-                                "pattern": "^\\d{9}$"
+                                "pattern": "^\\d{9}$",
+                                "description": "Valid 9-digit ABA routing transit number."
                             },
                             "accountNumber": {
                                 "type": "string",
-                                "pattern": "^\\d{1,17}$"
+                                "pattern": "^\\d{1,17}$",
+                                "description": "Bank account number."
                             },
                             "accountType": {
                                 "type": "string",
-                                "enum": ["Checking", "Savings", "Loan"]
+                                "enum": ["Checking", "Savings", "Loan"],
+                                "description": "Either Checking, Savings or Loan."
                             },
                             "type": {
                                 "type": "string",
-                                "enum": ["Business", "Person", "Unknown"]
+                                "enum": ["Business", "Person", "Unknown"],
+                                "description": "Either Business, Person or Unknown."
                             },
                             "name": {
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 50
+                                "maxLength": 50,
+                                "description": "The account holder's name (whether an individual or a business, maximum of 50 characters)."
                             },
                             "bank": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the bank."
                             },
                             "permissions": {
                                 "type": "string",
@@ -59,14 +67,17 @@
                                     "CreditOnly",
                                     "DebitOnly",
                                     "CreditAndDebit"
-                                ]
+                                ],
+                                "description": "Custom counterparty permissions. Either CreditOnly, DebitOnly or CreditAndDebit. 'CreditOnly' will be assigned as default value when permissions attribute is not declared."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "Optional. See Tags."
                             },
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the counterparty was created."
                             }
                         },
                         "required": [

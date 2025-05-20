@@ -87,7 +87,8 @@
                                         ]
                                     },
                                     "status": {
-                                        "enum": ["Open", "Closed", "Frozen"]
+                                        "enum": ["Open", "Closed", "Frozen"],
+                                        "description": "The status of the account."
                                     },
                                     "closeReason": {
                                         "type": "string",
@@ -99,7 +100,8 @@
                                             "BreachOfTermsAndConditions",
                                             "NoAccountActivity",
                                             "ProgramChange"
-                                        ]
+                                        ],
+                                        "description": "The reason for closing the account."
                                     },
                                     "fraudReason": {
                                         "type": "string",
@@ -112,28 +114,34 @@
                                             "ClientIdentified",
                                             "IdentityTheft",
                                             "LinkedToFraudulentCustomer"
-                                        ]
+                                        ],
+                                        "description": "The expanded fraud reason for closing the account when Fraud is specified as the reason."
                                     },
                                     "closeReasonText": {
                                         "type": "string",
                                         "maxLength": 255
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The reason for freezing the account."
                                     },
                                     "maskedAccountNumber": {
                                         "type": "string",
-                                        "pattern": "^\\*{6,8}\\d{4}$"
+                                        "pattern": "^\\*{6,8}\\d{4}$",
+                                        "description": "Masked version of the account number, showing only the last 4 digits."
                                     },
                                     "isOverdrawnWithinLimit": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether the account is overdrawn but within the overdraft limit."
                                     },
                                     "dacaStatus": {
-                                        "enum": ["Activated", "Entered"]
+                                        "enum": ["Activated", "Entered"],
+                                        "description": "The status of the Deposit Account Control Agreement (DACA)."
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the account was last updated."
                                     }
                                 },
                                 "additionalProperties": false,

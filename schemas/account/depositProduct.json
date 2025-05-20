@@ -3,6 +3,7 @@
         "schemas": {
             "DepositProduct": {
                 "type": "object",
+                "description": "Deposit products define the set of end-customer terms that are applied to accounts, including interest rates, fees, limits, and clearing periods.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -10,7 +11,12 @@
                     },
                     "attributes": {
                         "type": "object",
-                        "properties": { "name": { "type": "string" } },
+                        "properties": { 
+                            "name": { 
+                                "type": "string",
+                                "description": "The name of the deposit product."
+                            } 
+                        },
                         "required": ["name"]
                     }
                 },
@@ -18,7 +24,8 @@
             },
             "UnitDepositProductsResponse": {
                 "type": "object",
-                "title": "Credit Account Repayment Information Response",
+                "title": "Available Deposit Products Response",
+                "description": "Response containing available deposit products that are compatible with the account.",
                 "properties": {
                     "data": {
                         "type": "array",

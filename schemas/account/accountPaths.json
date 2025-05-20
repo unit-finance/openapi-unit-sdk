@@ -363,7 +363,7 @@
             "tags": ["unit"],
             "operationId": "closeAccount",
             "summary": "Close an Account by Id",
-            "description": "Closes an account. Closing an account is irreversible and can only be done by an Org user. An account.closed event is raised when the call was successful. Note that closing an account will also close the cards associated with the account. When closing an account with a balance of $1 or less, the funds will automatically be transferred to your organization's revenue account (see more at Account Low Balance Closure). When closing an account with a balance greater than $1, a check will be mailed to the business or individual address on file. When closing an account with a negative balance, the balance will be considered a loss, and will be covered from your reserve account.",
+            "description": "Closes an account. Closing an account is irreversible and can only be done by an Org user. An account.closed event is raised when the call was successful.\n\nNote that closing an account will also close the cards associated with the account.\n\nWhen closing an account with a balance of $1 or less, the funds will automatically be transferred to your organization's revenue account (see more at Account Low Balance Closure). When closing an account with a balance greater than $1, a check will be mailed to the business or individual address on file.\n\nWhen closing an account with a negative balance, the balance will be considered a loss, and will be covered from your reserve account",
             "parameters": [
                 {
                     "schema": {
@@ -735,7 +735,7 @@
                 }
             ],
             "summary": "Remove Owners from Account by Id",
-            "description": "Remove owner or owners from an existing joint deposit account. Note: At least one of the owners after deletion must be over 18 years old. Note: All cards related to the removed owners will be closed.",
+            "description": "Remove owner or owners from an existing joint deposit account.\n\nNote: At least one of the owners after deletion must be over 18 years old.\n\nNote: All cards related to the removed owners will be closed.",
             "requestBody": {
                 "description": "Remove Account Owners Request",
                 "required": true,

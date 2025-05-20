@@ -3,6 +3,7 @@
         "schemas": {
             "DepositAccountOwner": {
                 "type": "object",
+                "description": "Represents an individual customer owner of a deposit account.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -16,10 +17,12 @@
             },
             "DepositAccountOwners": {
                 "type": "array",
+                "description": "A list of individual customers to be added to or removed from an account.",
                 "items": { "$ref": "#/components/schemas/DepositAccountOwner" }
             },
             "AddAccountOwnersRequest": {
                 "type": "object",
+                "description": "Request to add owners to an existing deposit account.",
                 "properties": {
                     "data": {
                         "$ref": "#/components/schemas/DepositAccountOwners"
@@ -29,6 +32,7 @@
             },
             "RemoveAccountOwnersRequest": {
                 "type": "object",
+                "description": "Request to remove owners from an existing joint deposit account.",
                 "properties": {
                     "data": {
                         "$ref": "#/components/schemas/DepositAccountOwners"

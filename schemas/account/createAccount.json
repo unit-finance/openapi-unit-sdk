@@ -73,7 +73,7 @@
                         "properties": {
                             "depositProduct": {
                                 "type": "string",
-                                "description": "The name of the deposit product. The deposit product defines the set of end-customer terms that are applied to the account."
+                                "description": "The name of the deposit product."
                             },
                             "tags": {
                                 "allOf": [

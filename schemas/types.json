@@ -695,24 +695,29 @@
                 "properties": {
                     "startTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The start date for the recurring payment schedule. If not provided, defaults to the current date."
                     },
                     "endTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The end date for the recurring payment schedule. If not provided, the recurring payment will run until manually disabled."
                     },
                     "dayOfMonth": {
                         "type": "integer",
                         "minimum": -5,
-                        "maximum": 28
+                        "maximum": 28,
+                        "description": "Specifies the day of the month when the payment should be executed. Values 1-28 are specific calendar days. Negative values count backward from the end of the month (-1 is the last day, -2 is the second-to-last day, etc.)."
                     },
                     "nextScheduledAction": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "The next date when the payment will be executed according to the schedule."
                     },
                     "totalNumberOfPayments": {
                         "type": "integer",
-                        "minimum": 1
+                        "minimum": 1,
+                        "description": "Optional. The total number of payments to be executed. If not provided, the payments will continue until the end date or until the recurring payment is disabled."
                     }
                 },
                 "additionalProperties": false,
@@ -723,16 +728,19 @@
                 "properties": {
                     "startTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The start date for the recurring payment schedule. If not provided, defaults to the current date."
                     },
                     "endTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The end date for the recurring payment schedule. If not provided, the recurring payment will run until manually disabled."
                     },
                     "dayOfMonth": {
                         "type": "integer",
                         "minimum": -5,
-                        "maximum": 28
+                        "maximum": 28,
+                        "description": "Specifies the day of the month when the payment should be executed. Values 1-28 are specific calendar days. Negative values count backward from the end of the month (-1 is the last day, -2 is the second-to-last day, etc.)."
                     },
                     "dayOfWeek": {
                         "type": "string",
@@ -744,11 +752,13 @@
                             "Thursday",
                             "Friday",
                             "Saturday"
-                        ]
+                        ],
+                        "description": "Specifies the day of the week when the payment should be executed."
                     },
                     "totalNumberOfPayments": {
                         "type": "integer",
-                        "minimum": 1
+                        "minimum": 1,
+                        "description": "Optional. The total number of payments to be executed. If not provided, the payments will continue until the end date or until the recurring payment is disabled."
                     }
                 },
                 "additionalProperties": false
@@ -763,7 +773,8 @@
                             "interval": {
                                 "type": "string",
                                 "enum": ["Weekly"],
-                                "default": "Weekly"
+                                "default": "Weekly",
+                                "description": "Specifies the frequency of the recurring payment as weekly."
                             }
                         },
                         "required": ["interval"]
@@ -782,7 +793,8 @@
                             "interval": {
                                 "type": "string",
                                 "enum": ["Monthly"],
-                                "default": "Monthly"
+                                "default": "Monthly",
+                                "description": "Specifies the frequency of the recurring payment as monthly."
                             }
                         },
                         "required": ["interval"]
@@ -791,6 +803,7 @@
             },
             "Schedule": {
                 "title": "Schedule",
+                "description": "The schedule will determine details about the patterns (frequency and execution time) of the future payments that are part of the Recurring Payments. Times in Recurring Payments are in EST.",
                 "oneOf": [
                     { "$ref": "#/components/schemas/WeeklySchedule" },
                     { "$ref": "#/components/schemas/MonthlySchedule" }
@@ -827,10 +840,12 @@
             },
             "ResponseSchedule": {
                 "type": "object",
+                "description": "The schedule in the response resource will include additional fields compared to the input fields that were passed by the user initially. In case the start time was not defined, the start time will be set to the current time. In case the end time was not set, the recurring payment will run until it is manually disabled. Recurring payments will be executed by the end of each day.",
                 "properties": {
                     "interval": {
                         "type": "string",
-                        "enum": ["Weekly", "Monthly"]
+                        "enum": ["Weekly", "Monthly"],
+                        "description": "Specifies the frequency of the recurring payment."
                     }
                 },
                 "discriminator": {

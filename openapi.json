@@ -167,6 +167,9 @@
         "/recurring-payments/{paymentId}/enable": {
             "$ref": "./schemas/payment/paymentsPaths.json#/enableRecurringPayment"
         },
+        "/recurring-payments/{paymentId}/delete": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/deleteRecurringPayment"
+        },
         "/cards": {
             "$ref": "./schemas/card/cardPaths.json#/cards"
         },

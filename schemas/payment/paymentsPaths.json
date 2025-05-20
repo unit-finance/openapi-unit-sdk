@@ -709,8 +709,8 @@
             "tags": ["unit"],
             "operationId": "getRecurringPaymentsList",
 
-            "summary": "Get Recurring Payments List",
-            "description": "Get Recurring Payments List from API ",
+            "summary": "List Recurring Payments",
+            "description": "List recurring payments resources. Filtering, paging and sorting can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -724,16 +724,20 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "status": {
                                 "type": "array",
                                 "items": {
-                                    "type": "string"
-                                }
+                                    "type": "string",
+                                    "enum": ["Active", "Completed", "Disabled"]
+                                },
+                                "description": "Optional. Filter recurring payments by status (Active, Completed or Disabled). Usage example: filter[status][0]=Active"
                             },
                             "type": {
                                 "type": "array",
@@ -744,19 +748,28 @@
                                         "recurringDebitAchPayment",
                                         "recurringCreditBookPayment"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter recurring payments by Recurring Payment type. such as (RecurringCreditAchPayment, RecurringCreditBookPayment). Usage example: filter[type][0]=RecurringCreditAchPayment&filter[type][1]=RecurringCreditBookPayment"
                             },
                             "fromStartTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their start time occurred after the specified date. e.g. 2022-06-13"
                             },
                             "toStartTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their start time occurred before the specified date. e.g. 2022-05-13"
                             },
                             "fromEndTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their end time occurred after the specified date. e.g. 2022-06-13"
                             },
                             "toEndTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their end time occurred before the specified date. e.g. 2022-05-13"
                             }
                         }
                     }
@@ -766,7 +779,8 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -830,7 +844,7 @@
             "tags": ["unit"],
             "operationId": "getRecurringPayment",
 
-            "summary": "Get Recurring Payment",
+            "summary": "Get by Id",
             "parameters": [
                 {
                     "schema": {
@@ -842,7 +856,7 @@
                     "description": "ID of the payment to get"
                 }
             ],
-            "description": "Get Recurring Payment from API ",
+            "description": "Get a recurring payment by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -886,7 +900,7 @@
                     }
                 }
             },
-            "description": "Disable Recurring Payment via API ",
+            "description": "The status is set to Disabled when a recurring payment is turned off. It can be reverted to Active by enabling the recurring payment.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -930,7 +944,51 @@
                     }
                 }
             },
-            "description": "Enable Recurring Payment via API ",
+            "description": "Change a Disabled recurring payment status back to Active. Recurring payments that are in status Completed or Deleted cannot be enabled.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "deleteRecurringPayment": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "deleteRecurringPayment",
+
+            "summary": "Delete Recurring Payment",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "paymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the payment to delete"
+                }
+            ],
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
+            "description": "Delete Recurring Payment via API. This action is irreversible, unlike the Disable status.",
             "responses": {
                 "200": {
                     "description": "Successful Response",

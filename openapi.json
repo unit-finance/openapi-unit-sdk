@@ -113,6 +113,9 @@
         "/payments/{paymentId}/cancel": {
             "$ref": "./schemas/payment/paymentsPaths.json#/cancelPayment"
         },
+        "/payments/bulk": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/createBulkPayments"
+        },
         "/store-locations": {
             "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/listCashDepositStoreLocations"
         },

@@ -264,8 +264,10 @@
                                             "Clearing",
                                             "Sent",
                                             "Canceled",
+                                            "PendingReview",
                                             "Returned"
-                                        ]
+                                        ],
+                                        "description": "Payment status. Possible values include: 'Rejected': Based on validity and risk checks, Unit has decided to reject the payment and not process it. 'Pending': Waiting to be processed or transmitted to the payment network. 'Canceled': The payment was canceled by the client / end-customer before being sent to the network. 'PendingReview': The payment is waiting to be manually reviewed, typically due to a high level of risk associated with that payment. 'Clearing': In certain types of payments, once the funds are received by Unit, we hold on to them for a period, on your behalf, before releasing them to the end customer. 'Sent': The payment has been fully processed. 'Returned': The payment was processed but the network or the receiving bank returned the payment."
                                     },
                                     "settlementDate": {
                                         "type": "string",
@@ -355,8 +357,10 @@
                                             "Clearing",
                                             "Sent",
                                             "Canceled",
+                                            "PendingReview",
                                             "Returned"
-                                        ]
+                                        ],
+                                        "description": "Payment status. Possible values include: 'Rejected': Based on validity and risk checks, Unit has decided to reject the payment and not process it. 'Pending': Waiting to be processed or transmitted to the payment network. 'Canceled': The payment was canceled by the client / end-customer before being sent to the network. 'PendingReview': The payment is waiting to be manually reviewed, typically due to a high level of risk associated with that payment. 'Clearing': In certain types of payments, once the funds are received by Unit, we hold on to them for a period, on your behalf, before releasing them to the end customer. 'Sent': The payment has been fully processed. 'Returned': The payment was processed but the network or the receiving bank returned the payment."
                                     },
                                     "transactionSummaryOverride": {
                                         "type": "string"
@@ -433,8 +437,10 @@
                                             "Clearing",
                                             "Sent",
                                             "Canceled",
+                                            "PendingReview",
                                             "Returned"
-                                        ]
+                                        ],
+                                        "description": "Payment status. Possible values include: 'Rejected': Based on validity and risk checks, Unit has decided to reject the payment and not process it. 'Pending': Waiting to be processed or transmitted to the payment network. 'Canceled': The payment was canceled by the client / end-customer before being sent to the network. 'PendingReview': The payment is waiting to be manually reviewed, typically due to a high level of risk associated with that payment. 'Clearing': In certain types of payments, once the funds are received by Unit, we hold on to them for a period, on your behalf, before releasing them to the end customer. 'Sent': The payment has been fully processed. 'Returned': The payment was processed but the network or the receiving bank returned the payment."
                                     },
                                     "settlementDate": {
                                         "type": "string",
@@ -548,6 +554,7 @@
             },
             "Payment": {
                 "title": "Payment Resource",
+                "description": "Payments in Unit represent requests to move funds that are initiated by the end customer. Payments are not final, and do not necessarily materialize into an actual movement of funds - they have a lifecycle that depends on the payment type.",
                 "type": "object",
                 "properties": {
                     "type": {

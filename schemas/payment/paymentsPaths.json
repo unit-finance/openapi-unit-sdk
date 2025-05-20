@@ -36,6 +36,29 @@
                         "$ref": "./recurringPayment.json#/components/schemas/RecurringPayment"
                     }
                 }
+            },
+            "UnitBulkPaymentsResponse": {
+                "type": "object",
+                "title": "Unit Bulk Payments Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["bulkPayments"]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "bulkId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -44,8 +67,8 @@
             "tags": ["unit"],
             "operationId": "getPaymentsList",
 
-            "summary": "Get List Payments",
-            "description": "Get List Payments from API ",
+            "summary": "List Payments",
+            "description": "List payments resources. Filtering, paging and sorting can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -59,13 +82,16 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "counterpartyAccountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the Payments by the account id of the specified counterparty."
                             },
                             "status": {
                                 "type": "array",
@@ -75,12 +101,13 @@
                                         "Rejected",
                                         "Pending",
                                         "Canceled",
-                                        "Pending Review",
+                                        "PendingReview",
                                         "Clearing",
                                         "Sent",
                                         "Returned"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter Payments by ACH Status. Usage example: filter[status][0]=Pending&filter[status][1]=PendingReview"
                             },
                             "type": {
                                 "type": "array",
@@ -91,44 +118,55 @@
                                         "BookPayment",
                                         "WirePayment"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter Payments by Payment type. such as (AchPayment, BookPayment or WirePayment). Usage example: filter[type][0]=AchPayment&filter[type][1]=WirePayment"
                             },
                             "direction": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
                                     "enum": ["Debit", "Credit"]
-                                }
+                                },
+                                "description": "Optional. Filter Payments by direction (Debit, Credit). Usage example: filter[direction][0]=Debit"
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the Payments that occurred after the specified date. e.g. 2020-01-13T16:01:19.346Z"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the Payments that occurred before the specified date. e.g. 2020-01-02T20:06:23.486Z"
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Payments that have an amount that is higher or equal to the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Payments that have an amount that is lower or equal to the specified amount (in cents). e.g. 7000"
                             },
                             "recurringPaymentId": {
-                                "type": "integer"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified recurring payment id."
                             },
                             "feature": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
                                     "enum": ["SameDay", "RecurringPayment"]
-                                }
+                                },
+                                "description": "Optional. Filter Payments by Payment feature (SameDay, RecurringPayment). Usage example: filter[feature][0]=SameDay"
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Filter Payments by Tags."
                             }
                         }
                     }
@@ -138,14 +176,16 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account, transaction. See Getting Related Resources at https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 },
                 {
                     "name": "sort",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -223,15 +263,16 @@
                     "description": "ID of the payment to get"
                 },
                 {
-                    "name": "included",
+                    "name": "include",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account, transaction. See Getting Related Resources at https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 }
             ],
             "summary": "Get Payment by Id",
-            "description": "Get a Payment from API ",
+            "description": "Get a payment by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -913,6 +954,37 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "#/components/schemas/UnitReturnedReceivedAchTransactionResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "createBulkPayments": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createBulkPayments",
+            "summary": "Create Bulk Payment",
+            "description": "Bulk payments can contain multiple payment creation requests from different types (ACH, Book, Wire). It is highly recommended to attach to each payment creation request an idempotency key. This will ensure no creation duplication. Bulk is an asynchronous process. The immediate response will be the bulkId (generated by Unit). Once all payments creations in bulk are finished a bulkPayments.finished webhook event is sent by Unit. If not supplied, Unit will generate idempotency key as 'bulkId indexInBulk' combination.",
+            "requestBody": {
+                "description": "Create Bulk Payments Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createPayments.json#/components/schemas/CreatePaymentsRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitBulkPaymentsResponse"
                             }
                         }
                     }

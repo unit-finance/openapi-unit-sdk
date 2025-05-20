@@ -32,15 +32,29 @@
                 "allOf": [
                     {
                         "type": "object",
-
                         "required": ["account", "counterpartyAccount"],
-                        "additionalProperties": false
+                        "additionalProperties": false,
+                        "description": "Relationships for a payment with a counterparty account"
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        "allOf": [
+                            {
+                                "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                            },
+                            {
+                                "description": "The Deposit Account originating the payment."
+                            }
+                        ]
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                        "allOf": [
+                            {
+                                "$ref": "../relationships.json#/components/schemas/CounterpartyAccountRelationship"
+                            },
+                            {
+                                "description": "The Counterparty account the payment to be made to."
+                            }
+                        ]
                     }
                 ]
             },
@@ -75,7 +89,8 @@
             "CreateBookPaymentRelationships": {
                 "allOf": [
                     {
-                        "title": "Create Book Payment Relationships"
+                        "title": "Create Book Payment Relationships",
+                        "description": "The relationships required for creating a book payment. Book payments require both account and counterpartyAccount."
                     },
                     {
                         "$ref": "#/components/schemas/CreatePaymentRelationshipsWithCounterpartyAccount"
@@ -297,19 +312,26 @@
                         "properties": {
                             "amount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The amount (in cents)."
                             },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 80,
+                                "description": "Payment description (maximum of 80 characters), this will show up on statement of the counterparty."
                             },
                             "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey",
+                                "description": "Optional. See https://www.unit.co/docs/api/#intro-idempotency."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "Optional. See https://www.unit.co/docs/api/#tags. Tags that will be copied to any transaction that this payment creates (see https://www.unit.co/docs/api/#tag-inheritance)."
                             },
                             "transactionSummaryOverride": {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 100,
+                                "description": "Optional. If this field is populated, its contents will be returned as the bookTransaction's summary field (maximum of 100 characters)."
                             }
                         },
                         "required": ["amount", "description"],

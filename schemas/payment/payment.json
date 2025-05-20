@@ -337,6 +337,7 @@
                         "$ref": "./payment.json#/components/schemas/Payment"
                     },
                     {
+                        "description": "Book payments are free and instant fund transfers between two accounts under your organization. Book payments from wallets to deposit accounts are available, but book payments from deposit accounts to wallet accounts are not permitted at this time.",
                         "type": "object",
                         "properties": {
                             "attributes": {
@@ -349,16 +350,19 @@
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount (in cents)."
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": ["Credit", "Debit"]
+                                        "enum": ["Credit"],
+                                        "description": "The direction of book payment is always 'Credit', moving funds from 'account' to 'counterpartyAccount'."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Payment description (maximum of 80 characters), this will show up on statement of the counterparty."
                                     },
                                     "status": {
                                         "type": "string",
@@ -374,13 +378,17 @@
                                         "description": "Payment status. Possible values include: 'Rejected': Based on validity and risk checks, Unit has decided to reject the payment and not process it. 'Pending': Waiting to be processed or transmitted to the payment network. 'Canceled': The payment was canceled by the client / end-customer before being sent to the network. 'PendingReview': The payment is waiting to be manually reviewed, typically due to a high level of risk associated with that payment. 'Clearing': In certain types of payments, once the funds are received by Unit, we hold on to them for a period, on your behalf, before releasing them to the end customer. 'Sent': The payment has been fully processed. 'Returned': The payment was processed but the network or the receiving bank returned the payment."
                                     },
                                     "transactionSummaryOverride": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "description": "Optional. If this field is populated, its contents will be returned as the bookTransaction's summary field (maximum of 100 characters)."
                                     },
                                     "reason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "In case of rejection, this field will contain the reason why the payment was rejected. Possible rejection reasons: 'InsufficientFunds': The available balance isn't enough to cover the value of the payment. 'AccountClosed': The counterparty account has been closed. 'AccountFrozen': The counterparty account is frozen."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "$ref": "../types.json#/components/schemas/Tags",
+                                        "description": "Optional. See https://www.unit.co/docs/api/#tags."
                                     }
                                 },
                                 "required": [
@@ -565,7 +573,7 @@
             },
             "Payment": {
                 "title": "Payment Resource",
-                "description": "Payments in Unit represent requests to move funds that are initiated by the end customer. Payments are not final, and do not necessarily materialize into an actual movement of funds - they have a lifecycle that depends on the payment type.",
+                "description": "Payments in Unit represent requests to move funds that are initiated by the end customer. Payments are not final, and do not necessarily materialize into an actual movement of funds - they have a lifecycle that depends on the payment type. Book payments are free and instant fund transfers between two accounts under your organization, typically used for moving funds between two accounts that belong to the same or different end-customers, moving funds from clearing accounts to end-customer accounts, or moving funds from your organization's operational account to an end-customer account.",
                 "type": "object",
                 "properties": {
                     "type": {

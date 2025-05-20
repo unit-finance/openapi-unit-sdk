@@ -65,7 +65,8 @@
                         "title": "Update Book Payment Attributes",
                         "properties": {
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "See https://www.unit.co/docs/api/#updating-tags."
                             }
                         },
                         "additionalProperties": false

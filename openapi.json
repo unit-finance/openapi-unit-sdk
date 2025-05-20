@@ -367,6 +367,15 @@
         },
         "/sandbox/received-ach-payment": {
             "$ref": "./schemas/simulation/simulationPaths.json#/createIncomingAchPayment"
+        },
+        "/wire-drawdowns/{wireDrawdownId}": {
+            "$ref": "./schemas/payment/wireDrawdownPaths.json#/getWireDrawdown"
+        },
+        "/wire-drawdowns": {
+            "$ref": "./schemas/payment/wireDrawdownPaths.json#/listWireDrawdowns"
+        },
+        "/wire-drawdowns/{wireDrawdownId}/send": {
+            "$ref": "./schemas/payment/wireDrawdownPaths.json#/sendWireDrawdown"
         }
     },
     "components": {

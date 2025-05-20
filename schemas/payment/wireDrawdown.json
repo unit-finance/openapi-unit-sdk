@@ -1,0 +1,149 @@
+{
+    "components": {
+        "schemas": {
+            "WireDrawdown": {
+                "type": "object",
+                "title": "Wire Drawdown Resource",
+                "description": "Wire drawdowns, also known as reverse wires, are a type of wire payment where funds are pulled from an account to a counterparty's account.\n\nThis is the opposite of a standard wire payment, where funds are pushed from one account to the counterparty's account.\n\nCurrently, we only support receiving wire drawdown requests (incoming drawdown), not originating them. This means that you can receive a drawdown request from another party's account, and choose to approve it and send the funds, but you cannot initiate a request to pull funds from another party's account.\n\nAvailability varies by bank partner.",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["wireDrawdown"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The date and time when the wire drawdown was created."
+                            },
+                            "amount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The amount of the wire drawdown in cents."
+                            },
+                            "direction": {
+                                "type": "string",
+                                "enum": ["Incoming"],
+                                "description": "The direction of the wire drawdown."
+                            },
+                            "counterparty": {
+                                "type": "object",
+                                "description": "Information about the counterparty.",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "The name of the counterparty."
+                                    },
+                                    "routingNumber": {
+                                        "type": "string",
+                                        "description": "The routing number of the counterparty's bank."
+                                    },
+                                    "accountNumber": {
+                                        "type": "string",
+                                        "description": "The account number of the counterparty."
+                                    }
+                                },
+                                "required": ["name", "routingNumber", "accountNumber"],
+                                "additionalProperties": false
+                            },
+                            "imad": {
+                                "type": "string",
+                                "description": "Input Message Accountability Data (IMAD) - a unique identifier for the incoming wire drawdown message."
+                            },
+                            "omad": {
+                                "type": "string",
+                                "description": "Output Message Accountability Data (OMAD) - a unique identifier for the outgoing wire drawdown message."
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "Description for the wire drawdown."
+                            },
+                            "senderReference": {
+                                "type": "string",
+                                "description": "Reference information from the sender."
+                            }
+                        },
+                        "required": ["createdAt", "amount", "direction", "counterparty"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "account": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["account"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "customer": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["customer"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "drawdownPayment": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["payment"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

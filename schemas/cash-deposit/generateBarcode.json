@@ -30,7 +30,8 @@
                                 "type": "object",
                                 "properties": {
                                     "storeId": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The unique storeId identifier of a store, obtained from either List by coordinates or List by post code endpoints."
                                     }
                                 },
                                 "required": ["storeId"]

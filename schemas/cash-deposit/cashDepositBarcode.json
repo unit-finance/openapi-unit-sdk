@@ -30,17 +30,27 @@
                         "type": "object",
                         "properties": {
                             "barcodeNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The unique barcode number."
                             },
                             "expiration": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The expiration date and time of the barcode."
+                            },
+                            "storeId": {
+                                "type": "string",
+                                "description": "The unique storeId identifier of a store."
+                            },
+                            "retailerName": {
+                                "type": "string",
+                                "description": "The name of the retailer."
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
                             }
                         },
-                        "required": ["amount", "description"],
+                        "required": ["barcodeNumber", "expiration", "storeId", "retailerName"],
                         "additionalProperties": false
                     },
                     "relationships": {

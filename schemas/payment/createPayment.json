@@ -358,30 +358,45 @@
                         "properties": {
                             "amount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The amount (in cents)."
                             },
                             "direction": {
                                 "type": "string",
-                                "enum": ["Credit"]
+                                "enum": ["Credit"],
+                                "description": "The direction of wire payment is always 'Credit', moving funds from the Unit 'account' to the 'counterparty' account."
                             },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Payment description (maximum of 50 characters), this will show up on statement of the counterparty."
                             },
                             "counterparty": {
-                                "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty"
+                                "allOf": [
+                                    { "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty" },
+                                    { "description": "The party on the other side of the Wire payment." }
+                                ]
                             },
                             "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/IdempotencyKey" },
+                                    { "description": "Optional. See Idempotency." }
+                                ]
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Tags. Tags that will be copied to any transaction that this payment creates (see Tag Inheritance)." }
+                                ]
                             }
                         },
                         "required": ["amount", "description", "counterparty"],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CreateWirePaymentRelationships"
+                        "allOf": [
+                            { "$ref": "#/components/schemas/CreateWirePaymentRelationships" },
+                            { "description": "The relationships required for creating a wire payment." }
+                        ]
                     }
                 },
                 "additionalProperties": false,

@@ -41,19 +41,25 @@
                 "properties": {
                     "routingNumber": {
                         "type": "string",
-                        "pattern": "^\\d{9}$"
+                        "pattern": "^\\d{9}$",
+                        "description": "Valid 9-digit ABA routing transit number."
                     },
                     "accountNumber": {
                         "type": "string",
-                        "maxLength": 17
+                        "maxLength": 17,
+                        "description": "Bank account number."
                     },
                     "name": {
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 50
+                        "maxLength": 50,
+                        "description": "The account holder's name (whether an individual or a business, maximum of 50 characters)."
                     },
                     "address": {
-                        "$ref": "../types.json#/components/schemas/Address"
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/Address" },
+                            { "description": "The address of the counterparty." }
+                        ]
                     }
                 },
                 "additionalProperties": false,
@@ -434,19 +440,25 @@
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount (in cents)."
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": ["Credit"]
+                                        "enum": ["Credit"],
+                                        "description": "The direction of wire payment is always 'Credit', moving funds from the Unit 'account' to the 'counterparty' account."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Payment description (maximum of 50 characters), this will show up on statement of the counterparty."
                                     },
                                     "counterparty": {
-                                        "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty"
+                                        "allOf": [
+                                            { "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty" },
+                                            { "description": "The party on the other side of the Wire payment." }
+                                        ]
                                     },
                                     "status": {
                                         "type": "string",
@@ -466,7 +478,8 @@
                                         "format": "date"
                                     },
                                     "reason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "In case of rejection, this field will contain the reason why the payment was rejected. Possible rejection reasons: 'AccountFrozen': The counterparty account is frozen. 'SuspectedFraud': The payment is suspected to be fraudulent. 'InsufficientFunds': The available balance isn't enough to cover the value of the wire. 'Invalid Routing Number': The counterparty routing number is not valid. 'Wire Rejected': The counterparty rejected the wire payment. 'AccountClosed': The counterparty account has been closed. 'ClientRequest': The client has requested the wire payment to be rejected."
                                     },
                                     "imadOmad": {
                                         "type": "object",
@@ -478,6 +491,12 @@
                                                 "type": "string"
                                             }
                                         }
+                                    },
+                                    "tags": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional. See Tags. Tags that will be copied to any transaction that this payment creates (see Tag Inheritance)." }
+                                        ]
                                     }
                                 },
                                 "required": [

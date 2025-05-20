@@ -354,7 +354,7 @@
                 }
             ],
             "summary": "Cancel a Payment by Id",
-            "description": "Cancel a Payment via API ",
+            "description": "Allows cancellation of a Wire payment that has been posted but not yet sent to the Federal Reserve for processing and settlement. Only payments with a status of 'Pending' or 'PendingReview' are eligible for cancellation. Upon successful cancellation, a PaymentCanceledTransaction is created, crediting the end-customer for the funds initially debited during the wire's creation.",
             "requestBody": {
                 "description": "Pass empty object in order for content-type to be aquired correctly",
                 "required": true,

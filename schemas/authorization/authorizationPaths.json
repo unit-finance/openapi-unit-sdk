@@ -172,7 +172,7 @@
             "tags": ["unit"],
             "operationId": "getAuthorizationRequestsList",
             "summary": "Get List Authorization Requests",
-            "description": "Get List Authorization Requests from API ",
+            "description": "List authorization requests. Filtering and paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -193,22 +193,22 @@
                                 "type": "string",
                                 "description": "Optional. Filters the results by the specified customer id."
                             },
-                            "merchantCategoryCode": {
+                            "merchantCategoryCode[]": {
                                 "type": "array",
                                 "items": {
                                     "type": "integer"
                                 },
-                                "description": "Optional. Filter authorizations by their 4-digit ISO 18245 merchant category code (MCC)."
+                                "description": "Optional. Filter result by their 4-digit ISO 18245 merchant category code (MCC)."
                             },
                             "fromAmount": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Optional. Filters the Authorizations that have an amount that is _higher or equal to_ the specified amount (in cents). e.g. 5000"
+                                "description": "Optional. Filters the result that have an amount that is _higher or equal to_ the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
                                 "format": "int64",
-                                "description": "Optional. Filters the Authorizations that have an amount that is _lower or equal to_ the specified amount (in cents). e.g. 7000"
+                                "description": "Optional. Filters the result that have an amount that is _lower or equal to_ the specified amount (in cents). e.g. 7000"
                             }
                         }
                     }
@@ -253,7 +253,7 @@
                 }
             ],
             "summary": "Get Authorization Request by Id",
-            "description": "Get a Authorization Request from API ",
+            "description": "Get an authorization request resource by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -290,7 +290,7 @@
                 }
             ],
             "summary": "Approve Authorization Request by Id",
-            "description": "Approve a Authorization Request via API ",
+            "description": "Approve an authorization request.",
             "requestBody": {
                 "description": "Approve Authorization Request",
                 "required": true,
@@ -344,7 +344,7 @@
                 }
             ],
             "summary": "Decline Authorization Request",
-            "description": "Decline Authorization Request via API ",
+            "description": "Decline an authorization request.",
             "requestBody": {
                 "description": "Decline Authorization Request",
                 "required": true,

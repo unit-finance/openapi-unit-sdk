@@ -991,5 +991,49 @@
                 }
             }
         }
+    },
+    "clearAchDebitPayment": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "clearAchDebitPayment",
+
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "paymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the payment to clear"
+                }
+            ],
+            "summary": "Clear ACH Debit Payment",
+            "description": "Clears an ACH debit payment while in `clearing` status. Overrides the original clearing period, making funds available immediately. Requires the Dynamic Clearing Period feature to be enabled.",
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -113,6 +113,9 @@
         "/payments/{paymentId}/cancel": {
             "$ref": "./schemas/payment/paymentsPaths.json#/cancelPayment"
         },
+        "/payments/{paymentId}/clear": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/clearAchDebitPayment"
+        },
         "/payments/bulk": {
             "$ref": "./schemas/payment/paymentsPaths.json#/createBulkPayments"
         },

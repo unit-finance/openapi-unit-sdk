@@ -7,20 +7,24 @@
                 "properties": {
                     "routingNumber": {
                         "type": "string",
-                        "pattern": "^\\d{9}$"
+                        "pattern": "^\\d{9}$",
+                        "description": "The routing number of the counterparty's financial institution."
                     },
                     "accountNumber": {
                         "type": "string",
-                        "pattern": "^\\d{1,17}$"
+                        "pattern": "^\\d{1,17}$",
+                        "description": "The account number of the counterparty."
                     },
                     "accountType": {
                         "type": "string",
-                        "enum": ["Checking", "Savings", "Loan"]
+                        "enum": ["Checking", "Savings", "Loan"],
+                        "description": "The type of account for the counterparty."
                     },
                     "name": {
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 50
+                        "maxLength": 50,
+                        "description": "The name of the counterparty."
                     }
                 },
                 "additionalProperties": false,
@@ -238,20 +242,24 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": ["Credit", "Debit"]
+                                        "enum": ["Credit", "Debit"],
+                                        "description": "The direction in which the funds flow. In the context of ACH payment origination, 'Debit': the payment 'pulls' funds from the counterparty account. 'Credit': the payment 'pushes' funds to the counterparty account."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Payment description (maximum of 10 characters), also known as Company Entry Description, this will show up on statement of the counterparty."
                                     },
                                     "addenda": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Optional, additional payment description (maximum of 80 characters), not all institutions present that."
                                     },
                                     "counterparty": {
-                                        "$ref": "#/components/schemas/PaymentCounterparty"
+                                        "$ref": "#/components/schemas/PaymentCounterparty",
+                                        "description": "The party on the other side of the ACH payment."
                                     },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
@@ -281,19 +289,22 @@
                                         "format": "date"
                                     },
                                     "secCode": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Standard Entry Class (SEC) code used in all ACH payments to identify certain types of ACH payments."
                                     },
                                     "traceNumber": {
                                         "type": "string"
                                     },
                                     "sameDay": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Same-day ACH enables your clients to send and receive funds using ACH the same day the payment is created."
                                     },
                                     "counterpartyVerificationMethod": {
                                         "type": "string"
                                     },
                                     "clearingDaysOverride": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "description": "The amount of days it will take an Originated ACH debit to clear and funds to become available in a deposit account."
                                     }
                                 },
                                 "required": [

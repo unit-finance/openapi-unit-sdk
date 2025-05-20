@@ -142,7 +142,8 @@
                             },
                             "secCode": {
                                 "type": "string",
-                                "enum": ["WEB", "CCD", "PPD"]
+                                "enum": ["WEB", "CCD", "PPD"],
+                                "description": "A Standard Entry Class (SEC) code used in all ACH payments to identify certain types of ACH payments. See https://www.unit.co/docs/api/ach-origination/#use-a-custom-standard-entry-class-sec-code for supported SEC codes."
                             }
                         },
                         "required": [
@@ -201,7 +202,8 @@
                             },
                             "secCode": {
                                 "type": "string",
-                                "enum": ["WEB", "CCD", "PPD"]
+                                "enum": ["WEB", "CCD", "PPD"],
+                                "description": "A Standard Entry Class (SEC) code used in all ACH payments to identify certain types of ACH payments. See https://www.unit.co/docs/api/ach-origination/#use-a-custom-standard-entry-class-sec-code for supported SEC codes."
                             }
                         },
                         "required": ["amount", "description", "direction"],
@@ -262,7 +264,8 @@
                             },
                             "secCode": {
                                 "type": "string",
-                                "enum": ["WEB", "CCD", "PPD"]
+                                "enum": ["WEB", "CCD", "PPD"],
+                                "description": "A Standard Entry Class (SEC) code used in all ACH payments to identify certain types of ACH payments. See https://www.unit.co/docs/api/ach-origination/#use-a-custom-standard-entry-class-sec-code for supported SEC codes."
                             }
                         },
                         "required": [

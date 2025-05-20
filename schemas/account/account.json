@@ -136,7 +136,7 @@
                                     },
                                     "dacaStatus": {
                                         "enum": ["Activated", "Entered"],
-                                        "description": "The status of the Deposit Account Control Agreement (DACA)."
+                                        "description": "The status of the Deposit Account Control Agreement (DACA). When set to `Activated`, funds cannot be withdrawn from the account through end-customer initiated actions or external attempts. When set to `Entered`, the account is marked as subject to a DACA but operates normally."
                                     },
                                     "updatedAt": {
                                         "type": "string",

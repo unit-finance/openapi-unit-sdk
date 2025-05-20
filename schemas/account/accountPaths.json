@@ -442,7 +442,7 @@
             "tags": ["unit"],
             "operationId": "enterControlAgreementForAccount",
             "summary": "Enter Account Control Agreement by Id",
-            "description": "Enter Control Agreement for Account via API ",
+            "description": "Indicates that a certain deposit account is subject to a Deposit Account Control Agreement. When DACA is entered, an `Operator` is assigned so in case of DACA activation the `Operator` will take control over the account, being the only entity authorized to move funds outside of the account. Setting an account with DACA `Entered` will not affect the account. It only means that DACA can be activated for this account in the future.",
             "parameters": [
                 {
                     "schema": {
@@ -476,7 +476,7 @@
             "tags": ["unit"],
             "operationId": "activateControlAgreementForAccount",
             "summary": "Activate Account Control Agreement by Id",
-            "description": "Activate Control Agreement for Account via API ",
+            "description": "Activates the Deposit Account Control Agreement, preventing funds from being withdrawn from the account through either end-customer initiated actions (freezing cards, restricting ACH/Wire origination) or external attempts (automatically rejecting received ACH debits). The only way of initiating money related activities (that will result in withdrawing funds from the account) would be using an org API token (when acting as the `Operator`). Activating a DACA will work only for a DACA `Operator` and for accounts that have previously entered a DACA.",
             "parameters": [
                 {
                     "schema": {
@@ -510,7 +510,7 @@
             "tags": ["unit"],
             "operationId": "deactivateControlAgreementForAccount",
             "summary": "Deactivate Account Control Agreement by Id",
-            "description": "Deactivate Control Agreement for Account via API",
+            "description": "Deactivate an account with DACA `Activated` status. This action will: 1. Return account's `dacaStatus` to `Entered`. 2. Unfreeze all account's cards that were frozen due to DACA. 3. Remove the restrictions on ACH, Wire and Book (when funds are debited from the DACA account). 4. Remove the restriction on incoming debit ACH payments.",
             "parameters": [
                 {
                     "schema": {

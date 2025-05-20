@@ -101,6 +101,9 @@
         "/customers/{customerId}/authorized-users": {
             "$ref": "./schemas/customer/customerPaths.json#/authorizedUsers"
         },
+        "/customers/{customerId}/authorized-users/{authorizedUserId}": {
+            "$ref": "./schemas/customer/customerPaths.json#/authorizedUser"
+        },
         "/payments": {
             "$ref": "./schemas/payment/paymentsPaths.json#/getAndCreatePayments"
         },

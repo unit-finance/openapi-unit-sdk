@@ -197,22 +197,117 @@
             "AuthorizedUser": {
                 "title": "Authorized User",
                 "type": "object",
+                "description": "Authorized Users represent individuals that have full access to the Customer's financials - they are able to authenticate and create a Customer Token and initiate any activity on behalf of the customer. This feature is used mostly in Business customers and Sole Proprietors, where the customer is a Business that can have multiple individuals managing its financials. Additionally, Authorized Users have access to all customer accounts through exchange networks, such as Plaid, enabling seamless financial data integration.",
                 "properties": {
-                    "fullName": {
-                        "$ref": "#/components/schemas/FullName"
+                    "type": {
+                        "type": "string",
+                        "enum": ["authorizedUser"]
                     },
-                    "email": {
-                        "$ref": "#/components/schemas/Email"
+                    "id": {
+                        "type": "string"
                     },
-                    "phone": {
-                        "$ref": "#/components/schemas/Phone"
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "fullName": {
+                                "$ref": "#/components/schemas/FullName"
+                            },
+                            "email": {
+                                "$ref": "#/components/schemas/Email"
+                            },
+                            "phone": {
+                                "$ref": "#/components/schemas/Phone"
+                            },
+                            "jwtSubject": {
+                                "$ref": "#/components/schemas/JwtSubject"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": ["Enabled", "Disabled"],
+                                "description": "Status of the authorized user, either Enabled or Disabled."
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The date and time when the authorized user was created."
+                            },
+                            "evaluationStatus": {
+                                "type": "string",
+                                "enum": ["Evaluated"],
+                                "description": "The evaluation status of the authorized user."
+                            },
+                            "evaluationId": {
+                                "type": "string",
+                                "description": "The ID of the evaluation."
+                            },
+                            "alertId": {
+                                "type": "string",
+                                "description": "The ID of the alert."
+                            }
+                        },
+                        "required": ["fullName", "email", "phone"]
                     },
-                    "jwtSubject": {
-                        "$ref": "#/components/schemas/JwtSubject"
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "customer": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["customer"]
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "org": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["org"]
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "banks": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["banks"]
+                                            },
+                                            "id": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
-                "additionalProperties": false,
-                "required": ["fullName", "email", "phone"]
+                "additionalProperties": false
             },
             "DeviceFingerprint": {
                 "type": "object",

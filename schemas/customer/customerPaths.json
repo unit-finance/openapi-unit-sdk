@@ -279,8 +279,8 @@
                     }
                 }
             },
-            "summary": "Add Authorized Users by Id",
-            "description": "Add Authorized Users via API",
+            "summary": "Add Authorized Users",
+            "description": "Add authorized users for a customer. The Customer Update webhook event will be fired.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -288,6 +288,59 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "#/components/schemas/UnitCustomerResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "tags": ["unit"],
+            "operationId": "listAuthorizedUsers",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer to list authorized users for"
+                },
+                {
+                    "name": "filter[jwtSubject]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filter authorized users by JWT subject."
+                },
+                {
+                    "name": "filter[phone]",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/Phone"
+                    },
+                    "description": "Optional. Filter authorized users by phone."
+                }
+            ],
+            "summary": "List",
+            "description": "List of authorized user resources. Filtering can be applied.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "../types.json#/components/schemas/AuthorizedUser"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -308,8 +361,19 @@
                     "description": "ID of the customer to remove authorized users from"
                 }
             ],
-            "summary": "Remove Authorized Users by Id",
-            "description": "Remove Authorized Users via API",
+            "requestBody": {
+                "description": "Remove Authorized Users Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./addAuthorizedUser.json#/components/schemas/RemoveAuthorizedUsersRequest"
+                        }
+                    }
+                }
+            },
+            "summary": "Remove Authorized Users",
+            "description": "Remove existing authorized users from a customer. The Customer Update webhook event will be fired.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -317,6 +381,51 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "#/components/schemas/UnitCustomerResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "authorizedUser": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getAuthorizedUser",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer that the authorized user belongs to"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "authorizedUserId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the authorized user to get"
+                }
+            ],
+            "summary": "Get by Id",
+            "description": "Get an authorized user resource by id.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "../types.json#/components/schemas/AuthorizedUser"
+                                    }
+                                }
                             }
                         }
                     }

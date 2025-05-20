@@ -23,6 +23,7 @@
             "Dispute": {
                 "title": "Dispute Document",
                 "type": "object",
+                "description": "The Dispute resource represents a card dispute that has been raised by an end customer. More details on card disputes can be found in Unit's disputes guide",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -30,43 +31,59 @@
                         "default": "dispute"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/Identifier"
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/Identifier" },
+                            { "description": "The identifier of the dispute." }
+                        ]
                     },
                     "attributes": {
                         "type": "object",
                         "properties": {
                             "source": {
                                 "type": "string",
-                                "enum": ["DebitCard", "ACH"]
+                                "enum": ["DebitCard", "ACH"],
+                                "description": "The source of the dispute, either DebitCard or ACH."
                             },
                             "externalId": {
                                 "type": "string",
-                                "maxLength": 255
+                                "maxLength": 255,
+                                "description": "The external identifier of the dispute."
                             },
                             "link": {
-                                "$ref": "../types.json#/components/schemas/Url"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Url" },
+                                    { "description": "A URL link related to the dispute." }
+                                ]
                             },
                             "description": {
-                                "$ref": "../types.json#/components/schemas/Description"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Description" },
+                                    { "description": "A description of the dispute." }
+                                ]
                             },
                             "amount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The amount of the dispute in cents."
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The current status of the dispute."
                             },
                             "statusHistory": {
                                 "type": "array",
+                                "description": "History of status changes for this dispute.",
                                 "items": {
                                     "type": "object",
                                     "properties": {
                                         "type": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "The type of status change."
                                         },
                                         "updatedAt": {
                                             "type": "string",
-                                            "format": "date-time"
+                                            "format": "date-time",
+                                            "description": "The date and time when the status was updated."
                                         }
                                     },
                                     "additionalProperties": false
@@ -74,10 +91,12 @@
                             },
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the dispute was created."
                             },
                             "decisionReason": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The reason for the decision on the dispute, if applicable."
                             }
                         },
                         "required": [

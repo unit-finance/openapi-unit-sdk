@@ -424,6 +424,12 @@
         },
         "/fraud-outreach-policies/{id}": {
             "$ref": "./schemas/card/cardFraudOutreachPaths.json#/getCardFraudOutreachPolicy"
+        },
+        "/credit-applications": {
+            "$ref": "./schemas/credit-application/creditApplicationPaths.json#/creditApplications"
+        },
+        "/credit-applications/{creditApplicationId}": {
+            "$ref": "./schemas/credit-application/creditApplicationPaths.json#/creditApplication"
         }
     },
     "components": {

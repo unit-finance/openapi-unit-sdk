@@ -1,0 +1,235 @@
+{
+    "components": {
+        "schemas": {
+            "CreateOnboardingCustomerCreditApplication": {
+                "title": "Create Onboarding Customer Credit Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["createOnboardingCustomerCreditApplication"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "aggregatorAccessTokens": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Optional. Array of aggregator access tokens which are Plaid (or other account linking platform) integration tokens. See [Plaid processor token](https://plaid.com/docs/api/processors/)"
+                            },
+                            "annualIncome": {
+                                "type": "integer",
+                                "description": "Optional. The annual income of the applicant."
+                            },
+                            "numberOfEmployees": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees" },
+                                    { "description": "Optional. Number of employees of the business." }
+                                ]
+                            },
+                            "yearsInBusiness": {
+                                "type": "integer",
+                                "description": "Optional. Number of years the business has been in operation."
+                            },
+                            "additionalUnderwritingData": {
+                                "type": "object",
+                                "description": "Optional. Object containing key-value pairs of underwriting data per credit policy."
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "description": "Optional. See [Idempotency](https://www.unit.co/docs/api/#intro-idempotency)."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "application": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["application"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "lendingProgram": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["lendingProgram"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["application", "lendingProgram"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateExistingCustomerCreditApplication": {
+                "title": "Create Existing Customer Credit Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["createExistingCustomerCreditApplication"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "aggregatorAccessTokens": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Optional. Array of aggregator access tokens which are Plaid (or other account linking platform) integration tokens. See [Plaid processor token](https://plaid.com/docs/api/processors/)"
+                            },
+                            "annualIncome": {
+                                "type": "integer",
+                                "description": "Optional. The annual income of the applicant."
+                            },
+                            "numberOfEmployees": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees" },
+                                    { "description": "Optional. Number of employees of the business." }
+                                ]
+                            },
+                            "yearsInBusiness": {
+                                "type": "integer",
+                                "description": "Optional. Number of years the business has been in operation."
+                            },
+                            "additionalUnderwritingData": {
+                                "type": "object",
+                                "description": "Optional. Object containing key-value pairs of underwriting data per credit policy."
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "description": "Optional. See [Idempotency](https://www.unit.co/docs/api/#intro-idempotency)."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "customer": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["customer"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "lendingProgram": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["lendingProgram"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["customer", "lendingProgram"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "relationships"],
+                "additionalProperties": false
+            },
+            "CreateOnboardingCustomerCreditApplicationRequest": {
+                "title": "Create Onboarding Customer Credit Application Request",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/CreateOnboardingCustomerCreditApplication"
+                    }
+                },
+                "required": ["data"]
+            },
+            "CreateExistingCustomerCreditApplicationRequest": {
+                "title": "Create Existing Customer Credit Application Request",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/CreateExistingCustomerCreditApplication"
+                    }
+                },
+                "required": ["data"]
+            },
+            "CreateCreditApplicationRequest": {
+                "title": "Create Credit Application Request",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateOnboardingCustomerCreditApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateExistingCustomerCreditApplication"
+                            }
+                        ]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+} 

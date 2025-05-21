@@ -1201,6 +1201,33 @@
                         "additionalProperties": false
                     }
                 }
+            },
+            "LendingProgramRelationship": {
+                "type": "object",
+                "properties": {
+                    "lendingProgram": {
+                        "type": "object",
+                        "title": "Lending Program Relationship",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["lendingProgram"]
+                                    }
+                                },
+                                "required": ["id", "type"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["data"],
+                        "additionalProperties": false
+                    }
+                }
             }
         }
     }

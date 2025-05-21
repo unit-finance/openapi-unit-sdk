@@ -1,0 +1,59 @@
+{
+    "components": {
+        "schemas": {
+            "PatchCreditApplication": {
+                "title": "Patch Credit Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["patchCreditApplication"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "aggregatorAccessTokens": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Optional. Array of aggregator access tokens which are Plaid (or other account linking platform) integration tokens. See [Plaid processor token](https://plaid.com/docs/api/processors/)"
+                            },
+                            "annualIncome": {
+                                "type": "integer",
+                                "description": "Optional. The annual income of the applicant."
+                            },
+                            "numberOfEmployees": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees" },
+                                    { "description": "Optional. Number of employees of the business." }
+                                ]
+                            },
+                            "yearsInBusiness": {
+                                "type": "integer",
+                                "description": "Optional. Number of years the business has been in operation."
+                            },
+                            "additionalUnderwritingData": {
+                                "type": "object",
+                                "description": "Optional. Object containing key-value pairs of underwriting data per credit policy."
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type"],
+                "additionalProperties": false
+            },
+            "PatchCreditApplicationRequest": {
+                "title": "Patch Credit Application Request",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/PatchCreditApplication"
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+} 

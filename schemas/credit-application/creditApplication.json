@@ -1,0 +1,222 @@
+{
+    "components": {
+        "schemas": {
+            "OnboardingCreditApplicationAttributes": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time when the credit application was created."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["Created", "Pending", "ManualReview", "Approved", "Denied", "Canceled"],
+                        "description": "The status of the credit application."
+                    },
+                    "aggregatorAccessTokens": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Optional. Array of aggregator access tokens which are Plaid (or other account linking platform) integration tokens. See [Plaid processor token](https://plaid.com/docs/api/processors/)"
+                    },
+                    "annualIncome": {
+                        "type": "integer",
+                        "description": "Optional. The annual income of the applicant."
+                    },
+                    "numberOfEmployees": {
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees" },
+                            { "description": "Optional. Number of employees of the business." }
+                        ]
+                    },
+                    "yearsInBusiness": {
+                        "type": "integer",
+                        "description": "Optional. Number of years the business has been in operation."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Optional. Object containing key-value pairs of underwriting data per credit policy."
+                    }
+                },
+                "required": ["createdAt", "status", "aggregatorAccessTokens"]
+            },
+            "ExistingCustomerCreditApplicationAttributes": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time when the credit application was created."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["Created", "Pending", "ManualReview", "Approved", "Denied", "Canceled"],
+                        "description": "The status of the credit application."
+                    },
+                    "aggregatorAccessTokens": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Optional. Array of aggregator access tokens which are Plaid (or other account linking platform) integration tokens. See [Plaid processor token](https://plaid.com/docs/api/processors/)"
+                    },
+                    "annualIncome": {
+                        "type": "integer",
+                        "description": "Optional. The annual income of the applicant."
+                    },
+                    "numberOfEmployees": {
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees" },
+                            { "description": "Optional. Number of employees of the business." }
+                        ]
+                    },
+                    "yearsInBusiness": {
+                        "type": "integer",
+                        "description": "Optional. Number of years the business has been in operation."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Optional. Object containing key-value pairs of underwriting data per credit policy."
+                    }
+                },
+                "required": ["createdAt", "status", "aggregatorAccessTokens"]
+            },
+            "OnboardingCreditApplicationRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "application",
+                            "lendingProgram"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/LendingProgramRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "application": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["application"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExistingCustomerCreditApplicationRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "customer",
+                            "lendingProgram"
+                        ]
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/LendingProgramRelationship"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "customer": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["customer"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "OnboardingCustomerCreditApplication": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["onboardingCustomerCreditApplication"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/OnboardingCreditApplicationAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/OnboardingCreditApplicationRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "ExistingCustomerCreditApplication": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["existingCustomerCreditApplication"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ExistingCustomerCreditApplicationAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/ExistingCustomerCreditApplicationRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "CreditApplication": {
+                "title": "Credit Application Resource",
+                "description": "This process often involves a comprehensive evaluation of the applicant's financial stability, credit history, and the purpose of the loan.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "onboardingCustomerCreditApplication",
+                            "existingCustomerCreditApplication"
+                        ]
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "onboardingCustomerCreditApplication": "#/components/schemas/OnboardingCustomerCreditApplication",
+                        "existingCustomerCreditApplication": "#/components/schemas/ExistingCustomerCreditApplication"
+                    }
+                }
+            }
+        }
+    }
+} 

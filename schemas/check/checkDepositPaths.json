@@ -1,5 +1,5 @@
 {
-    "componenets": {
+    "components": {
         "schemas": {
             "UnitCheckDepositResponse": {
                 "type": "object",
@@ -44,16 +44,19 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Filter check deposits by Tags."
                             },
                             "status": {
                                 "type": "array",
@@ -72,7 +75,8 @@
                                         "Returned",
                                         "AwaitingCustomerConfirmation"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter by Check Deposit Status."
                             }
                         }
                     }
@@ -82,14 +86,16 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 },
                 {
                     "name": "include",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account, transaction."
                 }
             ],
             "responses": {
@@ -98,7 +104,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/componenets/schemas/UnitListCheckDepositResponse"
+                                "$ref": "#/components/schemas/UnitListCheckDepositResponse"
                             }
                         }
                     }
@@ -128,7 +134,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
+                                "$ref": "#/components/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -160,7 +166,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
+                                "$ref": "#/components/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -201,7 +207,7 @@
                     "content": {
                         "application/vnd.api+json": {
                             "schema": {
-                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
+                                "$ref": "#/components/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -225,13 +231,13 @@
                 }
             ],
             "summary": "Confirm by Id",
-            "description": "Confirm a Check Deposit from API ",
+            "description": "Confirms a check deposit details when it's in 'AwaitingCustomerConfirmation' status",
             "requestBody": {
                 "required": true,
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "./confirmCheckDeposit.json#/componenets/schemas/ConfirmCheckDepositRequest"
+                            "$ref": "./confirmCheckDeposit.json#/components/schemas/ConfirmCheckDepositRequest"
                         }
                     }
                 }
@@ -242,7 +248,7 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/componenets/schemas/UnitCheckDepositResponse"
+                                "$ref": "#/components/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -250,11 +256,10 @@
             }
         }
     },
-    "getFrontCheckDeposit": {
+    "frontImageCheckDeposit": {
         "get": {
             "tags": ["unit"],
             "operationId": "getFrontCheckDeposit",
-
             "parameters": [
                 {
                     "schema": {
@@ -267,20 +272,58 @@
                 }
             ],
             "summary": "Get Front Check Deposit Image by Id",
-            "description": "Get Front Check Deposit Image from API ",
+            "description": "Get a check deposit front image by check deposit id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                        "image/jpeg": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Front Check Deposit Response",
-                                "properties": {
-                                    "data": {
-                                        "type": "string"
-                                    }
-                                }
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "302": {
+                    "description": "Found - Client should follow redirect"
+                }
+            }
+        },
+        "put": {
+            "tags": ["unit"],
+            "operationId": "uploadFrontCheckDeposit",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkDepositId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check deposit"
+                }
+            ],
+            "summary": "Upload Front-Side Image",
+            "description": "Uploads a check front-side image file. Currently only jpeg file type is supported.",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "image/jpeg": {
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }
@@ -288,11 +331,10 @@
             }
         }
     },
-    "getBackCheckDeposit": {
+    "backImageCheckDeposit": {
         "get": {
             "tags": ["unit"],
             "operationId": "getBackCheckDeposit",
-
             "parameters": [
                 {
                     "schema": {
@@ -305,20 +347,58 @@
                 }
             ],
             "summary": "Get Back Check Deposit Image by Id",
-            "description": "Get Back Check Deposit Image from API ",
+            "description": "Get a check deposit back image by check deposit id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
                     "content": {
-                        "application/vnd.api+json; charset=utf-8": {
+                        "image/jpeg": {
                             "schema": {
-                                "type": "object",
-                                "title": "Unit Back Check Deposit Response",
-                                "properties": {
-                                    "data": {
-                                        "type": "string"
-                                    }
-                                }
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "302": {
+                    "description": "Found - Client should follow redirect"
+                }
+            }
+        },
+        "put": {
+            "tags": ["unit"],
+            "operationId": "uploadBackCheckDeposit",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "checkDepositId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the check deposit"
+                }
+            ],
+            "summary": "Upload Back-Side Image",
+            "description": "Uploads a check back-side image file. Currently only jpeg file type is supported.",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "image/jpeg": {
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCheckDepositResponse"
                             }
                         }
                     }

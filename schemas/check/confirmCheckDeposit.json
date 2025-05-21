@@ -1,5 +1,5 @@
 {
-    "componenets": {
+    "components": {
         "schemas": {
             "ConfirmCheckDepositRequest": {
                 "type": "object",
@@ -9,7 +9,9 @@
                         "type": "object",
                         "properties": {
                             "type": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": ["checkDeposit"],
+                                "default": "checkDeposit"
                             }
                         },
                         "required": ["type"]

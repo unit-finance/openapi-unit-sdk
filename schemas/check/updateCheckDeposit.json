@@ -15,10 +15,14 @@
                         "properties": {
                             "clearingDaysOverride": {
                                 "type": "integer",
-                                "minimum": 1
+                                "minimum": 1,
+                                "description": "Optional. See https://www.unit.co/docs/api/check-deposits/#dynamic-clearing-period-check-deposit."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "See https://www.unit.co/docs/api/#updating-tags." }
+                                ]
                             }
                         },
                         "additionalProperties": false

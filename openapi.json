@@ -279,10 +279,10 @@
             "$ref": "./schemas/check/checkDepositPaths.json#/confirmCheckDeposit"
         },
         "/check-deposits/{checkDepositId}/front": {
-            "$ref": "./schemas/check/checkDepositPaths.json#/getFrontCheckDeposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/frontImageCheckDeposit"
         },
         "/check-deposits/{checkDepositId}/back": {
-            "$ref": "./schemas/check/checkDepositPaths.json#/getBackCheckDeposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/backImageCheckDeposit"
         },
         "/users/{userId}/api-tokens": {
             "$ref": "./schemas/token/tokenPaths.json#/apiTokens"

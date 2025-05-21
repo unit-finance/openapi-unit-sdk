@@ -1,0 +1,29 @@
+{
+    "components": {
+        "schemas": {
+            "CardholderTokenVerification": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["cardholderTokenVerification"],
+                        "default": "cardholderTokenVerification"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "verificationToken": {
+                                "type": "string",
+                                "description": "The generated verification token. It should be passed back to Create Cardholder Bearer Token along with the verification code the customer received on the specified channel"
+                            }
+                        },
+                        "required": ["verificationToken"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

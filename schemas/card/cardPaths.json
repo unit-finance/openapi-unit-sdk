@@ -115,6 +115,28 @@
                 },
                 "additionalProperties": false,
                 "required": ["data"]
+            },
+            "UnitCardholderBearerTokenResponse": {
+                "title": "Unit Cardholder Bearer Token Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./cardholderToken.json#/components/schemas/CardholderBearerToken"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            },
+            "UnitCardholderTokenVerificationResponse": {
+                "title": "Unit Cardholder Token Verification Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./cardholderTokenVerification.json#/components/schemas/CardholderTokenVerification"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
             }
         }
     },
@@ -710,6 +732,90 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "#/components/schemas/UnitMobileWalletPayloadResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "cardholderToken": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createCardholderToken",
+            "summary": "Create Cardholder Token",
+            "description": "Create a bearer token for a specific card. A Cardholder Token can only interact with one card.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to create a token for"
+                }
+            ],
+            "requestBody": {
+                "description": "Create Cardholder Token Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCardholderToken.json#/components/schemas/CreateCardholderTokenRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardholderBearerTokenResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "cardholderTokenVerification": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "createCardholderTokenVerification",
+            "summary": "Create Cardholder Token Verification",
+            "description": "When creating a cardholder token that contains a scope which requires two-factor authentication (see Scopes), it is required to first create a verification challenge that will be sent to the customer. The challenge is a six digit code and is valid for 10 minutes after its creation.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to create token verification for"
+                }
+            ],
+            "requestBody": {
+                "description": "Create Cardholder Token Verification Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCardholderTokenVerification.json#/components/schemas/CreateCardholderTokenVerificationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardholderTokenVerificationResponse"
                             }
                         }
                     }

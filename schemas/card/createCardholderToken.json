@@ -1,0 +1,55 @@
+{
+    "components": {
+        "schemas": {
+            "CreateCardholderToken": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["cardholderToken"],
+                        "default": "cardholderToken"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "scope": {
+                                "type": "string",
+                                "description": "list of Scopes separated by spaces. Only cards (cards cards-sensitive cards-write cards-sensitive-write) scopes are allowed."
+                            },
+                            "verificationToken": {
+                                "type": "string",
+                                "description": "Required if scope includes a scope which requires two-factor authentication. Received as a response from Create Cardholder Token Verification."
+                            },
+                            "verificationCode": {
+                                "type": "string",
+                                "description": "Required if scope includes a scope which requires two-factor authentication. 6 digit code sent to the card holder through the desired channel."
+                            },
+                            "expiresIn": {
+                                "type": "integer",
+                                "description": "Optional. The lifetime of the token (in seconds). Maximum value is 86400 (24 hours). Default value is also 24 hours."
+                            },
+                            "upgradableScope": {
+                                "type": "string",
+                                "description": "Optional. list of Scopes separated by spaces. The card holder will be able to upgrade the token to the scopes you provide here."
+                            }
+                        },
+                        "required": ["scope"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            },
+            "CreateCardholderTokenRequest": {
+                "type": "object",
+                "required": ["data"],
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/CreateCardholderToken"
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+} 

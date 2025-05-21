@@ -212,6 +212,12 @@
         "/cards/{cardId}/secure-data/pin/change": {
             "$ref": "./schemas/card/cardPaths.json#/changePIN"
         },
+        "/cards/{cardId}/cardholder/token": {
+            "$ref": "./schemas/card/cardPaths.json#/cardholderToken"
+        },
+        "/cards/{cardId}/cardholder/token/verification": {
+            "$ref": "./schemas/card/cardPaths.json#/cardholderTokenVerification"
+        },
         "/authorizations": {
             "$ref": "./schemas/authorization/authorizationPaths.json#/authorizations"
         },

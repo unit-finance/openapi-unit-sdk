@@ -8,7 +8,10 @@
                         "required": ["account"]
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/AccountRelationship" },
+                            { "description": "The account that payments will be stopped for." }
+                        ]
                     }
                 ]
             },
@@ -19,7 +22,10 @@
                         "required": ["account"]
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/AccountRelationship" },
+                            { "description": "The account that payments will be stopped for." }
+                        ]
                     }
                 ]
             },
@@ -38,17 +44,25 @@
                             "amount": {
                                 "type": "integer",
                                 "minimum": 1,
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. The amount (in cents) to look on payments to stop."
                             },
                             "checkNumber": {
                                 "type": "string",
-                                "maxLength": 12
+                                "maxLength": 12,
+                                "description": "The check number to look on a check payment to stop."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Tags." }
+                                ]
                             },
                             "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/IdempotencyKey" },
+                                    { "description": "Optional, but strongly recommended. See Idempotency." }
+                                ]
                             }
                         },
                         "required": ["checkNumber"],
@@ -75,34 +89,46 @@
                         "properties": {
                             "minAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. The amount (in cents) above which a payment will be stopped. At least one originatorName or minAmount must be provided."
                             },
                             "originatorName": {
                                 "type": "array",
                                 "items": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. The name of the originator of the payment to look for in payments to stop. At least one originatorName or minAmount must be provided."
                             },
                             "direction": {
                                 "type": "string",
-                                "default": "debit"
+                                "default": "debit",
+                                "description": "Debit only."
                             },
                             "expiration": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "Optional. Date only (e.g. \"2001-08-15\")."
                             },
                             "isMultiUse": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Optional. Available only for ACH Stop Payments. False by default."
                             },
                             "description": {
                                 "type": "string",
-                                "maxLength": 255
+                                "maxLength": 255,
+                                "description": "Up to 255 characters"
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Tags." }
+                                ]
                             },
                             "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/IdempotencyKey" },
+                                    { "description": "Optional, but strongly recommended. See Idempotency." }
+                                ]
                             }
                         },
                         "required": ["direction", "description"]

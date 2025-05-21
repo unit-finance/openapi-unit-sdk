@@ -9,7 +9,10 @@
                         "additionalProperties": false
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/AccountRelationship" },
+                            { "description": "The account that payments will be stopped for." }
+                        ]
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
@@ -43,7 +46,10 @@
                         "additionalProperties": false
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/AccountRelationship" },
+                            { "description": "The account that payments will be stopped for." }
+                        ]
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
@@ -55,7 +61,8 @@
             },
             "CheckStopPaymentStatus": {
                 "type": "string",
-                "enum": ["Active", "Disabled"]
+                "enum": ["Active", "Disabled"],
+                "description": "The possible status values are: Active - The Stop Payment is active and will stop incoming check payments that fits its criteria. Disabled - The Stop Payment is disabled and it will not stop any check payments."
             },
             "AchStopPaymentDisableReason": {
                 "type": "string",
@@ -70,24 +77,34 @@
                         "properties": {
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "ISO8601 timestamp when the stop payment was created"
                             },
                             "updatedAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "ISO8601 timestamp when the stop payment was last updated"
                             },
                             "amount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. The amount (in cents) to look on payments to stop."
                             },
                             "status": {
-                                "$ref": "#/components/schemas/CheckStopPaymentStatus"
+                                "allOf": [
+                                    { "$ref": "#/components/schemas/CheckStopPaymentStatus" },
+                                    { "description": "Status of the stop payment (Active or Disabled)" }
+                                ]
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Tags." }
+                                ]
                             },
                             "checkNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The check number to look on a check payment to stop."
                             }
                         },
                         "required": [
@@ -113,44 +130,64 @@
                         "properties": {
                             "createdAt": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "ISO8601 date when the stop payment was created"
                             },
                             "updatedAt": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "ISO8601 date when the stop payment was last updated"
                             },
                             "minAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. The amount (in cents) above which a payment will be stopped. At least one originatorName or minAmount must be provided."
                             },
                             "originatorName": {
                                 "type": "array",
                                 "items": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. The name of the originator of the payment to look for in payments to stop. At least one originatorName or minAmount must be provided."
                             },
                             "direction": {
                                 "type": "string",
-                                "default": "debit"
+                                "default": "debit",
+                                "description": "Debit only."
                             },
                             "expiration": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "Optional. Date only (e.g. \"2001-08-15\")."
                             },
                             "isMultiUse": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Optional. Available only for ACH Stop Payments. False by default."
                             },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Up to 255 characters"
                             },
                             "disableReason": {
                                 "$ref": "#/components/schemas/AchStopPaymentDisableReason"
                             },
+                            "status": {
+                                "allOf": [
+                                    { "$ref": "#/components/schemas/CheckStopPaymentStatus" },
+                                    { "description": "Status of the stop payment (Active or Disabled)" }
+                                ]
+                            },
                             "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/IdempotencyKey" },
+                                    { "description": "Optional, but strongly recommended. See Idempotency." }
+                                ]
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Tags." }
+                                ]
                             }
                         },
                         "required": [
@@ -160,6 +197,7 @@
                             "expiration",
                             "isMultiUse",
                             "description",
+                            "status",
                             "tags"
                         ],
                         "additionalProperties": false

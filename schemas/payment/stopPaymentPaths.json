@@ -1,7 +1,7 @@
 {
     "components": {
         "schemas": {
-            "StopPaymentResponse": {
+            "UnitStopPaymentResponse": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -9,7 +9,7 @@
                     }
                 }
             },
-            "StopPaymentListResponse": {
+            "UnitStopPaymentListResponse": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -17,6 +17,9 @@
                         "items": {
                             "$ref": "./stopPayment.json#/components/schemas/StopPayment"
                         }
+                    },
+                    "meta": {
+                        "$ref": "../types.json#/components/schemas/PaginationMeta"
                     }
                 }
             }
@@ -38,12 +41,12 @@
                 }
             },
             "responses": {
-                "200": {
-                    "description": "OK",
+                "201": {
+                    "description": "Created",
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StopPaymentResponse"
+                                "$ref": "#/components/schemas/UnitStopPaymentResponse"
                             }
                         }
                     }
@@ -65,17 +68,20 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter by account ID"
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter by customer ID"
                             },
                             "status": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
                                     "enum": ["Active", "Disabled"]
-                                }
+                                },
+                                "description": "Filter by status (Active, Disabled). Usage example: filter[status][0]=Disabled"
                             },
                             "tags": {
                                 "type": "object",
@@ -84,21 +90,57 @@
                                 }
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters before the specified date. e.g. 2021-06-01"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters after the specified date. e.g. 2021-07-01"
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Check Stop Payments that have an amount that is higher or equal to the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Stop Payments that have an amount that is lower or equal to the specified amount (in cents). e.g. 7000"
+                            },
+                            "noAmount": {
+                                "type": "boolean",
+                                "description": "Optional. If set to true, returns only Stop Payments with no amount. If set to false only returns Stop Payments with amount"
+                            },
+                            "fromMinAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Optional. Filters ACH stop Payments that have minAmount higher than the specified amount (cents)."
+                            },
+                            "toMinAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Optional. Filters ACH stop Payments that have minAmount lower than the specified amount (cents)."
+                            },
+                            "noMinAmount": {
+                                "type": "boolean",
+                                "description": "Optional. If set to true, returns only ACH Stop Payments with no minAmount. If set to false only returns Stop Payments with minAmount"
+                            },
+                            "originatorName": {
+                                "type": "string",
+                                "description": "Optional."
+                            },
+                            "noOriginatorName": {
+                                "type": "boolean",
+                                "description": "Optional."
                             },
                             "checkNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filter Stop Payments by check number (trimming leading zeros)."
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": ["checkStopPayment", "achStopPayment"],
+                                "description": "Optional. Either checkStopPayment or achStopPayment"
                             }
                         }
                     }
@@ -108,7 +150,8 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -117,7 +160,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StopPaymentListResponse"
+                                "$ref": "#/components/schemas/UnitStopPaymentListResponse"
                             }
                         }
                     }
@@ -147,7 +190,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StopPaymentResponse"
+                                "$ref": "#/components/schemas/UnitStopPaymentResponse"
                             }
                         }
                     }
@@ -157,7 +200,7 @@
                 }
             }
         },
-        "post": {
+        "patch": {
             "summary": "Update a stop payment",
             "tags": ["unit"],
             "operationId": "updateStopPayment",
@@ -188,7 +231,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StopPaymentResponse"
+                                "$ref": "#/components/schemas/UnitStopPaymentResponse"
                             }
                         }
                     }
@@ -221,7 +264,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/StopPaymentResponse"
+                                "$ref": "#/components/schemas/UnitStopPaymentResponse"
                             }
                         }
                     }

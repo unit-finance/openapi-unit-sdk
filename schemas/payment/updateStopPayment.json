@@ -5,14 +5,30 @@
                 "title": "Update Ach Stop Payment",
                 "type": "object",
                 "properties": {
-                    "tags": {
-                        "$ref": "../types.json#/components/schemas/Tags"
-                    },
-                    "expiration": {
+                    "type": {
                         "type": "string",
-                        "format": "date"
+                        "enum": ["achStopPayment"],
+                        "default": "achStopPayment"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Updating Tags." }
+                                ]
+                            },
+                            "expiration": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Date only (e.g. \"2026-08-15\")."
+                            }
+                        },
+                        "additionalProperties": false
                     }
                 },
+                "required": ["type", "attributes"],
                 "additionalProperties": false
             },
             "UpdateStopPaymentRequest": {

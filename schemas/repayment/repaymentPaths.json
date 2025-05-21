@@ -17,7 +17,7 @@
             "tags": ["unit"],
             "operationId": "getRepaymentsList",
             "summary": "Get List Repayments",
-            "description": "Get List Repayments from API ",
+            "description": "List repayments resources. Filtering, paging and sorting can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -31,35 +31,78 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "creditAccountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified credit account id."
+                            },
+                            "recurringRepaymentId": {
+                                "type": "string",
+                                "description": "Optional. Filters the result according to the associated Recurring Repayment id"
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "status": {
                                 "type": "array",
+                                "description": "Optional. Filter repayments by status (Pending, PendingReview, Returned, Sent or Rejected). Usage example: filter[status][0]=Active",
                                 "items": {
                                     "type": "string",
                                     "enum": [
                                         "Pending",
                                         "PendingReview",
+                                        "Clearing",
                                         "Returned",
                                         "Sent",
-                                        "Rejected"
+                                        "Rejected",
+                                        "Canceled"
                                     ]
                                 }
                             },
                             "type": {
                                 "type": "array",
+                                "description": "Optional. Filter repayments by Repayment type. such as (AchRepayment, BookRepayment). Usage example: filter[type][0]=AchRepayment&filter[type][1]=BookRepayment",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["AchRepayment", "BookRepayment"]
+                                    "enum": [
+                                        "AchRepayment", 
+                                        "BookRepayment", 
+                                        "capitalPartnerAchRepayment", 
+                                        "capitalPartnerBookRepayment"
+                                    ]
                                 }
+                            },
+                            "since": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters Repayments that occurred _after_ the specified date. e.g. 2020-01-13T16:01:19.346Z"
+                            },
+                            "until": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the Repayments that occurred _before_ the specified date. e.g. 2020-01-02T20:06:23.486Z"
                             }
                         }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order.",
+                    "schema": {
+                        "type": "string",
+                        "enum": ["createdAt", "-createdAt"]
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "description": "Optional. A comma-separated list of related resources to include in the response.",
+                    "schema": {
+                        "type": "string"
                     }
                 }
             ],
@@ -78,8 +121,17 @@
                                             "$ref": "./repayment.json#/components/schemas/Repayment"
                                         }
                                     },
+                                    "included": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/IncludedResource" },
+                                            { "description": "Array of resources requested by the include query parameter." }
+                                        ]
+                                    },
                                     "meta": {
-                                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/PaginationMeta" },
+                                            { "description": "Pagination data includes offset, limit and total (estimated total items)." }
+                                        ]
                                     }
                                 }
                             }
@@ -94,9 +146,8 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createRepayment",
-
             "summary": "Create a Repayment",
-            "description": "Create a Repayment via API ",
+            "description": "Creates a repayment for a credit account. Book Repayment creation requests support Idempotency, ensuring that performing multiple identical requests will have the same result as a single request.",
             "requestBody": {
                 "description": "Create a Repayment Request",
                 "required": true,
@@ -129,7 +180,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getRepayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -143,13 +193,14 @@
                 {
                     "name": "include",
                     "in": "query",
+                    "description": "Optional. A comma-separated list of related resources to include in the response.",
                     "schema": {
                         "type": "string"
                     }
                 }
             ],
             "summary": "Get Repayment by Id",
-            "description": "Get an Repayment from API ",
+            "description": "Get a repayment by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",

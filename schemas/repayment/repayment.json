@@ -158,7 +158,7 @@
                         "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/ReccuringRepaymentRelationship"
+                        "$ref": "../relationships.json#/components/schemas/RecurringRepaymentRelationship"
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"

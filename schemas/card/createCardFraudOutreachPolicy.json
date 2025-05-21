@@ -1,0 +1,134 @@
+{
+    "components": {
+        "schemas": {
+            "CreateCardFraudOutreachPolicy": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["cardFraudOutreachPolicy"],
+                        "default": "cardFraudOutreachPolicy"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "caseExpirationPeriodHours": {
+                                "type": "integer",
+                                "enum": [12, 24, 48, 72],
+                                "description": "The period in hours after the card fraud case was created, after which the card fraud case expires. Can be one of the following periods: 12, 24, 48, 72."
+                            },
+                            "activitiesLookBackPeriodHours": {
+                                "type": "integer",
+                                "enum": [12, 24, 48, 72],
+                                "description": "The period in hours before the card fraud case was created, for which the card fraud case activities will be included in the case. Can be one of the following periods: 12, 24, 48, 72."
+                            },
+                            "contactUrl": {
+                                "type": "string",
+                                "description": "The client support contact URL. Should be a valid https URL."
+                            },
+                            "contactPhone": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Phone" },
+                                    { "description": "The client support contact phone number." }
+                                ]
+                            },
+                            "numberOfCardActivities": {
+                                "type": "integer",
+                                "description": "The number of card activities that will be included in the card fraud case. Up to 5 activities max."
+                            }
+                        },
+                        "required": ["caseExpirationPeriodHours", "activitiesLookBackPeriodHours", "contactUrl", "contactPhone", "numberOfCardActivities"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "whiteLabelTheme": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["whiteLabelTheme"],
+                                                "default": "whiteLabelTheme"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false,
+                                "description": "Optional. The white-label theme to be used for the policy. See https://www.unit.co/docs/white-label-uis/themes/."
+                            },
+                            "emailOutreachSettings": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["emailOutreachSettings"],
+                                                "default": "emailOutreachSettings"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false,
+                                "description": "Optional. The email outreach settings to be used for the policy."
+                            },
+                            "messageOutreachSettings": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["messageOutreachSettings"],
+                                                "default": "messageOutreachSettings"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false,
+                                "description": "Optional. The message outreach settings to be used for the policy."
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            },
+            "CreateCardFraudOutreachPolicyRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/CreateCardFraudOutreachPolicy"
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

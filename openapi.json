@@ -400,6 +400,27 @@
         },
         "/wire-drawdowns/{wireDrawdownId}/send": {
             "$ref": "./schemas/payment/wireDrawdownPaths.json#/sendWireDrawdown"
+        },
+        "/card-fraud-cases/{id}": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/cardFraudCase"
+        },
+        "/card-fraud-cases": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/cardFraudCases"
+        },
+        "/card-fraud-cases/{id}/fraud": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/markCardFraudCaseAsFraud"
+        },
+        "/card-fraud-cases/{id}/no-fraud": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/markCardFraudCaseAsNoFraud"
+        },
+        "/fraud-outreach-policies": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/createCardFraudOutreachPolicy"
+        },
+        "/fraud-outreach-policies/{policyId}": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/updateCardFraudOutreachPolicy"
+        },
+        "/fraud-outreach-policies/{id}": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/getCardFraudOutreachPolicy"
         }
     },
     "components": {

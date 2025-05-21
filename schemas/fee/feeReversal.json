@@ -8,14 +8,21 @@
                         "required": ["account", "transaction"]
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/TransactionRelationship" },
+                            { "description": "The transaction to reverse." }
+                        ]
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/AccountRelationship" },
+                            { "description": "The account to reverse the fee." }
+                        ]
                     }
                 ]
             },
             "FeeReversal": {
+                "title": "Fee Reversal",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -23,14 +30,26 @@
                         "enum": ["feeReversal"],
                         "default": "feeReversal"
                     },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
                     "attributes": {
                         "type": "object",
                         "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The amount of the reversed fee."
+                            },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Description of the fee reversal."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See Tags." }
+                                ]
                             }
                         },
                         "required": ["description"]
@@ -39,7 +58,7 @@
                         "$ref": "#/components/schemas/FeeReversalRelationships"
                     }
                 },
-                "required": []
+                "required": ["type", "id", "attributes", "relationships"]
             }
         }
     }

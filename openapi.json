@@ -317,6 +317,9 @@
         "/transactions": {
             "$ref": "./schemas/transaction/transactionPaths.json#/listTransactions"
         },
+        "/transactions/{transactionId}": {
+            "$ref": "./schemas/transaction/transactionPaths.json#/transactionById"
+        },
         "/disputes": {
             "$ref": "./schemas/dispute/disputePaths.json#/listDisputes"
         },

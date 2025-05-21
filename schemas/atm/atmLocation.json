@@ -2,7 +2,7 @@
     "components": {
         "schemas": {
             "AtmLocation": {
-                "title": "Atm Location",
+                "title": "ATM Location",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -14,25 +14,36 @@
                         "type": "object",
                         "properties": {
                             "network": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The ATM network."
                             },
                             "locationName": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the ATM location."
                             },
                             "coordinates": {
-                                "$ref": "../types.json#/components/schemas/Coordinates"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Coordinates" },
+                                    { "description": "The coordinates of the ATM location." }
+                                ]
                             },
                             "address": {
-                                "$ref": "../types.json#/components/schemas/Address"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Address" },
+                                    { "description": "The address of the ATM location." }
+                                ]
                             },
                             "distance": {
-                                "type": "integer"
+                                "type": "number",
+                                "description": "The distance from the search location in miles."
                             },
                             "surchargeFree": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates whether the ATM is surcharge-free."
                             },
                             "acceptDeposits": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates whether the ATM accepts deposits."
                             }
                         }
                     }

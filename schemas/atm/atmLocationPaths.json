@@ -3,31 +3,77 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getAtmLocationsList",
-            "summary": "Get List of ATM Locations",
-            "description": "Get List ATM Locations from API ",
+            "summary": "List ATM Locations",
+            "description": "Unit provides an API for nearby ATM search. The API supports searching by coordinates, postal code, address and radius.",
             "parameters": [
                 {
-                    "name": "filter",
+                    "name": "filter[coordinates]",
                     "in": "query",
-                    "style": "deepObject",
-                    "allowReserved": true,
                     "schema": {
                         "type": "object",
                         "properties": {
-                            "coordinates": {
-                                "type": "object"
+                            "longitude": {
+                                "type": "string",
+                                "description": "The longitude coordinate."
                             },
-                            "searchRadius": {
-                                "type": "integer"
+                            "latitude": {
+                                "type": "string",
+                                "description": "The latitude coordinate."
+                            }
+                        },
+                        "required": ["longitude", "latitude"]
+                    },
+                    "style": "deepObject",
+                    "explode": true,
+                    "description": "Filters the results by the specified coordinates."
+                },
+                {
+                    "name": "filter[searchRadius]",
+                    "in": "query",
+                    "schema": {
+                        "type": "number"
+                    },
+                    "description": "Optional. Filters the results by the search radius (in miles). Default and max values are 100."
+                },
+                {
+                    "name": "filter[postalCode]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Filters the results by the specified postal code."
+                },
+                {
+                    "name": "filter[address]",
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "street": {
+                                "type": "string",
+                                "description": "The street address."
+                            },
+                            "city": {
+                                "type": "string",
+                                "description": "The city."
+                            },
+                            "state": {
+                                "type": "string",
+                                "description": "The state."
                             },
                             "postalCode": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The postal code."
                             },
-                            "address": {
-                                "type": "object"
+                            "country": {
+                                "type": "string",
+                                "description": "The country code."
                             }
                         }
-                    }
+                    },
+                    "style": "deepObject",
+                    "explode": true,
+                    "description": "Filters the results by the specified address."
                 }
             ],
             "responses": {
@@ -36,11 +82,18 @@
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "type": "array",
-                                "title": "Unit Atm Locations List Response",
-                                "items": {
-                                    "$ref": "./atmLocation.json#/components/schemas/AtmLocation"
-                                }
+                                "type": "object",
+                                "title": "ATM Locations List Response",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./atmLocation.json#/components/schemas/AtmLocation"
+                                        },
+                                        "description": "Array of ATM Location resources."
+                                    }
+                                },
+                                "required": ["data"]
                             }
                         }
                     }

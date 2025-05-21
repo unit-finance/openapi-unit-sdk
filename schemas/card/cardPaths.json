@@ -104,6 +104,17 @@
                         }
                     }
                 }
+            },
+            "UnitMobileWalletPayloadResponse": {
+                "title": "Unit Mobile Wallet Payload Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./mobileWalletPayload.json#/components/schemas/MobileWalletPayload"
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
             }
         }
     },
@@ -657,6 +668,48 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "$ref": "#/components/schemas/UnitCardResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "mobileWalletPayload": {
+        "post": {
+            "tags": ["unit"],
+            "operationId": "getMobileWalletPayload",
+            "summary": "Get mobile wallet payload",
+            "description": "Get the mobile wallet encrypted payload for the specified card. The encrypted payload is unique per issuance and is required as part of the SDK integration.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to get mobile wallet payload for"
+                }
+            ],
+            "requestBody": {
+                "description": "Mobile Wallet Payload Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./mobileWalletPayload.json#/components/schemas/GetMobileWalletPayloadRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitMobileWalletPayloadResponse"
                             }
                         }
                     }

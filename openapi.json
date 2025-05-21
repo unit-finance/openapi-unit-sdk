@@ -200,6 +200,9 @@
         "/cards/{cardId}/replace": {
             "$ref": "./schemas/card/cardPaths.json#/replaceCard"
         },
+        "/cards/{cardId}/mobile-wallet-payload": {
+            "$ref": "./schemas/card/cardPaths.json#/mobileWalletPayload"
+        },
         "/cards/{cardId}/activate": {
             "$ref": "./schemas/card/cardPaths.json#/activateCard"
         },

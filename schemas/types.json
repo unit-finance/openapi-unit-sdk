@@ -675,24 +675,26 @@
                 "required": ["fullName"]
             },
             "IncludedResource": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        },
-                        "type": {
-                            "type": "string"
-                        },
-                        "attributes": {
-                            "type": "object"
-                        },
-                        "relationships": {
-                            "type": "object"
-                        }
+                "oneOf": [
+                    {
+                        "$ref": "../schemas/account/account.json#/components/schemas/Account"
+                    },
+                    {
+                        "$ref": "../schemas/customer/customer.json#/components/schemas/Customer"
+                    },
+                    {
+                        "$ref": "../schemas/application/application.json#/components/schemas/Application"
+                    },
+                    {
+                        "$ref": "../schemas/transaction/transaction.json#/components/schemas/Transaction"
+                    },
+                    {
+                        "$ref": "../schemas/card/card.json#/components/schemas/Card"
+                    },
+                    {
+                        "$ref": "../schemas/card/mobileWalletPayload.json#/components/schemas/MobileWalletPayload"
                     }
-                }
+                ]
             },
             "BaseWeeklySchedule": {
                 "title": "Weekly Schedule",

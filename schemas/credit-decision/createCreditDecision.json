@@ -1,0 +1,457 @@
+{
+    "components": {
+        "schemas": {
+            "CreateManualReviewCreditApplicationDecisionAttributes": {
+                "type": "object",
+                "properties": {
+                    "externalApplicationId": {
+                        "type": "string",
+                        "description": "Identifier for client's credit evaluation related to this decision. Max 200 char."
+                    },
+                    "submissionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the corresponding credit application was submitted."
+                    },
+                    "decisionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the credit decision was made."
+                    },
+                    "policyException": {
+                        "type": "boolean",
+                        "description": "One of true or false."
+                    },
+                    "policyExceptionReason": {
+                        "type": "string",
+                        "description": "Conditional if policyException is true. Brief description of reason for policy exception. Max 200 char."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Object containing key-value pairs of underwriting data per credit policy."
+                    },
+                    "idempotencyKey": {
+                        "type": "string",
+                        "description": "Optional. See [Idempotency](https://www.unit.co/docs/api/#intro-idempotency)."
+                    }
+                },
+                "required": [
+                    "externalApplicationId",
+                    "submissionTimestamp",
+                    "decisionTimestamp",
+                    "policyException"
+                ]
+            },
+            "CreateDeniedCreditApplicationDecisionAttributes": {
+                "type": "object",
+                "properties": {
+                    "externalApplicationId": {
+                        "type": "string",
+                        "description": "Identifier for client's credit evaluation related to this decision. Max 200 char."
+                    },
+                    "submissionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the corresponding credit application was submitted."
+                    },
+                    "decisionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the credit decision was made."
+                    },
+                    "decisionReason": {
+                        "type": "string",
+                        "description": "Reason for denial per credit policy. Max 200 char."
+                    },
+                    "adverseActionReasons": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Array of strings representing Adverse action reasons (must have at least one). Max 200 char per reason."
+                    },
+                    "policyException": {
+                        "type": "boolean",
+                        "description": "One of true or false."
+                    },
+                    "policyExceptionReason": {
+                        "type": "string",
+                        "description": "Conditional if policyException is true. Brief description of reason for policy exception. Max 200 char."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Object containing key-value pairs of underwriting data per credit policy."
+                    },
+                    "idempotencyKey": {
+                        "type": "string",
+                        "description": "Optional. See [Idempotency](https://www.unit.co/docs/api/#intro-idempotency)."
+                    }
+                },
+                "required": [
+                    "externalApplicationId",
+                    "submissionTimestamp",
+                    "decisionTimestamp",
+                    "decisionReason",
+                    "adverseActionReasons",
+                    "policyException"
+                ]
+            },
+            "CreateApprovedCreditLimitDecisionAttributes": {
+                "type": "object",
+                "properties": {
+                    "externalApplicationId": {
+                        "type": "string",
+                        "description": "Identifier for client's credit evaluation related to this decision. Max 200 char."
+                    },
+                    "submissionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the corresponding credit application was submitted."
+                    },
+                    "decisionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the credit decision was made."
+                    },
+                    "creditLimit": {
+                        "type": "integer",
+                        "description": "Credit limit for application as evaluated per policy."
+                    },
+                    "policyException": {
+                        "type": "boolean",
+                        "description": "One of true or false."
+                    },
+                    "policyExceptionReason": {
+                        "type": "string",
+                        "description": "Conditional if policyException is true. Brief description of reason for policy exception. Max 200 char."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Object containing key-value pairs of underwriting data per credit policy."
+                    },
+                    "idempotencyKey": {
+                        "type": "string",
+                        "description": "Optional. See [Idempotency](https://www.unit.co/docs/api/#intro-idempotency)."
+                    }
+                },
+                "required": [
+                    "externalApplicationId",
+                    "submissionTimestamp",
+                    "decisionTimestamp",
+                    "creditLimit",
+                    "policyException"
+                ]
+            },
+            "CreateDeniedCreditLimitDecisionAttributes": {
+                "type": "object",
+                "properties": {
+                    "externalApplicationId": {
+                        "type": "string",
+                        "description": "Identifier for client's credit evaluation related to this decision. Max 200 char."
+                    },
+                    "submissionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the corresponding credit application was submitted."
+                    },
+                    "decisionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the credit decision was made."
+                    },
+                    "decisionReason": {
+                        "type": "string",
+                        "description": "Reason for denial per credit policy. Max 200 char."
+                    },
+                    "adverseActionReasons": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Array of strings representing Adverse action reasons (must have at least one). Max 200 char per reason."
+                    },
+                    "policyException": {
+                        "type": "boolean",
+                        "description": "One of true or false."
+                    },
+                    "policyExceptionReason": {
+                        "type": "string",
+                        "description": "Conditional if policyException is true. Brief description of reason for policy exception. Max 200 char."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Object containing key-value pairs of underwriting data per credit policy."
+                    },
+                    "idempotencyKey": {
+                        "type": "string",
+                        "description": "Optional. See [Idempotency](https://www.unit.co/docs/api/#intro-idempotency)."
+                    }
+                },
+                "required": [
+                    "externalApplicationId",
+                    "submissionTimestamp",
+                    "decisionTimestamp",
+                    "decisionReason",
+                    "adverseActionReasons",
+                    "policyException"
+                ]
+            },
+            "CreateManualReviewCreditLimitDecisionAttributes": {
+                "type": "object",
+                "properties": {
+                    "externalApplicationId": {
+                        "type": "string",
+                        "description": "Identifier for client's credit evaluation related to this decision. Max 200 char."
+                    },
+                    "submissionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the corresponding credit application was submitted."
+                    },
+                    "decisionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the credit decision was made."
+                    },
+                    "policyException": {
+                        "type": "boolean",
+                        "description": "One of true or false."
+                    },
+                    "policyExceptionReason": {
+                        "type": "string",
+                        "description": "Conditional if policyException is true. Brief description of reason for policy exception. Max 200 char."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Object containing key-value pairs of underwriting data per credit policy."
+                    },
+                    "idempotencyKey": {
+                        "type": "string",
+                        "description": "Optional. See [Idempotency](https://www.unit.co/docs/api/#intro-idempotency)."
+                    }
+                },
+                "required": [
+                    "externalApplicationId",
+                    "submissionTimestamp",
+                    "decisionTimestamp",
+                    "policyException"
+                ]
+            },
+            "CreateManualReviewCreditApplicationDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["manualReviewCreditApplicationDecision"]
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/CreateManualReviewCreditApplicationDecisionAttributes"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "creditApplication": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["creditApplication"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"]
+                                    }
+                                },
+                                "required": ["data"]
+                            }
+                        },
+                        "required": ["creditApplication"]
+                    }
+                },
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateDeniedCreditApplicationDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["deniedCreditApplicationDecision"]
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/CreateDeniedCreditApplicationDecisionAttributes"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "creditApplication": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["creditApplication"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"]
+                                    }
+                                },
+                                "required": ["data"]
+                            }
+                        },
+                        "required": ["creditApplication"]
+                    }
+                },
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateApprovedCreditLimitDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["approvedCreditLimitDecision"]
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/CreateApprovedCreditLimitDecisionAttributes"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "creditApplication": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["creditApplication"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"]
+                                    }
+                                },
+                                "required": ["data"]
+                            }
+                        },
+                        "required": ["creditApplication"]
+                    }
+                },
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateDeniedCreditLimitDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["deniedCreditLimitDecision"]
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/CreateDeniedCreditLimitDecisionAttributes"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "creditApplication": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["creditApplication"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"]
+                                    }
+                                },
+                                "required": ["data"]
+                            }
+                        },
+                        "required": ["creditApplication"]
+                    }
+                },
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateManualReviewCreditLimitDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["manualReviewCreditLimitDecision"]
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/CreateManualReviewCreditLimitDecisionAttributes"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "creditApplication": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["creditApplication"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"]
+                                    }
+                                },
+                                "required": ["data"]
+                            }
+                        },
+                        "required": ["creditApplication"]
+                    }
+                },
+                "required": ["type", "attributes", "relationships"]
+            },
+            "CreateCreditDecisionRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CreateManualReviewCreditApplicationDecision"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateDeniedCreditApplicationDecision"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateApprovedCreditLimitDecision"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateDeniedCreditLimitDecision"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateManualReviewCreditLimitDecision"
+                            }
+                        ]
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+} 

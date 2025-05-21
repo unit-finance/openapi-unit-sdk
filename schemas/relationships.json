@@ -1220,12 +1220,39 @@
                                         "enum": ["lendingProgram"]
                                     }
                                 },
-                                "required": ["id", "type"],
-                                "additionalProperties": false
+                                "additionalProperties": false,
+                                "required": ["id", "type"]
                             }
                         },
-                        "required": ["data"],
-                        "additionalProperties": false
+                        "additionalProperties": false,
+                        "required": ["data"]
+                    }
+                }
+            },
+            "CreditApplicationRelationship": {
+                "type": "object",
+                "properties": {
+                    "creditApplication": {
+                        "type": "object",
+                        "title": "Credit Application Relationship",
+                        "properties": {
+                            "data": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["creditApplication"]
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": ["id", "type"]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["data"]
                     }
                 }
             }

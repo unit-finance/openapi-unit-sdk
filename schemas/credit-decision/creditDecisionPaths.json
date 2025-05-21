@@ -1,0 +1,199 @@
+{
+    "components": {
+        "schemas": {
+            "UnitCreditDecisionResponse": {
+                "title": "Unit Credit Decision Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./creditDecision.json#/components/schemas/CreditDecision"
+                    }
+                },
+                "required": ["data"]
+            },
+            "UnitCreditDecisionListResponse": {
+                "title": "Unit Credit Decision List Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./creditDecision.json#/components/schemas/CreditDecision"
+                        }
+                    },
+                    "meta": {
+                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    },
+    "creditDecisions": {
+        "post": {
+            "tags": ["unit"],
+            "summary": "Create a credit decision",
+            "description": "Create a credit decision for a credit application or credit limit.",
+            "operationId": "createCreditDecision",
+            "requestBody": {
+                "description": "Create Credit Decision Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCreditDecision.json#/components/schemas/CreateCreditDecisionRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCreditDecisionResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "get": {
+            "tags": ["unit"],
+            "summary": "List credit decisions",
+            "description": "List credit decision resources. Paging can be applied.",
+            "operationId": "listCreditDecisions",
+            "parameters": [
+                {
+                    "name": "page[limit]",
+                    "in": "query",
+                    "description": "Optional. Maximum number of resources that will be returned. Maximum is 1000 resources. See [Pagination](https://www.unit.co/docs/api/#intro-pagination).",
+                    "schema": {
+                        "type": "integer",
+                        "default": 100
+                    }
+                },
+                {
+                    "name": "page[offset]",
+                    "in": "query",
+                    "description": "Optional. Number of resources to skip. See [Pagination](https://www.unit.co/docs/api/#intro-pagination).",
+                    "schema": {
+                        "type": "integer",
+                        "default": 0
+                    }
+                },
+                {
+                    "name": "filter[orgId]",
+                    "in": "query",
+                    "description": "Optional. Filters the results by the specified org id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[customerId]",
+                    "in": "query",
+                    "description": "Optional. Filters the results by the specified customer id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[accountId]",
+                    "in": "query",
+                    "description": "Optional. Filters the results by the specified account id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[applicationId]",
+                    "in": "query",
+                    "description": "Optional. Filters the results by the specified application id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[bankId]",
+                    "in": "query",
+                    "description": "Optional. Filters the results by the specified bank id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[decision]",
+                    "in": "query",
+                    "description": "Optional. Filters the results by the specified decision (one of Approved or Denied).",
+                    "schema": {
+                        "type": "string",
+                        "enum": ["Approved", "Denied"]
+                    }
+                },
+                {
+                    "name": "filter[evaluationType]",
+                    "in": "query",
+                    "description": "Optional. Filters the results by the specified evaluation type (one of CreditLimit or CreditApplication).",
+                    "schema": {
+                        "type": "string",
+                        "enum": ["CreditLimit", "CreditApplication"]
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCreditDecisionListResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "creditDecision": {
+        "get": {
+            "tags": ["unit"],
+            "summary": "Get a credit decision by ID",
+            "description": "Get a credit decision resource by id.",
+            "operationId": "getCreditDecision",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "The ID of the credit decision to retrieve",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCreditDecisionResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    }
+} 

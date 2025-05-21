@@ -430,6 +430,12 @@
         },
         "/credit-applications/{creditApplicationId}": {
             "$ref": "./schemas/credit-application/creditApplicationPaths.json#/creditApplication"
+        },
+        "/credit-decisions": {
+            "$ref": "./schemas/credit-decision/creditDecisionPaths.json#/creditDecisions"
+        },
+        "/credit-decisions/{id}": {
+            "$ref": "./schemas/credit-decision/creditDecisionPaths.json#/creditDecision"
         }
     },
     "components": {

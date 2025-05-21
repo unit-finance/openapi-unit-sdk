@@ -1,0 +1,314 @@
+{
+    "components": {
+        "schemas": {
+            "CreditDecisionBaseAttributes": {
+                "type": "object",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the credit decision was created."
+                    },
+                    "externalApplicationId": {
+                        "type": "string",
+                        "description": "Identifier for client's credit evaluation related to this decision. Max 200 char."
+                    },
+                    "evaluationType": {
+                        "type": "string",
+                        "enum": ["CreditApplication", "CreditLimit"],
+                        "description": "The type of evaluation for this credit decision."
+                    },
+                    "submissionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the corresponding credit application was submitted."
+                    },
+                    "decisionTimestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the credit decision was made."
+                    },
+                    "decision": {
+                        "type": "string",
+                        "enum": ["Approved", "Denied", "ManualReview"],
+                        "description": "The decision made for this credit application."
+                    },
+                    "policyException": {
+                        "type": "boolean",
+                        "description": "One of true or false."
+                    },
+                    "policyExceptionReason": {
+                        "type": "string",
+                        "description": "Conditional if policyException is true. Brief description of reason for policy exception. Max 200 char."
+                    },
+                    "additionalUnderwritingData": {
+                        "type": "object",
+                        "description": "Object containing key-value pairs of underwriting data per credit policy."
+                    }
+                },
+                "required": [
+                    "createdAt",
+                    "externalApplicationId",
+                    "evaluationType",
+                    "submissionTimestamp",
+                    "decisionTimestamp",
+                    "decision",
+                    "policyException"
+                ]
+            },
+            "ApprovedCreditDecisionAttributes": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CreditDecisionBaseAttributes"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "creditLimit": {
+                                "type": "integer",
+                                "description": "Credit limit for application as evaluated per policy."
+                            }
+                        },
+                        "required": ["creditLimit"]
+                    }
+                ]
+            },
+            "DeniedCreditDecisionAttributes": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CreditDecisionBaseAttributes"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "decisionReason": {
+                                "type": "string",
+                                "description": "Reason for denial per credit policy. Max 200 char."
+                            },
+                            "adverseActionReasons": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Array of strings representing Adverse action reasons (must have at least one). Max 200 char per reason."
+                            }
+                        },
+                        "required": ["decisionReason", "adverseActionReasons"]
+                    }
+                ]
+            },
+            "ManualReviewCreditDecisionAttributes": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CreditDecisionBaseAttributes"
+                    }
+                ]
+            },
+            "CreditDecisionRelationships": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "bank": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["bank"]
+                                            },
+                                            "id": {
+                                                "$ref": "../types.json#/components/schemas/Identifier"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                ]
+            },
+            "CreditApplicationDecisionRelationships": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CreditDecisionRelationships"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditApplicationRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                    }
+                ]
+            },
+            "CreditLimitDecisionRelationships": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CreditDecisionRelationships"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CreditApplicationRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    }
+                ]
+            },
+            "ApprovedCreditLimitDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["approvedCreditLimitDecision"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ApprovedCreditDecisionAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreditLimitDecisionRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "DeniedCreditLimitDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["deniedCreditLimitDecision"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/DeniedCreditDecisionAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreditLimitDecisionRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "ManualReviewCreditLimitDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["manualReviewCreditLimitDecision"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ManualReviewCreditDecisionAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreditLimitDecisionRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "ApprovedCreditApplicationDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["approvedCreditApplicationDecision"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ApprovedCreditDecisionAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreditApplicationDecisionRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "DeniedCreditApplicationDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["deniedCreditApplicationDecision"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/DeniedCreditDecisionAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreditApplicationDecisionRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "ManualReviewCreditApplicationDecision": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["manualReviewCreditApplicationDecision"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ManualReviewCreditDecisionAttributes"
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreditApplicationDecisionRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"]
+            },
+            "CreditDecision": {
+                "title": "Credit Decision Resource",
+                "description": "A credit decision resource for credit applications or credit limits.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "approvedCreditLimitDecision",
+                            "deniedCreditLimitDecision",
+                            "manualReviewCreditLimitDecision",
+                            "approvedCreditApplicationDecision",
+                            "deniedCreditApplicationDecision",
+                            "manualReviewCreditApplicationDecision"
+                        ]
+                    }
+                },
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "approvedCreditLimitDecision": "#/components/schemas/ApprovedCreditLimitDecision",
+                        "deniedCreditLimitDecision": "#/components/schemas/DeniedCreditLimitDecision",
+                        "manualReviewCreditLimitDecision": "#/components/schemas/ManualReviewCreditLimitDecision",
+                        "approvedCreditApplicationDecision": "#/components/schemas/ApprovedCreditApplicationDecision",
+                        "deniedCreditApplicationDecision": "#/components/schemas/DeniedCreditApplicationDecision",
+                        "manualReviewCreditApplicationDecision": "#/components/schemas/ManualReviewCreditApplicationDecision"
+                    }
+                }
+            }
+        }
+    }
+} 

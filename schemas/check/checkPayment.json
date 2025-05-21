@@ -4,19 +4,26 @@
             "ReturnReason": {
                 "type": "string",
                 "enum": [
-                    "InsufficientFunds",
-                    "AccountClosed",
-                    "AlteredCheck",
-                    "ForgedSignature",
-                    "PostdatedCheck",
-                    "StopPaymentOrder",
-                    "UnauthorizedDebit",
-                    "WrongAmount",
-                    "DuplicatePayment",
-                    "MissingSignature",
-                    "IrregularEndorsement",
-                    "Other"
-                ]
+                    "NotSufficientFunds",
+                    "UncollectedFundsHold",
+                    "StopPayment",
+                    "ClosedAccount",
+                    "UnableToLocateAccount",
+                    "FrozenOrBlockedAccount",
+                    "StaleDated",
+                    "PostDated",
+                    "NotValidCheckOrCashItem",
+                    "AlteredOrFictitious",
+                    "UnableToProcess",
+                    "ItemExceedsDollarLimit",
+                    "NotAuthorized",
+                    "ReferToMaker",
+                    "UnusableImage",
+                    "DuplicatePresentment",
+                    "WarrantyBreach",
+                    "UnauthorizedWarrantyBreach"
+                ],
+                "description": "The reason for returning the Check Payment."
             },
             "CheckPaymentRelationships": {
                 "allOf": [
@@ -43,16 +50,56 @@
                 "title": "Check Payment Counterparty",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Name of the check payment recipient"
                     },
                     "address": {
-                        "$ref": "../types.json#/components/schemas/Address"
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/Address" },
+                            { "description": "Address of the check payment recipient" }
+                        ]
                     },
                     "counterpartyMoved": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "Indicates if the counterparty has moved"
                     }
                 },
                 "additionalProperties": false
+            },
+            "CheckPaymentStatus": {
+                "type": "string",
+                "enum": [
+                    "New",
+                    "Rejected",
+                    "Pending",
+                    "Canceled",
+                    "PendingCancellation",
+                    "InProduction",
+                    "InDelivery",
+                    "Delivered",
+                    "ReturnedToSender",
+                    "PendingReview",
+                    "Processed",
+                    "MarkedForReturn",
+                    "Returned"
+                ],
+                "description": "Status of the check payment. Possible values: New (A request to originate a check payment has been registered and is being processed), Rejected (See rejectReason for further details), Pending (The check payment is pending submission and will be sent to the printers at the next cutoff time), Canceled (The originated check payment was canceled), PendingCancellation (A cancellation has been requested and is pending for a result), InProduction (Cutoff time has passed. The check payment has been sent to the printers and can no longer be updated or canceled), InDelivery (The check payment has been accepted by the mail service and is en route), Delivered (The check payment was delivered), ReturnedToSender (The check payment could not be delivered and has been returned to the sender), PendingReview (The check payment is pending review by Unit), Processed (The check payment was processed and the deposit account was debited), MarkedForReturn (The check payment was marked for return), Returned (The check payment was returned)"
+            },
+            "CheckPaymentDeliveryStatus": {
+                "type": "string",
+                "enum": [
+                    "Mailed",
+                    "InLocalArea",
+                    "Delivered",
+                    "Rerouted",
+                    "ReturnedToSender"
+                ],
+                "description": "Delivery status of the check payment. Possible values: Mailed (The check has been handed off to and accepted by the mail service), InLocalArea (The check payment is being processed at the destination facility. This is the final delivery status for checks sent to P.O boxes), Delivered (The check payment has been delivered to its destination), Rerouted (The check payment has been re-routed), ReturnedToSender (The check payment could not be delivered and is being returned to the customer's address)"
+            },
+            "AdditionalVerificationStatus": {
+                "type": "string",
+                "enum": ["Required", "NotRequired", "Approved"],
+                "description": "The additional verification status for the check payment"
             },
             "CheckPayment": {
                 "title": "Check Payment Resource",
@@ -71,102 +118,118 @@
                         "properties": {
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the check payment was created"
                             },
                             "updatedAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the check payment was last updated"
                             },
                             "amount": {
                                 "type": "integer",
                                 "minimum": 1,
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The check amount (in cents)"
                             },
                             "returnCutoffTime": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time until which the check payment can be returned"
                             },
                             "status": {
-                                "type": "string",
-                                "enum": [
-                                    "MarkedForReturn",
-                                    "Returned",
-                                    "Processed",
-                                    "PendingReview"
-                                ]
+                                "$ref": "#/components/schemas/CheckPaymentStatus"
                             },
                             "memo": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Memo for the check payment"
                             },
                             "deliveryStatus": {
-                                "type": "string",
-                                "enum": [
-                                    "Mailed",
-                                    "InLocalArea",
-                                    "Delivered",
-                                    "Rerouted",
-                                    "ReturnedToSender"
-                                ]
+                                "$ref": "#/components/schemas/CheckPaymentDeliveryStatus"
                             },
                             "sendAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the check will be sent"
                             },
                             "counterparty": {
-                                "$ref": "#/components/schemas/CheckPaymentCounterparty"
+                                "allOf": [
+                                    { "$ref": "#/components/schemas/CheckPaymentCounterparty" },
+                                    { "description": "Information about the counterparty of the check payment" }
+                                ]
                             },
                             "trackedAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the check payment was tracked"
                             },
                             "postalCode": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Postal code for delivery tracking"
                             },
                             "expectedDelivery": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "Expected delivery date of the check"
                             },
                             "originated": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates if the check payment was originated through the Unit API"
                             },
                             "expirationDate": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "Expiration date of the check"
                             },
                             "rejectReason": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The reason why the check payment was rejected, if applicable"
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional tags for the check payment. See https://www.unit.co/docs/api/#tags" }
+                                ]
                             },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Description of the check payment (maximum of 50 characters)"
                             },
                             "returnReason": {
-                                "$ref": "#/components/schemas/ReturnReason"
+                                "allOf": [
+                                    { "$ref": "#/components/schemas/ReturnReason" },
+                                    { "description": "The reason why the check payment was returned, if applicable" }
+                                ]
                             },
                             "pendingReviewReasons": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
                                     "enum": ["NameMissMatch", "SoftLimit"]
-                                }
+                                },
+                                "description": "Reasons why the check payment is pending review"
                             },
                             "checkNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The check number"
                             },
                             "onUsAuxiliary": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "MICR on-us auxiliary field"
                             },
                             "onUs": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "MICR on-us field"
                             },
                             "counterpartyRoutingNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Routing number of the counterparty's bank"
                             },
                             "additionalVerificationStatus": {
-                                "type": "string",
-                                "enum": ["Required", "NotRequired", "Approved"]
+                                "allOf": [
+                                    { "$ref": "#/components/schemas/AdditionalVerificationStatus" },
+                                    { "description": "The status of additional verification for the check payment" }
+                                ]
                             }
                         },
                         "required": [

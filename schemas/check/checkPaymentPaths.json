@@ -16,8 +16,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getCheckPaymentsList",
-            "summary": "Get List Check Payments",
-            "description": "Get List Check Payments from API ",
+            "summary": "List Check Payments",
+            "description": "Lists all check payments with optional filters for account, customer, status, and more.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -29,10 +29,12 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter check payments by account ID"
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter check payments by customer ID"
                             },
                             "status": {
                                 "type": "array",
@@ -40,43 +42,50 @@
                                     "type": "string",
                                     "enum": [
                                         "New",
+                                        "Rejected",
                                         "Pending",
                                         "Canceled",
-                                        "Rejected",
-                                        "InDelivery",
+                                        "PendingCancellation",
                                         "InProduction",
+                                        "InDelivery",
                                         "Delivered",
                                         "ReturnedToSender",
-                                        "Pending",
-                                        "Processed",
                                         "PendingReview",
+                                        "Processed",
                                         "MarkedForReturn",
                                         "Returned"
                                     ]
-                                }
+                                },
+                                "description": "Filter check payments by status"
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Filter check payments by tags"
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter check payments created since this date"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter check payments created until this date"
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Filter check payments by minimum amount"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Filter check payments by maximum amount"
                             },
                             "checkNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter Check Payments by check number (trimming leading zeros)"
                             }
                         }
                     }
@@ -86,14 +95,16 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Sort the results by a specific field"
                 },
                 {
                     "name": "include",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A comma-separated list of related resources to include in the response. Related resources include: customer, account, transaction. See https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 }
             ],
             "responses": {
@@ -122,8 +133,8 @@
             "tags": ["unit"],
             "operationId": "createCheckPayment",
 
-            "summary": "Create Check Payment",
-            "description": "Create Check Payment via API ",
+            "summary": "Originate Check Payment (Mail Physical Check)",
+            "description": "Creates a physical check. The check will be printed and mailed to the US recipient specified in the request. Originated check payments can be set to be sent immediately or scheduled for a future date.",
             "requestBody": {
                 "description": "Create Check Payment Request",
                 "required": true,
@@ -166,7 +177,7 @@
                 }
             ],
             "summary": "Get Check Payment by Id",
-            "description": "Get a Check Payment from API ",
+            "description": "Retrieve a specific check payment by its ID.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -214,15 +225,17 @@
                                             "enum": ["additionalVerification"],
                                             "default": "additionalVerification"
                                         }
-                                    }
+                                    },
+                                    "required": ["type"]
                                 }
-                            }
+                            },
+                            "required": ["data"]
                         }
                     }
                 }
             },
-            "summary": "Approve Check Payment by Id",
-            "description": "Approve a Check Payment via API ",
+            "summary": "Approve Check Payment Additional Verification",
+            "description": "Needs to be used when additionalVerificationStatus is Required in order to approve the Check Payment. Serves as an evidence that an additional verification was performed and an approval was captured from the end customer to continue processing this Check Payment.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -274,19 +287,25 @@
                                             "type": "object",
                                             "properties": {
                                                 "reason": {
-                                                    "$ref": "./checkPayment.json#/components/schemas/ReturnReason"
+                                                    "allOf": [
+                                                        { "$ref": "./checkPayment.json#/components/schemas/ReturnReason" },
+                                                        { "description": "The reason for returning the Check Payment. See valid reasons for Check Payment returns." }
+                                                    ]
                                                 }
-                                            }
+                                            },
+                                            "required": ["reason"]
                                         }
-                                    }
+                                    },
+                                    "required": ["type", "attributes"]
                                 }
-                            }
+                            },
+                            "required": ["data"]
                         }
                     }
                 }
             },
-            "summary": "Return Check Payment by Id",
-            "description": "Return a Check Payment via API ",
+            "summary": "Return Check Payment",
+            "description": "Create a return as long as it happens before the returnCutoffTime, the Check Payment status will be set to MarkedForReturn. If the Check Payment was Processed, a Returned Check Payment Transaction will be created.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -317,8 +336,8 @@
                     "description": "ID of the check payment to cancel"
                 }
             ],
-            "summary": "Cancel Check Payment by Id",
-            "description": "Cancel a Check Payment via API ",
+            "summary": "Cancel Check Payment",
+            "description": "Cancels a previously processed check payment. Only check payments in status Pending can be canceled. If cancelation was successful, the check status will change to Canceled.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -350,7 +369,7 @@
                 }
             ],
             "summary": "Get front image",
-            "description": "Get front image via API ",
+            "description": "Get a check payment front image by check payment ID.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -362,6 +381,9 @@
                             }
                         }
                     }
+                },
+                "302": {
+                    "description": "Redirect Found - Client should support following redirects"
                 }
             }
         }
@@ -383,7 +405,7 @@
                 }
             ],
             "summary": "Get back image",
-            "description": "Get back image via API ",
+            "description": "Get a check payment back image by check payment ID.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -395,6 +417,9 @@
                             }
                         }
                     }
+                },
+                "302": {
+                    "description": "Redirect Found - Client should support following redirects"
                 }
             }
         }

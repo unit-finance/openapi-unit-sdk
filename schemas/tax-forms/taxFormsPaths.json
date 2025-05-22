@@ -3,8 +3,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getTaxFormsList",
-            "summary": "Get Tax Forms List ",
-            "description": "Get Tax Forms List from API ",
+            "summary": "List Tax Forms",
+            "description": "List tax form resources per tax year. Filtering and paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -18,22 +18,26 @@
                         "type": "object",
                         "properties": {
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
-                            "taxYear": {
+                            "taxYears": {
                                 "type": "array",
                                 "items": {
                                     "$ref": "../types.json#/components/schemas/Year"
-                                }
+                                },
+                                "description": "Optional. Returns the available tax forms for one or more tax years. e.g. Usage example: filter[taxYears][0]=2023"
                             },
                             "taxFormTypes": {
                                 "type": "array",
                                 "items": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Usage example: filter[taxFormsType][0]=1099-INT"
                             }
                         }
                     }
@@ -74,11 +78,11 @@
                     "name": "taxFormId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the reward to get"
+                    "description": "ID of the tax form to get"
                 }
             ],
             "summary": "Get Tax Form by Id",
-            "description": "Get a Tax Form from API ",
+            "description": "Get a tax form by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -103,7 +107,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getTaxFormPdf",
-
             "parameters": [
                 {
                     "schema": {
@@ -112,11 +115,11 @@
                     "name": "taxFormId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the reward to get"
+                    "description": "ID of the tax form to get"
                 }
             ],
-            "summary": "Get Tax Form pdf by Id",
-            "description": "Get a Tax Form pdf from API ",
+            "summary": "Get Tax Form PDF by Id",
+            "description": "Get a tax form PDF file by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",

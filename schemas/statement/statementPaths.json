@@ -3,8 +3,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatementsList",
-            "summary": "Get List Statements",
-            "description": "Get List Statements from API ",
+            "summary": "List Statements",
+            "description": "List statement resources. Filtering and paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -18,13 +18,23 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
+                            },
+                            "accountIds[]": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "Optional. Filters the results by the specified account ids. Usage example: filter[accountIds][0]=10000&filter[accountIds][1]=10001"
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "period": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results for a specific month. e.g. 2021-01"
                             }
                         }
                     }
@@ -34,7 +44,8 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=period for ascending order. Provide sort=-period (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -44,13 +55,16 @@
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
                                 "type": "object",
-                                "title": "Unit Statements Response",
+                                "title": "Unit Statements List Response",
                                 "properties": {
                                     "data": {
                                         "type": "array",
                                         "items": {
                                             "$ref": "./statement.json#/components/schemas/Statement"
                                         }
+                                    },
+                                    "meta": {
+                                        "$ref": "../types.json#/components/schemas/PaginationMeta"
                                     }
                                 }
                             }
@@ -64,7 +78,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatementHtml",
-
             "parameters": [
                 {
                     "schema": {
@@ -74,17 +87,43 @@
                     "in": "path",
                     "required": true,
                     "description": "ID of the statement to get"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string",
+                                "description": "Optional. Verify that the statements belongs to the customer."
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "language",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": ["en", "es"],
+                        "default": "en"
+                    },
+                    "description": "Optional. Select the statement language. en - English, es - Spanish"
                 }
             ],
-            "summary": "Get HTML Statement by Id",
-            "description": "Get a HTML Statement from API ",
+            "summary": "Get HTML by Id",
+            "description": "Get a statement HTML output by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
                     "content": {
                         "text/html": {
                             "schema": {
-                                "type": "string"
+                                "type": "string",
+                                "title": "Unit Statement HTML Response"
                             }
                         }
                     }
@@ -96,7 +135,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatementPdf",
-
             "parameters": [
                 {
                     "schema": {
@@ -106,10 +144,35 @@
                     "in": "path",
                     "required": true,
                     "description": "ID of the statement to get"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string",
+                                "description": "Optional. Verify that the statements belongs to the customer."
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "language",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "enum": ["en", "es"],
+                        "default": "en"
+                    },
+                    "description": "Optional. Select the statement language. en - English, es - Spanish"
                 }
             ],
-            "summary": "Get PDF Statement by Id",
-            "description": "Get a PDF Statement from API ",
+            "summary": "Get PDF by Id",
+            "description": "Get a statement PDF output by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -117,7 +180,8 @@
                         "application/pdf": {
                             "schema": {
                                 "type": "string",
-                                "format": "binary"
+                                "format": "binary",
+                                "title": "Unit Statement PDF Response"
                             }
                         }
                     }
@@ -129,7 +193,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getStatementBankPdf",
-
             "summary": "Get Bank verification PDF",
             "parameters": [
                 {
@@ -140,9 +203,18 @@
                     "in": "path",
                     "required": true,
                     "description": "ID of the account to get"
+                },
+                {
+                    "name": "includeProofOfFunds",
+                    "in": "query",
+                    "schema": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "description": "Optional. include customer proof of funds"
                 }
             ],
-            "description": "Get Get Bank verification PDF from API ",
+            "description": "Customers may be required, for various reasons, to provide proof that they hold a bank account with a certain financial institution. This is typically provided by the bank in a letter called \"Bank verification letter\", which includes the customer, account and financial institution information. If the customer is required to prove availability of funds, the letter may also include the available balance on the account.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -150,7 +222,8 @@
                         "application/pdf": {
                             "schema": {
                                 "type": "string",
-                                "format": "binary"
+                                "format": "binary",
+                                "title": "Unit Bank Verification PDF Response"
                             }
                         }
                     }

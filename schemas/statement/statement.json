@@ -17,6 +17,7 @@
             "Statement": {
                 "title": "Statement",
                 "type": "object",
+                "description": "Statements are generated automatically and gradually at start of each month, and providing them to your customer is a regulatory requirement. This allow your customers to keep track of money movements and act on any fraudulent charges or mistakes.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -29,9 +30,11 @@
                         "type": "object",
                         "properties": {
                             "period": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The period for which the statement was generated, in YYYY-MM format."
                             }
-                        }
+                        },
+                        "required": ["period"]
                     },
                     "relationships": {
                         "$ref": "#/components/schemas/StatementRelationships"

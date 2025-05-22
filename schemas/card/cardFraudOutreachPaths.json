@@ -326,7 +326,7 @@
             }
         }
     },
-    "updateCardFraudOutreachPolicy": {
+    "fraudOutreachPolicy": {
         "patch": {
             "tags": [
                 "unit"
@@ -371,9 +371,7 @@
                     "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
-        }
-    },
-    "getCardFraudOutreachPolicy": {
+        },
         "get": {
             "tags": [
                 "unit"

@@ -1,0 +1,176 @@
+{
+    "components": {
+        "schemas": {
+            "UnitReceivableResponse": {
+                "type": "object",
+                "title": "Unit Receivable Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./receivable.json#/components/schemas/Receivable"
+                    }
+                }
+            },
+            "UnitReceivableListResponse": {
+                "type": "object",
+                "title": "Unit Receivable List Response",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./receivable.json#/components/schemas/Receivable"
+                        }
+                    },
+                    "meta": {
+                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                    }
+                }
+            },
+            "UnitReceivablesBalanceResponse": {
+                "type": "object",
+                "title": "Unit Receivables Balance Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./receivable.json#/components/schemas/ReceivablesBalance"
+                    }
+                }
+            }
+        }
+    },
+    "receivable": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getReceivable",
+            "summary": "Get a receivable by id",
+            "description": "Get a receivable resource by id.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the receivable to get"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitReceivableResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "receivables": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "listReceivables",
+            "summary": "List receivables resources",
+            "description": "List receivables resources. Paging can be applied.",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
+                            },
+                            "receivableType": {
+                                "type": "string",
+                                "enum": ["bankReceivable", "orgReceivable", "capitalPartnerReceivable"],
+                                "description": "Optional. Filters the results by one of the following receivable types [\"bankReceivable\", \"orgReceivable\", \"capitalPartnerReceivable\"]"
+                            },
+                            "repaymentStatusType": {
+                                "type": "string",
+                                "enum": ["notRepaid", "partiallyRepaid", "fullyRepaid"],
+                                "description": "Optional. Filters the results by one of the following repayment status types [\"notRepaid\", \"partiallyRepaid\", \"fullyRepaid\"]"
+                            },
+                            "purchaseDueDate": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the results by the specified purchase due date e.g. 2023-05-25"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitReceivableListResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "receivablesBalance": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getReceivablesBalance",
+            "summary": "Get receivables balance report",
+            "description": "Get receivables balance report resource. The resource contains information on the receivables balance that is due to be purchased by the specific date or on within specific number of days from today",
+            "parameters": [
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "purchaseDueDate": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the results by the receivable purchase due date."
+                            },
+                            "daysUntilPurchase": {
+                                "type": "string",
+                                "description": "Optional. Filters the results by days until purchase"
+                            }
+                        }
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitReceivablesBalanceResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    }
+} 

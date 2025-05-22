@@ -445,6 +445,15 @@
         },
         "/lending-programs/{id}/extended": {
             "$ref": "./schemas/lending-program/lendingProgramPaths.json#/lendingProgramExtended"
+        },
+        "/receivables/{id}": {
+            "$ref": "./schemas/receivables/receivablesPaths.json#/receivable"
+        },
+        "/receivables": {
+            "$ref": "./schemas/receivables/receivablesPaths.json#/receivables"
+        },
+        "/receivablesreports/balance": {
+            "$ref": "./schemas/receivables/receivablesPaths.json#/receivablesBalance"
         }
     },
     "components": {

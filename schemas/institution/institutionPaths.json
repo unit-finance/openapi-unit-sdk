@@ -1,7 +1,9 @@
 {
     "getInstitution": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getInstitution",
             "parameters": [
                 {
@@ -32,6 +34,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

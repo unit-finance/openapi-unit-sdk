@@ -1,7 +1,9 @@
 {
     "listTransactions": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTransactionsList",
             "summary": "Get List Transactions",
             "description": "Get a list of transactions. A transaction is an individual entry that represents a financial movement within an account. The `Transaction` resource represents a confirmed financial transaction that were posted to the account, including its source, amount, and direction.",
@@ -66,7 +68,10 @@
                                 "description": "Filter Transactions by direction (Debit, Credit).",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Debit", "Credit"]
+                                    "enum": [
+                                        "Debit",
+                                        "Credit"
+                                    ]
                                 }
                             },
                             "fromAmount": {
@@ -121,29 +126,41 @@
                                     },
                                     "included": {
                                         "allOf": [
-                                            { "$ref": "../types.json#/components/schemas/IncludedResource" },
-                                            { "description": "Array of resources requested by the include query parameter." }
+                                            {
+                                                "$ref": "../types.json#/components/schemas/IncludedResource"
+                                            },
+                                            {
+                                                "description": "Array of resources requested by the include query parameter."
+                                            }
                                         ]
                                     },
                                     "meta": {
                                         "allOf": [
-                                            { "$ref": "../types.json#/components/schemas/PaginationMeta" },
-                                            { "description": "Optional. Will be defined only when filtered by customer or account id. Pagination data includes offset, limit and total (estimated total items)." }
+                                            {
+                                                "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                            },
+                                            {
+                                                "description": "Optional. Will be defined only when filtered by customer or account id. Pagination data includes offset, limit and total (estimated total items)."
+                                            }
                                         ]
                                     }
                                 }
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "transaction": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTransaction",
-
             "parameters": [
                 {
                     "schema": {
@@ -185,13 +202,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateTransaction",
-
             "summary": "Update Tags Transaction",
             "description": "Update Tags Transaction",
             "parameters": [
@@ -241,13 +262,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "transactionById": {
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateTransactionById",
             "summary": "Update Transaction",
             "description": "Update Transaction. This endpoint supports updating Book Transaction and Chargeback Transaction.",
@@ -289,6 +315,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

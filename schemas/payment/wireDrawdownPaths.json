@@ -14,7 +14,9 @@
     },
     "getWireDrawdown": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getWireDrawdown",
             "parameters": [
                 {
@@ -56,13 +58,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "listWireDrawdowns": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "listWireDrawdowns",
             "parameters": [
                 {
@@ -123,13 +130,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "sendWireDrawdown": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "sendWireDrawdown",
             "parameters": [
                 {
@@ -165,8 +177,11 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     }
-} 
+}

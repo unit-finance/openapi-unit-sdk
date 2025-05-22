@@ -1,7 +1,9 @@
 {
     "taxForms": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTaxFormsList",
             "summary": "List Tax Forms",
             "description": "List tax form resources per tax year. Filtering and paging can be applied.",
@@ -62,13 +64,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getTaxForm": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTaxForm",
             "parameters": [
                 {
@@ -99,13 +106,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getTaxFormPdf": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTaxFormPdf",
             "parameters": [
                 {
@@ -131,6 +143,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

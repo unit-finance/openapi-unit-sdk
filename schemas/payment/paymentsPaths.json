@@ -46,7 +46,9 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["bulkPayments"]
+                                "enum": [
+                                    "bulkPayments"
+                                ]
                             },
                             "attributes": {
                                 "type": "object",
@@ -64,9 +66,10 @@
     },
     "getAndCreatePayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getPaymentsList",
-
             "summary": "List Payments",
             "description": "List payments resources. Filtering, paging and sorting can be applied.",
             "parameters": [
@@ -125,7 +128,10 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Debit", "Credit"]
+                                    "enum": [
+                                        "Debit",
+                                        "Credit"
+                                    ]
                                 },
                                 "description": "Optional. Filter Payments by direction (Debit, Credit). Usage example: filter[direction][0]=Debit"
                             },
@@ -157,7 +163,10 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["SameDay", "RecurringPayment"]
+                                    "enum": [
+                                        "SameDay",
+                                        "RecurringPayment"
+                                    ]
                                 },
                                 "description": "Optional. Filter Payments by Payment feature (SameDay, RecurringPayment). Usage example: filter[feature][0]=SameDay"
                             },
@@ -213,13 +222,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createPayment",
-
             "summary": "Create a Payment",
             "description": "Create a Payment via API ",
             "requestBody": {
@@ -243,15 +256,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getAndUpdatePayment": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -292,13 +309,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updatePayment",
-
             "summary": "Update Payment",
             "description": "Update an Payment via API ",
             "parameters": [
@@ -333,15 +354,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cancelPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "cancelPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -377,15 +402,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "listReceivedPayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getReceivedPaymentsList",
-
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -503,15 +532,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "receivedPayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getReceivedPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -552,15 +585,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateReceivedPayment",
             "summary": "Update Received Payment",
             "description": "Update a Received Payment.",
-
             "parameters": [
                 {
                     "schema": {
@@ -593,15 +630,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "advanceReceivedPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "advanceReceivedPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -625,15 +666,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "reprocessReceivedPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reprocessReceivedPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -657,15 +702,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "returnReceivedAchTransaction": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "returnReceivedAchTransaction",
-
             "summary": "Return Received ACH Transaction",
             "parameters": [
                 {
@@ -700,15 +749,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "recurringPayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRecurringPaymentsList",
-
             "summary": "List Recurring Payments",
             "description": "List recurring payments resources. Filtering, paging and sorting can be applied.",
             "parameters": [
@@ -735,7 +788,11 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Active", "Completed", "Disabled"]
+                                    "enum": [
+                                        "Active",
+                                        "Completed",
+                                        "Disabled"
+                                    ]
                                 },
                                 "description": "Optional. Filter recurring payments by status (Active, Completed or Disabled). Usage example: filter[status][0]=Active"
                             },
@@ -805,13 +862,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createRecurringPayment",
-
             "summary": "Create Recurring Payment",
             "description": "Create a Recurring Payment via API ",
             "requestBody": {
@@ -835,15 +896,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getRecurringPayment": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRecurringPayment",
-
             "summary": "Get by Id",
             "parameters": [
                 {
@@ -867,15 +932,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "disableRecurringPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "disableRecurringPayment",
-
             "summary": "Disable Recurring Payment",
             "parameters": [
                 {
@@ -911,15 +980,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "enableRecurringPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "enableRecurringPayment",
-
             "summary": "Enable Recurring Payment",
             "parameters": [
                 {
@@ -955,15 +1028,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "deleteRecurringPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "deleteRecurringPayment",
-
             "summary": "Delete Recurring Payment",
             "parameters": [
                 {
@@ -999,13 +1076,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "createBulkPayments": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createBulkPayments",
             "summary": "Create Bulk Payment",
             "description": "Bulk payments can contain multiple payment creation requests from different types (ACH, Book, Wire). It is highly recommended to attach to each payment creation request an idempotency key. This will ensure no creation duplication. Bulk is an asynchronous process. The immediate response will be the bulkId (generated by Unit). Once all payments creations in bulk are finished a bulkPayments.finished webhook event is sent by Unit. If not supplied, Unit will generate idempotency key as 'bulkId indexInBulk' combination.",
@@ -1030,15 +1112,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "clearAchDebitPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "clearAchDebitPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -1074,6 +1160,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

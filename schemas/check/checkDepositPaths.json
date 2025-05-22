@@ -26,9 +26,10 @@
     },
     "checkDeposits": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCheckDepositsList",
-
             "summary": "Get List Check Deposits",
             "description": "Get List Check Deposits from API ",
             "parameters": [
@@ -108,13 +109,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCheckDeposit",
-
             "summary": "Create Check Deposit",
             "description": "Create a Check Deposit via API ",
             "requestBody": {
@@ -138,15 +143,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "checkDeposit": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCheckDeposit",
-
             "parameters": [
                 {
                     "schema": {
@@ -170,13 +179,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateCheckDeposit",
-
             "summary": "Update Check Deposit",
             "description": "Update a Check Deposit via API ",
             "parameters": [
@@ -211,13 +224,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "confirmCheckDeposit": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "confirmCheckDeposit",
             "parameters": [
                 {
@@ -252,13 +270,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "frontImageCheckDeposit": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getFrontCheckDeposit",
             "parameters": [
                 {
@@ -287,11 +310,16 @@
                 },
                 "302": {
                     "description": "Found - Client should follow redirect"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "put": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "uploadFrontCheckDeposit",
             "parameters": [
                 {
@@ -327,13 +355,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "backImageCheckDeposit": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getBackCheckDeposit",
             "parameters": [
                 {
@@ -362,11 +395,16 @@
                 },
                 "302": {
                     "description": "Found - Client should follow redirect"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "put": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "uploadBackCheckDeposit",
             "parameters": [
                 {
@@ -402,6 +440,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

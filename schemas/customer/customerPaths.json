@@ -14,7 +14,9 @@
     },
     "customer": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCustomer",
             "parameters": [
                 {
@@ -47,11 +49,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateCustomer",
             "summary": "Update Customer",
             "description": "Update an Customer via API. The Customer Updated webhook event will be fired.",
@@ -87,13 +94,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "listCustomers": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCustomersList",
             "summary": "List",
             "description": "List customer resources. Paging can be applied.",
@@ -117,7 +129,10 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Active", "Archived"]
+                                    "enum": [
+                                        "Active",
+                                        "Archived"
+                                    ]
                                 },
                                 "description": "Optional. Filter customers by status (Active, Archived). Usage example: *filter[status][0]=Active"
                             },
@@ -166,11 +181,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createBusinessWalletCustomer",
             "summary": "Create Business Wallet Customer",
             "description": "Create a business wallet customer.",
@@ -186,7 +206,9 @@
                                     "$ref": "./createCustomer.json#/components/CreateBusinessWalletCustomer"
                                 }
                             },
-                            "required": ["data"]
+                            "required": [
+                                "data"
+                            ]
                         }
                     }
                 }
@@ -207,13 +229,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "archiveCustomer": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "archiveCustomer",
             "parameters": [
                 {
@@ -249,13 +276,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "authorizedUsers": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "addAuthorizedUsers",
             "parameters": [
                 {
@@ -291,11 +323,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "listAuthorizedUsers",
             "parameters": [
                 {
@@ -344,11 +381,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "delete": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "removeAuthorizedUsers",
             "parameters": [
                 {
@@ -384,13 +426,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "authorizedUser": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAuthorizedUser",
             "parameters": [
                 {
@@ -429,6 +476,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

@@ -19,7 +19,9 @@
     },
     "generateBarcode": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "generateBarcode",
             "summary": "Generate Barcode",
             "description": "Generate a barcode for a Cash Deposit store location. Cash Deposit barcodes are valid for a single use, at a specific location, and up to one hour from the time they are generated.",
@@ -50,13 +52,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "listCashDepositStoreLocations": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCashDepositStoreLocationsList",
             "summary": "List Cash Deposit Store Locations",
             "description": "Unit provides an API for searching nearby Cash Deposit store locations by coordinates or postal code. Cash deposits can be made by either swiping a customer card, or by scanning a barcode. The API supports searching by coordinates and postal code.",
@@ -78,13 +85,20 @@
                             },
                             "coordinates": {
                                 "allOf": [
-                                    { "$ref": "../types.json#/components/schemas/Coordinates" },
-                                    { "description": "Filters the results by the specified coordinates." }
+                                    {
+                                        "$ref": "../types.json#/components/schemas/Coordinates"
+                                    },
+                                    {
+                                        "description": "Filters the results by the specified coordinates."
+                                    }
                                 ]
                             },
                             "serviceType": {
                                 "type": "string",
-                                "enum": ["Swipe", "Barcode"],
+                                "enum": [
+                                    "Swipe",
+                                    "Barcode"
+                                ],
                                 "default": "Swipe",
                                 "description": "Optional. Filters the results by the specified service type. Possible values are: Swipe, Barcode."
                             }
@@ -102,13 +116,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getBarcodeImage": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getBarcodeImage",
             "summary": "Get Barcode Image by Barcode Number",
             "description": "Get a cash deposit barcode image by barcode number.",
@@ -134,6 +153,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

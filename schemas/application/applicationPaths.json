@@ -43,7 +43,9 @@
                             },
                             "type": {
                                 "type": "string",
-                                "enum": ["beneficialOwner"],
+                                "enum": [
+                                    "beneficialOwner"
+                                ],
                                 "default": "beneficialOwner"
                             },
                             "attributes": {
@@ -52,13 +54,17 @@
                         }
                     }
                 },
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             }
         }
     },
     "application": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplication",
             "parameters": [
                 {
@@ -90,11 +96,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateApplication",
             "summary": "Update Application",
             "description": "Update an Application via API. Can be used to update individual applications, sole proprietorships, business applications, and business officers.",
@@ -130,13 +141,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cancelApplication": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "cancelApplication",
             "parameters": [
                 {
@@ -165,7 +181,9 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
-                                            "enum": ["applicationCancel"]
+                                            "enum": [
+                                                "applicationCancel"
+                                            ]
                                         },
                                         "attributes": {
                                             "type": "object",
@@ -204,13 +222,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "applications": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationsList",
             "summary": "List",
             "description": "Get List Applications from API ",
@@ -292,7 +315,9 @@
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createApplication",
             "summary": "Create Application",
             "description": "Create an Application via API ",
@@ -329,13 +354,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "applicationForms": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationFormsList",
             "summary": "Get List Application Forms",
             "description": "Get List Application Forms from API ",
@@ -358,7 +388,10 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Pending", "Approved"]
+                                    "enum": [
+                                        "Pending",
+                                        "Approved"
+                                    ]
                                 }
                             },
                             "email": {
@@ -400,11 +433,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createApplicationForm",
             "summary": "Create Application Form",
             "description": "Create an Application Form via API ",
@@ -435,13 +473,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "applicationForm": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationForm",
             "parameters": [
                 {
@@ -482,13 +525,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "uploadApplicationDocumentFile": {
         "put": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "uploadApplicationDocumentFile",
             "parameters": [
                 {
@@ -533,13 +581,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "uploadApplicationDocumentFileBack": {
         "put": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "uploadApplicationDocumentFileBackSide",
             "parameters": [
                 {
@@ -584,15 +637,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "documents": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationDocuments",
-
             "parameters": [
                 {
                     "schema": {
@@ -625,13 +682,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createApplicationDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -664,15 +725,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "verifyDocument": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "verifyApplicationDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -709,7 +774,9 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
-                                            "enum": ["selfieVerification"]
+                                            "enum": [
+                                                "selfieVerification"
+                                            ]
                                         },
                                         "attributes": {
                                             "type": "object",
@@ -719,13 +786,20 @@
                                                     "description": "Verification job identifier"
                                                 }
                                             },
-                                            "required": ["jobId"]
+                                            "required": [
+                                                "jobId"
+                                            ]
                                         }
                                     },
-                                    "required": ["type", "attributes"]
+                                    "required": [
+                                        "type",
+                                        "attributes"
+                                    ]
                                 }
                             },
-                            "required": ["data"]
+                            "required": [
+                                "data"
+                            ]
                         }
                     }
                 }
@@ -740,15 +814,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "downloadDocument": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "downloadApplicationDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -782,15 +860,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "downloadBackSideDocument": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "downloadApplicationBackSideDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -824,13 +906,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "updateBusinessBeneficialOwner": {
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateBusinessBeneficialOwner",
             "summary": "Update Business Beneficial Owner",
             "description": "Update a business application's beneficial owner. The application id associated with the beneficial owner must be passed as a relationship in the request body.",
@@ -866,6 +953,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

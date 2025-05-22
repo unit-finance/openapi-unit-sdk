@@ -9,7 +9,9 @@
                         "$ref": "./lendingProgram.json#/components/schemas/LendingProgramResource"
                     }
                 },
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             },
             "UnitLendingProgramListResponse": {
                 "title": "Unit Lending Program List Response",
@@ -25,7 +27,10 @@
                         "$ref": "../types.json#/components/schemas/PaginationMeta"
                     }
                 },
-                "required": ["data", "meta"]
+                "required": [
+                    "data",
+                    "meta"
+                ]
             },
             "UnitLendingProgramExtendedResponse": {
                 "title": "Unit Lending Program Extended Response",
@@ -35,13 +40,17 @@
                         "$ref": "./lendingProgramExtended.json#/components/schemas/LendingProgramExtendedInformation"
                     }
                 },
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             }
         }
     },
     "lendingProgram": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "summary": "Get lending program by id",
             "description": "Get a lending program resource by id.",
             "operationId": "getLendingProgram",
@@ -66,13 +75,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "lendingProgramExtended": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "summary": "Get lending program extended information by id",
             "description": "Get lending program extended information resource by id.",
             "operationId": "getLendingProgramExtended",
@@ -97,13 +111,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "lendingPrograms": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "summary": "List lending programs",
             "description": "List lending program resources. Paging can be applied.",
             "operationId": "listLendingPrograms",
@@ -185,8 +204,11 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     }
-} 
+}

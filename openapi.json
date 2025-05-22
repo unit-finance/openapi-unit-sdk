@@ -420,10 +420,12 @@
             "$ref": "./schemas/card/cardFraudOutreachPaths.json#/createCardFraudOutreachPolicy"
         },
         "/fraud-outreach-policies/{policyId}": {
-            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/updateCardFraudOutreachPolicy"
-        },
-        "/fraud-outreach-policies/{id}": {
-            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/getCardFraudOutreachPolicy"
+            "get": {
+                "$ref": "./schemas/card/cardFraudOutreachPaths.json#/getCardFraudOutreachPolicy/get"
+            },
+            "patch": {
+                "$ref": "./schemas/card/cardFraudOutreachPaths.json#/updateCardFraudOutreachPolicy/patch"
+            }
         },
         "/credit-applications": {
             "$ref": "./schemas/credit-application/creditApplicationPaths.json#/creditApplications"

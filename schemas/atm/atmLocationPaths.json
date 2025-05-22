@@ -1,7 +1,9 @@
 {
     "listAtmLocations": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAtmLocationsList",
             "summary": "List ATM Locations",
             "description": "Unit provides an API for nearby ATM search. The API supports searching by coordinates, postal code, address and radius.",
@@ -21,7 +23,10 @@
                                 "description": "The latitude coordinate."
                             }
                         },
-                        "required": ["longitude", "latitude"]
+                        "required": [
+                            "longitude",
+                            "latitude"
+                        ]
                     },
                     "style": "deepObject",
                     "explode": true,
@@ -93,10 +98,15 @@
                                         "description": "Array of ATM Location resources."
                                     }
                                 },
-                                "required": ["data"]
+                                "required": [
+                                    "data"
+                                ]
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

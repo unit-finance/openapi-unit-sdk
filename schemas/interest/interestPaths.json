@@ -1,7 +1,9 @@
 {
     "getTotalAccruedInterest": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTotalAccruedInterest",
             "parameters": [
                 {
@@ -72,8 +74,11 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     }
-} 
+}

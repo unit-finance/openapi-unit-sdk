@@ -28,7 +28,9 @@
     "stopPayments": {
         "post": {
             "summary": "Create Stop Payment",
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createStopPayment",
             "requestBody": {
                 "required": true,
@@ -50,12 +52,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "get": {
             "summary": "Get a list of stop payments",
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getStopPaymentsList",
             "parameters": [
                 {
@@ -79,7 +86,10 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Active", "Disabled"]
+                                    "enum": [
+                                        "Active",
+                                        "Disabled"
+                                    ]
                                 },
                                 "description": "Filter by status (Active, Disabled). Usage example: filter[status][0]=Disabled"
                             },
@@ -139,7 +149,10 @@
                             },
                             "type": {
                                 "type": "string",
-                                "enum": ["checkStopPayment", "achStopPayment"],
+                                "enum": [
+                                    "checkStopPayment",
+                                    "achStopPayment"
+                                ],
                                 "description": "Optional. Either checkStopPayment or achStopPayment"
                             }
                         }
@@ -164,6 +177,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -171,7 +187,9 @@
     "stopPayment": {
         "get": {
             "summary": "Get details of a specific stop payment",
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getStopPayment",
             "parameters": [
                 {
@@ -197,12 +215,17 @@
                 },
                 "404": {
                     "description": "Stop payment not found"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
             "summary": "Update a stop payment",
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateStopPayment",
             "parameters": [
                 {
@@ -238,6 +261,9 @@
                 },
                 "404": {
                     "description": "Stop payment not found"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -245,7 +271,9 @@
     "disableStopPayment": {
         "post": {
             "summary": "Disable a stop payment",
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "disableStopPayment",
             "parameters": [
                 {
@@ -271,6 +299,9 @@
                 },
                 "404": {
                     "description": "Stop payment not found"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

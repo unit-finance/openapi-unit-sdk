@@ -10,7 +10,9 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["limits"],
+                                "enum": [
+                                    "limits"
+                                ],
                                 "default": "limits"
                             },
                             "attributes": {
@@ -26,16 +28,24 @@
                                         "$ref": "../types.json#/components/schemas/CardTotals"
                                     }
                                 },
-                                "required": ["dailyTotals", "monthlyTotals"],
+                                "required": [
+                                    "dailyTotals",
+                                    "monthlyTotals"
+                                ],
                                 "additionalProperties": false
                             }
                         },
                         "additionalProperties": false,
-                        "required": ["type", "attributes"]
+                        "required": [
+                            "type",
+                            "attributes"
+                        ]
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             },
             "UnitPinStatusResponse": {
                 "title": "Unit Pin Status Response",
@@ -46,7 +56,9 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["pinStatus"],
+                                "enum": [
+                                    "pinStatus"
+                                ],
                                 "default": "pinStatus"
                             },
                             "attributes": {
@@ -54,7 +66,10 @@
                                 "properties": {
                                     "status": {
                                         "type": "string",
-                                        "enum": ["Set", "NotSet"],
+                                        "enum": [
+                                            "Set",
+                                            "NotSet"
+                                        ],
                                         "description": "Card PIN status, either 'Set' or 'NotSet'"
                                     }
                                 }
@@ -114,7 +129,9 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             },
             "UnitCardholderBearerTokenResponse": {
                 "title": "Unit Cardholder Bearer Token Response",
@@ -125,7 +142,9 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             },
             "UnitCardholderTokenVerificationResponse": {
                 "title": "Unit Cardholder Token Verification Response",
@@ -136,13 +155,17 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             }
         }
     },
     "cards": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardsList",
             "summary": "Get List of Cards",
             "description": "Get List of Cards from API ",
@@ -213,11 +236,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCard",
             "summary": "Create a Card",
             "description": "Create a Card via API ",
@@ -242,13 +270,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "card": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCard",
             "parameters": [
                 {
@@ -280,11 +313,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateCard",
             "summary": "Update Card",
             "description": "Update a Card via API ",
@@ -320,13 +358,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "activateCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "activateCard",
             "summary": "Activate Card",
             "description": "Cards can be activated using this endpoint or by calling the toll-free number printed on the card. Virtual cards do not require activation.",
@@ -351,13 +394,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "setPIN": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "setCardPIN",
             "summary": "Set Card PIN",
             "description": "Set the PIN for a card. The PIN is set via a third-party service and requires a customer token.",
@@ -393,13 +441,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "changePIN": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "changeCardPIN",
             "summary": "Change Card PIN",
             "description": "Change the PIN for a card. The PIN is changed via a third-party service and requires a customer token.",
@@ -435,13 +488,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "reportLostCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reportCardAsLost",
             "summary": "Report lost as stolen",
             "parameters": [
@@ -466,13 +524,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "reportStolenCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reportCardAsStolen",
             "summary": "Report card as stolen",
             "parameters": [
@@ -497,13 +560,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "closeCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "closeCard",
             "summary": "Close a Card",
             "description": "Close a Card. A closed card cannot be reopened.",
@@ -528,13 +596,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cardPinStatus": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardPinStatus",
             "summary": "Get Card PIN Status",
             "description": "Get the status of a card's PIN, whether it has been set or not.",
@@ -559,13 +632,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "freezeCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "freezeCard",
             "parameters": [
                 {
@@ -590,13 +668,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "unfreezeCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "unfreezeCard",
             "parameters": [
                 {
@@ -621,13 +704,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cardLimits": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardLimits",
             "parameters": [
                 {
@@ -652,13 +740,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "replaceCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "replaceCard",
             "parameters": [
                 {
@@ -693,13 +786,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "mobileWalletPayload": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getMobileWalletPayload",
             "summary": "Get mobile wallet payload",
             "description": "Get the mobile wallet encrypted payload for the specified card. The encrypted payload is unique per issuance and is required as part of the SDK integration.",
@@ -735,13 +833,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cardholderToken": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCardholderToken",
             "summary": "Create Cardholder Token",
             "description": "Create a bearer token for a specific card. A Cardholder Token can only interact with one card.",
@@ -777,13 +880,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cardholderTokenVerification": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCardholderTokenVerification",
             "summary": "Create Cardholder Token Verification",
             "description": "When creating a cardholder token that contains a scope which requires two-factor authentication (see Scopes), it is required to first create a verification challenge that will be sent to the customer. The challenge is a six digit code and is valid for 10 minutes after its creation.",
@@ -819,6 +927,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

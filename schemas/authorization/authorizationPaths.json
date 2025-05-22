@@ -1,7 +1,9 @@
 {
     "authorizations": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAuthorizationsList",
             "summary": "Get List authorizations",
             "description": "List authorizations. Filtering and sorting can be applied. Paging is available only when filtering by customer id or account id.",
@@ -23,7 +25,10 @@
                             },
                             "accountType": {
                                 "type": "string",
-                                "enum": ["deposit", "credit"],
+                                "enum": [
+                                    "deposit",
+                                    "credit"
+                                ],
                                 "description": "Optional. Filter the results by account type (deposit, credit)."
                             },
                             "customerId": {
@@ -110,21 +115,30 @@
                                     },
                                     "meta": {
                                         "allOf": [
-                                            { "$ref": "../types.json#/components/schemas/PaginationMeta" },
-                                            { "description": "Pagination metadata. Will be defined only when filtered by customer or account id." }
+                                            {
+                                                "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                            },
+                                            {
+                                                "description": "Pagination metadata. Will be defined only when filtered by customer or account id."
+                                            }
                                         ]
                                     }
                                 }
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "authorization": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAuthorization",
             "parameters": [
                 {
@@ -163,13 +177,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "authorizationsRequests": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAuthorizationRequestsList",
             "summary": "Get List Authorization Requests",
             "description": "List authorization requests. Filtering and paging can be applied.",
@@ -233,13 +252,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "authorizationRequest": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAuthorizationRequest",
             "parameters": [
                 {
@@ -270,13 +294,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "approveAuthorizationRequests": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "approveAuthorizationRequest",
             "parameters": [
                 {
@@ -324,13 +353,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "declineAuthorizationRequests": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "declineAuthorizationRequest",
             "parameters": [
                 {
@@ -378,6 +412,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

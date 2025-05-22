@@ -126,7 +126,9 @@
     },
     "listEvents": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getEventsList",
             "summary": "Get Events List",
             "description": "List event resources, going back up to 90 days. Paging can be applied.",
@@ -184,13 +186,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "event": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getEvent",
             "x-scope": "events",
             "x-timeout": 5,
@@ -223,11 +230,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "fireEvent",
             "x-scope": "events-write",
             "x-timeout": 5,
@@ -266,6 +278,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

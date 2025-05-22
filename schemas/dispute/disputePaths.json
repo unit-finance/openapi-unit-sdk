@@ -1,7 +1,9 @@
 {
     "listDisputes": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getDisputesList",
             "summary": "List Disputes",
             "description": "List dispute resources. Paging can be applied.",
@@ -45,13 +47,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getDispute": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getDispute",
             "parameters": [
                 {
@@ -82,6 +89,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

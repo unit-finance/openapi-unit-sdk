@@ -1,7 +1,9 @@
 {
     "getStatements": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getStatementsList",
             "summary": "List Statements",
             "description": "List statement resources. Filtering and paging can be applied.",
@@ -70,13 +72,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getStatementHtml": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getStatementHtml",
             "parameters": [
                 {
@@ -108,7 +115,10 @@
                     "in": "query",
                     "schema": {
                         "type": "string",
-                        "enum": ["en", "es"],
+                        "enum": [
+                            "en",
+                            "es"
+                        ],
                         "default": "en"
                     },
                     "description": "Optional. Select the statement language. en - English, es - Spanish"
@@ -127,13 +137,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getStatementPdf": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getStatementPdf",
             "parameters": [
                 {
@@ -165,7 +180,10 @@
                     "in": "query",
                     "schema": {
                         "type": "string",
-                        "enum": ["en", "es"],
+                        "enum": [
+                            "en",
+                            "es"
+                        ],
                         "default": "en"
                     },
                     "description": "Optional. Select the statement language. en - English, es - Spanish"
@@ -185,13 +203,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getStatementBankPdf": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getStatementBankPdf",
             "summary": "Get Bank verification PDF",
             "parameters": [
@@ -227,6 +250,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

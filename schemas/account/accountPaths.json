@@ -47,7 +47,9 @@
     },
     "accounts": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAccountsList",
             "summary": "Get List Accounts",
             "description": "Get List Accounts from API ",
@@ -70,14 +72,22 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Open", "Frozen", "Closed"]
+                                    "enum": [
+                                        "Open",
+                                        "Frozen",
+                                        "Closed"
+                                    ]
                                 }
                             },
                             "type": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["deposit", "credit", "wallet"]
+                                    "enum": [
+                                        "deposit",
+                                        "credit",
+                                        "wallet"
+                                    ]
                                 }
                             },
                             "fromBalance": {
@@ -134,11 +144,16 @@
                 },
                 "401": {
                     "$ref": "../types.json#/components/schemas/DefaultError"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createAccount",
             "summary": "Create Deposit Account",
             "description": "Creates a deposit account for a Customer (or customers). An account.created event is raised when the call was successful. Each deposit account is created using a specific deposit product. A deposit product is a predefined set of terms associated with this deposit account (e.g. interest rate, spending limits). Use **checking** as the default value for the deposit product field while building your solution in sandbox. Contact Unit to create other deposit products under your organization. Deposit Account creation request supports Idempotency, ensuring that performing multiple identical requests will have the same effect as performing a single request. A successful account creation will result in an account in Open status. Later on, accounts can be either frozen, closed and in some cases reopened.",
@@ -172,7 +187,9 @@
     },
     "account": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAccount",
             "parameters": [
                 {
@@ -204,11 +221,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateAccount",
             "summary": "Update Account",
             "description": "Update an Account via API ",
@@ -253,7 +275,9 @@
     },
     "getAccountLimits": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAccountLimits",
             "parameters": [
                 {
@@ -284,13 +308,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "unfreezeAccount": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "unfreezeAccount",
             "parameters": [
                 {
@@ -324,7 +353,9 @@
     },
     "freezeAccount": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "freezeAccount",
             "summary": "Freeze Account by Id",
             "description": "Freezes an account. Freezing an account prevents users from performing many operations while preserving all the account data. An account.frozen event is raised when the call is successful.",
@@ -369,7 +400,9 @@
     },
     "closeAccount": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "closeAccount",
             "summary": "Close an Account by Id",
             "description": "Closes an account. Closing an account is irreversible and can only be done by an Org user. An account.closed event is raised when the call was successful.\n\nNote that closing an account will also close the cards associated with the account.\n\nWhen closing an account with a balance of $1 or less, the funds will automatically be transferred to your organization's revenue account (see more at Account Low Balance Closure). When closing an account with a balance greater than $1, a check will be mailed to the business or individual address on file.\n\nWhen closing an account with a negative balance, the balance will be considered a loss, and will be covered from your reserve account",
@@ -414,7 +447,9 @@
     },
     "reopenAccount": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reopenAccount",
             "summary": "Reopen an Account by Id",
             "description": "Reopens a previously closed account. An account.reopened event is raised when the call was successful.",
@@ -448,7 +483,9 @@
     },
     "enterDaca": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "enterControlAgreementForAccount",
             "summary": "Enter Account Control Agreement by Id",
             "description": "Indicates that a certain deposit account is subject to a Deposit Account Control Agreement. When DACA is entered, an `Operator` is assigned so in case of DACA activation the `Operator` will take control over the account, being the only entity authorized to move funds outside of the account. Setting an account with DACA `Entered` will not affect the account. It only means that DACA can be activated for this account in the future.",
@@ -482,7 +519,9 @@
     },
     "activateDaca": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "activateControlAgreementForAccount",
             "summary": "Activate Account Control Agreement by Id",
             "description": "Activates the Deposit Account Control Agreement, preventing funds from being withdrawn from the account through either end-customer initiated actions (freezing cards, restricting ACH/Wire origination) or external attempts (automatically rejecting received ACH debits). The only way of initiating money related activities (that will result in withdrawing funds from the account) would be using an org API token (when acting as the `Operator`). Activating a DACA will work only for a DACA `Operator` and for accounts that have previously entered a DACA.",
@@ -516,7 +555,9 @@
     },
     "deactivateDaca": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "deactivateControlAgreementForAccount",
             "summary": "Deactivate Account Control Agreement by Id",
             "description": "Deactivate an account with DACA `Activated` status. This action will: 1. Return account's `dacaStatus` to `Entered`. 2. Unfreeze all account's cards that were frozen due to DACA. 3. Remove the restrictions on ACH, Wire and Book (when funds are debited from the DACA account). 4. Remove the restriction on incoming debit ACH payments.",
@@ -544,13 +585,18 @@
                 },
                 "404": {
                     "$ref": "../types.json#/components/schemas/DefaultError"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getAccountBalanceHistory": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getAccountBalanceHistory",
             "summary": "Get Account Balance History",
             "description": "List account end-of-day balances history (filtering and paging can be applied). The account balance history can be used to provide the customer with an overview of their balance across account(s) over time in a visually engaging way, providing insights and creating custom product features around it.",
@@ -619,7 +665,9 @@
     },
     "repaymentInfo": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRepaymentInformation",
             "summary": "Get Repayment Information",
             "description": "Retrieve the repayment information for a specific account via API",
@@ -653,7 +701,9 @@
     },
     "depositProducts": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getDepositProductsList",
             "summary": "Get Available Deposit Products",
             "description": "List of available deposit products compatible to the account.",
@@ -687,7 +737,9 @@
     },
     "customers": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "addAccountOwners",
             "parameters": [
                 {
@@ -730,7 +782,9 @@
             }
         },
         "delete": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "removeAccountOwners",
             "parameters": [
                 {

@@ -14,7 +14,9 @@
     },
     "checkPayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCheckPaymentsList",
             "summary": "List Check Payments",
             "description": "Lists all check payments with optional filters for account, customer, status, and more.",
@@ -126,13 +128,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCheckPayment",
-
             "summary": "Originate Check Payment (Mail Physical Check)",
             "description": "Creates a physical check. The check will be printed and mailed to the US recipient specified in the request. Originated check payments can be set to be sent immediately or scheduled for a future date.",
             "requestBody": {
@@ -156,15 +162,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "checkPayment": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCheckPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -188,15 +198,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "checkPaymentApprove": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "approveCheckPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -222,14 +236,20 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
-                                            "enum": ["additionalVerification"],
+                                            "enum": [
+                                                "additionalVerification"
+                                            ],
                                             "default": "additionalVerification"
                                         }
                                     },
-                                    "required": ["type"]
+                                    "required": [
+                                        "type"
+                                    ]
                                 }
                             },
-                            "required": ["data"]
+                            "required": [
+                                "data"
+                            ]
                         }
                     }
                 }
@@ -246,15 +266,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "checkPaymentReturn": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "returnCheckPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -280,7 +304,9 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
-                                            "enum": ["checkPaymentReturn"],
+                                            "enum": [
+                                                "checkPaymentReturn"
+                                            ],
                                             "default": "checkPaymentReturn"
                                         },
                                         "attributes": {
@@ -288,18 +314,29 @@
                                             "properties": {
                                                 "reason": {
                                                     "allOf": [
-                                                        { "$ref": "./checkPayment.json#/components/schemas/ReturnReason" },
-                                                        { "description": "The reason for returning the Check Payment. See valid reasons for Check Payment returns." }
+                                                        {
+                                                            "$ref": "./checkPayment.json#/components/schemas/ReturnReason"
+                                                        },
+                                                        {
+                                                            "description": "The reason for returning the Check Payment. See valid reasons for Check Payment returns."
+                                                        }
                                                     ]
                                                 }
                                             },
-                                            "required": ["reason"]
+                                            "required": [
+                                                "reason"
+                                            ]
                                         }
                                     },
-                                    "required": ["type", "attributes"]
+                                    "required": [
+                                        "type",
+                                        "attributes"
+                                    ]
                                 }
                             },
-                            "required": ["data"]
+                            "required": [
+                                "data"
+                            ]
                         }
                     }
                 }
@@ -316,15 +353,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "checkPaymentCancel": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "cancelCheckPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -348,15 +389,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getCheckPaymentFront": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCheckPaymentFront",
-
             "parameters": [
                 {
                     "schema": {
@@ -384,15 +429,19 @@
                 },
                 "302": {
                     "description": "Redirect Found - Client should support following redirects"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getCheckPaymentBack": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCheckPaymentBack",
-
             "parameters": [
                 {
                     "schema": {
@@ -420,6 +469,9 @@
                 },
                 "302": {
                     "description": "Redirect Found - Client should support following redirects"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

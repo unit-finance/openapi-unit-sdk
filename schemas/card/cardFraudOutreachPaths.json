@@ -17,7 +17,9 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             },
             "UnitCardFraudCasesListResponse": {
                 "title": "Unit Card Fraud Cases List Response",
@@ -52,7 +54,9 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             },
             "UnitCardFraudOutreachPolicyResponse": {
                 "title": "Unit Card Fraud Outreach Policy Response",
@@ -63,13 +67,17 @@
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             }
         }
     },
     "cardFraudCase": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardFraudCase",
             "summary": "Get Card Fraud Case by Id",
             "description": "Get a card fraud case by id.",
@@ -94,13 +102,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cardFraudCases": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "listCardFraudCases",
             "summary": "List Card Fraud Cases",
             "description": "List card fraud case resources. Paging can be applied.",
@@ -132,7 +145,12 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Created", "Active", "Closed", "Expired"]
+                                    "enum": [
+                                        "Created",
+                                        "Active",
+                                        "Closed",
+                                        "Expired"
+                                    ]
                                 },
                                 "description": "Filter by case status. Can be one of the following values: Created, Active, Closed, Expired."
                             },
@@ -140,7 +158,11 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Pending", "Fraud", "NoFraud"]
+                                    "enum": [
+                                        "Pending",
+                                        "Fraud",
+                                        "NoFraud"
+                                    ]
                                 },
                                 "description": "Filter by case decision. Can be one of the following values: Pending, Fraud, NoFraud."
                             }
@@ -167,13 +189,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "markCardFraudCaseAsFraud": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "markCardFraudCaseAsFraud",
             "summary": "Mark Card Fraud Case as Fraud",
             "description": "Mark a card fraud case as fraud.",
@@ -209,13 +236,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "markCardFraudCaseAsNoFraud": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "markCardFraudCaseAsNoFraud",
             "summary": "Mark Card Fraud Case as No Fraud",
             "description": "Mark a card fraud case as no fraud.",
@@ -251,13 +283,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "createCardFraudOutreachPolicy": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCardFraudOutreachPolicy",
             "summary": "Create Card Fraud Outreach Policy",
             "description": "Create a card fraud outreach policy.",
@@ -282,13 +319,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "updateCardFraudOutreachPolicy": {
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateCardFraudOutreachPolicy",
             "summary": "Update Card Fraud Outreach Policy",
             "description": "Update a card fraud outreach policy.",
@@ -324,13 +366,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getCardFraudOutreachPolicy": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardFraudOutreachPolicy",
             "summary": "Get Card Fraud Outreach Policy by Id",
             "description": "Get a card fraud outreach policy by id.",
@@ -339,7 +386,7 @@
                     "schema": {
                         "type": "string"
                     },
-                    "name": "id",
+                    "name": "policyId",
                     "in": "path",
                     "required": true,
                     "description": "ID of the card fraud outreach policy to get"
@@ -355,8 +402,11 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     }
-} 
+}

@@ -14,7 +14,9 @@
     },
     "repayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRepaymentsList",
             "summary": "Get List Repayments",
             "description": "List repayments resources. Filtering, paging and sorting can be applied.",
@@ -68,9 +70,9 @@
                                 "items": {
                                     "type": "string",
                                     "enum": [
-                                        "AchRepayment", 
-                                        "BookRepayment", 
-                                        "capitalPartnerAchRepayment", 
+                                        "AchRepayment",
+                                        "BookRepayment",
+                                        "capitalPartnerAchRepayment",
                                         "capitalPartnerBookRepayment"
                                     ]
                                 }
@@ -94,7 +96,10 @@
                     "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order.",
                     "schema": {
                         "type": "string",
-                        "enum": ["createdAt", "-createdAt"]
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ]
                     }
                 },
                 {
@@ -123,14 +128,22 @@
                                     },
                                     "included": {
                                         "allOf": [
-                                            { "$ref": "../types.json#/components/schemas/IncludedResource" },
-                                            { "description": "Array of resources requested by the include query parameter." }
+                                            {
+                                                "$ref": "../types.json#/components/schemas/IncludedResource"
+                                            },
+                                            {
+                                                "description": "Array of resources requested by the include query parameter."
+                                            }
                                         ]
                                     },
                                     "meta": {
                                         "allOf": [
-                                            { "$ref": "../types.json#/components/schemas/PaginationMeta" },
-                                            { "description": "Pagination data includes offset, limit and total (estimated total items)." }
+                                            {
+                                                "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                            },
+                                            {
+                                                "description": "Pagination data includes offset, limit and total (estimated total items)."
+                                            }
                                         ]
                                     }
                                 }
@@ -140,11 +153,16 @@
                 },
                 "401": {
                     "$ref": "../types.json#/components/schemas/DefaultError"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createRepayment",
             "summary": "Create a Repayment",
             "description": "Creates a repayment for a credit account. Book Repayment creation requests support Idempotency, ensuring that performing multiple identical requests will have the same result as a single request.",
@@ -178,7 +196,9 @@
     },
     "repayment": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRepayment",
             "parameters": [
                 {
@@ -211,6 +231,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

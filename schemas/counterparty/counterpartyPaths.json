@@ -57,7 +57,9 @@
     },
     "counterparties": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCounterpartiesList",
             "summary": "List Counterparties",
             "description": "List counterparties. Filtering and paging can be applied.",
@@ -126,11 +128,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCounterparty",
             "summary": "Create Counterparty",
             "description": "Creates an ACH counterparty for a specific customer.",
@@ -155,13 +162,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "counterparty": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCounterparty",
             "parameters": [
                 {
@@ -186,11 +198,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateCounterparty",
             "summary": "Update Counterparty",
             "description": "Update a Counterparty. Relink existing counterparty with a new Plaid processor token.",
@@ -226,11 +243,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "delete": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "deleteCounterparty",
             "parameters": [
                 {
@@ -248,13 +270,18 @@
             "responses": {
                 "204": {
                     "description": "No content. The operation was completed successfully."
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "counterpartyBalance": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCounterpartyBalance",
             "summary": "Get Counterparty Balance By Id",
             "parameters": [
@@ -279,6 +306,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

@@ -17,7 +17,9 @@
     },
     "createBatchReleases": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createBatchReleases",
             "summary": "Create Batch Releases",
             "description": "Release is the act of splitting a single batch payment between multiple customer accounts in your organization. When creating releases, you are required to provide compliance information for the original senders of the funds.",
@@ -42,8 +44,11 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     }
-} 
+}

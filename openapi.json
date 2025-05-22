@@ -436,6 +436,15 @@
         },
         "/credit-decisions/{id}": {
             "$ref": "./schemas/credit-decision/creditDecisionPaths.json#/creditDecision"
+        },
+        "/lending-programs": {
+            "$ref": "./schemas/lending-program/lendingProgramPaths.json#/lendingPrograms"
+        },
+        "/lending-programs/{id}": {
+            "$ref": "./schemas/lending-program/lendingProgramPaths.json#/lendingProgram"
+        },
+        "/lending-programs/{id}/extended": {
+            "$ref": "./schemas/lending-program/lendingProgramPaths.json#/lendingProgramExtended"
         }
     },
     "components": {

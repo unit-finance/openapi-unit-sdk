@@ -1,0 +1,126 @@
+{
+    "components": {
+        "schemas": {
+            "BankSponsoredChargeCardProgram": {
+                "type": "object",
+                "title": "Bank Sponsored Charge Card Program",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["bankSponsoredChargeCardProgram"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "The name of the lending program."
+                            },
+                            "programSizeLimit": {
+                                "type": "integer",
+                                "description": "The size of the credit line set by the Bank."
+                            }
+                        },
+                        "required": ["createdAt", "name", "programSizeLimit"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "id", "attributes"],
+                "additionalProperties": false
+            },
+            "ClientSponsoredChargeCardProgram": {
+                "type": "object",
+                "title": "Client Sponsored Charge Card Program",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["clientSponsoredChargeCardProgram"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "The name of the lending program."
+                            },
+                            "programSizeLimit": {
+                                "type": "integer",
+                                "description": "The size of the credit line set by the Bank."
+                            }
+                        },
+                        "required": ["createdAt", "name", "programSizeLimit"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "id", "attributes"],
+                "additionalProperties": false
+            },
+            "ReceivablesRetentionProgram": {
+                "type": "object",
+                "title": "Receivables Retention Program",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["receivablesRetention"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "The name of the lending program."
+                            },
+                            "programSizeLimit": {
+                                "type": "integer",
+                                "description": "The size of the credit line set by the Bank."
+                            }
+                        },
+                        "required": ["createdAt", "name", "programSizeLimit"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "id", "attributes"],
+                "additionalProperties": false
+            },
+            "LendingProgramResource": {
+                "title": "Lending Program Resource",
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/BankSponsoredChargeCardProgram"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ClientSponsoredChargeCardProgram"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ReceivablesRetentionProgram"
+                    }
+                ]
+            }
+        }
+    }
+} 

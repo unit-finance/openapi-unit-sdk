@@ -872,6 +872,16 @@
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 255
+            },
+            "LendingProgramType": {
+                "type": "string",
+                "title": "Lending Program Type",
+                "description": "The type of a lending program.",
+                "enum": [
+                    "BankSponsoredBusinessChargeCard",
+                    "ClientSponsoredBusinessChargeCard",
+                    "ReceivablesRetention"
+                ]
             }
         }
     }

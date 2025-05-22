@@ -1,0 +1,192 @@
+{
+    "components": {
+        "schemas": {
+            "UnitLendingProgramResponse": {
+                "title": "Unit Lending Program Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./lendingProgram.json#/components/schemas/LendingProgramResource"
+                    }
+                },
+                "required": ["data"]
+            },
+            "UnitLendingProgramListResponse": {
+                "title": "Unit Lending Program List Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./lendingProgram.json#/components/schemas/LendingProgramResource"
+                        }
+                    },
+                    "meta": {
+                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                    }
+                },
+                "required": ["data", "meta"]
+            },
+            "UnitLendingProgramExtendedResponse": {
+                "title": "Unit Lending Program Extended Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./lendingProgramExtended.json#/components/schemas/LendingProgramExtendedInformation"
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    },
+    "lendingProgram": {
+        "get": {
+            "tags": ["unit"],
+            "summary": "Get lending program by id",
+            "description": "Get a lending program resource by id.",
+            "operationId": "getLendingProgram",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "description": "Lending program id"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitLendingProgramResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "lendingProgramExtended": {
+        "get": {
+            "tags": ["unit"],
+            "summary": "Get lending program extended information by id",
+            "description": "Get lending program extended information resource by id.",
+            "operationId": "getLendingProgramExtended",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "description": "Lending program id"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitLendingProgramExtendedResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "lendingPrograms": {
+        "get": {
+            "tags": ["unit"],
+            "summary": "List lending programs",
+            "description": "List lending program resources. Paging can be applied.",
+            "operationId": "listLendingPrograms",
+            "parameters": [
+                {
+                    "name": "page[limit]",
+                    "in": "query",
+                    "schema": {
+                        "type": "integer",
+                        "default": 100
+                    },
+                    "description": "Optional. Maximum number of resources that will be returned. Maximum is 1000 resources. See [Pagination](/docs/api/#intro-pagination)."
+                },
+                {
+                    "name": "page[offset]",
+                    "in": "query",
+                    "schema": {
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "description": "Optional. Number of resources to skip. See [Pagination](/docs/api/#intro-pagination)."
+                },
+                {
+                    "name": "filter[name]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filters the results by the specified program name."
+                },
+                {
+                    "name": "filter[programType]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filters the results by the specified [Lending Program Type](/docs/#lending-program-type)."
+                },
+                {
+                    "name": "filter[minProgramLimit]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filters the results by a minimum value of programSizeLimit."
+                },
+                {
+                    "name": "filter[maxProgramLimit]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filters the results by a maximum value of programSizeLimit."
+                },
+                {
+                    "name": "filter[orgId]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filters the results by the specified org id."
+                },
+                {
+                    "name": "filter[bankId]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filters the results by the specified bank id."
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitLendingProgramListResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+} 

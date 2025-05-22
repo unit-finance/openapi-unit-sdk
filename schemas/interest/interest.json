@@ -1,0 +1,47 @@
+{
+    "components": {
+        "schemas": {
+            "AccruedInterest": {
+                "title": "Accrued Interest",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "type": {
+                        "type": "string",
+                        "const": "accruedInterest"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "description": "The accrued interest amount in cents."
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The date and time when the record was created."
+                            }
+                        },
+                        "required": ["amount", "createdAt"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "account": {
+                                "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["account"]
+                    }
+                },
+                "required": ["type", "attributes", "relationships"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

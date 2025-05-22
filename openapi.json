@@ -454,6 +454,9 @@
         },
         "/receivablesreports/balance": {
             "$ref": "./schemas/receivables/receivablesPaths.json#/receivablesBalance"
+        },
+        "/accrued-interest/total": {
+            "$ref": "./schemas/interest/interestPaths.json#/getTotalAccruedInterest"
         }
     },
     "components": {

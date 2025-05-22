@@ -61,6 +61,34 @@
                 "type": "string",
                 "nullable": true
             },
+            "TotalAccruedInterest": {
+                "title": "Total Accrued Interest",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "const": "totalAccruedInterest"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "description": "The sum of customer accrued interest (in cents) for a given period of time."
+                            }
+                        },
+                        "required": [
+                            "amount"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "type",
+                    "attributes"
+                ],
+                "additionalProperties": false
+            },
             "Contact": {
                 "title": "Contact",
                 "type": "object",

@@ -1,0 +1,79 @@
+{
+    "getTotalAccruedInterest": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getTotalAccruedInterest",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "filter[accountId]",
+                    "in": "query",
+                    "required": false,
+                    "description": "Optional. Filters the results by the specified account id."
+                },
+                {
+                    "schema": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "name": "filter[since]",
+                    "in": "query",
+                    "required": false,
+                    "description": "Optional. Filters the accrued interest after the specified date. e.g. 2024-01-13T16:01:19.346Z. Either a set of [since] & [until] OR a set of [sinceInterestMonth] & [untilInterestMonth] is required."
+                },
+                {
+                    "schema": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "name": "filter[until]",
+                    "in": "query",
+                    "required": false,
+                    "description": "Optional. Filters the account accrued interest before the specified date. e.g. 2024-05-06T16:01:00.123Z. Either a set of [since] & [until] OR a set of [sinceInterestMonth] & [untilInterestMonth] is required."
+                },
+                {
+                    "schema": {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}$"
+                    },
+                    "name": "filter[sinceInterestMonth]",
+                    "in": "query",
+                    "required": false,
+                    "description": "Optional. Filters the accrued interest after the specified month. e.g. 2024-03. Either a set of [since] & [until] OR a set of [sinceInterestMonth] & [untilInterestMonth] is required."
+                },
+                {
+                    "schema": {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}$"
+                    },
+                    "name": "filter[untilInterestMonth]",
+                    "in": "query",
+                    "required": false,
+                    "description": "Optional. Filters the accrued interest before the specified month. e.g. 2024-07. Either a set of [since] & [until] OR a set of [sinceInterestMonth] & [untilInterestMonth] is required."
+                }
+            ],
+            "summary": "Get Total Accrued Interest",
+            "description": "The response to this API call includes the sum of customer accrued interest (in cents) for a given period of time.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Total Accrued Interest Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "../types.json#/components/schemas/TotalAccruedInterest"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+} 

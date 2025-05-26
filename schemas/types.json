@@ -67,7 +67,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "const": "totalAccruedInterest"
+                        "enum": ["totalAccruedInterest"]
                     },
                     "attributes": {
                         "type": "object",

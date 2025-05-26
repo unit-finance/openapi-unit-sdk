@@ -82,7 +82,7 @@
                                         "Declined"
                                     ]
                                 },
-                                "default": "Authorized",
+                                "default": ["Authorized"],
                                 "description": "Optional. Filter authorizations by Authorization Status."
                             }
                         }

@@ -1,0 +1,46 @@
+name: bundle-openapi
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  bundle:
+    name: Bundle OpenAPI and commit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false # We'll use a token instead
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Redocly CLI
+        run: npm install -g @redocly/cli@latest
+
+      - name: Bundle OpenAPI spec
+        run: npx @redocly/cli bundle openapi.json --output openapi-full.json
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push bundled spec
+        run: |
+          git add openapi-full.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update bundled OpenAPI spec"
+            git push
+          fi
+        env:
+          # Use GitHub Actions token to push the commit
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

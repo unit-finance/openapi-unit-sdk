@@ -3,7 +3,7 @@ name: bundle-openapi
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   bundle:

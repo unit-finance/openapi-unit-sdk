@@ -27,17 +27,22 @@ jobs:
       - name: Bundle OpenAPI spec
         run: npx @redocly/cli bundle openapi.json --output openapi-full.json
 
-      - name: Configure Git
+      - name: Manually set authenticated Git remote
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-      - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: update bundled OpenAPI spec"
-          file_pattern: openapi-full.json
-          commit_user_name: "github-actions[bot]"
-          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+      - name: Commit and push changes manually
+        run: |
+          git add openapi-full.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update bundled OpenAPI spec"
+            git push origin HEAD
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
 

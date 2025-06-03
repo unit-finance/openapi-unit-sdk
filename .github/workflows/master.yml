@@ -39,6 +39,5 @@ jobs:
           file_pattern: openapi-full.json
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
-          token: ${{ secrets.GITHUB_TOKEN }}
           
 

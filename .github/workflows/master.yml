@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+
+permissions:
+  contents: write
+  
+
 jobs:
   bundle:
     name: Bundle OpenAPI and commit

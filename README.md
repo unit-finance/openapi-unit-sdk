@@ -14,6 +14,7 @@ Below you can find examples for generating client libraries using [OpenAPI gener
 
 The following examples are with the use of [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli).
 
+
 ## npm commands
 
 ### bundle

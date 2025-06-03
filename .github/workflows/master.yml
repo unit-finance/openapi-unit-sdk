@@ -32,15 +32,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit and push bundled spec
-        run: |
-          git add openapi-full.json
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "chore: update bundled OpenAPI spec"
-            git push
-          fi
-        env:
-          # Use GitHub Actions token to push the commit
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: chore: update bundled OpenAPI spec
+          file_pattern: openapi-full.json

@@ -45,7 +45,7 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "chore: update bundled OpenAPI spec"
-            git push origin HEAD
+            git push origin HEAD --force
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

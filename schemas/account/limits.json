@@ -274,6 +274,7 @@
             "WalletLimits": {
                 "title": "Wallet Account Limits",
                 "type": "object",
+                "description": "Some monetary transactions (such as originating ACH payments, ATM withdrawals or deposits) are subject to daily and/or monthly amount limits that are defined on the wallet level.",
                 "allOf": [
                     {
                         "$ref": "./limits.json#/components/schemas/Limits"
@@ -286,6 +287,7 @@
                                 "properties": {
                                     "ach": {
                                         "type": "object",
+                                        "description": "ACH payment limits configuration",
                                         "properties": {
                                             "limits": {
                                                 "type": "object",
@@ -359,6 +361,7 @@
                                     },
                                     "card": {
                                         "type": "object",
+                                        "description": "Card transaction limits configuration",
                                         "properties": {
                                             "limits": {
                                                 "type": "object",
@@ -414,6 +417,7 @@
                                     },
                                     "checkDeposit": {
                                         "type": "object",
+                                        "description": "Check deposit limits configuration",
                                         "properties": {
                                             "limits": {
                                                 "type": "object",
@@ -455,6 +459,7 @@
                                     },
                                     "wire": {
                                         "type": "object",
+                                        "description": "Wire transfer limits configuration",
                                         "properties": {
                                             "limits": {
                                                 "type": "object",
@@ -462,19 +467,19 @@
                                                     "dailyTransfer": {
                                                         "type": "number"
                                                     },
-                                                    "montlyTransfer": {
+                                                    "monthlyTransfer": {
                                                         "type": "number"
                                                     },
                                                     "dailyTransferSoft": {
                                                         "type": "number"
                                                     },
-                                                    "montlyTransferSoft": {
+                                                    "monthlyTransferSoft": {
                                                         "type": "number"
                                                     }
                                                 },
                                                 "required": [
                                                     "dailyTransfer",
-                                                    "montlyTransfer"
+                                                    "monthlyTransfer"
                                                 ]
                                             },
                                             "totalsDaily": {
@@ -486,7 +491,7 @@
                                                 },
                                                 "required": ["transfers"]
                                             },
-                                            "totalsMontly": {
+                                            "totalsMonthly": {
                                                 "type": "object",
                                                 "properties": {
                                                     "transfers": {
@@ -499,11 +504,12 @@
                                         "required": [
                                             "limits",
                                             "totalsDaily",
-                                            "totalsMontly"
+                                            "totalsMonthly"
                                         ]
                                     },
                                     "checkPayment": {
                                         "type": "object",
+                                        "description": "Check payment limits configuration",
                                         "properties": {
                                             "limits": {
                                                 "type": "object",
@@ -511,7 +517,7 @@
                                                     "dailySent": {
                                                         "type": "number"
                                                     },
-                                                    "montlySent": {
+                                                    "monthlySent": {
                                                         "type": "number"
                                                     },
                                                     "dailySentSoft": {
@@ -535,7 +541,7 @@
                                                 },
                                                 "required": ["sent"]
                                             },
-                                            "totalsMontly": {
+                                            "totalsMonthly": {
                                                 "type": "object",
                                                 "properties": {
                                                     "sent": {
@@ -548,7 +554,7 @@
                                         "required": [
                                             "limits",
                                             "totalsDaily",
-                                            "totalsMontly"
+                                            "totalsMonthly"
                                         ]
                                     }
                                 },

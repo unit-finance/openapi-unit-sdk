@@ -3,7 +3,8 @@
         "schemas": {
             "RecurringRepaymentStatus": {
                 "type": "string",
-                "enum": ["Active", "Disabled"]
+                "enum": ["Active", "Disabled"],
+                "description": "Recurring Repayments have a `status` attribute, which represents their current status. Active - Upon creation, the status will be set to Active. Disabled - When recurring repayment has been disabled, the status will be set to Disabled."
             },
             "RecurringRepaymentRelationshipsBase": {
                 "type": "object",
@@ -223,22 +224,31 @@
                                     },
                                     "description": {
                                         "type": "string",
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Repayment description (maximum of 50 characters). This will show up on the statement of the counterparty."
                                     },
                                     "addenda": {
                                         "type": "string",
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Optional, additional repayment description (maximum of 80 characters), not all institutions present that in payment description."
                                     },
                                     "sameDay": {
                                         "type": "boolean",
-                                        "default": "false"
+                                        "default": "false",
+                                        "description": "Optional, default is false. See https://www.unit.co/docs/api/ach-origination/#same-day-ach."
                                     },
-                                    "secCode": { "type": "string" },
+                                    "secCode": { 
+                                        "type": "string",
+                                        "description": "Optional. See https://www.unit.co/docs/api/ach-origination/#use-a-custom-sec-code."
+                                    },
                                     "numberOfRepayments": {
                                         "type": "integer"
                                     },
                                     "tags": {
-                                        "$ref": "../../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional. See https://www.unit.co/docs/#tags. Tags that will be copied to any transaction that this recurring repayment creates (see https://www.unit.co/docs/#tag-inheritance)." }
+                                        ]
                                     },
                                     "status": {
                                         "$ref": "#/components/schemas/RecurringRepaymentStatus"
@@ -288,14 +298,19 @@
                                     },
                                     "description": {
                                         "type": "string",
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Repayment description (maximum of 80 characters), this will show up on the statement of the counterparty."
                                     },
                                     "transactionSummaryOverride": {
                                         "type": "string",
-                                        "maxLength": 100
+                                        "maxLength": 100,
+                                        "description": "Optional. If this field is populated, its contents will be returned as the bookTransaction's summary field (maximum of 100 characters)."
                                     },
                                     "tags": {
-                                        "$ref": "../../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional. See https://www.unit.co/docs/#tags." }
+                                        ]
                                     },
                                     "numberOfRepayments": {
                                         "type": "integer"
@@ -461,7 +476,7 @@
                             "recurringAchRepayment",
                             "recurringBookRepayment",
                             "recurringCapitalPartnerAchRepayment",
-                            "recurrinCapitalPartnerBookRepayment"
+                            "recurringCapitalPartnerBookRepayment"
                         ]
                     }
                 },

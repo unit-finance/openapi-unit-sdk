@@ -76,44 +76,53 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the recurring payment was created."
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the recurring payment was last updated."
                                     },
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount (in cents)."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 10
+                                        "maxLength": 10,
+                                        "description": "Payment description (maximum of 10 characters), also known as Company Entry Description, this will show up on the statement of the counterparty."
                                     },
                                     "addenda": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Optional, additional payment description (maximum of 80 characters), not all institutions present that."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "$ref": "../types.json#/components/schemas/Tags",
+                                        "description": "Optional. See Tags. Tags that will be copied to any transaction that this payment creates (see Tag Inheritance)."
                                     },
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "Pending",
                                             "Active",
                                             "Completed",
-                                            "Disabled"
-                                        ]
+                                            "Disabled",
+                                            "Deleted"
+                                        ],
+                                        "description": "The status of the recurring payment. Active: The status is set to Active when a recurring payment is created. Completed: The status changes to Completed once the recurring payment's end date has passed. Disabled: The status is set to Disabled when a recurring payment is turned off. It can be reverted to Active by enabling the recurring payment. Deleted: The status is set to Deleted when a recurring payment is removed. This action is irreversible, unlike the Disabled status."
                                     },
                                     "schedule": {
-                                        "$ref": "../types.json#/components/schemas/ResponseSchedule"
+                                        "$ref": "../types.json#/components/schemas/ResponseSchedule",
+                                        "description": "The schedule details of the recurring payment. All times must be in the future."
                                     },
                                     "numberOfPayments": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "description": "The number of payments that have been executed from this recurring payment schedule."
                                     }
                                 },
                                 "required": [
@@ -150,52 +159,63 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the recurring payment was created."
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the recurring payment was last updated."
                                     },
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount (in cents)."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 10
+                                        "maxLength": 10,
+                                        "description": "Payment description (maximum of 10 characters), also known as Company Entry Description, this will show up on the statement of the counterparty."
                                     },
                                     "addenda": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Optional, additional payment description (maximum of 80 characters), not all institutions present that."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "$ref": "../types.json#/components/schemas/Tags",
+                                        "description": "Optional. See Tags. Tags that will be copied to any transaction that this payment creates (see Tag Inheritance)."
                                     },
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "Pending",
                                             "Active",
                                             "Completed",
-                                            "Disabled"
-                                        ]
+                                            "Disabled",
+                                            "Deleted"
+                                        ],
+                                        "description": "The status of the recurring payment. Active: The status is set to Active when a recurring payment is created. Completed: The status changes to Completed once the recurring payment's end date has passed. Disabled: The status is set to Disabled when a recurring payment is turned off. It can be reverted to Active by enabling the recurring payment. Deleted: The status is set to Deleted when a recurring payment is removed. This action is irreversible, unlike the Disabled status."
                                     },
                                     "schedule": {
-                                        "$ref": "../types.json#/components/schemas/ResponseSchedule"
+                                        "$ref": "../types.json#/components/schemas/ResponseSchedule",
+                                        "description": "The schedule details of the recurring payment. All times must be in the future."
                                     },
                                     "numberOfPayments": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "description": "The number of payments that have been executed from this recurring payment schedule."
                                     },
                                     "verifyCounterpartyBalance": {
                                         "type": "boolean",
-                                        "default": false
+                                        "default": false,
+                                        "description": "The payment will not be processed and will be rejected if the counterparty does not have enough funds."
                                     },
                                     "sameDay": {
                                         "type": "boolean",
-                                        "default": false
+                                        "default": false,
+                                        "description": "Optional field to mark this payment as a Same Day ACH payment (higher cost). The payment will be processed on the day that it is sent, rather than the next day."
                                     }
                                 },
                                 "required": [
@@ -232,39 +252,47 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the recurring payment was created."
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the recurring payment was last updated."
                                     },
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount (in cents)."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Payment description (maximum of 80 characters)."
                                     },
                                     "status": {
                                         "type": "string",
                                         "enum": [
-                                            "Pending",
                                             "Active",
                                             "Completed",
-                                            "Disabled"
-                                        ]
+                                            "Disabled",
+                                            "Deleted"
+                                        ],
+                                        "description": "The status of the recurring payment. Active: The status is set to Active when a recurring payment is created. Completed: The status changes to Completed once the recurring payment's end date has passed. Disabled: The status is set to Disabled when a recurring payment is turned off. It can be reverted to Active by enabling the recurring payment. Deleted: The status is set to Deleted when a recurring payment is removed. This action is irreversible, unlike the Disabled status."
                                     },
                                     "schedule": {
-                                        "$ref": "../types.json#/components/schemas/ResponseSchedule"
+                                        "$ref": "../types.json#/components/schemas/ResponseSchedule",
+                                        "description": "The schedule details of the recurring payment. All times must be in the future."
                                     },
                                     "numberOfPayments": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "description": "The number of payments that have been executed from this recurring payment schedule."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "$ref": "../types.json#/components/schemas/Tags",
+                                        "description": "Optional. See Tags. Tags that will be copied to any transaction that this payment creates (see Tag Inheritance)."
                                     }
                                 },
                                 "required": [
@@ -290,6 +318,7 @@
             "RecurringPayment": {
                 "title": "Recurring Payment Resource",
                 "type": "object",
+                "description": "Recurring Payments allows you to create and execute future payments (at the moment only Credit ACH, Debit ACH, and Credit Book Payments are supported) according to defined patterns, so different use cases like subscriptions, savings, rent payments and many more are supported. When creating a Recurring Payment, you can set a schedule and control the start time and frequency of the creation of future payments (monthly or weekly intervals are supported).",
                 "properties": {
                     "type": {
                         "type": "string",

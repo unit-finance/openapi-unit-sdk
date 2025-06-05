@@ -16,9 +16,8 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getWebhooksList",
-
-            "summary": "Get List Webhooks",
-            "description": "Get List Webhooks from API ",
+            "summary": "List Webhooks",
+            "description": "List webhook resources. Paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -32,16 +31,22 @@
                         "type": "object",
                         "properties": {
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the results that occurred after the specified date. e.g. 2020-01-13T16:01:19.346Z"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the results that occurred before the specified date. e.g. 2020-01-02T20:06:23.486Z"
                             },
                             "fromId": {
-                                "type": "integer"
+                                "type": "integer",
+                                "description": "Optional. Filters the results that have an id that is higher or equal to the specified id. e.g. 17421"
                             },
                             "toId": {
-                                "type": "integer"
+                                "type": "integer",
+                                "description": "Optional. Filters the results that have an id that is lower or equal to the specified id. e.g. 17432"
                             }
                         }
                     }
@@ -51,7 +56,8 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Sort order for results."
                 }
             ],
             "responses": {
@@ -73,6 +79,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
@@ -80,7 +89,7 @@
             "tags": ["unit"],
             "operationId": "createWebhook",
             "summary": "Create Webhook",
-            "description": "Create a Webhook via API ",
+            "description": "Creates a webhook. A new webhook will not be created if there are already 100 webhooks with the status 'Enabled'. Please disable existing webhooks to proceed. Occurs only in the Sandbox environment.",
             "requestBody": {
                 "description": "Create Webhook Request Body",
                 "required": true,
@@ -101,37 +110,47 @@
                                             "type": "object",
                                             "properties": {
                                                 "label": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "description": "A label describing the webhook."
                                                 },
                                                 "url": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "description": "The URL of the webhook endpoint."
                                                 },
                                                 "token": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "description": "The secret token (see https://www.unit.co/docs/api/webhooks/#securing-your-webhooks)."
                                                 },
                                                 "contentType": {
                                                     "type": "string",
-                                                    "enum": ["Json", "JsonAPI"]
+                                                    "enum": ["Json", "JsonAPI"],
+                                                    "description": "The type of content you wish to receive. Either Json or JsonAPI."
                                                 },
                                                 "deliveryMode": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "enum": ["AtMostOnce", "AtLeastOnce"],
+                                                    "description": "The attempted delivery mode of the webhook. Either AtMostOnce or AtLeastOnce."
                                                 },
                                                 "includeResources": {
-                                                    "type": "boolean"
+                                                    "type": "boolean",
+                                                    "default": false,
+                                                    "description": "Optional. Default: false. Indicates whether to include full resource in events payload."
                                                 },
                                                 "subscriptionType": {
                                                     "type": "string",
                                                     "enum": [
                                                         "All",
-                                                        "OnlyAuthorizationRequest"
-                                                    ]
+                                                        "OnlyAuthorizationRequest",
+                                                        "NotAuthorizationRequest"
+                                                    ],
+                                                    "default": "All",
+                                                    "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'(see https://www.unit.co/docs/api/webhooks/#subscription-types)."
                                                 }
                                             },
                                             "additionalProperties": false,
                                             "required": [
                                                 "label",
                                                 "url",
-                                                "token",
                                                 "contentType",
                                                 "deliveryMode"
                                             ]
@@ -153,6 +172,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -161,7 +183,6 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getWebhook",
-
             "parameters": [
                 {
                     "schema": {
@@ -173,8 +194,8 @@
                     "description": "ID of the webhook to get"
                 }
             ],
-            "summary": "Get Webhook Id",
-            "description": "Get a Webhook from API ",
+            "summary": "Get Webhook by Id",
+            "description": "Get a webhook resource by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -185,6 +206,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
@@ -192,7 +216,7 @@
             "tags": ["unit"],
             "operationId": "updateWebhook",
             "summary": "Update Webhook",
-            "description": "Update a Webhook via API ",
+            "description": "Update a webhook.",
             "parameters": [
                 {
                     "schema": {
@@ -216,7 +240,7 @@
                 }
             },
             "responses": {
-                "201": {
+                "200": {
                     "description": "Successful Response",
                     "content": {
                         "application/vnd.api+json": {
@@ -225,6 +249,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -233,7 +260,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "enableWebhook",
-
             "summary": "Enable Webhook",
             "parameters": [
                 {
@@ -246,7 +272,7 @@
                     "description": "ID of the webhook to enable"
                 }
             ],
-            "description": "Enable a Webhook via API ",
+            "description": "Enable a webhook. A webhook cannot be enabled if there are already 100 webhooks with the status 'Enabled'. Please disable an existing webhook before enabling a new one. Occurs only in the Sandbox environment.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -257,6 +283,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -265,8 +294,7 @@
         "post": {
             "tags": ["unit"],
             "operationId": "disableWebhook",
-
-            "summary": "Disable a Webhook",
+            "summary": "Disable Webhook",
             "parameters": [
                 {
                     "schema": {
@@ -278,7 +306,7 @@
                     "description": "ID of the webhook to disable"
                 }
             ],
-            "description": "Disable a Webhook via API ",
+            "description": "Disable a webhook. Webhooks that have been disabled or become `Unavailable` due to inactivity may be enabled.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -289,6 +317,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

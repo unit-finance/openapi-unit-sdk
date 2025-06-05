@@ -1,9 +1,10 @@
 {
     "createAtmDeposit": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createAtmDepositSimulation",
-
             "summary": "Create Atm Deposit Simulation",
             "description": "Create Atm Deposit Simulation via API ",
             "requestBody": {
@@ -27,13 +28,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "activateCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "parameters": [
                 {
                     "schema": {
@@ -51,15 +57,19 @@
             "responses": {
                 "201": {
                     "description": "Successful Response"
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "receivedPaymentTransaction": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createACHReceivedPaymentTransactionSimulation",
-
             "summary": "Create ACH Received Payment Transaction Simulation",
             "description": "Create ACH Received Payment Transaction Simulation via API ",
             "requestBody": {
@@ -83,15 +93,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "createIncomingAchPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createIncomingAchPaymentSimulation",
-
             "summary": "Create Incoming ACH Payment Simulation",
             "description": "Create Incoming ACH Payment Simulation via API ",
             "requestBody": {
@@ -115,6 +129,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

@@ -18,7 +18,8 @@
                                 "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "clearingDaysOverride": {
-                                "type": "integer"
+                                "type": "integer",
+                                "description": "Only supports ACH Payments with direction Debit in status PendingReview or Pending. See https://www.unit.co/docs/api/ach-origination/#dynamic-clearing-period-ach-debit"
                             }
                         },
                         "additionalProperties": false
@@ -64,7 +65,8 @@
                         "title": "Update Book Payment Attributes",
                         "properties": {
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "See https://www.unit.co/docs/api/#updating-tags."
                             }
                         },
                         "additionalProperties": false

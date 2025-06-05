@@ -47,7 +47,7 @@
                     "IncorrectlyCodedOutboundInternationalPayment"
                 ]
             },
-            "ReturnReceivedACHTransactionRelationships": {
+            "ReturnReceivedAchTransactionRelationships": {
                 "allOf": [
                     {
                         "title": "Create Atm Deposit Simulation Relationships",
@@ -58,7 +58,7 @@
                     }
                 ]
             },
-            "ReturnReceivedACHTransactionRequest": {
+            "ReturnReceivedAchTransactionRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
@@ -79,7 +79,7 @@
                                 "required": ["reason"]
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/ReturnReceivedACHTransactionRelationships"
+                                "$ref": "#/components/schemas/ReturnReceivedAchTransactionRelationships"
                             }
                         },
                         "required": ["type", "attributes", "relationships"]

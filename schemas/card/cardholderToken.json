@@ -1,0 +1,33 @@
+{
+    "components": {
+        "schemas": {
+            "CardholderBearerToken": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["cardholderBearerToken"],
+                        "default": "cardholderBearerToken"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "token": {
+                                "type": "string",
+                                "description": "The token issued for the card."
+                            },
+                            "expiresIn": {
+                                "type": "integer",
+                                "description": "The lifetime of the token (in seconds)."
+                            }
+                        },
+                        "required": ["token", "expiresIn"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

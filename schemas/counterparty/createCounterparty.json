@@ -6,7 +6,8 @@
                     {
                         "type": "object",
                         "required": ["customer"],
-                        "additionalProperties": false
+                        "additionalProperties": false,
+                        "description": "The customer that the counterparty belongs to."
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
@@ -15,6 +16,7 @@
             },
             "CreateAchCounterparty": {
                 "title": "Create Ach Counterparty",
+                "description": "Creates an ACH counterparty for a specific customer.",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -26,14 +28,17 @@
                         "type": "object",
                         "properties": {
                             "routingNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Valid 9-digit ABA routing transit number."
                             },
                             "accountNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Bank account number."
                             },
                             "accountType": {
                                 "type": "string",
-                                "enum": ["Checking", "Savings", "Loan"]
+                                "enum": ["Checking", "Savings", "Loan"],
+                                "description": "(defaults to checking). Either Checking, Savings or Loan."
                             },
                             "permissions": {
                                 "type": "string",
@@ -41,20 +46,25 @@
                                     "CreditOnly",
                                     "DebitOnly",
                                     "CreditAndDebit"
-                                ]
+                                ],
+                                "description": "Optional, custom counterparty permissions. Only DebitOnly or CreditAndDebit are valid values when using the permissions' attribute. 'CreditOnly' will be assigned as default value when permissions attribute is not declared. If the account and rounting number of the counterparty belong to an account under your org on Unit, you may specify \"CreditAndDebit\" or \"DebitOnly\" permissions as well."
                             },
                             "type": {
                                 "type": "string",
-                                "enum": ["Business", "Person", "Unknown"]
+                                "enum": ["Business", "Person", "Unknown"],
+                                "description": "Either Business, Person or Unknown."
                             },
                             "name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The account holder's name (whether an individual or a business, maximum of 50 characters)."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "Optional. See Tags."
                             },
                             "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey",
+                                "description": "Optional. See Idempotency."
                             }
                         },
                         "required": [
@@ -75,6 +85,7 @@
             },
             "CreatePlaidCounterparty": {
                 "title": "Create Plaid Counterparty",
+                "description": "Creates a counterparty for a specific customer using a Plaid processor token.",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -87,17 +98,21 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["Business", "Person", "Unknown"]
+                                "enum": ["Business", "Person", "Unknown"],
+                                "description": "Either Business, Person or Unknown."
                             },
                             "name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The account holder's name (whether an individual or a business)."
                             },
                             "verifyName": {
                                 "type": "boolean",
-                                "default": false
+                                "default": false,
+                                "description": "Optional, default to false. Verify a match between the name of the counterparty and the name of the external account's owner as provided by Plaid. If the name verification fails the request will fail with code field set to NameVerificationFailed."
                             },
                             "plaidProcessorToken": {
-                                "$ref": "../types.json#/components/schemas/PlaidProcessorToken"
+                                "$ref": "../types.json#/components/schemas/PlaidProcessorToken",
+                                "description": "Plaid integration token. See Plaid processor token."
                             },
                             "permissions": {
                                 "type": "string",
@@ -105,13 +120,16 @@
                                     "CreditOnly",
                                     "DebitOnly",
                                     "CreditAndDebit"
-                                ]
+                                ],
+                                "description": "Optional, custom counterparty permissions. Either CreditOnly, DebitOnly, CreditAndDebit. Default is CreditAndDebit."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "Optional. See Tags."
                             },
                             "idempotencyKey": {
-                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey",
+                                "description": "Optional. See Idempotency."
                             }
                         },
                         "required": ["type", "plaidProcessorToken"],

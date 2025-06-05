@@ -31,23 +31,28 @@
                         "properties": {
                             "date": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "The date for which the end-of-day balance is recorded."
                             },
                             "balance": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The account balance at the end of the day."
                             },
                             "hold": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The hold amount on the account at the end of the day."
                             },
                             "available": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The available balance at the end of the day."
                             },
                             "overdraftLimit": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The overdraft limit, if applicable."
                             }
                         },
                         "required": ["date", "balance", "hold", "available"],

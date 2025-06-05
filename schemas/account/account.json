@@ -4,6 +4,7 @@
             "DepositAccount": {
                 "title": "Deposit Account",
                 "type": "object",
+                "description": "Deposit Accounts are bank accounts maintained by a financial institution, in which a customer can deposit and withdraw money. Deposit accounts can be checking accounts, savings accounts, or any of several other types.",
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/Account"
@@ -16,21 +17,26 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the account was created."
                                     },
                                     "name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the account."
                                     },
                                     "depositProduct": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the deposit product, which defines the set of end-customer terms applied to the account."
                                     },
                                     "routingNumber": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "The routing number for the account."
                                     },
                                     "accountNumber": {
                                         "type": "string",
-                                        "pattern": "^\\d{10,12}$"
+                                        "pattern": "^\\d{10,12}$",
+                                        "description": "The account number."
                                     },
                                     "secondaryAccountNumber": {
                                         "type": "object",
@@ -71,10 +77,18 @@
                                         "format": "int64"
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {
+                                                "$ref": "../types.json#/components/schemas/Tags"
+                                            },
+                                            {
+                                                "description": "Optional. See [Tags](https://www.unit.co/docs/api/#tags)."
+                                            }
+                                        ]
                                     },
                                     "status": {
-                                        "enum": ["Open", "Closed", "Frozen"]
+                                        "enum": ["Open", "Closed", "Frozen"],
+                                        "description": "The status of the account."
                                     },
                                     "closeReason": {
                                         "type": "string",
@@ -86,7 +100,8 @@
                                             "BreachOfTermsAndConditions",
                                             "NoAccountActivity",
                                             "ProgramChange"
-                                        ]
+                                        ],
+                                        "description": "The reason for closing the account."
                                     },
                                     "fraudReason": {
                                         "type": "string",
@@ -99,28 +114,34 @@
                                             "ClientIdentified",
                                             "IdentityTheft",
                                             "LinkedToFraudulentCustomer"
-                                        ]
+                                        ],
+                                        "description": "The expanded fraud reason for closing the account when Fraud is specified as the reason."
                                     },
                                     "closeReasonText": {
                                         "type": "string",
                                         "maxLength": 255
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The reason for freezing the account."
                                     },
                                     "maskedAccountNumber": {
                                         "type": "string",
-                                        "pattern": "^\\*{6,8}\\d{4}$"
+                                        "pattern": "^\\*{6,8}\\d{4}$",
+                                        "description": "Masked version of the account number, showing only the last 4 digits."
                                     },
                                     "isOverdrawnWithinLimit": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether the account is overdrawn but within the overdraft limit."
                                     },
                                     "dacaStatus": {
-                                        "enum": ["Activated", "Entered"]
+                                        "enum": ["Activated", "Entered"],
+                                        "description": "The status of the Deposit Account Control Agreement (DACA). When set to `Activated`, funds cannot be withdrawn from the account through end-customer initiated actions or external attempts. When set to `Entered`, the account is marked as subject to a DACA but operates normally."
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the account was last updated."
                                     }
                                 },
                                 "additionalProperties": false,
@@ -291,41 +312,58 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the wallet was created."
                                     },
                                     "name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the wallet."
                                     },
                                     "status": {
-                                        "enum": ["Open", "Closed", "Frozen"]
+                                        "enum": ["Open", "Closed", "Frozen"],
+                                        "description": "The status of the wallet."
                                     },
                                     "walletTerms": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the wallet terms."
                                     },
                                     "routingNumber": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The routing number for the wallet."
                                     },
                                     "accountNumber": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The account number."
                                     },
                                     "currency": {
                                         "type": "string",
-                                        "default": "USD"
+                                        "default": "USD",
+                                        "description": "The currency of the wallet."
                                     },
                                     "balance": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The current balance of the wallet in cents."
                                     },
                                     "hold": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount currently on hold in the wallet in cents."
                                     },
                                     "available": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The available balance in the wallet in cents."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {
+                                                "$ref": "../types.json#/components/schemas/Tags"
+                                            },
+                                            {
+                                                "description": "Optional. See [Tags](https://www.unit.co/docs/api/#tags)."
+                                            }
+                                        ]
                                     },
                                     "closeReason": {
                                         "type": "string",
@@ -338,7 +376,8 @@
                                             "BreachOfTermsAndConditions",
                                             "NoAccountActivity",
                                             "ProgramChange"
-                                        ]
+                                        ],
+                                        "description": "The reason for closing the wallet."
                                     },
                                     "fraudReason": {
                                         "type": "string",
@@ -351,24 +390,27 @@
                                             "ClientIdentified",
                                             "IdentityTheft",
                                             "LinkedToFraudulentCustomer"
-                                        ]
+                                        ],
+                                        "description": "The expanded fraud reason for closing the wallet when Fraud is specified as the reason."
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The reason for freezing the wallet."
                                     }
                                 },
                                 "additionalProperties": false,
                                 "required": [
                                     "createdAt",
                                     "name",
-                                    "creditTerms",
+                                    "status",
+                                    "walletTerms",
+                                    "routingNumber",
+                                    "accountNumber",
                                     "currency",
                                     "balance",
                                     "hold",
                                     "available",
-                                    "tags",
-                                    "status",
-                                    "creditLimit"
+                                    "tags"
                                 ]
                             },
                             "relationships": {

@@ -20,6 +20,7 @@
             "CashDepositBarcode": {
                 "title": "Cash Deposit Barcode",
                 "type": "object",
+                "description": "Cash Deposit Barcode resource.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -30,21 +31,36 @@
                         "type": "object",
                         "properties": {
                             "barcodeNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The unique barcode number."
                             },
                             "expiration": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The expiration date and time of the barcode."
+                            },
+                            "storeId": {
+                                "type": "string",
+                                "description": "The unique storeId identifier of a store."
+                            },
+                            "retailerName": {
+                                "type": "string",
+                                "description": "The name of the retailer."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" }
+                                ]
                             }
                         },
-                        "required": ["amount", "description"],
+                        "required": ["barcodeNumber", "expiration", "storeId", "retailerName"],
                         "additionalProperties": false
                     },
                     "relationships": {
-                        "$ref": "#/components/schemas/CashDepositBarcodeRelationships"
+                        "allOf": [
+                            { "$ref": "#/components/schemas/CashDepositBarcodeRelationships" },
+                            { "description": "The relationships of the cash deposit barcode. account: The Deposit Account receiving the payment. customer: The Customer receiving the payment." }
+                        ]
                     }
                 },
                 "required": ["type", "attributes", "relationships"]

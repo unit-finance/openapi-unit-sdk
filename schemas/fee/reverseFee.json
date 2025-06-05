@@ -9,10 +9,16 @@
                         "additionalProperties": false
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/AccountRelationship" },
+                            { "description": "The account to reverse the fee." }
+                        ]
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                        "allOf": [
+                            { "$ref": "../relationships.json#/components/schemas/TransactionRelationship" },
+                            { "description": "The transaction to reverse." }
+                        ]
                     }
                 ]
             },
@@ -32,13 +38,20 @@
                                 "properties": {
                                     "description": {
                                         "type": "string",
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Description of the fee (maximum of 50 characters)."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional. See Tags." }
+                                        ]
                                     },
                                     "idempotencyKey": {
-                                        "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/IdempotencyKey" },
+                                            { "description": "Optional, but strongly recommended. See Idempotency." }
+                                        ]
                                     }
                                 },
                                 "required": ["description"]

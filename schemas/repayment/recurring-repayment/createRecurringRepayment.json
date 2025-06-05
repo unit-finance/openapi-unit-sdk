@@ -93,12 +93,14 @@
                             "description": {
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 80
+                                "maxLength": 80,
+                                "description": "Repayment description (maximum of 80 characters), this will show up on the statement of the counterparty."
                             },
                             "transactionSummaryOverride": {
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 100
+                                "maxLength": 100,
+                                "description": "Optional. If this field is populated, its contents will be returned as the bookTransaction's summary field (maximum of 100 characters)."
                             },
                             "idempotencyKey": {
                                 "type": "string",
@@ -134,7 +136,8 @@
                             "description": {
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 10
+                                "maxLength": 50,
+                                "description": "Repayment description (maximum of 50 characters). This will show up on the statement of the counterparty."
                             },
                             "addenda": {
                                 "type": "string",
@@ -144,7 +147,8 @@
                             "idempotencyKey": {
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 255
+                                "maxLength": 255,
+                                "description": "Optional. See https://www.unit.co/docs/#intro-idempotency."
                             },
                             "sameDay": {
                                 "type": "boolean"
@@ -153,7 +157,10 @@
                                 "type": "string"
                             },
                             "tags": {
-                                "$ref": "../../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See https://www.unit.co/docs/#tags. Tags that will be copied to any transaction that this recurring repayment creates (see https://www.unit.co/docs/#tag-inheritance)." }
+                                ]
                             }
                         },
                         "required": ["description"],

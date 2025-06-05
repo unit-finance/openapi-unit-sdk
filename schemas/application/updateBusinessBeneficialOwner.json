@@ -14,13 +14,28 @@
                         "type": "object",
                         "properties": {
                             "occupation": {
-                                "$ref": "../types.json#/components/schemas/Occupation"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Occupation" },
+                                    { "description": "Optional. Occupation of the beneficial owner. See [Occupation](https://www.unit.co/docs/api/types/#occupation)." }
+                                ]
                             },
                             "annualIncome": {
-                                "$ref": "../types.json#/components/schemas/AnnualIncome"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/AnnualIncome" },
+                                    { "description": "Optional. Annual income of the beneficial owner. See [AnnualIncome](https://www.unit.co/docs/api/types/#annual-income)." }
+                                ]
                             },
                             "sourceOfIncome": {
-                                "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/SourceOfIncome" },
+                                    { "description": "Optional. Source of income of the beneficial owner. See [SourceOfIncome](https://www.unit.co/docs/api/types/#source-of-income)." }
+                                ]
+                            },
+                            "percentage": {
+                                "type": "integer",
+                                "minimum": 25,
+                                "maximum": 100,
+                                "description": "Optional. The beneficial owner percentage of ownership at the business (between 25 and 100). See [beneficial owner percentage](https://www.unit.co/docs/api/applications/#update-business-beneficial-owner)."
                             }
                         }
                     },

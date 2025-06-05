@@ -1,0 +1,54 @@
+{
+    "components": {
+        "schemas": {
+            "UnitBatchReleasesResponse": {
+                "type": "object",
+                "title": "Unit Batch Releases Response",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./batchRelease.json#/components/schemas/BatchRelease"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "createBatchReleases": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "createBatchReleases",
+            "summary": "Create Batch Releases",
+            "description": "Release is the act of splitting a single batch payment between multiple customer accounts in your organization. When creating releases, you are required to provide compliance information for the original senders of the funds.",
+            "requestBody": {
+                "description": "Create Batch Releases Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createBatchReleases.json#/components/schemas/CreateBatchReleasesRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitBatchReleasesResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    }
+}

@@ -36,16 +36,42 @@
                         "$ref": "./recurringPayment.json#/components/schemas/RecurringPayment"
                     }
                 }
+            },
+            "UnitBulkPaymentsResponse": {
+                "type": "object",
+                "title": "Unit Bulk Payments Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "bulkPayments"
+                                ]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "bulkId": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
     "getAndCreatePayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getPaymentsList",
-
-            "summary": "Get List Payments",
-            "description": "Get List Payments from API ",
+            "summary": "List Payments",
+            "description": "List payments resources. Filtering, paging and sorting can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -59,13 +85,16 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "counterpartyAccountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the Payments by the account id of the specified counterparty."
                             },
                             "status": {
                                 "type": "array",
@@ -75,12 +104,13 @@
                                         "Rejected",
                                         "Pending",
                                         "Canceled",
-                                        "Pending Review",
+                                        "PendingReview",
                                         "Clearing",
                                         "Sent",
                                         "Returned"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter Payments by ACH Status. Usage example: filter[status][0]=Pending&filter[status][1]=PendingReview"
                             },
                             "type": {
                                 "type": "array",
@@ -91,44 +121,61 @@
                                         "BookPayment",
                                         "WirePayment"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter Payments by Payment type. such as (AchPayment, BookPayment or WirePayment). Usage example: filter[type][0]=AchPayment&filter[type][1]=WirePayment"
                             },
                             "direction": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Debit", "Credit"]
-                                }
+                                    "enum": [
+                                        "Debit",
+                                        "Credit"
+                                    ]
+                                },
+                                "description": "Optional. Filter Payments by direction (Debit, Credit). Usage example: filter[direction][0]=Debit"
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the Payments that occurred after the specified date. e.g. 2020-01-13T16:01:19.346Z"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Optional. Filters the Payments that occurred before the specified date. e.g. 2020-01-02T20:06:23.486Z"
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Payments that have an amount that is higher or equal to the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Payments that have an amount that is lower or equal to the specified amount (in cents). e.g. 7000"
                             },
                             "recurringPaymentId": {
-                                "type": "integer"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified recurring payment id."
                             },
                             "feature": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["SameDay", "RecurringPayment"]
-                                }
+                                    "enum": [
+                                        "SameDay",
+                                        "RecurringPayment"
+                                    ]
+                                },
+                                "description": "Optional. Filter Payments by Payment feature (SameDay, RecurringPayment). Usage example: filter[feature][0]=SameDay"
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Filter Payments by Tags."
                             }
                         }
                     }
@@ -138,14 +185,16 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account, transaction. See Getting Related Resources at https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 },
                 {
                     "name": "sort",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -173,13 +222,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createPayment",
-
             "summary": "Create a Payment",
             "description": "Create a Payment via API ",
             "requestBody": {
@@ -203,15 +256,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getAndUpdatePayment": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -223,15 +280,16 @@
                     "description": "ID of the payment to get"
                 },
                 {
-                    "name": "included",
+                    "name": "include",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account, transaction. See Getting Related Resources at https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 }
             ],
             "summary": "Get Payment by Id",
-            "description": "Get a Payment from API ",
+            "description": "Get a payment by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -251,13 +309,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updatePayment",
-
             "summary": "Update Payment",
             "description": "Update an Payment via API ",
             "parameters": [
@@ -292,15 +354,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cancelPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "cancelPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -313,7 +379,7 @@
                 }
             ],
             "summary": "Cancel a Payment by Id",
-            "description": "Cancel a Payment via API ",
+            "description": "Allows cancellation of a Wire payment that has been posted but not yet sent to the Federal Reserve for processing and settlement. Only payments with a status of 'Pending' or 'PendingReview' are eligible for cancellation. Upon successful cancellation, a PaymentCanceledTransaction is created, crediting the end-customer for the funds initially debited during the wire's creation.",
             "requestBody": {
                 "description": "Pass empty object in order for content-type to be aquired correctly",
                 "required": true,
@@ -336,15 +402,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "listReceivedPayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getReceivedPaymentsList",
-
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -358,10 +428,12 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "status": {
                                 "type": "array",
@@ -375,33 +447,43 @@
                                         "Returned",
                                         "Completed"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter Received Payments by ReceivedPayment Status. Usage example: filter[status][0]=Pending&filter[status][1]=Advanced. Cannot be stated with includeCompleted."
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters before the specified date. e.g. 2021-06-01"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters after the specified date. e.g. 2021-07-01"
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Received Payment that have an amount that is higher or equal to the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. Filters the Received Payment that have an amount that is lower or equal to the specified amount (in cents). e.g. 7000"
                             },
                             "includeCompleted": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Optional. Filter to include ReceivedPayment with Status 'Completed', default False. Cannot be stated with filter[status][]"
                             },
                             "canBeReprocessed": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Optional. If set to true, returns only Received Payments that can be reprocessed. If set to false only returns Received Payments that can't be reprocessed."
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Filter received payments by Tags."
                             }
                         }
                     }
@@ -411,18 +493,20 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account. See https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 },
                 {
                     "name": "sort",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
-            "summary": "Get Received Payments List",
-            "description": "Get Received Payments from API ",
+            "summary": "List Received Payments",
+            "description": "List received payments. Filtering, paging and sorting can be applied.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -448,15 +532,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "receivedPayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getReceivedPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -468,15 +556,16 @@
                     "description": "ID of the payment to get"
                 },
                 {
-                    "name": "included",
+                    "name": "include",
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account. See https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
                 }
             ],
             "summary": "Get Received Payment by Id",
-            "description": "Get a Received Payment from API ",
+            "description": "Get a received payment by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -496,14 +585,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
-
+            "tags": [
+                "unit"
+            ],
+            "operationId": "updateReceivedPayment",
             "summary": "Update Received Payment",
-            "description": "Update a Received Payment via API ",
+            "description": "Update a Received Payment.",
             "parameters": [
                 {
                     "schema": {
@@ -536,15 +630,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "advanceReceivedPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "advanceReceivedPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -556,8 +654,8 @@
                     "description": "ID of the payment to advance"
                 }
             ],
-            "summary": "Advance Received Payment by Id",
-            "description": "Advance a Received Payment via API ",
+            "summary": "Advance Received Payment",
+            "description": "Advance a Received Payment. In order to use this API, you must implement the Advance Received Payment capability. Only received payments that are in status `Pending` can be advanced.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -568,15 +666,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "reprocessReceivedPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reprocessReceivedPayment",
-
             "parameters": [
                 {
                     "schema": {
@@ -585,11 +687,11 @@
                     "name": "paymentId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the payment to advance"
+                    "description": "ID of the payment to reprocess"
                 }
             ],
-            "summary": "Reprocess Received Payment by Id",
-            "description": "Reprocess a Received Payment via API ",
+            "summary": "Reprocess Received Payment",
+            "description": "Reprocess a Received ACH Debit Payment in case it was `MarkedForReturn` due to `InsufficientFunds`. The reprocess functionality is disabled by default. If you would like to enable it, please contact Unit. Only received payments that are in status `MarkedForReturn` can be reprocessed.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -600,49 +702,68 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "returnReceivedAchTransaction": {
         "post": {
-            "tags": ["unit"],
-            "operationId": "reprocessReceivedPayment",
-
+            "tags": [
+                "unit"
+            ],
+            "operationId": "returnReceivedAchTransaction",
+            "summary": "Return Received ACH Transaction",
             "parameters": [
                 {
                     "schema": {
                         "type": "string"
                     },
-                    "name": "paymentId",
+                    "name": "transactionId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the payment to advance"
+                    "description": "ID of the transaction to return"
                 }
             ],
-            "summary": "Reprocess Received Payment by Id",
-            "description": "Reprocess a Received Payment via API ",
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./returnReceivedAchTransaction.json#/components/schemas/ReturnReceivedAchTransactionRequest"
+                        }
+                    }
+                }
+            },
+            "description": "Return Received ACH Transaction via API ",
             "responses": {
                 "200": {
                     "description": "Successful Response",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/UnitReceivedPaymentResponse"
+                                "$ref": "#/components/schemas/UnitReturnedReceivedAchTransactionResponse"
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "recurringPayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRecurringPaymentsList",
-
-            "summary": "Get Recurring Payments List",
-            "description": "Get Recurring Payments List from API ",
+            "summary": "List Recurring Payments",
+            "description": "List recurring payments resources. Filtering, paging and sorting can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -656,16 +777,24 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
                             },
                             "status": {
                                 "type": "array",
                                 "items": {
-                                    "type": "string"
-                                }
+                                    "type": "string",
+                                    "enum": [
+                                        "Active",
+                                        "Completed",
+                                        "Disabled"
+                                    ]
+                                },
+                                "description": "Optional. Filter recurring payments by status (Active, Completed or Disabled). Usage example: filter[status][0]=Active"
                             },
                             "type": {
                                 "type": "array",
@@ -676,19 +805,28 @@
                                         "recurringDebitAchPayment",
                                         "recurringCreditBookPayment"
                                     ]
-                                }
+                                },
+                                "description": "Optional. Filter recurring payments by Recurring Payment type. such as (RecurringCreditAchPayment, RecurringCreditBookPayment). Usage example: filter[type][0]=RecurringCreditAchPayment&filter[type][1]=RecurringCreditBookPayment"
                             },
                             "fromStartTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their start time occurred after the specified date. e.g. 2022-06-13"
                             },
                             "toStartTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their start time occurred before the specified date. e.g. 2022-05-13"
                             },
                             "fromEndTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their end time occurred after the specified date. e.g. 2022-06-13"
                             },
                             "toEndTime": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "Optional. Filters the Recurring Payments that their end time occurred before the specified date. e.g. 2022-05-13"
                             }
                         }
                     }
@@ -698,7 +836,8 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -723,13 +862,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createRecurringPayment",
-
             "summary": "Create Recurring Payment",
             "description": "Create a Recurring Payment via API ",
             "requestBody": {
@@ -753,16 +896,20 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getRecurringPayment": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRecurringPayment",
-
-            "summary": "Get Recurring Payment",
+            "summary": "Get by Id",
             "parameters": [
                 {
                     "schema": {
@@ -774,7 +921,7 @@
                     "description": "ID of the payment to get"
                 }
             ],
-            "description": "Get Recurring Payment from API ",
+            "description": "Get a recurring payment by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -785,15 +932,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "disableRecurringPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "disableRecurringPayment",
-
             "summary": "Disable Recurring Payment",
             "parameters": [
                 {
@@ -818,7 +969,7 @@
                     }
                 }
             },
-            "description": "Disable Recurring Payment via API ",
+            "description": "The status is set to Disabled when a recurring payment is turned off. It can be reverted to Active by enabling the recurring payment.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -829,15 +980,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "enableRecurringPayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "enableRecurringPayment",
-
             "summary": "Enable Recurring Payment",
             "parameters": [
                 {
@@ -862,7 +1017,7 @@
                     }
                 }
             },
-            "description": "Enable Recurring Payment via API ",
+            "description": "Change a Disabled recurring payment status back to Active. Recurring payments that are in status Completed or Deleted cannot be enabled.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -873,25 +1028,29 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
-    "returnReceivedACHTransaction": {
+    "deleteRecurringPayment": {
         "post": {
-            "tags": ["unit"],
-            "operationId": "returnReceivedACHTransaction",
-
-            "summary": "Return Received ACH Transaction",
+            "tags": [
+                "unit"
+            ],
+            "operationId": "deleteRecurringPayment",
+            "summary": "Delete Recurring Payment",
             "parameters": [
                 {
                     "schema": {
                         "type": "string"
                     },
-                    "name": "transactionId",
+                    "name": "paymentId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the transaction to return"
+                    "description": "ID of the payment to delete"
                 }
             ],
             "requestBody": {
@@ -900,22 +1059,110 @@
                 "content": {
                     "application/vnd.api+json": {
                         "schema": {
-                            "$ref": "./returnReceivedACHTransaction.json#/components/schemas/ReturnReceivedACHTransactionRequest"
+                            "type": "object",
+                            "nullable": true
                         }
                     }
                 }
             },
-            "description": "Return Received ACH Transaction via API ",
+            "description": "Delete Recurring Payment via API. This action is irreversible, unlike the Disable status.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
                     "content": {
                         "application/vnd.api+json; charset=utf-8": {
                             "schema": {
-                                "$ref": "#/components/schemas/UnitReturnedReceivedAchTransactionResponse"
+                                "$ref": "#/components/schemas/UnitRecurringPaymentResponse"
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "createBulkPayments": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "createBulkPayments",
+            "summary": "Create Bulk Payment",
+            "description": "Bulk payments can contain multiple payment creation requests from different types (ACH, Book, Wire). It is highly recommended to attach to each payment creation request an idempotency key. This will ensure no creation duplication. Bulk is an asynchronous process. The immediate response will be the bulkId (generated by Unit). Once all payments creations in bulk are finished a bulkPayments.finished webhook event is sent by Unit. If not supplied, Unit will generate idempotency key as 'bulkId indexInBulk' combination.",
+            "requestBody": {
+                "description": "Create Bulk Payments Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createPayments.json#/components/schemas/CreatePaymentsRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitBulkPaymentsResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "clearAchDebitPayment": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "clearAchDebitPayment",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "paymentId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the payment to clear"
+                }
+            ],
+            "summary": "Clear ACH Debit Payment",
+            "description": "Clears an ACH debit payment while in `clearing` status. Overrides the original clearing period, making funds available immediately. Requires the Dynamic Clearing Period feature to be enabled.",
+            "requestBody": {
+                "description": "Pass empty object in order for content-type to be aquired correctly",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "nullable": true
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitPaymentResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

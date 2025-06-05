@@ -1,9 +1,10 @@
 {
     "rewards": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createReward",
-
             "summary": "Create Reward",
             "description": "Create a Reward via API ",
             "requestBody": {
@@ -33,13 +34,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRewardsList",
-
             "summary": "Get Rewards List",
             "description": "Get Rewards List from API ",
             "parameters": [
@@ -121,15 +126,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "getReward": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getReward",
-
             "parameters": [
                 {
                     "schema": {
@@ -159,6 +168,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

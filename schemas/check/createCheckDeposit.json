@@ -13,51 +13,64 @@
                     }
                 ]
             },
+            "CreateCheckDeposit": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["checkDeposit"],
+                        "default": "checkDeposit"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "format": "int64",
+                                "description": "The check amount (in cents) to deposit."
+                            },
+                            "clearingDaysOverride": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "description": "Optional. See https://www.unit.co/docs/api/check-deposits/#dynamic-clearing-period-check-deposit."
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 50,
+                                "description": "Description of the check deposit (maximum of 50 characters)."
+                            },
+                            "idempotencyKey": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/IdempotencyKey" },
+                                    { "description": "Optional, but strongly recommended. See https://www.unit.co/docs/api/#intro-idempotency." }
+                                ]
+                            },
+                            "tags": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See https://www.unit.co/docs/api/#tags." }
+                                ]
+                            }
+                        },
+                        "required": ["amount", "description"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/CreateCheckDepositRelationships"
+                    }
+                },
+                "required": ["type", "attributes", "relationships"]
+            },
             "CreateCheckDepositRequest": {
                 "type": "object",
                 "properties": {
                     "data": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": ["checkDeposit"],
-                                "default": "checkDeposit"
-                            },
-                            "attributes": {
-                                "type": "object",
-                                "properties": {
-                                    "amount": {
-                                        "type": "integer",
-                                        "minimum": 1,
-                                        "format": "int64"
-                                    },
-                                    "clearingDaysOverride": {
-                                        "type": "integer",
-                                        "minimum": 1
-                                    },
-                                    "description": {
-                                        "type": "string",
-                                        "minLength": 1,
-                                        "maxLength": 50
-                                    },
-                                    "idempotencyKey": {
-                                        "$ref": "../types.json#/components/schemas/IdempotencyKey"
-                                    },
-                                    "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
-                                    }
-                                },
-                                "required": ["amount", "description"],
-                                "additionalProperties": false
-                            },
-                            "relationships": {
-                                "$ref": "#/components/schemas/CreateCheckDepositRelationships"
-                            }
-                        },
-                        "required": ["type", "attributes", "relationships"]
+                        "$ref": "#/components/schemas/CreateCheckDeposit"
                     }
-                }
+                },
+                "required": ["data"]
             }
         }
     }

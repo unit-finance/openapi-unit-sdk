@@ -14,7 +14,9 @@
     },
     "recurringRepayments": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRecurringRepaymentsList",
             "summary": "Get List Recurring Repayments",
             "description": "Get List Recurring Repayments from API ",
@@ -40,7 +42,10 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Active", "Disabled"]
+                                    "enum": [
+                                        "Active",
+                                        "Disabled"
+                                    ]
                                 }
                             },
                             "fromStartTime": {
@@ -59,7 +64,10 @@
                     "in": "query",
                     "schema": {
                         "type": "string",
-                        "enum": ["createdAt", "-createdAt"]
+                        "enum": [
+                            "createdAt",
+                            "-createdAt"
+                        ]
                     }
                 }
             ],
@@ -88,11 +96,16 @@
                 },
                 "401": {
                     "$ref": "../../types.json#/components/schemas/DefaultError"
+                },
+                "default": {
+                    "$ref": "../../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createRecurringRepayment",
             "summary": "Create a Recurring Repayment",
             "description": "Create a Recurring Repayment via API",
@@ -126,7 +139,9 @@
     },
     "recurringRepayment": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getRecurringRepayment",
             "parameters": [
                 {
@@ -158,13 +173,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "disableRecurringRepayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "disableRecurringRepayment",
             "parameters": [
                 {
@@ -208,13 +228,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "enableRecurringRepayment": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "enableRecurringRepayment",
             "parameters": [
                 {
@@ -258,6 +283,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../../types.json#/components/schemas/DefaultError"
                 }
             }
         }

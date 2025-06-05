@@ -1,7 +1,9 @@
 {
     "getInstitution": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getInstitution",
             "parameters": [
                 {
@@ -11,11 +13,11 @@
                     "name": "routingNumber",
                     "in": "path",
                     "required": true,
-                    "description": "routingNumber of the institution to get"
+                    "description": "Routing number of the financial institution to get"
                 }
             ],
             "summary": "Get Institution by Routing Number",
-            "description": "Get an Institution from API ",
+            "description": "Get an institution resource by routing number. The financial institution list gets updated periodically. If you have attempted to use this API with a valid routing number and it didn't return the expected result, please contact Unit with the details and we will add it to the institution list.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -32,6 +34,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

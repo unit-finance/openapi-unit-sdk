@@ -1,10 +1,12 @@
 {
     "listTransactions": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTransactionsList",
             "summary": "Get List Transactions",
-            "description": "Get List Transactions from API ",
+            "description": "Get a list of transactions. A transaction is an individual entry that represents a financial movement within an account. The `Transaction` resource represents a confirmed financial transaction that were posted to the account, including its source, amount, and direction.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -18,55 +20,73 @@
                         "type": "object",
                         "properties": {
                             "accountId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter by Account id."
                             },
                             "customerId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter by Customer id."
                             },
                             "query": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Full text search query. If the field should contain a space, we follow the [Full-Text Search Rules](https://www.unit.co/docs/api/#full-text-search)."
                             },
                             "tags": {
                                 "type": "object",
+                                "description": "Filter Transactions by [Tags](https://www.unit.co/docs/api/#tags).",
                                 "additionalProperties": {
                                     "type": "string"
                                 }
                             },
                             "since": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Filters the Transactions that occurred _after_ the specified date. e.g. 2020-01-13T16:01:19.346Z"
                             },
                             "until": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Filters the Transactions that occurred _before_ the specified date. e.g. 2020-01-02T20:06:23.486Z"
                             },
                             "cardId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filters the results by the specified card id."
                             },
                             "excludeFees": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Filter Fee type Transactions."
                             },
                             "type": {
                                 "type": "array",
+                                "description": "Filter Transactions by Transaction type. Possible values include: OriginatedAch, ReceivedAch, ReturnedAch, DishonoredAch, Book, Purchase, Atm, Fee, Reversal, CardTransaction, BatchRelease, Wire, ReturnedWire, Dispute, Adjustment, Interest, Reward, CheckDeposit, ReturnedCheckDeposit, PaymentCanceled, CustomerRepayment.",
                                 "items": {
                                     "type": "string"
                                 }
                             },
                             "direction": {
                                 "type": "array",
+                                "description": "Filter Transactions by direction (Debit, Credit).",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Debit", "Credit"]
+                                    "enum": [
+                                        "Debit",
+                                        "Credit"
+                                    ]
                                 }
                             },
                             "fromAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Filters the Transactions that have an amount that is _higher or equal to_ the specified amount (in cents). e.g. 5000"
                             },
                             "toAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Filters the Transactions that have an amount that is _lower or equal to_ the specified amount (in cents). e.g. 7000"
                             },
                             "accountType": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Filter Transactions by account type (deposit, credit)."
                             }
                         }
                     }
@@ -74,13 +94,16 @@
                 {
                     "name": "sort",
                     "in": "query",
+                    "description": "Optional. Leave empty or provide sort=createdAt for ascending order. Provide sort=-createdAt (leading minus sign) for descending order.",
                     "schema": {
-                        "type": "string"
+                        "type": "string",
+                        "default": "sort=createdAt"
                     }
                 },
                 {
                     "name": "include",
                     "in": "query",
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account. See [Getting Related Resources](https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources)",
                     "schema": {
                         "type": "string"
                     }
@@ -102,24 +125,42 @@
                                         }
                                     },
                                     "included": {
-                                        "$ref": "../types.json#/components/schemas/IncludedResource"
+                                        "allOf": [
+                                            {
+                                                "$ref": "../types.json#/components/schemas/IncludedResource"
+                                            },
+                                            {
+                                                "description": "Array of resources requested by the include query parameter."
+                                            }
+                                        ]
                                     },
                                     "meta": {
-                                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                        "allOf": [
+                                            {
+                                                "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                            },
+                                            {
+                                                "description": "Optional. Will be defined only when filtered by customer or account id. Pagination data includes offset, limit and total (estimated total items)."
+                                            }
+                                        ]
                                     }
                                 }
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "transaction": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getTransaction",
-
             "parameters": [
                 {
                     "schema": {
@@ -141,7 +182,7 @@
                 }
             ],
             "summary": "Get Transaction by Id",
-            "description": "Get a Transaction from API ",
+            "description": "Get a Transaction from API",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -161,15 +202,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateTransaction",
-
-            "summary": "Update Transaction",
-            "description": "Update a Transaction via API ",
+            "summary": "Update Tags Transaction",
+            "description": "Update Tags Transaction",
             "parameters": [
                 {
                     "schema": {
@@ -217,6 +262,62 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "transactionById": {
+        "patch": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "updateTransactionById",
+            "summary": "Update Transaction",
+            "description": "Update Transaction. This endpoint supports updating Book Transaction and Chargeback Transaction.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "transactionId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the transaction to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Transaction Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./updateTransaction.json#/components/schemas/UpdateTransactionRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Transaction Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./transaction.json#/components/schemas/Transaction"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

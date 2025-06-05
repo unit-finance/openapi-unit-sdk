@@ -1,0 +1,224 @@
+{
+    "components": {
+        "schemas": {
+            "UnitCreditApplicationResponse": {
+                "title": "Unit Credit Application Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./creditApplication.json#/components/schemas/CreditApplication"
+                    }
+                },
+                "required": ["data"]
+            },
+            "UnitCreditApplicationListResponse": {
+                "title": "Unit Credit Application List Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "./creditApplication.json#/components/schemas/CreditApplication"
+                        }
+                    },
+                    "meta": {
+                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    },
+    "creditApplications": {
+        "post": {
+            "tags": ["unit"],
+            "summary": "Create a credit application",
+            "description": "Create an onboarding or existing customer credit application.",
+            "operationId": "createCreditApplication",
+            "requestBody": {
+                "description": "Create Credit Application Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCreditApplication.json#/components/schemas/CreateCreditApplicationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCreditApplicationResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "get": {
+            "tags": ["unit"],
+            "summary": "List credit applications",
+            "description": "List credit applications resources. Paging can be applied.",
+            "operationId": "listCreditApplications",
+            "parameters": [
+                {
+                    "name": "page[limit]",
+                    "in": "query",
+                    "description": "Optional. Maximum number of resources that will be returned. Maximum is 1000 resources. See [Pagination](https://www.unit.co/docs/api/#intro-pagination).",
+                    "schema": {
+                        "type": "integer",
+                        "default": 100
+                    }
+                },
+                {
+                    "name": "page[offset]",
+                    "in": "query",
+                    "description": "Optional. Number of resources to skip. See [Pagination](https://www.unit.co/docs/api/#intro-pagination).",
+                    "schema": {
+                        "type": "integer",
+                        "default": 0
+                    }
+                },
+                {
+                    "name": "filter[lendingProgramId]",
+                    "in": "query",
+                    "description": "Optional. Search resources by lending program id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[orgId]",
+                    "in": "query",
+                    "description": "Optional. Search resources by organization id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[bankId]",
+                    "in": "query",
+                    "description": "Optional. Search resources by bank id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[applicationId]",
+                    "in": "query",
+                    "description": "Optional. Search resources by application id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "name": "filter[customerId]",
+                    "in": "query",
+                    "description": "Optional. Search resources by customer id.",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCreditApplicationListResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "creditApplication": {
+        "get": {
+            "tags": ["unit"],
+            "summary": "Get a credit application by ID",
+            "description": "Get a credit application resource by id.",
+            "operationId": "getCreditApplication",
+            "parameters": [
+                {
+                    "name": "creditApplicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "The ID of the credit application to retrieve",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCreditApplicationResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "patch": {
+            "tags": ["unit"],
+            "summary": "Update a credit application",
+            "description": "Update a credit application.",
+            "operationId": "updateCreditApplication",
+            "parameters": [
+                {
+                    "name": "creditApplicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "The ID of the credit application to update",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "requestBody": {
+                "description": "Update Credit Application Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./patchCreditApplication.json#/components/schemas/PatchCreditApplicationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCreditApplicationResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    }
+} 

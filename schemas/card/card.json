@@ -13,7 +13,8 @@
                     "Unknown",
                     "SuspectedFraud",
                     "ActiveForOnlineUse"
-                ]
+                ],
+                "description": "The current status of a physical card, which determines what actions can or can't be completed using the card."
             },
             "VirtualCardStatus": {
                 "type": "string",
@@ -26,7 +27,8 @@
                     "ClosedByCustomer",
                     "Unknown",
                     "SuspectedFraud"
-                ]
+                ],
+                "description": "The current status of a virtual card, which determines what actions can or can't be completed using the card."
             },
             "CardRelationships": {
                 "allOf": [
@@ -59,42 +61,59 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was created"
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was last updated"
                                     },
                                     "last4Digits": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}$"
+                                        "pattern": "^\\d{4}$",
+                                        "description": "Last 4 digits of the card number"
                                     },
                                     "expirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The card's expiration date in YYYY-MM format"
                                     },
                                     "nextExpirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The new card's expiration date for automated reissue in YYYY-MM format"
                                     },
                                     "shippingAddress": {
-                                        "$ref": "../types.json#/components/schemas/Address"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Address"},
+                                            {"description": "Address to which the card is shipped"}
+                                        ]
                                     },
                                     "bin": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Bank Identification Number (BIN)"
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/PhysicalCardStatus"
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/PhysicalCardStatus"},
+                                            {"description": "Current status of the card: Active, Inactive, Stolen, Lost, Frozen, ClosedByCustomer, SuspectedFraud, ActiveForOnlineUse"}
+                                        ]
                                     },
                                     "design": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The card design name"
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Tags"},
+                                            {"description": "Custom tags for the card"}
+                                        ]
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Reason why the card was frozen"
                                     }
                                 },
                                 "required": [
@@ -112,7 +131,8 @@
                         "additionalProperties": false,
                         "required": ["attributes", "relationships"]
                     }
-                ]
+                ],
+                "description": "A physical debit card belonging to an Individual customer, including sole proprietors. The details of the card holder (name, email, phone number etc.) will be the individual customer's details."
             },
             "BusinessDebitCard": {
                 "title": "Business Debit Card",
@@ -129,68 +149,103 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was created"
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was last updated"
                                     },
                                     "last4Digits": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}$"
+                                        "pattern": "^\\d{4}$",
+                                        "description": "Last 4 digits of the card number"
                                     },
                                     "expirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The card's expiration date in YYYY-MM format"
                                     },
                                     "nextExpirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The new card's expiration date for automated reissue in YYYY-MM format"
                                     },
                                     "shippingAddress": {
-                                        "$ref": "../types.json#/components/schemas/Address"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Address"},
+                                            {"description": "Address to which the card is shipped"}
+                                        ]
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/Address"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Address"},
+                                            {"description": "Address of the card holder"}
+                                        ]
                                     },
                                     "fullName": {
-                                        "$ref": "../types.json#/components/schemas/FullName"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/FullName"},
+                                            {"description": "Full name of the card holder"}
+                                        ]
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/Phone"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Phone"},
+                                            {"description": "Phone number of the card holder"}
+                                        ]
                                     },
                                     "email": {
-                                        "$ref": "../types.json#/components/schemas/Email"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Email"},
+                                            {"description": "Email address of the card holder"}
+                                        ]
                                     },
                                     "dateOfBirth": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "description": "Date of birth of the card holder"
                                     },
                                     "nationality": {
-                                        "$ref": "../types.json#/components/schemas/Country"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Country"},
+                                            {"description": "Nationality of the card holder"}
+                                        ]
                                     },
                                     "ssn": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Social Security Number of the card holder"
                                     },
                                     "passport": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Passport number of the card holder"
                                     },
                                     "bin": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Bank Identification Number (BIN)"
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/PhysicalCardStatus"
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/PhysicalCardStatus"},
+                                            {"description": "Current status of the card: Active, Inactive, Stolen, Lost, Frozen, ClosedByCustomer, SuspectedFraud, ActiveForOnlineUse"}
+                                        ]
                                     },
                                     "design": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The card design name"
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Tags"},
+                                            {"description": "Custom tags for the card"}
+                                        ]
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Reason why the card was frozen"
                                     }
                                 },
                                 "additionalProperties": false,
@@ -212,7 +267,8 @@
                         "additionalProperties": false,
                         "required": ["attributes", "relationships"]
                     }
-                ]
+                ],
+                "description": "A physical debit card belonging to a Business customer. The card holder may be any person associated with the business. The details of the card holder (name, email, phone number etc.) and shipping address will be provided as part of the card creation request."
             },
             "IndividualVirtualDebitCard": {
                 "title": "Individual Virtual Debit Card",
@@ -229,36 +285,49 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was created"
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was last updated"
                                     },
                                     "last4Digits": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}$"
+                                        "pattern": "^\\d{4}$",
+                                        "description": "Last 4 digits of the card number"
                                     },
                                     "expirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The card's expiration date in YYYY-MM format"
                                     },
                                     "nextExpirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The new card's expiration date for automated reissue in YYYY-MM format"
                                     },
                                     "bin": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Bank Identification Number (BIN)"
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/VirtualCardStatus"
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/VirtualCardStatus"},
+                                            {"description": "Current status of the card: Active, Inactive, Stolen, Lost, Frozen, ClosedByCustomer, SuspectedFraud"}
+                                        ]
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Tags"},
+                                            {"description": "Custom tags for the card"}
+                                        ]
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Reason why the card was frozen"
                                     }
                                 },
                                 "required": [
@@ -276,7 +345,8 @@
                         "additionalProperties": false,
                         "required": ["attributes", "relationships"]
                     }
-                ]
+                ],
+                "description": "A virtual debit card belonging to an Individual customer, including sole proprietors. The details of the card holder (name, email, phone number etc.) will be the individual customer's details."
             },
             "BusinessVirtualDebitCard": {
                 "title": "Business Virtual Debit Card",
@@ -293,62 +363,93 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was created"
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was last updated"
                                     },
                                     "last4Digits": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}$"
+                                        "pattern": "^\\d{4}$",
+                                        "description": "Last 4 digits of the card number"
                                     },
                                     "expirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The card's expiration date in YYYY-MM format"
                                     },
                                     "nextExpirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The new card's expiration date for automated reissue in YYYY-MM format"
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/Address"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Address"},
+                                            {"description": "Address of the card holder"}
+                                        ]
                                     },
                                     "fullName": {
-                                        "$ref": "../types.json#/components/schemas/FullName"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/FullName"},
+                                            {"description": "Full name of the card holder"}
+                                        ]
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/Phone"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Phone"},
+                                            {"description": "Phone number of the card holder"}
+                                        ]
                                     },
                                     "email": {
-                                        "$ref": "../types.json#/components/schemas/Email"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Email"},
+                                            {"description": "Email address of the card holder"}
+                                        ]
                                     },
                                     "dateOfBirth": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "description": "Date of birth of the card holder"
                                     },
                                     "nationality": {
-                                        "$ref": "../types.json#/components/schemas/Country"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Country"},
+                                            {"description": "Nationality of the card holder"}
+                                        ]
                                     },
                                     "ssn": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Social Security Number of the card holder"
                                     },
                                     "passport": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Passport number of the card holder"
                                     },
                                     "bin": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Bank Identification Number (BIN)"
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/VirtualCardStatus"
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/VirtualCardStatus"},
+                                            {"description": "Current status of the card: Active, Inactive, Stolen, Lost, Frozen, ClosedByCustomer, SuspectedFraud"}
+                                        ]
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Tags"},
+                                            {"description": "Custom tags for the card"}
+                                        ]
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Reason why the card was frozen"
                                     }
                                 },
                                 "additionalProperties": false,
@@ -370,7 +471,8 @@
                         "additionalProperties": false,
                         "required": ["attributes", "relationships"]
                     }
-                ]
+                ],
+                "description": "A virtual debit card belonging to a Business customer. The card holder may be any person associated with the business. The details of the card holder (name, email, phone number etc.) will be provided as part of the card creation request. In order to create the customer token that is needed to reveal the card information, the card holder must be the business contact or an authorized user."
             },
             "BusinessCreditCard": {
                 "title": "Business Credit Card",
@@ -387,68 +489,103 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was created"
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was last updated"
                                     },
                                     "last4Digits": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}$"
+                                        "pattern": "^\\d{4}$",
+                                        "description": "Last 4 digits of the card number"
                                     },
                                     "expirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The card's expiration date in YYYY-MM format"
                                     },
                                     "nextExpirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The new card's expiration date for automated reissue in YYYY-MM format"
                                     },
                                     "shippingAddress": {
-                                        "$ref": "../types.json#/components/schemas/Address"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Address"},
+                                            {"description": "Address to which the card is shipped"}
+                                        ]
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/Address"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Address"},
+                                            {"description": "Address of the card holder"}
+                                        ]
                                     },
                                     "fullName": {
-                                        "$ref": "../types.json#/components/schemas/FullName"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/FullName"},
+                                            {"description": "Full name of the card holder"}
+                                        ]
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/Phone"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Phone"},
+                                            {"description": "Phone number of the card holder"}
+                                        ]
                                     },
                                     "email": {
-                                        "$ref": "../types.json#/components/schemas/Email"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Email"},
+                                            {"description": "Email address of the card holder"}
+                                        ]
                                     },
                                     "dateOfBirth": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "description": "Date of birth of the card holder"
                                     },
                                     "nationality": {
-                                        "$ref": "../types.json#/components/schemas/Country"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Country"},
+                                            {"description": "Nationality of the card holder"}
+                                        ]
                                     },
                                     "ssn": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Social Security Number of the card holder"
                                     },
                                     "passport": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Passport number of the card holder"
                                     },
                                     "bin": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Bank Identification Number (BIN)"
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/PhysicalCardStatus"
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/PhysicalCardStatus"},
+                                            {"description": "Current status of the card: Active, Inactive, Stolen, Lost, Frozen, ClosedByCustomer, SuspectedFraud, ActiveForOnlineUse"}
+                                        ]
                                     },
                                     "design": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The card design name"
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Tags"},
+                                            {"description": "Custom tags for the card"}
+                                        ]
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Reason why the card was frozen"
                                     }
                                 },
                                 "additionalProperties": false,
@@ -470,7 +607,8 @@
                         "additionalProperties": false,
                         "required": ["attributes", "relationships"]
                     }
-                ]
+                ],
+                "description": "A physical credit card belonging to a Business customer. The card holder may be any person associated with the business. The details of the card holder (name, email, phone number etc.) and shipping address will be provided as part of the card creation request."
             },
             "BusinessVirtualCreditCard": {
                 "title": "Business Virtual Credit Card",
@@ -487,62 +625,93 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was created"
                                     },
                                     "updatedAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the card was last updated"
                                     },
                                     "last4Digits": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}$"
+                                        "pattern": "^\\d{4}$",
+                                        "description": "Last 4 digits of the card number"
                                     },
                                     "expirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The card's expiration date in YYYY-MM format"
                                     },
                                     "nextExpirationDate": {
                                         "type": "string",
-                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$"
+                                        "pattern": "^\\d{4}[-](1[012]|0[1-9])$",
+                                        "description": "The new card's expiration date for automated reissue in YYYY-MM format"
                                     },
                                     "address": {
-                                        "$ref": "../types.json#/components/schemas/Address"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Address"},
+                                            {"description": "Address of the card holder"}
+                                        ]
                                     },
                                     "fullName": {
-                                        "$ref": "../types.json#/components/schemas/FullName"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/FullName"},
+                                            {"description": "Full name of the card holder"}
+                                        ]
                                     },
                                     "phone": {
-                                        "$ref": "../types.json#/components/schemas/Phone"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Phone"},
+                                            {"description": "Phone number of the card holder"}
+                                        ]
                                     },
                                     "email": {
-                                        "$ref": "../types.json#/components/schemas/Email"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Email"},
+                                            {"description": "Email address of the card holder"}
+                                        ]
                                     },
                                     "dateOfBirth": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "description": "Date of birth of the card holder"
                                     },
                                     "nationality": {
-                                        "$ref": "../types.json#/components/schemas/Country"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Country"},
+                                            {"description": "Nationality of the card holder"}
+                                        ]
                                     },
                                     "ssn": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Social Security Number of the card holder"
                                     },
                                     "passport": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Passport number of the card holder"
                                     },
                                     "bin": {
                                         "type": "string",
-                                        "pattern": "^\\d{9}$"
+                                        "pattern": "^\\d{9}$",
+                                        "description": "Bank Identification Number (BIN)"
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/VirtualCardStatus"
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/VirtualCardStatus"},
+                                            {"description": "Current status of the card: Active, Inactive, Stolen, Lost, Frozen, ClosedByCustomer, SuspectedFraud"}
+                                        ]
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            {"$ref": "../types.json#/components/schemas/Tags"},
+                                            {"description": "Custom tags for the card"}
+                                        ]
                                     },
                                     "freezeReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Reason why the card was frozen"
                                     }
                                 },
                                 "additionalProperties": false,
@@ -564,7 +733,8 @@
                         "additionalProperties": false,
                         "required": ["attributes", "relationships"]
                     }
-                ]
+                ],
+                "description": "A virtual credit card belonging to a Business customer. The card holder may be any person associated with the business. The details of the card holder (name, email, phone number etc.) will be provided as part of the card creation request. In order to create the customer token that is needed to reveal the card information, the card holder must be the business contact or an authorized user."
             },
             "Card": {
                 "title": "Card Document",
@@ -579,10 +749,14 @@
                             "individualVirtualDebitCard",
                             "businessCreditCard",
                             "businessVirtualCreditCard"
-                        ]
+                        ],
+                        "description": "Type of the card resource"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/Identifier"
+                        "allOf": [
+                            {"$ref": "../types.json#/components/schemas/Identifier"},
+                            {"description": "Unique identifier of the card"}
+                        ]
                     }
                 },
                 "discriminator": {
@@ -595,7 +769,8 @@
                         "businessCreditCard": "#/components/schemas/BusinessCreditCard",
                         "businessVirtualCreditCard": "#/components/schemas/BusinessVirtualCreditCard"
                     }
-                }
+                },
+                "description": "The Card resource represents a card under an account."
             }
         }
     }

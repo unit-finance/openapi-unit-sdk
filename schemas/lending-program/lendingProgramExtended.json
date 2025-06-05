@@ -1,0 +1,44 @@
+{
+    "components": {
+        "schemas": {
+            "LendingProgramExtendedInformation": {
+                "title": "Lending Program Extended Information",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["lendingProgramExtended"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "programType": {
+                                "type": "string",
+                                "description": "The type of the lending program."
+                            },
+                            "programSizeLimit": {
+                                "type": "integer",
+                                "description": "The size of the credit line set by the Bank."
+                            },
+                            "remainingAvailableBalance": {
+                                "type": "integer",
+                                "description": "The remaining available balance of the lending program."
+                            },
+                            "utilizedAmount": {
+                                "type": "integer",
+                                "description": "The utilized amount of the lending program."
+                            }
+                        },
+                        "required": ["programType", "programSizeLimit", "remainingAvailableBalance", "utilizedAmount"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "id", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

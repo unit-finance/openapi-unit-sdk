@@ -7,20 +7,24 @@
                 "properties": {
                     "routingNumber": {
                         "type": "string",
-                        "pattern": "^\\d{9}$"
+                        "pattern": "^\\d{9}$",
+                        "description": "The routing number of the counterparty's financial institution."
                     },
                     "accountNumber": {
                         "type": "string",
-                        "pattern": "^\\d{1,17}$"
+                        "pattern": "^\\d{1,17}$",
+                        "description": "The account number of the counterparty."
                     },
                     "accountType": {
                         "type": "string",
-                        "enum": ["Checking", "Savings", "Loan"]
+                        "enum": ["Checking", "Savings", "Loan"],
+                        "description": "The type of account for the counterparty."
                     },
                     "name": {
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 50
+                        "maxLength": 50,
+                        "description": "The name of the counterparty."
                     }
                 },
                 "additionalProperties": false,
@@ -37,19 +41,25 @@
                 "properties": {
                     "routingNumber": {
                         "type": "string",
-                        "pattern": "^\\d{9}$"
+                        "pattern": "^\\d{9}$",
+                        "description": "Valid 9-digit ABA routing transit number."
                     },
                     "accountNumber": {
                         "type": "string",
-                        "maxLength": 17
+                        "maxLength": 17,
+                        "description": "Bank account number."
                     },
                     "name": {
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 50
+                        "maxLength": 50,
+                        "description": "The account holder's name (whether an individual or a business, maximum of 50 characters)."
                     },
                     "address": {
-                        "$ref": "../types.json#/components/schemas/Address"
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/Address" },
+                            { "description": "The address of the counterparty." }
+                        ]
                     }
                 },
                 "additionalProperties": false,
@@ -238,20 +248,24 @@
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": ["Credit", "Debit"]
+                                        "enum": ["Credit", "Debit"],
+                                        "description": "The direction in which the funds flow. In the context of ACH payment origination, 'Debit': the payment 'pulls' funds from the counterparty account. 'Credit': the payment 'pushes' funds to the counterparty account."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Payment description (maximum of 10 characters), also known as Company Entry Description, this will show up on statement of the counterparty."
                                     },
                                     "addenda": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Optional, additional payment description (maximum of 80 characters), not all institutions present that."
                                     },
                                     "counterparty": {
-                                        "$ref": "#/components/schemas/PaymentCounterparty"
+                                        "$ref": "#/components/schemas/PaymentCounterparty",
+                                        "description": "The party on the other side of the ACH payment."
                                     },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
@@ -264,8 +278,10 @@
                                             "Clearing",
                                             "Sent",
                                             "Canceled",
+                                            "PendingReview",
                                             "Returned"
-                                        ]
+                                        ],
+                                        "description": "Payment status. Possible values include: 'Rejected': Based on validity and risk checks, Unit has decided to reject the payment and not process it. 'Pending': Waiting to be processed or transmitted to the payment network. 'Canceled': The payment was canceled by the client / end-customer before being sent to the network. 'PendingReview': The payment is waiting to be manually reviewed, typically due to a high level of risk associated with that payment. 'Clearing': In certain types of payments, once the funds are received by Unit, we hold on to them for a period, on your behalf, before releasing them to the end customer. 'Sent': The payment has been fully processed. 'Returned': The payment was processed but the network or the receiving bank returned the payment."
                                     },
                                     "settlementDate": {
                                         "type": "string",
@@ -279,19 +295,22 @@
                                         "format": "date"
                                     },
                                     "secCode": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Standard Entry Class (SEC) code used in all ACH payments to identify certain types of ACH payments."
                                     },
                                     "traceNumber": {
                                         "type": "string"
                                     },
                                     "sameDay": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Same-day ACH enables your clients to send and receive funds using ACH the same day the payment is created."
                                     },
                                     "counterpartyVerificationMethod": {
                                         "type": "string"
                                     },
                                     "clearingDaysOverride": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "description": "The amount of days it will take an Originated ACH debit to clear and funds to become available in a deposit account."
                                     }
                                 },
                                 "required": [
@@ -324,6 +343,7 @@
                         "$ref": "./payment.json#/components/schemas/Payment"
                     },
                     {
+                        "description": "Book payments are free and instant fund transfers between two accounts under your organization. Book payments from wallets to deposit accounts are available, but book payments from deposit accounts to wallet accounts are not permitted at this time.",
                         "type": "object",
                         "properties": {
                             "attributes": {
@@ -336,16 +356,19 @@
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount (in cents)."
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": ["Credit", "Debit"]
+                                        "enum": ["Credit"],
+                                        "description": "The direction of book payment is always 'Credit', moving funds from 'account' to 'counterpartyAccount'."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 80
+                                        "maxLength": 80,
+                                        "description": "Payment description (maximum of 80 characters), this will show up on statement of the counterparty."
                                     },
                                     "status": {
                                         "type": "string",
@@ -355,17 +378,23 @@
                                             "Clearing",
                                             "Sent",
                                             "Canceled",
+                                            "PendingReview",
                                             "Returned"
-                                        ]
+                                        ],
+                                        "description": "Payment status. Possible values include: 'Rejected': Based on validity and risk checks, Unit has decided to reject the payment and not process it. 'Pending': Waiting to be processed or transmitted to the payment network. 'Canceled': The payment was canceled by the client / end-customer before being sent to the network. 'PendingReview': The payment is waiting to be manually reviewed, typically due to a high level of risk associated with that payment. 'Clearing': In certain types of payments, once the funds are received by Unit, we hold on to them for a period, on your behalf, before releasing them to the end customer. 'Sent': The payment has been fully processed. 'Returned': The payment was processed but the network or the receiving bank returned the payment."
                                     },
                                     "transactionSummaryOverride": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "description": "Optional. If this field is populated, its contents will be returned as the bookTransaction's summary field (maximum of 100 characters)."
                                     },
                                     "reason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "In case of rejection, this field will contain the reason why the payment was rejected. Possible rejection reasons: 'InsufficientFunds': The available balance isn't enough to cover the value of the payment. 'AccountClosed': The counterparty account has been closed. 'AccountFrozen': The counterparty account is frozen."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "$ref": "../types.json#/components/schemas/Tags",
+                                        "description": "Optional. See https://www.unit.co/docs/api/#tags."
                                     }
                                 },
                                 "required": [
@@ -411,19 +440,25 @@
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount (in cents)."
                                     },
                                     "direction": {
                                         "type": "string",
-                                        "enum": ["Credit"]
+                                        "enum": ["Credit"],
+                                        "description": "The direction of wire payment is always 'Credit', moving funds from the Unit 'account' to the 'counterparty' account."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Payment description (maximum of 50 characters), this will show up on statement of the counterparty."
                                     },
                                     "counterparty": {
-                                        "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty"
+                                        "allOf": [
+                                            { "$ref": "./payment.json#/components/schemas/WirePaymentCounterparty" },
+                                            { "description": "The party on the other side of the Wire payment." }
+                                        ]
                                     },
                                     "status": {
                                         "type": "string",
@@ -433,15 +468,18 @@
                                             "Clearing",
                                             "Sent",
                                             "Canceled",
+                                            "PendingReview",
                                             "Returned"
-                                        ]
+                                        ],
+                                        "description": "Payment status. Possible values include: 'Rejected': Based on validity and risk checks, Unit has decided to reject the payment and not process it. 'Pending': Waiting to be processed or transmitted to the payment network. 'Canceled': The payment was canceled by the client / end-customer before being sent to the network. 'PendingReview': The payment is waiting to be manually reviewed, typically due to a high level of risk associated with that payment. 'Clearing': In certain types of payments, once the funds are received by Unit, we hold on to them for a period, on your behalf, before releasing them to the end customer. 'Sent': The payment has been fully processed. 'Returned': The payment was processed but the network or the receiving bank returned the payment."
                                     },
                                     "settlementDate": {
                                         "type": "string",
                                         "format": "date"
                                     },
                                     "reason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "In case of rejection, this field will contain the reason why the payment was rejected. Possible rejection reasons: 'AccountFrozen': The counterparty account is frozen. 'SuspectedFraud': The payment is suspected to be fraudulent. 'InsufficientFunds': The available balance isn't enough to cover the value of the wire. 'Invalid Routing Number': The counterparty routing number is not valid. 'Wire Rejected': The counterparty rejected the wire payment. 'AccountClosed': The counterparty account has been closed. 'ClientRequest': The client has requested the wire payment to be rejected."
                                     },
                                     "imadOmad": {
                                         "type": "object",
@@ -453,6 +491,12 @@
                                                 "type": "string"
                                             }
                                         }
+                                    },
+                                    "tags": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional. See Tags. Tags that will be copied to any transaction that this payment creates (see Tag Inheritance)." }
+                                        ]
                                     }
                                 },
                                 "required": [
@@ -548,6 +592,7 @@
             },
             "Payment": {
                 "title": "Payment Resource",
+                "description": "Payments in Unit represent requests to move funds that are initiated by the end customer. Payments are not final, and do not necessarily materialize into an actual movement of funds - they have a lifecycle that depends on the payment type. Book payments are free and instant fund transfers between two accounts under your organization, typically used for moving funds between two accounts that belong to the same or different end-customers, moving funds from clearing accounts to end-customer accounts, or moving funds from your organization's operational account to an end-customer account.",
                 "type": "object",
                 "properties": {
                     "type": {

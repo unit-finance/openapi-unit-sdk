@@ -14,16 +14,28 @@
                         "type": "object",
                         "properties": {
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "See [Updating Tags](https://www.unit.co/docs/api/#updating-tags)." }
+                                ]
                             },
                             "occupation": {
-                                "$ref": "../types.json#/components/schemas/Occupation"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Occupation" },
+                                    { "description": "Optional. Occupation of the individual. See [Occupation](https://www.unit.co/docs/api/types/#occupation)." }
+                                ]
                             },
                             "annualIncome": {
-                                "$ref": "../types.json#/components/schemas/AnnualIncome"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/AnnualIncome" },
+                                    { "description": "Optional. Annual income of the individual. See [AnnualIncome](https://www.unit.co/docs/api/types/#annual-income)." }
+                                ]
                             },
                             "sourceOfIncome": {
-                                "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/SourceOfIncome" },
+                                    { "description": "Optional. Source of income of the individual. See [SourceOfIncome](https://www.unit.co/docs/api/types/#source-of-income)." }
+                                ]
                             }
                         },
                         "additionalProperties": false
@@ -45,31 +57,56 @@
                         "type": "object",
                         "properties": {
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "See [Updating Tags](https://www.unit.co/docs/api/#updating-tags)." }
+                                ]
                             },
                             "annualRevenue": {
-                                "$ref": "../types.json#/components/schemas/BusinessAnnualRevenue"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/BusinessAnnualRevenue" },
+                                    { "description": "Optional. Annual revenue of the business. See [BusinessAnnualRevenue](https://www.unit.co/docs/api/types/#annual-revenue)." }
+                                ]
                             },
                             "numberOfEmployees": {
-                                "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/BusinessNumberOfEmployees" },
+                                    { "description": "Optional. Number of employees at the business. See [BusinessNumberOfEmployees](https://www.unit.co/docs/api/types/#number-of-employees)." }
+                                ]
                             },
                             "cashFlow": {
-                                "$ref": "../types.json#/components/schemas/CashFlow"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/CashFlow" },
+                                    { "description": "Optional. Cash flow of the business. See [CashFlow](https://www.unit.co/docs/api/types/#cashflow)." }
+                                ]
                             },
                             "yearOfIncorporation": {
-                                "$ref": "../types.json#/components/schemas/Year"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Year" },
+                                    { "description": "Optional. Year of incorporation of the business. See [Year](https://www.unit.co/docs/api/types/#year)." }
+                                ]
                             },
                             "countriesOfOperation": {
                                 "type": "array",
                                 "items": {
                                     "$ref": "../types.json#/components/schemas/Country"
                                 },
-                                "minItems": 1
+                                "minItems": 1,
+                                "description": "Optional. Countries of operation of the business."
                             },
-                            "stockSymbol": { "type": "string" },
-                            "website": { "type": "string" },
+                            "stockSymbol": { 
+                                "type": "string",
+                                "description": "Optional. Stock symbol of the business."
+                            },
+                            "website": { 
+                                "type": "string",
+                                "description": "Optional. Website of the business."
+                            },
                             "businessVertical": {
-                                "$ref": "../types.json#/components/schemas/BusinessVertical"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/BusinessVertical" },
+                                    { "description": "Optional. Business vertical of the business. See [BusinessVertical](https://www.unit.co/docs/api/types/#business-vertical)." }
+                                ]
                             }
                         },
                         "additionalProperties": false
@@ -91,13 +128,22 @@
                         "type": "object",
                         "properties": {
                             "occupation": {
-                                "$ref": "../types.json#/components/schemas/Occupation"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Occupation" },
+                                    { "description": "Optional. Occupation of the beneficial owner. See [Occupation](https://www.unit.co/docs/api/types/#occupation)." }
+                                ]
                             },
                             "annualIncome": {
-                                "$ref": "../types.json#/components/schemas/AnnualIncome"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/AnnualIncome" },
+                                    { "description": "Optional. Annual income of the beneficial owner. See [AnnualIncome](https://www.unit.co/docs/api/types/#annual-income)." }
+                                ]
                             },
                             "sourceOfIncome": {
-                                "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/SourceOfIncome" },
+                                    { "description": "Optional. Source of income of the beneficial owner. See [SourceOfIncome](https://www.unit.co/docs/api/types/#source-of-income)." }
+                                ]
                             },
                             "relationships": {
                                 "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
@@ -122,19 +168,32 @@
                         "type": "object",
                         "properties": {
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "See [Updating Tags](https://www.unit.co/docs/api/#updating-tags)." }
+                                ]
                             },
                             "annualRevenue": {
-                                "$ref": "../types.json#/components/schemas/SoleProprietorshipAnnualRevenue"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/SoleProprietorshipAnnualRevenue" },
+                                    { "description": "Optional. Specify the annual revenue here. See [SoleProprietorshipAnnualRevenue](https://www.unit.co/docs/api/types/#annual-revenue)." }
+                                ]
                             },
                             "numberOfEmployees": {
-                                "$ref": "../types.json#/components/schemas/SoleProprietorshipNumberOfEmployees"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/SoleProprietorshipNumberOfEmployees" },
+                                    { "description": "Optional. Specify the number of employees here. See [SoleProprietorshipNumberOfEmployees](https://www.unit.co/docs/api/types/#number-of-employees)." }
+                                ]
                             },
                             "businessVertical": {
-                                "$ref": "../types.json#/components/schemas/BusinessVertical"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/BusinessVertical" },
+                                    { "description": "Optional. Specify the business vertical here. See [BusinessVertical](https://www.unit.co/docs/api/types/#business-vertical)." }
+                                ]
                             },
                             "website": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Specify the business website here."
                             }
                         },
                         "additionalProperties": false
@@ -147,13 +206,22 @@
                 "type": "object",
                 "properties": {
                     "occupation": {
-                        "$ref": "../types.json#/components/schemas/Occupation"
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/Occupation" },
+                            { "description": "Optional. Occupation of the officer. See [Occupation](https://www.unit.co/docs/api/types/#occupation)." }
+                        ]
                     },
                     "annualIncome": {
-                        "$ref": "../types.json#/components/schemas/AnnualIncome"
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/AnnualIncome" },
+                            { "description": "Optional. Annual income of the officer. See [AnnualIncome](https://www.unit.co/docs/api/types/#annual-income)." }
+                        ]
                     },
                     "sourceOfIncome": {
-                        "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                        "allOf": [
+                            { "$ref": "../types.json#/components/schemas/SourceOfIncome" },
+                            { "description": "Optional. Source of income of the officer. See [SourceOfIncome](https://www.unit.co/docs/api/types/#source-of-income)." }
+                        ]
                     }
                 }
             },

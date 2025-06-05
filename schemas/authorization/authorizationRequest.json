@@ -15,13 +15,18 @@
                         "properties": {
                             "amount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "Optional. The approved amount (in cents). Can only be specified if the authorization request's partialApprovalAllowed is set to true."
                             },
                             "fundingAccount": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. The id of an alternate account (either the customer's or another's) that should be used for funding the transaction. Please contact Unit to enable this feature."
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional, See [Tags](https://www.unit.co/docs/api/#tags). The specified tags will be inherited by the resulting authorization and transaction resources." }
+                                ]
                             }
                         }
                     }
@@ -52,7 +57,8 @@
                                     "ReferToCardIssuer",
                                     "RestrictedCard",
                                     "TransactionNotPermittedToCardholder"
-                                ]
+                                ],
+                                "description": "The reason for declining the authorization request. One of AccountClosed, CardExceedsAmountLimit, DoNotHonor, InsufficientFunds, InvalidMerchant, ReferToCardIssuer, RestrictedCard, TransactionNotPermittedToCardholder."
                             }
                         }
                     }
@@ -97,58 +103,120 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the authorization request was created."
                                     },
                                     "amount": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount of the authorization request in cents."
+                                    },
+                                    "available": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The available balance in the account, in cents."
                                     },
                                     "status": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "enum": ["Pending", "Approved", "Declined"],
+                                        "description": "The status of the authorization request."
                                     },
                                     "partialApprovalAllowed": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether partial approval is allowed for this request."
                                     },
                                     "approvedAmount": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The approved amount for the authorization request, if applicable."
                                     },
                                     "declineReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The reason for declining the authorization request, if declined."
                                     },
                                     "merchant": {
-                                        "$ref": "../types.json#/components/schemas/Merchant"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Merchant" },
+                                            { "description": "Information about the merchant where the transaction is occurring." }
+                                        ]
                                     },
                                     "recurring": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is a recurring transaction."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional tags associated with this authorization request." }
+                                        ]
                                     },
                                     "healthcareAmounts": {
-                                        "$ref": "../types.json#/components/schemas/HealthcareAmounts"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/HealthcareAmounts" },
+                                            { "description": "Healthcare-related amounts, if applicable." }
+                                        ]
                                     },
                                     "paymentMethod": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The payment method used for the transaction."
                                     },
                                     "digitalWallet": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The digital wallet used for the transaction, if applicable."
                                     },
                                     "cardVerificationData": {
-                                        "$ref": "../types.json#/components/schemas/CardVerificationData"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/CardVerificationData" },
+                                            { "description": "Card verification data for the transaction." }
+                                        ]
                                     },
                                     "ecommerce": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is an e-commerce transaction."
                                     },
                                     "cardPresent": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether the card was physically present for the transaction."
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "The direction of the transaction (e.g., Debit)."
+                                    },
+                                    "mustBeApproved": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this authorization request must be approved."
+                                    },
+                                    "currencyConversion": {
+                                        "type": "object",
+                                        "properties": {
+                                            "originalCurrency": {
+                                                "type": "string",
+                                                "description": "The original currency of the transaction."
+                                            },
+                                            "amountInOriginalCurrency": {
+                                                "type": "integer",
+                                                "format": "int64",
+                                                "description": "The amount in the original currency."
+                                            },
+                                            "fxRate": {
+                                                "type": "string",
+                                                "description": "The foreign exchange rate applied."
+                                            }
+                                        },
+                                        "description": "Currency conversion information for international transactions."
+                                    },
+                                    "isInternational": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is an international transaction."
                                     },
                                     "cardNetwork": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The card network used for the transaction."
                                     },
                                     "cashWithdrawalAmount": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The cash withdrawal amount for ATM transactions, in cents."
                                     }
                                 },
                                 "required": [
@@ -185,45 +253,109 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the authorization request was created."
                                     },
                                     "amount": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount of the authorization request in cents."
+                                    },
+                                    "available": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The available balance in the account, in cents."
                                     },
                                     "status": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "enum": ["Pending", "Approved", "Declined"],
+                                        "description": "The status of the authorization request."
                                     },
                                     "partialApprovalAllowed": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether partial approval is allowed for this request."
                                     },
                                     "approvedAmount": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The approved amount for the authorization request, if applicable."
                                     },
                                     "declineReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The reason for declining the authorization request, if declined."
                                     },
                                     "merchant": {
-                                        "$ref": "../types.json#/components/schemas/Merchant"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Merchant" },
+                                            { "description": "Information about the merchant where the transaction is occurring." }
+                                        ]
                                     },
                                     "recurring": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is a recurring transaction."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional tags associated with this authorization request." }
+                                        ]
                                     },
                                     "paymentMethod": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The payment method used for the transaction."
                                     },
                                     "digitalWallet": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The digital wallet used for the transaction, if applicable."
                                     },
                                     "cardVerificationData": {
-                                        "$ref": "../types.json#/components/schemas/CardVerificationData"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/CardVerificationData" },
+                                            { "description": "Card verification data for the transaction." }
+                                        ]
+                                    },
+                                    "ecommerce": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is an e-commerce transaction."
+                                    },
+                                    "cardPresent": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether the card was physically present for the transaction."
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "The direction of the transaction (e.g., Debit)."
+                                    },
+                                    "mustBeApproved": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this authorization request must be approved."
+                                    },
+                                    "currencyConversion": {
+                                        "type": "object",
+                                        "properties": {
+                                            "originalCurrency": {
+                                                "type": "string",
+                                                "description": "The original currency of the transaction."
+                                            },
+                                            "amountInOriginalCurrency": {
+                                                "type": "integer",
+                                                "format": "int64",
+                                                "description": "The amount in the original currency."
+                                            },
+                                            "fxRate": {
+                                                "type": "string",
+                                                "description": "The foreign exchange rate applied."
+                                            }
+                                        },
+                                        "description": "Currency conversion information for international transactions."
+                                    },
+                                    "isInternational": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is an international transaction."
                                     },
                                     "cardNetwork": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The card network used for the transaction."
                                     }
                                 },
                                 "required": [
@@ -260,47 +392,95 @@
                                 "properties": {
                                     "createdAt": {
                                         "type": "string",
-                                        "format": "date-time"
+                                        "format": "date-time",
+                                        "description": "The date and time when the authorization request was created."
                                     },
                                     "amount": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The amount of the authorization request in cents."
+                                    },
+                                    "available": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The available balance in the account, in cents."
                                     },
                                     "status": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "enum": ["Pending", "Approved", "Declined"],
+                                        "description": "The status of the authorization request."
                                     },
                                     "partialApprovalAllowed": {
-                                        "type": "boolean"
+                                        "type": "boolean",
+                                        "description": "Indicates whether partial approval is allowed for this request."
                                     },
                                     "approvedAmount": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The approved amount for the authorization request, if applicable."
                                     },
                                     "declineReason": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The reason for declining the authorization request, if declined."
                                     },
                                     "direction": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The direction of the ATM transaction (e.g., withdrawal, deposit)."
                                     },
                                     "atmName": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The name of the ATM where the transaction is occurring."
                                     },
                                     "atmLocation": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The location of the ATM where the transaction is occurring."
                                     },
                                     "surcharge": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The ATM surcharge amount in cents."
                                     },
                                     "internationalServiceFee": {
                                         "type": "number",
-                                        "nullable": true
+                                        "nullable": true,
+                                        "description": "The international service fee, if applicable."
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional tags associated with this authorization request." }
+                                        ]
+                                    },
+                                    "mustBeApproved": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this authorization request must be approved."
+                                    },
+                                    "currencyConversion": {
+                                        "type": "object",
+                                        "properties": {
+                                            "originalCurrency": {
+                                                "type": "string",
+                                                "description": "The original currency of the transaction."
+                                            },
+                                            "amountInOriginalCurrency": {
+                                                "type": "integer",
+                                                "format": "int64",
+                                                "description": "The amount in the original currency."
+                                            },
+                                            "fxRate": {
+                                                "type": "string",
+                                                "description": "The foreign exchange rate applied."
+                                            }
+                                        },
+                                        "description": "Currency conversion information for international transactions."
+                                    },
+                                    "isInternational": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is an international transaction."
                                     },
                                     "cardNetwork": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The card network used for the ATM transaction."
                                     }
                                 },
                                 "required": [
@@ -323,17 +503,165 @@
                     }
                 ]
             },
+            "IIASAuthorization": {
+                "title": "IIAS Authorization Request Resource",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "./authorizationRequest.json#/components/schemas/AuthorizationRequest"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "description": "The date and time when the authorization request was created."
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The amount of the authorization request in cents."
+                                    },
+                                    "available": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The available balance in the account, in cents."
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": ["Pending", "Approved", "Declined"],
+                                        "description": "The status of the authorization request."
+                                    },
+                                    "partialApprovalAllowed": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether partial approval is allowed for this request."
+                                    },
+                                    "approvedAmount": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The approved amount for the authorization request, if applicable."
+                                    },
+                                    "declineReason": {
+                                        "type": "string",
+                                        "description": "The reason for declining the authorization request, if declined."
+                                    },
+                                    "merchant": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Merchant" },
+                                            { "description": "Information about the merchant where the transaction is occurring." }
+                                        ]
+                                    },
+                                    "recurring": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is a recurring transaction."
+                                    },
+                                    "tags": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional tags associated with this authorization request." }
+                                        ]
+                                    },
+                                    "healthcareAmounts": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/HealthcareAmounts" },
+                                            { "description": "Healthcare-related amounts, if applicable." }
+                                        ]
+                                    },
+                                    "paymentMethod": {
+                                        "type": "string",
+                                        "description": "The payment method used for the transaction."
+                                    },
+                                    "digitalWallet": {
+                                        "type": "string",
+                                        "description": "The digital wallet used for the transaction, if applicable."
+                                    },
+                                    "cardVerificationData": {
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/CardVerificationData" },
+                                            { "description": "Card verification data for the transaction." }
+                                        ]
+                                    },
+                                    "ecommerce": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is an e-commerce transaction."
+                                    },
+                                    "cardPresent": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether the card was physically present for the transaction."
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "The direction of the transaction (e.g., Debit)."
+                                    },
+                                    "mustBeApproved": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this authorization request must be approved."
+                                    },
+                                    "currencyConversion": {
+                                        "type": "object",
+                                        "properties": {
+                                            "originalCurrency": {
+                                                "type": "string",
+                                                "description": "The original currency of the transaction."
+                                            },
+                                            "amountInOriginalCurrency": {
+                                                "type": "integer",
+                                                "format": "int64",
+                                                "description": "The amount in the original currency."
+                                            },
+                                            "fxRate": {
+                                                "type": "string",
+                                                "description": "The foreign exchange rate applied."
+                                            }
+                                        },
+                                        "description": "Currency conversion information for international transactions."
+                                    },
+                                    "isInternational": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether this is an international transaction."
+                                    },
+                                    "cardNetwork": {
+                                        "type": "string",
+                                        "description": "The card network used for the transaction."
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "status",
+                                    "partialApprovalAllowed",
+                                    "merchant",
+                                    "recurring"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/AuthorizationRequestRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["relationships"]
+                    }
+                ]
+            },
             "AuthorizationRequest": {
                 "title": "Authorization Request Document",
                 "type": "object",
+                "description": "Authorization requests that require manual review by the application before being approved or declined.",
                 "properties": {
                     "type": {
                         "type": "string",
                         "enum": [
                             "purchaseAuthorizationRequest",
                             "cardTransactionAuthorizationRequest",
-                            "atmAuthorizationRequest"
-                        ]
+                            "atmAuthorizationRequest",
+                            "iiasAuthorizationRequest"
+                        ],
+                        "description": "The type of authorization request."
                     },
                     "id": {
                         "$ref": "../types.json#/components/schemas/Identifier"
@@ -344,7 +672,8 @@
                     "mapping": {
                         "purchaseAuthorizationRequest": "#/components/schemas/PurchaseAuthorization",
                         "cardTransactionAuthorizationRequest": "#/components/schemas/CardTransactionAuthorization",
-                        "atmAuthorizationRequest": "#/components/schemas/AtmAuthorization"
+                        "atmAuthorizationRequest": "#/components/schemas/AtmAuthorization",
+                        "iiasAuthorizationRequest": "#/components/schemas/IIASAuthorization"
                     }
                 }
             }

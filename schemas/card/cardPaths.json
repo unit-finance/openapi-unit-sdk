@@ -10,7 +10,9 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["limits"],
+                                "enum": [
+                                    "limits"
+                                ],
                                 "default": "limits"
                             },
                             "attributes": {
@@ -26,16 +28,24 @@
                                         "$ref": "../types.json#/components/schemas/CardTotals"
                                     }
                                 },
-                                "required": ["dailyTotals", "monthlyTotals"],
+                                "required": [
+                                    "dailyTotals",
+                                    "monthlyTotals"
+                                ],
                                 "additionalProperties": false
                             }
                         },
                         "additionalProperties": false,
-                        "required": ["type", "attributes"]
+                        "required": [
+                            "type",
+                            "attributes"
+                        ]
                     }
                 },
                 "additionalProperties": false,
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             },
             "UnitPinStatusResponse": {
                 "title": "Unit Pin Status Response",
@@ -46,7 +56,9 @@
                         "properties": {
                             "type": {
                                 "type": "string",
-                                "enum": ["pinStatus"],
+                                "enum": [
+                                    "pinStatus"
+                                ],
                                 "default": "pinStatus"
                             },
                             "attributes": {
@@ -54,7 +66,11 @@
                                 "properties": {
                                     "status": {
                                         "type": "string",
-                                        "enum": ["Set", "NotSet"]
+                                        "enum": [
+                                            "Set",
+                                            "NotSet"
+                                        ],
+                                        "description": "Card PIN status, either 'Set' or 'NotSet'"
                                     }
                                 }
                             }
@@ -103,12 +119,53 @@
                         }
                     }
                 }
+            },
+            "UnitMobileWalletPayloadResponse": {
+                "title": "Unit Mobile Wallet Payload Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./mobileWalletPayload.json#/components/schemas/MobileWalletPayload"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "data"
+                ]
+            },
+            "UnitCardholderBearerTokenResponse": {
+                "title": "Unit Cardholder Bearer Token Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./cardholderToken.json#/components/schemas/CardholderBearerToken"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "data"
+                ]
+            },
+            "UnitCardholderTokenVerificationResponse": {
+                "title": "Unit Cardholder Token Verification Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./cardholderTokenVerification.json#/components/schemas/CardholderTokenVerification"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "data"
+                ]
             }
         }
     },
     "cards": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardsList",
             "summary": "Get List of Cards",
             "description": "Get List of Cards from API ",
@@ -179,11 +236,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createCard",
             "summary": "Create a Card",
             "description": "Create a Card via API ",
@@ -208,13 +270,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "card": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCard",
             "parameters": [
                 {
@@ -246,11 +313,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateCard",
             "summary": "Update Card",
             "description": "Update a Card via API ",
@@ -286,13 +358,148 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "activateCard": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "activateCard",
+            "summary": "Activate Card",
+            "description": "Cards can be activated using this endpoint or by calling the toll-free number printed on the card. Virtual cards do not require activation.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to activate"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "setPIN": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "setCardPIN",
+            "summary": "Set Card PIN",
+            "description": "Set the PIN for a card. The PIN is set via a third-party service and requires a customer token.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to set PIN for"
+                }
+            ],
+            "requestBody": {
+                "description": "Set Card PIN Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./setCardPin.json#/components/schemas/SetCardPinRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "changePIN": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "changeCardPIN",
+            "summary": "Change Card PIN",
+            "description": "Change the PIN for a card. The PIN is changed via a third-party service and requires a customer token.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to change PIN for"
+                }
+            ],
+            "requestBody": {
+                "description": "Change Card PIN Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./changeCardPin.json#/components/schemas/ChangeCardPinRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "reportLostCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reportCardAsLost",
             "summary": "Report lost as stolen",
             "parameters": [
@@ -306,7 +513,7 @@
                     "description": "ID of the card"
                 }
             ],
-            "description": "Report lost as stolen via API ",
+            "description": "Report card as lost. A lost card cannot be reopened.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -317,13 +524,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "reportStolenCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reportCardAsStolen",
             "summary": "Report card as stolen",
             "parameters": [
@@ -337,7 +549,7 @@
                     "description": "ID of the card"
                 }
             ],
-            "description": "Report card as stolen via API ",
+            "description": "Report card as stolen. A stolen card cannot be reopened.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -348,16 +560,21 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "closeCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "closeCard",
             "summary": "Close a Card",
-            "description": "Close a Card via API ",
+            "description": "Close a Card. A closed card cannot be reopened.",
             "parameters": [
                 {
                     "schema": {
@@ -379,16 +596,21 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cardPinStatus": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardPinStatus",
             "summary": "Get Card PIN Status",
-            "description": "Get Card PIN Status via API ",
+            "description": "Get the status of a card's PIN, whether it has been set or not.",
             "parameters": [
                 {
                     "schema": {
@@ -410,13 +632,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "freezeCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "freezeCard",
             "parameters": [
                 {
@@ -430,7 +657,7 @@
                 }
             ],
             "summary": "Freeze a Card",
-            "description": "Freeze a Card via API ",
+            "description": "Freeze a Card via API",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -441,13 +668,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "unfreezeCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "unfreezeCard",
             "parameters": [
                 {
@@ -461,7 +693,7 @@
                 }
             ],
             "summary": "Unfreeze a Card",
-            "description": "Unfreeze a Card via API ",
+            "description": "Unfreeze a Card via API",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -472,13 +704,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cardLimits": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCardLimits",
             "parameters": [
                 {
@@ -492,7 +729,7 @@
                 }
             ],
             "summary": "Get Card Limit by Id",
-            "description": "Get a Card Limits from API ",
+            "description": "Card purchases and withdrawals can be subjected to daily and monthly amount limits. Limits are optional (by default there are no card-specific limits), and can be set when the card is created or updated. The limits are enforced by Unit, and once the limit is reached, the transaction will be rejected.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -503,13 +740,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "replaceCard": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "replaceCard",
             "parameters": [
                 {
@@ -523,7 +765,7 @@
                 }
             ],
             "summary": "Replace a Card",
-            "description": "Replace a Card via API ",
+            "description": "Replace a Card via API",
             "requestBody": {
                 "required": true,
                 "content": {
@@ -544,6 +786,150 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "mobileWalletPayload": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "getMobileWalletPayload",
+            "summary": "Get mobile wallet payload",
+            "description": "Get the mobile wallet encrypted payload for the specified card. The encrypted payload is unique per issuance and is required as part of the SDK integration.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to get mobile wallet payload for"
+                }
+            ],
+            "requestBody": {
+                "description": "Mobile Wallet Payload Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./mobileWalletPayload.json#/components/schemas/GetMobileWalletPayloadRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitMobileWalletPayloadResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "cardholderToken": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "createCardholderToken",
+            "summary": "Create Cardholder Token",
+            "description": "Create a bearer token for a specific card. A Cardholder Token can only interact with one card.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to create a token for"
+                }
+            ],
+            "requestBody": {
+                "description": "Create Cardholder Token Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCardholderToken.json#/components/schemas/CreateCardholderTokenRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardholderBearerTokenResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "cardholderTokenVerification": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "createCardholderTokenVerification",
+            "summary": "Create Cardholder Token Verification",
+            "description": "When creating a cardholder token that contains a scope which requires two-factor authentication (see Scopes), it is required to first create a verification challenge that will be sent to the customer. The challenge is a six digit code and is valid for 10 minutes after its creation.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "cardId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card to create token verification for"
+                }
+            ],
+            "requestBody": {
+                "description": "Create Cardholder Token Verification Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCardholderTokenVerification.json#/components/schemas/CreateCardholderTokenVerificationRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardholderTokenVerificationResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

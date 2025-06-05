@@ -158,7 +158,7 @@
                         "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
                     },
                     {
-                        "$ref": "../relationships.json#/components/schemas/ReccuringRepaymentRelationship"
+                        "$ref": "../relationships.json#/components/schemas/RecurringRepaymentRelationship"
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/CounterpartyRelationship"
@@ -167,6 +167,7 @@
             },
             "BookRepaymentStatus": {
                 "type": "string",
+                "description": "Repayments share the status of the payment type they resulted in (Book or ACH debit). When the Repayment status changes, a repayment.statusChanged event will be raised.",
                 "enum": ["Sent", "Rejected"]
             },
             "BookRepayment": {
@@ -179,19 +180,28 @@
                                 "type": "object",
                                 "properties": {
                                     "createdAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was created."
                                     },
                                     "updatedAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was last updated."
                                     },
                                     "amount": {
-                                        "type": "number"
+                                        "type": "number",
+                                        "description": "The amount of the repayment in cents."
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/BookRepaymentStatus"
+                                        "allOf": [
+                                            { "$ref": "#/components/schemas/BookRepaymentStatus" },
+                                            { "description": "The status of the repayment. Possible values for Book Repayments are: Sent - The repayment has been completed and the funds have been debited from the counterparty, deposited into the account, and the creditAccount balance has been updated. Rejected - The repayment has been rejected, either because the amount exceeds the balance of the creditAccount, or because the book payment has been rejected." }
+                                        ]
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional key-value pairs associated with the repayment." }
+                                        ]
                                     }
                                 },
                                 "required": [
@@ -219,19 +229,28 @@
                                 "type": "object",
                                 "properties": {
                                     "createdAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was created."
                                     },
                                     "updatedAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was last updated."
                                     },
                                     "amount": {
-                                        "type": "number"
+                                        "type": "number",
+                                        "description": "The amount of the repayment in cents."
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/BookRepaymentStatus"
+                                        "allOf": [
+                                            { "$ref": "#/components/schemas/BookRepaymentStatus" },
+                                            { "description": "The status of the capital partner book repayment." }
+                                        ]
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional key-value pairs associated with the repayment." }
+                                        ]
                                     }
                                 },
                                 "required": [
@@ -251,6 +270,7 @@
             },
             "AchRepaymentStatus": {
                 "type": "string",
+                "description": "Repayments share the status of the payment type they resulted in (Book or ACH debit). When the Repayment status changes, a repayment.statusChanged event will be raised.",
                 "enum": [
                     "Pending",
                     "PendingReview",
@@ -271,19 +291,28 @@
                                 "type": "object",
                                 "properties": {
                                     "createdAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was created."
                                     },
                                     "updatedAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was last updated."
                                     },
                                     "amount": {
-                                        "type": "number"
+                                        "type": "number",
+                                        "description": "The amount of the repayment in cents."
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/AchRepaymentStatus"
+                                        "allOf": [
+                                            { "$ref": "#/components/schemas/AchRepaymentStatus" },
+                                            { "description": "The status of the repayment. Possible values for ACH Repayments are: Pending - The repayment and associated payment have been created, but have not yet been transmitted to the ACH network. PendingReview - The ACH debit payment has been sent to manual review in cases of elevated fraud risk. Clearing - The funds have been debited from the counterparty and are now in clearing to mitigate the risk of ACH debit fraud. Sent - The funds have been cleared and released to the account. The creditAccount balance has been updated. Returned - The bank that the funds were pulled from has returned the ACH payment. The funds have been returned from the account to the counterparty and the creditAccount balance has been updated. Rejected - The repayment has been rejected, either because the amount exceeds the balance of the creditAccount, or because the ACH has been rejected. Canceled - The ACH payment has been canceled." }
+                                        ]
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional key-value pairs associated with the repayment." }
+                                        ]
                                     }
                                 },
                                 "required": [
@@ -311,19 +340,28 @@
                                 "type": "object",
                                 "properties": {
                                     "createdAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was created."
                                     },
                                     "updatedAt": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "The date and time when the repayment was last updated."
                                     },
                                     "amount": {
-                                        "type": "number"
+                                        "type": "number",
+                                        "description": "The amount of the repayment in cents."
                                     },
                                     "status": {
-                                        "$ref": "#/components/schemas/AchRepaymentStatus"
+                                        "allOf": [
+                                            { "$ref": "#/components/schemas/AchRepaymentStatus" },
+                                            { "description": "The status of the capital partner ACH repayment." }
+                                        ]
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional key-value pairs associated with the repayment." }
+                                        ]
                                     }
                                 },
                                 "required": [
@@ -343,6 +381,7 @@
             },
             "Repayment": {
                 "title": "Repayment Resource",
+                "description": "Repayments represent payments made towards a loan. Repayments from a deposit account on the same bank on the Unit platform can be made using book repayment, whereas repayments from accounts on other banks, would be made using ACH debit repayments. Once you create a repayment, a repayment.created event will be raised.",
                 "type": "object",
                 "properties": {
                     "id": {

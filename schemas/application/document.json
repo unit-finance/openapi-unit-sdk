@@ -17,13 +17,34 @@
                         "type": "object",
                         "properties": {
                             "documentType": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": [
+                                    "IdDocument",
+                                    "Passport",
+                                    "AddressVerification",
+                                    "SocialSecurityCard",
+                                    "CertificateOfIncorporation",
+                                    "EmployerIdentificationNumberConfirmation",
+                                    "ClientRequested",
+                                    "SelfieVerification"
+                                ],
+                                "description": "The type of document. IdDocument: An individual's Drivers License or State ID. Both front-side and back-side are required. Passport: An individual's passport. AddressVerification: An individual's document to verify address. Document may be a utility bill, bank statement, lease agreement or current pay stub. SocialSecurityCard: An individual's social security card. CertificateOfIncorporation: A business's certificate of incorporation. A certificate of assumed name will also be accepted. EmployerIdentificationNumberConfirmation: A business's EIN confirmation document (either IRS form 147c or IRS form CP-575). ClientRequested: Client requested customer document. SelfieVerification: Selfie verification document."
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": [
+                                    "Required",
+                                    "ReceivedBack",
+                                    "ReceivedFront",
+                                    "Invalid",
+                                    "Approved",
+                                    "PendingReview"
+                                ],
+                                "description": "The status of the document. Required: The document is required for the application to be evaluated. ReceivedBack: Back-side of the document was received. Front-side is still required. Only relevant for IdDocument document type. ReceivedFront: Front-side of the document was received. Back-side is still required. Only relevant for IdDocument document type. Invalid: The document is invalid. You may re-upload the correct document for the application to be evaluated. Approved: The document is approved. PendingReview: The document is currently undergoing review."
                             },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Description of the document."
                             },
                             "nationality": {
                                 "$ref": "../types.json#/components/schemas/Country"
@@ -38,10 +59,12 @@
                                 "type": "string"
                             },
                             "name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Name associated with the document."
                             },
                             "address": {
-                                "$ref": "../types.json#/components/schemas/Address"
+                                "$ref": "../types.json#/components/schemas/Address",
+                                "description": "Address associated with the document."
                             },
                             "dateOfIncorporation": {
                                 "type": "string",
@@ -52,7 +75,8 @@
                             },
                             "dateOfBirth": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "Date of birth associated with the document."
                             },
                             "ein": {
                                 "type": "string",

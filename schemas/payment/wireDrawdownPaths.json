@@ -1,0 +1,187 @@
+{
+    "components": {
+        "schemas": {
+            "UnitWireDrawdownResponse": {
+                "type": "object",
+                "title": "Unit Wire Drawdown Response",
+                "properties": {
+                    "data": {
+                        "$ref": "./wireDrawdown.json#/components/schemas/WireDrawdown"
+                    }
+                }
+            }
+        }
+    },
+    "getWireDrawdown": {
+        "get": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "getWireDrawdown",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "wireDrawdownId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the wire drawdown to get"
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account. See Getting Related Resources at https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
+                }
+            ],
+            "summary": "Get Wire Drawdown by Id",
+            "description": "Get a wire drawdown by id.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "title": "Unit Wire Drawdown Response With Included",
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./wireDrawdown.json#/components/schemas/WireDrawdown"
+                                    },
+                                    "included": {
+                                        "$ref": "../types.json#/components/schemas/IncludedResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "listWireDrawdowns": {
+        "get": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "listWireDrawdowns",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "in": "query",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "accountId": {
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified account id."
+                            },
+                            "customerId": {
+                                "type": "string",
+                                "description": "Optional. Filters the results by the specified customer id."
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resources include: customer, account. See Getting Related Resources at https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources"
+                }
+            ],
+            "summary": "List Wire Drawdowns",
+            "description": "List wire drawdowns resources. Filtering and paging can be applied.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "title": "Unit Wire Drawdowns List Response",
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./wireDrawdown.json#/components/schemas/WireDrawdown"
+                                        }
+                                    },
+                                    "included": {
+                                        "$ref": "../types.json#/components/schemas/IncludedResource"
+                                    },
+                                    "meta": {
+                                        "$ref": "../types.json#/components/schemas/PaginationMeta"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "sendWireDrawdown": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "sendWireDrawdown",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "wireDrawdownId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the wire drawdown to send"
+                }
+            ],
+            "requestBody": {
+                "description": "Send Wire Drawdown Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./sendWireDrawdown.json#/components/schemas/SendWireDrawdownRequest"
+                        }
+                    }
+                }
+            },
+            "summary": "Send Drawdown Payment",
+            "description": "Send a wire payment in response to a drawdown request. The API will create a Wire Payment as a response to the drawdown request. You can observe the drawdownPayment relationship to retrieve the Payment Identifier.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitWireDrawdownResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    }
+}

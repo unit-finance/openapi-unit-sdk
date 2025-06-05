@@ -16,7 +16,7 @@
         "get": {
             "tags": ["unit"],
             "operationId": "getApiTokensList",
-            "summary": "Get List Org API Tokens",
+            "summary": "List Org API Tokens",
             "parameters": [
                 {
                     "schema": {
@@ -25,10 +25,10 @@
                     "name": "userId",
                     "in": "path",
                     "required": true,
-                    "description": "ID of the user to revoke token"
+                    "description": "ID of the user to list tokens for"
                 }
             ],
-            "description": "Get List Org API Tokens from API ",
+            "description": "List Org API Token resources.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -48,6 +48,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
@@ -55,7 +58,7 @@
             "tags": ["unit"],
             "operationId": "createApiToken",
             "summary": "Create Org API Token",
-            "description": "Create an Org API Token via API ",
+            "description": "Creates an Org API token.",
             "parameters": [
                 {
                     "schema": {
@@ -88,6 +91,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -116,8 +122,8 @@
                     "description": "ID of the token to revoke"
                 }
             ],
-            "summary": "Get Reward by Id",
-            "description": "Get a Reward from API ",
+            "summary": "Revoke Org API Token",
+            "description": "Revoke an Org API Token.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -134,6 +140,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -154,7 +163,7 @@
                 }
             ],
             "summary": "Create Customer Token",
-            "description": "Create a Customer Token via API ",
+            "description": "Create a bearer token for a particular customer. The returned token can be used in the `Authorization` header as a secure alternative to the broader API token. A Customer Token can only interact with resources under a particular customer. As an example, calling List Transactions with a customer bearer token will return only transactions within accounts under that particular customer.",
             "requestBody": {
                 "description": "Create Customer Token Request",
                 "required": true,
@@ -182,6 +191,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
@@ -190,7 +202,6 @@
         "post": {
             "tags": ["unit"],
             "operationId": "createCustomerTokenVerification",
-
             "parameters": [
                 {
                     "schema": {
@@ -203,7 +214,7 @@
                 }
             ],
             "summary": "Create Customer Token Verification",
-            "description": "Create a Customer Token Verification via API ",
+            "description": "In order to increase security and prevent token theft, Unit supports two-factor authentication when creating a customer token. When creating a customer token that contains a scope which requires two-factor authentication, it is required to first create a verification challenge that will be sent to the customer. The challenge is a six digits code and is valid for 10 minutes after its creation.",
             "requestBody": {
                 "description": "Create Customer Token Verification Request",
                 "required": true,
@@ -231,6 +242,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

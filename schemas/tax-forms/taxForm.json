@@ -2,7 +2,9 @@
     "components": {
         "schemas": {
             "TaxForm": {
+                "title": "Tax Form",
                 "type": "object",
+                "description": "Some tax forms are generated automatically at the start of each year, and providing them to your customers is a regulatory requirement. While Unit generates some tax forms in line with detailed regulatory requirements, you are responsible for following all IRS and regulatory guidelines and distributing those forms to your customers.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -15,10 +17,14 @@
                         "type": "object",
                         "properties": {
                             "formType": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The type of tax form, e.g. 1099-INT."
                             },
                             "taxYear": {
-                                "$ref": "../types.json#/components/schemas/Year"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Year" },
+                                    { "description": "The tax year for which the form was generated, in YYYY format." }
+                                ]
                             }
                         },
                         "required": ["formType", "taxYear"]

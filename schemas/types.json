@@ -61,6 +61,34 @@
                 "type": "string",
                 "nullable": true
             },
+            "TotalAccruedInterest": {
+                "title": "Total Accrued Interest",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["totalAccruedInterest"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "integer",
+                                "description": "The sum of customer accrued interest (in cents) for a given period of time."
+                            }
+                        },
+                        "required": [
+                            "amount"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "type",
+                    "attributes"
+                ],
+                "additionalProperties": false
+            },
             "Contact": {
                 "title": "Contact",
                 "type": "object",
@@ -170,22 +198,27 @@
                 "type": "object",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the merchant."
                     },
                     "type": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The 4-digit ISO 18245 merchant category code (MCC)."
                     },
                     "category": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The merchant category."
                     },
                     "location": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The location of the merchant."
                     },
                     "id": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The merchant ID."
                     }
                 },
-                "required": ["name", "type", "category"],
+                "required": ["name", "type"],
                 "additionalProperties": false
             },
             "PlaidProcessorToken": {
@@ -197,36 +230,134 @@
             "AuthorizedUser": {
                 "title": "Authorized User",
                 "type": "object",
+                "description": "Authorized Users represent individuals that have full access to the Customer's financials - they are able to authenticate and create a Customer Token and initiate any activity on behalf of the customer. This feature is used mostly in Business customers and Sole Proprietors, where the customer is a Business that can have multiple individuals managing its financials. Additionally, Authorized Users have access to all customer accounts through exchange networks, such as Plaid, enabling seamless financial data integration.",
                 "properties": {
-                    "fullName": {
-                        "$ref": "#/components/schemas/FullName"
+                    "type": {
+                        "type": "string",
+                        "enum": ["authorizedUser"]
                     },
-                    "email": {
-                        "$ref": "#/components/schemas/Email"
+                    "id": {
+                        "type": "string"
                     },
-                    "phone": {
-                        "$ref": "#/components/schemas/Phone"
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "fullName": {
+                                "$ref": "#/components/schemas/FullName"
+                            },
+                            "email": {
+                                "$ref": "#/components/schemas/Email"
+                            },
+                            "phone": {
+                                "$ref": "#/components/schemas/Phone"
+                            },
+                            "jwtSubject": {
+                                "$ref": "#/components/schemas/JwtSubject"
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": ["Enabled", "Disabled"],
+                                "description": "Status of the authorized user, either Enabled or Disabled."
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The date and time when the authorized user was created."
+                            },
+                            "evaluationStatus": {
+                                "type": "string",
+                                "enum": ["Evaluated"],
+                                "description": "The evaluation status of the authorized user."
+                            },
+                            "evaluationId": {
+                                "type": "string",
+                                "description": "The ID of the evaluation."
+                            },
+                            "alertId": {
+                                "type": "string",
+                                "description": "The ID of the alert."
+                            }
+                        },
+                        "required": ["fullName", "email", "phone"]
                     },
-                    "jwtSubject": {
-                        "$ref": "#/components/schemas/JwtSubject"
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "customer": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["customer"]
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "org": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["org"]
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "banks": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["banks"]
+                                            },
+                                            "id": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
-                "additionalProperties": false,
-                "required": ["fullName", "email", "phone"]
+                "additionalProperties": false
             },
             "DeviceFingerprint": {
                 "type": "object",
                 "properties": {
                     "provider": {
                         "type": "string",
-                        "enum": ["iovation"]
+                        "enum": ["iovation"],
+                        "description": "The name of the device fingerprint provider."
                     },
                     "value": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The device fingerprint string value (e.g. Iovation blackbox)."
                     }
                 },
                 "additionalProperties": false,
-                "required": ["provider", "value"]
+                "required": ["provider", "value"],
+                "description": "A Device fingerprint is a way to combine certain attributes of a device (operating system, IP address, device language settings etc.) in order to identify unique devices."
             },
             "PaginationMeta": {
                 "type": "object",
@@ -572,24 +703,26 @@
                 "required": ["fullName"]
             },
             "IncludedResource": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "string"
-                        },
-                        "type": {
-                            "type": "string"
-                        },
-                        "attributes": {
-                            "type": "object"
-                        },
-                        "relationships": {
-                            "type": "object"
-                        }
+                "oneOf": [
+                    {
+                        "$ref": "../schemas/account/account.json#/components/schemas/Account"
+                    },
+                    {
+                        "$ref": "../schemas/customer/customer.json#/components/schemas/Customer"
+                    },
+                    {
+                        "$ref": "../schemas/application/application.json#/components/schemas/Application"
+                    },
+                    {
+                        "$ref": "../schemas/transaction/transaction.json#/components/schemas/Transaction"
+                    },
+                    {
+                        "$ref": "../schemas/card/card.json#/components/schemas/Card"
+                    },
+                    {
+                        "$ref": "../schemas/card/mobileWalletPayload.json#/components/schemas/MobileWalletPayload"
                     }
-                }
+                ]
             },
             "BaseWeeklySchedule": {
                 "title": "Weekly Schedule",
@@ -597,24 +730,29 @@
                 "properties": {
                     "startTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The start date for the recurring payment schedule. If not provided, defaults to the current date."
                     },
                     "endTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The end date for the recurring payment schedule. If not provided, the recurring payment will run until manually disabled."
                     },
                     "dayOfMonth": {
                         "type": "integer",
                         "minimum": -5,
-                        "maximum": 28
+                        "maximum": 28,
+                        "description": "Specifies the day of the month when the payment should be executed. Values 1-28 are specific calendar days. Negative values count backward from the end of the month (-1 is the last day, -2 is the second-to-last day, etc.)."
                     },
                     "nextScheduledAction": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "The next date when the payment will be executed according to the schedule."
                     },
                     "totalNumberOfPayments": {
                         "type": "integer",
-                        "minimum": 1
+                        "minimum": 1,
+                        "description": "Optional. The total number of payments to be executed. If not provided, the payments will continue until the end date or until the recurring payment is disabled."
                     }
                 },
                 "additionalProperties": false,
@@ -625,16 +763,19 @@
                 "properties": {
                     "startTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The start date for the recurring payment schedule. If not provided, defaults to the current date."
                     },
                     "endTime": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "description": "Optional. The end date for the recurring payment schedule. If not provided, the recurring payment will run until manually disabled."
                     },
                     "dayOfMonth": {
                         "type": "integer",
                         "minimum": -5,
-                        "maximum": 28
+                        "maximum": 28,
+                        "description": "Specifies the day of the month when the payment should be executed. Values 1-28 are specific calendar days. Negative values count backward from the end of the month (-1 is the last day, -2 is the second-to-last day, etc.)."
                     },
                     "dayOfWeek": {
                         "type": "string",
@@ -646,11 +787,13 @@
                             "Thursday",
                             "Friday",
                             "Saturday"
-                        ]
+                        ],
+                        "description": "Specifies the day of the week when the payment should be executed."
                     },
                     "totalNumberOfPayments": {
                         "type": "integer",
-                        "minimum": 1
+                        "minimum": 1,
+                        "description": "Optional. The total number of payments to be executed. If not provided, the payments will continue until the end date or until the recurring payment is disabled."
                     }
                 },
                 "additionalProperties": false
@@ -665,7 +808,8 @@
                             "interval": {
                                 "type": "string",
                                 "enum": ["Weekly"],
-                                "default": "Weekly"
+                                "default": "Weekly",
+                                "description": "Specifies the frequency of the recurring payment as weekly."
                             }
                         },
                         "required": ["interval"]
@@ -684,7 +828,8 @@
                             "interval": {
                                 "type": "string",
                                 "enum": ["Monthly"],
-                                "default": "Monthly"
+                                "default": "Monthly",
+                                "description": "Specifies the frequency of the recurring payment as monthly."
                             }
                         },
                         "required": ["interval"]
@@ -693,6 +838,7 @@
             },
             "Schedule": {
                 "title": "Schedule",
+                "description": "The schedule will determine details about the patterns (frequency and execution time) of the future payments that are part of the Recurring Payments. Times in Recurring Payments are in EST.",
                 "oneOf": [
                     { "$ref": "#/components/schemas/WeeklySchedule" },
                     { "$ref": "#/components/schemas/MonthlySchedule" }
@@ -729,10 +875,12 @@
             },
             "ResponseSchedule": {
                 "type": "object",
+                "description": "The schedule in the response resource will include additional fields compared to the input fields that were passed by the user initially. In case the start time was not defined, the start time will be set to the current time. In case the end time was not set, the recurring payment will run until it is manually disabled. Recurring payments will be executed by the end of each day.",
                 "properties": {
                     "interval": {
                         "type": "string",
-                        "enum": ["Weekly", "Monthly"]
+                        "enum": ["Weekly", "Monthly"],
+                        "description": "Specifies the frequency of the recurring payment."
                     }
                 },
                 "discriminator": {
@@ -752,6 +900,16 @@
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 255
+            },
+            "LendingProgramType": {
+                "type": "string",
+                "title": "Lending Program Type",
+                "description": "The type of a lending program.",
+                "enum": [
+                    "BankSponsoredBusinessChargeCard",
+                    "ClientSponsoredBusinessChargeCard",
+                    "ReceivablesRetention"
+                ]
             }
         }
     }

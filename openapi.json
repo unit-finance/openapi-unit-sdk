@@ -101,6 +101,9 @@
         "/customers/{customerId}/authorized-users": {
             "$ref": "./schemas/customer/customerPaths.json#/authorizedUsers"
         },
+        "/customers/{customerId}/authorized-users/{authorizedUserId}": {
+            "$ref": "./schemas/customer/customerPaths.json#/authorizedUser"
+        },
         "/payments": {
             "$ref": "./schemas/payment/paymentsPaths.json#/getAndCreatePayments"
         },
@@ -109,6 +112,12 @@
         },
         "/payments/{paymentId}/cancel": {
             "$ref": "./schemas/payment/paymentsPaths.json#/cancelPayment"
+        },
+        "/payments/{paymentId}/clear": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/clearAchDebitPayment"
+        },
+        "/payments/bulk": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/createBulkPayments"
         },
         "/store-locations": {
             "$ref": "./schemas/cash-deposit/cashDepositPaths.json#/listCashDepositStoreLocations"
@@ -123,7 +132,7 @@
             "$ref": "./schemas/payment/paymentsPaths.json#/listReceivedPayments"
         },
         "/returns/{transactionId}": {
-            "$ref": "./schemas/payment/paymentsPaths.json#/returnReceivedACHTransaction"
+            "$ref": "./schemas/payment/paymentsPaths.json#/returnReceivedAchTransaction"
         },
         "/received-payments/{paymentId}": {
             "$ref": "./schemas/payment/paymentsPaths.json#/receivedPayments"
@@ -143,6 +152,9 @@
         "/counterparties/{counterpartyId}/balance": {
             "$ref": "./schemas/counterparty/counterpartyPaths.json#/counterpartyBalance"
         },
+        "/batch-releases": {
+            "$ref": "./schemas/payment/batchReleasesPaths.json#/createBatchReleases"
+        },
         "/recurring-payments": {
             "$ref": "./schemas/payment/paymentsPaths.json#/recurringPayments"
         },
@@ -154,6 +166,9 @@
         },
         "/recurring-payments/{paymentId}/enable": {
             "$ref": "./schemas/payment/paymentsPaths.json#/enableRecurringPayment"
+        },
+        "/recurring-payments/{paymentId}/delete": {
+            "$ref": "./schemas/payment/paymentsPaths.json#/deleteRecurringPayment"
         },
         "/cards": {
             "$ref": "./schemas/card/cardPaths.json#/cards"
@@ -184,6 +199,24 @@
         },
         "/cards/{cardId}/replace": {
             "$ref": "./schemas/card/cardPaths.json#/replaceCard"
+        },
+        "/cards/{cardId}/mobile-wallet-payload": {
+            "$ref": "./schemas/card/cardPaths.json#/mobileWalletPayload"
+        },
+        "/cards/{cardId}/activate": {
+            "$ref": "./schemas/card/cardPaths.json#/activateCard"
+        },
+        "/cards/{cardId}/secure-data/pin/set": {
+            "$ref": "./schemas/card/cardPaths.json#/setPIN"
+        },
+        "/cards/{cardId}/secure-data/pin/change": {
+            "$ref": "./schemas/card/cardPaths.json#/changePIN"
+        },
+        "/cards/{cardId}/cardholder/token": {
+            "$ref": "./schemas/card/cardPaths.json#/cardholderToken"
+        },
+        "/cards/{cardId}/cardholder/token/verification": {
+            "$ref": "./schemas/card/cardPaths.json#/cardholderTokenVerification"
         },
         "/authorizations": {
             "$ref": "./schemas/authorization/authorizationPaths.json#/authorizations"
@@ -246,10 +279,10 @@
             "$ref": "./schemas/check/checkDepositPaths.json#/confirmCheckDeposit"
         },
         "/check-deposits/{checkDepositId}/front": {
-            "$ref": "./schemas/check/checkDepositPaths.json#/getFrontCheckDeposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/frontImageCheckDeposit"
         },
         "/check-deposits/{checkDepositId}/back": {
-            "$ref": "./schemas/check/checkDepositPaths.json#/getBackCheckDeposit"
+            "$ref": "./schemas/check/checkDepositPaths.json#/backImageCheckDeposit"
         },
         "/users/{userId}/api-tokens": {
             "$ref": "./schemas/token/tokenPaths.json#/apiTokens"
@@ -283,6 +316,9 @@
         },
         "/transactions": {
             "$ref": "./schemas/transaction/transactionPaths.json#/listTransactions"
+        },
+        "/transactions/{transactionId}": {
+            "$ref": "./schemas/transaction/transactionPaths.json#/transactionById"
         },
         "/disputes": {
             "$ref": "./schemas/dispute/disputePaths.json#/listDisputes"
@@ -358,6 +394,66 @@
         },
         "/sandbox/received-ach-payment": {
             "$ref": "./schemas/simulation/simulationPaths.json#/createIncomingAchPayment"
+        },
+        "/wire-drawdowns/{wireDrawdownId}": {
+            "$ref": "./schemas/payment/wireDrawdownPaths.json#/getWireDrawdown"
+        },
+        "/wire-drawdowns": {
+            "$ref": "./schemas/payment/wireDrawdownPaths.json#/listWireDrawdowns"
+        },
+        "/wire-drawdowns/{wireDrawdownId}/send": {
+            "$ref": "./schemas/payment/wireDrawdownPaths.json#/sendWireDrawdown"
+        },
+        "/card-fraud-cases/{id}": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/cardFraudCase"
+        },
+        "/card-fraud-cases": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/cardFraudCases"
+        },
+        "/card-fraud-cases/{id}/fraud": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/markCardFraudCaseAsFraud"
+        },
+        "/card-fraud-cases/{id}/no-fraud": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/markCardFraudCaseAsNoFraud"
+        },
+        "/fraud-outreach-policies": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/createCardFraudOutreachPolicy"
+        },
+        "/fraud-outreach-policies/{policyId}": {
+            "$ref": "./schemas/card/cardFraudOutreachPaths.json#/fraudOutreachPolicy"
+        },
+        "/credit-applications": {
+            "$ref": "./schemas/credit-application/creditApplicationPaths.json#/creditApplications"
+        },
+        "/credit-applications/{creditApplicationId}": {
+            "$ref": "./schemas/credit-application/creditApplicationPaths.json#/creditApplication"
+        },
+        "/credit-decisions": {
+            "$ref": "./schemas/credit-decision/creditDecisionPaths.json#/creditDecisions"
+        },
+        "/credit-decisions/{id}": {
+            "$ref": "./schemas/credit-decision/creditDecisionPaths.json#/creditDecision"
+        },
+        "/lending-programs": {
+            "$ref": "./schemas/lending-program/lendingProgramPaths.json#/lendingPrograms"
+        },
+        "/lending-programs/{id}": {
+            "$ref": "./schemas/lending-program/lendingProgramPaths.json#/lendingProgram"
+        },
+        "/lending-programs/{id}/extended": {
+            "$ref": "./schemas/lending-program/lendingProgramPaths.json#/lendingProgramExtended"
+        },
+        "/receivables/{id}": {
+            "$ref": "./schemas/receivables/receivablesPaths.json#/receivable"
+        },
+        "/receivables": {
+            "$ref": "./schemas/receivables/receivablesPaths.json#/receivables"
+        },
+        "/receivablesreports/balance": {
+            "$ref": "./schemas/receivables/receivablesPaths.json#/receivablesBalance"
+        },
+        "/accrued-interest/total": {
+            "$ref": "./schemas/interest/interestPaths.json#/getTotalAccruedInterest"
         }
     },
     "components": {

@@ -4,6 +4,7 @@
             "StoreLocation": {
                 "title": "Store Location",
                 "type": "object",
+                "description": "Cash Deposit Store Location resource.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -14,22 +15,32 @@
                         "type": "object",
                         "properties": {
                             "storeId": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The unique identifier of the store."
                             },
                             "retailerName": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the retailer."
                             },
                             "phone": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The phone number of the store."
                             },
                             "address": {
-                                "$ref": "../types.json#/components/schemas/Address"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Address" },
+                                    { "description": "The address of the store." }
+                                ]
                             },
                             "coordinates": {
-                                "$ref": "../types.json#/components/schemas/Coordinates"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Coordinates" },
+                                    { "description": "The geographical coordinates of the store location." }
+                                ]
                             },
                             "distance": {
-                                "type": "number"
+                                "type": "number",
+                                "description": "The distance from the requested coordinates to the store, in miles."
                             }
                         },
                         "required": [

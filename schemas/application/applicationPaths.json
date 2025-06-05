@@ -43,7 +43,9 @@
                             },
                             "type": {
                                 "type": "string",
-                                "enum": ["beneficialOwner"],
+                                "enum": [
+                                    "beneficialOwner"
+                                ],
                                 "default": "beneficialOwner"
                             },
                             "attributes": {
@@ -52,13 +54,17 @@
                         }
                     }
                 },
-                "required": ["data"]
+                "required": [
+                    "data"
+                ]
             }
         }
     },
     "application": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplication",
             "parameters": [
                 {
@@ -90,14 +96,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateApplication",
             "summary": "Update Application",
-            "description": "Update an Application via API ",
+            "description": "Update an Application via API. Can be used to update individual applications, sole proprietorships, business applications, and business officers.",
             "parameters": [
                 {
                     "schema": {
@@ -130,13 +141,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "cancelApplication": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "cancelApplication",
             "parameters": [
                 {
@@ -149,8 +165,8 @@
                     "description": "ID of the application to get"
                 }
             ],
-            "summary": "Cancel Application by Id",
-            "description": "Cancel a Application via API ",
+            "summary": "Cancel Application",
+            "description": "Cancel an Application at any point that is not Pending, Approved or Denied. The status of the application will change to Canceled, and the relevant webhook event will be fired.",
             "requestBody": {
                 "description": "Cancel Application Request",
                 "required": true,
@@ -165,7 +181,9 @@
                                     "properties": {
                                         "type": {
                                             "type": "string",
-                                            "enum": ["applicationCancel"]
+                                            "enum": [
+                                                "applicationCancel"
+                                            ]
                                         },
                                         "attributes": {
                                             "type": "object",
@@ -204,15 +222,20 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "applications": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationsList",
-            "summary": "Get List Application",
+            "summary": "List",
             "description": "Get List Applications from API ",
             "parameters": [
                 {
@@ -292,7 +315,9 @@
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createApplication",
             "summary": "Create Application",
             "description": "Create an Application via API ",
@@ -329,13 +354,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "applicationForms": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationFormsList",
             "summary": "Get List Application Forms",
             "description": "Get List Application Forms from API ",
@@ -358,7 +388,10 @@
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Pending", "Approved"]
+                                    "enum": [
+                                        "Pending",
+                                        "Approved"
+                                    ]
                                 }
                             },
                             "email": {
@@ -400,11 +433,16 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createApplicationForm",
             "summary": "Create Application Form",
             "description": "Create an Application Form via API ",
@@ -435,13 +473,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "applicationForm": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationForm",
             "parameters": [
                 {
@@ -482,13 +525,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "uploadApplicationDocumentFile": {
         "put": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "uploadApplicationDocumentFile",
             "parameters": [
                 {
@@ -510,7 +558,8 @@
                     "description": "ID of the document to upload a file for"
                 }
             ],
-            "summary": "Upload an application document file. Supports PDF, PNG and JPG files",
+            "summary": "Upload Document",
+            "description": "Uploads a document file. Supported file types are `pdf`, `jpeg` or `png`. For a driver's license, this operation uploads the front-side only. Upload the back-side of a driver's licence using Upload Document Back-Side API. Maximum size for a document is 20mb.",
             "requestBody": {
                 "description": "An application document file",
                 "required": true,
@@ -532,13 +581,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "uploadApplicationDocumentFileBack": {
         "put": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "uploadApplicationDocumentFileBackSide",
             "parameters": [
                 {
@@ -560,8 +614,8 @@
                     "description": "ID of the document to upload a file for"
                 }
             ],
-            "summary": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
-            "description": "Upload an application file via API - Back Side. Supports PDF, PNG and JPG files",
+            "summary": "Upload Document Back-Side",
+            "description": "Uploads the back-side of a document. Supported file types are `pdf`, `jpeg` or `png`. This operation is only relevant to driver's licenses. Maximum size for a document is 20mb.",
             "requestBody": {
                 "description": "Upload an application document file - Back Side. Supports PDF, PNG and JPG files",
                 "required": true,
@@ -583,15 +637,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "documents": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getApplicationDocuments",
-
             "parameters": [
                 {
                     "schema": {
@@ -603,8 +661,8 @@
                     "description": "ID of the application to get documents for"
                 }
             ],
-            "summary": "Get List of Documents",
-            "description": "Get List of Documents via API ",
+            "summary": "List",
+            "description": "List application documents. You can also list the application documents via Get Application by Id, the documents will be included in the response `included` top-level field.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -624,13 +682,17 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createApplicationDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -651,8 +713,8 @@
                     }
                 }
             ],
-            "summary": "Create an application document",
-            "description": "Create an application document via API",
+            "summary": "Create Document",
+            "description": "Unit allows you to create (and store) **custom documents**. This feature allows you to run additional document verifications on your side - these are documents that are not required by Unit for the evaluation of the application. Once you create a custom document resource, you can upload and store the document by using the relevant endpoints.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -663,15 +725,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "verifyDocument": {
-        "put": {
-            "tags": ["unit"],
+        "post": {
+            "tags": [
+                "unit"
+            ],
             "operationId": "verifyApplicationDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -692,21 +758,48 @@
                     "description": "ID of the document to verify"
                 }
             ],
-            "summary": "Verify a document",
-            "description": "Verify a document via API ",
+            "summary": "Verify Document",
+            "description": "Verify Selfie Verification document",
             "requestBody": {
                 "description": "Verify Document",
                 "required": true,
                 "content": {
-                    "application/json": {
+                    "application/vnd.api+json": {
                         "schema": {
                             "type": "object",
-                            "title": "Verify Document",
+                            "title": "Verify Document Request",
                             "properties": {
-                                "jobId": {
-                                    "type": "string"
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "selfieVerification"
+                                            ]
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "jobId": {
+                                                    "type": "string",
+                                                    "description": "Verification job identifier"
+                                                }
+                                            },
+                                            "required": [
+                                                "jobId"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "type",
+                                        "attributes"
+                                    ]
                                 }
-                            }
+                            },
+                            "required": [
+                                "data"
+                            ]
                         }
                     }
                 }
@@ -721,15 +814,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "downloadDocument": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "downloadApplicationDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -750,8 +847,8 @@
                     "description": "ID of the document to download"
                 }
             ],
-            "summary": "Download a Document",
-            "description": "Download a Document via API ",
+            "summary": "Download Document",
+            "description": "Download the application document file.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -763,15 +860,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "downloadBackSideDocument": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "downloadApplicationBackSideDocument",
-
             "parameters": [
                 {
                     "schema": {
@@ -792,8 +893,8 @@
                     "description": "ID of the document to download"
                 }
             ],
-            "summary": "Download a Document - Back Side",
-            "description": "Download a Document - Back Side via API",
+            "summary": "Download Document Back-Side",
+            "description": "Download the application document back-side file.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -805,16 +906,21 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "updateBusinessBeneficialOwner": {
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateBusinessBeneficialOwner",
-            "description": "Update a Business Beneficial Owner",
-            "summary": "Update a Business Beneficial Owner via API",
+            "summary": "Update Business Beneficial Owner",
+            "description": "Update a business application's beneficial owner. The application id associated with the beneficial owner must be passed as a relationship in the request body.",
             "parameters": [
                 {
                     "schema": {
@@ -847,6 +953,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

@@ -29,6 +29,7 @@
             "Authorization": {
                 "title": "Authorization Document",
                 "type": "object",
+                "description": "The authorization (also authorization hold) process is an essential step in completing a card transaction. During authorization, the merchant receives the card holder's information and verifies that the card is valid and that the card holder has sufficient funds to cover the amount of the transaction. Most merchants proceed immediately from authorization to the completion of the transaction, but they have the option to place a hold instead.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -43,48 +44,80 @@
                         "properties": {
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the authorization was created."
                             },
                             "amount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The amount of the authorization in cents."
                             },
                             "cardLast4Digits": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The last 4 digits of the card number."
                             },
                             "merchant": {
-                                "$ref": "../types.json#/components/schemas/Merchant"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Merchant" },
+                                    { "description": "Information about the merchant where the transaction occurred." }
+                                ]
                             },
                             "recurring": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates whether this is a recurring transaction."
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": ["Authorized", "Completed", "Canceled", "Declined"],
+                                "description": "The status of the authorization. Possible values: Authorized, Completed, Canceled, Declined."
                             },
                             "declineReason": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": [
+                                    "CardVerificationValueFailed",
+                                    "IncorrectPIN",
+                                    "ExceedsAmountLimit",
+                                    "InsufficientFunds",
+                                    "RequestedFunctionNotSupported",
+                                    "AllowablePINTriesExceeded",
+                                    "SuspectedFraud",
+                                    "ClosedAccount",
+                                    "DoNotHonor",
+                                    "CardholderBlocked",
+                                    "CardStolen",
+                                    "RestrictedCard"
+                                ],
+                                "description": "The reason for declining the authorization if the status is Declined."
                             },
                             "tags": {
                                 "$ref": "../types.json#/components/schemas/Tags"
                             },
                             "paymentMethod": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The payment method used for the transaction."
                             },
                             "digitalWallet": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The digital wallet used for the transaction, if applicable."
                             },
                             "summary": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "A summary of the transaction."
                             },
                             "cardVerificationData": {
-                                "$ref": "../types.json#/components/schemas/CardVerificationData"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/CardVerificationData" },
+                                    { "description": "Card verification data for the transaction." }
+                                ]
                             },
                             "cardNetwork": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The card network used for the transaction."
                             },
                             "cashWithdrawalAmount": {
                                 "type": "integer",
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The cash withdrawal amount for ATM transactions, in cents."
                             }
                         },
                         "required": [

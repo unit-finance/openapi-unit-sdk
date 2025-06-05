@@ -15,7 +15,8 @@
                     "Sent",
                     "Canceled",
                     "Returned"
-                ]
+                ],
+                "description": "The check deposit status. Possible values are: AwaitingImages (The check deposit was created. Waiting for the front-side and back-side images to be uploaded.), AwaitingFrontImage (The back-side image of the check was received. Waiting for the front-side image to be uploaded.), AwaitingBackImage (The front-side image of the check was received. Waiting for the back-side image to be uploaded.), AwaitingCustomerConfirmation (The check deposit requires the customer's attention: either retaking the images or confirmation check deposit amount. If no action is captured within a 10 minutes window, the check deposit will automatically be Rejected. This status is not part of all check deposit's lifecycles and mainly depends on a bank partner.), Pending (The check deposit was created on the Unit ledger but was not yet processed. Check deposits with Pending status may be canceled by the originator.), PendingReview (The check deposit is pending review by Unit.), Rejected (The check deposit was rejected (see reason for more details). Some rejections are immediate but some can take up to a couple of days.), Clearing (The check deposit was processed and the funds have been received by Unit, but the deposit account was not credited yet. The check deposit will stay clearing for a period of time as defined on the deposit product, for fraud risk mitigation reasons. It's recommended that the physical check is kept securely until the end of the statement cycle.), Sent (The check deposit was processed and the deposit account was credited. This is the final state for successful check deposits.), Canceled (The check deposit was canceled.), Returned (The check deposit was processed but the receiving bank was not able to complete the transfer (see reason for more details).)"
             },
             "CheckDepositRelationships": {
                 "allOf": [
@@ -97,69 +98,76 @@
                         "properties": {
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the check deposit was created"
                             },
                             "settlementDate": {
                                 "type": "string",
-                                "format": "date"
+                                "format": "date",
+                                "description": "The date when the check deposit was settled"
                             },
                             "amount": {
                                 "type": "integer",
                                 "minimum": 1,
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The check amount (in cents) to deposit"
                             },
                             "description": {
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 50
+                                "maxLength": 50,
+                                "description": "Description of the check deposit (maximum of 50 characters)"
                             },
                             "status": {
-                                "type": "string",
-                                "enum": [
-                                    "AwaitingImages",
-                                    "AwaitingFrontImage",
-                                    "AwaitingBackImage",
-                                    "Pending",
-                                    "PendingReview",
-                                    "AwaitingCustomerConfirmation",
-                                    "Rejected",
-                                    "Clearing",
-                                    "Sent",
-                                    "Canceled",
-                                    "Returned"
-                                ]
+                                "$ref": "#/components/schemas/CheckDepositStatus"
                             },
                             "reason": {
                                 "type": "string",
-                                "nullable": true
+                                "nullable": true,
+                                "description": "Reason for rejection or return, if applicable"
                             },
                             "statusCreatedAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the current status was set"
                             },
                             "statusSetBy": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Who set the current status"
                             },
                             "statusHistory": {
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/StatusEvent"
-                                }
+                                },
+                                "description": "History of status changes for this check deposit"
                             },
                             "reasonText": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Additional text explaining the reason for rejection or return"
                             },
                             "checkNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The check number"
                             },
                             "vendor": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The vendor processing the check deposit"
                             },
                             "counterparty": {
-                                "$ref": "#/components/schemas/CheckDepositCounterparty"
+                                "$ref": "#/components/schemas/CheckDepositCounterparty",
+                                "description": "Information about the counterparty of the check deposit"
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Tags" },
+                                    { "description": "Optional. See https://www.unit.co/docs/api/#tags" }
+                                ]
+                            },
+                            "clearingDaysOverride": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "description": "Optional. The number of days until the check deposit clears. See https://www.unit.co/docs/api/check-deposits/#dynamic-clearing-period-check-deposit"
                             }
                         },
                         "required": [

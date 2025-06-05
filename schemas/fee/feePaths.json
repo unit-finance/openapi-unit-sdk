@@ -1,10 +1,12 @@
 {
     "createFee": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "createFee",
             "summary": "Create Fee",
-            "description": "Create a Fee via API ",
+            "description": "Creates a fee for an Account. Fees are a way for you to bill your customer for their activity, and can be used for everything from monthly subscriptions to financial activity fees (payments, card issuance etc.)",
             "requestBody": {
                 "description": "Create Fee Request",
                 "required": true,
@@ -32,16 +34,21 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "reverseFee": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "reverseFee",
             "summary": "Reverse Fee",
-            "description": "Reverse a Fee via API ",
+            "description": "Reverse a fee for an Account.",
             "requestBody": {
                 "description": "Reverse Fee Request",
                 "required": true,
@@ -69,6 +76,9 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

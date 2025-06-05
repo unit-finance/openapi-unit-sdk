@@ -1,0 +1,259 @@
+{
+    "components": {
+        "schemas": {
+            "BankReceivable": {
+                "type": "object",
+                "title": "Bank Receivable",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["bankReceivable"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "version": {
+                                "type": "integer",
+                                "description": "The version of the receivable."
+                            },
+                            "originalAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The original amount of the receivable (in cents)."
+                            },
+                            "remainingAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The remaining amount of the receivable (in cents)."
+                            },
+                            "purchaseDueDate": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "The due date for purchasing the receivable."
+                            },
+                            "repaymentStatus": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["notRepaid", "partiallyRepaid", "fullyRepaid"]
+                                    }
+                                },
+                                "required": ["type"],
+                                "description": "The repayment status of the receivable."
+                            }
+                        },
+                        "required": ["createdAt", "updatedAt", "version", "originalAmount", "remainingAmount", "purchaseDueDate", "repaymentStatus"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/ReceivableRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "OrgReceivable": {
+                "type": "object",
+                "title": "Organization Receivable",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["orgReceivable"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "version": {
+                                "type": "integer",
+                                "description": "The version of the receivable."
+                            },
+                            "originalAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The original amount of the receivable (in cents)."
+                            },
+                            "remainingAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The remaining amount of the receivable (in cents)."
+                            },
+                            "purchaseDueDate": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "The due date for purchasing the receivable."
+                            },
+                            "repaymentStatus": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["notRepaid", "partiallyRepaid", "fullyRepaid"]
+                                    }
+                                },
+                                "required": ["type"],
+                                "description": "The repayment status of the receivable."
+                            }
+                        },
+                        "required": ["createdAt", "updatedAt", "version", "originalAmount", "remainingAmount", "purchaseDueDate", "repaymentStatus"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/ReceivableRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "CapitalPartnerReceivable": {
+                "type": "object",
+                "title": "Capital Partner Receivable",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["capitalPartnerReceivable"]
+                    },
+                    "id": {
+                        "$ref": "../types.json#/components/schemas/Identifier"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "ISO8601 date time."
+                            },
+                            "version": {
+                                "type": "integer",
+                                "description": "The version of the receivable."
+                            },
+                            "originalAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The original amount of the receivable (in cents)."
+                            },
+                            "remainingAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The remaining amount of the receivable (in cents)."
+                            },
+                            "purchaseDueDate": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "The due date for purchasing the receivable."
+                            },
+                            "repaymentStatus": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": ["notRepaid", "partiallyRepaid", "fullyRepaid"]
+                                    }
+                                },
+                                "required": ["type"],
+                                "description": "The repayment status of the receivable."
+                            }
+                        },
+                        "required": ["createdAt", "updatedAt", "version", "originalAmount", "remainingAmount", "purchaseDueDate", "repaymentStatus"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "$ref": "#/components/schemas/ReceivableRelationships"
+                    }
+                },
+                "required": ["type", "id", "attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "ReceivableRelationships": {
+                "type": "object",
+                "properties": {
+                    "customer": {
+                        "$ref": "../relationships.json#/components/schemas/CustomerRelationship"
+                    },
+                    "account": {
+                        "$ref": "../relationships.json#/components/schemas/AccountRelationship"
+                    },
+                    "transaction": {
+                        "$ref": "../relationships.json#/components/schemas/TransactionRelationship"
+                    },
+                    "lendingProgram": {
+                        "$ref": "../relationships.json#/components/schemas/LendingProgramRelationship"
+                    }
+                },
+                "required": ["customer", "account", "transaction", "lendingProgram"],
+                "additionalProperties": false
+            },
+            "Receivable": {
+                "title": "Receivable Resource",
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/BankReceivable"
+                    },
+                    {
+                        "$ref": "#/components/schemas/OrgReceivable"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CapitalPartnerReceivable"
+                    }
+                ]
+            },
+            "ReceivablesBalance": {
+                "type": "object",
+                "title": "Receivables Balance",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["receivablesBalance"]
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "pendingPurchaseReceivablesAmount": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "The total amount of receivables pending purchase (in cents)."
+                            }
+                        },
+                        "required": ["pendingPurchaseReceivablesAmount"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

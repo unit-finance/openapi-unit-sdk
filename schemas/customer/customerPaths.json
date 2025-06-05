@@ -14,7 +14,9 @@
     },
     "customer": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCustomer",
             "parameters": [
                 {
@@ -25,10 +27,18 @@
                     "in": "path",
                     "required": true,
                     "description": "ID of the customer to get"
+                },
+                {
+                    "name": "include",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. A comma-separated list of related resources to include in the response. Related resource include: authorizedUser. See [Getting Related Resources](https://www.unit.co/docs/api/about-jsonapi/#intro-getting-related-resources)"
                 }
             ],
-            "summary": "Get Customer by Id",
-            "description": "Get a Customer from API ",
+            "summary": "Get by Id",
+            "description": "Get a customer resource by id.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -39,14 +49,19 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "patch": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "updateCustomer",
             "summary": "Update Customer",
-            "description": "Update an Customer via API ",
+            "description": "Update an Customer via API. The Customer Updated webhook event will be fired.",
             "parameters": [
                 {
                     "schema": {
@@ -79,16 +94,21 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "listCustomers": {
         "get": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "getCustomersList",
-            "summary": "Get Customers List",
-            "description": "Get Customers List from API ",
+            "summary": "List",
+            "description": "List customer resources. Paging can be applied.",
             "parameters": [
                 {
                     "$ref": "../types.json#/components/schemas/PageQuery"
@@ -102,23 +122,30 @@
                         "type": "object",
                         "properties": {
                             "query": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Search term according to the [Full-Text Search Rules](https://www.unit.co/docs/api/#full-text-search)."
                             },
                             "status": {
                                 "type": "array",
                                 "items": {
                                     "type": "string",
-                                    "enum": ["Active", "Archived"]
-                                }
+                                    "enum": [
+                                        "Active",
+                                        "Archived"
+                                    ]
+                                },
+                                "description": "Optional. Filter customers by status (Active, Archived). Usage example: *filter[status][0]=Active"
                             },
                             "email": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Optional. Filter customers by email address (case sensitive)."
                             },
                             "tags": {
                                 "type": "object",
                                 "additionalProperties": {
                                     "type": "string"
-                                }
+                                },
+                                "description": "Optional. Filter Customers by [Tags](https://www.unit.co/docs/api/#tags)."
                             }
                         }
                     }
@@ -128,7 +155,8 @@
                     "in": "query",
                     "schema": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Optional. sort=createdAt for ascending order or sort=-createdAt (leading minus sign) for descending order."
                 }
             ],
             "responses": {
@@ -153,13 +181,66 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "createBusinessWalletCustomer",
+            "summary": "Create Business Wallet Customer",
+            "description": "Create a business wallet customer.",
+            "requestBody": {
+                "description": "Create Business Wallet Customer Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "./createCustomer.json#/components/CreateBusinessWalletCustomer"
+                                }
+                            },
+                            "required": [
+                                "data"
+                            ]
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "type": "object",
+                                "title": "Unit Business Wallet Customer Response",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "./customer.json#/components/schemas/BusinessWalletCustomer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "archiveCustomer": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "archiveCustomer",
             "parameters": [
                 {
@@ -183,8 +264,8 @@
                     }
                 }
             },
-            "summary": "Archive Customer by Id",
-            "description": "Archive a Customer via API ",
+            "summary": "Archive Customer",
+            "description": "Archive a customer. The Customer Archived webhook event will be fired.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -195,13 +276,18 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }
     },
     "authorizedUsers": {
         "post": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "addAuthorizedUsers",
             "parameters": [
                 {
@@ -225,8 +311,8 @@
                     }
                 }
             },
-            "summary": "Add Authorized Users by Id",
-            "description": "Add Authorized Users via API",
+            "summary": "Add Authorized Users",
+            "description": "Add authorized users for a customer. The Customer Update webhook event will be fired.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -237,11 +323,74 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "get": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "listAuthorizedUsers",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer to list authorized users for"
+                },
+                {
+                    "name": "filter[jwtSubject]",
+                    "in": "query",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Filter authorized users by JWT subject."
+                },
+                {
+                    "name": "filter[phone]",
+                    "in": "query",
+                    "schema": {
+                        "$ref": "../types.json#/components/schemas/Phone"
+                    },
+                    "description": "Optional. Filter authorized users by phone."
+                }
+            ],
+            "summary": "List",
+            "description": "List of authorized user resources. Filtering can be applied.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "../types.json#/components/schemas/AuthorizedUser"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         },
         "delete": {
-            "tags": ["unit"],
+            "tags": [
+                "unit"
+            ],
             "operationId": "removeAuthorizedUsers",
             "parameters": [
                 {
@@ -255,7 +404,7 @@
                 }
             ],
             "requestBody": {
-                "description": "Add Authorized Users Request",
+                "description": "Remove Authorized Users Request",
                 "required": true,
                 "content": {
                     "application/vnd.api+json": {
@@ -265,8 +414,8 @@
                     }
                 }
             },
-            "summary": "Remove Authorized Users by Id",
-            "description": "Remove Authorized Users via API",
+            "summary": "Remove Authorized Users",
+            "description": "Remove existing authorized users from a customer. The Customer Update webhook event will be fired.",
             "responses": {
                 "200": {
                     "description": "Successful Response",
@@ -277,6 +426,59 @@
                             }
                         }
                     }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "authorizedUser": {
+        "get": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "getAuthorizedUser",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "customerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the customer that the authorized user belongs to"
+                },
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "authorizedUserId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the authorized user to get"
+                }
+            ],
+            "summary": "Get by Id",
+            "description": "Get an authorized user resource by id.",
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "../types.json#/components/schemas/AuthorizedUser"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
                 }
             }
         }

@@ -1,0 +1,275 @@
+{
+    "components": {
+        "schemas": {
+            "CardFraudCaseActivity": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The unique identifier of the card activity."
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the card activity was created in the card fraud case."
+                    },
+                    "activityType": {
+                        "type": "string",
+                        "enum": ["Authorization", "Transaction"],
+                        "description": "The type of the card activity."
+                    },
+                    "cardActivityCreatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the card activity was created."
+                    },
+                    "cardActivity": {
+                        "type": "string",
+                        "description": "The unique identifier of the card activity (transaction or authorization)."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "The location where the card activity occurred."
+                    },
+                    "merchant": {
+                        "type": "string",
+                        "description": "The merchant name where the card activity occurred."
+                    },
+                    "amount": {
+                        "type": "integer",
+                        "description": "The amount of the card activity in cents."
+                    },
+                    "decision": {
+                        "type": "string",
+                        "enum": ["Pending", "Fraud", "NoFraud"],
+                        "description": "The decision made for the card activity."
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the card activity was last updated."
+                    }
+                },
+                "required": ["id", "createdAt", "activityType", "cardActivityCreatedAt", "cardActivity", "amount"],
+                "additionalProperties": false
+            },
+            "CardFraudCaseBase": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The date and time when the card fraud case was created."
+                            },
+                            "status": {
+                                "type": "string",
+                                "enum": ["Created", "Active", "Closed", "Expired"],
+                                "description": "The status of the card fraud case."
+                            },
+                            "decision": {
+                                "type": "string",
+                                "enum": ["Pending", "Fraud", "NoFraud"],
+                                "description": "The decision made for the card fraud case."
+                            },
+                            "expiresAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The date and time when the card fraud case expires."
+                            },
+                            "cardActivities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CardFraudCaseActivity"
+                                },
+                                "description": "The card activities related to the card fraud case."
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The date and time when the card fraud case was last updated."
+                            }
+                        },
+                        "required": ["createdAt", "status", "decision", "expiresAt", "cardActivities"],
+                        "additionalProperties": false
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "card": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["card"],
+                                                "default": "card"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "account": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["account"],
+                                                "default": "account"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            },
+                            "customer": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["customer"],
+                                                "default": "customer"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["card", "account", "customer"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["attributes", "relationships"],
+                "additionalProperties": false
+            },
+            "AuthorizationCardFraudCase": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CardFraudCaseBase"
+                    }
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["authorizationCardFraudCase"],
+                        "default": "authorizationCardFraudCase"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "authorization": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["authorization"],
+                                                "default": "authorization"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["authorization"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "id"],
+                "additionalProperties": false
+            },
+            "TransactionCardFraudCase": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CardFraudCaseBase"
+                    }
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["transactionCardFraudCase"],
+                        "default": "transactionCardFraudCase"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "relationships": {
+                        "type": "object",
+                        "properties": {
+                            "transaction": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": ["transaction"],
+                                                "default": "transaction"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["type", "id"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "required": ["data"],
+                                "additionalProperties": false
+                            }
+                        },
+                        "required": ["transaction"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "id"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

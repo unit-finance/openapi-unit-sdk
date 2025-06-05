@@ -1,0 +1,70 @@
+{
+    "components": {
+        "schemas": {
+            "UpdateCardFraudOutreachPolicy": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["cardFraudOutreachPolicy"],
+                        "default": "cardFraudOutreachPolicy"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "caseExpirationPeriodHours": {
+                                "type": "integer",
+                                "enum": [12, 24, 48, 72],
+                                "description": "Optional. The period in hours after the card fraud case was created, after which the card fraud case expires. Can be one of the following periods: 12, 24, 48, 72."
+                            },
+                            "activitiesLookBackPeriodHours": {
+                                "type": "integer",
+                                "enum": [12, 24, 48, 72],
+                                "description": "Optional. The period in hours before the card fraud case was created, for which the card fraud case activities will be included in the case. Can be one of the following periods: 12, 24, 48, 72."
+                            },
+                            "contactUrl": {
+                                "type": "string",
+                                "description": "Optional. The client support contact URL. Should be a valid https URL."
+                            },
+                            "contactPhone": {
+                                "allOf": [
+                                    { "$ref": "../types.json#/components/schemas/Phone" },
+                                    { "description": "Optional. The client support contact phone number." }
+                                ]
+                            },
+                            "numberOfCardActivities": {
+                                "type": "integer",
+                                "description": "Optional. The number of card activities that will be included in the card fraud case. Up to 5 activities max."
+                            },
+                            "emailOutreachSettings": {
+                                "type": "string",
+                                "description": "Optional. The id of the email outreach settings to be used for the policy."
+                            },
+                            "messageOutreachSettings": {
+                                "type": "string",
+                                "description": "Optional. The id of the message outreach settings to be used for the policy."
+                            },
+                            "whiteLabelTheme": {
+                                "type": "string",
+                                "description": "Optional. The id of the white-label theme to be used for the policy."
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            },
+            "UpdateCardFraudOutreachPolicyRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/UpdateCardFraudOutreachPolicy"
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

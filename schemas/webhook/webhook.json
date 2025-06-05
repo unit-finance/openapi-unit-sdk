@@ -21,27 +21,41 @@
                                 "format": "date-time"
                             },
                             "label": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "A label describing the webhook."
                             },
                             "url": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The URL of the webhook endpoint."
                             },
                             "status": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": ["Enabled", "Disabled", "Unavailable"]
                             },
                             "contentType": {
                                 "type": "string",
-                                "enum": ["Json", "JsonAPI"]
+                                "enum": ["Json", "JsonAPI"],
+                                "description": "The type of content you wish to receive. Either Json or JsonAPI."
                             },
                             "deliveryMode": {
                                 "type": "string",
-                                "enum": ["AtMostOnce", "AtLeastOnce"]
+                                "enum": ["AtMostOnce", "AtLeastOnce"],
+                                "description": "The attempted delivery mode of the webhook. Either AtMostOnce or AtLeastOnce."
                             },
                             "token": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The secret token (see https://www.unit.co/docs/api/webhooks/#securing-your-webhooks)."
+                            },
+                            "includeResources": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Optional. Default: false. Indicates whether to include full resource in events payload."
                             },
                             "subscriptionType": {
-                                "type": "string"
+                                "type": "string",
+                                "enum": ["All", "OnlyAuthorizationRequest", "NotAuthorizationRequest"],
+                                "default": "All",
+                                "description": "Optional. specify the subscription type. Default: All. Either 'All' or 'OnlyAuthorizationRequest' or 'NotAuthorizationRequest'(see https://www.unit.co/docs/api/webhooks/#subscription-types)."
                             }
                         }
                     }

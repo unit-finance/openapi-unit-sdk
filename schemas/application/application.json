@@ -10,7 +10,8 @@
                     "Denied",
                     "Pending",
                     "Canceled"
-                ]
+                ],
+                "description": "Status of the application. The final statuses for an application are `Approved`, `Denied` or `Canceled`. Once an application is approved, a Customer resource will be created and associated with the application resource."
             },
             "PowerOfAttorneyAgent": {
                 "title": "Power of Attorney Agent",

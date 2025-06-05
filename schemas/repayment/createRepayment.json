@@ -79,13 +79,24 @@
                         "type": "object",
                         "properties": {
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Repayment description (maximum of 80 characters), this will show up on statement of the counterparty."
                             },
                             "amount": {
-                                "type": "number"
+                                "type": "number",
+                                "description": "The amount (cents) to repay."
                             },
                             "transactionSummaryOverride": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "If this field is populated, its contents will be returned as the bookTransaction's summary field (maximum of 100 characters)."
+                            },
+                            "tags": {
+                                "type": "object",
+                                "description": "Optional. See Tags (https://www.unit.co/docs/api/#tags)."
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "description": "Optional. See Idempotency (https://www.unit.co/docs/api/#intro-idempotency)."
                             }
                         },
                         "required": ["description", "amount"],
@@ -110,13 +121,24 @@
                         "type": "object",
                         "properties": {
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Repayment description (maximum of 80 characters), this will show up on statement of the counterparty."
                             },
                             "amount": {
-                                "type": "number"
+                                "type": "number",
+                                "description": "The amount (cents) to repay."
                             },
                             "transactionSummaryOverride": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "If this field is populated, its contents will be returned as the bookTransaction's summary field (maximum of 100 characters)."
+                            },
+                            "tags": {
+                                "type": "object",
+                                "description": "Optional. See Tags (https://www.unit.co/docs/api/#tags)."
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "description": "Optional. See Idempotency (https://www.unit.co/docs/api/#intro-idempotency)."
                             }
                         },
                         "required": ["description", "amount"],
@@ -140,19 +162,32 @@
                         "type": "object",
                         "properties": {
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Repayment description (maximum of 80 characters), this will show up on statement of the counterparty."
                             },
                             "amount": {
-                                "type": "number"
+                                "type": "number",
+                                "description": "The amount (cents) to repay."
                             },
                             "addenda": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Additional information about the payment."
                             },
                             "sameDay": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates if the payment should be processed as a same-day ACH transaction."
                             },
                             "secCode": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The Standard Entry Class (SEC) code for the transaction."
+                            },
+                            "tags": {
+                                "type": "object",
+                                "description": "Optional. See Tags (https://www.unit.co/docs/api/#tags)."
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "description": "Optional. See Idempotency (https://www.unit.co/docs/api/#intro-idempotency)."
                             }
                         },
                         "required": ["description", "amount"],
@@ -177,19 +212,32 @@
                         "type": "object",
                         "properties": {
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Repayment description (maximum of 80 characters), this will show up on statement of the counterparty."
                             },
                             "amount": {
-                                "type": "number"
+                                "type": "number",
+                                "description": "The amount (cents) to repay."
                             },
                             "addenda": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Additional information about the payment."
                             },
                             "sameDay": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates if the payment should be processed as a same-day ACH transaction."
                             },
                             "secCode": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The Standard Entry Class (SEC) code for the transaction."
+                            },
+                            "tags": {
+                                "type": "object",
+                                "description": "Optional. See Tags (https://www.unit.co/docs/api/#tags)."
+                            },
+                            "idempotencyKey": {
+                                "type": "string",
+                                "description": "Optional. See Idempotency (https://www.unit.co/docs/api/#intro-idempotency)."
                             }
                         },
                         "required": ["description", "amount"],

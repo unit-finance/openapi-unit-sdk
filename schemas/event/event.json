@@ -1,28 +1,681 @@
 {
     "components": {
         "schemas": {
-            "Event": {
-                "title": "Event Resource",
+            "BaseEvent": {
+                "title": "Base Event Resource",
                 "type": "object",
+                "description": "Unit uses `Events` to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.\n\nOur event types follow a specific structure: `resource.event`.\n\nEach event includes an `id` field, which uniquely identifies the event instance, and a `type` field that identifies the type of the event instance.\n\nEach event type includes a different set of attributes and relationships, relevant to that specific event.\n\nEvent attributes may contain a set of custom tags inherited from a related resource request.",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Identifies the type of the event instance"
                     },
                     "id": {
-                        "$ref": "../types.json#/components/schemas/Identifier"
+                        "$ref": "../types.json#/components/schemas/Identifier",
+                        "description": "Uniquely identifies the event instance"
                     },
                     "attributes": {
                         "type": "object",
-                        "properties": {}
-                    },
-                    "relationships": {
-                        "type": "object",
-                        "title": "Event Relationships",
-                        "properties": {}
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The time when the event was created"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "Event attributes may contain a set of custom tags inherited from a related resource request"
+                            }
+                        }
                     }
                 },
-                "additionalProperties": false,
-                "required": ["type", "id"]
+                "required": ["type", "id", "attributes"]
+            },
+            "AccountCreatedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when an Account is created successfully.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.created"]
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccountClosedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when an Account is closed.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.closed"]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "closeReason": {
+                                        "type": "string",
+                                        "description": "Reason for closing the account"
+                                    }
+                                }
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccountFrozenEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when an Account is frozen.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.frozen"]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "freezeReason": {
+                                        "type": "string",
+                                        "description": "Reason for freezing the account"
+                                    }
+                                }
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccountReopenedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when a closed Account is reopened.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.reopened"]
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccountUnfrozenEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when a frozen Account is unfrozen.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.unfrozen"]
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccountUpdatedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when an Account is updated. The list of changes is provided in the `changes` attribute.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["account.updated"]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "changes": {
+                                        "type": "object",
+                                        "description": "List of changes to the resource",
+                                        "additionalProperties": {
+                                            "type": "object",
+                                            "properties": {
+                                                "previous": {
+                                                    "type": "string",
+                                                    "description": "The previous value"
+                                                },
+                                                "current": {
+                                                    "type": "string",
+                                                    "description": "The current value"
+                                                }
+                                            }
+                                        },
+                                        "example": {
+                                            "depositProduct": {
+                                                "previous": "934",
+                                                "current": "120009"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "AuthorizationCreatedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["authorization.created"]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer",
+                                        "description": "Transaction amount"
+                                    },
+                                    "available": {
+                                        "type": "integer",
+                                        "description": "Available balance"
+                                    },
+                                    "cardLast4Digits": {
+                                        "type": "string",
+                                        "description": "Last 4 digits of the card"
+                                    },
+                                    "merchant": {
+                                        "type": "object",
+                                        "description": "Merchant information",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "recurring": {
+                                        "type": "boolean",
+                                        "description": "Whether the transaction is recurring"
+                                    }
+                                }
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "authorization": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["authorization"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "TransactionCreatedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["transaction.created"]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer",
+                                        "description": "Transaction amount"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "Transaction direction"
+                                    },
+                                    "summary": {
+                                        "type": "string",
+                                        "description": "Transaction summary"
+                                    }
+                                }
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "transaction": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["wireTransaction", "achTransaction", "bookTransaction", "transaction"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "WireDrawdownCreatedEvent": {
+                "allOf": [
+                    { "$ref": "#/components/schemas/BaseEvent" },
+                    {
+                        "type": "object",
+                        "description": "Occurs when a Wire Drawdown request is created.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": ["wireDrawdown.created"]
+                            },
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer",
+                                        "description": "Transaction amount"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "description": "Transaction direction"
+                                    },
+                                    "counterparty": {
+                                        "type": "object",
+                                        "description": "Counterparty information",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "routingNumber": {
+                                                "type": "string"
+                                            },
+                                            "accountNumber": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "relationships": {
+                                "type": "object",
+                                "properties": {
+                                    "wireDrawdown": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["wireDrawdown"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "customer": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["customer", "individualCustomer", "businessCustomer"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "account": {
+                                        "type": "object",
+                                        "properties": {
+                                            "data": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "enum": ["account"]
+                                                    },
+                                                    "id": {
+                                                        "$ref": "../types.json#/components/schemas/Identifier"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Event": {
+                "title": "Event Resource",
+                "description": "Unit uses `Events` to record important changes happening under your org. Once an event is created, it will be delivered to your application via a webhook call.\n\nOur event types follow a specific structure: `resource.event`.\n\nEach event includes an `id` field, which uniquely identifies the event instance, and a `type` field that identifies the type of the event instance.\n\nEach event type includes a different set of attributes and relationships, relevant to that specific event.\n\nEvent attributes may contain a set of custom tags inherited from a related resource request.",
+                "oneOf": [
+                    { "$ref": "#/components/schemas/AccountCreatedEvent" },
+                    { "$ref": "#/components/schemas/AccountClosedEvent" },
+                    { "$ref": "#/components/schemas/AccountFrozenEvent" },
+                    { "$ref": "#/components/schemas/AccountUnfrozenEvent" },
+                    { "$ref": "#/components/schemas/AccountReopenedEvent" },
+                    { "$ref": "#/components/schemas/AccountUpdatedEvent" },
+                    { "$ref": "#/components/schemas/AuthorizationCreatedEvent" },
+                    { "$ref": "#/components/schemas/TransactionCreatedEvent" },
+                    { "$ref": "#/components/schemas/WireDrawdownCreatedEvent" }
+                ],
+                "discriminator": {
+                    "propertyName": "type"
+                }
             }
         }
     }

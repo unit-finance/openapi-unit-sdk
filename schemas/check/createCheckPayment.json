@@ -34,13 +34,18 @@
                                         "properties": {
                                             "name": {
                                                 "type": "string",
-                                                "maxLength": 40
+                                                "maxLength": 40,
+                                                "description": "Name of the check payment recipient (maximum of 40 characters)"
                                             },
                                             "address": {
-                                                "$ref": "../types.json#/components/schemas/Address"
+                                                "allOf": [
+                                                    { "$ref": "../types.json#/components/schemas/Address" },
+                                                    { "description": "Address of the check payment recipient. Must be a valid US address." }
+                                                ]
                                             },
                                             "counterpartyMoved": {
-                                                "type": "boolean"
+                                                "type": "boolean",
+                                                "description": "Indicates if the counterparty has moved"
                                             }
                                         },
                                         "required": ["name", "address"],
@@ -49,25 +54,35 @@
                                     "amount": {
                                         "type": "integer",
                                         "minimum": 1,
-                                        "format": "int64"
+                                        "format": "int64",
+                                        "description": "The check amount (in cents)"
                                     },
                                     "idempotencyKey": {
-                                        "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/IdempotencyKey" },
+                                            { "description": "A unique key used to prevent duplicate processing" }
+                                        ]
                                     },
                                     "sendDate": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "description": "Optional. The date when the check should be sent. If not provided, the check will be sent immediately."
                                     },
                                     "memo": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Optional. Memo for the check payment, up to 40 characters."
                                     },
                                     "description": {
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 50
+                                        "maxLength": 50,
+                                        "description": "Description of the check payment (maximum of 50 characters)"
                                     },
                                     "tags": {
-                                        "$ref": "../types.json#/components/schemas/Tags"
+                                        "allOf": [
+                                            { "$ref": "../types.json#/components/schemas/Tags" },
+                                            { "description": "Optional tags for the check payment. See https://www.unit.co/docs/api/#tags" }
+                                        ]
                                     }
                                 },
                                 "required": [

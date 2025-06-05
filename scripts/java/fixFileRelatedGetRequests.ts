@@ -1,5 +1,5 @@
 import fs from "fs";
-import { getPathCmdParameter, openJavaFile } from "./utils";
+import { getJavaPathCmdParameter, openJavaFile } from "./javaUtils";
 
 function fixFileRelatedGetRequests(data: string): string {
     const mainFunctionNameRegex = /(File )(get|download)/gm;
@@ -76,7 +76,7 @@ import java.net.URI;`
 function execute() {
     try {
         console.log("Fixing file related get requests...");
-        const path = getPathCmdParameter();
+        const path = getJavaPathCmdParameter();
         const data = openJavaFile(path);
         const processedData = fixFileRelatedGetRequests(data);
         console.log("Fixed file related get requests!");

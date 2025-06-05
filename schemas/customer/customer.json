@@ -101,7 +101,8 @@
                                     },
                                     "status": {
                                         "type": "string",
-                                        "enum": ["Active", "Archived"]
+                                        "enum": ["Active", "Archived"],
+                                        "description": "Status of the customer, either Active or Archived."
                                     },
                                     "archiveReason": {
                                         "type": "string",
@@ -113,8 +114,10 @@
                                             "FraudApplicationHistory",
                                             "FraudAccountActivity",
                                             "FraudClientIdentified",
-                                            "FraudLinkedToFraudulentCustomer"
-                                        ]
+                                            "FraudLinkedToFraudulentCustomer",
+                                            "ByBank"
+                                        ],
+                                        "description": "The reason the customer was archived. One of Inactive, FraudACHActivity, FraudCardActivity, FraudCheckActivity, FraudApplicationHistory, FraudAccountActivity, FraudClientIdentified, FraudLinkedToFraudulentCustomer, ByBank. This list is subject to change."
                                     }
                                 },
                                 "additionalProperties": false,
@@ -192,7 +195,8 @@
                                     },
                                     "status": {
                                         "type": "string",
-                                        "enum": ["Active", "Archived"]
+                                        "enum": ["Active", "Archived"],
+                                        "description": "Status of the customer, either Active or Archived."
                                     },
                                     "archiveReason": {
                                         "type": "string",
@@ -204,8 +208,10 @@
                                             "FraudApplicationHistory",
                                             "FraudAccountActivity",
                                             "FraudClientIdentified",
-                                            "FraudLinkedToFraudulentCustomer"
-                                        ]
+                                            "FraudLinkedToFraudulentCustomer",
+                                            "ByBank"
+                                        ],
+                                        "description": "The reason the customer was archived. One of Inactive, FraudACHActivity, FraudCardActivity, FraudCheckActivity, FraudApplicationHistory, FraudAccountActivity, FraudClientIdentified, FraudLinkedToFraudulentCustomer, ByBank. This list is subject to change."
                                     }
                                 },
                                 "additionalProperties": false,

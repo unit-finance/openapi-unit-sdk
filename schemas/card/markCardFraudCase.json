@@ -1,0 +1,50 @@
+{
+    "components": {
+        "schemas": {
+            "MarkCardFraudCaseAsFraud": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["markAsFraud"],
+                        "default": "markAsFraud"
+                    }
+                },
+                "required": ["type"],
+                "additionalProperties": false
+            },
+            "MarkCardFraudCaseAsFraudRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/MarkCardFraudCaseAsFraud"
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            },
+            "MarkCardFraudCaseAsNoFraud": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["markAsNoFraud"],
+                        "default": "markAsNoFraud"
+                    }
+                },
+                "required": ["type"],
+                "additionalProperties": false
+            },
+            "MarkCardFraudCaseAsNoFraudRequest": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/MarkCardFraudCaseAsNoFraud"
+                    }
+                },
+                "required": ["data"],
+                "additionalProperties": false
+            }
+        }
+    }
+} 

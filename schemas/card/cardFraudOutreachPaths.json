@@ -1,0 +1,410 @@
+{
+    "components": {
+        "schemas": {
+            "UnitCardFraudCaseResponse": {
+                "title": "Unit Card Fraud Case Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "oneOf": [
+                            {
+                                "$ref": "./cardFraudCase.json#/components/schemas/AuthorizationCardFraudCase"
+                            },
+                            {
+                                "$ref": "./cardFraudCase.json#/components/schemas/TransactionCardFraudCase"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "data"
+                ]
+            },
+            "UnitCardFraudCasesListResponse": {
+                "title": "Unit Card Fraud Cases List Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "./cardFraudCase.json#/components/schemas/AuthorizationCardFraudCase"
+                                },
+                                {
+                                    "$ref": "./cardFraudCase.json#/components/schemas/TransactionCardFraudCase"
+                                }
+                            ]
+                        }
+                    },
+                    "meta": {
+                        "type": "object",
+                        "properties": {
+                            "offset": {
+                                "type": "integer"
+                            },
+                            "limit": {
+                                "type": "integer"
+                            },
+                            "total": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "data"
+                ]
+            },
+            "UnitCardFraudOutreachPolicyResponse": {
+                "title": "Unit Card Fraud Outreach Policy Response",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "./cardFraudOutreachPolicy.json#/components/schemas/CardFraudOutreachPolicy"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "data"
+                ]
+            }
+        }
+    },
+    "cardFraudCase": {
+        "get": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "getCardFraudCase",
+            "summary": "Get Card Fraud Case by Id",
+            "description": "Get a card fraud case by id.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card fraud case to get"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardFraudCaseResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "cardFraudCases": {
+        "get": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "listCardFraudCases",
+            "summary": "List Card Fraud Cases",
+            "description": "List card fraud case resources. Paging can be applied.",
+            "parameters": [
+                {
+                    "$ref": "../types.json#/components/schemas/PageQuery"
+                },
+                {
+                    "name": "filter",
+                    "style": "deepObject",
+                    "allowReserved": true,
+                    "in": "query",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "cardId": {
+                                "type": "string",
+                                "description": "Filter by card id."
+                            },
+                            "accountId": {
+                                "type": "string",
+                                "description": "Filter by account id."
+                            },
+                            "customerId": {
+                                "type": "string",
+                                "description": "Filter by customer id."
+                            },
+                            "status[]": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Created",
+                                        "Active",
+                                        "Closed",
+                                        "Expired"
+                                    ]
+                                },
+                                "description": "Filter by case status. Can be one of the following values: Created, Active, Closed, Expired."
+                            },
+                            "decision[]": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Pending",
+                                        "Fraud",
+                                        "NoFraud"
+                                    ]
+                                },
+                                "description": "Filter by case decision. Can be one of the following values: Pending, Fraud, NoFraud."
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "sort",
+                    "in": "query",
+                    "schema": {
+                        "type": "string",
+                        "default": "sort=-createdAt",
+                        "description": "Optional. sort=createdAt for ascending order or sort=-createdAt (leading minus sign) for descending order."
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardFraudCasesListResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "markCardFraudCaseAsFraud": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "markCardFraudCaseAsFraud",
+            "summary": "Mark Card Fraud Case as Fraud",
+            "description": "Mark a card fraud case as fraud.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card fraud case to mark as fraud"
+                }
+            ],
+            "requestBody": {
+                "description": "Mark Card Fraud Case as Fraud Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./markCardFraudCase.json#/components/schemas/MarkCardFraudCaseAsFraudRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardFraudCaseResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "markCardFraudCaseAsNoFraud": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "markCardFraudCaseAsNoFraud",
+            "summary": "Mark Card Fraud Case as No Fraud",
+            "description": "Mark a card fraud case as no fraud.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card fraud case to mark as no fraud"
+                }
+            ],
+            "requestBody": {
+                "description": "Mark Card Fraud Case as No Fraud Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./markCardFraudCase.json#/components/schemas/MarkCardFraudCaseAsNoFraudRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardFraudCaseResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "createCardFraudOutreachPolicy": {
+        "post": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "createCardFraudOutreachPolicy",
+            "summary": "Create Card Fraud Outreach Policy",
+            "description": "Create a card fraud outreach policy.",
+            "requestBody": {
+                "description": "Create Card Fraud Outreach Policy Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./createCardFraudOutreachPolicy.json#/components/schemas/CreateCardFraudOutreachPolicyRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardFraudOutreachPolicyResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    },
+    "fraudOutreachPolicy": {
+        "patch": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "updateCardFraudOutreachPolicy",
+            "summary": "Update Card Fraud Outreach Policy",
+            "description": "Update a card fraud outreach policy.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "policyId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card fraud outreach policy to update"
+                }
+            ],
+            "requestBody": {
+                "description": "Update Card Fraud Outreach Policy Request",
+                "required": true,
+                "content": {
+                    "application/vnd.api+json": {
+                        "schema": {
+                            "$ref": "./updateCardFraudOutreachPolicy.json#/components/schemas/UpdateCardFraudOutreachPolicyRequest"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardFraudOutreachPolicyResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        },
+        "get": {
+            "tags": [
+                "unit"
+            ],
+            "operationId": "getCardFraudOutreachPolicy",
+            "summary": "Get Card Fraud Outreach Policy by Id",
+            "description": "Get a card fraud outreach policy by id.",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "policyId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the card fraud outreach policy to get"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnitCardFraudOutreachPolicyResponse"
+                            }
+                        }
+                    }
+                },
+                "default": {
+                    "$ref": "../types.json#/components/schemas/DefaultError"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "components": {
+        "schemas": {
+            "MobileWalletPayload": {
+                "title": "Mobile Wallet Payload",
+                "type": "object",
+                "description": "A JSON object containing the encrypted payload for mobile wallet.",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["mobileWalletPayload"],
+                        "default": "mobileWalletPayload"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "payload": {
+                                "type": "string",
+                                "description": "The encrypted payload for mobile wallet."
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["payload"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "GetMobileWalletPayloadRequest": {
+                "title": "Mobile Wallet Payload Request",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "signedNonce": {
+                                        "type": "string",
+                                        "description": "The signedNonce received from the Visa SDK"
+                                    }
+                                },
+                                "additionalProperties": false,
+                                "required": ["signedNonce"]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["data"]
+            }
+        }
+    }
+} 

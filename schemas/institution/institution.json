@@ -4,6 +4,7 @@
             "Institution": {
                 "title": "Institution Resource",
                 "type": "object",
+                "description": "The financial institution list gets updated periodically.",
                 "properties": {
                     "type": {
                         "type": "string",
@@ -14,19 +15,24 @@
                         "type": "object",
                         "properties": {
                             "routingNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The routing number of the financial institution."
                             },
                             "name": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the financial institution."
                             },
                             "address": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The address of the financial institution."
                             },
                             "isWireSupported": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates whether the institution supports wire payments."
                             },
                             "isACHSupported": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates whether the institution supports ACH payments."
                             }
                         },
                         "required": [

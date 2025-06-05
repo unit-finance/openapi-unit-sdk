@@ -28,6 +28,7 @@
             },
             "ReceivedPayment": {
                 "title": "Received Payment Resource",
+                "description": "A Received Payment resource is created when an incoming ACH is processed. The initial status and the lifecycle of the Received Payments may vary according to different factors that may lead to one of two final statuses: `Completed` or `Returned`",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -43,7 +44,8 @@
                         "properties": {
                             "createdAt": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "The date and time when the received payment was created"
                             },
                             "status": {
                                 "type": "string",
@@ -54,57 +56,70 @@
                                     "MarkedForReturn",
                                     "Returned",
                                     "Completed"
-                                ]
+                                ],
+                                "description": "The status of the received payment. Possible values: 'Pending': The received payment was created with a future completion date. Pending payments can be advanced. 'Advanced': The received-payment was advanced by the client. Once the completion date arrives, the status will change to Completed and the client will be repaid. 'PendingReview': The received payment is pending for a review by Unit. 'MarkedForReturn': The received payment was rejected and is waiting to be returned to the originating bank. It is marked for return to indicate that the transaction has been unsuccessful and needs to be processed in the opposite direction. 'Returned': The received payment was returned. 'Completed': The received payment was completed. This happens once the payment completion date arrives. If the payment was previously advanced, the client will automatically be repaid."
                             },
                             "amount": {
                                 "type": "integer",
                                 "minimum": 1,
-                                "format": "int64"
+                                "format": "int64",
+                                "description": "The amount of the received payment (in cents)"
                             },
                             "completionDate": {
-                                "type": "string"
+                                "type": "string",
+                                "format": "date",
+                                "description": "The date when the received payment will be completed"
                             },
                             "direction": {
                                 "type": "string",
-                                "enum": ["Debit", "Credit"]
+                                "enum": ["Debit", "Credit"],
+                                "description": "The direction of the received payment (Debit or Credit)"
                             },
                             "wasAdvanced": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates if the received payment was advanced"
                             },
                             "isAdvanceable": {
-                                "type": "boolean"
-                            },
-                            "isAdvaceable": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "description": "Indicates if the received payment can be advanced"
                             },
                             "companyName": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the company that sent the payment"
                             },
                             "counterpartyRoutingNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The routing number of the counterparty's financial institution"
                             },
                             "description": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Payment description"
                             },
                             "addenda": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Additional payment description"
                             },
                             "traceNumber": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The trace number of the received payment"
                             },
                             "secCode": {
                                 "type": "string",
                                 "minLength": 3,
-                                "maxLength": 3
+                                "maxLength": 3,
+                                "description": "Standard Entry Class (SEC) code used in all ACH payments to identify certain types of ACH payments."
                             },
                             "returnReason": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The reason for the return, if the payment was returned"
                             },
                             "receivingEntityName": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "The name of the entity receiving the payment"
                             },
                             "tags": {
-                                "$ref": "../types.json#/components/schemas/Tags"
+                                "$ref": "../types.json#/components/schemas/Tags",
+                                "description": "Optional. See https://www.unit.co/docs/api/#tags."
                             }
                         },
                         "required": [

@@ -328,20 +328,17 @@
                         "title": "Authorization Request Relationship",
                         "properties": {
                             "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "authorizationRequest"
-                                        },
-                                        "id": {
-                                            "$ref": "./types.json#/components/schemas/Identifier"
-                                        }
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "authorizationRequest"
                                     },
-                                    "additionalProperties": false
-                                }
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "additionalProperties": false
                             }
                         },
                         "additionalProperties": false
@@ -356,20 +353,17 @@
                         "title": "Authorization Relationship",
                         "properties": {
                             "data": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string",
-                                            "default": "authorization"
-                                        },
-                                        "id": {
-                                            "$ref": "./types.json#/components/schemas/Identifier"
-                                        }
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "default": "authorization"
                                     },
-                                    "additionalProperties": false
-                                }
+                                    "id": {
+                                        "$ref": "./types.json#/components/schemas/Identifier"
+                                    }
+                                },
+                                "additionalProperties": false
                             }
                         },
                         "additionalProperties": false

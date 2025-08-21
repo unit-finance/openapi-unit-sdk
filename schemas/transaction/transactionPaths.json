@@ -20,6 +20,12 @@
                             "accountId": {
                                 "type": "string"
                             },
+                            "accountIds": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
                             "customerId": {
                                 "type": "string"
                             },

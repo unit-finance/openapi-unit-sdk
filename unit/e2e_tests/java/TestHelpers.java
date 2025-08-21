@@ -199,6 +199,7 @@ public class TestHelpers {
         beneficialOwner.setOccupation(Occupation.ARCHITECT_OR_ENGINEER);
         beneficialOwner.setAnnualIncome(AnnualIncome.BETWEEN100K_AND250K);
         beneficialOwner.setSourceOfIncome(SourceOfIncome.BUSINESS_OWNERSHIP_INTERESTS);
+        beneficialOwner.setPercentage(100);
         beneficialOwners.add(beneficialOwner);
         attr.setBeneficialOwners(beneficialOwners);
 

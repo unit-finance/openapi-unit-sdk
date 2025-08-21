@@ -1462,7 +1462,7 @@
                                 "additionalProperties": false
                             },
                             "relationships": {
-                                "$ref": "#/components/schemas/CardReversalTransactionRelationships"
+                                "$ref": "#/components/schemas/CardTransactionRelationships"
                             }
                         },
                         "additionalProperties": false,

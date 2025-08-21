@@ -32,7 +32,6 @@ public class StatementTests {
         ListPageParameters params = new ListPageParameters();
         params.setLimit(1);
         UnitStatementsResponse res = unitApi.getStatementsList(params, null, null);
-        System.out.println(res);
         res.getData().forEach(statement -> {
             try {
                 assert statement.getType().equals(Statement.TypeEnum.ACCOUNT_STATEMENT_DTO);

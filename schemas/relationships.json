@@ -874,6 +874,7 @@
                                 "additionalProperties": false
                             }
                         },
+                        "required": ["data"],
                         "additionalProperties": false
                     }
                 }

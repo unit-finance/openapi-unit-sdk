@@ -2789,7 +2789,8 @@
                             "returnedCheckPaymentTransaction",
                             "cardReversalTransaction",
                             "feeReversalTransaction",
-                            "pushToCardReversalTransaction"
+                            "pushToCardReversalTransaction",
+                            "paymentCanceledTransaction"
                         ]
                     }
                 },
@@ -2829,7 +2830,8 @@
                         "returnedCheckPaymentTransaction": "#/components/schemas/ReturnedCheckPaymentTransaction",
                         "cardReversalTransaction": "#/components/schemas/CardReversalTransaction",
                         "feeReversalTransaction": "#/components/schemas/FeeReversalTransaction",
-                        "pushToCardReversalTransaction": "#/components/schemas/PushToCardReversalTransaction"
+                        "pushToCardReversalTransaction": "#/components/schemas/PushToCardReversalTransaction",
+                        "paymentCanceledTransaction": "#/components/schemas/PaymentCanceledTransaction"
                     }
                 }
             }

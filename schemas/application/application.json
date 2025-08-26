@@ -203,7 +203,7 @@
                     },
                     "percentage": {
                         "type": "integer",
-                        "minimum": 0,
+                        "minimum": 25,
                         "maximum": 100
                     },
                     "evaluationFlags": {

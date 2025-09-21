@@ -451,7 +451,7 @@
                     }
                 ]
             },
-            "PustToCardTransactionRelationships": {
+            "PushToCardTransactionRelationships": {
                 "allOf": [
                     {
                         "type": "object",
@@ -548,6 +548,16 @@
                     },
                     {
                         "$ref": "../relationships.json#/components/schemas/OrgRelationship"
+                    }
+                ]
+            },
+            "WriteOffTransactionRelationships": {
+                "allOf": [
+                    {
+                        "title": "Write Off Transaction Relationships"
+                    },
+                    {
+                        "$ref": "#/components/schemas/DefaultTransactionRelationships"
                     }
                 ]
             },
@@ -1557,6 +1567,72 @@
                     }
                 ]
             },
+            "ReturnedWireTransaction": {
+                "title": "Returned Wire Transaction",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Transaction"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": ["Credit", "Debit"]
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "balance": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "summary": {
+                                        "type": "string"
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    },
+                                    "imad": {
+                                        "type": "string"
+                                    },
+                                    "omad": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "balance",
+                                    "summary",
+                                    "counterparty",
+                                    "reason",
+                                    "imad"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/ReturnedWireTransactionRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
             "AdjustmentTransaction": {
                 "title": "Adjustment Transaction",
                 "type": "object",
@@ -2164,9 +2240,6 @@
                                     "summary": {
                                         "type": "string"
                                     },
-                                    "reason": {
-                                        "type": "string"
-                                    },
                                     "tags": {
                                         "$ref": "../types.json#/components/schemas/Tags"
                                     }
@@ -2745,6 +2818,114 @@
                     }
                 ]
             },
+            "PushToCardTransaction": {
+                "title": "Push To Card Transaction",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Transaction"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": ["Credit", "Debit"]
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "balance": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "summary": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "balance",
+                                    "summary"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/PushToCardTransactionRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
+            "WriteOffTransaction": {
+                "title": "Write Off Transaction",
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Transaction"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "attributes": {
+                                "type": "object",
+                                "properties": {
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": ["Credit", "Debit"]
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "balance": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "summary": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "$ref": "../types.json#/components/schemas/Tags"
+                                    }
+                                },
+                                "required": [
+                                    "createdAt",
+                                    "amount",
+                                    "direction",
+                                    "balance",
+                                    "summary"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "relationships": {
+                                "$ref": "#/components/schemas/WriteOffTransactionRelationships"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["attributes", "relationships"]
+                    }
+                ]
+            },
 
             "Transaction": {
                 "title": "Transaction Resource",
@@ -2768,6 +2949,7 @@
                             "cardTransaction",
                             "releaseTransaction",
                             "wireTransaction",
+                            "returnedWireTransaction",
                             "interestShareTransaction",
                             "interestTransaction",
                             "adjustmentTransaction",
@@ -2789,8 +2971,10 @@
                             "returnedCheckPaymentTransaction",
                             "cardReversalTransaction",
                             "feeReversalTransaction",
+                            "pushToCardTransaction",
                             "pushToCardReversalTransaction",
-                            "paymentCanceledTransaction"
+                            "paymentCanceledTransaction",
+                            "writeOffTransaction"
                         ]
                     }
                 },
@@ -2809,6 +2993,7 @@
                         "cardTransaction": "#/components/schemas/CardTransaction",
                         "releaseTransaction": "#/components/schemas/ReleaseTransaction",
                         "wireTransaction": "#/components/schemas/WireTransaction",
+                        "returnedWireTransaction": "#/components/schemas/ReturnedWireTransaction",
                         "interestShareTransaction": "#/components/schemas/InterestShareTransaction",
                         "interestTransaction": "#/components/schemas/InterestTransaction",
                         "adjustmentTransaction": "#/components/schemas/AdjustmentTransaction",
@@ -2830,8 +3015,10 @@
                         "returnedCheckPaymentTransaction": "#/components/schemas/ReturnedCheckPaymentTransaction",
                         "cardReversalTransaction": "#/components/schemas/CardReversalTransaction",
                         "feeReversalTransaction": "#/components/schemas/FeeReversalTransaction",
+                        "pushToCardTransaction": "#/components/schemas/PushToCardTransaction",
                         "pushToCardReversalTransaction": "#/components/schemas/PushToCardReversalTransaction",
-                        "paymentCanceledTransaction": "#/components/schemas/PaymentCanceledTransaction"
+                        "paymentCanceledTransaction": "#/components/schemas/PaymentCanceledTransaction",
+                        "writeOffTransaction": "#/components/schemas/WriteOffTransaction"
                     }
                 }
             }

@@ -522,6 +522,9 @@
                             },
                             "businessVertical": {
                                 "$ref": "../types.json#/components/schemas/BusinessVertical"
+                            },
+                            "operatingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
                             }
                         },
                         "additionalProperties": false,

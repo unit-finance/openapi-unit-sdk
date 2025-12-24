@@ -177,6 +177,72 @@
                 },
                 "required": ["attributes", "type"]
             },
+            "UpdateIndividualThreadApplication": {
+                "title": "Update Individual Thread Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualApplication"],
+                        "default": "individualApplication"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateSoleProprietorThreadApplication": {
+                "title": "Update Sole Proprietor Thread Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualApplication"],
+                        "default": "individualApplication"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "UpdateBusinessThreadApplication": {
+                "title": "Update Business Thread Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessApplication"],
+                        "default": "businessApplication"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
             "UpdateApplicationRequest": {
                 "title": "Update Application",
                 "type": "object",
@@ -197,6 +263,15 @@
                             },
                             {
                                 "$ref": "#/components/schemas/UpdateBusinessOfficer"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateIndividualThreadApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateSoleProprietorThreadApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateBusinessThreadApplication"
                             }
                         ]
                     }

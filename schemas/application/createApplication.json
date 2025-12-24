@@ -1,6 +1,277 @@
 {
     "components": {
         "schemas": {
+            "ThreadIndividualAccountPurpose": {
+                "type": "string",
+                "enum": [
+                    "PayrollOrDirectDeposit",
+                    "PersonalSavingsOrEmergencyFund",
+                    "EverydaySpending",
+                    "DomesticP2PAndBillPay",
+                    "InternationalRemittances",
+                    "CashHeavyPersonalIncome",
+                    "PropertyPurchaseOrInvestment",
+                    "EducationOrStudentUse",
+                    "TrustOrEstateDistributions",
+                    "Cryptocurrency"
+                ]
+            },
+            "ThreadIndividualSourceOfFunds": {
+                "type": "string",
+                "enum": [
+                    "SalaryOrWages",
+                    "BusinessIncome",
+                    "InvestmentIncome",
+                    "RetirementSavings",
+                    "Inheritance",
+                    "Gift",
+                    "SaleOfAssets",
+                    "LegalSettlement",
+                    "LoanProceeds"
+                ]
+            },
+            "ThreadIndividualTransactionVolume": {
+                "type": "string",
+                "enum": [
+                    "LessThan1K",
+                    "Between1KAnd5K",
+                    "Between5KAnd15K",
+                    "Between15KAnd30K",
+                    "Between30KAnd60K",
+                    "GreaterThan60K"
+                ]
+            },
+            "ThreadBusinessSourceOfFunds": {
+                "type": "string",
+                "enum": [
+                    "SalesOfGoods",
+                    "SalesOfServices",
+                    "CustomerPayments",
+                    "InvestmentCapital",
+                    "BusinessLoans",
+                    "OwnerContributions",
+                    "FranchiseRevenue",
+                    "RentalIncome",
+                    "GovernmentContractsOrGrants",
+                    "DonationsOrFundraising",
+                    "MembershipFeesOrSubscriptions",
+                    "LicensingOrRoyalties",
+                    "CommissionIncome",
+                    "ImportExportRevenue",
+                    "CryptocurrencyRelatedActivity"
+                ]
+            },
+            "ThreadBusinessIndustry": {
+                "type": "string",
+                "enum": [
+                    "GroceryStoresOrSupermarkets",
+                    "ConvenienceStores",
+                    "SpecialtyFoodRetailers",
+                    "GasStationsWithRetail",
+                    "GeneralMerchandiseOrDepartmentStores",
+                    "OnlineRetailOrECommerce",
+                    "SubscriptionAndMembershipPlatforms",
+                    "DirectToConsumerBrands",
+                    "Cannabis",
+                    "BanksOrCreditUnions",
+                    "FinTechOrPaymentProcessing",
+                    "InsuranceProviders",
+                    "InvestmentAdvisorsOrBrokerDealers",
+                    "LendingOrMortgageCompanies",
+                    "TreasuryManagementPlatforms",
+                    "PersonalFinanceAppsOrAIAssistants",
+                    "RetirementPlanning",
+                    "RealEstateInvestmentPlatforms",
+                    "MoneyServiceBusinesses",
+                    "Cryptocurrency",
+                    "DebtCollection",
+                    "PaydayLending",
+                    "Gambling",
+                    "FarmsOrAgriculturalProducers",
+                    "FoodWholesalersOrDistributors",
+                    "RestaurantsOrCafes",
+                    "BarsOrNightclubs",
+                    "CateringServices",
+                    "FarmersMarkets",
+                    "RestaurantTechAndPOSProviders",
+                    "HospitalsOrClinics",
+                    "Pharmacies",
+                    "MedicalEquipmentSuppliers",
+                    "BiotechnologyFirms",
+                    "HomeHealthServices",
+                    "HealthcareStaffingPlatforms",
+                    "WellnessAndBenefitsPlatforms",
+                    "HealthcareAndSocialAssistance",
+                    "LegalServices",
+                    "AccountingOrAuditingFirms",
+                    "ConsultingFirms",
+                    "MarketingOrAdvertisingAgencies",
+                    "RealEstateAgentsOrPropertyManagers",
+                    "CorporateServicesAndIncorporation",
+                    "HRAndWorkforceManagementPlatforms",
+                    "DirectMarketingOrTelemarketing",
+                    "LegalAccountingConsultingOrComputerProgramming",
+                    "ChemicalManufacturing",
+                    "ElectronicsOrHardwareManufacturing",
+                    "AutomotiveManufacturing",
+                    "ConstructionMaterials",
+                    "TextilesOrApparel",
+                    "Mining",
+                    "RealEstate",
+                    "Construction",
+                    "TransportationOrWarehousing",
+                    "WholesaleTrade",
+                    "BusinessSupportOrBuildingServices",
+                    "EscortServices",
+                    "DatingOrAdultEntertainment"
+                ]
+            },
+            "ThreadBusinessUsNexus": {
+                "type": "string",
+                "enum": [
+                    "Employees",
+                    "Customers",
+                    "PhysicalOfficeOrFacility",
+                    "BankingRelationships",
+                    "NotAvailable"
+                ]
+            },
+            "ThreadBusinessAccountPurpose": {
+                "type": "string",
+                "enum": [
+                    "RetailSalesInPerson",
+                    "EcommerceSales",
+                    "CashHeavyIncomeAndOperations",
+                    "ImportExportTradeOperations",
+                    "ProfessionalServicesNotHandlingFunds",
+                    "ProfessionalServicesHandlingFunds",
+                    "HoldingOrInvestmentCompanyOperations",
+                    "PropertyManagementOrRealEstateOperations",
+                    "CharitableOrNonProfitOrganizationOperations",
+                    "ConstructionAndContractingOperations",
+                    "CommercialCashOperations",
+                    "FreightForwardingOrLogisticsOperations",
+                    "ThirdPartyPaymentProcessing",
+                    "TechnologyStartupOperations",
+                    "WholesaleDistributionOperations",
+                    "FranchiseOperationOperations",
+                    "HealthcareProviderOperations",
+                    "EducationalInstitutionOperations"
+                ]
+            },
+            "ThreadBusinessTransactionVolume": {
+                "type": "string",
+                "enum": [
+                    "LessThan10K",
+                    "Between10KAnd50K",
+                    "Between50KAnd250K",
+                    "Between250KAnd1M",
+                    "Between1MAnd2M",
+                    "GreaterThan2M"
+                ]
+            },
+            "ThreadSoleProprietorshipTransactionVolume": {
+                "type": "string",
+                "enum": [
+                    "LessThan5K",
+                    "Between5KAnd20K",
+                    "Between20KAnd75K",
+                    "Between75KAnd150K",
+                    "Between150KAnd300K",
+                    "GreaterThan300K"
+                ]
+            },
+            "ThreadIndividualProfession": {
+                "type": "string",
+                "enum": [
+                    "Accountant",
+                    "Actor",
+                    "Administrator",
+                    "Analyst",
+                    "Architect",
+                    "Artist",
+                    "Attorney",
+                    "Auditor",
+                    "Banker",
+                    "Barber",
+                    "Bartender",
+                    "Bookkeeper",
+                    "Broker",
+                    "BusinessOwner",
+                    "Chef",
+                    "Clergy",
+                    "Coach",
+                    "Consultant",
+                    "Contractor",
+                    "CustomerServiceRepresentative",
+                    "Dentist",
+                    "Designer",
+                    "Developer",
+                    "Doctor",
+                    "Driver",
+                    "Economist",
+                    "Educator",
+                    "Electrician",
+                    "Engineer",
+                    "Entrepreneur",
+                    "EventPlanner",
+                    "Executive",
+                    "Farmer",
+                    "FinancialAdvisor",
+                    "Firefighter",
+                    "Fisherman",
+                    "FlightAttendant",
+                    "Freelancer",
+                    "GovernmentEmployee",
+                    "GraphicDesigner",
+                    "HealthcareWorker",
+                    "HRProfessional",
+                    "InsuranceAgent",
+                    "Investor",
+                    "ITSpecialist",
+                    "Janitor",
+                    "Journalist",
+                    "Laborer",
+                    "LawEnforcementOfficer",
+                    "Lawyer",
+                    "Librarian",
+                    "LogisticsCoordinator",
+                    "Manager",
+                    "MarketingProfessional",
+                    "Mechanic",
+                    "MilitaryPersonnel",
+                    "Musician",
+                    "Nurse",
+                    "Optometrist",
+                    "Painter",
+                    "Pharmacist",
+                    "Photographer",
+                    "PhysicalTherapist",
+                    "Pilot",
+                    "Plumber",
+                    "PoliceOfficer",
+                    "Professor",
+                    "Programmer",
+                    "ProjectManager",
+                    "RealEstateAgent",
+                    "Receptionist",
+                    "Researcher",
+                    "RetailWorker",
+                    "Salesperson",
+                    "Scientist",
+                    "SocialWorker",
+                    "SoftwareEngineer",
+                    "Student",
+                    "Surgeon",
+                    "Teacher",
+                    "Technician",
+                    "Therapist",
+                    "Trainer",
+                    "Veterinarian",
+                    "WaiterWaitress",
+                    "Writer"
+                ]
+            },
             "EvaluationParams": {
                 "title": "Evaluation Params",
                 "type": "object",
@@ -544,6 +815,407 @@
                 "additionalProperties": false,
                 "required": ["type", "attributes"]
             },
+            "CreateIndividualThreadApplication": {
+                "title": "Create Individual Thread Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualApplication"],
+                        "default": "individualApplication"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "ssn": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "evaluationParams": {
+                                "$ref": "#/components/schemas/EvaluationParams"
+                            },
+                            "ip": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "nullable": true,
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            },
+                            "jwtSubject": {
+                                "$ref": "../types.json#/components/schemas/JwtSubject"
+                            },
+                            "banks": {
+                                "type": "array",
+                                "nullable": true,
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "accountPurpose": {
+                                "$ref": "#/components/schemas/ThreadIndividualAccountPurpose"
+                            },
+                            "accountPurposeDescription": {
+                                "type": "string"
+                            },
+                            "sourceOfFunds": {
+                                "$ref": "#/components/schemas/ThreadIndividualSourceOfFunds"
+                            },
+                            "transactionVolume": {
+                                "$ref": "#/components/schemas/ThreadIndividualTransactionVolume"
+                            },
+                            "transactionVolumeDescription": {
+                                "type": "string"
+                            },
+                            "profession": {
+                                "$ref": "#/components/schemas/ThreadIndividualProfession"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "fullName",
+                            "dateOfBirth",
+                            "address",
+                            "phone",
+                            "email",
+                            "accountPurpose",
+                            "sourceOfFunds",
+                            "transactionVolume",
+                            "profession"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "CreateSoleProprietorThreadApplication": {
+                "title": "Create Sole Proprietor Thread Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualApplication"],
+                        "default": "individualApplication"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "ssn": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "passport": {
+                                "type": "string"
+                            },
+                            "nationality": {
+                                "$ref": "../types.json#/components/schemas/Country"
+                            },
+                            "fullName": {
+                                "$ref": "../types.json#/components/schemas/FullName"
+                            },
+                            "dateOfBirth": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "email": {
+                                "$ref": "../types.json#/components/schemas/Email"
+                            },
+                            "soleProprietorship": {
+                                "type": "boolean",
+                                "default": true
+                            },
+                            "ein": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "dba": {
+                                "type": "string"
+                            },
+                            "evaluationParams": {
+                                "$ref": "#/components/schemas/EvaluationParams"
+                            },
+                            "website": {
+                                "type": "string"
+                            },
+                            "ip": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            },
+                            "jwtSubject": {
+                                "$ref": "../types.json#/components/schemas/JwtSubject"
+                            },
+                            "banks": {
+                                "type": "array",
+                                "nullable": true,
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "sourceOfFunds": {
+                                "$ref": "#/components/schemas/ThreadBusinessSourceOfFunds"
+                            },
+                            "sourceOfFundsDescription": {
+                                "type": "string"
+                            },
+                            "businessIndustry": {
+                                "$ref": "#/components/schemas/ThreadBusinessIndustry"
+                            },
+                            "isIncorporated": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "stateOfIncorporation": {
+                                "type": "string"
+                            },
+                            "yearOfIncorporation": {
+                                "$ref": "../types.json#/components/schemas/Year"
+                            },
+                            "countriesOfOperation": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/Country"
+                                },
+                                "minItems": 1
+                            },
+                            "usNexus": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ThreadBusinessUsNexus"
+                                }
+                            },
+                            "transactionVolume": {
+                                "$ref": "#/components/schemas/ThreadSoleProprietorshipTransactionVolume"
+                            },
+                            "transactionVolumeDescription": {
+                                "type": "string"
+                            },
+                            "accountPurpose": {
+                                "$ref": "#/components/schemas/ThreadBusinessAccountPurpose"
+                            },
+                            "accountPurposeDescription": {
+                                "type": "string"
+                            },
+                            "businessDescription": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "fullName",
+                            "dateOfBirth",
+                            "address",
+                            "phone",
+                            "email",
+                            "accountPurpose",
+                            "sourceOfFunds",
+                            "transactionVolume",
+                            "profession"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
+            "CreateBusinessThreadApplication": {
+                "title": "Create Business Thread Application",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessApplication"],
+                        "default": "businessApplication"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 255
+                            },
+                            "dba": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 255
+                            },
+                            "address": {
+                                "$ref": "../types.json#/components/schemas/Address"
+                            },
+                            "phone": {
+                                "$ref": "../types.json#/components/schemas/Phone"
+                            },
+                            "stateOfIncorporation": {
+                                "type": "string",
+                                "minLength": 2,
+                                "maxLength": 2
+                            },
+                            "ein": {
+                                "type": "string",
+                                "pattern": "^\\d{9}$"
+                            },
+                            "website": {
+                                "type": "string"
+                            },
+                            "contact": {
+                                "$ref": "../types.json#/components/schemas/Contact"
+                            },
+                            "officer": {
+                                "$ref": "#/components/schemas/CreateOfficer"
+                            },
+                            "beneficialOwners": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CreateBeneficialOwner"
+                                }
+                            },
+                            "ip": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "$ref": "../types.json#/components/schemas/Tags"
+                            },
+                            "idempotencyKey": {
+                                "$ref": "../types.json#/components/schemas/IdempotencyKey"
+                            },
+                            "deviceFingerprints": {
+                                "type": "array",
+                                "maxItems": 1,
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/DeviceFingerprint"
+                                }
+                            },
+                            "banks": {
+                                "type": "array",
+                                "nullable": true,
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "sourceOfFunds": {
+                                "$ref": "#/components/schemas/ThreadBusinessSourceOfFunds"
+                            },
+                            "sourceOfFundsDescription": {
+                                "type": "string"
+                            },
+                            "businessIndustry": {
+                                "$ref": "#/components/schemas/ThreadBusinessIndustry"
+                            },
+                            "businessDescription": {
+                                "type": "string"
+                            },
+                            "isRegulated": {
+                                "type": "boolean"
+                            },
+                            "regulatorName": {
+                                "type": "string"
+                            },
+                            "usNexus": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ThreadBusinessUsNexus"
+                                }
+                            },
+                            "accountPurpose": {
+                                "$ref": "#/components/schemas/ThreadBusinessAccountPurpose"
+                            },
+                            "accountPurposeDescription": {
+                                "type": "string"
+                            },
+                            "transactionVolume": {
+                                "$ref": "#/components/schemas/ThreadBusinessTransactionVolume"
+                            },
+                            "transactionVolumeDescription": {
+                                "type": "string"
+                            },
+                            "stockExchangeName": {
+                                "type": "string"
+                            },
+                            "stockSymbol": {
+                                "type": "string"
+                            },
+                            "countriesOfOperation": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "../types.json#/components/schemas/Country"
+                                },
+                                "minItems": 1
+                            },
+                            "yearOfIncorporation": {
+                                "$ref": "../types.json#/components/schemas/Year"
+                            },
+                            "entityType": {
+                                "$ref": "../types.json#/components/schemas/EntityType"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                            "name",
+                            "ein",
+                            "entityType",
+                            "stateOfIncorporation",
+                            "phone",
+                            "address",
+                            "contact",
+                            "officer",
+                            "beneficialOwners",
+                            "accountPurpose",
+                            "sourceOfFunds",
+                            "transactionVolume"
+                        ]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["type", "attributes"]
+            },
             "CreateApplicationRequest": {
                 "type": "object",
                 "properties": {
@@ -557,6 +1229,15 @@
                             },
                             {
                                 "$ref": "#/components/schemas/CreateBusinessApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateIndividualThreadApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateSoleProprietorThreadApplication"
+                            },
+                            {
+                                "$ref": "#/components/schemas/CreateBusinessThreadApplication"
                             }
                         ]
                     }

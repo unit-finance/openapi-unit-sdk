@@ -40,6 +40,41 @@
                 },
                 "required": ["attributes", "type", "relationships"]
             },
+            "UpdateThreadBusinessBeneficialOwner": {
+                "type": "object",
+                "title": "Update Thread Business Beneficial Owner",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["beneficialOwner"],
+                        "default": "beneficialOwner"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "percentage": {
+                                "type": "integer",
+                                "minimum": 25,
+                                "maximum": 100
+                            }
+                        }
+                    },
+                    "relationships": {
+                        "allOf": [
+                            {
+                                "type": "object",
+                                "title": "Update Thread Business Beneficial Owner Relationships",
+                                "additionalProperties": true,
+                                "required": ["application"]
+                            },
+                            {
+                                "$ref": "../relationships.json#/components/schemas/ApplicationRelationship"
+                            }
+                        ]
+                    }
+                },
+                "required": ["attributes", "type", "relationships"]
+            },
             "UpdateBusinessBeneficialOwnerRequest": {
                 "type": "object",
                 "title": "Update Business Beneficial Owner Request",
@@ -48,6 +83,9 @@
                         "oneOf": [
                             {
                                 "$ref": "#/components/schemas/UpdateBusinessBeneficialOwner"
+                            },
+                            {
+                                "$ref": "#/components/schemas/UpdateThreadBusinessBeneficialOwner"
                             }
                         ]
                     }

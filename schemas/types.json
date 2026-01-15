@@ -567,6 +567,23 @@
                     "NotForProfitOrganization"
                 ]
             },
+            "ThreadApplicationEntityType": {
+                "type": "string",
+                "enum": [
+                    "Estate",
+                    "Trust",
+                    "ForeignFinancialInstitution",
+                    "DomesticFinancialInstitution",
+                    "GovernmentEntityOrAgency",
+                    "ReligiousOrganization",
+                    "Charity",
+                    "LLC",
+                    "Partnership",
+                    "PubliclyTradedCorporation",
+                    "PrivatelyHeldCorporation",
+                    "NotForProfitOrganization"
+                ]
+            },
             "ResponseContact": {
                 "allOf": [{ "$ref": "#/components/schemas/Contact" }],
                 "required": ["fullName"]

@@ -9,6 +9,8 @@ import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
 
 import java.util.List;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 import static unit.java.sdk.CounterpartyTests.CreateCounterparty;
 import static unit.java.sdk.CardTests.CreateAndActivateIndividualDebitCard;
@@ -72,7 +74,12 @@ import unit.java.sdk.model.GetCashDepositStoreLocationsListFilterParameter.Servi
 
 public class PaymentTests {
     UnitApi unitApi = GenerateUnitApiClient();
-    String plaidToken = System.getenv("test_plaid_counterparty_token");
+    
+    // Load Plaid token from .env file or environment variable
+    Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+    String plaidToken = dotenv.get("test_plaid_counterparty_token") != null 
+        ? dotenv.get("test_plaid_counterparty_token") 
+        : System.getenv("test_plaid_counterparty_token");
 
     @Test
     public void GetPaymentsListApiTest() throws ApiException {

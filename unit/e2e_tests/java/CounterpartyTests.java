@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.Counterparty;
 import unit.java.sdk.model.CounterpartyBalance;
@@ -35,7 +37,12 @@ import unit.java.sdk.model.UpdateCounterpartyRequestData;
 
 public class CounterpartyTests {
     UnitApi unitApi = GenerateUnitApiClient();
-    String plaidToken = System.getenv("test_plaid_counterparty_token");
+    
+    // Load Plaid token from .env file or environment variable
+    Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+    String plaidToken = dotenv.get("test_plaid_counterparty_token") != null 
+        ? dotenv.get("test_plaid_counterparty_token") 
+        : System.getenv("test_plaid_counterparty_token");
     
     public static Counterparty CreateCounterparty(UnitApi unitApi, Customer customer) throws ApiException {
         if(customer == null) customer = CreateIndividualCustomer(unitApi);

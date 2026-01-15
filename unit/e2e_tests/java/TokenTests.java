@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.ApiToken;
 // import unit.java.sdk.model.CreateApiTokenRequest;
@@ -36,7 +37,12 @@ import unit.java.sdk.model.CreateCustomerTokenVerificationRequestDataAttributes.
 
 public class TokenTests {
     UnitApi unitApi = GenerateUnitApiClient();
-    String testUserId = System.getenv("token_tests_user_id");
+    
+    // Load test user ID from .env file or environment variable
+    Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+    String testUserId = dotenv.get("token_tests_user_id") != null 
+        ? dotenv.get("token_tests_user_id") 
+        : System.getenv("token_tests_user_id");
 
     // Uncomment once createApiToken resource starts accepting different types of RFC3339
     // @Test

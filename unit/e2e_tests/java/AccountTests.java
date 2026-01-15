@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import static unit.java.sdk.CustomerTests.CreateBusinessCustomer;
 import static unit.java.sdk.CustomerTests.CreateIndividualCustomer;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
@@ -59,7 +60,12 @@ import unit.java.sdk.model.WalletAccount;
 
 public class AccountTests {
     UnitApi unitApi = GenerateUnitApiClient();
-    String walletTerms = System.getenv("wallet_terms");
+    
+    // Load wallet terms from .env file or environment variable
+    Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+    String walletTerms = dotenv.get("wallet_terms") != null 
+        ? dotenv.get("wallet_terms") 
+        : System.getenv("wallet_terms");
 
     @Test
     public void GetAccountListApiTest() throws ApiException {

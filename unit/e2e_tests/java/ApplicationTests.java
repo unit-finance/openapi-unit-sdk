@@ -3,14 +3,20 @@ package unit.java.sdk;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
 import static unit.java.sdk.TestHelpers.GenerateCreateIndividualApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateCreateSoleProprietorApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateCreateBusinessApplicationRequest;
+import static unit.java.sdk.TestHelpers.GenerateCreateIndividualThreadApplicationRequest;
+import static unit.java.sdk.TestHelpers.GenerateCreateBusinessThreadApplicationRequest;
+import static unit.java.sdk.TestHelpers.GenerateCreateSoleProprietorThreadApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
+import static unit.java.sdk.TestHelpers.GenerateThreadUnitApiClient;
 import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.AnnualIncome;
 import unit.java.sdk.model.Application;
@@ -25,6 +31,7 @@ import unit.java.sdk.model.BusinessOfficer;
 import unit.java.sdk.model.CancelApplicationRequest;
 import unit.java.sdk.model.CancelApplicationRequestData;
 import unit.java.sdk.model.CancelApplicationRequestDataAttributes;
+import unit.java.sdk.model.CreateApplicationRequest;
 import unit.java.sdk.model.CreateApplicationFormRequest;
 import unit.java.sdk.model.CreateApplicationFormRequestData;
 import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes;
@@ -64,9 +71,15 @@ import unit.java.sdk.model.UpdateSoleProprietorApplicationAttributes;
 import unit.java.sdk.model.UploadApplicationDocumentContentType;
 import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.AllowedApplicationTypesEnum;
 import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.LangEnum;
+// TODO: Fix after enum refactoring
+import unit.java.sdk.model.UpdateIndividualThreadApplication;
+import unit.java.sdk.model.UpdateIndividualThreadApplicationAttributes;
+import unit.java.sdk.model.UpdateBusinessThreadApplication;
+import unit.java.sdk.model.UpdateSoleProprietorThreadApplication;
 
 public class ApplicationTests {
     UnitApi unitApi = GenerateUnitApiClient();
+    UnitApi threadUnitApi = GenerateThreadUnitApiClient();
 
     @Test
     public void GetApplicationListApiTest() throws ApiException {
@@ -443,5 +456,106 @@ public class ApplicationTests {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    // Thread Application Tests
+
+    @Test
+    public void CreateIndividualThreadApplicationApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateIndividualThreadApplicationRequest(null));
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
+        
+        IndividualApplication individualApp = (IndividualApplication) res.getData();
+        assert individualApp.getAttributes() != null;
+    }
+
+    @Test
+    public void CreateBusinessThreadApplicationApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateBusinessThreadApplicationRequest());
+        assert res.getData().getType().equals(Application.TypeEnum.BUSINESS_APPLICATION);
+        
+        BusinessApplication businessApp = (BusinessApplication) res.getData();
+        assert businessApp.getAttributes() != null;
+    }
+
+    @Test
+    public void CreateSoleProprietorThreadApplicationApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateSoleProprietorThreadApplicationRequest());
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
+        
+        IndividualApplication soleProprietorApp = (IndividualApplication) res.getData();
+        assert soleProprietorApp.getAttributes() != null;
+    }
+
+    @Test
+    public void UpdateIndividualThreadApplicationApiTest() throws ApiException {
+        UnitApi threadApi = GenerateThreadUnitApiClient();
+        UnitCreateApplicationResponse res = threadApi.createApplication(GenerateCreateIndividualThreadApplicationRequest(null));
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUAL_APPLICATION);
+
+        String applicationId = res.getData().getId();
+        
+        // Update with tags
+        UpdateIndividualThreadApplication body = new UpdateIndividualThreadApplication();
+        UpdateIndividualThreadApplicationAttributes attributes = new UpdateIndividualThreadApplicationAttributes();
+        Map<String, String> tags = new HashMap<>();
+        tags.put("testKey", "testValue");
+        attributes.setTags(tags);
+        body.setAttributes(attributes);
+
+        UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
+        UpdateApplicationRequest ua = new UpdateApplicationRequest();
+        ua.data(d);
+
+        UnitApplicationResponseWithIncluded res2 = threadApi.updateApplication(applicationId, ua);
+        assert res2.getData().getId().equals(applicationId);
+    }
+
+    @Test
+    public void UpdateBusinessThreadApplicationApiTest() throws ApiException {
+        UnitApi threadApi = GenerateThreadUnitApiClient();
+        UnitCreateApplicationResponse res = threadApi.createApplication(GenerateCreateBusinessThreadApplicationRequest());
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESS_APPLICATION);
+
+        String applicationId = res.getData().getId();
+        
+        // Update with tags
+        UpdateBusinessThreadApplication body = new UpdateBusinessThreadApplication();
+        UpdateIndividualThreadApplicationAttributes attributes = new UpdateIndividualThreadApplicationAttributes();
+        Map<String, String> tags = new HashMap<>();
+        tags.put("businessTag", "businessValue");
+        attributes.setTags(tags);
+        body.setAttributes(attributes);
+
+        UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
+        UpdateApplicationRequest ua = new UpdateApplicationRequest();
+        ua.data(d);
+
+        UnitApplicationResponseWithIncluded res2 = threadApi.updateApplication(applicationId, ua);
+        assert res2.getData().getId().equals(applicationId);
+    }
+
+    @Test
+    public void UpdateSoleProprietorThreadApplicationApiTest() throws ApiException {
+        UnitApi threadApi = GenerateThreadUnitApiClient();
+        UnitCreateApplicationResponse res = threadApi.createApplication(GenerateCreateSoleProprietorThreadApplicationRequest());
+        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUAL_APPLICATION);
+
+        String applicationId = res.getData().getId();
+        
+        // Update with tags
+        UpdateSoleProprietorThreadApplication body = new UpdateSoleProprietorThreadApplication();
+        UpdateIndividualThreadApplicationAttributes attributes = new UpdateIndividualThreadApplicationAttributes();
+        Map<String, String> tags = new HashMap<>();
+        tags.put("soleProprietorTag", "soleProprietorValue");
+        attributes.setTags(tags);
+        body.setAttributes(attributes);
+
+        UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
+        UpdateApplicationRequest ua = new UpdateApplicationRequest();
+        ua.data(d);
+
+        UnitApplicationResponseWithIncluded res2 = threadApi.updateApplication(applicationId, ua);
+        assert res2.getData().getId().equals(applicationId);
     }
 }

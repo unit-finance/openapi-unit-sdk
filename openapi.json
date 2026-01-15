@@ -3,7 +3,7 @@
     "info": {
         "title": "Unit OpenAPI specifications",
         "description": "An OpenAPI specifications for unit-sdk clients",
-        "version": "0.3.0"
+        "version": "0.3.1"
     },
     "servers": [
         {

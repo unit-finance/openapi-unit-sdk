@@ -1193,7 +1193,7 @@
                                 "$ref": "../types.json#/components/schemas/Year"
                             },
                             "entityType": {
-                                "$ref": "../types.json#/components/schemas/EntityType"
+                                "$ref": "../types.json#/components/schemas/ThreadApplicationEntityType"
                             }
                         },
                         "additionalProperties": false,

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import unit.java.sdk.api.UnitApi;
 import unit.java.sdk.model.Address;
@@ -26,6 +27,7 @@ import unit.java.sdk.model.CreateOfficer;
 import unit.java.sdk.model.CreateSoleProprietorApplication;
 import unit.java.sdk.model.CreateSoleProprietorApplicationAttributes;
 import unit.java.sdk.model.EntityType;
+import unit.java.sdk.model.ThreadApplicationEntityType;
 import unit.java.sdk.model.FullName;
 import unit.java.sdk.model.Occupation;
 import unit.java.sdk.model.PaymentCounterparty;
@@ -34,12 +36,42 @@ import unit.java.sdk.model.SoleProprietorshipAnnualRevenue;
 import unit.java.sdk.model.SoleProprietorshipNumberOfEmployees;
 import unit.java.sdk.model.SourceOfIncome;
 import unit.java.sdk.model.WirePaymentCounterparty;
+import unit.java.sdk.model.CreateIndividualThreadApplication;
+import unit.java.sdk.model.CreateIndividualThreadApplicationAttributes;
+import unit.java.sdk.model.CreateBusinessThreadApplication;
+import unit.java.sdk.model.CreateBusinessThreadApplicationAttributes;
+import unit.java.sdk.model.CreateSoleProprietorThreadApplication;
+import unit.java.sdk.model.CreateSoleProprietorThreadApplicationAttributes;
+import unit.java.sdk.model.ThreadIndividualAccountPurpose;
+import unit.java.sdk.model.ThreadIndividualSourceOfFunds;
+import unit.java.sdk.model.ThreadIndividualTransactionVolume;
+import unit.java.sdk.model.ThreadIndividualProfession;
+import unit.java.sdk.model.ThreadBusinessAccountPurpose;
+import unit.java.sdk.model.ThreadBusinessSourceOfFunds;
+import unit.java.sdk.model.ThreadBusinessTransactionVolume;
+import unit.java.sdk.model.ThreadIndividualTransactionVolume;
+import unit.java.sdk.model.ThreadSoleProprietorshipTransactionVolume;
+import unit.java.sdk.model.ThreadBusinessIndustry;
+import unit.java.sdk.model.ThreadBusinessUsNexus;
 
 public class TestHelpers {
     private static UnitApi unitApi;
+    private static UnitApi threadUnitApi;
+    
     static UnitApi GenerateUnitApiClient() {
         if(unitApi == null){
-            String access_token = System.getenv("access_token");
+            // Load from .env file first, fallback to environment variable
+            Dotenv dotenv = Dotenv.configure()
+                .ignoreIfMissing()
+                .load();
+            
+            final String access_token;
+            String token = dotenv.get("access_token");
+            if (token == null) {
+                token = System.getenv("access_token");
+            }
+            access_token = token;
+            
         ApiClient cl = new ApiClient();
         ObjectMapper mapper = cl.getObjectMapper();
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
@@ -51,6 +83,33 @@ public class TestHelpers {
         }
 
         return unitApi;
+    }
+    
+    static UnitApi GenerateThreadUnitApiClient() {
+        if(threadUnitApi == null){
+            // Load from .env file first, fallback to environment variable
+            Dotenv dotenv = Dotenv.configure()
+                .ignoreIfMissing()
+                .load();
+            
+            final String thread_access_token;
+            String token = dotenv.get("thread_access_token");
+            if (token == null) {
+                token = System.getenv("thread_access_token");
+            }
+            thread_access_token = token;
+            
+        ApiClient cl = new ApiClient();
+        ObjectMapper mapper = cl.getObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        cl.setObjectMapper(mapper);
+        cl.setRequestInterceptor(r -> {
+            r.header("Authorization", "Bearer " + thread_access_token);
+        });
+        threadUnitApi = new UnitApi(cl);
+        }
+
+        return threadUnitApi;
     }
 
     public static CreateApplicationRequest GenerateCreateIndividualApplicationRequest(String ssn) {
@@ -240,5 +299,198 @@ public class TestHelpers {
         counterparty.setAddress(CreateAddress());
 
         return counterparty;
+    }
+
+    public static CreateApplicationRequest GenerateCreateIndividualThreadApplicationRequest(String ssn) {
+        if (ssn == null) ssn = "721074426";
+        CreateIndividualThreadApplication createIndividualThreadApplication = new CreateIndividualThreadApplication();
+        CreateIndividualThreadApplicationAttributes attr = new CreateIndividualThreadApplicationAttributes();
+
+        FullName fn = new FullName();
+        fn.setFirst("Peter");
+        fn.setLast("Parker");
+        attr.setFullName(fn);
+
+        Address address = new Address();
+        address.setStreet("20 Ingram St");
+        address.setCity("Forest Hills");
+        address.setPostalCode("11375");
+        address.setCountry("US");
+        address.setState("NY");
+        attr.setAddress(address);
+
+        attr.setSsn(ssn);
+        attr.setDateOfBirth(LocalDate.parse("2001-08-10"));
+        attr.setEmail("peter@oscorp.com");
+        Phone p = new Phone();
+        p.setNumber("5555555555");
+        p.setCountryCode("1");
+        attr.setPhone(p);
+
+        // Thread application specific fields
+        attr.setAccountPurpose(ThreadIndividualAccountPurpose.PAYROLL_OR_DIRECT_DEPOSIT);
+        attr.setSourceOfFunds(ThreadIndividualSourceOfFunds.SALARY_OR_WAGES);
+        attr.setTransactionVolume(ThreadIndividualTransactionVolume.BETWEEN1_K_AND5_K);
+        attr.setProfession(ThreadIndividualProfession.ENGINEER);
+
+        createIndividualThreadApplication.setAttributes(attr);
+
+        CreateApplicationRequest ca = new CreateApplicationRequest();
+        ca.data(new CreateApplicationRequestData(createIndividualThreadApplication));
+
+        return ca;
+    }
+
+    public static CreateApplicationRequest GenerateCreateBusinessThreadApplicationRequest() {
+        CreateBusinessThreadApplication app = new CreateBusinessThreadApplication();
+        CreateBusinessThreadApplicationAttributes attr = new CreateBusinessThreadApplicationAttributes();
+
+        // Basic business information
+        attr.setName("Tech Startup LLC");
+        attr.setEin("123456789");
+        attr.setEntityType(ThreadApplicationEntityType.LLC);
+        attr.setStateOfIncorporation("DE");
+        attr.setYearOfIncorporation("2020");
+
+        // Address
+        Address address = new Address();
+        address.setStreet("123 Main St");
+        address.setCity("San Francisco");
+        address.setState("CA");
+        address.setPostalCode("94105");
+        address.setCountry("US");
+        attr.setAddress(address);
+
+        // Phone
+        Phone phone = new Phone();
+        phone.setCountryCode("1");
+        phone.setNumber("4155551234");
+        attr.setPhone(phone);
+
+        // Contact person
+        Contact contact = new Contact();
+        FullName contactName = new FullName();
+        contactName.setFirst("John");
+        contactName.setLast("Doe");
+        contact.setFullName(contactName);
+        contact.setEmail("john@techstartup.com");
+        contact.setPhone(phone);
+        attr.setContact(contact);
+
+        // Officer
+        CreateOfficer officer = new CreateOfficer();
+        officer.setFullName(contactName);
+        officer.setEmail("john@techstartup.com");
+        officer.setPhone(phone);
+        officer.setAddress(address);
+        officer.setDateOfBirth(LocalDate.of(1985, 6, 15));
+        officer.setSsn("123456789");
+        officer.setTitle(CreateOfficer.TitleEnum.CEO);
+        officer.setOccupation(Occupation.ARCHITECT_OR_ENGINEER);
+        officer.setAnnualIncome(AnnualIncome.BETWEEN100K_AND250K);
+        officer.setSourceOfIncome(SourceOfIncome.BUSINESS_OWNERSHIP_INTERESTS);
+        attr.setOfficer(officer);
+
+        // Beneficial owners
+        List<CreateBeneficialOwner> beneficialOwners = new ArrayList<>();
+        CreateBeneficialOwner owner = new CreateBeneficialOwner();
+        owner.setFullName(contactName);
+        owner.setEmail("john@techstartup.com");
+        owner.setPhone(phone);
+        owner.setAddress(address);
+        owner.setDateOfBirth(LocalDate.of(1985, 6, 15));
+        owner.setSsn("123456789");
+        owner.setOccupation(Occupation.ARCHITECT_OR_ENGINEER);
+        owner.setAnnualIncome(AnnualIncome.BETWEEN100K_AND250K);
+        owner.setSourceOfIncome(SourceOfIncome.BUSINESS_OWNERSHIP_INTERESTS);
+        owner.setPercentage(100);
+        beneficialOwners.add(owner);
+        attr.setBeneficialOwners(beneficialOwners);
+
+        // Thread-specific required fields
+        attr.setAccountPurpose(ThreadBusinessAccountPurpose.RETAIL_SALES_IN_PERSON);
+        attr.setSourceOfFunds(ThreadBusinessSourceOfFunds.SALES_OF_SERVICES);
+        attr.setTransactionVolume(ThreadBusinessTransactionVolume.BETWEEN10_K_AND50_K);
+        attr.setBusinessIndustry(ThreadBusinessIndustry.CONSTRUCTION);
+        attr.setBusinessDescription("Technology consulting and software development services");
+        attr.setIsRegulated(false);
+
+        // US Nexus (required)
+        List<ThreadBusinessUsNexus> usNexus = new ArrayList<>();
+        usNexus.add(ThreadBusinessUsNexus.PHYSICAL_OFFICE_OR_FACILITY);
+        attr.setUsNexus(usNexus);
+
+        // Countries of operation (required)
+        List<String> countries = new ArrayList<>();
+        countries.add("US");
+        attr.setCountriesOfOperation(countries);
+
+        app.setAttributes(attr);
+
+        CreateApplicationRequest request = new CreateApplicationRequest();
+        request.data(new CreateApplicationRequestData(app));
+
+        return request;
+    }
+
+    public static CreateApplicationRequest GenerateCreateSoleProprietorThreadApplicationRequest() {
+        CreateSoleProprietorThreadApplication app = new CreateSoleProprietorThreadApplication();
+        CreateSoleProprietorThreadApplicationAttributes attr = new CreateSoleProprietorThreadApplicationAttributes();
+
+        // Personal information
+        FullName fullName = new FullName();
+        fullName.setFirst("Jane");
+        fullName.setLast("Smith");
+        attr.setFullName(fullName);
+
+        attr.setSsn("721074426");
+        attr.setDateOfBirth(LocalDate.of(1985, 3, 20));
+        attr.setEmail("jane.smith@business.com");
+
+        // Address
+        Address address = new Address();
+        address.setStreet("456 Market St");
+        address.setCity("Los Angeles");
+        address.setState("CA");
+        address.setPostalCode("90012");
+        address.setCountry("US");
+        attr.setAddress(address);
+
+        // Phone
+        Phone phone = new Phone();
+        phone.setCountryCode("1");
+        phone.setNumber("3105551234");
+        attr.setPhone(phone);
+
+        // Sole proprietorship flag
+        attr.setSoleProprietorship(true);
+
+        // Optional business details
+        attr.setDba("Smith Consulting");
+        attr.setEin("123456789");
+
+        // Thread-specific required fields
+        attr.setAccountPurpose(ThreadBusinessAccountPurpose.RETAIL_SALES_IN_PERSON);
+        attr.setSourceOfFunds(ThreadBusinessSourceOfFunds.SALES_OF_SERVICES);
+        attr.setTransactionVolume(ThreadSoleProprietorshipTransactionVolume.BETWEEN5_K_AND20_K);
+        attr.setBusinessIndustry(ThreadBusinessIndustry.CONSTRUCTION);
+        attr.setBusinessDescription("Consulting and professional services");
+
+        // US Nexus (required)
+        List<ThreadBusinessUsNexus> usNexus = new ArrayList<>();
+        usNexus.add(ThreadBusinessUsNexus.PHYSICAL_OFFICE_OR_FACILITY);
+        attr.setUsNexus(usNexus);
+
+        // Countries of operation (required)
+        List<String> countries = new ArrayList<>();
+        countries.add("US");
+        attr.setCountriesOfOperation(countries);
+
+        app.setAttributes(attr);
+
+        CreateApplicationRequest request = new CreateApplicationRequest();
+        request.data(new CreateApplicationRequestData(app));
+
+        return request;
     }
 }

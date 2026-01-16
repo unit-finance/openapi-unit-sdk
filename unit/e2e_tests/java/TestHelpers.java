@@ -329,6 +329,7 @@ public class TestHelpers {
 
         // Thread application specific fields
         attr.setAccountPurpose(ThreadIndividualAccountPurpose.PAYROLL_OR_DIRECT_DEPOSIT);
+        attr.setAccountPurposeDetail("Receiving monthly salary payments");
         attr.setSourceOfFunds(ThreadIndividualSourceOfFunds.SALARY_OR_WAGES);
         attr.setTransactionVolume(ThreadIndividualTransactionVolume.BETWEEN1_K_AND5_K);
         attr.setProfession(ThreadIndividualProfession.ENGINEER);
@@ -409,6 +410,7 @@ public class TestHelpers {
 
         // Thread-specific required fields
         attr.setAccountPurpose(ThreadBusinessAccountPurpose.RETAIL_SALES_IN_PERSON);
+        attr.setAccountPurposeDetail("Processing customer payments for retail operations");
         attr.setSourceOfFunds(ThreadBusinessSourceOfFunds.SALES_OF_SERVICES);
         attr.setTransactionVolume(ThreadBusinessTransactionVolume.BETWEEN10_K_AND50_K);
         attr.setBusinessIndustry(ThreadBusinessIndustry.CONSTRUCTION);
@@ -471,6 +473,7 @@ public class TestHelpers {
 
         // Thread-specific required fields
         attr.setAccountPurpose(ThreadBusinessAccountPurpose.RETAIL_SALES_IN_PERSON);
+        attr.setAccountPurposeDetail("Managing consulting fees and client payments");
         attr.setSourceOfFunds(ThreadBusinessSourceOfFunds.SALES_OF_SERVICES);
         attr.setTransactionVolume(ThreadSoleProprietorshipTransactionVolume.BETWEEN5_K_AND20_K);
         attr.setBusinessIndustry(ThreadBusinessIndustry.CONSTRUCTION);

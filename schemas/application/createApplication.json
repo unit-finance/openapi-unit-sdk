@@ -886,7 +886,7 @@
                             "accountPurpose": {
                                 "$ref": "#/components/schemas/ThreadIndividualAccountPurpose"
                             },
-                            "accountPurposeDescription": {
+                            "accountPurposeDetail": {
                                 "type": "string"
                             },
                             "sourceOfFunds": {
@@ -1041,7 +1041,7 @@
                             "accountPurpose": {
                                 "$ref": "#/components/schemas/ThreadBusinessAccountPurpose"
                             },
-                            "accountPurposeDescription": {
+                            "accountPurposeDetail": {
                                 "type": "string"
                             },
                             "businessDescription": {
@@ -1167,7 +1167,7 @@
                             "accountPurpose": {
                                 "$ref": "#/components/schemas/ThreadBusinessAccountPurpose"
                             },
-                            "accountPurposeDescription": {
+                            "accountPurposeDetail": {
                                 "type": "string"
                             },
                             "transactionVolume": {

@@ -669,16 +669,37 @@
                                     },
                                     "website": { "type": "string" },
                                     "accountPurpose": {
-                                        "$ref": "./createApplication.json#/components/schemas/ThreadIndividualAccountPurpose"
+                                        "oneOf": [
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadIndividualAccountPurpose"
+                                            },
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadBusinessAccountPurpose"
+                                            }
+                                        ]
                                     },
                                     "accountPurposeDetail": {
                                         "type": "string"
                                     },
                                     "sourceOfFunds": {
-                                        "$ref": "./createApplication.json#/components/schemas/ThreadIndividualSourceOfFunds"
+                                        "oneOf": [
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadIndividualSourceOfFunds"
+                                            },
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadBusinessSourceOfFunds"
+                                            }
+                                        ]
                                     },
                                     "transactionVolume": {
-                                        "$ref": "./createApplication.json#/components/schemas/ThreadIndividualTransactionVolume"
+                                        "oneOf": [
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadIndividualTransactionVolume"
+                                            },
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadSoleProprietorshipTransactionVolume"
+                                            }
+                                        ]
                                     },
                                     "transactionVolumeDescription": {
                                         "type": "string"

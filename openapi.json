@@ -3,7 +3,7 @@
     "info": {
         "title": "Unit OpenAPI specifications",
         "description": "An OpenAPI specifications for unit-sdk clients",
-        "version": "0.3.2"
+        "version": "0.4.0"
     },
     "servers": [
         {
@@ -46,6 +46,9 @@
         },
         "/beneficial-owner/{beneficialOwnerId}": {
             "$ref": "./schemas/application/applicationPaths.json#/updateBusinessBeneficialOwner"
+        },
+        "/applications/{applicationId}/missing-fields": {
+            "$ref": "./schemas/application/applicationPaths.json#/applicationMissingFields"
         },
         "/accounts": {
             "$ref": "./schemas/account/accountPaths.json#/accounts"

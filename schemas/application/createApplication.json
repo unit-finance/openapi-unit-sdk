@@ -404,11 +404,11 @@
                 "additionalProperties": false,
                 "required": [
                     "fullName",
+                    "title",
                     "email",
                     "phone",
                     "address",
-                    "dateOfBirth",
-                    "occupation"
+                    "dateOfBirth"
                 ]
             },
             "CreateBeneficialOwner": {
@@ -446,7 +446,7 @@
                     },
                     "percentage": {
                         "type": "integer",
-                        "minimum": 0,
+                        "minimum": 25,
                         "maximum": 100
                     },
                     "EvaluationParams": {
@@ -548,6 +548,9 @@
                             },
                             "sourceOfIncome": {
                                 "$ref": "../types.json#/components/schemas/SourceOfIncome"
+                            },
+                            "operatingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
                             }
                         },
                         "additionalProperties": false,
@@ -669,6 +672,9 @@
                             },
                             "website": {
                                 "type": "string"
+                            },
+                            "operatingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
                             }
                         },
                         "additionalProperties": false,
@@ -900,6 +906,9 @@
                             },
                             "profession": {
                                 "$ref": "#/components/schemas/ThreadIndividualProfession"
+                            },
+                            "operatingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
                             }
                         },
                         "additionalProperties": false,
@@ -1046,6 +1055,9 @@
                             },
                             "businessDescription": {
                                 "type": "string"
+                            },
+                            "operatingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
                             }
                         },
                         "additionalProperties": false,
@@ -1058,7 +1070,7 @@
                             "accountPurpose",
                             "sourceOfFunds",
                             "transactionVolume",
-                            "profession"
+                            "businessIndustry"
                         ]
                     }
                 },
@@ -1194,6 +1206,9 @@
                             },
                             "entityType": {
                                 "$ref": "../types.json#/components/schemas/ThreadApplicationEntityType"
+                            },
+                            "operatingAddress": {
+                                "$ref": "../types.json#/components/schemas/Address"
                             }
                         },
                         "additionalProperties": false,
@@ -1209,7 +1224,14 @@
                             "beneficialOwners",
                             "accountPurpose",
                             "sourceOfFunds",
-                            "transactionVolume"
+                            "transactionVolume",
+                            "website",
+                            "businessIndustry",
+                            "businessDescription",
+                            "isRegulated",
+                            "usNexus",
+                            "countriesOfOperation",
+                            "yearOfIncorporation"
                         ]
                     }
                 },

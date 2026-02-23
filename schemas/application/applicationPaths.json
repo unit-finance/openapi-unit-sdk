@@ -850,5 +850,36 @@
                 }
             }
         }
+    },
+    "applicationMissingFields": {
+        "get": {
+            "tags": ["unit"],
+            "operationId": "getApplicationMissingFields",
+            "summary": "Get Missing Fields by Application ID",
+            "description": "Get list of missing due diligence fields by application id",
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "applicationId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the application to get missing fields for"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/vnd.api+json; charset=utf-8": {
+                            "schema": {
+                                "$ref": "./applicationMissingFields.json#/components/schemas/UnitApplicationMissingFieldsResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

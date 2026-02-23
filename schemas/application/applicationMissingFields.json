@@ -1,0 +1,104 @@
+{
+    "components": {
+        "schemas": {
+            "MissingField": {
+                "title": "Missing Field",
+                "type": "object",
+                "properties": {
+                    "fieldName": {
+                        "type": "string",
+                        "description": "The name of the application field that is missing"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Human-readable description which will indicate dependant fields that are also required"
+                    }
+                },
+                "required": ["fieldName", "description"],
+                "additionalProperties": false
+            },
+            "IndividualApplicationMissingFields": {
+                "title": "Individual Application Missing Fields",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["individualApplicationMissingFields"],
+                        "default": "individualApplicationMissingFields"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "missingFields": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/MissingField"
+                                },
+                                "description": "An array of missing field objects. Empty when there are no missing fields."
+                            }
+                        },
+                        "required": ["missingFields"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            },
+            "BusinessApplicationMissingFields": {
+                "title": "Business Application Missing Fields",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["businessApplicationMissingFields"],
+                        "default": "businessApplicationMissingFields"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "properties": {
+                            "missingFields": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/MissingField"
+                                },
+                                "description": "An array of missing field objects. Empty when there are no missing fields."
+                            }
+                        },
+                        "required": ["missingFields"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["type", "attributes"],
+                "additionalProperties": false
+            },
+            "ApplicationMissingFields": {
+                "title": "Application Missing Fields",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/IndividualApplicationMissingFields"
+                    },
+                    {
+                        "$ref": "#/components/schemas/BusinessApplicationMissingFields"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                        "individualApplicationMissingFields": "#/components/schemas/IndividualApplicationMissingFields",
+                        "businessApplicationMissingFields": "#/components/schemas/BusinessApplicationMissingFields"
+                    }
+                }
+            },
+            "UnitApplicationMissingFieldsResponse": {
+                "type": "object",
+                "title": "Unit Application Missing Fields Response",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/ApplicationMissingFields"
+                    }
+                },
+                "required": ["data"]
+            }
+        }
+    }
+}

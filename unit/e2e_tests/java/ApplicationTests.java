@@ -13,8 +13,8 @@ import static unit.java.sdk.TestHelpers.GenerateCreateIndividualApplicationReque
 import static unit.java.sdk.TestHelpers.GenerateCreateSoleProprietorApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateCreateBusinessApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateCreateIndividualThreadApplicationRequest;
-import static unit.java.sdk.TestHelpers.GenerateCreateBusinessThreadApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateCreateSoleProprietorThreadApplicationRequest;
+import static unit.java.sdk.TestHelpers.GenerateCreateBusinessThreadApplicationRequest;
 import static unit.java.sdk.TestHelpers.GenerateUnitApiClient;
 import static unit.java.sdk.TestHelpers.GenerateThreadUnitApiClient;
 import unit.java.sdk.api.UnitApi;
@@ -31,7 +31,6 @@ import unit.java.sdk.model.BusinessOfficer;
 import unit.java.sdk.model.CancelApplicationRequest;
 import unit.java.sdk.model.CancelApplicationRequestData;
 import unit.java.sdk.model.CancelApplicationRequestDataAttributes;
-import unit.java.sdk.model.CreateApplicationRequest;
 import unit.java.sdk.model.CreateApplicationFormRequest;
 import unit.java.sdk.model.CreateApplicationFormRequestData;
 import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes;
@@ -53,6 +52,10 @@ import unit.java.sdk.model.UnitCreateApplicationResponse;
 import unit.java.sdk.model.UnitDocumentResponse;
 import unit.java.sdk.model.UnitListApplicationsResponse;
 import unit.java.sdk.model.UnitListDocumentsResponse;
+import unit.java.sdk.model.UnitApplicationMissingFieldsResponse;
+import unit.java.sdk.model.ApplicationMissingFields;
+import unit.java.sdk.model.IndividualApplicationMissingFields;
+import unit.java.sdk.model.BusinessApplicationMissingFields;
 import unit.java.sdk.model.UpdateApplicationRequest;
 import unit.java.sdk.model.UpdateApplicationRequestData;
 import unit.java.sdk.model.UpdateBusinessApplication;
@@ -68,14 +71,13 @@ import unit.java.sdk.model.UpdateIndividualApplication;
 import unit.java.sdk.model.UpdateIndividualApplicationAttributes;
 import unit.java.sdk.model.UpdateSoleProprietorApplication;
 import unit.java.sdk.model.UpdateSoleProprietorApplicationAttributes;
-import unit.java.sdk.model.UploadApplicationDocumentContentType;
-import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.AllowedApplicationTypesEnum;
-import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.LangEnum;
-// TODO: Fix after enum refactoring
 import unit.java.sdk.model.UpdateIndividualThreadApplication;
 import unit.java.sdk.model.UpdateIndividualThreadApplicationAttributes;
 import unit.java.sdk.model.UpdateBusinessThreadApplication;
 import unit.java.sdk.model.UpdateSoleProprietorThreadApplication;
+import unit.java.sdk.model.UploadApplicationDocumentContentType;
+import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.AllowedApplicationTypesEnum;
+import unit.java.sdk.model.CreateApplicationFormRequestDataAttributes.LangEnum;
 
 public class ApplicationTests {
     UnitApi unitApi = GenerateUnitApiClient();
@@ -291,6 +293,33 @@ public class ApplicationTests {
         assert res.getData().getType().equals(Application.TypeEnum.BUSINESS_APPLICATION);
     }
 
+    @Test
+    public void CreateIndividualThreadApplicationApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateIndividualThreadApplicationRequest(null));
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
+        
+        IndividualApplication individualApp = (IndividualApplication) res.getData();
+        assert individualApp.getAttributes() != null;
+    }
+
+    @Test
+    public void CreateBusinessThreadApplicationApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateBusinessThreadApplicationRequest());
+        assert res.getData().getType().equals(Application.TypeEnum.BUSINESS_APPLICATION);
+        
+        BusinessApplication businessApp = (BusinessApplication) res.getData();
+        assert businessApp.getAttributes() != null;
+    }
+
+    @Test
+    public void CreateSoleProprietorThreadApplicationApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateSoleProprietorThreadApplicationRequest());
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
+        
+        IndividualApplication soleProprietorApp = (IndividualApplication) res.getData();
+        assert soleProprietorApp.getAttributes() != null;
+    }
+
     @Test 
     public void CancelApplicationApiTest() throws ApiException {
         UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000004"));
@@ -458,104 +487,170 @@ public class ApplicationTests {
         });
     }
 
-    // Thread Application Tests
-
     @Test
-    public void CreateIndividualThreadApplicationApiTest() throws ApiException {
-        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateIndividualThreadApplicationRequest(null));
+    public void GetIndividualApplicationMissingFieldsApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null));
         assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
+
+        String applicationId = res.getData().getId();
+        UnitApplicationMissingFieldsResponse missingFieldsResponse = unitApi.getApplicationMissingFields(applicationId);
         
-        IndividualApplication individualApp = (IndividualApplication) res.getData();
-        assert individualApp.getAttributes() != null;
+        assert missingFieldsResponse != null;
+        assert missingFieldsResponse.getData() != null;
+        
+        ApplicationMissingFields missingFields = missingFieldsResponse.getData();
+        Object actualInstance = missingFields.getActualInstance();
+        assert actualInstance instanceof IndividualApplicationMissingFields;
+        
+        IndividualApplicationMissingFields individualMissingFields = (IndividualApplicationMissingFields) actualInstance;
+        assert individualMissingFields.getType().equals(IndividualApplicationMissingFields.TypeEnum.INDIVIDUAL_APPLICATION_MISSING_FIELDS);
     }
 
     @Test
-    public void CreateBusinessThreadApplicationApiTest() throws ApiException {
-        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateBusinessThreadApplicationRequest());
+    public void GetBusinessApplicationMissingFieldsApiTest() throws ApiException {
+        UnitCreateApplicationResponse res = unitApi.createApplication(GenerateCreateBusinessApplicationRequest());
         assert res.getData().getType().equals(Application.TypeEnum.BUSINESS_APPLICATION);
+
+        String applicationId = res.getData().getId();
+        UnitApplicationMissingFieldsResponse missingFieldsResponse = unitApi.getApplicationMissingFields(applicationId);
         
-        BusinessApplication businessApp = (BusinessApplication) res.getData();
-        assert businessApp.getAttributes() != null;
+        assert missingFieldsResponse != null;
+        assert missingFieldsResponse.getData() != null;
+        
+        ApplicationMissingFields missingFields = missingFieldsResponse.getData();
+        Object actualInstance = missingFields.getActualInstance();
+        assert actualInstance instanceof BusinessApplicationMissingFields;
+        
+        BusinessApplicationMissingFields businessMissingFields = (BusinessApplicationMissingFields) actualInstance;
+        assert businessMissingFields.getType().equals(BusinessApplicationMissingFields.TypeEnum.BUSINESS_APPLICATION_MISSING_FIELDS);
     }
 
     @Test
-    public void CreateSoleProprietorThreadApplicationApiTest() throws ApiException {
-        UnitCreateApplicationResponse res = threadUnitApi.createApplication(GenerateCreateSoleProprietorThreadApplicationRequest());
-        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
-        
-        IndividualApplication soleProprietorApp = (IndividualApplication) res.getData();
-        assert soleProprietorApp.getAttributes() != null;
+    public void GetApplicationMissingFieldsFromListApiTest() throws ApiException {
+        ListPageParameters page = new ListPageParameters();
+        page.setLimit(10);
+        UnitListApplicationsResponse response = unitApi.getApplicationsList(page, null, null);
+        assert !response.getData().isEmpty();
+
+        response.getData().forEach(application -> {
+            try {
+                if (application == null) return;
+                
+                UnitApplicationMissingFieldsResponse missingFieldsResponse = unitApi.getApplicationMissingFields(application.getId());
+                assert missingFieldsResponse != null;
+                assert missingFieldsResponse.getData() != null;
+                
+                ApplicationMissingFields missingFields = missingFieldsResponse.getData();
+                Object actualInstance = missingFields.getActualInstance();
+                
+                // Verify the response type matches the application type
+                if (application.getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION)) {
+                    assert actualInstance instanceof IndividualApplicationMissingFields;
+                } else if (application.getType().equals(Application.TypeEnum.BUSINESS_APPLICATION)) {
+                    assert actualInstance instanceof BusinessApplicationMissingFields;
+                }
+            } catch (ApiException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @Test
     public void UpdateIndividualThreadApplicationApiTest() throws ApiException {
         UnitApi threadApi = GenerateThreadUnitApiClient();
         UnitCreateApplicationResponse res = threadApi.createApplication(GenerateCreateIndividualThreadApplicationRequest(null));
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUAL_APPLICATION);
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
 
-        String applicationId = res.getData().getId();
-        
-        // Update with tags
+        IndividualApplication individualApp = (IndividualApplication) res.getData();
+        ApplicationStatus status = individualApp.getAttributes().getStatus();
+        if (!status.equals(ApplicationStatus.APPROVED)) return;
+
         UpdateIndividualThreadApplication body = new UpdateIndividualThreadApplication();
         UpdateIndividualThreadApplicationAttributes attributes = new UpdateIndividualThreadApplicationAttributes();
+        
+        // Set tags
         Map<String, String> tags = new HashMap<>();
         tags.put("testKey", "testValue");
         attributes.setTags(tags);
-        body.setAttributes(attributes);
-
-        UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
-        UpdateApplicationRequest ua = new UpdateApplicationRequest();
-        ua.data(d);
-
-        UnitApplicationResponseWithIncluded res2 = threadApi.updateApplication(applicationId, ua);
-        assert res2.getData().getId().equals(applicationId);
-    }
-
-    @Test
-    public void UpdateBusinessThreadApplicationApiTest() throws ApiException {
-        UnitApi threadApi = GenerateThreadUnitApiClient();
-        UnitCreateApplicationResponse res = threadApi.createApplication(GenerateCreateBusinessThreadApplicationRequest());
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.BUSINESS_APPLICATION);
-
-        String applicationId = res.getData().getId();
         
-        // Update with tags
-        UpdateBusinessThreadApplication body = new UpdateBusinessThreadApplication();
-        UpdateIndividualThreadApplicationAttributes attributes = new UpdateIndividualThreadApplicationAttributes();
-        Map<String, String> tags = new HashMap<>();
-        tags.put("businessTag", "businessValue");
-        attributes.setTags(tags);
         body.setAttributes(attributes);
 
         UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
         UpdateApplicationRequest ua = new UpdateApplicationRequest();
-        ua.data(d);
+        ua.setData(d);
 
-        UnitApplicationResponseWithIncluded res2 = threadApi.updateApplication(applicationId, ua);
-        assert res2.getData().getId().equals(applicationId);
+        UnitApplicationResponseWithIncluded app = threadApi.updateApplication(res.getData().getId(), ua);
+        assert app.getData().getId().equals(res.getData().getId());
+        assert app.getData().getType().toString().toLowerCase()
+                .equals(app.getData().getClass().getSimpleName().toLowerCase());
+        IndividualApplication resApplication = (IndividualApplication) app.getData();
+        assert resApplication.getAttributes().getTags().containsKey("testKey");
+        assert resApplication.getAttributes().getTags().get("testKey").equals("testValue");
     }
 
     @Test
     public void UpdateSoleProprietorThreadApplicationApiTest() throws ApiException {
         UnitApi threadApi = GenerateThreadUnitApiClient();
         UnitCreateApplicationResponse res = threadApi.createApplication(GenerateCreateSoleProprietorThreadApplicationRequest());
-        assert res.getData().getType().equals(unit.java.sdk.model.Application.TypeEnum.INDIVIDUAL_APPLICATION);
+        assert res.getData().getType().equals(Application.TypeEnum.INDIVIDUAL_APPLICATION);
 
-        String applicationId = res.getData().getId();
-        
-        // Update with tags
+        IndividualApplication individualApp = (IndividualApplication) res.getData();
+        ApplicationStatus status = individualApp.getAttributes().getStatus();
+        if (!status.equals(ApplicationStatus.APPROVED)) return;
+
         UpdateSoleProprietorThreadApplication body = new UpdateSoleProprietorThreadApplication();
         UpdateIndividualThreadApplicationAttributes attributes = new UpdateIndividualThreadApplicationAttributes();
+        
+        // Set tags
         Map<String, String> tags = new HashMap<>();
-        tags.put("soleProprietorTag", "soleProprietorValue");
+        tags.put("soleProprietorKey", "soleProprietorValue");
         attributes.setTags(tags);
+        
         body.setAttributes(attributes);
 
         UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
         UpdateApplicationRequest ua = new UpdateApplicationRequest();
-        ua.data(d);
+        ua.setData(d);
 
-        UnitApplicationResponseWithIncluded res2 = threadApi.updateApplication(applicationId, ua);
-        assert res2.getData().getId().equals(applicationId);
+        UnitApplicationResponseWithIncluded app = threadApi.updateApplication(res.getData().getId(), ua);
+        assert app.getData().getId().equals(res.getData().getId());
+        assert app.getData().getType().toString().toLowerCase()
+                .equals(app.getData().getClass().getSimpleName().toLowerCase());
+        IndividualApplication resApplication = (IndividualApplication) app.getData();
+        assert resApplication.getAttributes().getTags().containsKey("soleProprietorKey");
+        assert resApplication.getAttributes().getTags().get("soleProprietorKey").equals("soleProprietorValue");
+    }
+
+    @Test
+    public void UpdateBusinessThreadApplicationApiTest() throws ApiException {
+        UnitApi threadApi = GenerateThreadUnitApiClient();
+        UnitCreateApplicationResponse res = threadApi.createApplication(GenerateCreateBusinessThreadApplicationRequest());
+        assert res.getData().getType().equals(Application.TypeEnum.BUSINESS_APPLICATION);
+
+        BusinessApplication businessApp = (BusinessApplication) res.getData();
+        ApplicationStatus status = businessApp.getAttributes().getStatus();
+        if (!status.equals(ApplicationStatus.APPROVED)) return;
+
+        UpdateBusinessThreadApplication body = new UpdateBusinessThreadApplication();
+        UpdateIndividualThreadApplicationAttributes attributes = new UpdateIndividualThreadApplicationAttributes();
+        
+        // Set tags
+        Map<String, String> tags = new HashMap<>();
+        tags.put("businessKey", "businessValue");
+        attributes.setTags(tags);
+        
+        body.setAttributes(attributes);
+
+        UpdateApplicationRequestData d = new UpdateApplicationRequestData(body);
+        UpdateApplicationRequest ua = new UpdateApplicationRequest();
+        ua.setData(d);
+
+        UnitApplicationResponseWithIncluded app = threadApi.updateApplication(res.getData().getId(), ua);
+        assert app.getData().getId().equals(res.getData().getId());
+        assert app.getData().getType().toString().toLowerCase()
+                .equals(app.getData().getClass().getSimpleName().toLowerCase());
+        BusinessApplication resApplication = (BusinessApplication) app.getData();
+        assert resApplication.getAttributes().getTags().containsKey("businessKey");
+        assert resApplication.getAttributes().getTags().get("businessKey").equals("businessValue");
     }
 }

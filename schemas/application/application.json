@@ -445,6 +445,48 @@
                                     },
                                     "operatingAddress": {
                                         "$ref": "../types.json#/components/schemas/Address"
+                                    },
+                                    "sourceOfFunds": {
+                                        "$ref": "./createApplication.json#/components/schemas/ThreadBusinessSourceOfFunds"
+                                    },
+                                    "sourceOfFundsDescription": {
+                                        "type": "string"
+                                    },
+                                    "businessIndustry": {
+                                        "$ref": "./createApplication.json#/components/schemas/ThreadBusinessIndustry"
+                                    },
+                                    "businessDescription": {
+                                        "type": "string"
+                                    },
+                                    "isRegulated": {
+                                        "type": "boolean"
+                                    },
+                                    "regulatorName": {
+                                        "type": "string"
+                                    },
+                                    "usNexus": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "./createApplication.json#/components/schemas/ThreadBusinessUsNexus"
+                                        }
+                                    },
+                                    "accountPurpose": {
+                                        "$ref": "./createApplication.json#/components/schemas/ThreadBusinessAccountPurpose"
+                                    },
+                                    "accountPurposeDescription": {
+                                        "type": "string"
+                                    },
+                                    "accountPurposeDetail": {
+                                        "type": "string"
+                                    },
+                                    "transactionVolume": {
+                                        "$ref": "./createApplication.json#/components/schemas/ThreadBusinessTransactionVolume"
+                                    },
+                                    "transactionVolumeDescription": {
+                                        "type": "string"
+                                    },
+                                    "stockExchangeName": {
+                                        "type": "string"
                                     }
                                 },
                                 "additionalProperties": false,
@@ -625,7 +667,46 @@
                                     "businessVertical": {
                                         "$ref": "../types.json#/components/schemas/BusinessVertical"
                                     },
-                                    "website": { "type": "string" }
+                                    "website": { "type": "string" },
+                                    "accountPurpose": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadIndividualAccountPurpose"
+                                            },
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadBusinessAccountPurpose"
+                                            }
+                                        ]
+                                    },
+                                    "accountPurposeDetail": {
+                                        "type": "string"
+                                    },
+                                    "sourceOfFunds": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadIndividualSourceOfFunds"
+                                            },
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadBusinessSourceOfFunds"
+                                            }
+                                        ]
+                                    },
+                                    "transactionVolume": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadIndividualTransactionVolume"
+                                            },
+                                            {
+                                                "$ref": "./createApplication.json#/components/schemas/ThreadSoleProprietorshipTransactionVolume"
+                                            }
+                                        ]
+                                    },
+                                    "transactionVolumeDescription": {
+                                        "type": "string"
+                                    },
+                                    "profession": {
+                                        "$ref": "./createApplication.json#/components/schemas/ThreadIndividualProfession"
+                                    }
                                 },
                                 "additionalProperties": false,
                                 "required": ["createdAt", "status", "fullName"]

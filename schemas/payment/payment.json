@@ -260,6 +260,7 @@
                                         "type": "string",
                                         "enum": [
                                             "Pending",
+                                            "PendingReview",
                                             "Rejected",
                                             "Clearing",
                                             "Sent",
@@ -351,6 +352,7 @@
                                         "type": "string",
                                         "enum": [
                                             "Pending",
+                                            "PendingReview",
                                             "Rejected",
                                             "Clearing",
                                             "Sent",
@@ -429,6 +431,7 @@
                                         "type": "string",
                                         "enum": [
                                             "Pending",
+                                            "PendingReview",
                                             "Rejected",
                                             "Clearing",
                                             "Sent",

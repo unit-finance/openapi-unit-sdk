@@ -403,7 +403,7 @@ public class ApplicationTests {
 
     @Test
     public void UploadPngApplicationDocumentBacksideApiTest() throws ApiException {
-        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000002")).getData();
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000003")).getData();
         ApplicationDocument document = GetRequiredIdDocument(application);
         File file = new File("./src/test/java/unit/java/sdk/unit_photo.png");
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
@@ -414,7 +414,7 @@ public class ApplicationTests {
 
     @Test
     public void UploadJpegApplicationDocumentBacksideApiTest() throws ApiException {
-        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000002")).getData();
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000003")).getData();
         ApplicationDocument document = GetRequiredIdDocument(application);
         File file = new File("./src/test/java/unit/java/sdk/unit_photo.jpeg");
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
@@ -426,7 +426,7 @@ public class ApplicationTests {
 
     @Test
     public void UploadPdfApplicationDocumentBacksideApiTest() throws ApiException {
-        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000002")).getData();
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000003")).getData();
         ApplicationDocument document = GetRequiredIdDocument(application);
         File file = new File("./src/test/java/unit/java/sdk/unit_pdf.pdf");
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);

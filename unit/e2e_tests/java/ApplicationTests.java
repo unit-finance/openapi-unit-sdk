@@ -408,7 +408,7 @@ public class ApplicationTests {
         File file = new File("./src/test/java/unit/java/sdk/unit_photo.png");
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
         assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
-        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        InputStream streamRes = unitApi.downloadApplicationBackSideDocument(application.getId(), document.getId());
         assert streamRes != null;
     }
 
@@ -420,7 +420,7 @@ public class ApplicationTests {
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
         assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
 
-        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        InputStream streamRes = unitApi.downloadApplicationBackSideDocument(application.getId(), document.getId());
         assert streamRes != null;
     }
 
@@ -432,7 +432,7 @@ public class ApplicationTests {
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
         assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
 
-        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        InputStream streamRes = unitApi.downloadApplicationBackSideDocument(application.getId(), document.getId());
         assert streamRes != null;
     }
 

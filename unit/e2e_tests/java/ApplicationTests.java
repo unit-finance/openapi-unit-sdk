@@ -353,6 +353,13 @@ public class ApplicationTests {
         return document.getData();
     }
 
+    ApplicationDocument GetRequiredIdDocument(IndividualApplication application) throws ApiException {
+        return unitApi.getApplicationDocuments(application.getId()).getData().stream()
+            .filter(d -> "IdDocument".equals(d.getAttributes().getDocumentType()))
+            .findFirst()
+            .orElseThrow(() -> new AssertionError("Expected an IdDocument for application " + application.getId()));
+    }
+
     @Test
     public void CreateApplicationDocumentAndGetApiTest() throws ApiException {
         IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
@@ -396,36 +403,36 @@ public class ApplicationTests {
 
     @Test
     public void UploadPngApplicationDocumentBacksideApiTest() throws ApiException {
-        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
-        ApplicationDocument document = CreateApplicationDocument(application);
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000003")).getData();
+        ApplicationDocument document = GetRequiredIdDocument(application);
         File file = new File("./src/test/java/unit/java/sdk/unit_photo.png");
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
         assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
-        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        InputStream streamRes = unitApi.downloadApplicationBackSideDocument(application.getId(), document.getId());
         assert streamRes != null;
     }
 
     @Test
     public void UploadJpegApplicationDocumentBacksideApiTest() throws ApiException {
-        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
-        ApplicationDocument document = CreateApplicationDocument(application);
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000003")).getData();
+        ApplicationDocument document = GetRequiredIdDocument(application);
         File file = new File("./src/test/java/unit/java/sdk/unit_photo.jpeg");
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
         assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
 
-        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        InputStream streamRes = unitApi.downloadApplicationBackSideDocument(application.getId(), document.getId());
         assert streamRes != null;
     }
 
     @Test
     public void UploadPdfApplicationDocumentBacksideApiTest() throws ApiException {
-        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest(null)).getData();
-        ApplicationDocument document = CreateApplicationDocument(application);
+        IndividualApplication application = (IndividualApplication) unitApi.createApplication(GenerateCreateIndividualApplicationRequest("000000003")).getData();
+        ApplicationDocument document = GetRequiredIdDocument(application);
         File file = new File("./src/test/java/unit/java/sdk/unit_pdf.pdf");
         UnitDocumentResponse res = unitApi.uploadApplicationDocumentFileBackSide(application.getId(), document.getId(), file, UploadApplicationDocumentContentType.IMAGE_JPEG);
         assert res.getData().getType().equals(ApplicationDocument.TypeEnum.DOCUMENT);
 
-        InputStream streamRes = unitApi.downloadApplicationDocument(application.getId(), document.getId());
+        InputStream streamRes = unitApi.downloadApplicationBackSideDocument(application.getId(), document.getId());
         assert streamRes != null;
     }
 
